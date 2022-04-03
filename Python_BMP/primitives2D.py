@@ -1,4 +1,4 @@
-from mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,iif,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist
+from Python_BMP.mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,iif,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist
 
 def itercirclepart(r):
     row,col,r_sqr=r,0,r*r

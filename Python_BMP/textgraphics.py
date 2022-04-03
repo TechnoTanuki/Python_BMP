@@ -1,4 +1,4 @@
-from BITMAPlib import getcolorbits,getmaxy,getxcharcount,gethdrsize,iif
+from Python_BMP.BITMAPlib import getcolorbits,getmaxy,getxcharcount,gethdrsize,iif
 
 def plotbitsastext(bits):
     mask=128
