@@ -6,7 +6,7 @@ sdir='C:\\Python_BMP\\assets\\test_images\\'
 odir='C:\\Python_BMP\\test_output\\'
 cf=getRGBfactors()
 c=getcolorname2RGBdict()
-ofile='C:\\Python_BMP\\testimg\\raccoon.bmp'
+ofile='C:\\Python_BMP\\assets\\testimg\\raccoon.bmp'
 class Test2filefunc(unittest.TestCase):
 
         def filecmp(self,filename1,filename2):
