@@ -16,7 +16,7 @@
 #
 #This graphics library outputs to a bitmap file
 
-import BITMAPlib as b,subprocess as proc
+import Python_BMP.BITMAPlib as b,subprocess as proc
 import time as t
 from random import randint
 from os import chdir 
@@ -154,7 +154,7 @@ def main():
         print('Copy paste done in ',hhmmsselaspedtime(starttime))
         starttime=t.process_time_ns()
         nbmp=b.convertselection2BMP(buff)
-        nfile='flower.bmp'
+        nfile='assets/flower.bmp'
         b.saveBMP(nfile,nbmp)
         print('Save selection to ',nfile,' done in ',hhmmsselaspedtime(starttime))
 
