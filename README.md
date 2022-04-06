@@ -7,7 +7,10 @@ Developed and tested using Python 3.7.3
 
 # Instructions
 
-Run Features_Speedtest.py it should generate a bitmap and open MS Paint under windows to show output... 
+Run Features_Speedtest.py 
+
+>It should generate a bitmap and open MS Paint under windows to show output... 
+>Close the MS Paint window to execute another script
 
 under unix change editor at line 169 (see below)
 
