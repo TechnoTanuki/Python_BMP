@@ -1,12 +1,16 @@
 
-import unittest
+import unittest,os
 from Python_BMP.BITMAPlib import loadBMP,getRGBfactors,int2RGB,getcolorname2RGBdict,invertregion2file,flipXY2file,fliphorizontal2file,flipverticalregion2file,fliphorizontalregion2file,cropBMPandsave,imgregionbyRGB2file,adjustbrightness2file,gammaadj2file,adjustbrightnessinregion2file,monochrome2file,monofilterinregion2file,colorfilter2file,colorfilterinregion2file,adjustthresholdinregion2file,gammaadjtoregion2file,resizeNtimessmaller2file,resizeNtimesbigger2file,outline2file,outlineregion2file,monochromecircregion2file,colorfiltercircregion2file,circle2file,thresholdadjcircregion2file,gammacorrectcircregion2file,brightnessadjcircregion2file,invertbitsincircregion2file,flipvertcircregion2file,fliphoricircregion2file,outlinecircregion2file,flipXYcircregion2file,magnifyNtimescircregion2file,copycircregion2file,verticalbrightnessgradregion2file,horizontalbrightnessgradregion2file,mirrortop2file,mirrorbottom2file,mirrortopleft2file,mirrortopright2file,mirrorbottomleft2file,mirrorbottomright2file,mirrorleft2file,mirrorright2file,verticalbrightnessgrad2file,horizontalbrightnessgrad2file,vertbrightnessgrad2circregion2file,horibrightnessgrad2circregion2file,mirrorrightinregion2file,mirrorleftinregion2file,mirrortopinregion2file,mirrorbottominregion2file,mirrortopleftinregion2file,mirrortoprightinregion2file,mirrorbottomleftinregion2file,mirrorbottomrightinregion2file,rectangle2file,fern2file,thresholdadjust2file,eraseeverynthhoriline2file,eraseeverynthhorilineinregion2file,eraseeverynthhorilineinccircregion2file,pixelizenxncircregion2file,pixelizenxntofile,sphere2file,thickencirclearea2file,filledcircle2file,mirrortopincircregion2file,mirrorbottomincircregion2file,mirrorleftincircregion2file,mirrorrightincircregion2file,mirrortopleftincircregion2file,mirrorbottomleftincircregion2file,mirrortoprightincircregion2file,mirrorbottomrightincircregion2file,upgradeto24bitimage2file,reduce24bitimagebits,autocropimg2file
 
-sdir='C:\\Python_BMP\\assets\\test_images\\'
-odir='C:\\Python_BMP\\test_output\\'
+rootdir =os.path.abspath(os.getcwd())
+testimgdir='/assets/test_images/'
+sdir=rootdir+testimgdir
+odir=rootdir+'/test_output/'
+ofile=sdir+'raccoon.bmp'
+
 cf=getRGBfactors()
 c=getcolorname2RGBdict()
-ofile='C:\\Python_BMP\\assets\\test_images\\raccoon.bmp'
+
 class Test2filefunc(unittest.TestCase):
 
         def filecmp(self,filename1,filename2):
@@ -208,7 +212,7 @@ class Test2filefunc(unittest.TestCase):
         def testautocropimg2file(self):
                 filename='flower-autocrop.bmp'
                 newfile,reffile=odir+filename,sdir+filename
-                autocropimg2file('C:/Python_BMP/flower.bmp',newfile,64) 
+                autocropimg2file(sdir+'flower.bmp',newfile,64) 
                 self.filecmp(reffile,newfile)                
                 
 
