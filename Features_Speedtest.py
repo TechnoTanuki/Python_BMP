@@ -19,7 +19,7 @@
 import Python_BMP.BITMAPlib as b,subprocess as proc
 import time as t
 from random import randint
-from os import chdir 
+from os import path,getcwd
         
 def elaspedtimeinseconds(inittime): return (t.process_time_ns()-inittime)/1000000000
 
@@ -30,8 +30,7 @@ def hhmmsselaspedtime(inittime):
         return str(hrs).zfill(2)+':'+str(mins).zfill(2)+':'+str(secs).zfill(2)+ '.'+str(ns)
 
 def main():
-        rootdir="C:/Python_BMP" #Change path if needed
-        chdir(rootdir) 
+        rootdir=path.abspath(getcwd())
         b.plotbmpastext(b.loadBMP(rootdir+'/assets/pp.bmp')) #load logo
         print('Test for Pure Python graphics lib\n')
 
