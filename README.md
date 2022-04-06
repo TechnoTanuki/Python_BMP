@@ -9,7 +9,7 @@ No dependencies required
 
 Run Features_Speedtest.py it should generate a bitmap and open MS Paint under windows to show output... 
 
-under unix change editor at line 154 (see below)
+under unix change editor at line 169 (see below)
 
 ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
