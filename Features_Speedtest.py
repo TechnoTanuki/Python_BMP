@@ -31,7 +31,7 @@ def hhmmsselaspedtime(inittime):
 
 def main():
         chdir("C:/Python_BMP") #Change path if needed
-        b.plotbmpastext(b.loadBMP('pp.bmp')) #load logo
+        b.plotbmpastext(b.loadBMP('C:/Python_BMP/assets/pp.bmp')) #load logo
         print('Test for Pure Python graphics lib\n')
 
         demostart=t.process_time_ns()
