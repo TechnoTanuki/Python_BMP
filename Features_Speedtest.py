@@ -30,8 +30,9 @@ def hhmmsselaspedtime(inittime):
         return str(hrs).zfill(2)+':'+str(mins).zfill(2)+':'+str(secs).zfill(2)+ '.'+str(ns)
 
 def main():
-        chdir("C:/Python_BMP") #Change path if needed
-        b.plotbmpastext(b.loadBMP('C:/Python_BMP/assets/pp.bmp')) #load logo
+        rootdir="C:/Python_BMP" #Change path if needed
+        chdir(rootdir) 
+        b.plotbmpastext(b.loadBMP(rootdir+'/assets/pp.bmp')) #load logo
         print('Test for Pure Python graphics lib\n')
 
         demostart=t.process_time_ns()
