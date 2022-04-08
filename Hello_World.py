@@ -2,7 +2,7 @@
 #This graphics library outputs to a bitmap file
 
 import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,getcwd,sys
+from os import path,sys
         
 def main():
         rootdir=path.abspath(sys.path[0])
