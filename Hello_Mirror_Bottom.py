@@ -6,7 +6,7 @@ from os import path,sys
         
 def main():
         rootdir=path.abspath(sys.path[0])
-        bmp=b.loadBMP(rootdir+'/assets/somebody.bmp') #load earth to memory
+        bmp=b.loadBMP(rootdir+'/assets/somebody.bmp') #load to memory
         b.mirrorbottom(bmp)
         file='HelloMirrorBottom.bmp' #file name
         b.saveBMP(file,bmp)
