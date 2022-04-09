@@ -18,7 +18,7 @@ Run Features_Speedtest.py
 >under unix change editor at line 168
 >>ret =proc.call('mspaint '+file) # replace with another editor if Unix
 >>or comment the line. 
->You can inspect the file later with another graphics editor file name is
+>>You can inspect the file later with another graphics editor file name is
 >>file='test.bmp' 
 >at line 162
 
