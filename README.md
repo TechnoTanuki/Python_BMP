@@ -15,12 +15,12 @@ Run Features_Speedtest.py
 
 >It should generate a bitmap and open MS Paint under windows to show output... 
 >Close the MS Paint window to execute another script
->under unix change editor at line 168
+>under unix 
+>>Change editor at line 168
 >>ret =proc.call('mspaint '+file) # replace with another editor if Unix
 >>or comment the line. 
 >>You can inspect the file later with another graphics editor file name is
->>file='test.bmp' 
->at line 162
+>>file='test.bmp' at line 162
 
 # Unit tests
 
