@@ -7,7 +7,6 @@ from os import path,sys
 def main():
         rootdir=path.abspath(sys.path[0])
         bmp=b.loadBMP(rootdir+'/assets/earth.bmp') #load earth to memory
-        c=b.getcolorname2RGBdict() #friendly color names 2 rgb
         b.monofilterto24bitimage(bmp)
         file='HelloMonoEarth.bmp' #file name
         b.saveBMP(file,bmp)
