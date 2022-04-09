@@ -702,6 +702,7 @@ def filledgradrect(bmp,x1,y1,x2,y2,lumrange,RGBfactors,direction):
             f=x/dx
             c=RGB2int(round(base[0]+lrange[0]*f),round(base[1]+lrange[1]*f),round(base[2]+lrange[2]*f))
             if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+            if c<0: c=0
             vertline(bmp,x,y1,y2,c)
     else:
         ylim=y2+1
@@ -709,6 +710,7 @@ def filledgradrect(bmp,x1,y1,x2,y2,lumrange,RGBfactors,direction):
             f=y/dy
             c=RGB2int(round(base[0]+lrange[0]*f),round(base[1]+lrange[1]*f),round(base[2]+lrange[2]*f))
             if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+            if c<0: c=0
             horiline(bmp,y,x1,x2,c)
 
 @entirerectinboundary            
