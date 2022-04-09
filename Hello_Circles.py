@@ -13,7 +13,7 @@ def main():
         cx,cy=mx>>1,my>>1 #div by 2
         for r in range(0,cx):
                 b.circle(bmp,cx,cy,r,r,False)
-        file='HelloCirles.bmp' #file name
+        file='HelloCircles.bmp' #file name
         b.saveBMP(file,bmp)
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
