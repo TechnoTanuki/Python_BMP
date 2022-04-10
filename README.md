@@ -2,7 +2,7 @@
 A pure Python 2D/3D graphics library that outputs to windows bitmap format
 
 >Developed and tested using Python 3.7.3 and 3.10.4
->>No dependencies required
+>* No dependencies required
 
 # Instructions
 
@@ -26,8 +26,10 @@ Run Features_Speedtest.py
 
 Run picmanip_UNITTEST.py 
 
->it will generate up to 70+ images (one per function under test) then compare it with previously generated images generated with the function under test 
->(this might take a while)
+>it will generate up to 70+ images 
+>* one per function under test 
+>* then compare it with previously generated images generated with the function under test 
+>* (this might take a while)
 
 
 
