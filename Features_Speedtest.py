@@ -19,7 +19,7 @@
 import Python_BMP.BITMAPlib as b,subprocess as proc
 import time as t
 from random import randint
-from os import path,getcwd,sys
+from os import path,sys
         
 def elaspedtimeinseconds(inittime): return (t.process_time_ns()-inittime)/1000000000
 
