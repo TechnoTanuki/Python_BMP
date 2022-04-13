@@ -2,7 +2,8 @@
 Check samples with Hello_something.py for sample code on how to do stuff
 * The code did a functional approach (no classes).
 * I have a lot of functions to document so please be patient this is a hobby lmao.
-* Use Hello_Darkness.py as template to start your script
 
-See https://docs.microsoft.com/en-us/windows/win32/gdi/bitmap-storage
+See: https://docs.microsoft.com/en-us/windows/win32/gdi/bitmap-storage
 for details on the windows bitmap format
+
+See: https://github.com/TechnoTanuki/Python_BMP#readme for other stuff
