@@ -12,7 +12,7 @@ def main():
         (x,y)=b.centercoord(bmp) # How to get center of the bitmap
         r=x-20 # radius set to x - 20
         b.monocircle(bmp,x,y,r)
-        # Python_BMP.monocircle(bmp bytearray,x int,y int ,r int)
+        # Python_BMP.BITMAPlib.monocircle(bmp bytearray,x int,y int ,r int)
         file='HelloCircularMonoFilter.bmp' #file name
         b.saveBMP(file,bmp)
         print('\nAll done close mspaint to finish')
