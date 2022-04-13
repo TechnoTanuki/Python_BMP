@@ -13,7 +13,7 @@ def main():
         r=x-30 # radius set to x - 30
         n=5 # blursize n = 5x5 pix
         b.pixelizenxncircregion(bmp,x,y,r,n)
-        # Python_BMP.pixelizenxncircregion(bmp bytarray,x int ,y int ,r int ,n int)
+        # Python_BMP.BITMAPlib.pixelizenxncircregion(bmp bytarray,x int ,y int ,r int ,n int)
         file='HelloCircularPixellate.bmp' #file name
         b.saveBMP(file,bmp) # save the image
         print('\nAll done close mspaint to finish')
