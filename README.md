@@ -26,6 +26,7 @@ Run Features_Speedtest.py
 # Unit tests
 
 Run picmanip_UNITTEST.py 
+>see: https://github.com/TechnoTanuki/Python_BMP/blob/main/picmanip_UNITTEST.py 
 
 >it will generate up to 70+ images 
 >* one per function under test 
