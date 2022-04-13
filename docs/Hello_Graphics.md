@@ -28,6 +28,10 @@ Math in Computer Graphics: https://faculty.cc.gatech.edu/~turk/math_gr.html
 If there is demand for it I could in theory write a book based on this project lmao.
 
 # Fully commented sample code list below
+
+> Hello World Meme
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
+
 > Circle 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
