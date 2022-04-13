@@ -13,17 +13,17 @@ for functional programming in Python
 See: https://docs.microsoft.com/en-us/windows/win32/gdi/bitmap-storage
 for details on the windows bitmap format
 
-See: https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm 
-and https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
-for how I done ground up 2D graphics
+See the following for how to do ground up 2D graphics: 
+* https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm 
+* https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
+* https://en.wikipedia.org/wiki/B-spline
+* https://en.wikipedia.org/wiki/B%C3%A9zier_curve
 > * see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/primitives2D.py
 
-See: https://www.evl.uic.edu/luc/488/slides/class7.pdf
-for 3D entities to onscreen 2D 
+See: https://www.evl.uic.edu/luc/488/slides/class7.pdf for 3D entities to onscreen 2D 
 > * see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/solids3D.py for predefined 3D entities
 
-See: https://faculty.cc.gatech.edu/~turk/math_gr.html
-for what math has been used and might be used
+See: https://faculty.cc.gatech.edu/~turk/math_gr.html for what math has been used and might be used
 > * some math here: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
  
 
