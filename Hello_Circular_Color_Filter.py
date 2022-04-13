@@ -14,7 +14,7 @@ def main():
         rf,gf,bf=1,.7,.3 # RGB color factors (0 to 1) float
         cf=(rf,gf,bf) # RGB color factor tuple
         b.colorfiltercircregion(bmp,x,y,r,cf)
-        # Python_BMP.colorfiltercircregion(bmp bytearray,x int ,y int ,r int,cf tuple of RGB 0..1 )
+        # Python_BMP.colorfiltercircregion(bmp bytearray,x int ,y int ,r int,cf <tuple of RGB 0..1> )
         file='HelloCircularColorFilter.bmp' #file name
         b.saveBMP(file,bmp) #save to file 
         print('\nAll done close mspaint to finish')
