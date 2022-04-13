@@ -1,6 +1,7 @@
-#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
-#This graphics library outputs to a bitmap file
-#-------------------------------------------------------------
+#/--------------------------------------------------------------\
+#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
+#| This graphics library outputs to a bitmap file               |
+#\--------------------------------------------------------------/
 
 import Python_BMP.BITMAPlib as b,subprocess as proc
 from os import path,sys
