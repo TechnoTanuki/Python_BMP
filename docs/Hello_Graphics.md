@@ -27,3 +27,6 @@ Math in Computer Graphics: https://faculty.cc.gatech.edu/~turk/math_gr.html
  
 If there is demand for it i could in theory write a book based on this project lmao.
 
+Fully commented sample code list below
+* 
+
