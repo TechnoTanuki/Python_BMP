@@ -15,7 +15,7 @@ def main():
         r=x-12 # radius
         c=11 # color
         b.filledcircle(bmp,x,y,r,c)
-        # Python_BMP.filledcircle(bmp bytearray,x int ,y int, r int, c int)
+        # Python_BMP.BITMAPlib.filledcircle(bmp bytearray,x int ,y int, r int, c int)
         file='HelloFilledCirle.bmp' # file name 
         b.saveBMP(file,bmp) # save file 
         print('\nAll done close mspaint to finish')
