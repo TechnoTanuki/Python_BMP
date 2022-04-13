@@ -34,6 +34,11 @@ Run picmanip_UNITTEST.py
 # VS Code Users
 
 See: https://k0nze.dev/posts/python-relative-imports-vscode/
+
+#Moar docs
+
+See: https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md 
+
 (Module Relative imports dont work in VS Code 
 but code as is runs fine in terminal or IDLE)
 
