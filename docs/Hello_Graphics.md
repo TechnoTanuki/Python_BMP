@@ -20,3 +20,6 @@ for how I done ground up 2D graphics
 See: https://www.evl.uic.edu/luc/488/slides/class7.pdf
 for 3D entities to onscreen 2D 
 
+See: https://faculty.cc.gatech.edu/~turk/math_gr.html
+for what math has been used and might be used
+
