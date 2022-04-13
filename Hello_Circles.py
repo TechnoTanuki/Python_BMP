@@ -9,10 +9,9 @@ def main():
         mx=512 #bitmap size
         my=mx
         bmp=b.newBMP(mx,my,8) # 256 color
-        mx,my=mx-1,my-1 #max-1 for screen
-        cx,cy=mx>>1,my>>1 #div by 2
-        for r in range(0,cx):
-                b.circle(bmp,cx,cy,r,r,False)
+        (x,y)=b.centercoord(bmp)
+        for r in range(0,x):
+                b.circle(bmp,x,y,r,r,False)
         file='HelloCircles.bmp' #file name
         b.saveBMP(file,bmp)
         print('\nAll done close mspaint to finish')
