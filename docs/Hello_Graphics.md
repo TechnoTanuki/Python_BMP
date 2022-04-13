@@ -30,4 +30,5 @@ If there is demand for it i could in theory write a book based on this project l
 # Fully commented sample code list below
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
 
