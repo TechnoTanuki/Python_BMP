@@ -6,4 +6,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 See: https://docs.microsoft.com/en-us/windows/win32/gdi/bitmap-storage
 for details on the windows bitmap format
 
+See: https://machinelearningmastery.com/functional-programming-in-python/
+for functional programming in Python
+
 See: https://github.com/TechnoTanuki/Python_BMP#readme for other stuff
