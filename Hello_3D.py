@@ -17,7 +17,6 @@
 #This graphics library outputs to a bitmap file
 
 import Python_BMP.BITMAPlib as b,subprocess as proc
-import time as t
 from os import path,sys
         
 def main():
@@ -28,7 +27,6 @@ def main():
         maxpt,cenpt=b.bottomrightcoord(bmp),b.centercoord(bmp) #bitmap dependent coords
         c,cf,lum=b.getcolorname2RGBdict(),b.getRGBfactors(),b.getdefaultlumrange() #color info
         b.adjustcolordicttopal(bmp,c)
-        starttime=t.process_time_ns()
         
         d,tvect=200,[0,0,100]#be careful with these variables or object goes offscreen
         sd=b.getshapesidedict()
