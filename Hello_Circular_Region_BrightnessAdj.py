@@ -16,7 +16,7 @@ def main():
         br2=120 # brightness adj set to 120%
         b.brightnessadjcircregion(bmp,x,y,r1,br1)
         b.brightnessadjcircregion(bmp,x,y,r2,br2)
-        # Python_BMP,.brightnessadjcircregion(bmp bytearray,x int,y int, r int ,br signed float)
+        # Python_BMP.BITMAPlib.brightnessadjcircregion(bmp bytearray,x int,y int, r int ,br signed float)
         file='HelloCircularRegionBrightnessAdj.bmp' #file name
         b.saveBMP(file,bmp)
         print('\nAll done close mspaint to finish')
