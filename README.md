@@ -31,7 +31,7 @@ Run picmanip_UNITTEST.py
 >* then compare it with previously generated images generated with the function under test 
 >* (this might take a while)
 
-#VS Code Users
+# VS Code Users
 
 See: https://k0nze.dev/posts/python-relative-imports-vscode/
 (Module Relative imports dont work in VS Code 
