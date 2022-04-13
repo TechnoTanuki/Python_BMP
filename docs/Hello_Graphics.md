@@ -31,6 +31,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 > Hello World Meme
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
 
 > Circle 
