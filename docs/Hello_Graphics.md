@@ -19,6 +19,7 @@ See the following for how to do ground up 2D graphics:
 * https://en.wikipedia.org/wiki/B-spline
 * https://en.wikipedia.org/wiki/B%C3%A9zier_curve
 * see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/primitives2D.py
+* fonts ground up: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/fonts.py
 
 See: https://www.evl.uic.edu/luc/488/slides/class7.pdf for 3D entities to onscreen 2D 
 * see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/solids3D.py for predefined 3D entities
