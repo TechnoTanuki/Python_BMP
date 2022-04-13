@@ -12,7 +12,7 @@ def main():
         (x,y)=b.centercoord(bmp) #How to get center of the bitmap
         for r in range(0,x):
                 b.circle(bmp,x,y,r,r,False) 
-                # circle(bmp bytearray,x int ,y int, radius int, color int,filled bool)
+                # circle(bmp bytearray,x int ,y int, radius int, color int,isfilled bool)
         file='HelloCircles.bmp' #file name
         b.saveBMP(file,bmp) #save file 
         print('\nAll done close mspaint to finish')
