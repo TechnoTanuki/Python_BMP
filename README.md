@@ -12,7 +12,8 @@ Run Hello_somestring_here.py
 >* Hello_Darkness.py (my old friend) is minimum template 
 >* see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Darkness.py
 
-Run Features_Speedtest.py 
+Run Features_Speedtest.py
+>see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Features_Speedtest.py
 
 >It should generate a bitmap and open MS Paint under windows to show output... 
 >Close the MS Paint window to execute another script
