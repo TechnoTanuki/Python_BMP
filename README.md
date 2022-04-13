@@ -10,10 +10,10 @@ Run Hello_somestring_here.py
 
 >This will show minimum code to accomplish certain tasks
 >* Hello_Darkness.py (my old friend) is minimum template 
->* see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Darkness.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Darkness.py
 
 Run Features_Speedtest.py
->see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Features_Speedtest.py
+> https://github.com/TechnoTanuki/Python_BMP/blob/main/Features_Speedtest.py
 
 >It should generate a bitmap and open MS Paint under windows to show output... 
 >Close the MS Paint window to execute another script
@@ -27,7 +27,7 @@ Run Features_Speedtest.py
 # Unit tests
 
 Run picmanip_UNITTEST.py 
->see: https://github.com/TechnoTanuki/Python_BMP/blob/main/picmanip_UNITTEST.py 
+> https://github.com/TechnoTanuki/Python_BMP/blob/main/picmanip_UNITTEST.py 
 
 >it will generate up to 70+ images 
 >* one per function under test 
@@ -40,7 +40,7 @@ See: https://k0nze.dev/posts/python-relative-imports-vscode/
 * (Module Relative imports dont work in VS Code but code as is runs fine in terminal or IDLE)
 
 # Moar docs
-See: https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md 
+> https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md 
 
 
 
