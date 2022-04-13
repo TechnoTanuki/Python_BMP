@@ -33,36 +33,36 @@ If there is demand for it I could in theory write a book based on this project l
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
 
 > Circle 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
 
 > Line
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
 > 3D and 3D shading effects
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 
 > Image Processing and color
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
 
 >Flip/Rotate
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
 
 > Mirror 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
