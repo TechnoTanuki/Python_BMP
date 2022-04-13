@@ -28,6 +28,7 @@ Math in Computer Graphics: https://faculty.cc.gatech.edu/~turk/math_gr.html
 If there is demand for it i could in theory write a book based on this project lmao.
 
 # Fully commented sample code list below
+> Circle 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
@@ -35,4 +36,6 @@ If there is demand for it i could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
+
+> Line
 
