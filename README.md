@@ -10,6 +10,7 @@ Run Hello_somestring_here.py
 
 >This will show minimum code to accomplish certain tasks
 >* Hello_Darkness.py (my old friend) is minimum template 
+>* see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Darkness.py
 
 Run Features_Speedtest.py 
 
