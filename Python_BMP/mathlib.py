@@ -1,3 +1,18 @@
+#
+#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
+#
+#We make no warranty of any kind, expressed or implied.
+#
+#The primary author and any subsequent code contributors shall not
+#be liable in any event for incidental or consquential damages
+#in connection with, or arising out of the use of this code
+#in current form or with modifications.
+#
+#Contact primary author if you plan to use this in a commercial product at
+# joelalcarez1975@gmail.com.
+
+#Educational or hobby use highly encouraged.
+#
 from math import sqrt,sin,cos,acos,atan,pi,degrees,radians
 from random import randint,random
 from functools import reduce
