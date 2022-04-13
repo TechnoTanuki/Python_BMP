@@ -47,3 +47,6 @@ If there is demand for it I could in theory write a book based on this project l
 > 3D and 3D shading effects
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
+
+> Image Processing and color
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
