@@ -15,9 +15,9 @@ def main():
         r=x-12  # set radius = x -12
         lumrange=(255,0) # byte tuple luminosity range
         rgbfactors=(0,.5,1) # unsigned float tuple RGB 0 to 1 values
-        thickness=12 # Thickness
-        b.gradthickcircle(bmp,x,y,r,thickness,lumrange,rgbfactors)
-        # Python_BMP.BITMAPlib.gradthickcircle(bmp bytearray,x int,y int,r int,thickness int,lumrange see line 16,rgbfactors see line 17)
+        penradius=12 # Thickness
+        b.gradthickcircle(bmp,x,y,r,penradius,lumrange,rgbfactors) # all unsigned
+        # Python_BMP.BITMAPlib.gradthickcircle(bmp bytearray,x int,y int,r int,penradius int,lumrange see line 16,rgbfactors see line 17)
         file='HelloThickGradientCirle.bmp' #file name
         b.saveBMP(file,bmp) # save bitmap
         print('\nAll done close mspaint to finish')
