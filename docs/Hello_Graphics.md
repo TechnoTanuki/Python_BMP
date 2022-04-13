@@ -34,4 +34,5 @@ If there is demand for it i could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
 
