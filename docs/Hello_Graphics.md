@@ -23,6 +23,6 @@ for 3D entities to onscreen 2D
 
 See: https://faculty.cc.gatech.edu/~turk/math_gr.html
 for what math has been used and might be used
-> *math here: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
+> * math here: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
  
 
