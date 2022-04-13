@@ -10,8 +10,8 @@ def main():
         rootdir=path.abspath(sys.path[0]) # get path of this script
         bmp=b.loadBMP(rootdir+'/assets/somebody.bmp') # load to memory
         b.mirrortopleft(bmp)
-        file='HelloMirrorTopLeft.bmp' #file name
-        b.saveBMP(file,bmp) #save file
+        file='HelloMirrorTopLeft.bmp' # file name
+        b.saveBMP(file,bmp) # save file
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
