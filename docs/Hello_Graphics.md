@@ -25,4 +25,5 @@ Ground up 2D graphics:
 Math in Computer Graphics: https://faculty.cc.gatech.edu/~turk/math_gr.html 
 * mini math lib: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
  
+If there is demand for it i could in theory write a book based on this project lmao.
 
