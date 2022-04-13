@@ -51,6 +51,7 @@ If there is demand for it I could in theory write a book based on this project l
 > Image Processing and color
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
 
 > Mirror 
