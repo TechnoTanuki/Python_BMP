@@ -1,13 +1,18 @@
-#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
-#This graphics library outputs to a bitmap file
+#/--------------------------------------------------------------\
+#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
+#| This graphics library outputs to a bitmap file               |
+#\--------------------------------------------------------------/
 
 import Python_BMP.BITMAPlib as b,subprocess as proc
 from os import path,sys
         
 def main():
-        rootdir=path.abspath(sys.path[0])
+        rootdir=path.abspath(sys.path[0])  # get path of running script
         bmp=b.loadBMP(rootdir+'/assets/earth.bmp') #load earth to memory
-        b.monocircle(bmp,90,90,60)
+        (x,y)=b.centercoord(bmp) # How to get center of the bitmap
+        r=x-20 # radius set to x - 20
+        b.monocircle(bmp,x,y,r)
+        # Python_BMP.monocircle(bmp bytearray,x int,y int ,r int)
         file='HelloCircularMonoFilter.bmp' #file name
         b.saveBMP(file,bmp)
         print('\nAll done close mspaint to finish')
@@ -15,5 +20,3 @@ def main():
 
 if __name__=="__main__": 
         main()
-
-
