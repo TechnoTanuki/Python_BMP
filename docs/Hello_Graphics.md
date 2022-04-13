@@ -20,9 +20,10 @@ for how I done ground up 2D graphics
 
 See: https://www.evl.uic.edu/luc/488/slides/class7.pdf
 for 3D entities to onscreen 2D 
+> * see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/solids3D.py for predefined 3D entities
 
 See: https://faculty.cc.gatech.edu/~turk/math_gr.html
 for what math has been used and might be used
-> * math here: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
+> * some math here: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
  
 
