@@ -1,3 +1,16 @@
+#
+#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
+#
+#We make no warranty of any kind, expressed or implied.
+#
+#The primary author and any subsequent code contributors shall not
+#be liable in any event for incidental or consquential damages
+#in connection with, or arising out of the use of this code
+#in current form or with modifications.
+#
+#Contact primary author if you plan to use this in a commercial product at
+# joelalcarez1975@gmail.com.
+
 from .mathlib import sqrt,distance,sin,cos,adddimz,radians,roundvect,computerotvec,trans,addvect,getnormvec,iif,subvect,cylindrical2rectcoord3D,spherical2rectcoord3D
 from .primitives2D import floatregpolygonvert,regpolygonvert,iterline,rectboundarycoords
 from .messages import sysmsg
