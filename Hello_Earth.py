@@ -11,8 +11,8 @@ def main():
         bmp=b.loadBMP(rootdir+'/assets/earth.bmp') #load earth to memory
         c=b.getcolorname2RGBdict() #friendly color names 2 rgb
         fontsize=4 # font size
-        pixspace=1 # space between bitmap font pixels
-        charspace=1 # space bitmap font characters
+        pixspace=1 # space between bitmap font pixels (0 = default)
+        charspace=1 # space bitmap font characters (0 = default)
         b.plotstring(bmp,5,25,'Hello',fontsize,pixspace,charspace,c['brightyellow'],b.font8x14)
         b.plotstring(bmp,5,85,'World',fontsize,pixspace,charspace,c['brightorange'],b.font8x8)
         file='HelloEarth.bmp' # file name
