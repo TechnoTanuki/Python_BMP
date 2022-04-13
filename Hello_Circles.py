@@ -15,7 +15,7 @@ def main():
         for r in range(0,x): # increase the radius of the circle from 0 to x
                 c=r # set color equal to radius
                 b.circle(bmp,x,y,r,c,False) 
-                # Python_BMP.circle(bmp bytearray,x int ,y int, r int, c int,isfilled bool)
+                # Python_BMP.BITMAPlib.circle(bmp bytearray,x int ,y int, r int, c int,isfilled bool)
         file='HelloCircles.bmp' # file name 
         b.saveBMP(file,bmp) # save file 
         print('\nAll done close mspaint to finish')
