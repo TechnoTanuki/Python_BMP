@@ -1,5 +1,7 @@
-#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
-#This graphics library outputs to a bitmap file
+#/--------------------------------------------------------------\
+#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
+#| This graphics library outputs to a bitmap file               |
+#\--------------------------------------------------------------/
 
 import Python_BMP.BITMAPlib as b,subprocess as proc
 from os import path,sys
@@ -9,7 +11,7 @@ def main():
         bmp=b.loadBMP(rootdir+'/assets/somebody.bmp') #load to memory
         b.flipvertical(bmp)
         file='HelloFlipvertical.bmp' #file name
-        b.saveBMP(file,bmp)
+        b.saveBMP(file,bmp) # save to file
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
