@@ -12,7 +12,7 @@ def main():
         (x,y)=b.centercoord(bmp) # How to get center of the bitmap
         r=x-20 # radius set to x - 20
         rf,gf,bf=1,.7,.3 # RGB color factors (0 to 1) float
-        cf=(rf,gf,bf) # RGB color factor 0..1
+        cf=(rf,gf,bf) # RGB color factor tuple
         b.colorfiltercircregion(bmp,x,y,r,cf)
         # Python_BMP.colorfiltercircregion(bmp bytearray,x int ,y int ,r int,cf tuple of RGB 0..1 )
         file='HelloCircularColorFilter.bmp' #file name
