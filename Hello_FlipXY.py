@@ -8,7 +8,7 @@ from os import path,sys
         
 def main():
         rootdir=path.abspath(sys.path[0]) # get path of this script
-        bmp=b.loadBMP(rootdir+'/assets/somebody.bmp') #load bitmap to byte array-> bmp
+        bmp=b.loadBMP(rootdir+'/assets/somebody.bmp') # load bitmap to byte array-> bmp
         bmp=b.flipXY(bmp) # need to return new XY flipped image
         file='HelloFlipXY.bmp' # file name
         b.saveBMP(file,bmp) # save XY flipped image
