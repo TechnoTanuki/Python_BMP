@@ -31,6 +31,7 @@ If there is demand for it i could in theory write a book based on this project l
 > Circle 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
