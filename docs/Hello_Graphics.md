@@ -17,3 +17,6 @@ See: https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
 and https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
 for how I done ground up 2D graphics
 
+See: https://www.evl.uic.edu/luc/488/slides/class7.pdf
+for 3D entities to onscreen 2D 
+
