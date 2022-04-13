@@ -14,7 +14,7 @@ def main():
         (x,y)=b.centercoord(bmp) # How to get center of the bitmap
         for r in range(0,x): # increase the radius of the circle from 0 to x
                 c=r # set color equal to radius
-                b.circle(bmp,x,y,r,c,False) #all ints are unsigned
+                b.circle(bmp,x,y,r,c,False) # all ints are unsigned
                 # Python_BMP.BITMAPlib.circle(bmp bytearray,x int ,y int, r int, c int,isfilled bool)
         file='HelloCircles.bmp' # file name 
         b.saveBMP(file,bmp) # save file 
