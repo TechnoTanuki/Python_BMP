@@ -57,8 +57,9 @@ Books:
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
 
-> Curves
+> Curves and Spirals
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
 
 > 3D and 3D shading effects
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
