@@ -1,20 +1,22 @@
-#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
-#This graphics library outputs to a bitmap file
+#/--------------------------------------------------------------\
+#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
+#| This graphics library outputs to a bitmap file               |
+#\--------------------------------------------------------------/
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
+import Python_BMP.BITMAPlib as bm,subprocess as proc
 from os import path,sys
         
 def main():
-        rootdir=path.abspath(sys.path[0])
-        mx=330 #bitmap size
-        my=250
-        bmp=b.newBMP(mx,my,24) 
-        mx,my=mx-1,my-1 #max-1 for screen
-        cx,cy=mx>>1,my>>1 #div by 2
-        r=cx-12
-        b.gradellipse(bmp,cx,cy,cy,cx,[255,0],[1,.4,1])
+        rootdir=path.abspath(sys.path[0]) # get pathof this script
+        bmp=bm.newBMP(300,200,24) # 24 bit 300 x 200 bmp
+        (x,y)=bm.centercoord(bmp) # How to get center of the bitmap
+        b=y # b axis = y
+        a=x # a axis = x
+        lumrange=(255,0) # decreasing gradient from center uint bytes
+        rgbfactors=(1,.4,1) # rgb triplet as values 0 to 1 unsigned float
+        bm.gradellipse(bmp,x,y,b,a,lumrange,rgbfactors)
         file='HelloEllipticalGradent.bmp' #file name
-        b.saveBMP(file,bmp)
+        bm.saveBMP(file,bmp) # save file
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
