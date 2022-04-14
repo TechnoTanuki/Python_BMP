@@ -72,15 +72,16 @@ Books:
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 
-> Image Processing and color
+> Image and Color Processing
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
 
->Flip/Rotate
+> Flip/Rotate
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
 
