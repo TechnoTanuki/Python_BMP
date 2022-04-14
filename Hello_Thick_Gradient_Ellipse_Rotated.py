@@ -1,24 +1,31 @@
-#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
-#This graphics library outputs to a bitmap file
+#/--------------------------------------------------------------\
+#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
+#| This graphics library outputs to a bitmap file               |
+#\--------------------------------------------------------------/
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
+import Python_BMP.BITMAPlib as bm,subprocess as proc
 from os import path,sys
         
 def main():
-        rootdir=path.abspath(sys.path[0])
-        mx=330 #bitmap size
-        my=250
-        bmp=b.newBMP(mx,my,24) 
-        mx,my=mx-1,my-1 #max-1 for screen
-        cx,cy=mx>>1,my>>1 #div by 2
-        r=cx-12
-        b.gradthickellipserot(bmp,cx,cy,cy-40,cx-40,20,30,[255,0],[.8,.4,1])
+        rootdir=path.abspath(sys.path[0]) # get pathof this script
+        bmp=bm.newBMP(300,200,24) # 24 bit 300 x 200 bmp
+        (x,y)=bm.centercoord(bmp) # How to get center of the bitmap
+        b=y-40 # b axis = y-40
+        a=x-40 # a axis = x-40
+        lumrange=(255,0) # decreasing gradient from center uint bytes
+        rgbfactors=(.8,.4,1)  # rgb triplet as values 0 to 1 unsigned float
+        penradius=20 # radius of pen in pixels
+        degrot=30 # rotation of ellipse in degrees
+        bm.gradthickellipserot(bmp,x,y,b,a,degrot,penradius,lumrange,rgbfactors)
         file='HelloThickGradientEllipseRotated.bmp' #file name
-        b.saveBMP(file,bmp)
+        bm.saveBMP(file,bmp) # save file
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
 if __name__=="__main__": 
         main()
+
+
+
 
 
