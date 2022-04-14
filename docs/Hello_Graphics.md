@@ -68,6 +68,7 @@ Books:
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
 
 >Flip/Rotate
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
