@@ -8,7 +8,7 @@ from os import path,sys
         
 def main():
         rootdir=path.abspath(sys.path[0]) # get pathof this script
-        bmp=bm.newBMP(300,200,4) # 16 color 80 x 50 bmp
+        bmp=bm.newBMP(300,200,4) # 330 x 200 16 color bmp
         (x,y)=bm.centercoord(bmp) # How to get center of the bitmap
         b=y # b axis = y
         a=x # a axis = x
