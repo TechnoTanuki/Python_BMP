@@ -31,8 +31,15 @@ If there is demand for it I could in theory write a book based on this project l
 
 > Hello World Meme
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
+
+> Line
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
 > Circle 
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
@@ -44,12 +51,6 @@ If there is demand for it I could in theory write a book based on this project l
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
-
-> Line
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
 > 3D and 3D shading effects
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
