@@ -74,6 +74,7 @@ Books:
 
 > Image Processing and color
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
