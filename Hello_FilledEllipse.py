@@ -13,9 +13,9 @@ def main():
         b=y # b axis = y
         a=x # a axis = x
         color=13
-        b.filledellipse(bmp,x,y,b,a,color) # all unsigned ints
+        bm.filledellipse(bmp,x,y,b,a,color) # all unsigned ints
         file='HelloFilledEllipse.bmp' #file name
-        b.saveBMP(file,bmp) # save file
+        bm.saveBMP(file,bmp) # save file
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
