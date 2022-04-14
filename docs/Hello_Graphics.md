@@ -39,8 +39,11 @@ Books:
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
+
+> Copy/Paste and Save Selection
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
->
+
 > Line
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
