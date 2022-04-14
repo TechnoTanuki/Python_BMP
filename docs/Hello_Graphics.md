@@ -57,6 +57,9 @@ Books:
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
 
+> Ellipse
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
+
 > Curves and Spirals
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
