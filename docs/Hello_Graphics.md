@@ -35,11 +35,12 @@ Books:
 # Fully commented sample code list below
 
 > Hello World Meme
-> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
-> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
-> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
-> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
-
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
+>* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
+>
 > Line
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
@@ -79,7 +80,6 @@ Books:
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
 
 > Flip/Rotate
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
