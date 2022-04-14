@@ -64,6 +64,7 @@ Books:
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Ellipse_Rotated.py
 
 > Curves and Spirals
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BezierCurve.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
 
