@@ -7,8 +7,8 @@ import Python_BMP.BITMAPlib as bm,subprocess as proc
 from os import path,sys
         
 def main():
-        rootdir=path.abspath(sys.path[0]) # get pathof this script
-        bmp=bm.newBMP(300,200,24) # 24 bit 300 x 200 bmp
+        rootdir=path.abspath(sys.path[0]) # get path of this script
+        bmp=bm.newBMP(300,200,24) # 300 x 200 24 bit bitmap
         (x,y)=bm.centercoord(bmp) # How to get center of the bitmap
         b=y-40 # b axis = y-40
         a=x-40 # a axis = x-40
@@ -17,7 +17,7 @@ def main():
         penradius=20 # radius of pen in pixels
         degrot=30 # rotation of ellipse in degrees
         bm.gradthickellipserot(bmp,x,y,b,a,degrot,penradius,lumrange,rgbfactors)
-        file='HelloThickGradientEllipseRotated.bmp' #file name
+        file='HelloThickGradientEllipseRotated.bmp' # file name
         bm.saveBMP(file,bmp) # save file
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
