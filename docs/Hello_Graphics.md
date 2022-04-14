@@ -28,9 +28,9 @@ Math in Computer Graphics: https://faculty.cc.gatech.edu/~turk/math_gr.html
 If there is demand for it I could in theory write a book based on this project lmao.
 
 Books:
-* Roger T. Stevens. Graphics Programming in C (1993) 1st Indian Edition M & T Publishing Inc
-* Bernard Kolman. Elementary Linear Algebra (1991) 5th Edition Macmillan Publishing Company
-* Gerald L. Bradley, Karl J. Smith. Multivariable Calculus (1999) 2nd Edition Prentice Hall
+* Roger T. Stevens. Graphics Programming in C (1993). 1st Indian Edition, M & T Publishing Inc
+* Bernard Kolman. Elementary Linear Algebra (1991). 5th Edition, Macmillan Publishing Company
+* Gerald L. Bradley, Karl J. Smith. Multivariable Calculus (1999). 2nd Edition, Prentice Hall
 
 # Fully commented sample code list below
 
