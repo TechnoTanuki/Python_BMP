@@ -61,6 +61,7 @@ Books:
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledEllipse.py
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Elliptical_Gradient.py
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Ellipse_Rotated.py
 
 > Curves and Spirals
 > * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
