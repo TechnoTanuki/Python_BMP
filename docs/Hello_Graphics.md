@@ -52,6 +52,9 @@ If there is demand for it I could in theory write a book based on this project l
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
 
+> Curves
+> * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
+
 > 3D and 3D shading effects
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
 >* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
