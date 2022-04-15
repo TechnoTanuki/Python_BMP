@@ -5,13 +5,13 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 # References
 
-The Basics: https://github.com/TechnoTanuki/Python_BMP#readme
+**The Basics:** https://github.com/TechnoTanuki/Python_BMP#readme
 
-Functional Progamming in Python: https://machinelearningmastery.com/functional-programming-in-python/
+**Functional Progamming in Python:** https://machinelearningmastery.com/functional-programming-in-python/
 
-Details on the windows bitmap format: https://docs.microsoft.com/en-us/windows/win32/gdi/bitmap-storage
+**Details on the windows bitmap format:** https://docs.microsoft.com/en-us/windows/win32/gdi/bitmap-storage
 
-Ground up 2D graphics: 
+**Ground up 2D graphics:**
 * https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm 
 * https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
 * https://en.wikipedia.org/wiki/B-spline
@@ -19,76 +19,77 @@ Ground up 2D graphics:
 * see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/primitives2D.py
 * fonts ground up: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/fonts.py
 
-3D entities to onscreen 2D: https://www.evl.uic.edu/luc/488/slides/class7.pdf
+**3D entities to onscreen 2D:** https://www.evl.uic.edu/luc/488/slides/class7.pdf
 * predefined 3D entities: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/solids3D.py 
 
-Math in Computer Graphics: https://faculty.cc.gatech.edu/~turk/math_gr.html 
+**Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
 * mini math lib: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
  
 If there is demand for it I could in theory write a book based on this project lmao.
 
-Books:
+**Books:**
 * Roger T. Stevens. Graphics Programming in C (1993). 1st Indian Edition, M & T Publishing Inc
 * Bernard Kolman. Elementary Linear Algebra (1991). 5th Edition, Macmillan Publishing Company
 * Gerald L. Bradley, Karl J. Smith. Multivariable Calculus (1999). 2nd Edition, Prentice Hall
 
 # Fully commented sample code list below
 
-> Hello World Meme
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
+**Hello World Meme**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Vertical_text.py
 
-> Copy/Paste and Save Selection
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
+**Copy/Paste and Save Selection**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
 
-> Line
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
+**Line**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
-> Circle 
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
+**Circle** 
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
 
-> Ellipse
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledEllipse.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Elliptical_Gradient.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Ellipse_Rotated.py
+**Ellipse**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledEllipse.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Elliptical_Gradient.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Ellipse_Rotated.py
 
-> Curves and Spirals
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BezierCurve.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
+**Curves and Spirals**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BezierCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
 
-> 3D and 3D shading effects
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
+**3D and 3D shading effects**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 
-> Image and Color Processing
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
+**Image and Color Processing**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
 
-> Flip/Rotate
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
+**Flip/Rotate**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
 
-> Mirror 
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py
->* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
+**Mirror**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
