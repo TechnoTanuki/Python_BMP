@@ -78,6 +78,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 
 **Image and Color Processing**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
