@@ -13,7 +13,7 @@ This will show minimum code to accomplish certain tasks
 
 Run Features_Speedtest.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Features_Speedtest.py
-It should generate a bitmap and open MS Paint under windows to show output... 
+* It should generate a bitmap and open MS Paint under windows to show output... 
 Close the MS Paint window to execute another script
 * under unix 
 change editor at line 168
