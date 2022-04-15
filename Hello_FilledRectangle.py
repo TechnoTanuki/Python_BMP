@@ -1,6 +1,3 @@
-#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
-#This graphics library outputs to a bitmap file
-
 #/--------------------------------------------------------------\
 #| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
 #| This graphics library outputs to a bitmap file               |
