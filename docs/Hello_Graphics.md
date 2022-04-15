@@ -54,6 +54,7 @@ If there is demand for it I could in theory write a book based on this project l
 **Rectangle**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledRectangle.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
 
 **Circle** 
