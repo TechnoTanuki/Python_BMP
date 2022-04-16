@@ -13,7 +13,7 @@ def main():
         # colorfilterto24bitregion(bmp,x1,y1,x2,y2,[rf,gf,bf])
         b.colorfilterto24bitregion(bmp,30,30,138,138,[rf,gf,bf])
         file='HelloRectangularColorFilter.bmp' # file name
-        b.saveBMP(file,bmp)
+        b.saveBMP(file,bmp) # dump bytearray bmp to file
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
