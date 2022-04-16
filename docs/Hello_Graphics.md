@@ -41,6 +41,8 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Vertical_text.py
 
+**Gradient Background
+
 **Copy/Paste and Save Selection**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
