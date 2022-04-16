@@ -111,9 +111,10 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Mirror**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Top.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopRight.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
 
 **Fractals**
