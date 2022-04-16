@@ -16,8 +16,9 @@ def main():
         angle=30 # for rotation in degrees
         polygonvertexlist=b.regpolygonvert(x,y,r,sides,angle) # generate vertices
         color=11 # color in 4 bit mode (min 0 - max 15)
-        b.plotpoly(bmp,polygonvertexlist,color) # plot the polygon
-        file='HelloRegularPolygon.bmp' # file name
+        penradius=5 # radius of pen
+        b.thickplotpoly(bmp,polygonvertexlist,penradius,color)  # plot the polygon
+        file='HelloThickRegularPolygon.bmp' # file name
         b.saveBMP(file,bmp) # save the bitmap
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
