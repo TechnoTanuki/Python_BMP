@@ -59,6 +59,10 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py
 
+**Regular Polygons**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Regular_Polygon.py
+* 
+
 **Circle** 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
