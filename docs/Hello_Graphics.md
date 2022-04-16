@@ -107,6 +107,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Flip/Rotate**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Horizontal.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
 
 **Mirror**
