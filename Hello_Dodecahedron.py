@@ -14,8 +14,8 @@ def main():
         cf=b.getRGBfactors() # color info with presets
         d,translationvector=400,[0,0,200] # be careful with these variables or object goes offscreen
         isSolid=True # toggle solid or outline
-        showoutline=True # can show outline even if solid
-        color=cf['brightgreen'] # color of solid
+        showoutline=False # can show outline even if solid
+        color=cf['brightwhite'] # color of solid
         outlinecolor=0 # outline color
         rotation=b.rotvec3D(70,7,20) # rotation vector (x,y,z) in degrees
         b.plot3Dsolid(bmp,b.dodecahedvertandsurface(40),isSolid,color,showoutline,outlinecolor,rotation,translationvector,d,cenpt)
