@@ -1352,6 +1352,13 @@ def thickplotpoly(bmp,vertlist,penradius,color):
         if i>0: thickroundline(bmp,vertlist[i-1],vertlist[i],penradius,color)
     thickroundline(bmp,vertlist[0],vertlist[vertcount-1],penradius,color)
 
+def gradthickplotpoly(bmp,vertlist,penradius,lumrange,RGBfactors):
+    lum1,lumrang=range2baseanddelta(lumrange)
+    for i in range(penradius,0,-1):
+        c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
+        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+        thickplotpoly(bmp,vertlist,i,c)
+        
 def plotlines(bmp,vertlist,color):
     vertcount=len(vertlist)
     for i in range(0,vertcount):
