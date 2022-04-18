@@ -1,3 +1,22 @@
+#/--------------------------------------------------------------------------\
+#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
+#|--------------------------------------------------------------------------|
+#|    We make absolutely no warranty of any kind, expressed or implied.     |
+#|--------------------------------------------------------------------------|
+#|    The primary author and any subsequent code contributors shall not     |
+#|    be liable  in any event  for  incidental or consquential  damages     |
+#|    in connection with,  or arising out  from  the  use of  this code     |
+#|    in current form or with any modifications.                            |
+#|--------#--------------------------------------------------------#--------|
+#|        |  Contact primary author if you plan to use this        |        |
+#|        |  in a commercial product at joelalcarez1975@gmail.com  |        |
+#|--------#--------------------------------------------------------#--------|
+#|    Educational or hobby use highly encouraged... have fun coding !       |
+#|    ps:created out of extreme boredom during the COVID-19 pandemic.       |
+#|--------#--------------------------------------------------------#--------|
+#|        |  Note: This graphics library outputs to a bitmap file. |        |
+#\--------#--------------------------------------------------------#--------/
+
 from array import array
 from .mathlib import addvect,subvect,roundvect,scalarmulvect,distance,randint,iif,mean,setminmaxvec,mulvect,intsetminmaxvec,setminmax,intscalarmulvect
 
