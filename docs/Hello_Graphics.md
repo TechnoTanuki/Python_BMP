@@ -48,6 +48,7 @@ If there is demand for it I could in theory write a book based on this project l
 **Copy/Paste and Save Selection**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Crop_Earth.py
 
 **Line**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
