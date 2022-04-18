@@ -14,18 +14,15 @@ def main():
         r=x-20 # radius of a circle that contains all the vertices 
         sides=5 # for a pentagon
         angle=30 # for rotation in degrees
+        penradius=15 # radius of pen
+        lumrange=(0,255) # increasing luminosity from center of pen
+        rgbfactors=(.7,.5,.6) # rgb values from 0 to 1 ufloat
         polygonvertexlist=b.regpolygonvert(x,y,r,sides,angle) # generate vertices
-        color=11 # color in 4 bit mode (min 0 - max 15)
-        penradius=5 # radius of pen
-        b.gradthickplotpoly(bmp,polygonvertexlist,penradius,color)  # plot the polygon
-        file='HelloThickRegularPolygon.bmp' # file name
+        b.gradthickplotpoly(bmp,polygonvertexlist,penradius,lumrange,rgbfactors)  # plot the polygon
+        file='HelloThickGradientRegularPolygon.bmp' # file name
         b.saveBMP(file,bmp) # save the bitmap
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
 if __name__=="__main__": 
         main()
-
-
-
-
