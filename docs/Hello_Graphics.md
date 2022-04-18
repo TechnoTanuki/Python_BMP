@@ -112,6 +112,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
 
 **Flip/Rotate**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py
