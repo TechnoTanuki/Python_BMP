@@ -8,7 +8,7 @@ from os import path,sys
         
 def main():
         mx=my=250 # x=y square bmp
-        file='HelloCube.bmp' # some random file name as string
+        file='HelloTetrahedra.bmp' # some random file name as string
         bmp=b.newBMP(mx,my,4) # RGB bmp
         cenpt=b.centercoord(bmp) # helper method to get center of a bitmap
         cf=b.getRGBfactors() # color info with presets
