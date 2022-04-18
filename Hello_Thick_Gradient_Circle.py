@@ -18,7 +18,7 @@ def main():
         penradius=12 # Thickness
         b.gradthickcircle(bmp,x,y,r,penradius,lumrange,rgbfactors) # all unsigned
         # Python_BMP.BITMAPlib.gradthickcircle(bmp bytearray,x int,y int,r int,penradius int,lumrange see line 16,rgbfactors see line 17)
-        file='HelloThickGradientCirle.bmp' #file name
+        file='HelloThickGradientCircle.bmp' #file name
         b.saveBMP(file,bmp) # save bitmap
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
