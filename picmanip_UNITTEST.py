@@ -1,5 +1,5 @@
 #/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |        
+#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
 #|--------------------------------------------------------------------------|
 #|    We make absolutely no warranty of any kind, expressed or implied.     |
 #|--------------------------------------------------------------------------|
