@@ -92,12 +92,14 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Exponential_Spiral_Gradient.py
 
 **3D and 3D shading effects**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Dodecahedron.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Decahedron.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_DiscoBall.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_DiscoBall.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cube.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Dodecahedron.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Decahedron.py
+
 
 **Image and Color Processing**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
