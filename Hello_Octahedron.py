@@ -20,8 +20,8 @@ def main():
         outlinecolor=10 # outline color
         sd=b.getshapesidedict() # common shape dict for surface definitions
         rotation=b.rotvec3D(0,20,30) # rotation vector (x,y,z) in degrees
-        vertices=b.octahedravert(50) # get tetrahedra vetices
-        surfaces=sd["octahedra"] # get tetrahedra surfaces
+        vertices=b.octahedravert(50) # get octahedra vetices
+        surfaces=sd["octahedra"] # get octahedra surfaces
         obj3D=[vertices,surfaces] # A solid is defined by vertices and surfaces
         b.plot3Dsolid(bmp,obj3D,isSolid,color,showoutline,outlinecolor,rotation,translationvector,d,cenpt)
         b.saveBMP(file,bmp) # dump byte array to file system as-is
