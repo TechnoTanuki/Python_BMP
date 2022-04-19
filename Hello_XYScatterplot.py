@@ -15,7 +15,7 @@ def main():
         [40,110,5,15,True],
         [50,10,5,15,True]]
         origin=(80,570) # uint x,y tuple origin point of the graph (bottom left)
-        xylimits=(570,18) # uint x,y tuple end poimt of graph (top right)
+        xylimits=(570,18) # uint x,y tuple end point of graph (top right)
         steps=(40,40)  # uint x,y tuple x and y step for increment in screen coords
         xyvalstarts=(0,0) # int x,y tuple for starting values in graph coords
         xysteps=(10,10) # int x,y tuple for increment values in graph coords  
