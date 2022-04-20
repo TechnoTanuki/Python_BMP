@@ -14,7 +14,7 @@ def main():
         bits= 8 # valid values are 8,4,1
         threshold=4 # in computing new palette how far apart should colors be
         usemono=False # can apply a mono filter
-        RGBfactors=[0.25,.5,1] # not used unless usemono filter is Ture
+        RGBfactors=[0.25,.5,1] # not used unless usemono filter is True
         b.reduce24bitimagebits(file,newfile,bits,threshold,usemono,RGBfactors) # magic takes time
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+newfile) # replace with another editor if Unix
