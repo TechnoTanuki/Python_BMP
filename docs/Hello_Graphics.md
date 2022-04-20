@@ -113,6 +113,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py
 
 **Downscale or Upscale Color Encoding in Bits**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_8bitBMP_Downscale.py
