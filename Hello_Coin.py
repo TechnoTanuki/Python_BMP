@@ -9,7 +9,7 @@ from os import path,sys
 def main():
         mx=my=250 # x=y square bmp
         file='HelloCoin.bmp' # some random file name as string
-        bmp=b.newBMP(mx,my,4) # RGB bmp
+        bmp=b.newBMP(mx,my,24) # RGB bmp
         cenpt=b.centercoord(bmp) # helper method to get center of a bitmap
         cf=b.getRGBfactors() # color info with presets
         d,translationvector=400,[0,0,200] # be careful with these variables or object goes offscreen
