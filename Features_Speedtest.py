@@ -88,7 +88,7 @@ def main():
         for s in shapes:
                 b.plot3Dsolid(bmp,s[0],True,s[1],s[2],s[3],b.rotvec3D(10,5,5),tvect,d,b.addvect(cenpt,[-160,-10]))
         b.plot3Dsolid(bmp,b.decahedvertandsurface(25),True,cf['brightred'],False,0,b.rotvec3D(7,77,20),tvect,d,b.addvect(cenpt,[280,-250]))
-        b.plot3Dsolid(bmp,b.dodecahedvertandsurface(25),True,cf['brightwhite'],False,0,b.rotvec3D(70,7,20),tvect,d,b.addvect(cenpt,[+60,-130]))
+        b.plot3Dsolid(bmp,b.icosahedvertandsurface(25),True,cf['brightwhite'],False,0,b.rotvec3D(70,7,20),tvect,d,b.addvect(cenpt,[+60,-130]))
         b.plot3Dsolid(bmp,b.spherevertandsurface([5,0,0],60,10),True,cf['brightwhite'],False,0,b.rotvec3D(190,145,70),tvect,d,b.addvect(cenpt,[300,-50]))
         b.plot3Dsolid(bmp,b.cylindervertandsurface([1,0,0],20,10,5),True,cf['brightyellow'],True,b.RGB2int(20,20,0),b.rotvec3D(60,74,72),tvect,d,b.addvect(cenpt,[-200,-50]))
         b.plot3Dsolid(bmp,b.conevertandsurface([1,0,0],20,15,5),True,cf['brightorange'],False,b.RGB2int(20,20,0),b.rotvec3D(6,67,2),tvect,d,b.addvect(cenpt,[-300,-150]))
