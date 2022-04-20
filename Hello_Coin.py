@@ -18,7 +18,6 @@ def main():
         cf=b.getRGBfactors() # color list 
         color=cf['brightyellow'] # color of solid
         outlinecolor=0 # outline color
-        sd=b.getshapesidedict() # common shape dict for surface definitions
         rotation=b.rotvec3D(25,30,40) # rotation vector (x,y,z) in degrees
         vcen=(1,0,0) # x y z coords
         r=40 # radius of cylinder
