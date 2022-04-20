@@ -43,7 +43,7 @@ def decahedvertandsurface(x):
     z=sqrt(distance(pts[0],pts[1])**2-x*x)
     return [[[0,0,-z]]+adddimz(pts,0)+[[0,0,z]],((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,6),(4,3,6),(3,2,6),(5,4,6))]
 
-def dodecahedvertandsurface(x):#don't edit this it took much computation to make
+def icosahedvertandsurface(x):#don't edit this it took much computation to make
     pts,pts1=floatregpolygonvert(0,0,x,5,0),floatregpolygonvert(0,0,x,5,36)
     z=sqrt(distance(pts[0],pts[1])**2-x*x)
     z1=2*x-z
