@@ -11,15 +11,15 @@ def main():
         my=768
         file='Hello_3D.bmp'
         bmp=b.newBMP(mx,my,24)
-        maxpt,cenpt=b.bottomrightcoord(bmp),b.centercoord(bmp) #bitmap dependent coords
-        c,cf,lum=b.getcolorname2RGBdict(),b.getRGBfactors(),b.getdefaultlumrange() #color info
-        b.adjustcolordicttopal(bmp,c)
-        
-        d,tvect=200,[0,0,100]#be careful with these variables or object goes offscreen
-        sd=b.getshapesidedict()
-        pts=b.tetrahedravert(80)
+        maxpt,cenpt=b.bottomrightcoord(bmp),b.centercoord(bmp) # bitmap dependent coords
+        c,cf=b.getcolorname2RGBdict(),b.getRGBfactors() # color info
+        d,tvect=200,[0,0,100] # be careful with these variables or object goes offscreen
+        sd=b.getshapesidedict() # shape dictonary 
+        pts=b.tetrahedravert(80) # get points in 3D space that forms a tetrahedron
+        # make list of objects to render
         shapes=[[[b.trans(b.cubevert(30),pts[3]),sd["cube"]],cf["darkblue"],True,c['black']],[[b.trans(b.tetrahedravert(30),pts[2]),sd["tetrahedra"]],cf["darkred"],True,c['white']],[[b.trans(b.octahedravert(20),pts[1]),sd["octahedra"]],cf["yellow"],True,c['darkgray']],[[b.trans(b.hexahedravert(30),pts[0]),sd["hexahedra"]],cf["darkgreen"],True,c['darkgreen']]]
-        for s in shapes:
+        # Most of these shapes hab own examples check em for details...
+        for s in shapes: # How to render objects en masse
                 b.plot3Dsolid(bmp,s[0],True,s[1],s[2],s[3],b.rotvec3D(10,5,5),tvect,d,b.addvect(cenpt,[-160,-10]))
         b.plot3Dsolid(bmp,b.decahedvertandsurface(25),True,cf['brightred'],False,0,b.rotvec3D(7,77,20),tvect,d,b.addvect(cenpt,[280,-250]))
         b.plot3Dsolid(bmp,b.dodecahedvertandsurface(25),True,cf['brightwhite'],False,0,b.rotvec3D(70,7,20),tvect,d,b.addvect(cenpt,[+60,-130]))
@@ -27,12 +27,13 @@ def main():
         b.plot3Dsolid(bmp,b.cylindervertandsurface([1,0,0],20,10,5),True,cf['brightyellow'],True,b.RGB2int(20,20,0),b.rotvec3D(60,74,72),tvect,d,b.addvect(cenpt,[-200,-50]))
         b.plot3Dsolid(bmp,b.conevertandsurface([1,0,0],20,15,5),True,cf['brightorange'],False,b.RGB2int(20,20,0),b.rotvec3D(6,67,2),tvect,d,b.addvect(cenpt,[-300,-150]))
         b.plot3Dsolid(bmp,b.surfplot3Dvertandsurface (-35,-35,35,35,15,5),True,cf['brightcyan'],True,0,b.rotvec3D(20,67,30),tvect,d,b.addvect(cenpt,[-420,-25]))
-        b.saveBMP(file,bmp)
+        b.saveBMP(file,bmp) # dump bytes to file
         print('Saved '+ file )
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
 if __name__=="__main__": 
         main()
+
 
 
