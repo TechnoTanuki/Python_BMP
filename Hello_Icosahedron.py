@@ -18,7 +18,7 @@ def main():
         color=cf['brightwhite'] # color of solid
         outlinecolor=0 # outline color
         rotation=b.rotvec3D(70,7,20) # rotation vector (x,y,z) in degrees
-        b.plot3Dsolid(bmp,b.dodecahedvertandsurface(40),isSolid,color,showoutline,outlinecolor,rotation,translationvector,d,cenpt)
+        b.plot3Dsolid(bmp,b.icosahedvertandsurface(40),isSolid,color,showoutline,outlinecolor,rotation,translationvector,d,cenpt)
         b.saveBMP(file,bmp) # save file
         print('Saved '+ file )
         print('\nAll done close mspaint to finish')
