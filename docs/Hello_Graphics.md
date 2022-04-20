@@ -116,6 +116,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Downscale or Upscale color encoding in bits**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_8bitBMP_Downscale.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_1bitBMP_Downscale.py
 
 **Resize**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
