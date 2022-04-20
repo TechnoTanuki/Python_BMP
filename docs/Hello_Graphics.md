@@ -114,6 +114,9 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
 
+**Downscale or Upscale color encoding in bits
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_8bitBMP_Downscale.py
+
 **Resize**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Smaller_by_n.py
