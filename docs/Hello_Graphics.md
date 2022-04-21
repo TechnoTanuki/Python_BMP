@@ -140,9 +140,10 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
 
-**Fractals**
+**Fractals and Math art**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flower.py
 
 **Graphs**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_XYScatterplot.py
