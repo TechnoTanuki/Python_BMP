@@ -46,6 +46,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Gradient.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Radial_Gradients.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_NonLinearRadial_Gradients.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_NonLinearRadialMultichannel_Gradients.py
 
 **Copy/Paste and Save Selection**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
