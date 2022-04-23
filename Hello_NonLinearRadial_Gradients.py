@@ -11,7 +11,6 @@ def main():
         mx,my=640,480 # x and y dim of bmp
         bmp=bm.newBMP(mx,my,24) # (x,y,bit depth) 24 bit BMP
         cen=bm.centercoord(bmp) # get x,y of center
-        ori=(0,0) # define as origin
         f=lambda d:d*d # simple non linear func
         r=b=0 # turn off red and blue
         for y in range(0,my):
