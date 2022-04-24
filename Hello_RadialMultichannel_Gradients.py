@@ -15,8 +15,8 @@ def main():
         for y in range(0,my):
                 for x in range(0,mx):
                         b=int(f(bm.distance(cen,(x,y))))%256 # blue gradient
-                        r=255-b # red gradient 
-                        g=(abs(r-b))%256 # green gradient 
+                        r=255-b # red gradient get inverse value of b
+                        g=(abs(r-b))%256 # green gradient func of r and b
                         bm.plotRGBxybit(bmp,x,y,(r,g,b)) # make a rainbow
         file='HelloRadialMultichannelGradients.bmp' # file name
         bm.saveBMP(file,bmp) # dump bytearray to file
