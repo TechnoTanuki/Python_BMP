@@ -26,6 +26,7 @@ from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubev
 from .fonts import font8x8,font8x14,getcharfont
 from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf
 from .fractals import getIFSparams,mandelparamdict
+from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
 from .messages import sysmsg
 
 # BMP constants do not edit!!!
@@ -454,25 +455,6 @@ def setBMP2monochrome(bmp,RGBfactors):
     newpal=monochromepal(getcolorbits(bmp),RGBfactors)
     setbmppal(bmp,newpal)
     return newpal
-
-def altsplitbuf(buf):
-    m=len(buf)
-    if m%2==0: m-=m&1
-    return [buf[0:m-1:2],buf[1:m:2]]
-
-def altsplitbuf3way(buf):
-    m=len(buf)
-    if m%3==0: m-=m&1
-    return [buf[0:m-2:3],buf[1:m-1:3],buf[2:m:3]]
-
-def altsplitbufnway(buf,n):
-    retval,m,j,i=[],len(buf),n-1,0
-    if m%n==0: m-=m&1
-    while i<n:
-        retval+=[buf[i:m-j:n]]
-        i+=1
-        j-=1
-    return retval
 
 def newBMP(x,y,colorbits): return setbmp_properties(compute_bmpmetadata(x,y,colorbits))
 
