@@ -25,6 +25,7 @@ from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,iter
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
 from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf
+from .fractals import getIFSparams,mandelparamdict
 from .messages import sysmsg
 
 # BMP constants do not edit!!!
@@ -274,10 +275,6 @@ def listinrecbnd(xylist,xmin,ymin,xmax,ymax):
     return retval
 
 def swapxy(v): return [v[1],v[0]]
-
-def getIFSparams(): return {'fern':(((0,0,0,.16,0,0),(.2,-.26,.23,.22,0,1.6),(-.15,.28,.26,.24,0,.44),(.85,.04,-.04,.85,0,1.6)),(.009,.073,.137,1)),'tree':(((0,.2,0,.5,0,0),(.1,0,0,.1,0,.2),(.42,-.42,.42,.42,0,.2),(.42,.42,-.42,.42,0,.2)),(.05,.2,.6,1)),'cantortree':(((1/3,0,0,1/3,0,0),(1/3,0,0,1/3,1,0),(2/3,0,0,2/3,0.5,0.5),(0,0,0,0,0,0)),(1/3,2/3,1,1)),'sierpinskitriamgle':(((.5,0,0,.5,0,0),(.5,0,0,.5,1,0),(.5,0,0,.5,.5,.5),(0,0,0,0,0,0)),(1/3,2/3,1,1))}
-
-def mandelparamdict(): return {'maxdefault':(1.75,-1.75,1.5,-1.5),'maxeqdim':(1.75,-1.75,1.75,-1.75),'middefault':(.75,-1.25,1.25,-1.25),'mindefault':(.75,-.75,.5,-.5),'mineqdim':(.5,-.5,.5,-.5),'custom1':(-.5,-.7,-.5,-.7)}
 
 def mandelbrot(bmp,x1,y1,x2,y2,mandelparam,RGBfactors,maxiter):
     maxcolors=getmaxcolors(bmp)
