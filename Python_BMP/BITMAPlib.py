@@ -21,7 +21,7 @@ from array import array
 from os.path import isfile
 from .proctimer import functimer
 from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect
-from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors
+from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
 from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf
@@ -1401,26 +1401,6 @@ def xygrid(bmp,x1,y1,x2,y2,xysteps,color):
     for y in range(y1,y2,ystep): horiline(bmp,y,x1,x2,color)
 
 def xygridvec(bmp,u,v,steps,gridcolor): xygrid(bmp,u[0],u[1],v[0],v[1],steps,gridcolor)
-
-def spiralcontrolpointsvert(x,y,step,growthfactor,turns):
-    v=[[x,y]]
-    inc=step
-    while turns>0:
-        x+=step
-        v.append([x,y])
-        step+=inc
-        y+=step
-        v.append([x,y])
-        step+=inc
-        x-=step
-        v.append([x,y])
-        step+=inc
-        y-=step
-        v.append([x,y])
-        turns-=1
-        step+=inc
-        inc*=growthfactor
-    return v
 
 def getdatalisttotal(dlist):
     total=0

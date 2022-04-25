@@ -236,3 +236,23 @@ def itergetneighbors(v,mx,my,includecenter):
             if ty>0: yield [rx,ty]
             yield [rx,y]
             if by<my: yield [rx,by]
+
+def spiralcontrolpointsvert(x,y,step,growthfactor,turns):
+    v=[[x,y]]
+    inc=step
+    while turns>0:
+        x+=step
+        v.append([x,y])
+        step+=inc
+        y+=step
+        v.append([x,y])
+        step+=inc
+        x-=step
+        v.append([x,y])
+        step+=inc
+        y-=step
+        v.append([x,y])
+        turns-=1
+        step+=inc
+        inc*=growthfactor
+    return v
