@@ -21,7 +21,7 @@ from array import array
 from os.path import isfile
 from .proctimer import functimer
 from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect
-from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert
+from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
 from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf
@@ -1503,22 +1503,6 @@ def XYscatterplot(bmp,XYdata,XYcoordinfo,showLinearRegLine,reglinecolor):
             xmax=(ymax-b)/m
             w=userdef2Dcooordsys2screenxy(xmax,ymax,XYcoordinfo)
         linevec(bmp,u,w,reglinecolor)
-
-def itergetneighbors(v,mx,my,includecenter):
-    x,y=v[0],v[1]
-    if x>-1 and y>-1:
-        lx,ty,rx,by=x-1,y-1,x+1,y+1
-        if ty>0: yield [x,ty]
-        if includecenter: yield(v)
-        if by<my: yield [x,by]
-        if lx>0:
-            if ty>0: yield [lx,ty]
-            yield [lx,y]
-            if by<my: yield [lx,by]
-        if rx<mx:
-            if ty>0: yield [rx,ty]
-            yield [rx,y]
-            if by<my: yield [rx,by]
 
 def getneighborlist(v,mx,my,includecenter): return [u for u in itergetneighbors(v,mx,my,includecenter)]
 

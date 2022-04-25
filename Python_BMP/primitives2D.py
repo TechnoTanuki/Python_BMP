@@ -220,3 +220,19 @@ def rectboundarycoords(vlist):
     u=pivotlist(vlist)
     x,y=u[0],u[1]
     return ((min(x),min(y)),(max(x),max(y)))
+
+def itergetneighbors(v,mx,my,includecenter):
+    x,y=v[0],v[1]
+    if x>-1 and y>-1:
+        lx,ty,rx,by=x-1,y-1,x+1,y+1
+        if ty>0: yield [x,ty]
+        if includecenter: yield(v)
+        if by<my: yield [x,by]
+        if lx>0:
+            if ty>0: yield [lx,ty]
+            yield [lx,y]
+            if by<my: yield [lx,by]
+        if rx<mx:
+            if ty>0: yield [rx,ty]
+            yield [rx,y]
+            if by<my: yield [rx,by]
