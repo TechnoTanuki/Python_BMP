@@ -20,7 +20,7 @@
 from array import array
 from os.path import isfile
 from .proctimer import functimer
-from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy
+from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint
 from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
@@ -265,8 +265,6 @@ def isdefaultpal(bmp): return getdefaultbitpal(getcolorbits(bmp))==getallRGBpal(
 def getBMPimgbytes(bmp): return bmp[gethdrsize(bmp):getfilesize(bmp)]
 
 def setBMPimgbytes(bmp,buf): bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
-
-def centerpoint(x1,y1,x2,y2): return ((x2-x1)>>1)+x1,((y2-y1)>>1)+y1
 
 def isinrectbnd(x,y,xmin,ymin,xmax,ymax): return (x<xmax and y<ymax) and (x>xmin and y>ymin)
 
