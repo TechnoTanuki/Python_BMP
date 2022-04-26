@@ -17,7 +17,7 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,iif,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif
+from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif
 
 def itercirclepart(r:int)->list:
     row,col,r_sqr=r,0,r*r
@@ -166,14 +166,14 @@ def beziercurvevert(pntlist:list,isclosed:bool,curveback:bool)->list:
 
 def iterbspline(pntlist:list,isclosed:bool,curveback:bool)->list:
     i,cnt,v=0,len(pntlist),pntlist[0]
-    w,klim,ilim,mx=v,cnt<<2,cnt+iif(isclosed,2,0),cnt-1
+    w,klim,ilim,mx=v,cnt<<2,cnt+ 2 if isclosed else 0,cnt-1
     while i<ilim:
         for k in range(0,klim):
             u,v=k/klim,[0,0]
             nc=bsplineblend(u)
             for j in range(0,4):
                 k=i+j
-                v=addvect(v,scalarmulvect(pntlist[iif(curveback,k%cnt,setmax(k,mx))],nc[j]))
+                v=addvect(v,scalarmulvect(pntlist[ k%cnt if curveback else setmax(k,mx)],nc[j]))
             if i>1:
                 for pnt in iterline(roundvect(v),roundvect(w)): yield pnt
             w=v
