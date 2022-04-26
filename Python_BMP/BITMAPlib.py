@@ -24,7 +24,7 @@ from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect
 from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
-from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf
+from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf,RGB2BGRbuf,makeBGRbuf
 from .fractals import getIFSparams,mandelparamdict
 from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
 from .chartools import char2int,enumletters,enumreverseletters
@@ -794,10 +794,6 @@ def applynoparamfunctocircregion(bmp,x,y,r,func):
             if isinrange(y1,ymax,-1) and y2!=y1:
                 s1,e1=c(bmp,x1,y1),c(bmp,x2,y1)
                 bmp[s1:e1]=func(bmp[s1:e1])
-
-def RGB2BGRbuf(buf):
-    m=len(buf)
-    buf[0:m-2:3],buf[2:m:3]=buf[2:m:3],buf[0:m-2:3]
 
 @entirecircleinboundary        
 def flipXYcircregion(bmp,x,y,r):
@@ -1851,12 +1847,6 @@ def horizontalbrightnessgradto24bitimage(bmp,lumrange):horizontalbrightnessgradt
 def flip24bitbuf(buf):
     buf.reverse()
     RGB2BGRbuf(buf)
-    return array('B',buf)
-
-def makeBGRbuf(bbuf,gbuf,rbuf):
-    buf=[]
-    for b,g,r in zip(bbuf,gbuf,rbuf):
-        buf+=[b,g,r]
     return array('B',buf)
 
 def unpack4bitbuf(buf):

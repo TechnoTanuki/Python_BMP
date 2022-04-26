@@ -185,3 +185,13 @@ def applythresholdadjtoBGRbuf(buf,lumrange):
             buf[i+2]=int(f*buf[i+2])
         i+=3
     return buf
+
+def RGB2BGRbuf(buf):
+    m=len(buf)
+    buf[0:m-2:3],buf[2:m:3]=buf[2:m:3],buf[0:m-2:3]
+
+def makeBGRbuf(bbuf,gbuf,rbuf):
+    buf=[]
+    for b,g,r in zip(bbuf,gbuf,rbuf):
+        buf+=[b,g,r]
+    return array('B',buf)
