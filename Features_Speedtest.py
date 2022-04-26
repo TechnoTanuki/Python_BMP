@@ -155,7 +155,7 @@ def main():
         print('Copy paste done in ',hhmmsselaspedtime(starttime))
         starttime=t.process_time_ns()
         nbmp=b.convertselection2BMP(buff)
-        nfile='assets/flower.bmp'
+        nfile=rootdir+'/assets/flower.bmp'
         b.saveBMP(nfile,nbmp)
         print('Save selection to ',nfile,' done in ',hhmmsselaspedtime(starttime))
 
