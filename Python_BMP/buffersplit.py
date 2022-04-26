@@ -1,3 +1,8 @@
+#/--------------------------------------------------------------------------\
+#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
+#|    We make absolutely no warranty of any kind, expressed or implied.     |
+#\--------------------------------------------------------------------------/
+
 def altsplitbuf(buf):
     m=len(buf)
     if m%2==0: m-=m&1
