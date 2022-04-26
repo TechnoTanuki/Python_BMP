@@ -94,8 +94,7 @@ def isinrange(value:float,highlimit:float,lowlimit:float) -> bool:
     return (value>lowlimit) and (value<highlimit)
 
 def setmax(val:float,maxval:float) -> float:
-    if val>maxval: val=maxval
-    return val
+    return maxval if val>maxval else val
 
 def setmin(val:float,minval:float) -> float:
     if val<minval: val=minval
