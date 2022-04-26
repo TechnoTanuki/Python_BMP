@@ -1,3 +1,8 @@
+#/--------------------------------------------------------------------------\
+#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
+#|    We make absolutely no warranty of any kind, expressed or implied.     |
+#\--------------------------------------------------------------------------/
+
 sysmsg={'notBMP':'Error: Not a BMP file!',
         'not24bit':'Error: Not a 24-bit BMP!',
         'is24bit':'Error: Already a 24-bit BMP!',
