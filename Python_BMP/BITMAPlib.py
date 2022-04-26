@@ -27,6 +27,7 @@ from .fonts import font8x8,font8x14,getcharfont
 from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf
 from .fractals import getIFSparams,mandelparamdict
 from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
+from .chartools import char2int,enumletters,enumreverseletters
 from .messages import sysmsg
 
 # BMP constants do not edit!!!
@@ -155,7 +156,7 @@ def buf2int(buf):
 def adjustbufsize(bufsize,bits):
     if bits==24: bufsize*=3
     elif bits==4: bufsize=bufsize>>1
-    elif bits==1:  bufsize=bufsize>>3
+    elif bits==1: bufsize=bufsize>>3
     return bufsize
 
 def setmaxx(bmp,xmax): writeint(bmpx,4,bmp,xmax)
@@ -351,25 +352,6 @@ def plot8bitpatternastext(bitpattern,onechar,zerochar):
             mask=mask>>1
         s+='\n'
     return s
-
-def enumletters(st):
-    c,i=len(st),0
-    while i<c:
-        yield st[i:i+1]
-        i+=1
-
-def enumreverseletters(st):
-    i=len(st)-1
-    while i>-1:
-        yield st[i:i+1]
-        i-=1
-
-def char2int(charcodestr):
-    place,strhash=0,0
-    for c in enumletters(charcodestr):
-        strhash=strhash+ord(c)*(256**place)
-        place+=1
-    return strhash
 
 def setbmppal(bmp,pallist):
     c=0
