@@ -29,6 +29,7 @@ from .fractals import getIFSparams,mandelparamdict
 from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
 from .chartools import char2int,enumletters,enumreverseletters
 from .inttools import readint,writeint,int2buf,buf2int
+from .textgraphics import plotbitsastext,plot8bitpatternastext
 from .messages import sysmsg
 
 # BMP constants do not edit!!!
@@ -248,14 +249,6 @@ def getBMPimgbytes(bmp): return bmp[gethdrsize(bmp):getfilesize(bmp)]
 
 def setBMPimgbytes(bmp,buf): bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
 
-def isinrectbnd(x,y,xmin,ymin,xmax,ymax): return (x<xmax and y<ymax) and (x>xmin and y>ymin)
-
-def listinrecbnd(xylist,xmin,ymin,xmax,ymax):
-    retval=True
-    for v in xylist:
-        if isinrectbnd(v[0],v[1],xmin,ymin,xmax,ymax)==False: break
-    return retval
-
 def mandelbrot(bmp,x1,y1,x2,y2,mandelparam,RGBfactors,maxiter):
     maxcolors=getmaxcolors(bmp)
     mcolor=maxcolors-1
@@ -305,13 +298,6 @@ def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
 def plotfilledflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
     for nr in range (r,2,-1): plotflower(bmp,cx,cy,nr,petals,angrot,lumrange,RGBfactors)
 
-def plotbitsastext(bits):
-    mask=128
-    while mask>0:
-        if (mask & bits)==0: print(' ',end='')
-        else: print('*',end='')
-        mask=mask>>1
-
 def plotbmpastext(bmp):#cant output 24 bit bmp
     bits,my,r,offset=getcolorbits(bmp),getmaxy(bmp)-1,getxcharcount(bmp),gethdrsize(bmp)
     for y in range(my,0,-1):
@@ -322,16 +308,6 @@ def plotbmpastext(bmp):#cant output 24 bit bmp
                 print(chr(97+c0)+chr(97+c1),end='')
             if bits==8: print(chr(bmp[offset+r*y+x]),end='')
         print()
-
-def plot8bitpatternastext(bitpattern,onechar,zerochar):
-    s=""
-    for bits in bitpattern:
-        mask=128
-        while mask>0:
-            s+=iif(mask & bits>0,onechar,zerochar)
-            mask=mask>>1
-        s+='\n'
-    return s
 
 def setbmppal(bmp,pallist):
     c=0
@@ -1140,11 +1116,6 @@ def drawarc(bmp,x,y,r,startdegangle,enddegangle,color,showoutline,fillcolor,isfi
     if isfilled: fillboundary(bmp,fillpolydata(av,getmaxx(bmp),getmaxy(bmp)),fillcolor)
 
 def rectangle(bmp,x1,y1,x2,y2,color): plotpoly(bmp,recvert(x1,y1,x2,y2),color)
-
-def sortrecpoints(x1,y1,x2,y2):
-    x1,x2=swapif(x1,x2,x1>x2)
-    y1,y2=swapif(y1,y2,y1>y2)
-    return x1,y1,x2,y2
 
 @entirerectinboundary    
 def filledrect(bmp,x1,y1,x2,y2,color):
