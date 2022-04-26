@@ -18,6 +18,7 @@
 #\--------#--------------------------------------------------------#--------/
 
 from array import array
+from ctypes.wintypes import BYTE
 from os.path import isfile
 from .proctimer import functimer
 from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal
@@ -29,6 +30,7 @@ from .fractals import getIFSparams,mandelparamdict
 from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
 from .chartools import char2int,enumletters,enumreverseletters
 from .inttools import readint,writeint,int2buf,buf2int
+from .dicttools import dict2descorderlist
 from .textgraphics import plotbitsastext,plot8bitpatternastext
 from .messages import sysmsg
 
@@ -142,83 +144,109 @@ def adjustbufsize(bufsize,bits):
     elif bits==1: bufsize=bufsize>>3
     return bufsize
 
-def setmaxx(bmp,xmax): writeint(bmpx,4,bmp,xmax)
+def setmaxx(bmp:array,xmax:int): writeint(bmpx,4,bmp,xmax)
 
-def getmaxx(bmp): return readint(bmpx,4,bmp)
+def getmaxx(bmp:array) -> int: 
+    return readint(bmpx,4,bmp)
 
-def setmaxy(bmp,ymax): writeint(bmpy,4,bmp,ymax)
+def setmaxy(bmp:array,ymax:int): writeint(bmpy,4,bmp,ymax)
 
-def getmaxy(bmp): return readint(bmpy,4,bmp)
+def getmaxy(bmp:array) -> int: 
+    return readint(bmpy,4,bmp)
 
-def getmaxxy(bmp): return (readint(bmpx,4,bmp),readint(bmpy,4,bmp))
+def getmaxxy(bmp:array) -> tuple: 
+    return (readint(bmpx,4,bmp),readint(bmpy,4,bmp))
 
-def bottomrightcoord(bmp): return [readint(bmpx,4,bmp)-1,readint(bmpy,4,bmp)-1]
+def bottomrightcoord(bmp:array) -> tuple: 
+    return (readint(bmpx,4,bmp)-1,readint(bmpy,4,bmp)-1)
 
-def centercoord(bmp): return [(readint(bmpx,4,bmp)-1)>>1,(readint(bmpy,4,bmp)-1)>>1]
+def centercoord(bmp:array) -> tuple: 
+    return ((readint(bmpx,4,bmp)-1)>>1,(readint(bmpy,4,bmp)-1)>>1)
 
-def isinBMPrectbnd(bmp,x,y): return (x<readint(bmpx,4,bmp) and y<readint(bmpy,4,bmp)) and (x>-1 and y>-1)
+def isinBMPrectbnd(bmp:array,x:int,y:int) -> bool: 
+    return (x<readint(bmpx,4,bmp) and y<readint(bmpy,4,bmp)) and (x>-1 and y>-1)
 
-def listinBMPrecbnd(bmp,xylist):
+def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
     retval=True
     for v in xylist:
         if isinBMPrectbnd(bmp,v[0],v[1])==False: break
     return retval
 
-def setcolorbits(bmp,bits): bmp[bmpcolorbits]=bits
+def setcolorbits(bmp:array,bits:int): bmp[bmpcolorbits]=bits
 
-def getcolorbits(bmp): return bmp[bmpcolorbits]
+def getcolorbits(bmp:array) -> int: 
+    return bmp[bmpcolorbits]
 
-def getxcharcount(bmp): return computexbytes(readint(18,4,bmp),bmp[bmpcolorbits])
+def getxcharcount(bmp:array) -> int: 
+    return computexbytes(readint(18,4,bmp),bmp[bmpcolorbits])
 
-def setfilesize(bmp,size): writeint(bmpfilesize,8,bmp,size)
+def setfilesize(bmp:array,size:int): writeint(bmpfilesize,8,bmp,size)
 
-def getfilesize(bmp): return readint(bmpfilesize,8,bmp)
+def getfilesize(bmp:array) -> int: 
+    return readint(bmpfilesize,8,bmp)
 
-def sethdrsize(bmp,hdsize): writeint(bmphdrsize,4,bmp,hdsize)
+def sethdrsize(bmp:array,hdsize:int): writeint(bmphdrsize,4,bmp,hdsize)
 
-def gethdrsize(bmp): return readint(bmphdrsize,4,bmp)
+def gethdrsize(bmp:array) -> int: 
+    return readint(bmphdrsize,4,bmp)
 
-def getimageinfo(bmp): return readint(bmpy,4,bmp),bmp[bmpcolorbits],getxcharcount(bmp),readint(bmphdrsize,4,bmp)
+def getimageinfo(bmp:array): 
+    return readint(bmpy,4,bmp),bmp[bmpcolorbits],getxcharcount(bmp),readint(bmphdrsize,4,bmp)
 
-def getmaxcolors(bmp): return 1<<bmp[bmpcolorbits]
+def getmaxcolors(bmp:array) -> int: 
+    return 1<<bmp[bmpcolorbits]
 
-def compute24bitBMPoffset(bmp,x,y): return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))
+def compute24bitBMPoffset(bmp: array,x:int,y:int) -> int: 
+    return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))
 
-def compute24bitBMPoffsetwithheader(bmp,x,y): return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))+54
+def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int: 
+    return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))+54
 
-def compute8bitBMPoffset(bmp,x,y): return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))
+def compute8bitBMPoffset(bmp: array,x: int,y: int) -> int: 
+    return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))
 
-def compute8bitBMPoffsetwithheader(bmp,x,y): return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))+1078
+def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int: 
+    return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))+1078
 
-def compute4bitBMPoffset(bmp,x,y): return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))
+def compute4bitBMPoffset(bmp: array,x: int,y: int) -> int: 
+    return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))
 
-def compute1bitBMPoffset(bmp,x,y): return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))
+def compute1bitBMPoffset(bmp: array,x:int,y:int) ->int: 
+    return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))
 
-def compute4bitBMPoffsetwithheader(bmp,x,y): return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))+118
+def compute4bitBMPoffsetwithheader(bmp: array,x: int,y: int) -> int: 
+    return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))+118
 
-def compute1bitBMPoffsetwithheader(bmp,x,y): return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))+62
+def compute1bitBMPoffsetwithheader(bmp: array,x:int,y:int) -> int: 
+    return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))+62
 
-def getcomputeBMPoffsetwithheaderfunc(bmp): return {24:compute24bitBMPoffsetwithheader,8:compute8bitBMPoffsetwithheader,4:compute4bitBMPoffsetwithheader,1:compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
+def getcomputeBMPoffsetwithheaderfunc(bmp:array): 
+    return {24:compute24bitBMPoffsetwithheader,8:compute8bitBMPoffsetwithheader,4:compute4bitBMPoffsetwithheader,1:compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
 
-def getcomputeBMPoffsetfunc(bmp): return {24:compute24bitBMPoffset,8:compute8bitBMPoffset,4:compute4bitBMPoffset,1:compute1bitBMPoffset}[bmp[bmpcolorbits]]
+def getcomputeBMPoffsetfunc(bmp:array): 
+    return {24:compute24bitBMPoffset,8:compute8bitBMPoffset,4:compute4bitBMPoffset,1:compute1bitBMPoffset}[bmp[bmpcolorbits]]
 
-def computeBMPoffset(bmp,x,y):
+def computeBMPoffset(bmp:array,x:int,y:int):
     f=getcomputeBMPoffsetfunc(bmp)
     return f(bmp,x,y)
 
-def computeBMPoffsetwithheader(bmp,x,y):
+def computeBMPoffsetwithheader(bmp:array,x:int,y:int):
     f=getcomputeBMPoffsetwithheaderfunc(bmp)
     return f(bmp,x,y)
 
-def getmaxxyandbits(bmp): return (((readint(bmpx,4,bmp),readint(bmpy,4,bmp)),bmp[bmpcolorbits]))
+def getmaxxyandbits(bmp:array) -> tuple: 
+    return (((readint(bmpx,4,bmp),readint(bmpy,4,bmp)),bmp[bmpcolorbits]))
 
-def computeuncompressedbmpfilesize(bmp): return computeBMPfilesize(getmaxx(bmp),getmaxy(bmp),bmp[bmpcolorbits])
+def computeuncompressedbmpfilesize(bmp:array) -> int: 
+    return computeBMPfilesize(getmaxx(bmp),getmaxy(bmp),bmp[bmpcolorbits])
 
-def isbmpcompressed(bmp): return computeuncompressedbmpfilesize(bmp)>getfilesize(bmp)
+def isbmpcompressed(bmp: array) -> bool: 
+    return computeuncompressedbmpfilesize(bmp)>getfilesize(bmp)
 
-def compute24bitoffset(x,y,mx,my): return (x*3)+((my-y-1)*computexbytes(mx,24))
+def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int: 
+    return (x*3)+((my-y-1)*computexbytes(mx,24))
 
-def computexbytes(x,bits):
+def computexbytes(x:int,bits:int) -> int:
     if bits<=8:
         xperbyte=8//bits
         xbytes,rem=divmod(x,xperbyte)
@@ -228,7 +256,7 @@ def computexbytes(x,bits):
     if rem>0: xbytes=xbytes+(4-rem)
     return xbytes
 
-def computepadbytes(x,bits):
+def computepadbytes(x: int,bits: int) -> int:
     if bits<=8:
         xperbyte=8//bits
         xbytes,rem=divmod(x,xperbyte)
@@ -237,106 +265,44 @@ def computepadbytes(x,bits):
     rem=xbytes&3
     return iif(rem>0,4-rem,0)
 
-def getdefaultBMPhdrsize(bits): return bmpheadersize[bits]
+def getdefaultBMPhdrsize(bits:int) -> int: 
+    return bmpheadersize[bits]
 
-def computeBMPfilesize(x,y,bits): return computexbytes(x,bits)*y+bmpheadersize[bits]
+def computeBMPfilesize(x:int,y:int,bits:int) -> int: 
+    return computexbytes(x,bits)*y+bmpheadersize[bits]
 
-def compute_bmpmetadata(x,y,bits): return (computeBMPfilesize(x,y,bits),bmpheadersize[bits],x,y,bits)
+def compute_bmpmetadata(x:int,y:int,bits:int) -> tuple: 
+    return (computeBMPfilesize(x,y,bits),bmpheadersize[bits],x,y,bits)
 
-def isdefaultpal(bmp): return getdefaultbitpal(getcolorbits(bmp))==getallRGBpal(bmp)
+def isdefaultpal(bmp: array) -> bool: 
+    return getdefaultbitpal(getcolorbits(bmp))==getallRGBpal(bmp)
 
-def getBMPimgbytes(bmp): return bmp[gethdrsize(bmp):getfilesize(bmp)]
+def getBMPimgbytes(bmp: array) -> list: 
+    return bmp[gethdrsize(bmp):getfilesize(bmp)]
 
-def setBMPimgbytes(bmp,buf): bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
+def setBMPimgbytes(bmp : array,buf: array): bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
 
-def mandelbrot(bmp,x1,y1,x2,y2,mandelparam,RGBfactors,maxiter):
-    maxcolors=getmaxcolors(bmp)
-    mcolor=maxcolors-1
-    Pmax,Pmin,Qmax,Qmin=mandelparam[0],mandelparam[1],mandelparam[2],mandelparam[3]
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    maxx,maxy=x2-x1,y2-y1
-    dp,dq,max_size=(Pmax-Pmin)/maxx,(Qmax-Qmin)/maxy,4
-    for y in range(y1,y2,1):
-        Q=Qmin+(y-y1)*dq
-        for x in range(x1,x2,1):
-            P,xp,yp,c,Xsq,Ysq=Pmin+(x-x1)*dp,0,0,0,0,0
-            while (Xsq+Ysq)<max_size:
-                 xp,yp=Xsq-Ysq+P,2*xp*yp+Q
-                 Xsq,Ysq=xp*xp,yp*yp
-                 c+=1
-                 if c>maxiter: break
-            if bmp[bmpcolorbits]==24:c=colormix(((255-c)*20)%256,RGBfactors)
-            else: c=mcolor-c%maxcolors
-            plotxybit(bmp,x,y,c)
-
-def IFS(bmp,IFStransparam,x1,y1,x2,y2,xscale,yscale,xoffset,yoffset,color,maxiter):
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    af,p,x,y=IFStransparam[0],IFStransparam[1],x1,y1
-    dy,i=y2-y1,0
-    while i<maxiter:
-        j=random()
-        t=af[iif(j<p[0],0,iif(j<p[1],1,iif(j<p[2],2,3)))]
-        nx=t[0]*x+t[1]*y+t[4]
-        x,y=nx,t[2]*x+t[3]*y+t[5]
-        px,py=int(x*xscale+xoffset+x1),int((dy-y*yscale+yoffset)+y1)
-        if isinrectbnd(px,py,x1,y1,x2,y2): plotxybit(bmp,px,py,color)
-        i+=1
-
-def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
-    maxcolors=getmaxcolors(bmp)
-    mcolor=maxcolors-1
-    lum1,dlum=range2baseanddelta(lumrange)
-    p,angmax,angrot=petals/2,360*petals,radians(angrot)
-    for a in range(0,angmax):
-        ang=radians(a/petals)
-        f,rang=cos(p*ang)**2,ang+angrot
-        x,y=int(cx-r*sin(rang)*f),int(cy-r*cos(rang)*f)
-        c=colormix(setmax(abs(int(lum1+dlum*(distance([x,y],[cx,cy])/r))),255),RGBfactors)
-        if bmp[bmpcolorbits]!=24: c=mcolor-c%maxcolors
-        plotxybit(bmp,x,y,c)
-
-def plotfilledflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
-    for nr in range (r,2,-1): plotflower(bmp,cx,cy,nr,petals,angrot,lumrange,RGBfactors)
-
-def plotbmpastext(bmp):#cant output 24 bit bmp
-    bits,my,r,offset=getcolorbits(bmp),getmaxy(bmp)-1,getxcharcount(bmp),gethdrsize(bmp)
-    for y in range(my,0,-1):
-        for x in range(0,r):
-            if bits==1: plotbitsastext(bmp[offset+r*y+x])
-            if bits==4:
-                c0,c1=divmod(bmp[offset+r*y+x],16)
-                print(chr(97+c0)+chr(97+c1),end='')
-            if bits==8: print(chr(bmp[offset+r*y+x]),end='')
-        print()
-
-def setbmppal(bmp,pallist):
+def setbmppal(bmp: array,pallist: list):
     c=0
     if len(pallist)==getmaxcolors(bmp):
         for p in pallist:
             setRGBpal(bmp,c,p[0],p[1],p[2])
             c+=1
 
-def getallRGBpal(bmp):
+def getallRGBpal(bmp:array) -> list:
     colors=getmaxcolors(bmp)
     return [getRGBpal(bmp,c) for c in range(0,colors)]
 
-def getRGBpal(bmp,c):
+def getRGBpal(bmp: array,c: int) -> list:
     i=bmppal+(c<<2)
     return [bmp[i+2],bmp[i+1],bmp[i]]
 
-def setRGBpal(bmp,c,r,g,b):
+def setRGBpal(bmp: array,c:int,r:int,g:int,b:int):
     start=bmppal+(c<<2)
     end=start+3
     bmp[start:end]=RGBtoBGRarr(r,g,b)
 
-def dict2descorderlist(d):
-    l=[]
-    for k in d: l.append([d[k],k])
-    l.sort()
-    l.reverse()
-    return l
-
-def colorhistorgram(bmp):
+def colorhistorgram(bmp: array) -> list:
     d={}
     for v in iterimagecolor(bmp,sysmsg['colorhist'],'*',sysmsg['done']):
         c=v[1]
@@ -344,7 +310,7 @@ def colorhistorgram(bmp):
         else: d[c]+=1
     return  dict2descorderlist(d)
 
-def makenewpalfromcolorhist(chist,colors,similaritythreshold):
+def makenewpalfromcolorhist(chist:list,colors:int,similaritythreshold:float) -> list:
     newpal,palcnt,colorcount=[[0,0,0]],1,len(chist)
     for i in range(0,colorcount):
         rgb=int2RGBlist(chist[i][1])
@@ -358,16 +324,16 @@ def makenewpalfromcolorhist(chist,colors,similaritythreshold):
         if palcnt==colors: break
     return newpal
 
-def copyBMPhdr(bmp):
+def copyBMPhdr(bmp:array) -> array:
     hdrsize,newbmp=gethdrsize(bmp),array('B',[0]*getfilesize(bmp))
     newbmp[0:hdrsize]=bmp[0:hdrsize]
     return newbmp
 
-def copyRGBpal(sourceBMP,destBMP):
+def copyRGBpal(sourceBMP: array,destBMP: array):
     hdl=gethdrsize(sourceBMP)
     destBMP[bmppal:hdl]=sourceBMP[bmppal:hdl]
 
-def setbmp_properties(bmpmeta):
+def setbmp_properties(bmpmeta: list):
     bmp,filesize,hdrsize,x,y,bits=array('B'),bmpmeta[0],bmpmeta[1],bmpmeta[2],bmpmeta[3],bmpmeta[4]
     bmp.frombytes(b'\x00'*(filesize))
     bmp[0:2]=bmpheaderid
@@ -380,24 +346,27 @@ def setbmp_properties(bmpmeta):
     if bits<24: setbmppal(bmp,getdefaultbitpal(bits))
     return bmp
 
-def setnewpalfromsourcebmp(sourcebmp,newbmp,similaritythreshold):
+def setnewpalfromsourcebmp(sourcebmp: array,newbmp: array,similaritythreshold: float) -> list:
     newpal=makenewpalfromcolorhist(colorhistorgram(sourcebmp),getmaxcolors(newbmp),similaritythreshold)
     setbmppal(newbmp,newpal)
     return newpal
 
-def RGBpalbrightnessadjust(bmp,percentadj): return [brightnessadjust(c,percentadj) for c in getallRGBpal(bmp)]
+def RGBpalbrightnessadjust(bmp: array,percentadj: float): 
+    return [brightnessadjust(c,percentadj) for c in getallRGBpal(bmp)]
 
-def setBMP2monochrome(bmp,RGBfactors):
+def setBMP2monochrome(bmp: array,RGBfactors:list) -> list:
     newpal=monochromepal(getcolorbits(bmp),RGBfactors)
     setbmppal(bmp,newpal)
     return newpal
 
-def newBMP(x,y,colorbits): return setbmp_properties(compute_bmpmetadata(x,y,colorbits))
+def newBMP(x:int,y:int,colorbits:int) -> array: 
+    return setbmp_properties(compute_bmpmetadata(x,y,colorbits))
 
-def CopyBMPxydim2newBMP(bmp,newbits): return newBMP(getmaxx(bmp),getmaxy(bmp),newbits)
+def CopyBMPxydim2newBMP(bmp: array,newbits: int) -> array: 
+    return newBMP(getmaxx(bmp),getmaxy(bmp),newbits)
 
 @checklink
-def loadBMP(filename):#loads bitmap to array very fast
+def loadBMP(filename: str) -> array:#loads bitmap to array very fast
     a=array('B')
     with open(filename,'rb') as f: #ucompressed BMP only
         hd=f.read(2)
@@ -409,74 +378,92 @@ def loadBMP(filename):#loads bitmap to array very fast
         f.close()
     return a
 
-def saveBMP(filename,bmp):
+def saveBMP(filename: str,bmp: array):
     with open(filename,'wb') as f:
         f.write(bmp)
         f.close()
 
-def BMPbitBLTput(bmp,offset,arraybuf):
+def BMPbitBLTput(bmp : array,offset: int,arraybuf: array):
     hdrsize,bufsize=gethdrsize(bmp),len(arraybuf)
     startoff=hdrsize+offset
     endoff=startoff+bufsize
-    if offset>=0 and endoff<=getfilesize(bmp): bmp[startoff:endoff]=arraybuf
-    else: print (sysmsg['invalidoffset'])
+    if offset>=0 and endoff<=getfilesize(bmp): 
+        bmp[startoff:endoff]=arraybuf
+    else: 
+        print (sysmsg['invalidoffset'])
 
-def BMPbitBLTget(bmp,offset,bufsize):
+def BMPbitBLTget(bmp: array,offset: int,bufsize :int) -> array:
     hdrsize,retval=gethdrsize(bmp),array('B',[])
     startoff=hdrsize+offset
     endoff=startoff+bufsize
-    if (offset>=0 and bufsize>0 ) and endoff<=getfilesize(bmp): retval=bmp[startoff:endoff]
-    else: print (sysmsg['invalidoffset'])
+    if (offset>=0 and bufsize>0 ) and endoff<=getfilesize(bmp): 
+        retval=bmp[startoff:endoff]
+    else: 
+        print (sysmsg['invalidoffset'])
     return retval
 
-def vertBMPbitBLTget(bmp,x,y1,y2):
+def vertBMPbitBLTget(bmp : array,x: int,y1:int,y2: int) -> array:
     bits=bmp[bmpcolorbits]
     r,m,c=getxcharcount(bmp),getmaxxy(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
     if isinrange(x,m[0],-1):
         y1,y2=swapif(y1,y2,y1>y2)
         y1,y2=setmin(y1,0),setmax(y2,m[1]-1)
         s,e=c(bmp,x,y2),c(bmp,x,y1)+r
-        if bits==24: return makeBGRbuf(bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r])
-        else: return bmp[s:e:r]
-    else: print(sysmsg['lineoutofbnd'])
+        if bits==24: 
+            return makeBGRbuf(bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r])
+        else: 
+            return bmp[s:e:r]
+    else: 
+        print(sysmsg['lineoutofbnd'])
 
-def applyfuncwithparam2vertBMPbitBLTget(bmp,x,y1,y2,func,funcparam):
+def applyfuncwithparam2vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int,func,funcparam):
     bits=bmp[bmpcolorbits]
     r,m,c=getxcharcount(bmp),getmaxxy(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
     if isinrange(x,m[0],-1):
         y1,y2=swapif(y1,y2,y1>y2)
         y1,y2=setmin(y1,0),setmax(y2,m[1]-1)
         s,e=c(bmp,x,y2),c(bmp,x,y1)+r
-        if bits==24: bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=func(bmp[s:e-2:r],funcparam),func(bmp[s+1:e-1:r],funcparam),func(bmp[s+2:e:r],funcparam)
-        else: bmp[s:e:r]=func(bmp[s:e:r],funcparam)
-    else: print(sysmsg['lineoutofbnd'])
+        if bits==24: 
+            bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=func(bmp[s:e-2:r],funcparam),func(bmp[s+1:e-1:r],funcparam),func(bmp[s+2:e:r],funcparam)
+        else: 
+            bmp[s:e:r]=func(bmp[s:e:r],funcparam)
+    else: 
+        print(sysmsg['lineoutofbnd'])
 
-def plotRGBxybit(bmp,x,y,rgb):
+def plotRGBxybit(bmp: array,x: int,y: int,rgb: list):
     if isinBMPrectbnd(bmp,x,y):
         if bmp[bmpcolorbits]==24:
             offset=compute24bitBMPoffsetwithheader(bmp,x,y)
             endoffset=offset+3
             bmp[offset:endoffset]= array('B',[rgb[2],rgb[1],rgb[0]])
-        else: plotxybit(bmp,x,y,matchRGBtopal(rgb,getallRGBpal(bmp)))
+        else: 
+            plotxybit(bmp,x,y,matchRGBtopal(rgb,getallRGBpal(bmp)))
 
-def plotxybit(bmp,x,y,c):
+def plotxybit(bmp: array,x: int,y: int,c: int):
     if isinBMPrectbnd(bmp,x,y):
         offset,bits=computeBMPoffsetwithheader(bmp,x,y),bmp[bmpcolorbits]
-        if bits==24:bmp[offset:offset+3]=int2BGRarr(c)
-        elif bits==8:bmp[offset]=c&0xff
+        if bits==24:
+            bmp[offset:offset+3]=int2BGRarr(c)
+        elif bits==8:
+            bmp[offset]=c&0xff
         elif bits==4:
-            if c>15: c&=0xf
-            if x&1==1: bmp[offset]=(bmp[offset] & 0xf0)+c
-            else: bmp[offset]=(c<<4)+(bmp[offset] & 0xf)
+            if c>15: 
+                c&=0xf
+            if x&1==1: 
+                bmp[offset]=(bmp[offset] & 0xf0)+c
+            else: 
+                bmp[offset]=(c<<4)+(bmp[offset] & 0xf)
         elif bits==1:
             b,mask=bmp[offset],1<<(7-(x%8))
-            if c>1: c=1
-            if c==1: b=b | mask
+            if c>1: 
+                c=1
+            if c==1: 
+                b=b | mask
             else:
                 if b & mask>0: b=b ^ mask
             bmp[offset]=b
 
-def getxybit(bmp,x,y):
+def getxybit(bmp:array,x:int,y:int) -> int:
     retval=0
     if isinBMPrectbnd(bmp,x,y):
         offset,bits=computeBMPoffsetwithheader(bmp,x,y),bmp[bmpcolorbits]
@@ -491,9 +478,10 @@ def getxybit(bmp,x,y):
     else: retval=-1
     return retval
 
-def getRGBxybitvec(bmp,v): return getRGBxybit(bmp,v[0],v[1])
+def getRGBxybitvec(bmp: array,v:list) -> int: 
+    return getRGBxybit(bmp,v[0],v[1])
 
-def getRGBxybit(bmp,x,y):
+def getRGBxybit(bmp: array,x: int,y: int):
     retval=[]
     if isinBMPrectbnd(bmp,x,y):
         if getcolorbits(bmp)==24:
@@ -502,35 +490,39 @@ def getRGBxybit(bmp,x,y):
         else: retval=getRGBpal(bmp,getxybit(bmp,x,y))
     return retval
 
-def getxybitvec(bmp,v): return getxybit(bmp,v[0],v[1])
+def getxybitvec(bmp: array,v: list) -> int: 
+    return getxybit(bmp,v[0],v[1])
 
-def intplotvecxypoint(bmp,v,c): plotxybit(bmp,v[0],v[1],c)
+def intplotvecxypoint(bmp:array,v:list,c:int) : plotxybit(bmp,v[0],v[1],c)
 
-def plotvecxypoint(bmp,v,c):
+def plotvecxypoint(bmp: array,v : list,c: int):
     v=roundvect(v)
     plotxybit(bmp,v[0],v[1],c)
 
-def plotRGBxybitvec(bmp,v,rgb): plotRGBxybit(bmp,v[0],v[1],rgb)
+def plotRGBxybitvec(bmp:array,v:list,rgb:list): plotRGBxybit(bmp,v[0],v[1],rgb)
 
-def plotxypointlist(bmp,vlist,penradius,color):
-    for v in vlist: roundpen(bmp,v,penradius,color)
+def plotxypointlist(bmp:array,vlist: list,penradius: int,color: int):
+    for v in vlist: 
+        roundpen(bmp,v,penradius,color)
 
-def roundpen(bmp,point,penradius,color):
+def roundpen(bmp: array,point: list,penradius:int,color:int):
     x,y=point[0],point[1]
     if penradius<=1: plotxybit(bmp,x,y,color)
     else: circle(bmp,x,y,penradius,color,True)
 
-def swapcolors(bmp,p1,p2):
+def swapcolors(bmp: array,p1: list,p2:list):
     c=getxybitvec(bmp,p1)
     intplotvecxypoint(bmp,p1,getxybitvec(bmp,p2))
     intplotvecxypoint(bmp,p2,c)
 
-def line(bmp,x1,y1,x2,y2,color):
+def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
     m=getmaxxy(bmp)
     mx,my=m[0]-1,m[1]-1
     x1,x2,y1,y2=setminmax(x1,0,mx),setminmax(x2,0,mx),setminmax(y1,0,my),setminmax(y2,0,my)
-    if x1==x2: vertline(bmp,x1,y1,y2,color)
-    elif y1==y2: horiline(bmp,y1,x1,x2,color)
+    if x1==x2: 
+        vertline(bmp,x1,y1,y2,color)
+    elif y1==y2: 
+        horiline(bmp,y1,x1,x2,color)
     else:
         bits=bmp[bmpcolorbits]
         c=getcomputeBMPoffsetwithheaderfunc(bmp)
@@ -541,24 +533,28 @@ def line(bmp,x1,y1,x2,y2,color):
                 bmp[s:s+3]=buf
         elif bits==8:
             color&=0xff
-            for p in iterline((x1,y1),(x2,y2)): bmp[c(bmp,p[0],p[1])]=color
+            for p in iterline((x1,y1),(x2,y2)): 
+                bmp[c(bmp,p[0],p[1])]=color
         elif bits==4:
             if color>15: color&=0xf
             for p in iterline((x1,y1),(x2,y2)):
                 s=c(bmp,p[0],p[1])
-                if p[0]&1==1: bmp[s]=(bmp[s]&0xf0)+color
-                else: bmp[s]=(color<<4)+(bmp[s]&0xf)
+                if p[0]&1==1: 
+                    bmp[s]=(bmp[s]&0xf0)+color
+                else: 
+                    bmp[s]=(color<<4)+(bmp[s]&0xf)
         elif bits==1:
             if color>1: color&=0x1
             for p in iterline((x1,y1),(x2,y2)):
                 s=c(bmp,p[0],p[1])
                 b,mask=bmp[s],1<<(7-(p[0]%8))
-                if color==1: b=b | mask
+                if color==1: 
+                    b=b | mask
                 else:
                     if b & mask>0: b=b ^ mask
                 bmp[s]=b
 
-def horiline(bmp,y,x1,x2,color):
+def horiline(bmp:array,y:int,x1:int,x2:int,color:int):
     bits,m=bmp[bmpcolorbits],getmaxxy(bmp)
     if isinrange(y,m[1],-1):
         x1,x2=swapif(x1,x2,x1>x2)
@@ -578,21 +574,26 @@ def horiline(bmp,y,x1,x2,color):
             e=s+dx
             color&=0xf
             c1,c2=-1,(color<<4)+color
-            if x1&1==1: c1=(bmp[s] & 0xf0)
+            if x1&1==1: 
+                c1=(bmp[s] & 0xf0)
             bmp[s:e]=array('B',[c2]*dx)
-            if c1!=-1: bmp[s]=c1+(bmp[s] & 0xf)
-            if x2&1==1: plotxybit(bmp,x2-1,y,color)
+            if c1!=-1: 
+                bmp[s]=c1+(bmp[s] & 0xf)
+            if x2&1==1: 
+                plotxybit(bmp,x2-1,y,color)
         elif bits==1:
             x2+=1
-            for x in range(x1,x2): plotxybit(bmp,x,y,color)
+            for x in range(x1,x2): 
+                plotxybit(bmp,x,y,color)
     else: print(sysmsg['lineoutofbnd'])
 
-def vertline(bmp,x,y1,y2,color):
+def vertline(bmp:array,x:int,y1:int,y2:int,color:int):
     bits=bmp[bmpcolorbits]
     if bits not in [24,8]:
         y1,y2=swapif(y1,y2,y1>y2)
         y2+=1
-        for y in range(y1,y2): plotxybit(bmp,x,y,color)
+        for y in range(y1,y2): 
+            plotxybit(bmp,x,y,color)
     else:
         r,m,c=getxcharcount(bmp),getmaxxy(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
         if isinrange(x,m[0],-1):
@@ -600,14 +601,17 @@ def vertline(bmp,x,y1,y2,color):
             y1,y2=setmin(y1,0),setmax(y2,m[1]-1)
             dy,rgb=y2-y1+1,int2RGBlist(color)
             s,e=c(bmp,x,y2),c(bmp,x,y1)+r
-            if bits==24: bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=array('B',[rgb[2]]*dy),array('B',[rgb[1]]*dy),array('B',[rgb[0]]*dy)
-            elif bits==8: bmp[s:e:r]=array('B',[color%256]*dy)
+            if bits==24: 
+                bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=array('B',[rgb[2]]*dy),array('B',[rgb[1]]*dy),array('B',[rgb[0]]*dy)
+            elif bits==8: 
+                bmp[s:e:r]=array('B',[color%256]*dy)
         else: print(sysmsg['lineoutofbnd'])
 
-def fillbackgroundwithgrad(bmp,lumrange,RGBfactors,direction): filledgradrect(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange,RGBfactors,direction)
+def fillbackgroundwithgrad(bmp:array,lumrange:list,RGBfactors:list,direction:int): 
+    filledgradrect(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange,RGBfactors,direction)
 
 @func8and24bitonlyandentirerectinboundary
-def filledgradrect(bmp,x1,y1,x2,y2,lumrange,RGBfactors,direction):
+def filledgradrect(bmp: array,x1:int,y1:int,x2:int,y2:int,lumrange:list,RGBfactors:list,direction:int):
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)   
     dx,dy=x2-x1+1,y2-y1+1
     base,lrange=RGBfactorstoBaseandRange(lumrange,RGBfactors)
@@ -617,19 +621,22 @@ def filledgradrect(bmp,x1,y1,x2,y2,lumrange,RGBfactors,direction):
             f=x/dx
             c=RGB2int(round(base[0]+lrange[0]*f),round(base[1]+lrange[1]*f),round(base[2]+lrange[2]*f))
             if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-            if c<0: c=0
+            if c<0: 
+                c=0
             vertline(bmp,x,y1,y2,c)
     else:
         ylim=y2+1
         for y in range(y1,ylim):
             f=y/dy
             c=RGB2int(round(base[0]+lrange[0]*f),round(base[1]+lrange[1]*f),round(base[2]+lrange[2]*f))
-            if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-            if c<0: c=0
+            if bmp[bmpcolorbits]!=24:
+                c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+            if c<0: 
+                c=0
             horiline(bmp,y,x1,x2,c)
 
 @entirerectinboundary            
-def itercopyrect(bmp,x1,y1,x2,y2):
+def itercopyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     bufsize,r=adjustbufsize(x2-x1+1,bmp[28]),getxcharcount(bmp)
     offset=computeBMPoffset(bmp,x1,y2)
@@ -638,14 +645,15 @@ def itercopyrect(bmp,x1,y1,x2,y2):
         yield BMPbitBLTget(bmp,offset,bufsize)
         offset+=r
     
-def intlinevec(bmp,u,v,color): line(bmp,u[0],u[1],v[0],v[1],color)
+def intlinevec(bmp: array,u:list,v:list,color: int): line(bmp,u[0],u[1],v[0],v[1],color)
 
-def linevec(bmp,u,v,color): intlinevec(bmp,roundvect(u),roundvect(v),color)
+def linevec(bmp:array,u:list,v:list,color:int): intlinevec(bmp,roundvect(u),roundvect(v),color)
 
-def filledparallelogram(bmp,p1,p2,p3,color):
-    for v in iterparallelogram(p1,p2,p3): linevec(bmp,v[0],v[1],color)
+def filledparallelogram(bmp:array,p1:list,p2:list,p3:list,color:int):
+    for v in iterparallelogram(p1,p2,p3): 
+        linevec(bmp,v[0],v[1],color)
 
-def drawvec(bmp,u,v,headsize0fordefault,color):
+def drawvec(bmp:array,u:list,v:list,headsize0fordefault:int,color:int):
     vm,anginc=vmag(subvect(u,v)),0.39269908169872414
     hm=iif(headsize0fordefault==0,vm/5,headsize0fordefault)
     a=anglebetween2Dlines(u,v)
@@ -666,18 +674,20 @@ def drawvec(bmp,u,v,headsize0fordefault,color):
     elif u[0]<v[0] and u[1]>v[1]: hdsubvect(bmp,v,hm,a1,a2)
     else: hdaddvect(bmp,v,hm,a1,a2)
 
-def thickroundline(bmp,p1,p2,penradius,color):
-    for p in iterline(p1,p2): circle(bmp,p[0],p[1],penradius,color,True)
+def thickroundline(bmp:array,p1:list,p2:list,penradius:int,color:int):
+    for p in iterline(p1,p2): 
+        circle(bmp,p[0],p[1],penradius,color,True)
 
-def gradthickroundline(bmp,p1,p2,penradius,lumrange,RGBfactors):
+def gradthickroundline(bmp:array,p1:list,p2:list,penradius:int,lumrange:list,RGBfactors:list):
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+        if bmp[bmpcolorbits]!=24:
+            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
         thickroundline(bmp,p1,p2,i,c)
 
 @intcircleparam24bitonly        
-def applynoparam24bitfunctocircregion(bmp,x,y,r,func):
+def applynoparam24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func):
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r):
         for v in itercirclepartlineedge(r):
@@ -685,7 +695,8 @@ def applynoparam24bitfunctocircregion(bmp,x,y,r,func):
             y1,y2=mirror(y,v[1])
             s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
             bmp[s1:e1]=func(bmp[s1:e1])
-            if y1!=y2: bmp[s2:e2]=func(bmp[s2:e2])
+            if y1!=y2: 
+                bmp[s2:e2]=func(bmp[s2:e2])
     else:
         xmax,ymax=getmaxx(bmp),getmaxy(bmp)
         for v in itercirclepartlineedge(r):
@@ -700,7 +711,7 @@ def applynoparam24bitfunctocircregion(bmp,x,y,r,func):
                 bmp[s1:e1]=func(bmp[s1:e1])
 
 @intcircleparam24bitonly       
-def apply24bitfunctocircregion(bmp,x,y,r,func,funcparam):
+def apply24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func,funcparam):
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r):
         for v in itercirclepartlineedge(r):
@@ -708,7 +719,8 @@ def apply24bitfunctocircregion(bmp,x,y,r,func,funcparam):
             y1,y2=mirror(y,v[1])
             s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
             bmp[s1:e1]=func(bmp[s1:e1],funcparam)
-            if y2!=y1: bmp[s2:e2]=func(bmp[s2:e2],funcparam)
+            if y2!=y1: 
+                bmp[s2:e2]=func(bmp[s2:e2],funcparam)
     else:
         xmax,ymax=getmaxx(bmp),getmaxy(bmp)
         for v in itercirclepartlineedge(r):
@@ -723,7 +735,7 @@ def apply24bitfunctocircregion(bmp,x,y,r,func,funcparam):
                 bmp[s1:e1]=func(bmp[s1:e1],funcparam)
 
 @entirecircleinboundary
-def copycircregion2buf(bmp,x,y,r):
+def copycircregion2buf(bmp: array,x:int,y:int,r:int) -> list:
     copybuf,c=[getcolorbits(bmp),r],getcomputeBMPoffsetwithheaderfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1,x2=mirror(x,v[0])
@@ -731,11 +743,12 @@ def copycircregion2buf(bmp,x,y,r):
         copybuf+=[[bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]]]
     return copybuf
 
-def pastecirularbuf(bmp,x,y,circbuf):
+def pastecirularbuf(bmp:array,x:int,y:int,circbuf:list):
     if circbuf!=None:
         r,c=circbuf[1],getcomputeBMPoffsetwithheaderfunc(bmp)
         if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r):
-            if getcolorbits(bmp)!=circbuf[0]: raise(sysmsg['bitsnotequal'])
+            if getcolorbits(bmp)!=circbuf[0]: 
+                raise(sysmsg['bitsnotequal'])
             else:
                 i=2
                 for v in itercirclepartlineedge(r):
@@ -743,13 +756,16 @@ def pastecirularbuf(bmp,x,y,circbuf):
                     y1,y2=mirror(y,v[1])
                     bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=circbuf[i][0],circbuf[i][1]
                     i+=1
-        else: print(sysmsg['regionoutofbounds'])
-    else: print(sysmsg['invalidbuf'])
+        else: 
+            print(sysmsg['regionoutofbounds'])
+    else: 
+        print(sysmsg['invalidbuf'])
 
-def copycircregion(bmp,x,y,r,newxy): pastecirularbuf(bmp,newxy[0],newxy[1],copycircregion2buf(bmp,x,y,r))
+def copycircregion(bmp:array,x:int,y:int,r:int,newxy:list): 
+    pastecirularbuf(bmp,newxy[0],newxy[1],copycircregion2buf(bmp,x,y,r))
 
 @intcircleparam
-def applynoparamfunctocircregion(bmp,x,y,r,func):
+def applynoparamfunctocircregion(bmp:array,x:int,y:int,r:int,func):
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r):
         for v in itercirclepartlineedge(r):
@@ -757,7 +773,8 @@ def applynoparamfunctocircregion(bmp,x,y,r,func):
             y1,y2=mirror(y,v[1])
             s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
             bmp[s1:e1]=func(bmp[s1:e1])
-            if y1!=y2: bmp[s2:e2]=func(bmp[s2:e2])
+            if y1!=y2: 
+                bmp[s2:e2]=func(bmp[s2:e2])
     else:
         xmax,ymax=getmaxx(bmp),getmaxy(bmp)
         for v in itercirclepartlineedge(r):
@@ -772,7 +789,7 @@ def applynoparamfunctocircregion(bmp,x,y,r,func):
                 bmp[s1:e1]=func(bmp[s1:e1])
 
 @entirecircleinboundary        
-def flipXYcircregion(bmp,x,y,r):
+def flipXYcircregion(bmp:array,x:int,y:int,r:int):
     bits,c=bmp[bmpcolorbits],getcomputeBMPoffsetwithheaderfunc(bmp)
     if bits not in [24,8]:
         n=flipXY(bmp)
@@ -795,10 +812,10 @@ def flipXYcircregion(bmp,x,y,r):
             x1,y1,x2,y2=b[0],b[1],b[2],b[3]
             bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[4],b[5]
 
-def fliphoricircregion(bmp,x,y,r): horitransformincircregion(bmp,x,y,r,'F')
+def fliphoricircregion(bmp:array,x:int,y:int,r:int): horitransformincircregion(bmp,x,y,r,'F')
 
 @func8and24bitonlyandentirecircleinboundary
-def horitransformincircregion(bmp,x,y,r,trans):
+def horitransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
     def flip24():  bmp[s1:e1-2:k],bmp[s2:e2-2:k],bmp[s1+1:e1-1:k],bmp[s2+1:e2-1:k],bmp[s1+2:e1:k],bmp[s2+2:e2:k]=bmp[s2:e2-2:k],bmp[s1:e1-2:k],bmp[s2+1:e2-1:k],bmp[s1+1:e1-1:k],bmp[s2+2:e2:k],bmp[s1+2:e1:k]
     def flip8(): bmp[s1:e1:k],bmp[s2:e2:k]=bmp[s2:e2:k],bmp[s1:e1:k]
     def mirror24R(): bmp[s1:e1-2:k],bmp[s1+1:e1-1:k],bmp[s1+2:e1:k]=bmp[s2:e2-2:k],bmp[s2+1:e2-1:k],bmp[s2+2:e2:k]
@@ -822,20 +839,23 @@ def horitransformincircregion(bmp,x,y,r,trans):
         s1,e1,s2,e2=c(bmp,x1,y2),c(bmp,x1,y1)+k,c(bmp,x2,y2),c(bmp,x2,y1)+k
         f()
     
-def mirrorleftincircregion(bmp,x,y,r): horitransformincircregion(bmp,x,y,r,'L')
+def mirrorleftincircregion(bmp:array,x:int,y:int,r:int): horitransformincircregion(bmp,x,y,r,'L')
 
-def mirrorrightincircregion(bmp,x,y,r): horitransformincircregion(bmp,x,y,r,'R')
+def mirrorrightincircregion(bmp:array,x:int,y:int,r:int): horitransformincircregion(bmp,x,y,r,'R')
 
-def flipvertcircregion(bmp,x,y,r): verttransformincircregion(bmp,x,y,r,'F')
+def flipvertcircregion(bmp:array,x:int,y:int,r:int): verttransformincircregion(bmp,x,y,r,'F')
 
 @entirecircleinboundary
-def verttransformincircregion(bmp,x,y,r,transform):
+def verttransformincircregion(bmp:array,x:int,y:int,r:int,transform:str):
     def mirrorT(): bmp[s2:e2]=bmp[s1:e1]
     def mirrorB(): bmp[s1:e1]=bmp[s2:e2]
     def flip(): bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
-    if transform=='T': f=mirrorT
-    elif transform=='B': f=mirrorB
-    elif transform=='F': f=flip
+    if transform=='T': 
+        f=mirrorT
+    elif transform=='B': 
+        f=mirrorB
+    elif transform=='F': 
+        f=flip
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1,x2=mirror(x,v[0])
@@ -843,28 +863,28 @@ def verttransformincircregion(bmp,x,y,r,transform):
         s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
         f()
     
-def mirrortopincircregion(bmp,x,y,r): verttransformincircregion(bmp,x,y,r,'T')
+def mirrortopincircregion(bmp:array,x:int,y:int,r:int): verttransformincircregion(bmp,x,y,r,'T')
 
-def mirrorbottomincircregion(bmp,x,y,r): verttransformincircregion(bmp,x,y,r,'B')
+def mirrorbottomincircregion(bmp:array,x:int,y:int,r:int): verttransformincircregion(bmp,x,y,r,'B')
 
-def mirrortopleftincircregion(bmp,x,y,r):
+def mirrortopleftincircregion(bmp:array,x:int,y:int,r:int):
     mirrorleftincircregion(bmp,x,y,r)
     mirrortopincircregion(bmp,x,y,r)
 
-def mirrortoprightincircregion(bmp,x,y,r):
+def mirrortoprightincircregion(bmp:array,x:int,y:int,r:int):
     mirrorrightincircregion(bmp,x,y,r)
     mirrortopincircregion(bmp,x,y,r)
 
-def mirrorbottomleftincircregion(bmp,x,y,r):
+def mirrorbottomleftincircregion(bmp:array,x:int,y:int,r:int):
     mirrorleftincircregion(bmp,x,y,r)
     mirrorbottomincircregion(bmp,x,y,r)
 
-def mirrorbottomrightincircregion(bmp,x,y,r):
+def mirrorbottomrightincircregion(bmp:array,x:int,y:int,r:int):
     mirrorrightincircregion(bmp,x,y,r)
     mirrorbottomincircregion(bmp,x,y,r)
 
 @func24bitonlyandentirecircleinboundary  
-def vertbrightnessgrad2circregion(bmp,x,y,r,lumrange):
+def vertbrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
     c,f=getcomputeBMPoffsetwithheaderfunc(bmp),applybrightnessadjtoBGRbuf
     l,dl,b,=lumrange[0],(lumrange[1]-lumrange[0])/(2*r),y-r
     for v in itercirclepartlineedge(r):
@@ -875,7 +895,7 @@ def vertbrightnessgrad2circregion(bmp,x,y,r,lumrange):
         bmp[s1:e1],bmp[s2:e2]=f(bmp[s1:e1],l1),f(bmp[s2:e2],l2)
 
 @func24bitonlyandentirecircleinboundary     
-def horibrightnessgrad2circregion(bmp,x,y,r,lumrange):
+def horibrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
     f=applybrightnessadjtoBGRbuf
     l,dl,b=lumrange[0],(lumrange[1]-lumrange[0])/(2*r),x-r
     for v in itercirclepartvertlineedge(r):
@@ -885,7 +905,7 @@ def horibrightnessgrad2circregion(bmp,x,y,r,lumrange):
         if x1!=x2: applyfuncwithparam2vertBMPbitBLTget(bmp,x2,y1,y2,f,l+(x2-b)*dl)
 
 @intcircleparam    
-def outlinecircregion(bmp,x,y,r):
+def outlinecircregion(bmp:array,x:int,y:int,r:int):
     bits,c=bmp[bmpcolorbits],getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r):
         for v in itercirclepartlineedge(r):
@@ -894,10 +914,12 @@ def outlinecircregion(bmp,x,y,r):
             s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
             if bits==24:
                 bmp[s1:e1]=array('B',xorvect(bmp[s1:e1],bmp[s1+3:e1+3]))
-                if y1!=y2: bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+3:e2+3]))
+                if y1!=y2: 
+                    bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+3:e2+3]))
             else:
                 bmp[s1:e1]=array('B',xorvect(bmp[s1:e1],bmp[s1+1:e1+1]))
-                if y1!=y2: bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+1:e2+1]))
+                if y1!=y2: 
+                    bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+1:e2+1]))
     else:
         xmax,ymax=getmaxx(bmp),getmaxy(bmp)
         for v in itercirclepartlineedge(r):
@@ -906,24 +928,33 @@ def outlinecircregion(bmp,x,y,r):
             x1,x2=setmin(x1,0),setmax(x2,xmax-1)
             if isinrange(y2,ymax,-1):
                 s2,e2=c(bmp,x1,y2),c(bmp,x2,y2)
-                if bits==24:  bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+3:e2+3]))
-                else: bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+1:e2+1]))
+                if bits==24:  
+                    bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+3:e2+3]))
+                else: 
+                    bmp[s2:e2]=array('B',xorvect(bmp[s2:e2],bmp[s2+1:e2+1]))
             if isinrange(y1,ymax,-1) and y2!=y1:
                 s1,e1=c(bmp,x1,y1),c(bmp,x2,y1)
-                if bits==24: bmp[s1:e1]=array('B',xorvect(bmp[s1:e1],bmp[s1+3:e1+3]))
-                else: bmp[s1:e1]=array('B',xorvect(bmp[s1:e1],bmp[s1+1:e1+1]))
+                if bits==24: 
+                    bmp[s1:e1]=array('B',xorvect(bmp[s1:e1],bmp[s1+3:e1+3]))
+                else: 
+                    bmp[s1:e1]=array('B',xorvect(bmp[s1:e1],bmp[s1+1:e1+1]))
 
-def monocircle(bmp,x,y,r):applynoparam24bitfunctocircregion(bmp,x,y,r,monochromefiltertoBGRbuf)
+def monocircle(bmp:array,x:int,y:int,r:int):
+    applynoparam24bitfunctocircregion(bmp,x,y,r,monochromefiltertoBGRbuf)
 
-def colorfiltercircregion(bmp,x,y,r,rgbfactors):apply24bitfunctocircregion(bmp,x,y,r,colorfiltertoBGRbuf,rgbfactors)
+def colorfiltercircregion(bmp:array,x:int,y:int,r:int,rgbfactors:list):
+    apply24bitfunctocircregion(bmp,x,y,r,colorfiltertoBGRbuf,rgbfactors)
 
-def gammacorrectcircregion(bmp,x,y,r,gamma):apply24bitfunctocircregion(bmp,x,y,r,gammaBGRbuf,gamma)
+def gammacorrectcircregion(bmp:array,x:int,y:int,r:int,gamma:float):
+    apply24bitfunctocircregion(bmp,x,y,r,gammaBGRbuf,gamma)
 
-def brightnessadjcircregion(bmp,x,y,r,percentadj):apply24bitfunctocircregion(bmp,x,y,r,applybrightnessadjtoBGRbuf,percentadj)
+def brightnessadjcircregion(bmp:array,x:int,y:int,r:int,percentadj:float):
+    apply24bitfunctocircregion(bmp,x,y,r,applybrightnessadjtoBGRbuf,percentadj)
 
-def invertbitsincircregion(bmp,x,y,r):applynoparamfunctocircregion(bmp,x,y,r,invertbitsinbuffer)
+def invertbitsincircregion(bmp:array,x:int,y:int,r:int):
+    applynoparamfunctocircregion(bmp,x,y,r,invertbitsinbuffer)
 
-def circlevec(bmp,v,r,color,isfilled=None):
+def circlevec(bmp:array,v:list,r:int,color:int,isfilled:bool=None):
     v=roundvect(v)
     circle(bmp,v[0],v[1],r,color,isfilled)
 
@@ -1307,26 +1338,6 @@ def xygrid(bmp,x1,y1,x2,y2,xysteps,color):
     for y in range(y1,y2,ystep): horiline(bmp,y,x1,x2,color)
 
 def xygridvec(bmp,u,v,steps,gridcolor): xygrid(bmp,u[0],u[1],v[0],v[1],steps,gridcolor)
-
-def genpiechartdata(dlist): #[[20,c['red']],[30,c['brightyellow']]...]
-    sa,tot=0,getdatalisttotal(dlist)#more date an be addded tolist
-    alist,big=[],-1 #but the value and coler must be present
-    for d in dlist:
-        p=d[0]/tot
-        ea=sa+p*360
-        p*=100
-        alist.append([sa,ea,d[1],d[0],p])
-        if p>=50: big=dlist.index(d)
-        sa=ea
-    return alist,big
-
-def piechart(bmp,x,y,r,dataandcolorlist):
-    alist,big=genpiechartdata(dataandcolorlist)
-    if big>-1:#for speed more computions in drawarc
-            circle(bmp,x,y,r,alist[big][2],True)
-    for a in alist:
-        if a[4]<50: drawarc(bmp,x,y,r,a[0],a[1],a[2],True,a[2],True)
-    return [alist,big]
 
 def numbervert(bmp,vlist,xadj,yadj,scale,valstart,valstep,pixspace,spacebetweenchar,color,fontbuf,suppresszero,suppresslastnum,rightjustify):
     plot,maxv=False,len(vlist)-1
@@ -1911,6 +1922,89 @@ def brightnesseadjto24bitimage(bmp,percentadj): brightnesseadjto24bitregion(bmp,
 def thresholdadjto24bitimage(bmp,lumrange): thresholdadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
 
 def verticalbrightnessgradto24bitimage(bmp,lumrange):verticalbrightnessgradto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
+
+# start non core functions
+def mandelbrot(bmp,x1,y1,x2,y2,mandelparam,RGBfactors,maxiter):
+    maxcolors=getmaxcolors(bmp)
+    mcolor=maxcolors-1
+    Pmax,Pmin,Qmax,Qmin=mandelparam[0],mandelparam[1],mandelparam[2],mandelparam[3]
+    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
+    maxx,maxy=x2-x1,y2-y1
+    dp,dq,max_size=(Pmax-Pmin)/maxx,(Qmax-Qmin)/maxy,4
+    for y in range(y1,y2,1):
+        Q=Qmin+(y-y1)*dq
+        for x in range(x1,x2,1):
+            P,xp,yp,c,Xsq,Ysq=Pmin+(x-x1)*dp,0,0,0,0,0
+            while (Xsq+Ysq)<max_size:
+                 xp,yp=Xsq-Ysq+P,2*xp*yp+Q
+                 Xsq,Ysq=xp*xp,yp*yp
+                 c+=1
+                 if c>maxiter: break
+            if bmp[bmpcolorbits]==24:c=colormix(((255-c)*20)%256,RGBfactors)
+            else: c=mcolor-c%maxcolors
+            plotxybit(bmp,x,y,c)
+
+def IFS(bmp,IFStransparam,x1,y1,x2,y2,xscale,yscale,xoffset,yoffset,color,maxiter):
+    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
+    af,p,x,y=IFStransparam[0],IFStransparam[1],x1,y1
+    dy,i=y2-y1,0
+    while i<maxiter:
+        j=random()
+        t=af[iif(j<p[0],0,iif(j<p[1],1,iif(j<p[2],2,3)))]
+        nx=t[0]*x+t[1]*y+t[4]
+        x,y=nx,t[2]*x+t[3]*y+t[5]
+        px,py=int(x*xscale+xoffset+x1),int((dy-y*yscale+yoffset)+y1)
+        if isinrectbnd(px,py,x1,y1,x2,y2): plotxybit(bmp,px,py,color)
+        i+=1
+
+def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
+    maxcolors=getmaxcolors(bmp)
+    mcolor=maxcolors-1
+    lum1,dlum=range2baseanddelta(lumrange)
+    p,angmax,angrot=petals/2,360*petals,radians(angrot)
+    for a in range(0,angmax):
+        ang=radians(a/petals)
+        f,rang=cos(p*ang)**2,ang+angrot
+        x,y=int(cx-r*sin(rang)*f),int(cy-r*cos(rang)*f)
+        c=colormix(setmax(abs(int(lum1+dlum*(distance([x,y],[cx,cy])/r))),255),RGBfactors)
+        if bmp[bmpcolorbits]!=24: c=mcolor-c%maxcolors
+        plotxybit(bmp,x,y,c)
+
+def plotfilledflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
+    for nr in range (r,2,-1): plotflower(bmp,cx,cy,nr,petals,angrot,lumrange,RGBfactors)
+
+def plotbmpastext(bmp):#cant output 24 bit bmp
+    bits,my,r,offset=getcolorbits(bmp),getmaxy(bmp)-1,getxcharcount(bmp),gethdrsize(bmp)
+    for y in range(my,0,-1):
+        for x in range(0,r):
+            if bits==1: plotbitsastext(bmp[offset+r*y+x])
+            if bits==4:
+                c0,c1=divmod(bmp[offset+r*y+x],16)
+                print(chr(97+c0)+chr(97+c1),end='')
+            if bits==8: print(chr(bmp[offset+r*y+x]),end='')
+        print()
+
+def genpiechartdata(dlist): #[[20,c['red']],[30,c['brightyellow']]...]
+    sa,tot=0,getdatalisttotal(dlist)#more date an be addded tolist
+    alist,big=[],-1 #but the value and coler must be present
+    for d in dlist:
+        p=d[0]/tot
+        ea=sa+p*360
+        p*=100
+        alist.append([sa,ea,d[1],d[0],p])
+        if p>=50: big=dlist.index(d)
+        sa=ea
+    return alist,big
+
+def piechart(bmp,x,y,r,dataandcolorlist):
+    alist,big=genpiechartdata(dataandcolorlist)
+    if big>-1:#for speed more computions in drawarc
+            circle(bmp,x,y,r,alist[big][2],True)
+    for a in alist:
+        if a[4]<50: drawarc(bmp,x,y,r,a[0],a[1],a[2],True,a[2],True)
+    return [alist,big]
+
+# end non core functions
 
 @func24bitonlyandentirerectinboundary
 def applybyrefnoparamfuncto24bitregion(bmp,x1,y1,x2,y2,func):
