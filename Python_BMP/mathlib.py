@@ -291,4 +291,6 @@ def swapif(val1,val2,boolcond):
     if boolcond: val1,val2=val2,val1
     return val1,val2
 
+def swapxy(v): return [v[1],v[0]]
+
 
