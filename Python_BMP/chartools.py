@@ -1,16 +1,16 @@
-def enumletters(st):
+def enumletters(st:str) -> str:
     c,i=len(st),0
     while i<c:
         yield st[i:i+1]
         i+=1
 
-def enumreverseletters(st):
+def enumreverseletters(st:str) -> str:
     i=len(st)-1
     while i>-1:
         yield st[i:i+1]
         i-=1
 
-def char2int(charcodestr):
+def char2int(charcodestr:str) -> int:
     place,strhash=0,0
     for c in enumletters(charcodestr):
         strhash=strhash+ord(c)*(256**place)
