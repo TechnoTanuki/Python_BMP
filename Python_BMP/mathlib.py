@@ -337,4 +337,8 @@ def swapxy(v:list) -> list:
 def centerpoint(x1:int,y1:int,x2:int,y2:int): 
     return ((x2-x1)>>1)+x1,((y2-y1)>>1)+y1
 
+def getdatalisttotal(dlist:list) -> float:
+    total=0
+    for d in dlist: total+=d[0]
+    return total
 
