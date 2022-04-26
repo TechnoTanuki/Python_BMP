@@ -17,7 +17,7 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from .mathlib import sqrt,distance,sin,cos,adddimz,radians,roundvect,computerotvec,trans,addvect,getnormvec,iif,subvect,cylindrical2rectcoord3D,spherical2rectcoord3D
+from .mathlib import sqrt,distance,sin,cos,adddimz,radians,roundvect,computerotvec,trans,addvect,getnormvec,subvect,cylindrical2rectcoord3D,spherical2rectcoord3D
 from .primitives2D import floatregpolygonvert,regpolygonvert,iterline,rectboundarycoords
 from .messages import sysmsg
 
@@ -135,7 +135,7 @@ def genspheresurfaces(zlevelcoord:list) -> list:
     lpts=len(npts)
     maxp,i=lpts-1,0
     for i in range(0,lpts):
-        j=iif(i==maxp,0,i+1)
+        j=0 if i==maxp else i+1
         surf+=[[northpole,npts[j],npts[i]],[southpole,spts[i],spts[j]]]
     if levels>2:
         mxlv=levels-1
@@ -144,7 +144,7 @@ def genspheresurfaces(zlevelcoord:list) -> list:
             lpts,maxadjpts=len(pts),len(adjpts)
             maxp,i=lpts-1,0
             for i in range(0,lpts):
-                j=iif(i==maxp,0,i+1)
+                j=0 if i==maxp else i+1
                 surf+=[[adjpts[j%maxadjpts],adjpts[i%maxadjpts],pts[i],pts[j]]]
     return surf
 
