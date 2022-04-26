@@ -21,37 +21,40 @@ from .mathlib import sqrt,distance,sin,cos,adddimz,radians,roundvect,computerotv
 from .primitives2D import floatregpolygonvert,regpolygonvert,iterline,rectboundarycoords
 from .messages import sysmsg
 
-def getshapesidedict(): return {"tetrahedra":((2,1,0),(2,3,1),(0,3,2),(3,0,1)),"cube":((1,2,3,0),(5,6,7,4),(0,3,6,5),(4,7,2,1),(4,1,0,5),(2,7,6,3)),"hexahedra":((2,3,1),(0,3,2),(3,0,1),(1,4,2),(2,4,0),(1,0,4)),"octahedra":((1,2,0),(4,1,0),(3,4,0),(2,3,0),(2,1,5),(1,4,5),(4,3,5),(3,2,5))}
+def getshapesidedict() -> dict: 
+    return {"tetrahedra":((2,1,0),(2,3,1),(0,3,2),(3,0,1)),"cube":((1,2,3,0),(5,6,7,4),(0,3,6,5),(4,7,2,1),(4,1,0,5),(2,7,6,3)),"hexahedra":((2,3,1),(0,3,2),(3,0,1),(1,4,2),(2,4,0),(1,0,4)),"octahedra":((1,2,0),(4,1,0),(3,4,0),(2,3,0),(2,1,5),(1,4,5),(4,3,5),(3,2,5))}
 
-def tetrahedravert(x):
+def tetrahedravert(x:float) -> list:
     x_sqr,halfx=x*x,x/2
     return [[0,0,0],[halfx,sqrt(x_sqr/2),0],[x,0,0],[halfx,halfx,sqrt(3/8*x_sqr)]]
 
-def cubevert(x): return [[0,0,0],[0,x,0],[x,x,0],[x,0,0],[0,x,x],[0,0,x],[x,0,x],[x,x,x]]
+def cubevert(x:float) -> list: 
+    return [[0,0,0],[0,x,0],[x,x,0],[x,0,0],[0,x,x],[0,0,x],[x,0,x],[x,x,x]]
 
-def hexahedravert(x):
+def hexahedravert(x: float) -> list:
     x_sqr,halfx=x*x,x/2,
     z=sqrt(3/8*x_sqr)
     return [[0,0,0],[halfx,sqrt(x_sqr/2),0],[x,0,0],[halfx,halfx,z],[halfx,halfx,-z]]
 
-def octahedravert(x):
+def octahedravert(x:float) -> list:
     halfx=x/2
     return [[halfx,halfx,halfx],[0,0,0],[x,0,0],[x,x,0],[0,x,0],[halfx,halfx,-halfx]]
 
-def decahedvertandsurface(x):
+def decahedvertandsurface(x:float) -> list:
     pts=regpolygonvert(0,0,x,5,0)
     z=sqrt(distance(pts[0],pts[1])**2-x*x)
     return [[[0,0,-z]]+adddimz(pts,0)+[[0,0,z]],((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,6),(4,3,6),(3,2,6),(5,4,6))]
 
-def icosahedvertandsurface(x):#don't edit this it took much computation to make
+def icosahedvertandsurface(x:float) -> list:#don't edit this it took much computation to make
     pts,pts1=floatregpolygonvert(0,0,x,5,0),floatregpolygonvert(0,0,x,5,36)
     z=sqrt(distance(pts[0],pts[1])**2-x*x)
     z1=2*x-z
     return [[[0,0,-z]]+adddimz(pts,0)+adddimz(pts1,z1-z)+[[0,0,z1]],((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,10),(4,3,8),(3,2,7),(5,4,9),(6,7,2),(7,8,3),(8,9,4),(9,10,5),(10,6,1),(7,6,11),(9,8,11),(8,7,11),(10,9,11),(6,10,11))]
 
-def rotvec3D(roll,pitch,yaw): return (computerotvec(roll),computerotvec(pitch),computerotvec(yaw))
+def rotvec3D(roll:float,pitch:float,yaw:float)-> tuple: 
+    return (computerotvec(roll),computerotvec(pitch),computerotvec(yaw))
 
-def perspective(vlist,rotvec,dispvec,d):#translated from C code by Roger Stevens
+def perspective(vlist:list,rotvec:list,dispvec:list,d:float) -> tuple:#translated from C code by Roger Stevens
     rotvlist,projvlist=[],[]
     sroll,croll=rotvec[0][0],rotvec[0][1]
     spitch,cpitch=rotvec[1][0],rotvec[1][1]
@@ -69,7 +72,7 @@ def perspective(vlist,rotvec,dispvec,d):#translated from C code by Roger Stevens
         projvlist.append([-d*x/z,-d*y/z])
     return (rotvlist,projvlist)
 
-def fillpolydata(polybnd,xlim,ylim):#may be slow if polygon goes offscreen
+def fillpolydata(polybnd:list,xlim:int,ylim:int) -> list:#may be slow if polygon goes offscreen
     filld,bnd={},rectboundarycoords(polybnd)
     minx,miny,maxx,maxy=bnd[0][0],bnd[0][1],bnd[1][0]+1,bnd[1][1]+1
     if (minx>=0 and miny>=0) and (maxx<=xlim and maxy<=ylim):
@@ -83,7 +86,7 @@ def fillpolydata(polybnd,xlim,ylim):#may be slow if polygon goes offscreen
         filld=[]
     return filld
 
-def polyboundary(vertlist):
+def polyboundary(vertlist:list) -> list:
     px,vertcount=[],len(vertlist)
     for i in range(0,vertcount):
         if i>0:
@@ -95,7 +98,7 @@ def polyboundary(vertlist):
         if p not in px: px.append(p)
     return px
 
-def gensides(pointlists,transvect,sides):
+def gensides(pointlists:list,transvect:list,sides:list) -> tuple:
     plist,slist,polylist,normlist=pointlists[0],pointlists[1],[],[]
     for sidepts in sides:
         u,v,w=plist[sidepts[0]],plist[sidepts[1]],plist[sidepts[2]]
@@ -104,7 +107,7 @@ def gensides(pointlists,transvect,sides):
             normlist.append(getnormvec(u,v,w))
     return (polylist,normlist)
 
-def spherevert(vcen,r,deganglestep):
+def spherevert(vcen:list,r:float,deganglestep:float) -> list:
     plist=[]
     for theta in range(0,360,deganglestep):
         for phi in range(0,180,deganglestep):
@@ -114,7 +117,7 @@ def spherevert(vcen,r,deganglestep):
     if p not in plist: plist.append(p)
     return plist
 
-def zlevelcoords(verlist):#we have a 3D object and we take z slices
+def zlevelcoords(verlist:list) -> tuple:#we have a 3D object and we take z slices
     zlist,zord=[],{}
     for p in verlist:
         pind,z=[verlist.index(p)],p[2]
@@ -124,7 +127,7 @@ def zlevelcoords(verlist):#we have a 3D object and we take z slices
         else: zord[z]+=pind
     return (zlist,zord)
 
-def genspheresurfaces(zlevelcoord):
+def genspheresurfaces(zlevelcoord:list) -> list:
     zl,vl=zlevelcoord[0],zlevelcoord[1]
     surf,levels=[],len(zl)-1
     northpole,southpole=vl[zl[0]][0],vl[zl[levels]][0]
@@ -145,11 +148,11 @@ def genspheresurfaces(zlevelcoord):
                 surf+=[[adjpts[j%maxadjpts],adjpts[i%maxadjpts],pts[i],pts[j]]]
     return surf
 
-def spherevertandsurface(vcen,r,deganglestep):
+def spherevertandsurface(vcen:list,r:float,deganglestep:float)-> tuple:
     s=spherevert(vcen,r,deganglestep)
     return (s,genspheresurfaces(zlevelcoords(s)))
 
-def cylindervertandsurface(vcen,r,zlen,deganglestep):
+def cylindervertandsurface(vcen:list,r:float,zlen:float,deganglestep:float) -> tuple:
     z,i,plist,top,bottom,side=zlen/2,0,[],[],[],[]
     maxang=360+(deganglestep<<1)
     for theta in range(0,maxang,deganglestep):
@@ -164,7 +167,7 @@ def cylindervertandsurface(vcen,r,zlen,deganglestep):
     top.reverse()
     return (plist,[top]+side+[bottom])
 
-def conevertandsurface(vcen,r,zlen,deganglestep):
+def conevertandsurface(vcen:list,r:float,zlen:float,deganglestep:float) -> tuple:
     z,i,bottom,side=zlen/2,1,[],[]
     maxang=360+(deganglestep<<1)
     plist=[subvect(vcen,[0,0,z])]
@@ -175,7 +178,7 @@ def conevertandsurface(vcen,r,zlen,deganglestep):
         i+=1
     return (plist,side+[bottom])
 
-def surfplot3Dvertandsurface(x1,y1,x2,y2,zscale,step):
+def surfplot3Dvertandsurface(x1:int,y1:int,x2:int,y2:int,zscale:float,step:int) -> tuple:
     vlist,surf=[],[]
     for y in range(y1,y2,step):
         for x in range(x1,x2,step):
@@ -190,4 +193,5 @@ def surfplot3Dvertandsurface(x1,y1,x2,y2,zscale,step):
         if (vl-idx1)>=0 and (i % dx)<dx1: surf.append([idx,idx1,i+1,i])
     return (vlist,surf)
 
-def surfacetest(p1,p2,p3): return p1[0]*(p3[1]*p2[2]-p2[1]*p3[2])-p2[0]*(p3[1]*p1[2]-p1[1]*p3[2])-p3[0]*(p1[1]*p2[2]-p2[1]*p1[2])
+def surfacetest(p1:list,p2:list,p3:list) -> float: 
+    return p1[0]*(p3[1]*p2[2]-p2[1]*p3[2])-p2[0]*(p3[1]*p1[2]-p1[1]*p3[2])-p3[0]*(p1[1]*p2[2]-p2[1]*p1[2])
