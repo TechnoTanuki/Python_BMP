@@ -28,6 +28,7 @@ from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal
 from .fractals import getIFSparams,mandelparamdict
 from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
 from .chartools import char2int,enumletters,enumreverseletters
+from .inttools import readint,writeint,int2buf,buf2int
 from .messages import sysmsg
 
 # BMP constants do not edit!!!
@@ -133,25 +134,6 @@ def entirecircleinboundary(func):
             else: print(sysmsg['regionoutofbounds'])
         else:  print(sysmsg['inttypereq'])
     return(callf)
-
-def writeint(offset,cnt,arr,value):
-    j=cnt-1
-    for i in range(0,j):
-        b=value&0xff
-        arr[offset+i]=b
-        value=value>>8
-
-def readint(offset,cnt,arr):
-    v,j=0,cnt-1
-    for i in range(0,j): v+=arr[offset+i]<<(i<<3)
-    return v
-
-def int2buf(cnt,value): return array('B',[(value>>(i*8))&0xff for i in range(0,cnt)])
-
-def buf2int(buf):
-    v,j=0,len(buf)-1
-    for i in range(0,j): v+=buf[i]<<(i<<3)
-    return v
 
 def adjustbufsize(bufsize,bits):
     if bits==24: bufsize*=3
