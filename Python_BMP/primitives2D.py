@@ -281,3 +281,6 @@ def entirecircleisinboundary(x:int,y:int,minx:int,maxx:int,miny:int,maxy:int,r:i
 
 def entireellipseisinboundary(x:int,y:int,minx:int,maxx:int,miny:int,maxy:int,b:int,a:int): 
     return (isinrange(x-b,maxx,minx) and isinrange(x+b,maxx,minx)) and (isinrange(y-a,maxy,miny) and isinrange(y+a,maxy,miny))
+
+def ellipsevert(x:int,y:int,b:int,a:int) -> list: 
+    return [v for v in iterellipse(x,y,b,a)]

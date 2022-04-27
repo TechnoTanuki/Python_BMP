@@ -22,7 +22,7 @@ from ctypes.wintypes import BYTE
 from os.path import isfile
 from .proctimer import functimer
 from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal
-from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,entireellipseisinboundary
+from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,entireellipseisinboundary,ellipsevert
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
 from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf,RGB2BGRbuf,makeBGRbuf
@@ -979,7 +979,7 @@ def circlevec(bmp:array,v:list,r:int,color:int,isfilled:bool=None):
     v=roundvect(v)
     circle(bmp,v[0],v[1],r,color,isfilled)
 
-def filledcircle(bmp,x,y,r,color):
+def filledcircle(bmp:array,x:int,y:int,r:int,color:int):
     bits=bmp[bmpcolorbits]
     if bits<8:
         for v in itercirclepartlineedge(r):
@@ -1018,8 +1018,9 @@ def filledcircle(bmp,x,y,r,color):
                     s=compute8bitBMPoffsetwithheader(bmp,x1,y1)
                     bmp[s:s+dx]=colorbuf
 
-def circle(bmp,x,y,r,color,isfilled=None):
-    if isfilled: filledcircle(bmp,x,y,r,color)
+def circle(bmp:int,x:int,y:int,r:int,color:int,isfilled:bool=None):
+    if isfilled: 
+        filledcircle(bmp,x,y,r,color)
     else:
         m,bits,c=getmaxxy(bmp),bmp[bmpcolorbits],getcomputeBMPoffsetwithheaderfunc(bmp)
         dobndcheck=not entirecircleisinboundary(x,y,-1,m[0],-1,m[1],r)
@@ -1043,43 +1044,50 @@ def circle(bmp,x,y,r,color,isfilled=None):
             if dobndcheck:
                 for p in itercircle(x,y,r):
                     px,py=p[0],p[1]
-                    if isinBMPrectbnd(bmp,px,py): bmp[c(bmp,px,py)]=color
+                    if isinBMPrectbnd(bmp,px,py): 
+                        bmp[c(bmp,px,py)]=color
             else:
                 for p in itercirclepart(r):
                     x1,x2=mirror(x,p[0])
                     y1,y2=mirror(y,p[1])
                     bmp[c(bmp,x1,y1)]=bmp[c(bmp,x2,y2)]=bmp[c(bmp,x1,y2)]=bmp[c(bmp,x2,y1)]=color
         else:
-            for p in itercircle(x,y,r): plotxybit(bmp,p[0],p[1],color)
+            for p in itercircle(x,y,r): 
+                plotxybit(bmp,p[0],p[1],color)
 
-def thickcircle(bmp,x,y,r,penradius,color):
-    for p in itercircle(x,y,r): circle(bmp,p[0],p[1],penradius,color,True)
+def thickcircle(bmp:array,x:int,y:int,r:int,penradius:int,color:int):
+    for p in itercircle(x,y,r): 
+        circle(bmp,p[0],p[1],penradius,color,True)
 
-def gradthickcircle(bmp,x,y,radius,penradius,lumrange,RGBfactors):
+def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list,RGBfactors:list):
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+        if bmp[bmpcolorbits]!=24:
+            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
         thickcircle(bmp,x,y,radius,i,c)
 
-def gradcircle(bmp,x,y,radius,lumrange,RGBfactors):
+def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
     lum1,lumrang=range2baseanddelta(lumrange)
     for r in range(radius-1,0,-1):
         c=colormix(int(lum1+(lumrang*r/radius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+        if bmp[bmpcolorbits]!=24:
+            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
         thickcircle(bmp,x,y,r,2,c)
 
-def thickellipserot(bmp,x,y,b,a,degrot,penradius,color):
-    for p in iterellipserot(x,y,b,a,degrot): circle(bmp,p[0],p[1],penradius,color,True)
+def thickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,penradius:int,color:int):
+    for p in iterellipserot(x,y,b,a,degrot): 
+        circle(bmp,p[0],p[1],penradius,color,True)
 
-def gradthickellipserot(bmp,x,y,b,a,degrot,penradius,lumrange,RGBfactors):
+def gradthickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
+                        penradius:int,lumrange:list,RGBfactors:list):
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
         if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
         thickellipserot(bmp,x,y,b,a,degrot,i,c)
 
-def filledellipse(bmp,x,y,b,a,color):
+def filledellipse(bmp:array,x:int,y:int,b:int,a:int,color:int):
     bits=bmp[bmpcolorbits]
     if bits<8:
         for v in iterellipsepart(b,a):
@@ -1118,8 +1126,9 @@ def filledellipse(bmp,x,y,b,a,color):
                     s=compute8bitBMPoffsetwithheader(bmp,x1,y1)
                     bmp[s:s+dx]=colorbuf
 
-def ellipse(bmp,x,y,b,a,color,isfilled=None):
-    if isfilled: filledellipse(bmp,x,y,b,a,color)
+def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
+    if isfilled: 
+        filledellipse(bmp,x,y,b,a,color)
     else:
         m,bits,c=getmaxxy(bmp),bmp[bmpcolorbits],getcomputeBMPoffsetwithheaderfunc(bmp)
         dobndcheck=not entireellipseisinboundary(x,y,-1,m[0],-1,m[1],b,a)
@@ -1139,13 +1148,14 @@ def ellipse(bmp,x,y,b,a,color,isfilled=None):
             if dobndcheck:
                 for p in iterellipse(x,y,b,a):
                     px,py=p[0],p[1]
-                    if isinBMPrectbnd(bmp,px,py): bmp[c(bmp,px,py)]=color
+                    if isinBMPrectbnd(bmp,px,py): 
+                        bmp[c(bmp,px,py)]=color
             else:
-                for p in iterellipse(x,y,b,a):bmp[c(bmp,p[0],p[1])]=color
+                for p in iterellipse(x,y,b,a):
+                    bmp[c(bmp,p[0],p[1])]=color
         else:
-            for p in iterellipse(x,y,b,a): plotxybit(bmp,p[0],p[1],color)
-
-def ellipsevert(x,y,b,a): return [v for v in iterellipse(x,y,b,a)]
+            for p in iterellipse(x,y,b,a): 
+                plotxybit(bmp,p[0],p[1],color)
 
 def gradellipse(bmp,x,y,b,a,lumrange,RGBfactors):
     lum1,lumrang=range2baseanddelta(lumrange)
