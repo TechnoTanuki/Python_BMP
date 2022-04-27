@@ -172,7 +172,8 @@ def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
         if isinBMPrectbnd(bmp,v[0],v[1])==False: break
     return retval
 
-def setcolorbits(bmp:array,bits:int): bmp[bmpcolorbits]=bits
+def setcolorbits(bmp:array,bits:int): 
+    bmp[bmpcolorbits]=bits
 
 def getcolorbits(bmp:array) -> int: 
     return bmp[bmpcolorbits]
@@ -306,8 +307,10 @@ def colorhistorgram(bmp: array) -> list:
     d={}
     for v in iterimagecolor(bmp,sysmsg['colorhist'],'*',sysmsg['done']):
         c=v[1]
-        if c not in d: d.setdefault(c,1)
-        else: d[c]+=1
+        if c not in d: 
+            d.setdefault(c,1)
+        else: 
+            d[c]+=1
     return  dict2descorderlist(d)
 
 def makenewpalfromcolorhist(chist:list,colors:int,similaritythreshold:float) -> list:
@@ -343,7 +346,8 @@ def setbmp_properties(bmpmeta: list):
     setmaxy(bmp,y)
     bmp[bmpcolorbits]=bits
     bmp[14]=40 #required
-    if bits<24: setbmppal(bmp,getdefaultbitpal(bits))
+    if bits<24: 
+        setbmppal(bmp,getdefaultbitpal(bits))
     return bmp
 
 def setnewpalfromsourcebmp(sourcebmp: array,newbmp: array,similaritythreshold: float) -> list:
@@ -471,11 +475,16 @@ def getxybit(bmp:array,x:int,y:int) -> int:
             mask=7-(x%8)
             retval=(bmp[offset] & (1<<mask))>>mask
         elif bits==4:
-            if x&1==1: retval=(bmp[offset] & 0xf)
-            else: retval=(bmp[offset] & 0xf0)>>4
-        elif bits==8: retval=bmp[offset]
-        elif bits==24:retval=RGB2int(bmp[offset+2],bmp[offset+1],bmp[offset])
-    else: retval=-1
+            if x&1==1: 
+                retval=(bmp[offset] & 0xf)
+            else: 
+                retval=(bmp[offset] & 0xf0)>>4
+        elif bits==8: 
+            retval=bmp[offset]
+        elif bits==24:
+            retval=RGB2int(bmp[offset+2],bmp[offset+1],bmp[offset])
+    else: 
+        retval=-1
     return retval
 
 def getRGBxybitvec(bmp: array,v:list) -> int: 
@@ -487,7 +496,8 @@ def getRGBxybit(bmp: array,x: int,y: int):
         if getcolorbits(bmp)==24:
             i=compute24bitBMPoffsetwithheader(bmp,x,y)
             retval=[bmp[i+2],bmp[i+1],bmp[i]]
-        else: retval=getRGBpal(bmp,getxybit(bmp,x,y))
+        else: 
+            retval=getRGBpal(bmp,getxybit(bmp,x,y))
     return retval
 
 def getxybitvec(bmp: array,v: list) -> int: 
@@ -507,8 +517,10 @@ def plotxypointlist(bmp:array,vlist: list,penradius: int,color: int):
 
 def roundpen(bmp: array,point: list,penradius:int,color:int):
     x,y=point[0],point[1]
-    if penradius<=1: plotxybit(bmp,x,y,color)
-    else: circle(bmp,x,y,penradius,color,True)
+    if penradius<=1: 
+        plotxybit(bmp,x,y,color)
+    else: 
+        circle(bmp,x,y,penradius,color,True)
 
 def swapcolors(bmp: array,p1: list,p2:list):
     c=getxybitvec(bmp,p1)
@@ -605,13 +617,15 @@ def vertline(bmp:array,x:int,y1:int,y2:int,color:int):
                 bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=array('B',[rgb[2]]*dy),array('B',[rgb[1]]*dy),array('B',[rgb[0]]*dy)
             elif bits==8: 
                 bmp[s:e:r]=array('B',[color%256]*dy)
-        else: print(sysmsg['lineoutofbnd'])
+        else: 
+            print(sysmsg['lineoutofbnd'])
 
 def fillbackgroundwithgrad(bmp:array,lumrange:list,RGBfactors:list,direction:int): 
     filledgradrect(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange,RGBfactors,direction)
 
 @func8and24bitonlyandentirerectinboundary
-def filledgradrect(bmp: array,x1:int,y1:int,x2:int,y2:int,lumrange:list,RGBfactors:list,direction:int):
+def filledgradrect(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list,
+                   RGBfactors:list,direction:int):
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)   
     dx,dy=x2-x1+1,y2-y1+1
     base,lrange=RGBfactorstoBaseandRange(lumrange,RGBfactors)
@@ -620,7 +634,8 @@ def filledgradrect(bmp: array,x1:int,y1:int,x2:int,y2:int,lumrange:list,RGBfacto
         for x in range(x1,xlim):
             f=x/dx
             c=RGB2int(round(base[0]+lrange[0]*f),round(base[1]+lrange[1]*f),round(base[2]+lrange[2]*f))
-            if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+            if bmp[bmpcolorbits]!=24:
+                c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
             if c<0: 
                 c=0
             vertline(bmp,x,y1,y2,c)
@@ -636,7 +651,7 @@ def filledgradrect(bmp: array,x1:int,y1:int,x2:int,y2:int,lumrange:list,RGBfacto
             horiline(bmp,y,x1,x2,c)
 
 @entirerectinboundary            
-def itercopyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
+def itercopyrect(bmp:array,x1:int,y1:int,x2:int,y2:int)->array:
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     bufsize,r=adjustbufsize(x2-x1+1,bmp[28]),getxcharcount(bmp)
     offset=computeBMPoffset(bmp,x1,y2)
@@ -645,9 +660,11 @@ def itercopyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
         yield BMPbitBLTget(bmp,offset,bufsize)
         offset+=r
     
-def intlinevec(bmp: array,u:list,v:list,color: int): line(bmp,u[0],u[1],v[0],v[1],color)
+def intlinevec(bmp:array,u:list,v:list,color:int): 
+    line(bmp,u[0],u[1],v[0],v[1],color)
 
-def linevec(bmp:array,u:list,v:list,color:int): intlinevec(bmp,roundvect(u),roundvect(v),color)
+def linevec(bmp:array,u:list,v:list,color:int): 
+    intlinevec(bmp,roundvect(u),roundvect(v),color)
 
 def filledparallelogram(bmp:array,p1:list,p2:list,p3:list,color:int):
     for v in iterparallelogram(p1,p2,p3): 
@@ -672,7 +689,8 @@ def drawvec(bmp:array,u:list,v:list,headsize0fordefault:int,color:int):
     elif v[0]==u[0] and u[1]>v[1]: hdsubvect(bmp,v,hm,a1,a2)
     elif v[0]==u[0] and u[1]<v[1]: hdaddvect(bmp,v,hm,a1,a2)
     elif u[0]<v[0] and u[1]>v[1]: hdsubvect(bmp,v,hm,a1,a2)
-    else: hdaddvect(bmp,v,hm,a1,a2)
+    else: 
+        hdaddvect(bmp,v,hm,a1,a2)
 
 def thickroundline(bmp:array,p1:list,p2:list,penradius:int,color:int):
     for p in iterline(p1,p2): 
@@ -735,7 +753,7 @@ def apply24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func,funcparam):
                 bmp[s1:e1]=func(bmp[s1:e1],funcparam)
 
 @entirecircleinboundary
-def copycircregion2buf(bmp: array,x:int,y:int,r:int) -> list:
+def copycircregion2buf(bmp:array,x:int,y:int,r:int) -> list:
     copybuf,c=[getcolorbits(bmp),r],getcomputeBMPoffsetwithheaderfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1,x2=mirror(x,v[0])
@@ -923,7 +941,8 @@ def horibrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
         x1,x2=mirror(x,v[0])
         y1,y2=mirror(y,v[1])
         applyfuncwithparam2vertBMPbitBLTget(bmp,x1,y1,y2,f,l+(x1-b)*dl)
-        if x1!=x2: applyfuncwithparam2vertBMPbitBLTget(bmp,x2,y1,y2,f,l+(x2-b)*dl)
+        if x1!=x2: 
+            applyfuncwithparam2vertBMPbitBLTget(bmp,x2,y1,y2,f,l+(x2-b)*dl)
 
 @intcircleparam    
 def outlinecircregion(bmp:array,x:int,y:int,r:int):
@@ -1157,7 +1176,7 @@ def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
             for p in iterellipse(x,y,b,a): 
                 plotxybit(bmp,p[0],p[1],color)
 
-def gradellipse(bmp,x,y,b,a,lumrange,RGBfactors):
+def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list):
     lum1,lumrang=range2baseanddelta(lumrange)
     r=iif(a>b,a,b)
     a-=r
@@ -1168,20 +1187,25 @@ def gradellipse(bmp,x,y,b,a,lumrange,RGBfactors):
         ellipse(bmp,x,y,b+i,a+i,c,True)
         
 @intcircleparam
-def drawarc(bmp,x,y,r,startdegangle,enddegangle,color,showoutline,fillcolor,isfilled):
+def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
+            color:int,showoutline:bool,fillcolor:int,isfilled:bool):
     av=arcvert(x,y,r,startdegangle,enddegangle,showoutline)
-    for p in av: plotxybit(bmp,p[0],p[1],color)
-    if isfilled: fillboundary(bmp,fillpolydata(av,getmaxx(bmp),getmaxy(bmp)),fillcolor)
+    for p in av: 
+        plotxybit(bmp,p[0],p[1],color)
+    if isfilled: 
+        fillboundary(bmp,fillpolydata(av,getmaxx(bmp),getmaxy(bmp)),fillcolor)
 
-def rectangle(bmp,x1,y1,x2,y2,color): plotpoly(bmp,recvert(x1,y1,x2,y2),color)
+def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int): 
+    plotpoly(bmp,recvert(x1,y1,x2,y2),color)
 
 @entirerectinboundary    
-def filledrect(bmp,x1,y1,x2,y2,color):
+def filledrect(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
     bits=bmp[bmpcolorbits]
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     if bits not in [8,24]:
         y2+=1
-        for y in range(y1,y2): horiline(bmp,y,x1,x2,color)
+        for y in range(y1,y2): 
+            horiline(bmp,y,x1,x2,color)
     else:
         dx,r,rgb,c=x2-x1+1,getxcharcount(bmp),int2RGB(color),getcomputeBMPoffsetwithheaderfunc(bmp)
         if bits==24: buf=array('B',[rgb[2],rgb[1],rgb[0]]*dx)
@@ -1191,13 +1215,15 @@ def filledrect(bmp,x1,y1,x2,y2,color):
             bmp[offset:offset+bufsize]=buf
             offset+=r
 
-def beziercurve(bmp,pntlist,penradius,color):
-    for v in iterbeziercurve(pntlist): roundpen(bmp,v,penradius,color)
+def beziercurve(bmp:array,pntlist:list,penradius:int,color:int):
+    for v in iterbeziercurve(pntlist): 
+        roundpen(bmp,v,penradius,color)
 
-def bspline(bmp,pntlist,penradius,color,isclosed,curveback):
-    for v in iterbspline(pntlist,isclosed,curveback): roundpen(bmp,v,penradius,color)
+def bspline(bmp:array,pntlist:list,penradius:int,color:int,isclosed:bool,curveback:bool):
+    for v in iterbspline(pntlist,isclosed,curveback): 
+        roundpen(bmp,v,penradius,color)
 
-def plotrotated8bitpattern(bmp,x,y,bitpattern,scale,pixspace,color):
+def plotrotated8bitpattern(bmp:array,x,y,bitpattern,scale,pixspace,color):
     inc=scale-1-pixspace
     for bits in bitpattern:
         ox,mask=x,128
