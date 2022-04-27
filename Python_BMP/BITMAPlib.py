@@ -169,25 +169,91 @@ def adjustbufsize(bufsize,bits):
         bufsize=bufsize>>3
     return bufsize
 
-def setmaxx(bmp:array,xmax:int): 
+def setmaxx(bmp:array,xmax:int):
+    """Sets the x value stored in the windows bmp header
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        int: value of x dimension
+
+    Returns:
+        byref modified byte array with x dimension
+
+    """
     writeint(bmpx,4,bmp,xmax)
 
-def getmaxx(bmp:array) -> int: 
+def getmaxx(bmp:array) -> int:
+    """Gets the x value stored in the windows bmp header
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+
+    Returns:
+        int value of x bmp dimension
+
+    """
     return readint(bmpx,4,bmp)
 
-def setmaxy(bmp:array,ymax:int): 
+def setmaxy(bmp:array,ymax:int):
+    """Sets the y value stored in the windows bmp header
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        int: value of y dimension
+
+        
+    Returns:
+        byref modified byte array with y dimension
+
+    """
     writeint(bmpy,4,bmp,ymax)
 
-def getmaxy(bmp:array) -> int: 
+def getmaxy(bmp:array) -> int:
+    """Gets the y value stored in the windows bmp header
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+
+    Returns:
+        int value of y bmp dimension
+
+    """
     return readint(bmpy,4,bmp)
 
-def getmaxxy(bmp:array) -> tuple: 
+def getmaxxy(bmp:array) -> tuple:
+    """Gets the max x and y values stored in the windows bmp header
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+
+    Returns:
+        tuple (x:int,y:int) 
+
+    """
     return (readint(bmpx,4,bmp),readint(bmpy,4,bmp))
 
-def bottomrightcoord(bmp:array) -> tuple: 
+def bottomrightcoord(bmp:array) -> tuple:
+    """Gets the maximum bottom right coordinates of a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+
+    Returns:
+        tuple (x:int,y:int) 
+
+    """
     return (readint(bmpx,4,bmp)-1,readint(bmpy,4,bmp)-1)
 
-def centercoord(bmp:array) -> tuple: 
+def centercoord(bmp:array) -> tuple:
+    """Gets the central coordinates of a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+
+    Returns:
+        tuple (x:int,y:int) 
+
+    """
     return ((readint(bmpx,4,bmp)-1)>>1,(readint(bmpy,4,bmp)-1)>>1)
 
 def isinBMPrectbnd(bmp:array,x:int,y:int) -> bool: 
@@ -199,29 +265,98 @@ def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
         if isinBMPrectbnd(bmp,v[0],v[1])==False: break
     return retval
 
-def setcolorbits(bmp:array,bits:int): 
+def setcolorbits(bmp:array,bits:int):
+    """Set the bit depth of a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        int: value of bit depth
+        
+    Returns:
+        byref modified byte array with new file size
+
+    """
     bmp[bmpcolorbits]=bits
 
-def getcolorbits(bmp:array) -> int: 
+def getcolorbits(bmp:array) -> int:
+    """Get the bit depth of a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        
+    Returns:
+        int value of bit depth
+
+    """
     return bmp[bmpcolorbits]
 
 def getxcharcount(bmp:array) -> int: 
     return computexbytes(readint(18,4,bmp),bmp[bmpcolorbits])
 
-def setfilesize(bmp:array,size:int): writeint(bmpfilesize,8,bmp,size)
+def setfilesize(bmp:array,size:int):
+    """Set the header size of a windows bitmap
 
-def getfilesize(bmp:array) -> int: 
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        size: int value of size of the bmp file
+        
+    Returns:
+        byref modified byte array with new file size
+
+    """
+    writeint(bmpfilesize,8,bmp,size)
+
+def getfilesize(bmp:array) -> int:
+    """Get the header size of a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        
+    Returns:
+        int value of size of the bmp header
+
+    """
+
     return readint(bmpfilesize,8,bmp)
 
-def sethdrsize(bmp:array,hdsize:int): writeint(bmphdrsize,4,bmp,hdsize)
+def sethdrsize(bmp:array,hdsize:int):
+    """Set the header size of a windows bitmap
 
-def gethdrsize(bmp:array) -> int: 
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        hdsize: int value of size of the bmp header
+        
+    Returns:
+        byref modified byte array with new header size
+
+    """
+    writeint(bmphdrsize,4,bmp,hdsize)
+
+def gethdrsize(bmp:array) -> int:
+    """Get the header size of a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        
+    Returns:
+        int value of header size
+
+    """
     return readint(bmphdrsize,4,bmp)
 
 def getimageinfo(bmp:array): 
     return readint(bmpy,4,bmp),bmp[bmpcolorbits],getxcharcount(bmp),readint(bmphdrsize,4,bmp)
 
-def getmaxcolors(bmp:array) -> int: 
+def getmaxcolors(bmp:array) -> int:
+    """Get the maximum number of colors supported by a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        
+    Returns:
+        int value
+
+    """
     return 1<<bmp[bmpcolorbits]
 
 def compute24bitBMPoffset(bmp: array,x:int,y:int) -> int: 
@@ -312,7 +447,8 @@ def isdefaultpal(bmp: array) -> bool:
 def getBMPimgbytes(bmp: array) -> list: 
     return bmp[gethdrsize(bmp):getfilesize(bmp)]
 
-def setBMPimgbytes(bmp : array,buf: array): bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
+def setBMPimgbytes(bmp : array,buf: array): 
+    bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
 
 def setbmppal(bmp: array,pallist: list):
     c=0
@@ -335,6 +471,15 @@ def setRGBpal(bmp: array,c:int,r:int,g:int,b:int):
     bmp[start:end]=RGBtoBGRarr(r,g,b)
 
 def colorhistorgram(bmp: array) -> list:
+    """Creates a color histogram 
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        
+    Returns:
+        list sorted in descending order of color frequencies
+
+    """
     d={}
     for v in iterimagecolor(bmp,sysmsg['colorhist'],'*',sysmsg['done']):
         c=v[1]
@@ -428,7 +573,7 @@ def saveBMP(filename:str,bmp:array):
 
     Args:
         filename: The full path to the file to be saved.
-        bmp: Am unsigned byte array with the layout of .bmp file 
+        bmp: Am unsigned byte array with the layout of bmp file 
 
     """
     with open(filename,'wb') as f:
