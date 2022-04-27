@@ -160,7 +160,17 @@ def entirecircleinboundary(func):
             print(sysmsg['inttypereq'])
     return(callf)
 
-def adjustbufsize(bufsize,bits):
+def adjustbufsize(bufsize:int,bits:int) -> int :
+    """Adjust buffer size to account for bit depth
+
+    Args:
+        bufsize: initial estimate of buffer size
+        bits: bit depth of bitmap
+        
+    Returns:
+        An adjusted int value of the buffer size
+
+    """
     if bits==24: 
         bufsize*=3
     elif bits==4: 
@@ -256,10 +266,31 @@ def centercoord(bmp:array) -> tuple:
     """
     return ((readint(bmpx,4,bmp)-1)>>1,(readint(bmpy,4,bmp)-1)>>1)
 
-def isinBMPrectbnd(bmp:array,x:int,y:int) -> bool: 
+def isinBMPrectbnd(bmp:array,x:int,y:int)->bool:
+    """Checks if x,y coordinates are in the rectangular bounds of a bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        x: value of x coord
+        y: value of y coord
+
+    Returns:
+        True if within bounds, False if out of bounds 
+
+    """
     return (x<readint(bmpx,4,bmp) and y<readint(bmpy,4,bmp)) and (x>-1 and y>-1)
 
 def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
+    """Checks if a list of (x,y) coordinates are in the rectangular bounds of a bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        xylist: list of (x,y) coordinates to be checked
+
+    Returns:
+        True if within bounds, False if out of bounds 
+
+    """
     retval=True
     for v in xylist:
         if isinBMPrectbnd(bmp,v[0],v[1])==False: break
@@ -441,13 +472,41 @@ def computeBMPfilesize(x:int,y:int,bits:int) -> int:
 def compute_bmpmetadata(x:int,y:int,bits:int) -> tuple: 
     return (computeBMPfilesize(x,y,bits),bmpheadersize[bits],x,y,bits)
 
-def isdefaultpal(bmp: array) -> bool: 
+def isdefaultpal(bmp: array) -> bool:
+    """Checks if bitmap has a default RGB color palette
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+
+    Returns:
+        True if default, False if not default
+
+    """
     return getdefaultbitpal(getcolorbits(bmp))==getallRGBpal(bmp)
 
-def getBMPimgbytes(bmp: array) -> list: 
+def getBMPimgbytes(bmp: array) -> list:
+    """Gets the raw image buffer of a bitmap without the header
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+
+    Returns:
+        list of unsigned bytes
+
+    """
     return bmp[gethdrsize(bmp):getfilesize(bmp)]
 
-def setBMPimgbytes(bmp : array,buf: array): 
+def setBMPimgbytes(bmp : array,buf: array):
+    """Sets the raw image buffer of a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        buf: array of unsigned bytes
+
+    Returns:
+        byref modified byte array
+
+    """
     bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
 
 def setbmppal(bmp: array,pallist: list):
