@@ -66,8 +66,10 @@ def intcircleparam24bitonly(func):
 
 def func24bitonly(func):
     def callf(*args,**kwargs):
-        if args[0][bmpcolorbits]!=24 : print(sysmsg['not24bit'])
-        else: return(func(*args,**kwargs))
+        if args[0][bmpcolorbits]!=24 : 
+            print(sysmsg['not24bit'])
+        else: 
+            return(func(*args,**kwargs))
     return(callf)
 
 def func24bitonlyandentirerectinboundary(func):
@@ -76,8 +78,10 @@ def func24bitonlyandentirerectinboundary(func):
         if bmp[bmpcolorbits]!=24 : print(sysmsg['not24bit'])
         else:
             if (type(x1)==int and type(x2)==int) and (type(y1)==int and type(y2)==int):
-                if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):print(sysmsg['regionoutofbounds'])
-                else: return(func(*args,**kwargs))
+                if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):
+                    print(sysmsg['regionoutofbounds'])
+                else: 
+                    return(func(*args,**kwargs))
             else:  print(sysmsg['inttypereq'])
     return(callf)
 
@@ -87,69 +91,92 @@ def func24bitonlyandentirecircleinboundary(func):
         if bmp[bmpcolorbits]!=24 : print(sysmsg['not24bit'])
         else:
             if (type(x)==int and type(y)==int) and type(r)==int:
-                if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): return(func(*args,**kwargs))
-                else: print(sysmsg['regionoutofbounds'])
-            else:  print(sysmsg['inttypereq'])
+                if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): 
+                    return(func(*args,**kwargs))
+                else: 
+                    print(sysmsg['regionoutofbounds'])
+            else:  
+                print(sysmsg['inttypereq'])
     return(callf)
 
 def func8and24bitonlyandentirecircleinboundary(func):
     def callf(*args,**kwargs):
         bmp,x,y,r=args[0],args[1],args[2],args[3]
-        if bmp[bmpcolorbits] not in [24,8]: print(sysmsg['not24or8bit'])
+        if bmp[bmpcolorbits] not in [24,8]: 
+            print(sysmsg['not24or8bit'])
         else:
             if (type(x)==int and type(y)==int) and type(r)==int:
                 if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): return(func(*args,**kwargs))
-                else: print(sysmsg['regionoutofbounds'])
-            else:  print(sysmsg['inttypereq'])
+                else: 
+                    print(sysmsg['regionoutofbounds'])
+            else:  
+                print(sysmsg['inttypereq'])
     return(callf)
 
 def func8and24bitonly(func):
     def callf(*args,**kwargs):
-        if args[0][bmpcolorbits] not in [24,8]: print(sysmsg['not24or8bit'])
-        else: return(func(*args,**kwargs))
+        if args[0][bmpcolorbits] not in [24,8]: 
+            print(sysmsg['not24or8bit'])
+        else: 
+            return(func(*args,**kwargs))
     return(callf)
 
 def func8and24bitonlyandentirerectinboundary(func):
     def callf(*args,**kwargs):
         bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
-        if bmp[bmpcolorbits] not in [24,8]: print(sysmsg['not24or8bit'])
+        if bmp[bmpcolorbits] not in [24,8]: 
+            print(sysmsg['not24or8bit'])
         else:
             if (type(x1)==int and type(x2)==int) and (type(y1)==int and type(y2)==int):
-                if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):print(sysmsg['regionoutofbounds'])
-                else: return(func(*args,**kwargs))
-            else:  print(sysmsg['inttypereq'])
+                if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):
+                    print(sysmsg['regionoutofbounds'])
+                else: 
+                    return(func(*args,**kwargs))
+            else:  
+                print(sysmsg['inttypereq'])
     return(callf)
 
 def entirerectinboundary(func):
     def callf(*args,**kwargs):
         bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
         if (type(x1)==int and type(x2)==int) and (type(y1)==int and type(y2)==int):
-            if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):print(sysmsg['regionoutofbounds'])
-            else: return(func(*args,**kwargs))
-        else:  print(sysmsg['inttypereq'])
+            if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):
+                print(sysmsg['regionoutofbounds'])
+            else: 
+                return(func(*args,**kwargs))
+        else:  
+            print(sysmsg['inttypereq'])
     return(callf)
 
 def entirecircleinboundary(func):
     def callf(*args,**kwargs):
         bmp,x,y,r=args[0],args[1],args[2],args[3]
         if (type(x)==int and type(y)==int) and type(r)==int:
-            if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): return(func(*args,**kwargs))
-            else: print(sysmsg['regionoutofbounds'])
-        else:  print(sysmsg['inttypereq'])
+            if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): 
+                return(func(*args,**kwargs))
+            else: 
+                print(sysmsg['regionoutofbounds'])
+        else:  
+            print(sysmsg['inttypereq'])
     return(callf)
 
 def adjustbufsize(bufsize,bits):
-    if bits==24: bufsize*=3
-    elif bits==4: bufsize=bufsize>>1
-    elif bits==1: bufsize=bufsize>>3
+    if bits==24: 
+        bufsize*=3
+    elif bits==4: 
+        bufsize=bufsize>>1
+    elif bits==1: 
+        bufsize=bufsize>>3
     return bufsize
 
-def setmaxx(bmp:array,xmax:int): writeint(bmpx,4,bmp,xmax)
+def setmaxx(bmp:array,xmax:int): 
+    writeint(bmpx,4,bmp,xmax)
 
 def getmaxx(bmp:array) -> int: 
     return readint(bmpx,4,bmp)
 
-def setmaxy(bmp:array,ymax:int): writeint(bmpy,4,bmp,ymax)
+def setmaxy(bmp:array,ymax:int): 
+    writeint(bmpy,4,bmp,ymax)
 
 def getmaxy(bmp:array) -> int: 
     return readint(bmpy,4,bmp)
@@ -252,17 +279,21 @@ def computexbytes(x:int,bits:int) -> int:
         xperbyte=8//bits
         xbytes,rem=divmod(x,xperbyte)
         if rem>0: xbytes+=1
-    if bits==24:xbytes=x*3
+    if bits==24:
+        xbytes=x*3
     rem=xbytes&3
-    if rem>0: xbytes=xbytes+(4-rem)
+    if rem>0: 
+        xbytes=xbytes+(4-rem)
     return xbytes
 
 def computepadbytes(x: int,bits: int) -> int:
     if bits<=8:
         xperbyte=8//bits
         xbytes,rem=divmod(x,xperbyte)
-        if rem>0: xbytes+=1
-    if bits==24:xbytes=x*3
+        if rem>0: 
+            xbytes+=1
+    if bits==24:
+        xbytes=x*3
     rem=xbytes&3
     return iif(rem>0,4-rem,0)
 
@@ -370,11 +401,21 @@ def CopyBMPxydim2newBMP(bmp: array,newbits: int) -> array:
     return newBMP(getmaxx(bmp),getmaxy(bmp),newbits)
 
 @checklink
-def loadBMP(filename: str) -> array:#loads bitmap to array very fast
+def loadBMP(filename:str) -> array:
+    """Load bitmap to a byte array
+
+    Args:
+        filename: The full path to the file to be loaded.
+        
+    Returns:
+        byte array with bmp file contents
+
+    """
     a=array('B')
     with open(filename,'rb') as f: #ucompressed BMP only
         hd=f.read(2)
-        if hd!=b'BM': print(sysmsg['notBMP'])
+        if hd!=b'BM': 
+            print(sysmsg['notBMP'])
         else:
             fsize=char2int(f.read(8))
             f.seek(0)
@@ -382,7 +423,14 @@ def loadBMP(filename: str) -> array:#loads bitmap to array very fast
         f.close()
     return a
 
-def saveBMP(filename: str,bmp: array):
+def saveBMP(filename:str,bmp:array):
+    """Saves bitmap to file
+
+    Args:
+        filename: The full path to the file to be saved.
+        bmp: Am unsigned byte array with the layout of .bmp file 
+
+    """
     with open(filename,'wb') as f:
         f.write(bmp)
         f.close()
