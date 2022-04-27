@@ -17,7 +17,7 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif
+from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif,isinrange
 
 def itercirclepart(r:int)->list:
     row,col,r_sqr=r,0,r*r
@@ -275,3 +275,9 @@ def listinrecbnd(xylist:list,xmin:int,ymin:int,xmax:int,ymax:int) -> bool:
     for v in xylist:
         if isinrectbnd(v[0],v[1],xmin,ymin,xmax,ymax)==False: break
     return retval
+
+def entirecircleisinboundary(x:int,y:int,minx:int,maxx:int,miny:int,maxy:int,r:int): 
+    return (isinrange(x-r,maxx,minx) and isinrange(x+r,maxx,minx)) and (isinrange(y-r,maxy,miny) and isinrange(y+r,maxy,miny))
+
+def entireellipseisinboundary(x:int,y:int,minx:int,maxx:int,miny:int,maxy:int,b:int,a:int): 
+    return (isinrange(x-b,maxx,minx) and isinrange(x+b,maxx,minx)) and (isinrange(y-a,maxy,miny) and isinrange(y+a,maxy,miny))

@@ -22,7 +22,7 @@ from ctypes.wintypes import BYTE
 from os.path import isfile
 from .proctimer import functimer
 from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal
-from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd
+from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,entireellipseisinboundary
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
 from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf,RGB2BGRbuf,makeBGRbuf
@@ -812,26 +812,39 @@ def flipXYcircregion(bmp:array,x:int,y:int,r:int):
             x1,y1,x2,y2=b[0],b[1],b[2],b[3]
             bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[4],b[5]
 
-def fliphoricircregion(bmp:array,x:int,y:int,r:int): horitransformincircregion(bmp,x,y,r,'F')
+def fliphoricircregion(bmp:array,x:int,y:int,r:int): 
+    horitransformincircregion(bmp,x,y,r,'F')
 
 @func8and24bitonlyandentirecircleinboundary
 def horitransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
-    def flip24():  bmp[s1:e1-2:k],bmp[s2:e2-2:k],bmp[s1+1:e1-1:k],bmp[s2+1:e2-1:k],bmp[s1+2:e1:k],bmp[s2+2:e2:k]=bmp[s2:e2-2:k],bmp[s1:e1-2:k],bmp[s2+1:e2-1:k],bmp[s1+1:e1-1:k],bmp[s2+2:e2:k],bmp[s1+2:e1:k]
-    def flip8(): bmp[s1:e1:k],bmp[s2:e2:k]=bmp[s2:e2:k],bmp[s1:e1:k]
-    def mirror24R(): bmp[s1:e1-2:k],bmp[s1+1:e1-1:k],bmp[s1+2:e1:k]=bmp[s2:e2-2:k],bmp[s2+1:e2-1:k],bmp[s2+2:e2:k]
-    def mirror8R(): bmp[s1:e1:k]=bmp[s2:e2:k]
-    def mirror24L(): bmp[s2:e2-2:k],bmp[s2+1:e2-1:k],bmp[s2+2:e2:k]=bmp[s1:e1-2:k],bmp[s1+1:e1-1:k],bmp[s1+2:e1:k]
-    def mirror8L(): bmp[s2:e2:k]=bmp[s1:e1:k]
+    def flip24():  
+        bmp[s1:e1-2:k],bmp[s2:e2-2:k],bmp[s1+1:e1-1:k],bmp[s2+1:e2-1:k],bmp[s1+2:e1:k],bmp[s2+2:e2:k]=bmp[s2:e2-2:k],bmp[s1:e1-2:k],bmp[s2+1:e2-1:k],bmp[s1+1:e1-1:k],bmp[s2+2:e2:k],bmp[s1+2:e1:k]
+    def flip8(): 
+        bmp[s1:e1:k],bmp[s2:e2:k]=bmp[s2:e2:k],bmp[s1:e1:k]
+    def mirror24R(): 
+        bmp[s1:e1-2:k],bmp[s1+1:e1-1:k],bmp[s1+2:e1:k]=bmp[s2:e2-2:k],bmp[s2+1:e2-1:k],bmp[s2+2:e2:k]
+    def mirror8R(): 
+        bmp[s1:e1:k]=bmp[s2:e2:k]
+    def mirror24L(): 
+        bmp[s2:e2-2:k],bmp[s2+1:e2-1:k],bmp[s2+2:e2:k]=bmp[s1:e1-2:k],bmp[s1+1:e1-1:k],bmp[s1+2:e1:k]
+    def mirror8L(): 
+        bmp[s2:e2:k]=bmp[s1:e1:k]
     bits,c=bmp[bmpcolorbits],getcomputeBMPoffsetwithheaderfunc(bmp)
     if trans=='L':
-        if bits==24: f=mirror24L
-        elif bits==8: f=mirror8L
+        if bits==24: 
+            f=mirror24L
+        elif bits==8: 
+            f=mirror8L
     elif trans=='R':
-        if bits==24: f=mirror24R
-        elif bits==8: f=mirror8R
+        if bits==24: 
+            f=mirror24R
+        elif bits==8: 
+            f=mirror8R
     elif trans=='F':
-        if bits==24: f=flip24
-        elif bits==8: f=flip8
+        if bits==24: 
+            f=flip24
+        elif bits==8: 
+            f=flip8
     for v in itercirclepartvertlineedge(r):
         x1,x2=mirror(x,v[0])
         y1,y2=mirror(y,v[1])
@@ -839,17 +852,23 @@ def horitransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
         s1,e1,s2,e2=c(bmp,x1,y2),c(bmp,x1,y1)+k,c(bmp,x2,y2),c(bmp,x2,y1)+k
         f()
     
-def mirrorleftincircregion(bmp:array,x:int,y:int,r:int): horitransformincircregion(bmp,x,y,r,'L')
+def mirrorleftincircregion(bmp:array,x:int,y:int,r:int): 
+    horitransformincircregion(bmp,x,y,r,'L')
 
-def mirrorrightincircregion(bmp:array,x:int,y:int,r:int): horitransformincircregion(bmp,x,y,r,'R')
+def mirrorrightincircregion(bmp:array,x:int,y:int,r:int): 
+    horitransformincircregion(bmp,x,y,r,'R')
 
-def flipvertcircregion(bmp:array,x:int,y:int,r:int): verttransformincircregion(bmp,x,y,r,'F')
+def flipvertcircregion(bmp:array,x:int,y:int,r:int): 
+    verttransformincircregion(bmp,x,y,r,'F')
 
 @entirecircleinboundary
 def verttransformincircregion(bmp:array,x:int,y:int,r:int,transform:str):
-    def mirrorT(): bmp[s2:e2]=bmp[s1:e1]
-    def mirrorB(): bmp[s1:e1]=bmp[s2:e2]
-    def flip(): bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
+    def mirrorT(): 
+        bmp[s2:e2]=bmp[s1:e1]
+    def mirrorB(): 
+        bmp[s1:e1]=bmp[s2:e2]
+    def flip(): 
+        bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
     if transform=='T': 
         f=mirrorT
     elif transform=='B': 
@@ -863,9 +882,11 @@ def verttransformincircregion(bmp:array,x:int,y:int,r:int,transform:str):
         s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
         f()
     
-def mirrortopincircregion(bmp:array,x:int,y:int,r:int): verttransformincircregion(bmp,x,y,r,'T')
+def mirrortopincircregion(bmp:array,x:int,y:int,r:int): 
+    verttransformincircregion(bmp,x,y,r,'T')
 
-def mirrorbottomincircregion(bmp:array,x:int,y:int,r:int): verttransformincircregion(bmp,x,y,r,'B')
+def mirrorbottomincircregion(bmp:array,x:int,y:int,r:int): 
+    verttransformincircregion(bmp,x,y,r,'B')
 
 def mirrortopleftincircregion(bmp:array,x:int,y:int,r:int):
     mirrorleftincircregion(bmp,x,y,r)
@@ -957,10 +978,6 @@ def invertbitsincircregion(bmp:array,x:int,y:int,r:int):
 def circlevec(bmp:array,v:list,r:int,color:int,isfilled:bool=None):
     v=roundvect(v)
     circle(bmp,v[0],v[1],r,color,isfilled)
-
-def entirecircleisinboundary(x,y,minx,maxx,miny,maxy,r): return (isinrange(x-r,maxx,minx) and isinrange(x+r,maxx,minx)) and (isinrange(y-r,maxy,miny) and isinrange(y+r,maxy,miny))
-
-def entireellipseisinboundary(x,y,minx,maxx,miny,maxy,b,a): return (isinrange(x-b,maxx,minx) and isinrange(x+b,maxx,minx)) and (isinrange(y-a,maxy,miny) and isinrange(y+a,maxy,miny))
 
 def filledcircle(bmp,x,y,r,color):
     bits=bmp[bmpcolorbits]
