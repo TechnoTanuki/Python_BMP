@@ -21,7 +21,7 @@ from array import array
 from ctypes.wintypes import BYTE
 from os.path import isfile
 from .proctimer import functimer
-from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal
+from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata
 from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,entireellipseisinboundary,ellipsevert
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
@@ -2026,7 +2026,7 @@ def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
 def plotfilledflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
     for nr in range (r,2,-1): plotflower(bmp,cx,cy,nr,petals,angrot,lumrange,RGBfactors)
 
-def plotbmpastext(bmp):#cant output 24 bit bmp
+def plotbmpastext(bmp:array):#cant output 24 bit bmp
     bits,my,r,offset=getcolorbits(bmp),getmaxy(bmp)-1,getxcharcount(bmp),gethdrsize(bmp)
     for y in range(my,0,-1):
         for x in range(0,r):
@@ -2037,19 +2037,7 @@ def plotbmpastext(bmp):#cant output 24 bit bmp
             if bits==8: print(chr(bmp[offset+r*y+x]),end='')
         print()
 
-def genpiechartdata(dlist): #[[20,c['red']],[30,c['brightyellow']]...]
-    sa,tot=0,getdatalisttotal(dlist)#more date an be addded tolist
-    alist,big=[],-1 #but the value and coler must be present
-    for d in dlist:
-        p=d[0]/tot
-        ea=sa+p*360
-        p*=100
-        alist.append([sa,ea,d[1],d[0],p])
-        if p>=50: big=dlist.index(d)
-        sa=ea
-    return alist,big
-
-def piechart(bmp,x,y,r,dataandcolorlist):
+def piechart(bmp:array,x,y,r,dataandcolorlist):
     alist,big=genpiechartdata(dataandcolorlist)
     if big>-1:#for speed more computions in drawarc
             circle(bmp,x,y,r,alist[big][2],True)
@@ -2060,7 +2048,7 @@ def piechart(bmp,x,y,r,dataandcolorlist):
 # end non core functions
 
 @func24bitonlyandentirerectinboundary
-def applybyrefnoparamfuncto24bitregion(bmp,x1,y1,x2,y2,func):
+def applybyrefnoparamfuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func):
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
     for buf in itercopyrect(bmp,x1,y1,x2,y2):
@@ -2069,7 +2057,7 @@ def applybyrefnoparamfuncto24bitregion(bmp,x1,y1,x2,y2,func):
         offset+=r
     
 @func24bitonlyandentirerectinboundary
-def applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,func,funcparam):
+def applybyreffuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func,funcparam):
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
     for buf in itercopyrect(bmp,x1,y1,x2,y2):
@@ -2078,7 +2066,7 @@ def applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,func,funcparam):
         offset+=r
 
 @func24bitonlyandentirerectinboundary
-def applyfuncto24bitregion(bmp,x1,y1,x2,y2,func,funcparam):
+def applyfuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func,funcparam):
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
     for buf in itercopyrect(bmp,x1,y1,x2,y2):
@@ -2086,7 +2074,7 @@ def applyfuncto24bitregion(bmp,x1,y1,x2,y2,func,funcparam):
         offset+=r
 
 @func24bitonlyandentirerectinboundary
-def verticalbrightnessgradto24bitregion(bmp,x1,y1,x2,y2,lumrange):
+def verticalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list):
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
     lum=lumrange[1]
@@ -2097,7 +2085,7 @@ def verticalbrightnessgradto24bitregion(bmp,x1,y1,x2,y2,lumrange):
         lum+=dlum
 
 @func24bitonlyandentirerectinboundary
-def horizontalbrightnessgradto24bitregion(bmp,x1,y1,x2,y2,lumrange):
+def horizontalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list):
     r,c=getxcharcount(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     xlim,f=x2+1,applybrightnessadjtoBGRbuf
@@ -2109,7 +2097,7 @@ def horizontalbrightnessgradto24bitregion(bmp,x1,y1,x2,y2,lumrange):
         l+=dl
 
 @func24bitonlyandentirecircleinboundary 
-def magnifyNtimescircregion(bmp,x,y,r,n):
+def magnifyNtimescircregion(bmp:array,x:int,y:int,r:int,n:int):
     nx,ny,b,c=x*n,y*n,resizeNtimesbigger(bmp,n),computeBMPoffsetwithheader
     for v in itercirclepartlineedge(r):
         x1,x2=mirror(x,v[0])
@@ -2119,7 +2107,7 @@ def magnifyNtimescircregion(bmp,x,y,r,n):
         bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[c(b,x3,y3):c(b,x4,y3)],b[c(b,x3,y4):c(b,x4,y4)]
 
 @func24bitonlyandentirecircleinboundary 
-def pixelizenxncircregion(bmp,x,y,r,n):
+def pixelizenxncircregion(bmp:array,x:int,y:int,r:int,n:int):
     b,c=pixelizenxn(bmp,n),computeBMPoffsetwithheader
     for v in itercirclepartlineedge(r):
         x1,x2=mirror(x,v[0])
@@ -2132,7 +2120,7 @@ def resizesmaller24bitbuf(buflist):
     return  makeBGRbuf(m(a(s(c[0],n)),f),m(a(s(c[1],n)),f),m(a(s(c[2],n)),f))
 
 @func24bitonly
-def resizeNtimessmaller(bmp,n):
+def resizeNtimessmaller(bmp:array,n:int) -> array:
     bits,nbmp=bmp[bmpcolorbits],-1
     m=getmaxxy(bmp)
     nx,ny=m[0]//n,m[1]//n
@@ -2152,19 +2140,22 @@ def resizeNtimessmaller(bmp,n):
         i+=1
     return nbmp
 
-def pixelizenxn(bmp,n): return resizeNtimesbigger(resizeNtimessmaller(bmp,n),n)
+def pixelizenxn(bmp:array,n:int) -> array: 
+    return resizeNtimesbigger(resizeNtimessmaller(bmp,n),n)
 
-def adjustcolordicttopal(bmp,colordict):
+def adjustcolordicttopal(bmp:array,colordict:dict):
     if getcolorbits(bmp)<24:
         for color in colordict:
             colordict[color]=matchRGBtopal(int2RGBarr(colordict[color]),getallRGBpal(bmp))
 
-def gammaadjto24bitregion(bmp,x1,y1,x2,y2,gamma): applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applygammaBGRbuf,gamma)
+def gammaadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,gamma:float): 
+    applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applygammaBGRbuf,gamma)
 
-def gammaadjto24bitimage(bmp,gamma): gammaadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,gamma)
+def gammaadjto24bitimage(bmp:array,gamma:float): 
+    gammaadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,gamma)
 
 @entirerectinboundary
-def compareimglines(bmp,x1,y1,x2,y2,func):
+def compareimglines(bmp:array,x1:int,y1:int,x2:int,y2:int,func):
     offset,r=computeBMPoffset(bmp,x1,y2),getxcharcount(bmp)
     oldbuf=[]
     for buf in itercopyrect(bmp,x1,y1,x2,y2):
@@ -2174,21 +2165,27 @@ def compareimglines(bmp,x1,y1,x2,y2,func):
         oldbuf=buf
     BMPbitBLTput(bmp,offset,array('B',func(buf,oldbuf)))
 
-def outlineregion(bmp,x1,y1,x2,y2):compareimglines(bmp,x1,y1,x2,y2,xorvect)
+def outlineregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
+    compareimglines(bmp,x1,y1,x2,y2,xorvect)
 
-def outline(bmp): outlineregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
+def outline(bmp:array): 
+    outlineregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
 
 @intcircleparam
-def sphere(bmp,x,y,r,rgbfactors): gradcircle(bmp,x,y,r,[255,0],rgbfactors)
+def sphere(bmp:array,x:int,y:int,r:int,rgbfactors:list): 
+    gradcircle(bmp,x,y,r,[255,0],rgbfactors)
 
 @intcircleparam
-def thickencirclearea(bmp,x,y,r,rgbfactors): gradthickcircle(bmp,x,y,r,8,[255,0],rgbfactors)
+def thickencirclearea(bmp:array,x:int,y:int,r:int,rgbfactors:list): 
+    gradthickcircle(bmp,x,y,r,8,[255,0],rgbfactors)
 
 @entirerectinboundary
-def fern(bmp,x1,y1,x2,y2,color): IFS(bmp,getIFSparams()['fern'],x1,y1,x2,y2,abs(y2-y1)//10,abs(y2-y1)//10,abs(x2-x1)//2,0,color,100000)
+def fern(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int): 
+    IFS(bmp,getIFSparams()['fern'],x1,y1,x2,y2,abs(y2-y1)//10,abs(y2-y1)//10,abs(x2-x1)//2,0,color,100000)
 
 @checklink
-def applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,func,funcparam):
+def applybyreffuncwithparamtoregionandsave(ExistingBMPfile:str,NewBMPfile:str,
+                                            x1:int,y1:int,x2:int,y2:int,func,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         func(bmp,x1,y1,x2,y2,funcparam)
@@ -2196,27 +2193,30 @@ def applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y
         print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,func,funcparam):
+def applybyref24bitcolorfunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,
+                                            x1:int,y1:int,x2:int,y2:int,func,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24 : print(sysmsg['not24bit'])
+        if bmp[bmpcolorbits]!=24 : 
+            print(sysmsg['not24bit'])
         else:
             func(bmp,x1,y1,x2,y2,funcparam)
             saveBMP(NewBMPfile,bmp)
             print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 @checklink        
-def applybyref24bitfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,func):
+def applybyref24bitfunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
+        if bmp[bmpcolorbits]!=24: 
+            print(sysmsg['not24bit'])
         else:
             func(bmp,x1,y1,x2,y2)
             saveBMP(NewBMPfile,bmp)
             print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,func):
+def applybyreffunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         func(bmp,x1,y1,x2,y2)
@@ -2224,7 +2224,7 @@ def applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,func):
         print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 @checklink    
-def applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,func):
+def applyfunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         bmp=func(bmp,x1,y1,x2,y2)
@@ -2233,7 +2233,7 @@ def applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,func):
             print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def applybyreffuncandsave(ExistingBMPfile,NewBMPfile,func):
+def applybyreffuncandsave(ExistingBMPfile:str,NewBMPfile:str,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         func(bmp)
@@ -2241,7 +2241,7 @@ def applybyreffuncandsave(ExistingBMPfile,NewBMPfile,func):
         print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 @checklink    
-def applybyreffuncwithparamandsave(ExistingBMPfile,NewBMPfile,func,funcparam):
+def applybyreffuncwithparamandsave(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:    
         func(bmp,funcparam)
@@ -2249,41 +2249,44 @@ def applybyreffuncwithparamandsave(ExistingBMPfile,NewBMPfile,func,funcparam):
         print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 @checklink
-def applyfuncandsave(ExistingBMPfile,NewBMPfile,func):
+def applyfuncandsave(ExistingBMPfile:str,NewBMPfile:str,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         saveBMP(NewBMPfile,func(bmp))
         print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def apply24bitfuncandsave(ExistingBMPfile,NewBMPfile,func):
+def apply24bitfuncandsave(ExistingBMPfile:str,NewBMPfile:str,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
+        if bmp[bmpcolorbits]!=24: 
+            print(sysmsg['not24bit'])
         else:
             saveBMP(NewBMPfile,func(bmp))
             print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,func,funcparam):
+def apply24bitfuncwithparamandsave(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
+        if bmp[bmpcolorbits]!=24: 
+            print(sysmsg['not24bit'])
         else:
             saveBMP(NewBMPfile,func(bmp,funcparam))
             print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 @checklink
-def apply8bitabovefuncandsave(ExistingBMPfile,NewBMPfile,func):
+def apply8bitabovefuncandsave(ExistingBMPfile:str,NewBMPfile:str,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits] not in [8,24]: print(sysmsg['not24or8bit'])
+        if bmp[bmpcolorbits] not in [8,24]: 
+            print(sysmsg['not24or8bit'])
         else:
             saveBMP(NewBMPfile,func(bmp))
             print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def applyfunctocircregion(ExistingBMPfile,NewBMPfile,func,x,y,r):
+def applyfunctocircregion(ExistingBMPfile:str,NewBMPfile:str,func,x:int,y:int,r:int):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         func(bmp,x,y,r)
@@ -2291,7 +2294,7 @@ def applyfunctocircregion(ExistingBMPfile,NewBMPfile,func,x,y,r):
         print(sysmsg['savecircfunc']%(func.__name__ ,x,y,r,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def applyfunctocircregionwithparam (ExistingBMPfile,NewBMPfile,func,x,y,r,funcparam):
+def applyfunctocircregionwithparam (ExistingBMPfile:str,NewBMPfile:str,func,x:int,y:int,r:int,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         func(bmp,x,y,r,funcparam)
@@ -2299,7 +2302,7 @@ def applyfunctocircregionwithparam (ExistingBMPfile,NewBMPfile,func,x,y,r,funcpa
         print(sysmsg['savecircfuncwithparam']%(func.__name__ ,x,y,r,funcparam,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def apply24bitcoloradjfunctocircregion(ExistingBMPfile,NewBMPfile,func,x,y,r):
+def apply24bitcoloradjfunctocircregion(ExistingBMPfile:str,NewBMPfile:str,func,x:int,y:int,r:int):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         if bmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
@@ -2309,7 +2312,8 @@ def apply24bitcoloradjfunctocircregion(ExistingBMPfile,NewBMPfile,func,x,y,r):
             print(sysmsg['savecircfunc']%(func.__name__ ,x,y,r,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,func,x,y,r,funcparam):
+def apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile:str,NewBMPfile:str,
+                                                func,x:int,y:int,r:int,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         if bmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
@@ -2319,50 +2323,61 @@ def apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,func,x
             print(sysmsg['savecircfuncwithparam']%(func.__name__ ,x,y,r,funcparam,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def applycoloradjfunc(ExistingBMPfile,NewBMPfile,func,funcparam):
+def applycoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: setbmppal(bmp,[func(c,funcparam) for c in getallRGBpal(bmp)])
+        if bmp[bmpcolorbits]!=24: 
+            setbmppal(bmp,[func(c,funcparam) for c in getallRGBpal(bmp)])
         else:
-            if func.__name__=='colorfilter': colorfilterto24bitimage(bmp,funcparam)
-            elif func.__name__=='brightnessadjust':  brightnesseadjto24bitimage(bmp,funcparam)
-            elif func.__name__=='gammacorrect': gammaadjto24bitimage(bmp,funcparam)
-            elif func.__name__=='thresholdadjust': thresholdadjto24bitimage(bmp,funcparam)
+            if func.__name__=='colorfilter': 
+                colorfilterto24bitimage(bmp,funcparam)
+            elif func.__name__=='brightnessadjust':  
+                brightnesseadjto24bitimage(bmp,funcparam)
+            elif func.__name__=='gammacorrect': 
+                gammaadjto24bitimage(bmp,funcparam)
+            elif func.__name__=='thresholdadjust': 
+                thresholdadjto24bitimage(bmp,funcparam)
             else:
-                for v in iterimageRGB(bmp,sysmsg['coloradj'],'*',sysmsg['done']):  plotRGBxybitvec(bmp,v[0], func(v[1],funcparam))
+                for v in iterimageRGB(bmp,sysmsg['coloradj'],'*',sysmsg['done']):  
+                    plotRGBxybitvec(bmp,v[0], func(v[1],funcparam))
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 @checklink
-def apply24bitcoloradjfunc(ExistingBMPfile,NewBMPfile,func,funcparam):
+def apply24bitcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
+        if bmp[bmpcolorbits]!=24: 
+            print(sysmsg['not24bit'])
         else:
             func(bmp,funcparam)
             saveBMP(NewBMPfile,bmp)
             print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 @checklink        
-def applynoparamcoloradjfunc(ExistingBMPfile,NewBMPfile,func):
+def applynoparamcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         if bmp[bmpcolorbits]!=24: setbmppal(bmp,[func(c) for c in getallRGBpal(bmp)])
         else:
-            if func.__name__=='monochrome': monofilterto24bitimage(bmp)
+            if func.__name__=='monochrome': 
+                monofilterto24bitimage(bmp)
             else:
-                for v in iterimageRGB(bmp,sysmsg['coloradj'],'*',sysmsg['done']):  plotRGBxybitvec(bmp,v[0], func(v[1]))
+                for v in iterimageRGB(bmp,sysmsg['coloradj'],'*',sysmsg['done']):  
+                    plotRGBxybitvec(bmp,v[0], func(v[1]))
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savenoparamfunc']%(func.__name__,ExistingBMPfile,NewBMPfile))
 
 @checklink
-def cropBMPandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,crop)
+def cropBMPandsave(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,crop)
 
 @checklink
-def cropBMPandsaveusingrectbnd(ExistingBMPfile,NewBMPfile,rectbnd): applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,rectbnd[0][0],rectbnd[0][1],rectbnd[1][0]+1,rectbnd[1][1]+1,crop)
+def cropBMPandsaveusingrectbnd(ExistingBMPfile:str,NewBMPfile:str,rectbnd:list): 
+    applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,rectbnd[0][0],rectbnd[0][1],rectbnd[1][0]+1,rectbnd[1][1]+1,crop)
 
 @checklinks
-def imagecomp(inputfile1,inputfile2,diff_file,func):
+def imagecomp(inputfile1:str,inputfile2:str,diff_file:str,func):
     bmp1,bmp2=loadBMP(inputfile1),loadBMP(inputfile2)
     if len(bmp1)>54 and len(bmp2)>54:
         s1,s2=getmaxxyandbits(bmp1),getmaxxyandbits(bmp2)
@@ -2380,265 +2395,350 @@ def imagecomp(inputfile1,inputfile2,diff_file,func):
     
 @checklink
 @functimer
-def reduce24bitimagebits(Existing24BMPfile,NewBMPfile,newbits,similaritythreshold,usemonopal,RGBfactors):
+def reduce24bitimagebits(Existing24BMPfile:str,NewBMPfile:str,newbits:int,similaritythreshold:float,
+                        usemonopal:bool,RGBfactors:list):
     sbmp=loadBMP(Existing24BMPfile)
     if len(sbmp)>54:
         if sbmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
         else:
             bmp=CopyBMPxydim2newBMP(sbmp,newbits)
             if newbits>1:
-                if usemonopal: newpal=setBMP2monochrome(bmp,RGBfactors)
-                else: newpal=setnewpalfromsourcebmp(sbmp,bmp,similaritythreshold)
+                if usemonopal: 
+                    newpal=setBMP2monochrome(bmp,RGBfactors)
+                else: 
+                    newpal=setnewpalfromsourcebmp(sbmp,bmp,similaritythreshold)
             for v in iterimageRGB(sbmp,sysmsg['colorquant'],'*',sysmsg['done']):
-                    if newbits==1: c=probplotRGBto1bit(v[1],2)
-                    else: c=matchRGBtopal(v[1],newpal)
+                    if newbits==1: 
+                        c=probplotRGBto1bit(v[1],2)
+                    else: 
+                        c=matchRGBtopal(v[1],newpal)
                     intplotvecxypoint(bmp,v[0],c)
             saveBMP(NewBMPfile,bmp)
             print(sysmsg['savemod']%(Existing24BMPfile,NewBMPfile))
 
 @checklink
 @functimer
-def imgregionbyRGB2file(ExistingBMPfile,NewBMPfile,edgeradius,edgecolor,rgb,similaritythreshold,showedgeonly):
+def imgregionbyRGB2file(ExistingBMPfile:str,NewBMPfile:str,edgeradius:int,edgecolor:int,
+                        rgb:list,similaritythreshold:float,showedgeonly:bool):
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
         edge=getimageregionbyRGB(bmp,rgb,similaritythreshold)
-        if showedgeonly:bmp=copyBMPhdr(bmp)
+        if showedgeonly:
+            bmp=copyBMPhdr(bmp)
         plotxypointlist(bmp,edge,edgeradius,edgecolor)
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savemod']%(ExistingBMPfile,NewBMPfile))
 
 @functimer
-def invertbits2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,invertimagebits)
+def invertbits2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,invertimagebits)
 
 @functimer
-def flipvertical2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,flipvertical)
+def flipvertical2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,flipvertical)
 
 @functimer
-def mirrortop2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortop)
+def mirrortop2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortop)
 
 @functimer
-def mirrortopleft2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortopleft)
+def mirrortopleft2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortopleft)
 
 @functimer
-def mirrortopright2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortopright)
+def mirrortopright2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortopright)
 
 @functimer
-def mirrorbottomleft2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottomleft)
+def mirrorbottomleft2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottomleft)
 
 @functimer
-def mirrorbottomright2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottomright)
+def mirrorbottomright2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottomright)
 
 @functimer
-def mirrorbottom2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottom)
+def mirrorbottom2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottom)
 
 @functimer
-def mirrorleft2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorleft)
+def mirrorleft2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorleft)
 
 @functimer
-def mirrorright2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorright)
+def mirrorright2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorright)
 
 @functimer
-def fliphorizontal2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,fliphorizontal)
+def fliphorizontal2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,fliphorizontal)
 
 @functimer
-def flipXY2file(ExistingBMPfile,NewBMPfile): applyfuncandsave(ExistingBMPfile,NewBMPfile,flipXY)
+def flipXY2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applyfuncandsave(ExistingBMPfile,NewBMPfile,flipXY)
 
 @functimer
-def flipverticalregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,flipverticalregion)
+def flipverticalregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,flipverticalregion)
 
 @functimer
-def fliphorizontalregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,fliphorizontalregion)
+def fliphorizontalregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,fliphorizontalregion)
 
 @functimer
-def mirrorleftinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorleftinregion)
+def mirrorleftinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorleftinregion)
 
 @functimer
-def mirrorrightinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorrightinregion)
+def mirrorrightinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorrightinregion)
 
 @functimer
-def mirrortopinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrortopinregion)
+def mirrortopinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrortopinregion)
 
 @functimer
-def mirrorbottominregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorbottominregion)
+def mirrorbottominregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorbottominregion)
 
 @functimer
-def mirrortopleftinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrortopleftinregion)
+def mirrortopleftinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrortopleftinregion)
 
 @functimer
-def mirrortoprightinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrortoprightinregion)
+def mirrortoprightinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrortoprightinregion)
 
 @functimer
-def mirrorbottomleftinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorbottomleftinregion)
+def mirrorbottomleftinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorbottomleftinregion)
 
 @functimer
-def mirrorbottomrightinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorbottomrightinregion)
+def mirrorbottomrightinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,mirrorbottomrightinregion)
 
 @functimer
-def invertregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,invertregion)
+def invertregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,invertregion)
 
 @functimer
-def autocropimg2file(ExistingBMPfile,NewBMPfile,similaritythreshold): 
+def autocropimg2file(ExistingBMPfile:str,NewBMPfile:str,similaritythreshold:float): 
     bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54: cropBMPandsaveusingrectbnd(ExistingBMPfile,NewBMPfile,rectboundarycoords(getimagedgevert(bmp,similaritythreshold)))
+    if len(bmp)>54: 
+        cropBMPandsaveusingrectbnd(ExistingBMPfile,NewBMPfile,rectboundarycoords(getimagedgevert(bmp,similaritythreshold)))
 
 @functimer
-def adjustbrightness2file(ExistingBMPfile,NewBMPfile,percentadj): applycoloradjfunc(ExistingBMPfile,NewBMPfile,brightnessadjust,percentadj)
+def adjustbrightness2file(ExistingBMPfile:str,NewBMPfile:str,percentadj:float): 
+    applycoloradjfunc(ExistingBMPfile,NewBMPfile,brightnessadjust,percentadj)
 
 @functimer
-def thresholdadjust2file(ExistingBMPfile,NewBMPfile,lumrange): applycoloradjfunc(ExistingBMPfile,NewBMPfile,thresholdadjust,lumrange)
+def thresholdadjust2file(ExistingBMPfile:str,NewBMPfile:str,lumrange:list): 
+    applycoloradjfunc(ExistingBMPfile,NewBMPfile,thresholdadjust,lumrange)
 
 @functimer
-def adjustbrightnessinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,percentadj): applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,brightnesseadjto24bitregion,percentadj)
+def adjustbrightnessinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,percentadj:float): 
+    applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,brightnesseadjto24bitregion,percentadj)
 
 @functimer
-def adjustthresholdinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,lumrange): applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,thresholdadjto24bitregion,lumrange)
+def adjustthresholdinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,lumrange:list): 
+    applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,thresholdadjto24bitregion,lumrange)
 
 @functimer
-def colorfilter2file(ExistingBMPfile,NewBMPfile,rgbfactors): applycoloradjfunc(ExistingBMPfile,NewBMPfile,colorfilter,rgbfactors)
+def colorfilter2file(ExistingBMPfile:str,NewBMPfile:str,rgbfactors:list): 
+    applycoloradjfunc(ExistingBMPfile,NewBMPfile,colorfilter,rgbfactors)
 
 @functimer
-def monochrome2file(ExistingBMPfile,NewBMPfile): applynoparamcoloradjfunc(ExistingBMPfile,NewBMPfile,monochrome)
+def monochrome2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applynoparamcoloradjfunc(ExistingBMPfile,NewBMPfile,monochrome)
 
 @functimer
-def colorfilterinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,rgbfactors):  applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,colorfilterto24bitregion,rgbfactors)
+def colorfilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,rgbfactors:list):  
+    applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,colorfilterto24bitregion,rgbfactors)
 
 @functimer
-def monofilterinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyref24bitfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,monofilterto24bitregion)
+def monofilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyref24bitfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,monofilterto24bitregion)
 
 @functimer
-def pixelizenxntofile(ExistingBMPfile,NewBMPfile,n): apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,pixelizenxn,n)
+def pixelizenxntofile(ExistingBMPfile:str,NewBMPfile:str,n:int): 
+    apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,pixelizenxn,n)
 
 @functimer
-def resizeNtimessmaller2file(ExistingBMPfile,NewBMPfile,n): apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,resizeNtimessmaller,n)
+def resizeNtimessmaller2file(ExistingBMPfile:str,NewBMPfile:str,n:int): 
+    apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,resizeNtimessmaller,n)
 
 @functimer
-def resizeNtimesbigger2file(ExistingBMPfile,NewBMPfile,n): apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,resizeNtimesbigger,n)
+def resizeNtimesbigger2file(ExistingBMPfile:str,NewBMPfile:str,n:int): 
+    apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,resizeNtimesbigger,n)
 
 @functimer
-def upgradeto24bitimage2file(ExistingBMPfile,NewBMPfile):applyfuncandsave(ExistingBMPfile,NewBMPfile,upgradeto24bitimage)
+def upgradeto24bitimage2file(ExistingBMPfile:str,NewBMPfile:str):
+    applyfuncandsave(ExistingBMPfile,NewBMPfile,upgradeto24bitimage)
 
 @functimer
-def gammaadj2file(ExistingBMPfile,NewBMPfile,gamma): applycoloradjfunc(ExistingBMPfile,NewBMPfile,gammacorrect,gamma)
+def gammaadj2file(ExistingBMPfile:str,NewBMPfile:str,gamma:float): 
+    applycoloradjfunc(ExistingBMPfile,NewBMPfile,gammacorrect,gamma)
 
 @functimer
-def gammaadjtoregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,gamma):  applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,gammaadjto24bitregion,gamma)
+def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,gamma:float):  
+    applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,gammaadjto24bitregion,gamma)
 
 @functimer
-def eraseeverynthhorilineinregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,n): applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,eraseeverynthhorilineinregion,n)
+def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,n:int): 
+    applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,eraseeverynthhorilineinregion,n)
 
 @functimer
-def rectangle2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,color): applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,rectangle,color)
+def rectangle2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,color:int): 
+    applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,rectangle,color)
 
 @functimer
-def fern2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,color): applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,fern,color)
+def fern2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,color:int): 
+    applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,fern,color)
 
 @functimer
-def eraseeverynthhoriline2file(ExistingBMPfile,NewBMPfile,n): applybyreffuncwithparamandsave(ExistingBMPfile,NewBMPfile,eraseeverynthhorizontalline,n)
+def eraseeverynthhoriline2file(ExistingBMPfile:str,NewBMPfile:str,n:int): 
+    applybyreffuncwithparamandsave(ExistingBMPfile,NewBMPfile,eraseeverynthhorizontalline,n)
 
 @functimer
-def outlineregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2): applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2, outlineregion)
+def outlineregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2, outlineregion)
 
 @functimer
-def outline2file(ExistingBMPfile,NewBMPfile): applybyreffuncandsave(ExistingBMPfile,NewBMPfile,outline)
+def outline2file(ExistingBMPfile:str,NewBMPfile:str): 
+    applybyreffuncandsave(ExistingBMPfile,NewBMPfile,outline)
 
 @functimer
-def imagediff(inputfile1,inputfile2,diff_file): imagecomp(inputfile1,inputfile2,diff_file,xorvect)
+def imagediff(inputfile1:str,inputfile2:str,diff_file:str): 
+    imagecomp(inputfile1,inputfile2,diff_file,xorvect)
 
 @functimer
-def showsimilarparts(inputfile1,inputfile2,diff_file): imagecomp(inputfile1,inputfile2,diff_file,andvect)
+def showsimilarparts(inputfile1:str,inputfile2:str,diff_file:str): 
+    imagecomp(inputfile1,inputfile2,diff_file,andvect)
 
 @functimer
-def monochromecircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): apply24bitcoloradjfunctocircregion(ExistingBMPfile,NewBMPfile,monocircle,x,y,r)
+def monochromecircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    apply24bitcoloradjfunctocircregion(ExistingBMPfile,NewBMPfile,monocircle,x,y,r)
 
 @functimer
-def invertbitsincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,invertbitsincircregion,x,y,r)
+def invertbitsincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,invertbitsincircregion,x,y,r)
 
 @functimer
-def colorfiltercircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,rgbfactors): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,colorfiltercircregion,x,y,r,rgbfactors)
+def colorfiltercircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,rgbfactors:list): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,colorfiltercircregion,x,y,r,rgbfactors)
 
 @functimer
-def thresholdadjcircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,lumrange): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thresholdadjcircregion,x,y,r,lumrange)
+def thresholdadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,lumrange:list): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thresholdadjcircregion,x,y,r,lumrange)
 
 @functimer
-def gammacorrectcircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,gamma): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,gammacorrectcircregion,x,y,r,gamma)
+def gammacorrectcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,gamma:float): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,gammacorrectcircregion,x,y,r,gamma)
 
 @functimer
-def sphere2file(ExistingBMPfile,NewBMPfile,x,y,r,rgbfactors): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,sphere,x,y,r,rgbfactors)
+def sphere2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,rgbfactors:list): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,sphere,x,y,r,rgbfactors)
 
 @functimer
-def filledcircle2file(ExistingBMPfile,NewBMPfile,x,y,r,color): applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,filledcircle,x,y,r,color)
+def filledcircle2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,color:int): 
+    applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,filledcircle,x,y,r,color)
 
 @functimer
-def circle2file(ExistingBMPfile,NewBMPfile,x,y,r,color): applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,circle,x,y,r,color)
+def circle2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,color:int): 
+    applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,circle,x,y,r,color)
 
 @functimer
-def thickencirclearea2file(ExistingBMPfile,NewBMPfile,x,y,r,rgbfactors): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thickencirclearea,x,y,r,rgbfactors)
+def thickencirclearea2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,rgbfactors:list): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thickencirclearea,x,y,r,rgbfactors)
 
 @functimer
-def brightnessadjcircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,percentadj): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,brightnessadjcircregion,x,y,r,percentadj)
+def brightnessadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,percentadj:float): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,brightnessadjcircregion,x,y,r,percentadj)
 
 @functimer
-def vertbrightnessgrad2circregion2file(ExistingBMPfile,NewBMPfile,x,y,r,lumrange): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,vertbrightnessgrad2circregion,x,y,r,lumrange)
+def vertbrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,lumrange:list): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,vertbrightnessgrad2circregion,x,y,r,lumrange)
 
 @functimer
-def horibrightnessgrad2circregion2file(ExistingBMPfile,NewBMPfile,x,y,r,lumrange): apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,horibrightnessgrad2circregion,x,y,r,lumrange)
+def horibrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,lumrange:list): 
+    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,horibrightnessgrad2circregion,x,y,r,lumrange)
 
 @functimer
-def flipvertcircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,flipvertcircregion,x,y,r)
+def flipvertcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,flipvertcircregion,x,y,r)
 
 @functimer
-def eraseeverynthhorilineinccircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,n): applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,eraseeverynthhorizontallineinccircregion,x,y,r,n)
+def eraseeverynthhorilineinccircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,n:int): 
+    applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,eraseeverynthhorizontallineinccircregion,x,y,r,n)
 
 @functimer
-def mirrortopincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortopincircregion,x,y,r)
+def mirrortopincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortopincircregion,x,y,r)
 
 @functimer
-def mirrorbottomincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomincircregion,x,y,r)
+def mirrorbottomincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomincircregion,x,y,r)
 
 @functimer
-def mirrorleftincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorleftincircregion,x,y,r)
+def mirrorleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorleftincircregion,x,y,r)
 
 @functimer
-def mirrorrightincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorrightincircregion,x,y,r)
+def mirrorrightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorrightincircregion,x,y,r)
 
 @functimer
-def mirrortopleftincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortopleftincircregion,x,y,r)
+def mirrortopleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortopleftincircregion,x,y,r)
 
 @functimer
-def mirrorbottomleftincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomleftincircregion,x,y,r)
+def mirrorbottomleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomleftincircregion,x,y,r)
 
 @functimer
-def mirrortoprightincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortoprightincircregion,x,y,r)
+def mirrortoprightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortoprightincircregion,x,y,r)
 
 @functimer
-def mirrorbottomrightincircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomrightincircregion,x,y,r)
+def mirrorbottomrightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomrightincircregion,x,y,r)
 
 @functimer
-def fliphoricircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,fliphoricircregion,x,y,r)
+def fliphoricircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,fliphoricircregion,x,y,r)
 
 @functimer
-def outlinecircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,outlinecircregion,x,y,r)
+def outlinecircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,outlinecircregion,x,y,r)
 
 @functimer
-def flipXYcircregion2file(ExistingBMPfile,NewBMPfile,x,y,r): applyfunctocircregion(ExistingBMPfile,NewBMPfile,flipXYcircregion,x,y,r)
+def flipXYcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int): 
+    applyfunctocircregion(ExistingBMPfile,NewBMPfile,flipXYcircregion,x,y,r)
 
 @functimer
-def magnifyNtimescircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,intmagfactor): applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,magnifyNtimescircregion,x,y,r,intmagfactor)
+def magnifyNtimescircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,intmagfactor:int): 
+    applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,magnifyNtimescircregion,x,y,r,intmagfactor)
 
 @functimer
-def pixelizenxncircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,intpixsize): applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,pixelizenxncircregion,x,y,r,intpixsize)
+def pixelizenxncircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,intpixsize:int): 
+    applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,pixelizenxncircregion,x,y,r,intpixsize)
 
 @functimer
-def copycircregion2file(ExistingBMPfile,NewBMPfile,x,y,r,newxycenterpoint): applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,copycircregion,x,y,r,newxycenterpoint)
+def copycircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,newxycenterpoint:list): 
+    applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,copycircregion,x,y,r,newxycenterpoint)
 
 @functimer
-def horizontalbrightnessgrad2file(ExistingBMPfile,NewBMPfile,lumrange): apply24bitcoloradjfunc(ExistingBMPfile,NewBMPfile,horizontalbrightnessgradto24bitimage,lumrange)
+def horizontalbrightnessgrad2file(ExistingBMPfile:str,NewBMPfile:str,lumrange:list): 
+    apply24bitcoloradjfunc(ExistingBMPfile,NewBMPfile,horizontalbrightnessgradto24bitimage,lumrange)
 
 @functimer
-def horizontalbrightnessgradregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,lumrange): applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,horizontalbrightnessgradto24bitregion,lumrange)
+def horizontalbrightnessgradregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,lumrange:list): 
+    applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,horizontalbrightnessgradto24bitregion,lumrange)
 
 @functimer
-def verticalbrightnessgrad2file(ExistingBMPfile,NewBMPfile,lumrange): apply24bitcoloradjfunc(ExistingBMPfile,NewBMPfile,verticalbrightnessgradto24bitimage,lumrange)
+def verticalbrightnessgrad2file(ExistingBMPfile:str,NewBMPfile:str,lumrange:list): 
+    apply24bitcoloradjfunc(ExistingBMPfile,NewBMPfile,verticalbrightnessgradto24bitimage,lumrange)
 
 @functimer
-def verticalbrightnessgradregion2file(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,lumrange): applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,verticalbrightnessgradto24bitregion,lumrange)
+def verticalbrightnessgradregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,lumrange:list): 
+    applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,verticalbrightnessgradto24bitregion,lumrange)

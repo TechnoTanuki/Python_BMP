@@ -341,3 +341,16 @@ def getdatalisttotal(dlist:list) -> float:
     for d in dlist: total+=d[0]
     return total
 
+def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
+    sa,tot=0,getdatalisttotal(dlist)#more date an be addded tolist
+    alist,big=[],-1 #but the value and coler must be present
+    for d in dlist:
+        p=d[0]/tot
+        ea=sa+p*360
+        p*=100
+        alist.append([sa,ea,d[1],d[0],p])
+        if p>=50: big=dlist.index(d)
+        sa=ea
+    return alist,big
+
+
