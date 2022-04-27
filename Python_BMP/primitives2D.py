@@ -17,7 +17,7 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif
+from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif
 
 def itercirclepart(r:int)->list:
     row,col,r_sqr=r,0,r*r
@@ -107,7 +107,8 @@ def iterline(p1:list,p2:list)->list:
 
 def iterparallelogram(p1:list,p2:list,p3:list)->list:
     p,q=lineseg(p1,p3),lineseg(p2,addvect(p3,subvect(p2,p1)))
-    for u,v in zip(p,q): yield [u,v]
+    for u,v in zip(p,q):
+        yield [u,v]
 
 def lineseg(p1,p2): return [p for p in iterline(p1,p2)]
 
@@ -134,7 +135,8 @@ def iterellipsepart(b:int,a:int):
 
 def iterellipse(x,y,b,a):
     for p in iterellipsepart(b,a):
-         for v in mirror1stquad(x,y,p): yield v
+         for v in mirror1stquad(x,y,p):
+             yield v
 
 def iterellipserot(x:int,y:int,b:int,a:int,degrot:float):
     rotvec,c=computerotvec(degrot),[x,y]
@@ -166,7 +168,7 @@ def beziercurvevert(pntlist:list,isclosed:bool,curveback:bool)->list:
 
 def iterbspline(pntlist:list,isclosed:bool,curveback:bool)->list:
     i,cnt,v=0,len(pntlist),pntlist[0]
-    w,klim,ilim,mx=v,cnt<<2,cnt+ 2 if isclosed else 0,cnt-1
+    w,klim,ilim,mx=v,cnt<<2,cnt+ iif(isclosed,2,0),cnt-1
     while i<ilim:
         for k in range(0,klim):
             u,v=k/klim,[0,0]
