@@ -75,8 +75,8 @@ def checklinks(func):
     return(callf)
 
 def intcircleparam(func):
-    """Decorator to test if 3 parameters in a function
-        that renders circle are ints 
+    """Decorator to test if 2nd,3rd,4th parameters 
+        in a function that renders circle are ints 
 
     Args:
         function(bmp:array,x,y,r....)
@@ -93,6 +93,18 @@ def intcircleparam(func):
     return(callf)
 
 def intcircleparam24bitonly(func):
+    """Decorator to test if 2nd,3rd,4th parameters 
+        in a function that renders circle are ints
+        and restrict  the use of  this function to
+        only 24 bit or RGB bitmaps (1st parameter)
+
+    Args:
+        function(bmp:array,x,y,r....)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         if args[0][bmpcolorbits]!=24 : 
             print(sysmsg['not24bit'])
@@ -104,6 +116,16 @@ def intcircleparam24bitonly(func):
     return(callf)
 
 def func24bitonly(func):
+    """Decorator to restrict the use of this function to
+        only 24 bit or RGB bitmaps (1st parameter)
+
+    Args:
+        function(bmp:array,...)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         if args[0][bmpcolorbits]!=24 : 
             print(sysmsg['not24bit'])
@@ -112,6 +134,19 @@ def func24bitonly(func):
     return(callf)
 
 def func24bitonlyandentirerectinboundary(func):
+    """Decorator to restrict the use of this function to
+        only 24 bit or RGB bitmaps  (1st parameter)  and
+        ensure that the 2nd, 3rd, 4th and 5th parameters
+        are int whose values when interpreted as x and y
+        coordinates lay within the RGB bitmap.
+
+    Args:
+        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
         if bmp[bmpcolorbits]!=24 : 
@@ -127,6 +162,19 @@ def func24bitonlyandentirerectinboundary(func):
     return(callf)
 
 def func24bitonlyandentirecircleinboundary(func):
+    """Decorator to restrict the use of this function to
+        only 24 bit or RGB bitmaps  (1st parameter)  and
+        ensure that the 2nd, 3rd, 4th parameters are int 
+        whose values when interpreted as  x,y and radius
+        of a circle lay within the RGB bitmap.
+
+    Args:
+        function(bmp:array,x:int,y:int,r:int...)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         bmp,x,y,r=args[0],args[1],args[2],args[3]
         if bmp[bmpcolorbits]!=24: 
@@ -142,6 +190,19 @@ def func24bitonlyandentirecircleinboundary(func):
     return(callf)
 
 def func8and24bitonlyandentirecircleinboundary(func):
+    """Decorator to restrict the use of this function to
+        only 24 bit or 8 bit bitmaps (1st parameter)  and
+        ensure that the 2nd, 3rd, 4th parameters are int 
+        whose values when interpreted as  x,y and radius
+        of a circle lay within the RGB bitmap.
+
+    Args:
+        function(bmp:array,x:int,y:int,r:int...)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         bmp,x,y,r=args[0],args[1],args[2],args[3]
         if bmp[bmpcolorbits] not in [24,8]: 
@@ -157,6 +218,16 @@ def func8and24bitonlyandentirecircleinboundary(func):
     return(callf)
 
 def func8and24bitonly(func):
+    """Decorator to restrict the use of this function to
+        only 24 bit or 8 bit bitmaps (1st parameter)
+
+    Args:
+        function(bmp:array,...)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         if args[0][bmpcolorbits] not in [24,8]: 
             print(sysmsg['not24or8bit'])
@@ -165,6 +236,19 @@ def func8and24bitonly(func):
     return(callf)
 
 def func8and24bitonlyandentirerectinboundary(func):
+    """Decorator to restrict the use of this function to
+        only 24 bit or 9 bit bitmaps (1st parameter) and
+        ensure that the 2nd, 3rd, 4th and 5th parameters
+        are int whose values when interpreted as x and y
+        coordinates lay within the RGB bitmap.
+
+    Args:
+        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
         if bmp[bmpcolorbits] not in [24,8]: 
@@ -427,7 +511,16 @@ def gethdrsize(bmp:array) -> int:
     """
     return readint(bmphdrsize,4,bmp)
 
-def getimageinfo(bmp:array): 
+def getimageinfo(bmp:array):
+    """Gets metadata in a windows bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        
+    Returns:
+        4 int values
+
+    """
     return readint(bmpy,4,bmp),bmp[bmpcolorbits],getxcharcount(bmp),readint(bmphdrsize,4,bmp)
 
 def getmaxcolors(bmp:array) -> int:
@@ -653,7 +746,19 @@ def isbmpcompressed(bmp:array) -> bool:
     """
     return computeuncompressedbmpfilesize(bmp)>getfilesize(bmp)
 
-def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int: 
+def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int:
+    """Get the offset in a byte array with 24 bit color data 
+        given x and y
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        mx: unsigned int value of location in x axis
+        my: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return (x*3)+((my-y-1)*computexbytes(mx,24))
 
 def computexbytes(x:int,bits:int) -> int:
