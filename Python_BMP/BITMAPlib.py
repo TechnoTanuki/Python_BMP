@@ -20,7 +20,7 @@
 from array import array
 from os.path import isfile
 from .proctimer import functimer
-from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata
+from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata,enumbits
 from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,entireellipseisinboundary,ellipsevert
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
@@ -3455,6 +3455,19 @@ def itergetcolorfromrectregion(bmp,x1,y1,x2,y2):
 
 @entirerectinboundary              
 def crop(bmp:array,x1:int,y1:int,x2:int,y2:int):
+    """Crops the image to a rectangular region
+        defined by (x1,y1) and (x2,y2)
+        in an in-memory bitmap
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x1,y2: point one that defines the rectangle
+        x2,y2: point two that defines the rectangle
+        
+    Returns:
+        unsigned byte array with bitmap layout
+
+    """
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     bits=bmp[bmpcolorbits]
     nbmp=newBMP(x2-x1+1,y2-y1+1,bits)
@@ -3621,12 +3634,6 @@ def resize1bitbufNtimesbigger(buf,n):
     for b in buf: retval+=packbitlisttobuf(resizebitpattenNtimesbigger(b,n))
     return array('B',retval)
 
-def enumbits(byteval):
-    bit=7
-    while bit>-1:
-        yield  ((byteval & (1<<bit))>>bit)
-        bit-=1
-
 def resizebitpattenNtimesbigger(byteval,n):
     retval=[]
     for bit in enumbits(byteval): retval+=[bit]*n
@@ -3664,21 +3671,29 @@ def resizeNtimesbigger(bmp,n):
             i+=1
     return nbmp
 
-def colorfilterto24bitregion(bmp,x1,y1,x2,y2,rgbfactors): applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applycolorfiltertoBGRbuf,rgbfactors)
+def colorfilterto24bitregion(bmp,x1,y1,x2,y2,rgbfactors): 
+    applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applycolorfiltertoBGRbuf,rgbfactors)
 
-def colorfilterto24bitimage(bmp,rgbfactors): colorfilterto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,rgbfactors)
+def colorfilterto24bitimage(bmp,rgbfactors): 
+    colorfilterto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,rgbfactors)
 
-def brightnesseadjto24bitregion(bmp,x1,y1,x2,y2,percentadj): applyfuncto24bitregion(bmp,x1,y1,x2,y2,applybrightnessadjtoBGRbuf,percentadj)
+def brightnesseadjto24bitregion(bmp,x1,y1,x2,y2,percentadj): 
+    applyfuncto24bitregion(bmp,x1,y1,x2,y2,applybrightnessadjtoBGRbuf,percentadj)
 
-def thresholdadjto24bitregion(bmp,x1,y1,x2,y2,lumrange): applyfuncto24bitregion(bmp,x1,y1,x2,y2,applythresholdadjtoBGRbuf,lumrange)
+def thresholdadjto24bitregion(bmp,x1,y1,x2,y2,lumrange): 
+    applyfuncto24bitregion(bmp,x1,y1,x2,y2,applythresholdadjtoBGRbuf,lumrange)
 
-def thresholdadjcircregion(bmp,x,y,r,lumrange):apply24bitfunctocircregion(bmp,x,y,r,applythresholdadjtoBGRbuf,lumrange)
+def thresholdadjcircregion(bmp,x,y,r,lumrange):
+    apply24bitfunctocircregion(bmp,x,y,r,applythresholdadjtoBGRbuf,lumrange)
 
-def brightnesseadjto24bitimage(bmp,percentadj): brightnesseadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,percentadj)
+def brightnesseadjto24bitimage(bmp,percentadj): 
+    brightnesseadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,percentadj)
 
-def thresholdadjto24bitimage(bmp,lumrange): thresholdadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
+def thresholdadjto24bitimage(bmp,lumrange): 
+    thresholdadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
 
-def verticalbrightnessgradto24bitimage(bmp,lumrange):verticalbrightnessgradto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
+def verticalbrightnessgradto24bitimage(bmp,lumrange):
+    verticalbrightnessgradto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
 
 # start non core functions
 def mandelbrot(bmp,x1,y1,x2,y2,mandelparam,RGBfactors,maxiter):

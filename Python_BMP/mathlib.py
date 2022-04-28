@@ -353,4 +353,10 @@ def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
         sa=ea
     return alist,big
 
+def enumbits(byteval):
+    bit=7
+    while bit>-1:
+        yield  ((byteval & (1<<bit))>>bit)
+        bit-=1
+
 
