@@ -321,7 +321,16 @@ def getcolorbits(bmp:array) -> int:
     """
     return bmp[bmpcolorbits]
 
-def getxcharcount(bmp:array) -> int: 
+def getxcharcount(bmp:array) -> int:
+    """Get the chars or bytes in row of a bitmap
+
+    Args:
+        bmp: An unsigned  byte array with bmp format
+        
+    Returns:
+        count of bytes or chars in a row (x dim)
+
+    """
     return computexbytes(readint(18,4,bmp),bmp[bmpcolorbits])
 
 def setfilesize(bmp:array,size:int):
@@ -695,7 +704,19 @@ def plotRGBxybit(bmp: array,x: int,y: int,rgb: list):
         else: 
             plotxybit(bmp,x,y,matchRGBtopal(rgb,getallRGBpal(bmp)))
 
-def plotxybit(bmp: array,x: int,y: int,c: int):
+def plotxybit(bmp:array,x:int,y:int,c:int):
+    """Sets pixel at x,y in a bitmap to color c
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int position in x axis
+        y: unsigned int position in y axis
+        c: unsigned int color
+
+    Returns:
+        byref modified byte array
+
+    """
     if isinBMPrectbnd(bmp,x,y):
         offset,bits=computeBMPoffsetwithheader(bmp,x,y),bmp[bmpcolorbits]
         if bits==24:
@@ -720,6 +741,17 @@ def plotxybit(bmp: array,x: int,y: int,c: int):
             bmp[offset]=b
 
 def getxybit(bmp:array,x:int,y:int) -> int:
+    """Gets color of pixel at x,y in a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int position in x axis
+        y: unsigned int position in y axis
+        
+    Returns:
+        unsigned int color value
+
+    """
     retval=0
     if isinBMPrectbnd(bmp,x,y):
         offset,bits=computeBMPoffsetwithheader(bmp,x,y),bmp[bmpcolorbits]
@@ -739,10 +771,31 @@ def getxybit(bmp:array,x:int,y:int) -> int:
         retval=-1
     return retval
 
-def getRGBxybitvec(bmp: array,v:list) -> int: 
+def getRGBxybitvec(bmp:array,v:list) -> int:
+    """Gets [R:byte,G:byte,B:byte] of pixel at (x,y) in a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        v: tuple or list of (x:int,y:int)
+        
+    Returns:
+        [R:byte,G:byte,B:byte]
+
+    """
     return getRGBxybit(bmp,v[0],v[1])
 
-def getRGBxybit(bmp: array,x: int,y: int):
+def getRGBxybit(bmp: array,x: int,y: int) -> list:
+    """Gets [R:byte,G:byte,B:byte] of pixel at x,y in a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int position in x axis
+        y: unsigned int position in y axis
+        
+    Returns:
+        [R:byte,G:byte,B:byte]
+
+    """
     retval=[]
     if isinBMPrectbnd(bmp,x,y):
         if getcolorbits(bmp)==24:
@@ -752,16 +805,29 @@ def getRGBxybit(bmp: array,x: int,y: int):
             retval=getRGBpal(bmp,getxybit(bmp,x,y))
     return retval
 
-def getxybitvec(bmp: array,v: list) -> int: 
+def getxybitvec(bmp:array,v:list) -> int:
+    """Gets color of pixel at (x,y) in a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        v: tuple of (x:int,y:int)
+        
+    Returns:
+        unsigned int color value
+
+    """
+
     return getxybit(bmp,v[0],v[1])
 
-def intplotvecxypoint(bmp:array,v:list,c:int) : plotxybit(bmp,v[0],v[1],c)
+def intplotvecxypoint(bmp:array,v:list,c:int): 
+    plotxybit(bmp,v[0],v[1],c)
 
 def plotvecxypoint(bmp: array,v : list,c: int):
     v=roundvect(v)
     plotxybit(bmp,v[0],v[1],c)
 
-def plotRGBxybitvec(bmp:array,v:list,rgb:list): plotRGBxybit(bmp,v[0],v[1],rgb)
+def plotRGBxybitvec(bmp:array,v:list,rgb:list): 
+    plotRGBxybit(bmp,v[0],v[1],rgb)
 
 def plotxypointlist(bmp:array,vlist: list,penradius: int,color: int):
     for v in vlist: 
@@ -1539,16 +1605,20 @@ def plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbu
         if c=='\n':
             y+=ystep
             x=ox
-        elif c=='\t': x+=xstep<<2
+        elif c=='\t': 
+            x+=xstep<<2
         else:
             fontrenderfunc(bmp,x,y,getcharfont(fontbuf,c),scale,pixspace,color)
             x+=xstep
 
-def plotstring(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf): plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumletters,plot8bitpattern)
+def plotstring(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf): 
+    plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumletters,plot8bitpattern)
 
-def plotstringupsidedown(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf): plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumletters,plot8bitpatternupsidedown)
+def plotstringupsidedown(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf): 
+    plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumletters,plot8bitpatternupsidedown)
 
-def plotreversestring(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf): plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumreverseletters,plotrotated8bitpattern)
+def plotreversestring(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf): 
+    plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumreverseletters,plotrotated8bitpattern)
 
 def plotstringsideway(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf):
     if spacebetweenchar==0:spacebetweenchar=1
@@ -1639,10 +1709,13 @@ def gradvert(bmp,vertlist,penradius,lumrange,RGBfactors):
 def xygrid(bmp,x1,y1,x2,y2,xysteps,color):
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     xstep,ystep=xysteps[0],xysteps[1]
-    for x in range(x1,x2,xstep): vertline(bmp,x,y1,y2,color)
-    for y in range(y1,y2,ystep): horiline(bmp,y,x1,x2,color)
+    for x in range(x1,x2,xstep): 
+        vertline(bmp,x,y1,y2,color)
+    for y in range(y1,y2,ystep): 
+        horiline(bmp,y,x1,x2,color)
 
-def xygridvec(bmp,u,v,steps,gridcolor): xygrid(bmp,u[0],u[1],v[0],v[1],steps,gridcolor)
+def xygridvec(bmp,u,v,steps,gridcolor): 
+    xygrid(bmp,u[0],u[1],v[0],v[1],steps,gridcolor)
 
 def numbervert(bmp,vlist,xadj,yadj,scale,valstart,valstep,pixspace,spacebetweenchar,color,fontbuf,suppresszero,suppresslastnum,rightjustify):
     plot,maxv=False,len(vlist)-1
@@ -1701,9 +1774,11 @@ def XYscatterplot(bmp,XYdata,XYcoordinfo,showLinearRegLine,reglinecolor):
             w=userdef2Dcooordsys2screenxy(xmax,ymax,XYcoordinfo)
         linevec(bmp,u,w,reglinecolor)
 
-def getneighborlist(v,mx,my,includecenter): return [u for u in itergetneighbors(v,mx,my,includecenter)]
+def getneighborlist(v,mx,my,includecenter): 
+    return [u for u in itergetneighbors(v,mx,my,includecenter)]
 
-def getneighborcolorlist(bmp,v): return [getRGBxybitvec(bmp,u) for u in itergetneighbors(v,getmaxx(bmp),getmaxy(bmp),True)]
+def getneighborcolorlist(bmp,v): 
+    return [getRGBxybitvec(bmp,u) for u in itergetneighbors(v,getmaxx(bmp),getmaxy(bmp),True)]
 
 def isimgedge(bmp,v,mx,my,similaritythreshold):
     retval,rgb=False,getRGBxybitvec(bmp,v)
@@ -1725,13 +1800,17 @@ def iterimageregionvertbyRGB(bmp,rgb,similaritythreshold):
     for v in iterimageRGB(bmp,sysmsg['edgedetect'],'*',sysmsg['done']):
         if distance(rgb,v[1])<similaritythreshold: yield v[0]
 
-def getimageregionbyRGB(bmp,rgb,similaritythreshold): return [v for v in iterimageregionvertbyRGB(bmp,rgb,similaritythreshold)]
+def getimageregionbyRGB(bmp,rgb,similaritythreshold): 
+    return [v for v in iterimageregionvertbyRGB(bmp,rgb,similaritythreshold)]
 
-def getimagedgevert(bmp,similaritythreshold): return [v for v in iterimagedgevert(bmp,similaritythreshold)]
+def getimagedgevert(bmp,similaritythreshold): 
+    return [v for v in iterimagedgevert(bmp,similaritythreshold)]
 
-def plotimgedges(bmp,similaritythreshold,edgeradius,edgecolor): plotxypointlist(bmp,getimagedgevert(bmp,similaritythreshold),edgeradius,edgecolor)
+def plotimgedges(bmp,similaritythreshold,edgeradius,edgecolor): 
+    plotxypointlist(bmp,getimagedgevert(bmp,similaritythreshold),edgeradius,edgecolor)
 
-def getBGRpalbuf(bmp): return bmp[bmppal:gethdrsize(bmp)]
+def getBGRpalbuf(bmp): 
+    return bmp[bmppal:gethdrsize(bmp)]
 
 def convertbufto24bit(buf,bgrpalbuf,bits):
     retval=[]
@@ -1750,7 +1829,7 @@ def convertbufto24bit(buf,bgrpalbuf,bits):
                 retval+=bgrpalbuf[s:s+3]
     return array('B',retval)
 
-def upgradeto24bitimage(bmp):
+def upgradeto24bitimage(bmp:array):
     bits=bmp[bmpcolorbits]
     if bits==24:
         print(sysmsg['is24bit'])
@@ -1834,7 +1913,7 @@ def iterimagecolor(bmp,waitmsg,rowprocind,finishmsg):
     if finishmsg!='': print(finishmsg)
 
 @entirerectinboundary
-def copyrect(bmp,x1,y1,x2,y2):
+def copyrect(bmp:array,x1:int,y1:int,x2:int,y2:int):
     retval=array('B',[bmp[bmpcolorbits]])
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     retval+=int2buf(2,x2-x1+2)
@@ -1844,7 +1923,7 @@ def copyrect(bmp,x1,y1,x2,y2):
         retval+=buf
     return retval
 
-def pasterect(bmp,buf,x1,y1):
+def pasterect(bmp:array,buf:array,x1:int,y1:int):
     if bmp[bmpcolorbits]!=buf[0]:print(sysmsg['bitsnotequal'])
     else:
         x2,y2,r=x1+buf2int(buf[1:3]),y1+buf2int(buf[3:5]),getxcharcount(bmp)
@@ -1859,7 +1938,7 @@ def pasterect(bmp,buf,x1,y1):
                 endoff+=br
         else: print(sysmsg['regionoutofbounds'])
 
-def convertselection2BMP(buf):
+def convertselection2BMP(buf:array):
     bmp,bits=-1,buf[0]
     if not isvalidcolorbit(bits): print (sysmsg['invalidbuf'])
     else:
@@ -1867,10 +1946,10 @@ def convertselection2BMP(buf):
         pasterect(bmp,buf,0,0)
     return bmp
 
-def invertimagebits(bmp):
+def invertimagebits(bmp:array):
     offset,maxoffset=gethdrsize(bmp),getfilesize(bmp)
     while offset<maxoffset:
-        bmp[offset]=255^bmp[offset]
+        bmp[offset]=~bmp[offset]
         offset+=1
 
 def erasealternatehorizontallines(bmp,int_eraseeverynline,int_eraseNthline,bytepat):
