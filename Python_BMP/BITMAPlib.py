@@ -679,10 +679,30 @@ def computepadbytes(x: int,bits: int) -> int:
     rem=xbytes&3
     return iif(rem>0,4-rem,0)
 
-def getdefaultBMPhdrsize(bits:int) -> int: 
+def getdefaultBMPhdrsize(bits:int) -> int:
+    """Gets default bitmap header size
+
+    Args:
+        bits: bit depth (1,4,8,24)
+
+    Returns:
+        int value of header size
+
+    """
     return bmpheadersize[bits]
 
-def computeBMPfilesize(x:int,y:int,bits:int) -> int: 
+def computeBMPfilesize(x:int,y:int,bits:int) -> int:
+    """computes bitmap file size
+
+    Args:
+        x: unsigned int value of x dimension
+        y: unsigned int value of y dimension
+        bits: bit depth (1,4,8,24)
+
+    Returns:
+        int value of file size
+
+    """
     return computexbytes(x,bits)*y+bmpheadersize[bits]
 
 def compute_bmpmetadata(x:int,y:int,bits:int) -> tuple: 
@@ -814,7 +834,18 @@ def setBMP2monochrome(bmp: array,RGBfactors:list) -> list:
     setbmppal(bmp,newpal)
     return newpal
 
-def newBMP(x:int,y:int,colorbits:int) -> array: 
+def newBMP(x:int,y:int,colorbits:int) -> array:
+    """Creates a new in memory bitmap
+
+    Args:
+        x: unsigned int value of x dimension
+        y: unsigned int value of y dimension
+        colorbits: bit depth (1,4,8,24)
+
+    Returns:
+        unsigned byte array with bitmap layout
+
+    """    
     return setbmp_properties(compute_bmpmetadata(x,y,colorbits))
 
 def CopyBMPxydim2newBMP(bmp: array,newbits: int) -> array: 
@@ -903,6 +934,18 @@ def applyfuncwithparam2vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int,func,funcp
         print(sysmsg['lineoutofbnd'])
 
 def plotRGBxybit(bmp: array,x: int,y: int,rgb: list):
+    """Sets pixel at x,y in a bitmap to [R,G,B]
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int position in x axis
+        y: unsigned int position in y axis
+        rgb: [R:byte,G:byte,B:byte] 
+
+    Returns:
+        byref modified byte array
+
+    """
     if isinBMPrectbnd(bmp,x,y):
         if bmp[bmpcolorbits]==24:
             offset=compute24bitBMPoffsetwithheader(bmp,x,y)
@@ -1023,17 +1066,49 @@ def getxybitvec(bmp:array,v:list) -> int:
         unsigned int color value
 
     """
-
     return getxybit(bmp,v[0],v[1])
 
-def intplotvecxypoint(bmp:array,v:list,c:int): 
+def intplotvecxypoint(bmp:array,v:list,c:int):
+    """Sets color of pixel at (x,y) in a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        v: tuple of (x:int,y:int)
+        c: unsigned int color value
+        
+    Returns:
+        byref modified byte array
+
+    """
     plotxybit(bmp,v[0],v[1],c)
 
 def plotvecxypoint(bmp: array,v : list,c: int):
+    """Sets color of pixel at (x,y) in a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        v: tuple of (x:float,y:float)
+        c: unsigned int color value
+        
+    Returns:
+        byref modified byte array
+
+    """
     v=roundvect(v)
     plotxybit(bmp,v[0],v[1],c)
 
-def plotRGBxybitvec(bmp:array,v:list,rgb:list): 
+def plotRGBxybitvec(bmp:array,v:list,rgb:list):
+    """Sets [R,G,B] of pixel at (x,y) in a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        v: [x:float,y:float]
+        rgb: [R:byte,G:byte,B:byte]
+        
+    Returns:
+        byref modified byte array
+
+    """
     plotRGBxybit(bmp,v[0],v[1],rgb)
 
 def plotxypointlist(bmp:array,vlist: list,penradius: int,color: int):
@@ -1053,6 +1128,18 @@ def swapcolors(bmp: array,p1: list,p2:list):
     intplotvecxypoint(bmp,p2,c)
 
 def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
+    """Creates a line in a bitmap 
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x1,y1: first point of the line
+        x2,y2: second point of the line
+        color: color of the line
+        
+    Returns:
+        byref modified byte array
+
+    """
     m=getmaxxy(bmp)
     mx,my=m[0]-1,m[1]-1
     x1,x2,y1,y2=setminmax(x1,0,mx),setminmax(x2,0,mx),setminmax(y1,0,my),setminmax(y2,0,my)
@@ -1092,6 +1179,18 @@ def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
                 bmp[s]=b
 
 def horiline(bmp:array,y:int,x1:int,x2:int,color:int):
+    """Creates a horizontal line in a bitmap 
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        y: constant y value of the line
+        x1,x2: line starts at x1 and ends at x2
+        color: color of the line
+        
+    Returns:
+        byref modified byte array
+
+    """
     bits,m=bmp[bmpcolorbits],getmaxxy(bmp)
     if isinrange(y,m[1],-1):
         x1,x2=swapif(x1,x2,x1>x2)
@@ -1125,6 +1224,18 @@ def horiline(bmp:array,y:int,x1:int,x2:int,color:int):
     else: print(sysmsg['lineoutofbnd'])
 
 def vertline(bmp:array,x:int,y1:int,y2:int,color:int):
+    """Creates a vertical line in a bitmap 
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: constant x value of the line
+        y1,y2: line starts at y1 and ends at y2
+        color: color of the line
+        
+    Returns:
+        byref modified byte array
+
+    """
     bits=bmp[bmpcolorbits]
     if bits not in [24,8]:
         y1,y2=swapif(y1,y2,y1>y2)
