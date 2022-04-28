@@ -1010,7 +1010,17 @@ def copyRGBpal(sourceBMP: array,destBMP: array):
     hdl=gethdrsize(sourceBMP)
     destBMP[bmppal:hdl]=sourceBMP[bmppal:hdl]
 
-def setbmp_properties(bmpmeta: list):
+def setbmp_properties(bmpmeta:list) -> array:
+    """Creates a new bitmap with the properties set by bmpmeta
+        to a new unsigned byte array
+
+    Args:
+        bmpmeta: list composed of 5 unsigned ints
+        
+    Returns:
+        An unsigned byte array with bmp format
+
+    """
     bmp,filesize,hdrsize,x,y,bits=array('B'),bmpmeta[0],bmpmeta[1],bmpmeta[2],bmpmeta[3],bmpmeta[4]
     bmp.frombytes(b'\x00'*(filesize))
     bmp[0:2]=bmpheaderid
@@ -1489,6 +1499,20 @@ def fillbackgroundwithgrad(bmp:array,lumrange:list,RGBfactors:list,direction:int
 @func8and24bitonlyandentirerectinboundary
 def filledgradrect(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list,
                    RGBfactors:list,direction:int):
+    """Creates a filled rectangle with a linear gradient in a bitmap 
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x1,y1     : point 1 that defines the rectangle
+        x2,y2     : point 2 that defines the rectangle
+        lumrange  : [byte,byte] that define range of gradient
+        RGBfactors: [r:float,g:float,b:float] each float 0 to 1
+        direction : 0 - vertical or 1 - horizontal gradient
+        
+    Returns:
+        byref modified byte array
+
+    """
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)   
     dx,dy=x2-x1+1,y2-y1+1
     base,lrange=RGBfactorstoBaseandRange(lumrange,RGBfactors)
@@ -1523,13 +1547,51 @@ def itercopyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
         yield BMPbitBLTget(bmp,offset,bufsize)
         offset+=r
     
-def intlinevec(bmp:array,u:list,v:list,color:int): 
+def intlinevec(bmp:array,u:list,v:list,color:int):
+    """Creates a line in a bitmap 
+
+    Args:
+        bmp   : An unsigned byte array with bmp format
+        u     : (x:int,y:int) point 1 that defines the line 
+        v     : (x:int,y:int) point 2 that defines the line 
+        color : color of the line
+        
+    Returns:
+        byref modified byte array
+
+    """
     line(bmp,u[0],u[1],v[0],v[1],color)
 
-def linevec(bmp:array,u:list,v:list,color:int): 
+def linevec(bmp:array,u:list,v:list,color:int):
+    """Creates a line in a bitmap 
+
+    Args:
+        bmp   : An unsigned byte array with bmp format
+        u     : (x:float,y:float) point 1 that defines the line 
+        v     : (x:float,y:float) point 2 that defines the line 
+        color : color of the line
+        
+    Returns:
+        byref modified byte array
+
+    """
     intlinevec(bmp,roundvect(u),roundvect(v),color)
 
 def filledparallelogram(bmp:array,p1:list,p2:list,p3:list,color:int):
+    """Creates a filled parallelogram in a bitmap 
+        defined by 3 points
+
+    Args:
+        bmp   : An unsigned byte array with bmp format
+        p1    : (x:float,y:float) point 1 
+        p2    : (x:float,y:float) point 2 
+        p3    : (x:float,y:float) point 3
+        color : color of filled parallelgram
+        
+    Returns:
+        byref modified byte array
+
+    """
     for v in iterparallelogram(p1,p2,p3): 
         linevec(bmp,v[0],v[1],color)
 
