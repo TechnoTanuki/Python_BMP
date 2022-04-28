@@ -40,28 +40,37 @@ bmpheadersize={1:62,4:118,8:1078,24:54}
         
 def checklink(func):
     def callf(*args,**kwargs):
-        if isfile(args[0]):  return(func(*args,**kwargs))
-        else: print(sysmsg['filenotexist'])
+        if isfile(args[0]):  
+            return(func(*args,**kwargs))
+        else: 
+            print(sysmsg['filenotexist'])
     return(callf)
 
 def checklinks(func):
     def callf(*args,**kwargs):
-        if isfile(args[0]) and isfile(args[1]):  return(func(*args,**kwargs))
-        else: print(sysmsg['filenotexist'])
+        if isfile(args[0]) and isfile(args[1]):  
+            return(func(*args,**kwargs))
+        else: 
+            print(sysmsg['filenotexist'])
     return(callf)
 
 def intcircleparam(func):
     def callf(*args,**kwargs):
-        if (type(args[1])==int and type(args[2])==int) and type(args[3])==int: return(func(*args,**kwargs))
-        else:  print(sysmsg['inttypereq'])
+        if (type(args[1])==int and type(args[2])==int) and type(args[3])==int: 
+            return(func(*args,**kwargs))
+        else:  
+            print(sysmsg['inttypereq'])
     return(callf)
 
 def intcircleparam24bitonly(func):
     def callf(*args,**kwargs):
-        if args[0][bmpcolorbits]!=24 : print(sysmsg['not24bit'])
+        if args[0][bmpcolorbits]!=24 : 
+            print(sysmsg['not24bit'])
         else:
-            if (type(args[1])==int and type(args[2])==int) and type(args[3])==int: return(func(*args,**kwargs))
-            else:  print(sysmsg['inttypereq'])
+            if (type(args[1])==int and type(args[2])==int) and type(args[3])==int: 
+                return(func(*args,**kwargs))
+            else:  
+                print(sysmsg['inttypereq'])
     return(callf)
 
 def func24bitonly(func):
@@ -75,20 +84,23 @@ def func24bitonly(func):
 def func24bitonlyandentirerectinboundary(func):
     def callf(*args,**kwargs):
         bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
-        if bmp[bmpcolorbits]!=24 : print(sysmsg['not24bit'])
+        if bmp[bmpcolorbits]!=24 : 
+            print(sysmsg['not24bit'])
         else:
             if (type(x1)==int and type(x2)==int) and (type(y1)==int and type(y2)==int):
                 if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):
                     print(sysmsg['regionoutofbounds'])
                 else: 
                     return(func(*args,**kwargs))
-            else:  print(sysmsg['inttypereq'])
+            else:  
+                print(sysmsg['inttypereq'])
     return(callf)
 
 def func24bitonlyandentirecircleinboundary(func):
     def callf(*args,**kwargs):
         bmp,x,y,r=args[0],args[1],args[2],args[3]
-        if bmp[bmpcolorbits]!=24 : print(sysmsg['not24bit'])
+        if bmp[bmpcolorbits]!=24: 
+            print(sysmsg['not24bit'])
         else:
             if (type(x)==int and type(y)==int) and type(r)==int:
                 if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): 
@@ -106,7 +118,8 @@ def func8and24bitonlyandentirecircleinboundary(func):
             print(sysmsg['not24or8bit'])
         else:
             if (type(x)==int and type(y)==int) and type(r)==int:
-                if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): return(func(*args,**kwargs))
+                if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): 
+                    return(func(*args,**kwargs))
                 else: 
                     print(sysmsg['regionoutofbounds'])
             else:  
@@ -399,51 +412,215 @@ def getmaxcolors(bmp:array) -> int:
     """
     return 1<<bmp[bmpcolorbits]
 
-def compute24bitBMPoffset(bmp: array,x:int,y:int) -> int: 
+def compute24bitBMPoffset(bmp:array,x:int,y:int) -> int:
+    """Get the offset in a byte array with RGB data given x and y
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))
 
-def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int: 
+def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+    """Get the offset in a byte array with RGB data given x and y
+        with bitmap header size also taken into account 
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))+54
 
-def compute8bitBMPoffset(bmp: array,x: int,y: int) -> int: 
+def compute8bitBMPoffset(bmp: array,x: int,y: int) -> int:
+    """Get the offset in a byte array with 8 bit color data 
+        given x and y
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))
 
-def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int: 
+def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+    """Get the offset in a byte array with 8 bit color data 
+        given x and y with adjustments made due to bitmap header 
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))+1078
 
-def compute4bitBMPoffset(bmp: array,x: int,y: int) -> int: 
+def compute4bitBMPoffset(bmp: array,x: int,y: int) -> int:
+    """Get the offset in a byte array with 4 bit color data 
+        given x and y
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))
 
-def compute1bitBMPoffset(bmp: array,x:int,y:int) ->int: 
+def compute1bitBMPoffset(bmp:array,x:int,y:int) -> int:
+    """Get the offset in a byte array with 1 bit color data 
+        given x and y
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))
 
-def compute4bitBMPoffsetwithheader(bmp: array,x: int,y: int) -> int: 
+def compute4bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+    """Get the offset in a byte array with 4 bit color data 
+        given x and y with adjustments made due to a header 
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))+118
 
-def compute1bitBMPoffsetwithheader(bmp: array,x:int,y:int) -> int: 
+def compute1bitBMPoffsetwithheader(bmp: array,x:int,y:int) -> int:
+    """Get the offset in a byte array with 1 bit color data 
+        given x and y with adjustments made due to a header 
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: unsigned int value of location in x axis
+        y: unsigned int value of location in y axis
+
+    Returns:
+        int value of offset to that data in byte array
+
+    """
     return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))+62
 
-def getcomputeBMPoffsetwithheaderfunc(bmp:array): 
+def getcomputeBMPoffsetwithheaderfunc(bmp:array):
+    """Returns the correct function to use in computing offsets with headers
+        given a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+
+    Returns:
+        function to compute offsets with headera
+
+    """
     return {24:compute24bitBMPoffsetwithheader,8:compute8bitBMPoffsetwithheader,4:compute4bitBMPoffsetwithheader,1:compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
 
-def getcomputeBMPoffsetfunc(bmp:array): 
+def getcomputeBMPoffsetfunc(bmp:array):
+    """Returns the correct function to use in computing offsets
+        given a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+
+    Returns:
+        function to compute offsets
+
+    """
     return {24:compute24bitBMPoffset,8:compute8bitBMPoffset,4:compute4bitBMPoffset,1:compute1bitBMPoffset}[bmp[bmpcolorbits]]
 
-def computeBMPoffset(bmp:array,x:int,y:int):
+def computeBMPoffset(bmp:array,x:int,y:int) -> int:
+    """Returns the offset given a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: location in x axis
+        x: location in y axis
+
+    Returns:
+        unsigned int offset to data in buffer
+
+    """
     f=getcomputeBMPoffsetfunc(bmp)
     return f(bmp,x,y)
 
-def computeBMPoffsetwithheader(bmp:array,x:int,y:int):
+def computeBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+    """Returns the offset given a bitmap with header considered
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+        x: location in x axis
+        x: location in y axis
+
+    Returns:
+        unsigned int offset to data in buffer
+
+    """
     f=getcomputeBMPoffsetwithheaderfunc(bmp)
     return f(bmp,x,y)
 
-def getmaxxyandbits(bmp:array) -> tuple: 
+def getmaxxyandbits(bmp:array) -> tuple:
+    """Returns bitmap metadata (x dimension,y dimension, bit depth)
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+
+    Returns:
+        (x dimension,y dimension, bit depth)
+
+    """
     return (((readint(bmpx,4,bmp),readint(bmpy,4,bmp)),bmp[bmpcolorbits]))
 
-def computeuncompressedbmpfilesize(bmp:array) -> int: 
+def computeuncompressedbmpfilesize(bmp:array) -> int:
+    """Returns the uncompressed file size of a bitmap
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+
+    Returns:
+        unsigned int file size in bytes
+
+    """
     return computeBMPfilesize(getmaxx(bmp),getmaxy(bmp),bmp[bmpcolorbits])
 
-def isbmpcompressed(bmp: array) -> bool: 
+def isbmpcompressed(bmp:array) -> bool:
+    """Test if bitmap is compressed
+
+    Args:
+        bmp: An unsigned byte array with bmp format
+
+    Returns:
+        True if compressed, False if uncompressed
+
+    """
     return computeuncompressedbmpfilesize(bmp)>getfilesize(bmp)
 
 def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int: 
