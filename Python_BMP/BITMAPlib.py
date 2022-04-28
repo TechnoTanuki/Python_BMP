@@ -39,6 +39,16 @@ bmpheaderid,bmpfilesize,bmphdrsize,bmpcolorbits,bmpx,bmpy,bmppal=array('B',[66,7
 bmpheadersize={1:62,4:118,8:1078,24:54}
         
 def checklink(func):
+    """Decorator to test if first parameter in a function
+        is a valid file
+
+    Args:
+        function
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         if isfile(args[0]):  
             return(func(*args,**kwargs))
@@ -47,6 +57,16 @@ def checklink(func):
     return(callf)
 
 def checklinks(func):
+    """Decorator to test if two parameters in a function
+        are a valid files
+
+    Args:
+        function
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         if isfile(args[0]) and isfile(args[1]):  
             return(func(*args,**kwargs))
@@ -55,6 +75,16 @@ def checklinks(func):
     return(callf)
 
 def intcircleparam(func):
+    """Decorator to test if 3 parameters in a function
+        that renders circle are ints 
+
+    Args:
+        function(bmp:array,x,y,r....)
+        
+    Returns:
+        caller function
+
+    """
     def callf(*args,**kwargs):
         if (type(args[1])==int and type(args[2])==int) and type(args[3])==int: 
             return(func(*args,**kwargs))
