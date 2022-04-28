@@ -1820,10 +1820,10 @@ def flipXYcircregion(bmp:array,x:int,y:int,r:int):
         by x,y with a radius r
         
     Args:
-        bmp    : An unsigned byte array with bmp format
-        x      : x coordinates of circular region
-        y      : y coordinates of circular region
-        r      : radius r 
+        bmp: An unsigned byte array with bmp format
+        x  : x coordinates of circular region
+        y  : y coordinates of circular region
+        r  : radius r 
         
     Returns:
         byref modified unsigned byte array bmp
@@ -1856,10 +1856,10 @@ def fliphoricircregion(bmp:array,x:int,y:int,r:int):
         with  a center x,y with  a radius r
         
     Args:
-        bmp    : An unsigned byte array with bmp format
-        x      : x coordinates of circular region
-        y      : y coordinates of circular region
-        r      : radius r 
+        bmp: An unsigned byte array with bmp format
+        x  : x coordinates of circular region
+        y  : y coordinates of circular region
+        r  : radius r 
         
     Returns:
         byref modified unsigned byte array bmp
@@ -1869,6 +1869,23 @@ def fliphoricircregion(bmp:array,x:int,y:int,r:int):
 
 @func8and24bitonlyandentirecircleinboundary
 def horitransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
+    """Applies a horizontal transform to circular region
+        with a center x,y with a radius r
+        
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x    : x coordinates of circular region
+        y    : y coordinates of circular region
+        r    : radius r 
+        trans: single letter transform code
+            'L' mirror left 
+            'R' mirror right
+            'F' flip
+        
+    Returns:
+        byref modified unsigned byte array bmp
+
+    """
     def flip24():  
         bmp[s1:e1-2:k],bmp[s2:e2-2:k],bmp[s1+1:e1-1:k],bmp[s2+1:e2-1:k],bmp[s1+2:e1:k],bmp[s2+2:e2:k]=bmp[s2:e2-2:k],bmp[s1:e1-2:k],bmp[s2+1:e2-1:k],bmp[s1+1:e1-1:k],bmp[s2+2:e2:k],bmp[s1+2:e1:k]
     def flip8(): 
@@ -1956,18 +1973,35 @@ def flipvertcircregion(bmp:array,x:int,y:int,r:int):
     verttransformincircregion(bmp,x,y,r,'F')
 
 @entirecircleinboundary
-def verttransformincircregion(bmp:array,x:int,y:int,r:int,transform:str):
+def verttransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
+    """Applies a vertical transform to circular region
+        with a center x,y with a radius r
+        
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x    : x coordinates of circular region
+        y    : y coordinates of circular region
+        r    : radius r 
+        trans: single letter transform code
+            'T' mirror top
+            'B' mirror bottom
+            'F' flip
+        
+    Returns:
+        byref modified unsigned byte array bmp
+
+    """
     def mirrorT(): 
         bmp[s2:e2]=bmp[s1:e1]
     def mirrorB(): 
         bmp[s1:e1]=bmp[s2:e2]
     def flip(): 
         bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
-    if transform=='T': 
+    if trans=='T': 
         f=mirrorT
-    elif transform=='B': 
+    elif trans=='B': 
         f=mirrorB
-    elif transform=='F': 
+    elif trans=='F': 
         f=flip
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     for v in itercirclepartlineedge(r):
@@ -2399,6 +2433,25 @@ def thickcircle(bmp:array,x:int,y:int,r:int,penradius:int,color:int):
         circle(bmp,p[0],p[1],penradius,color,True)
 
 def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list,RGBfactors:list):
+    """Draws a thick circle with gradient lumrange
+        defined by  centerpoint (x,y) and radius r 
+        using a pen with radius penradius 
+        and color defined by RGBfactors
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x         : x coordinates of circular region
+        y         : y coordinates of circular region
+        r         : radius of circular region
+        penradius : radius of round pen 
+        lumrange  : [byte,byte] range of the gradient
+        rgbfactors: [r,g,b]  all values in list are ufloat
+                    range of r, g and b are 0 min to 1 max
+        
+    Returns:
+        byref modified byte array
+
+    """
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
@@ -2407,6 +2460,23 @@ def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list
         thickcircle(bmp,x,y,radius,i,c)
 
 def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
+    """Draws a filled circle with gradient lumrange
+        defined by  centerpoint (x,y) and radius r 
+        and color defined by RGBfactors
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x         : x coordinates of circular region
+        y         : y coordinates of circular region
+        r         : radius of circular region
+        lumrange  : [byte,byte] range of the gradient
+        rgbfactors: [r,g,b]  all values in list are ufloat
+                    range of r, g and b are 0 min to 1 max
+        
+    Returns:
+        byref modified byte array
+
+    """
     lum1,lumrang=range2baseanddelta(lumrange)
     for r in range(radius-1,0,-1):
         c=colormix(int(lum1+(lumrang*r/radius)),RGBfactors)
