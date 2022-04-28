@@ -1112,6 +1112,17 @@ def saveBMP(filename:str,bmp:array):
         f.close()
 
 def BMPbitBLTput(bmp:array,offset:int,arraybuf:array):
+    """Sets offset in array to arraybuf
+
+    Args:
+        bmp     : An unsigned byte array with bmp format
+        offset  : unsigned int address in buffer
+        arraybuf: unsigned byte array
+
+    Returns:
+        byref modified unsigned byte array
+
+    """
     hdrsize,bufsize=gethdrsize(bmp),len(arraybuf)
     startoff=hdrsize+offset
     endoff=startoff+bufsize
@@ -1121,6 +1132,17 @@ def BMPbitBLTput(bmp:array,offset:int,arraybuf:array):
         print (sysmsg['invalidoffset'])
 
 def BMPbitBLTget(bmp:array,offset:int,bufsize:int) -> array:
+    """Gets [offset:offset+bufsize] to a new array 
+
+    Args:
+        bmp    : An unsigned byte array with bmp format
+        offset : unsigned int address in buffer
+        bufsize: unsigned int size of buffer
+
+    Returns:
+        unsigned byte array
+
+    """
     hdrsize,retval=gethdrsize(bmp),array('B',[])
     startoff=hdrsize+offset
     endoff=startoff+bufsize
@@ -1131,6 +1153,17 @@ def BMPbitBLTget(bmp:array,offset:int,bufsize:int) -> array:
     return retval
 
 def vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int) -> array:
+    """Gets vertical slice to a new array 
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x    : unsigned int x coordinate  of vertical slice
+        y1,y2: unsigned int y coordinates of vertical slice
+
+    Returns:
+        unsigned byte array
+
+    """
     bits=bmp[bmpcolorbits]
     r,m,c=getxcharcount(bmp),getmaxxy(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
     if isinrange(x,m[0],-1):
@@ -3242,7 +3275,7 @@ def mirrorright(bmp):
     """Mirrors the right half of an in-memory bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: An unsigned byte array with bmp format
         
     Returns:
         byref modified byte array
@@ -3250,19 +3283,71 @@ def mirrorright(bmp):
     """
     mirrorrightinregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
 
-def mirrortopleftinregion(bmp,x1,y1,x2,y2):
+def mirrortopleftinregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
+    """Mirrors the top left of a rectangular region
+        defined by (x1,y1) and (x2,y2)
+        in an in-memory bitmap
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x1,y2: point one that defines the rectangle
+        x2,y2: point two that defines the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     mirrorleftinregion(bmp,x1,y1,x2,y2)
     mirrortopinregion(bmp,x1,y1,x2,y2)
 
 def mirrortoprightinregion(bmp,x1,y1,x2,y2):
+    """Mirrors the top right of a rectangular region
+        defined by (x1,y1) and (x2,y2)
+        in an in-memory bitmap
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x1,y2: point one that defines the rectangle
+        x2,y2: point two that defines the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     mirrorrightinregion(bmp,x1,y1,x2,y2)
     mirrortopinregion(bmp,x1,y1,x2,y2)
 
 def mirrorbottomleftinregion(bmp,x1,y1,x2,y2):
+    """Mirrors the bottom left of a rectangular region
+        defined by (x1,y1) and (x2,y2)
+        in an in-memory bitmap
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x1,y2: point one that defines the rectangle
+        x2,y2: point two that defines the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     mirrorleftinregion(bmp,x1,y1,x2,y2)
     mirrorbottominregion(bmp,x1,y1,x2,y2)
 
 def mirrorbottomrightinregion(bmp,x1,y1,x2,y2):
+    """Mirrors the bottom right of a rectangular region
+        defined by (x1,y1) and (x2,y2)
+        in an in-memory bitmap
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x1,y2: point one that defines the rectangle
+        x2,y2: point two that defines the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     mirrorrightinregion(bmp,x1,y1,x2,y2)
     mirrorbottominregion(bmp,x1,y1,x2,y2)
 
@@ -3386,6 +3471,19 @@ def crop(bmp:array,x1:int,y1:int,x2:int,y2:int):
 
 @entirerectinboundary    
 def invertregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
+    """Inverts the bits in a rectangular region
+        defined by (x1,y1) and (x2,y2)
+        in an in-memory bitmap
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x1,y2: point one that defines the rectangle
+        x2,y2: point two that defines the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     bits=bmp[bmpcolorbits]
     if bits<8:
@@ -3400,10 +3498,23 @@ def invertregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
             offset+=r
 
 def monofilterto24bitregion(bmp,x1,y1,x2,y2):
+    """Applies a monochrome fliter to a rectangular region
+        defined by (x1,y1) and (x2,y2)
+        in an in-memory 24 bit bitmap
+
+    Args:
+        bmp  : An unsigned byte array with bmp format
+        x1,y2: point one that defines the rectangle
+        x2,y2: point two that defines the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     applybyrefnoparamfuncto24bitregion(bmp,x1,y1,x2,y2,applymonochromefiltertoBGRbuf)
 
 def monofilterto24bitimage(bmp:array):
-    """Applies a mono filter to an in-memory bitmap
+    """Applies a mono filter to a 24 bit in-memory bitmap
 
     Args:
         bmp: An unsigned  byte array with bmp format
@@ -3415,20 +3526,60 @@ def monofilterto24bitimage(bmp:array):
     monofilterto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
 
 def horizontalbrightnessgradto24bitimage(bmp:array,lumrange:list):
+    """Applies a horizontal brightness gradient 
+        to a 24 bit in-memory bitmap
+
+    Args:
+        bmp     : An unsigned byte array with bmp format
+        lumrange: [byte,byte] range of luminosity for gradient
+        
+    Returns:
+        byref modified byte array
+
+    """
     horizontalbrightnessgradto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
 
 def flip24bitbuf(buf):
+    """Flips a 24 bit buffer
+    
+    Args:
+        buf: An unsigned byte array
+        
+    Returns:
+        unsigned byte array
+
+    """
     buf.reverse()
     RGB2BGRbuf(buf)
     return array('B',buf)
 
 def unpack4bitbuf(buf):
+    """Unpacks a 4 bit buffer into a list
+    
+    Args:
+        buf: An unsigned byte array
+        
+    Returns:
+        list 
+
+    """
     retval=[]
     for b in buf:
         retval+=[b//16, b&0xf]
     return retval
 
-def unpack4bitbufresizeNtimesbigger(buf,n):
+def unpack4bitbufresizeNtimesbigger(buf:array,n:int):
+    """unpacks a 4 bit buffer into a list
+        and repeats 4 bit units to resize
+    
+    Args:
+        buf: An unsigned byte array
+        n  : unsigned int multiplier to resize buffer
+        
+    Returns:
+        list 
+
+    """
     retval=[]
     for b in buf:
         retval+=[b>>4]*n
@@ -3436,6 +3587,15 @@ def unpack4bitbufresizeNtimesbigger(buf,n):
     return retval
 
 def pack4bitbuf(unpackedbuf):
+    """Packs an unpacked 4 bit buffer into a list
+    
+    Args:
+        buf: An unsigned byte array
+        
+    Returns:
+        list 
+
+    """
     retval=[]
     j,i=len(unpackedbuf)-1,0
     while i<j:
@@ -3443,7 +3603,8 @@ def pack4bitbuf(unpackedbuf):
         i+=2
     return retval
 
-def resize4bitbufNtimesbigger(buf,n): return array('B',pack4bitbuf(unpack4bitbufresizeNtimesbigger(buf,n)))
+def resize4bitbufNtimesbigger(buf:array,n:int): 
+    return array('B',pack4bitbuf(unpack4bitbufresizeNtimesbigger(buf,n)))
 
 def resize8bitbufNtimesbigger(buf,n):
     retval=[]
