@@ -358,8 +358,7 @@ def setmaxy(bmp:array,ymax:int):
     Args:
         bmp: An unsigned  byte array with bmp format
         int: value of y dimension
-
-        
+     
     Returns:
         byref modified byte array with y dimension
 
@@ -441,7 +440,8 @@ def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
     """
     retval=True
     for v in xylist:
-        if isinBMPrectbnd(bmp,v[0],v[1])==False: break
+        if isinBMPrectbnd(bmp,v[0],v[1])==False: 
+            break
     return retval
 
 def setcolorbits(bmp:array,bits:int):
@@ -2877,7 +2877,7 @@ def beziercurve(bmp:array,pntlist:list,penradius:int,color:int):
     Args:
         bmp      : An unsigned byte array with bmp format
         pntlist  : [(x,y)...] list of control points
-        penradius: radius of pen
+        penradius: radius of pen in pixels
         color    : color of bezier curve
         
     Returns:
@@ -2887,7 +2887,22 @@ def beziercurve(bmp:array,pntlist:list,penradius:int,color:int):
     for v in iterbeziercurve(pntlist): 
         roundpen(bmp,v,penradius,color)
 
-def bspline(bmp:array,pntlist:list,penradius:int,color:int,isclosed:bool,curveback:bool):
+def bspline(bmp:array,pntlist:list,penradius:int,color:int,
+            isclosed:bool,curveback:bool):
+    """Draws a bspline of a given color and thickness
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        pntlist  : [(x,y)...] list of control points
+        penradius: radius of pen in pixels
+        color    : color of bezier curve
+        isclosed : True means the curve is closed 
+        curveback: True means extra computation
+                   for curve to loop back on itself                 
+    Returns:
+        byref modified byte array
+
+    """
     for v in iterbspline(pntlist,isclosed,curveback): 
         roundpen(bmp,v,penradius,color)
 
@@ -3019,6 +3034,18 @@ def plotpolyfill(bmp:array,vertlist:list,color:int):
     fillboundary(bmp,fillpolydata(polyboundary(vertlist),getmaxx(bmp),getmaxy(bmp)),color)
 
 def thickplotpoly(bmp:array,vertlist:list,penradius:int,color:int):
+    """Draws a polygon of a given color and thickness
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        vertlist  : [(x,y)...] list of vertices
+        penradius: radius of pen in pixels
+        color    : color of bezier curve
+
+    Returns:
+        byref modified byte array
+
+    """
     vertcount=len(vertlist)
     for i in range(0,vertcount):
         if i>0: 
@@ -3026,6 +3053,20 @@ def thickplotpoly(bmp:array,vertlist:list,penradius:int,color:int):
     thickroundline(bmp,vertlist[0],vertlist[vertcount-1],penradius,color)
 
 def gradthickplotpoly(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list):
+    """Draws a polygon of a given gradient and thickness
+
+    Args:
+        bmp        : An unsigned byte array with bmp format
+        vertlist   : [(x,y)...] list of vertices
+        penradius  : radius of pen in pixels
+        lumrange   : [byte,byte] range of the gradient
+        RGBfactors : [r:float,g:float,b:float]
+                     r,g,b all range in value from 0 to 1 
+
+    Returns:
+        byref modified byte array
+
+    """
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
@@ -3065,10 +3106,33 @@ def plotpoly(bmp:array,vertlist:list,color:int):
     linevec(bmp,vertlist[0],vertlist[len(vertlist)-1],color)
 
 def plotpolylist(bmp,polylist,color):
+    """Draws a list of polygons of a given color
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        polytlist: [[(x:uint,y:uint),...],...] list of polygons  
+        color    : color of the lines
+        
+    Returns:
+        byref modified byte array
+
+    """
     for poly in polylist: 
         plotpoly(bmp,poly,color)
 
-def plotpolyfillist(bmp,sides,RGBfactors):
+def plotpolyfillist(bmp:array,sides:list,RGBfactors:list):
+    """3D polygon rendering function
+
+    Args:
+        bmp        : An unsigned byte array with bmp format
+        sides      : list of polygons and normals
+        RGBfactors : [r:float,g:float,b:float]
+                     r,g,b all range in value from 0 to 1 
+        
+    Returns:
+        byref modified byte array
+
+    """
     polylist,normlist,i=sides[0],sides[1],0
     for poly in polylist:
         c=colormix(int(cosaffin(normlist[i],[0,0,1])*128)+127,RGBfactors)
