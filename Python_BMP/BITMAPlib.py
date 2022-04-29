@@ -2872,6 +2872,18 @@ def filledrect(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
             offset+=r
 
 def beziercurve(bmp:array,pntlist:list,penradius:int,color:int):
+    """Draws a bezier curve of a given color and thickness
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        pntlist  : [(x,y)...] list of control points
+        penradius: radius of pen
+        color    : color of bezier curve
+        
+    Returns:
+        byref modified byte array
+
+    """
     for v in iterbeziercurve(pntlist): 
         roundpen(bmp,v,penradius,color)
 
@@ -3535,6 +3547,18 @@ def mirrortopinregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
     
 @entirerectinboundary        
 def fliphorzontalpixelbased(bmp,x1,y1,x2,y2):
+    """Flips horizontal a rectangular region in a bitmap
+        using pixel addressing (slightly slow)
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x1,y1     : first point  to define rectangle
+        x2,y2     : second point to define rectangle
+
+    Returns:
+        byref modified unsigned byte array bmp
+
+    """
     m=x1+((x2-x1)>>1)
     while x1<=m:
         y=y1
@@ -3546,6 +3570,18 @@ def fliphorzontalpixelbased(bmp,x1,y1,x2,y2):
 
 @entirerectinboundary    
 def fliphverticalalpixelbased(bmp,x1,y1,x2,y2):
+    """Flips vertical a rectangular region in a bitmap
+        using pixel addressing (slightly slow)
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x1,y1     : first point  to define rectangle
+        x2,y2     : second point to define rectangle
+
+    Returns:
+        byref modified unsigned byte array bmp
+
+    """
     m=y1+((y2-y1)>>1)
     while y1<=m:
         x=x1
@@ -3555,10 +3591,10 @@ def fliphverticalalpixelbased(bmp,x1,y1,x2,y2):
         y1+=1
         y2-=1
 
-def flipnibbleinbuf(buf:array): 
+def flipnibbleinbuf(buf:array) -> array:
     return array('B',[(b>>4)+((b%16)<<4) for b in buf])
 
-def rotatebitsinbuf(buf:array): 
+def rotatebitsinbuf(buf:array) -> array: 
     return array('B',[ rotatebits(b) for b in buf])
 
 def flipbuf(buf,bits):
@@ -3807,7 +3843,7 @@ def mirrorbottomright(bmp):
     mirrorbottom(bmp)
 
 def fliphorizontal(bmp):
-    """Does a horizzontal flip of an in-memory bitmap
+    """Does a horizontal flip of an in-memory bitmap
 
     Args:
         bmp: An unsigned  byte array with bmp format
@@ -4310,7 +4346,8 @@ def piechart(bmp:array,x,y,r,dataandcolorlist):
     if big>-1:#for speed more computions in drawarc
             circle(bmp,x,y,r,alist[big][2],True)
     for a in alist:
-        if a[4]<50: drawarc(bmp,x,y,r,a[0],a[1],a[2],True,a[2],True)
+        if a[4]<50: 
+            drawarc(bmp,x,y,r,a[0],a[1],a[2],True,a[2],True)
     return [alist,big]
 
 # end non core functions
@@ -4389,6 +4426,17 @@ def resizesmaller24bitbuf(buflist):
 
 @func24bitonly
 def resizeNtimessmaller(bmp:array,n:int) -> array:
+    """Resize a whole image by n times smaller
+        in an in-memory 24 bit bitmap
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        n         : size of pixel blur
+        
+    Returns:
+        byref modified byte array
+
+    """
     bits,nbmp=bmp[bmpcolorbits],-1
     m=getmaxxy(bmp)
     nx,ny=m[0]//n,m[1]//n
@@ -4408,7 +4456,19 @@ def resizeNtimessmaller(bmp:array,n:int) -> array:
         i+=1
     return nbmp
 
-def pixelizenxn(bmp:array,n:int) -> array: 
+def pixelizenxn(bmp:array,n:int) -> array:
+    """Pixelize a whole image with 
+        n by n areas in which 
+        colors are averaged
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        n         : size of pixel blur
+        
+    Returns:
+        byref modified byte array
+
+    """
     return resizeNtimesbigger(resizeNtimessmaller(bmp,n),n)
 
 def adjustcolordicttopal(bmp:array,colordict:dict):
@@ -4419,7 +4479,18 @@ def adjustcolordicttopal(bmp:array,colordict:dict):
 def gammaadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,gamma:float): 
     applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applygammaBGRbuf,gamma)
 
-def gammaadjto24bitimage(bmp:array,gamma:float): 
+def gammaadjto24bitimage(bmp:array,gamma:float):
+    """Applies a gamma correction to a whole image
+        in an in-memory 24 bit bitmap
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        gamma     : gamma correction
+        
+    Returns:
+        byref modified byte array
+
+    """
     gammaadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,gamma)
 
 @entirerectinboundary
@@ -4436,7 +4507,17 @@ def compareimglines(bmp:array,x1:int,y1:int,x2:int,y2:int,func):
 def outlineregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
     compareimglines(bmp,x1,y1,x2,y2,xorvect)
 
-def outline(bmp:array): 
+def outline(bmp:array):
+    """Applies an outline filter to a whole image
+        in an in-memory 24 bit bitmap
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        
+    Returns:
+        byref modified byte array
+
+    """
     outlineregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
 
 @intcircleparam
