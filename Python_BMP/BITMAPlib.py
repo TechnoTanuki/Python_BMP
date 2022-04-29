@@ -2282,6 +2282,21 @@ def vertbrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
 
 @func24bitonlyandentirecircleinboundary     
 def horibrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
+    """Applies a horizontal brightness gradient adjustment with lumrange
+        to a circular region with a center x,y with a radius r
+        
+    Args:
+        bmp     : An unsigned byte array with bmp format
+        x       : x coordinates of circular region
+        y       : y coordinates of circular region
+        r       : radius r 
+        lumrange: [byte,byte] defines range of luminosity
+        
+    Returns:
+        byref modified unsigned byte array bmp
+
+    """
+
     f=applybrightnessadjtoBGRbuf
     l,dl,b=lumrange[0],(lumrange[1]-lumrange[0])/(2*r),x-r
     for v in itercirclepartvertlineedge(r):
@@ -2625,11 +2640,53 @@ def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
 
 def thickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
                     penradius:int,color:int):
+    """Draws an thick ellipse 
+        with a defined pen radius
+        defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
+        and rotated by degrot degrees
+
+        
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x,y       : center of ellipse
+        b,a       : major amd minor axis
+        degrot    : rotation of the ellipse in degrees
+        penradius : defines the thickness of the pen
+        color     : color of the ellipse
+
+    Returns:
+        byref modified byte array
+
+    """
     for p in iterellipserot(x,y,b,a,degrot): 
         circle(bmp,p[0],p[1],penradius,color,True)
 
 def gradthickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
                         penradius:int,lumrange:list,RGBfactors:list):
+    """Draws an thick ellipse 
+        with a defined pen radius
+        defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
+        and rotated by degrot degrees
+        with a gradient fill 
+
+        
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x,y       : center of ellipse
+        b,a       : major amd minor axis
+        degrot    : rotation of the ellipse in degrees
+        penradius : defines the thickness of the pen
+        lumrange  : [byte:byte] 
+                    controls the range of the gradient
+        rgbfactors: [r,g,b]  all values in list are ufloat
+                    range of r, g and b are 0 min to 1 max
+
+    Returns:
+        byref modified byte array
+
+    """                        
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
@@ -2637,6 +2694,19 @@ def gradthickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
         thickellipserot(bmp,x,y,b,a,degrot,i,c)
 
 def filledellipse(bmp:array,x:int,y:int,b:int,a:int,color:int):
+    """Draws an filled ellipse defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
+        
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x,y       : center of ellipse
+        b,a       : major amd minor axis
+        color     : color of the ellipse
+
+    Returns:
+        byref modified byte array
+
+    """
     bits=bmp[bmpcolorbits]
     if bits<8:
         for v in iterellipsepart(b,a):
@@ -2676,6 +2746,21 @@ def filledellipse(bmp:array,x:int,y:int,b:int,a:int,color:int):
                     bmp[s:s+dx]=colorbuf
 
 def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
+    """Draws an ellipse defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
+        
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x,y       : center of ellipse
+        b,a       : major amd minor axis
+        color     : color of the ellipse
+        isfilled  : True -> filled ellipse
+                    False -> one pixel thick ellipse
+
+    Returns:
+        byref modified byte array
+
+    """
     if isfilled: 
         filledellipse(bmp,x,y,b,a,color)
     else:
@@ -2707,6 +2792,23 @@ def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
                 plotxybit(bmp,p[0],p[1],color)
 
 def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list):
+    """Draws an ellipical gradient
+        defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
+        
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x,y       : center of ellipse
+        b,a       : major amd minor axis
+        lumrange  : [byte:byte] 
+                    controls the range of the gradient
+        rgbfactors: [r,g,b]  all values in list are ufloat
+                    range of r, g and b are 0 min to 1 max
+
+    Returns:
+        byref modified byte array
+
+    """     
     lum1,lumrang=range2baseanddelta(lumrange)
     r=iif(a>b,a,b)
     a-=r
