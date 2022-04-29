@@ -3988,11 +3988,13 @@ def colorfilterto24bitimage(bmp,rgbfactors):
     colorfilterto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,rgbfactors)
 
 def brightnesseadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,percentadj:float):
-    """Applies a brightness adjustment to a whole image
+    """Applies a brightness adjustment to a rectangular region
         in an in-memory 24 bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
+        x1,y2     : point one that defines the rectangle
+        x2,y2     : point two that defines the rectangle
         percentadj: float percentange adjustment
                     can be positive or negative
         
@@ -4008,7 +4010,19 @@ def thresholdadjto24bitregion(bmp,x1,y1,x2,y2,lumrange):
 def thresholdadjcircregion(bmp,x,y,r,lumrange):
     apply24bitfunctocircregion(bmp,x,y,r,applythresholdadjtoBGRbuf,lumrange)
 
-def brightnesseadjto24bitimage(bmp,percentadj): 
+def brightnesseadjto24bitimage(bmp,percentadj):
+    """Applies a brightness adjustment to a whole image
+        in an in-memory 24 bit bitmap
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        percentadj: float percentange adjustment
+                    can be positive or negative
+        
+    Returns:
+        byref modified byte array
+
+    """
     brightnesseadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,percentadj)
 
 def thresholdadjto24bitimage(bmp,lumrange): 
@@ -4471,51 +4485,172 @@ def imgregionbyRGB2file(ExistingBMPfile:str,NewBMPfile:str,edgeradius:int,edgeco
         print(sysmsg['savemod']%(ExistingBMPfile,NewBMPfile))
 
 @functimer
-def invertbits2file(ExistingBMPfile:str,NewBMPfile:str): 
+def invertbits2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Inverts bits in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,invertimagebits)
 
 @functimer
-def flipvertical2file(ExistingBMPfile:str,NewBMPfile:str): 
+def flipvertical2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Flips a bitmap file vertically
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,flipvertical)
 
 @functimer
-def mirrortop2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrortop2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the top half of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortop)
 
 @functimer
-def mirrortopleft2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrortopleft2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the top left of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortopleft)
 
 @functimer
-def mirrortopright2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrortopright2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the top right of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrortopright)
 
 @functimer
-def mirrorbottomleft2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrorbottomleft2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the bottom left of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottomleft)
 
 @functimer
-def mirrorbottomright2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrorbottomright2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the bottom right of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottomright)
 
 @functimer
-def mirrorbottom2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrorbottom2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the bottom half of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorbottom)
 
 @functimer
-def mirrorleft2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrorleft2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the left half of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorleft)
 
 @functimer
-def mirrorright2file(ExistingBMPfile:str,NewBMPfile:str): 
+def mirrorright2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Mirrors the right half of a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,mirrorright)
 
 @functimer
-def fliphorizontal2file(ExistingBMPfile:str,NewBMPfile:str): 
+def fliphorizontal2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Flips horizontally the image in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,fliphorizontal)
 
 @functimer
-def flipXY2file(ExistingBMPfile:str,NewBMPfile:str): 
+def flipXY2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Flips the x and y coordinates to rotate by 90 degrees
+        the image in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applyfuncandsave(ExistingBMPfile,NewBMPfile,flipXY)
 
 @functimer
@@ -4585,43 +4720,156 @@ def adjustthresholdinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:in
     applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,thresholdadjto24bitregion,lumrange)
 
 @functimer
-def colorfilter2file(ExistingBMPfile:str,NewBMPfile:str,rgbfactors:list): 
+def colorfilter2file(ExistingBMPfile:str,NewBMPfile:str,rgbfactors:list):
+    """Applies acolor filter rgbfactors to a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        rgbfactors     : (r:float,g:float,b:float)
+                        r,g,b values range from 0 to 1
+        
+    Returns:
+        new bitmap file
+
+    """
     applycoloradjfunc(ExistingBMPfile,NewBMPfile,colorfilter,rgbfactors)
 
 @functimer
-def monochrome2file(ExistingBMPfile:str,NewBMPfile:str): 
+def monochrome2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Applies a monochrome filter to a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applynoparamcoloradjfunc(ExistingBMPfile,NewBMPfile,monochrome)
 
 @functimer
-def colorfilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,rgbfactors:list):  
+def colorfilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,rgbfactors:list):
+    """Applies color filter rgbfactors to rectangular region a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x1,y1          : 1st point to define rectagular region
+        x2,y2          : 2nd point to define rectagular region
+        rgbfactors     : (r:float,g:float,b:float)
+                        r,g,b values range from 0 to 1
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,colorfilterto24bitregion,rgbfactors)
 
 @functimer
-def monofilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+def monofilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int):
+    """Applies a monochrome filter to rectangular region a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x1,y1          : 1st point to define rectagular region
+        x2,y2          : 2nd point to define rectagular region
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyref24bitfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,monofilterto24bitregion)
 
 @functimer
-def pixelizenxntofile(ExistingBMPfile:str,NewBMPfile:str,n:int): 
+def pixelizenxntofile(ExistingBMPfile:str,NewBMPfile:str,n:int):
+    """Pixellate a bitmap file with n x n pixel areas
+        in which colors are averaged out
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,pixelizenxn,n)
 
 @functimer
-def resizeNtimessmaller2file(ExistingBMPfile:str,NewBMPfile:str,n:int): 
+def resizeNtimessmaller2file(ExistingBMPfile:str,NewBMPfile:str,n:int):
+    """Resize a bitmap file n times smaller
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,resizeNtimessmaller,n)
 
 @functimer
-def resizeNtimesbigger2file(ExistingBMPfile:str,NewBMPfile:str,n:int): 
+def resizeNtimesbigger2file(ExistingBMPfile:str,NewBMPfile:str,n:int):
+    """Resize a bitmap file n times bigger
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     apply24bitfuncwithparamandsave(ExistingBMPfile,NewBMPfile,resizeNtimesbigger,n)
 
 @functimer
 def upgradeto24bitimage2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Upgrades a bitmap file (1,4,8 bits color depth) to 24 bits
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applyfuncandsave(ExistingBMPfile,NewBMPfile,upgradeto24bitimage)
 
 @functimer
-def gammaadj2file(ExistingBMPfile:str,NewBMPfile:str,gamma:float): 
+def gammaadj2file(ExistingBMPfile:str,NewBMPfile:str,gamma:float):
+    """Applies a gamma correction to  a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        gamma          : gamma correction
+        
+    Returns:
+        new bitmap file
+
+    """
     applycoloradjfunc(ExistingBMPfile,NewBMPfile,gammacorrect,gamma)
 
 @functimer
-def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,gamma:float):  
+def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,gamma:float):
+    """Applies a gamma correction to rectangular region a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x1,y1          : 1st point to define rectagular region
+        x2,y2          : 2nd point to define rectagular region
+        gamma          : gamma correction
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,gammaadjto24bitregion,gamma)
 
 @functimer
@@ -4629,7 +4877,20 @@ def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int
     applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,eraseeverynthhorilineinregion,n)
 
 @functimer
-def rectangle2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,color:int): 
+def rectangle2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,color:int):
+    """Draws a rectangle to a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x1,y1          : 1st point to define rectangle
+        x2,y2          : 2nd point to define rectangle
+        color          : color of rectangle
+
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,rectangle,color)
 
 @functimer
@@ -4642,18 +4903,60 @@ def eraseeverynthhoriline2file(ExistingBMPfile:str,NewBMPfile:str,n:int):
 
 @functimer
 def outlineregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int): 
+    """Applies an outline filter to rectangular region a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        x1,y1          : 1st point to define rectagular region
+        x2,y2          : 2nd point to define rectagular region
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2, outlineregion)
 
 @functimer
-def outline2file(ExistingBMPfile:str,NewBMPfile:str): 
+def outline2file(ExistingBMPfile:str,NewBMPfile:str):
+    """Applies an outline filter to a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncandsave(ExistingBMPfile,NewBMPfile,outline)
 
 @functimer
-def imagediff(inputfile1:str,inputfile2:str,diff_file:str): 
+def imagediff(inputfile1:str,inputfile2:str,diff_file:str):
+    """Compares 2 files and saves diff to a bitmap file
+
+    Args:
+        inputfile1,inputfile2: Whole paths to existing files
+        diff_file            : New file to store diff
+        
+    Returns:
+        new bitmap file
+
+    """
     imagecomp(inputfile1,inputfile2,diff_file,xorvect)
 
 @functimer
-def showsimilarparts(inputfile1:str,inputfile2:str,diff_file:str): 
+def showsimilarparts(inputfile1:str,inputfile2:str,diff_file:str):
+    """Compares 2 files and saves similar parts to a bitmap file
+
+    Args:
+        inputfile1,inputfile2: Whole paths to existing files
+        diff_file            : New file to store similar parts
+        
+    Returns:
+        new bitmap file
+
+    """
     imagecomp(inputfile1,inputfile2,diff_file,andvect)
 
 @functimer
