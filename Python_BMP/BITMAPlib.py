@@ -1064,7 +1064,7 @@ def RGBpalbrightnessadjust(bmp:array,percentadj:float)-> list:
         a destination unsigned byte array
 
     Args:
-        BMP       : An unsigned byte array with  bmp format
+        bmp       : An unsigned byte array with  bmp format
         percentadj: signed float brightness adjustment in %
         
     Returns:
@@ -1074,6 +1074,18 @@ def RGBpalbrightnessadjust(bmp:array,percentadj:float)-> list:
     return [brightnessadjust(c,percentadj) for c in getallRGBpal(bmp)]
 
 def setBMP2monochrome(bmp:array,RGBfactors:list) -> list:
+    """Sets a bitmap to use a monochrome palette
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        RGBfactors: (r:float,g:float,b:float)
+                    all values range from 0 to 1
+        
+    Returns:
+        list of modified RGB values
+        byref modified byte array
+
+    """    
     newpal=monochromepal(getcolorbits(bmp),RGBfactors)
     setbmppal(bmp,newpal)
     return newpal
@@ -1089,10 +1101,21 @@ def newBMP(x:int,y:int,colorbits:int) -> array:
     Returns:
         unsigned byte array with bitmap layout
 
-    """    
+    """
     return setbmp_properties(compute_bmpmetadata(x,y,colorbits))
 
-def CopyBMPxydim2newBMP(bmp: array,newbits: int) -> array: 
+def CopyBMPxydim2newBMP(bmp:array,newbits:int) -> array:
+    """Creates a new bitmap with 
+        the same dimensions as bmp
+
+    Args:
+        bmp    : An unsigned byte array with bmp format
+        newbits: bit depth (1,4,8,24)
+
+    Returns:
+        unsigned byte array with bitmap layout
+
+    """
     return newBMP(getmaxx(bmp),getmaxy(bmp),newbits)
 
 @checklink
@@ -1359,7 +1382,7 @@ def intplotvecxypoint(bmp:array,v:list,c:int):
     """
     plotxybit(bmp,v[0],v[1],c)
 
-def plotvecxypoint(bmp: array,v : list,c: int):
+def plotvecxypoint(bmp:array,v:list,c:int):
     """Sets color of pixel at (x,y) in a bitmap
 
     Args:
@@ -1448,7 +1471,8 @@ def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
             for p in iterline((x1,y1),(x2,y2)): 
                 bmp[c(bmp,p[0],p[1])]=color
         elif bits==4:
-            if color>15: color&=0xf
+            if color>15: 
+                color&=0xf
             for p in iterline((x1,y1),(x2,y2)):
                 s=c(bmp,p[0],p[1])
                 if p[0]&1==1: 
@@ -1456,7 +1480,8 @@ def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
                 else: 
                     bmp[s]=(color<<4)+(bmp[s]&0xf)
         elif bits==1:
-            if color>1: color&=0x1
+            if color>1: 
+                color&=0x1
             for p in iterline((x1,y1),(x2,y2)):
                 s=c(bmp,p[0],p[1])
                 b,mask=bmp[s],1<<(7-(p[0]%8))
