@@ -584,7 +584,7 @@ def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
     """
     return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))+54
 
-def compute8bitBMPoffset(bmp: array,x: int,y: int) -> int:
+def compute8bitBMPoffset(bmp:array,x:int,y:int) -> int:
     """Get the offset in a byte array with 8 bit color data 
         given x and y
 
@@ -614,7 +614,7 @@ def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
     """
     return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))+1078
 
-def compute4bitBMPoffset(bmp: array,x: int,y: int) -> int:
+def compute4bitBMPoffset(bmp:array,x:int,y:int) -> int:
     """Get the offset in a byte array with 4 bit color data 
         given x and y
 
@@ -1412,10 +1412,36 @@ def plotRGBxybitvec(bmp:array,v:list,rgb:list):
     plotRGBxybit(bmp,v[0],v[1],rgb)
 
 def plotxypointlist(bmp:array,vlist:list,penradius:int,color:int):
+    """Draws a circle or a point depending on penradius
+        of a given color for all points in a point list
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        vlist    : [(x:uint,y:uint) ,...] list of points
+        penradius: radius of the pen in pixels
+        color    : color of the pen
+        
+    Returns:
+        byref modified byte array
+
+    """
     for v in vlist: 
         roundpen(bmp,v,penradius,color)
 
 def roundpen(bmp:array,point:list,penradius:int,color:int):
+    """Draws a circle or a point depending on penradius
+        of a given color
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        point    : (x:uint,y:uint) 
+        penradius: radius of the pen in pixels
+        color    : color of the pen
+        
+    Returns:
+        byref modified byte array
+
+    """
     x,y=point[0],point[1]
     if penradius<=1: 
         plotxybit(bmp,x,y,color)
@@ -1534,7 +1560,8 @@ def horiline(bmp:array,y:int,x1:int,x2:int,color:int):
             x2+=1
             for x in range(x1,x2): 
                 plotxybit(bmp,x,y,color)
-    else: print(sysmsg['lineoutofbnd'])
+    else: 
+        print(sysmsg['lineoutofbnd'])
 
 def vertline(bmp:array,x:int,y1:int,y2:int,color:int):
     """Creates a vertical line in a bitmap 
@@ -2698,11 +2725,35 @@ def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
     if isfilled: 
         fillboundary(bmp,fillpolydata(av,getmaxx(bmp),getmaxy(bmp)),fillcolor)
 
-def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int): 
+def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
+    """Draws a rectangle of a given color
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        x1,y1    : 1st point to define the rectangle
+        x2,y2    : 2nd point to define the rectangle
+        color    : color of the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     plotpoly(bmp,recvert(x1,y1,x2,y2),color)
 
 @entirerectinboundary    
 def filledrect(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
+    """Draws a filled rectangle of a given color
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        x1,y1    : 1st point to define the rectangle
+        x2,y2    : 2nd point to define the rectangle
+        color    : color of the rectangle
+        
+    Returns:
+        byref modified byte array
+
+    """
     bits=bmp[bmpcolorbits]
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     if bits not in [8,24]:
@@ -2733,8 +2784,10 @@ def plotrotated8bitpattern(bmp:array,x,y,bitpattern,scale,pixspace,color):
         bits=rotatebits(bits)
         while mask>0:
             if (mask & bits)>0:
-                if scale==1 or inc<=0: plotxybit(bmp,x,y,color)
-                else: filledrect(bmp,x,y,x+inc,y+inc,color)
+                if scale==1 or inc<=0: 
+                    plotxybit(bmp,x,y,color)
+                else: 
+                    filledrect(bmp,x,y,x+inc,y+inc,color)
             mask=mask>>1
             x+=scale
         y+=scale
@@ -2746,8 +2799,10 @@ def plot8bitpattern(bmp,x,y,bitpattern,scale,pixspace,color):
         ox,mask=x,128
         while mask>0:
             if (mask & bits)>0:
-                if scale==1 or inc<=0: plotxybit(bmp,x,y,color)
-                else: filledrect(bmp,x,y,x+inc,y+inc,color)
+                if scale==1 or inc<=0: 
+                    plotxybit(bmp,x,y,color)
+                else: 
+                    filledrect(bmp,x,y,x+inc,y+inc,color)
             mask=mask>>1
             x+=scale
         y+=scale
@@ -2761,8 +2816,10 @@ def plot8bitpatternupsidedown(bmp,x,y,bitpattern,scale,pixspace,color):
         ox,mask=x,128
         while mask>0:
             if (mask & bits)>0:
-                if scale==1 or inc<=0: plotxybit(bmp,x,y,color)
-                else: filledrect(bmp,x,y,x+inc,y+inc,color)
+                if scale==1 or inc<=0: 
+                    plotxybit(bmp,x,y,color)
+                else: 
+                    filledrect(bmp,x,y,x+inc,y+inc,color)
             mask=mask>>1
             x+=scale
         y+=scale
@@ -2775,8 +2832,10 @@ def plot8bitpatternsideway(bmp,x,y,bitpattern,scale,pixspace,color):
         oy,mask=y,128
         while mask>0:
             if (mask & bits)>0:
-                if scale==1 or inc<=0: plotxybit(bmp,x,y,color)
-                else: filledrect(bmp,x,y,x+inc,y+inc,color)
+                if scale==1 or inc<=0: 
+                    plotxybit(bmp,x,y,color)
+                else: 
+                    filledrect(bmp,x,y,x+inc,y+inc,color)
             mask=mask>>1
             y-=scale
         x+=scale
@@ -2835,7 +2894,8 @@ def plotstringvertical(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fo
 def fillboundary(bmp:array,bndfilldic:dict,color:int):
     for y in bndfilldic:
         yint=len(bndfilldic[y])
-        if yint==1: plotxybit(bmp,bndfilldic[y][0],y,color)
+        if yint==1: 
+            plotxybit(bmp,bndfilldic[y][0],y,color)
         else:
             for j in range(1,yint):
                 x1,x2=bndfilldic[y][j-1],bndfilldic[y][j]
@@ -2847,33 +2907,59 @@ def plotpolyfill(bmp:array,vertlist:list,color:int):
 def thickplotpoly(bmp:array,vertlist:list,penradius:int,color:int):
     vertcount=len(vertlist)
     for i in range(0,vertcount):
-        if i>0: thickroundline(bmp,vertlist[i-1],vertlist[i],penradius,color)
+        if i>0: 
+            thickroundline(bmp,vertlist[i-1],vertlist[i],penradius,color)
     thickroundline(bmp,vertlist[0],vertlist[vertcount-1],penradius,color)
 
 def gradthickplotpoly(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list):
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+        if bmp[bmpcolorbits]!=24:
+            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
         thickplotpoly(bmp,vertlist,i,c)
         
 def plotlines(bmp:array,vertlist:list,color:int):
+    """Draws connected lines defined by a list of vertices
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        vertlist : [(x:uint,y:uint),...] list of vertices
+        color    : color of the lines
+        
+    Returns:
+        byref modified byte array
+
+    """
     vertcount=len(vertlist)
     for i in range(0,vertcount):
         if i>0: linevec(bmp,vertlist[i-1],vertlist[i],color)
 
 def plotpoly(bmp:array,vertlist:list,color:int):
+    """Draws a polygon defined by a list of vertices
+
+    Args:
+        bmp      : An unsigned byte array with bmp format
+        vertlist : [(x:uint,y:uint),...] list of vertices
+        color    : color of the lines
+        
+    Returns:
+        byref modified byte array
+
+    """
     plotlines(bmp,vertlist,color)
     linevec(bmp,vertlist[0],vertlist[len(vertlist)-1],color)
 
 def plotpolylist(bmp,polylist,color):
-    for poly in polylist: plotpoly(bmp,poly,color)
+    for poly in polylist: 
+        plotpoly(bmp,poly,color)
 
 def plotpolyfillist(bmp,sides,RGBfactors):
     polylist,normlist,i=sides[0],sides[1],0
     for poly in polylist:
         c=colormix(int(cosaffin(normlist[i],[0,0,1])*128)+127,RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
+        if bmp[bmpcolorbits]!=24:
+            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
         plotpolyfill(bmp,poly,c)
         i=i+1
 
