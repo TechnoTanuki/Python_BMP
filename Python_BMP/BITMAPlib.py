@@ -5397,9 +5397,9 @@ def mirrortoprightinregion2file(ExistingBMPfile:str,NewBMPfile:str,
 
     Args:
         ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        NewBMPfile     : New file to save changes in
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         
     Returns:
         new bitmap file
@@ -5414,9 +5414,9 @@ def mirrorbottomleftinregion2file(ExistingBMPfile:str,NewBMPfile:str,
 
     Args:
         ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        NewBMPfile     : New file to save changes in
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         
     Returns:
         new bitmap file
@@ -5431,9 +5431,9 @@ def mirrorbottomrightinregion2file(ExistingBMPfile:str,NewBMPfile:str,
 
     Args:
         ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        NewBMPfile     : New file to save changes in
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         
     Returns:
         new bitmap file
@@ -5449,8 +5449,8 @@ def invertregion2file(ExistingBMPfile:str,NewBMPfile:str,
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         
     Returns:
         new bitmap file
@@ -5459,8 +5459,7 @@ def invertregion2file(ExistingBMPfile:str,NewBMPfile:str,
     applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,invertregion)
 
 @functimer
-def autocropimg2file(ExistingBMPfile:str,NewBMPfile:str,
-                    similaritythreshold:float):
+def autocropimg2file(ExistingBMPfile:str,NewBMPfile:str,similaritythreshold:float):
     """Perform an auto crop to the image in a bitmap file
 
     Args:
@@ -5498,13 +5497,13 @@ def thresholdadjust2file(ExistingBMPfile:str,NewBMPfile:str,lumrange:list):
 @functimer
 def adjustbrightnessinregion2file(ExistingBMPfile:str,NewBMPfile:str,
                         x1:int,y1:int,x2:int,y2:int,percentadj:float):
-    """Applies a brightness adjustment to rectangular area in a bitmap file
+    """Applies a brightness adjustment to rectangular area in a 24-bit bitmap
 
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         percentadj     : can be a positive or negative adjustment
         
     Returns:
@@ -5548,13 +5547,13 @@ def monochrome2file(ExistingBMPfile:str,NewBMPfile:str):
 
 @functimer
 def colorfilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,rgbfactors:list):
-    """Applies color filter rgbfactors to rectangular region a bitmap file
+    """Apply a color filter to rectangular region in a 24-bit bitmap
 
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         rgbfactors     : (r:float,g:float,b:float)
                         r,g,b values range from 0 to 1
         
@@ -5566,13 +5565,13 @@ def colorfilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2
 
 @functimer
 def monofilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int):
-    """Applies a monochrome filter to rectangular region in a bitmap file
+    """Applies a monochrome filter to rectangular region in a 24-bit bitmap
 
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         
     Returns:
         new bitmap file
@@ -5625,7 +5624,7 @@ def resizeNtimesbigger2file(ExistingBMPfile:str,NewBMPfile:str,n:int):
 
 @functimer
 def upgradeto24bitimage2file(ExistingBMPfile:str,NewBMPfile:str):
-    """Upgrades a bitmap file (1,4,8 bits color depth) to 24 bits
+    """Upgrades a bitmap file (1,4,8 bits color depth) to 24-bits
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5660,8 +5659,8 @@ def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         gamma          : gamma correction
         
     Returns:
@@ -5744,8 +5743,8 @@ def outlineregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectagular region
-        x2,y2          : 2nd point to define rectagular region
+        x1,y1          : 1st point to define rectangular region
+        x2,y2          : 2nd point to define rectangular region
         
         
     Returns:
@@ -5852,7 +5851,7 @@ def colorfiltercircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:
 @functimer
 def thresholdadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,
                                 x:int,y:int,r:int,lumrange:list):
-    """Applies threshold adjustment to a circular region in a bitmap file
+    """Applies threshold adjustment to a circular region in a 24-bit bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
