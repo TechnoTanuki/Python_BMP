@@ -5231,7 +5231,21 @@ def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:in
     applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,gammaadjto24bitregion,gamma)
 
 @functimer
-def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,n:int): 
+def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,
+                                        x1:int,y1:int,x2:int,y2:int,n:int):
+    """Erase every nth line in a rectangular region in abitmap 
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x1,y1          : 1st point to define rectangle
+        x2,y2          : 2nd point to define rectangle
+        n              : erase every nth line
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyreffuncwithparamtoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,eraseeverynthhorilineinregion,n)
 
 @functimer
@@ -5275,10 +5289,8 @@ def eraseeverynthhoriline2file(ExistingBMPfile:str,NewBMPfile:str,n:int):
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
-        x1,y1          : 1st point to define rectangle
-        x2,y2          : 2nd point to define rectangle
-        color          : color of fern fractal
-
+        n              : erase every nth line
+        
     Returns:
         new bitmap file
 
@@ -5481,15 +5493,60 @@ def thickencirclearea2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thickencirclearea,x,y,r,rgbfactors)
 
 @functimer
-def brightnessadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,percentadj:float): 
+def brightnessadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,
+                                x:int,y:int,r:int,percentadj:float):
+    """Applies  brightness gradient  lumrange
+        to a circular region in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x,y            : center  of  circular region
+        r              : radius  of  circular region
+        lumrange       : (byte:byte) defines the brightness gradient
+        
+    Returns:
+        new bitmap file
+
+    """
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,brightnessadjcircregion,x,y,r,percentadj)
 
 @functimer
-def vertbrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,lumrange:list): 
+def vertbrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
+                                        x:int,y:int,r:int,lumrange:list):
+    """Applies a vertical brightness gradient
+        to a circular region in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x,y            : center  of  circular region
+        r              : radius  of  circular region
+        lumrange       : (byte:byte) defines the brightness gradient
+        
+    Returns:
+        new bitmap file
+
+    """
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,vertbrightnessgrad2circregion,x,y,r,lumrange)
 
 @functimer
-def horibrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,lumrange:list): 
+def horibrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
+                                        x:int,y:int,r:int,lumrange:list):
+    """Applies a horizontal brightness gradient
+        to a  circular region  in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x,y            : center  of  circular region
+        r              : radius  of  circular region
+        lumrange       : (byte:byte) defines the brightness gradient
+        
+    Returns:
+        new bitmap file
+
+    """
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,horibrightnessgrad2circregion,x,y,r,lumrange)
 
 @functimer
@@ -5510,7 +5567,23 @@ def flipvertcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int
     applyfunctocircregion(ExistingBMPfile,NewBMPfile,flipvertcircregion,x,y,r)
 
 @functimer
-def eraseeverynthhorilineinccircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,n:int): 
+def eraseeverynthhorilineinccircregion2file(ExistingBMPfile:str,NewBMPfile:str,
+                                            x:int,y:int,r:int,n:int):
+    """Erase every nth horzontal line 
+        in a circular region 
+        in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x,y            : center  of  circular region
+        r              : radius  of  circular region
+        n              : omit every  nth line in bmp
+        
+    Returns:
+        new bitmap file
+
+    """
     applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,eraseeverynthhorizontallineinccircregion,x,y,r,n)
 
 @functimer
