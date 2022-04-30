@@ -890,7 +890,7 @@ def getBMPimgbytes(bmp: array) -> list:
     """
     return bmp[gethdrsize(bmp):getfilesize(bmp)]
 
-def setBMPimgbytes(bmp : array,buf: array):
+def setBMPimgbytes(bmp:array,buf:array):
     """Sets the raw image buffer of a bitmap
 
     Args:
@@ -999,8 +999,7 @@ def makenewpalfromcolorhist(chist:list,colors:int,similaritythreshold:float) -> 
     return newpal
 
 def copyBMPhdr(bmp:array) -> array:
-    """Copies the bitmap header of one in-memory bmp
-        to a new unsigned byte array
+    """Copies the bitmap header of an in-memory bmp to a new unsigned byte array
 
     Args:
         bmp: An unsigned byte array with bmp format
@@ -1013,7 +1012,7 @@ def copyBMPhdr(bmp:array) -> array:
     newbmp[0:hdrsize]=bmp[0:hdrsize]
     return newbmp
 
-def copyRGBpal(sourceBMP: array,destBMP: array):
+def copyRGBpal(sourceBMP:array,destBMP:array):
     """Copies the  RGB palette info  from
         a source  unsigned byte array  to
         a destination unsigned byte array
@@ -1105,8 +1104,7 @@ def newBMP(x:int,y:int,colorbits:int) -> array:
     return setbmp_properties(compute_bmpmetadata(x,y,colorbits))
 
 def CopyBMPxydim2newBMP(bmp:array,newbits:int) -> array:
-    """Creates a new bitmap with 
-        the same dimensions as bmp
+    """Creates a new bitmap with the same dimensions as bmp
 
     Args:
         bmp    : An unsigned byte array with bmp format
@@ -1797,6 +1795,19 @@ def gradthickroundline(bmp:array,p1:list,p2:list,penradius:int,lumrange:list,RGB
 
 @intcircleparam24bitonly        
 def applynoparam24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func):
+    """Apply a no parameter function func to a circular region 
+        with center defined by x,y with a radius r to a 24-bit bitmap
+        
+    Args:
+        bmp         : An unsigned byte array with bmp format
+        x,y         : center of circular region
+        r           : radius r 
+        func        : function to apply
+        
+    Returns:
+        byref modified unsigned byte array bmp
+
+    """
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r):
         for v in itercirclepartlineedge(r):
@@ -1821,6 +1832,21 @@ def applynoparam24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func):
 
 @intcircleparam24bitonly       
 def apply24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func,funcparam):
+    """Apply  function func  to a  circular region 
+        with center defined by x,y with a radius r
+        to a 24-bit bitmap
+        
+    Args:
+        bmp         : An unsigned byte array with bmp format
+        x,y         : center of circular region
+        r           : radius r 
+        func        : function to apply
+        funcparam   : parameters of the function
+        
+    Returns:
+        byref modified unsigned byte array bmp
+
+    """
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r):
         for v in itercirclepartlineedge(r):
@@ -1921,8 +1947,7 @@ def applynoparamfunctocircregion(bmp:array,x:int,y:int,r:int,func):
         
     Args:
         bmp    : An unsigned byte array with bmp format
-        x      : x coordinates of circular region
-        y      : y coordinates of circular region
+        x,y    : center of circular region
         r      : radius r 
         func   : function to apply
         
@@ -2308,9 +2333,8 @@ def horibrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
 
 @intcircleparam    
 def outlinecircregion(bmp:array,x:int,y:int,r:int):
-    """Outlines  the area  within  a circular region
-        defined by  centerpoint (x,y)  and  radius r
-        in an in-memory bitmap
+    """Outlines the area within a circular region defined by centerpoint (x,y)
+        and  radius r in an in-memory bitmap
 
     Args:
         bmp: An unsigned byte array with bmp format
@@ -2587,10 +2611,9 @@ def thickcircle(bmp:array,x:int,y:int,r:int,penradius:int,color:int):
         circle(bmp,p[0],p[1],penradius,color,True)
 
 def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list,RGBfactors:list):
-    """Draws a thick circle with gradient lumrange
-        defined by  centerpoint (x,y) and radius r 
-        using a pen with radius penradius 
-        and color defined by RGBfactors
+    """Draws a thick circle with gradient lumrange defined by centerpoint (x,y)
+         and radius r using a pen with radius penradius 
+         and color defined by RGBfactors
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -2614,9 +2637,8 @@ def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list
         thickcircle(bmp,x,y,radius,i,c)
 
 def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
-    """Draws a filled circle with gradient lumrange
-        defined by  centerpoint (x,y) and radius r 
-        and color defined by RGBfactors
+    """Draws a filled circle with gradient lumrange defined by centerpoint (x,y)
+         and radius r and color defined by RGBfactors
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -2640,13 +2662,10 @@ def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
 
 def thickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
                     penradius:int,color:int):
-    """Draws an thick ellipse 
-        with a defined pen radius
-        defined by centerpoint (x,y) 
-        and major and minor axis (b,a) 
+    """Draws an thick ellipse with a defined pen radius
+        defined by centerpoint (x,y) and major and minor axis (b,a) 
         and rotated by degrot degrees
 
-        
     Args:
         bmp       : An unsigned byte array with bmp format
         x,y       : center of ellipse
@@ -2821,6 +2840,23 @@ def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list)
 @intcircleparam
 def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
             color:int,showoutline:bool,fillcolor:int,isfilled:bool):
+    """Draws an arc centered at point (x,y) with radius r
+        and  specified  start and  end angles  in degrees
+        
+    Args:
+        bmp        : An unsigned byte array with bmp format
+        x,y         : center of arc
+        r           : radius of arc
+        color       : color of arc
+        showoutline : True -> draw arc outline
+        fillcolor   : color of arc filling
+        isfilled    : True -> set area inside arc to fillcolor
+                    
+
+    Returns:
+        byref modified byte array
+
+    """
     av=arcvert(x,y,r,startdegangle,enddegangle,showoutline)
     for p in av: 
         plotxybit(bmp,p[0],p[1],color)
@@ -4454,7 +4490,8 @@ def verticalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lu
         lum+=dlum
 
 @func24bitonlyandentirerectinboundary
-def horizontalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list):
+def horizontalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,
+                                        lumrange:list):
     r,c=getxcharcount(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     xlim,f=x2+1,applybrightnessadjtoBGRbuf
@@ -4490,8 +4527,7 @@ def resizesmaller24bitbuf(buflist):
 
 @func24bitonly
 def resizeNtimessmaller(bmp:array,n:int) -> array:
-    """Resize a whole image by n times smaller
-        in an in-memory 24 bit bitmap
+    """Resize a whole image by n times smaller in an in-memory 24 bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -4521,9 +4557,7 @@ def resizeNtimessmaller(bmp:array,n:int) -> array:
     return nbmp
 
 def pixelizenxn(bmp:array,n:int) -> array:
-    """Pixelize a whole image with 
-        n by n areas in which 
-        colors are averaged
+    """Pixelize a whole image with n by n areas in which colors are averaged
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -4540,12 +4574,22 @@ def adjustcolordicttopal(bmp:array,colordict:dict):
         for color in colordict:
             colordict[color]=matchRGBtopal(int2RGBarr(colordict[color]),getallRGBpal(bmp))
 
-def gammaadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,gamma:float): 
+def gammaadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,gamma:float):
+    """Applies a gamma correction to a rectangular region in a bitmap
+
+    Args:
+        bmp         : An unsigned byte array with bmp format
+        x1,y1,x2,y2 : Defines rectangular area 
+        gamma       : gamma correction
+        
+    Returns:
+        byref modified byte array
+
+    """
     applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applygammaBGRbuf,gamma)
 
 def gammaadjto24bitimage(bmp:array,gamma:float):
-    """Applies a gamma correction to a whole image
-        in an in-memory 24 bit bitmap
+    """Applies a gamma correction to an in-memory 24 bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -4572,8 +4616,7 @@ def outlineregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
     compareimglines(bmp,x1,y1,x2,y2,xorvect)
 
 def outline(bmp:array):
-    """Applies an outline filter to a whole image
-        in an in-memory 24 bit bitmap
+    """Applies an outline filter to an in-memory 24 bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -4585,7 +4628,7 @@ def outline(bmp:array):
     outlineregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
 
 @intcircleparam
-def sphere(bmp:array,x:int,y:int,r:int,rgbfactors:list): 
+def sphere(bmp:array,x:int,y:int,r:int,rgbfactors:list):
     gradcircle(bmp,x,y,r,[255,0],rgbfactors)
 
 @intcircleparam
@@ -4737,8 +4780,7 @@ def apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile:str,NewBMPfile:st
 
 @checklink
 def applycoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
-    """Apply a user provided color adjustment function 
-        to an existing bitmap
+    """Apply a user provided color adjustment function to an existing bitmap
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -4771,8 +4813,7 @@ def applycoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
 
 @checklink
 def apply24bitcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
-    """Apply a user provided color adjustment function 
-        to an existing 24 bit bitmap
+    """Apply a user provided color adjustment function to a 24-bit bitmap
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -4822,7 +4863,7 @@ def applynoparamcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func):
 @checklink
 def cropBMPandsave(ExistingBMPfile:str,NewBMPfile:str,
                         x1:int,y1:int,x2:int,y2:int):
-    """Crops and saves rectangular area in a bitmap file
+    """Crops and saves a rectangular area in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -4838,7 +4879,7 @@ def cropBMPandsave(ExistingBMPfile:str,NewBMPfile:str,
 
 @checklink
 def cropBMPandsaveusingrectbnd(ExistingBMPfile:str,NewBMPfile:str,rectbnd:list):
-    """Crops and saves rectangular area in a bitmap file
+    """Crops and saves a rectangular area in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -4884,8 +4925,24 @@ def imagecomp(inputfile1:str,inputfile2:str,diff_file:str,func):
     
 @checklink
 @functimer
-def reduce24bitimagebits(Existing24BMPfile:str,NewBMPfile:str,newbits:int,similaritythreshold:float,
-                        usemonopal:bool,RGBfactors:list):
+def reduce24bitimagebits(Existing24BMPfile:str,NewBMPfile:str,newbits:int,
+                        similaritythreshold:float,usemonopal:bool,
+                        RGBfactors:list):
+    """Reduce the bits used to encode color in a 24-bit bitmap file
+
+    Args:
+        ExistingBMPfile     : Whole path to existing file
+        NewBMPfile          : New file to save changes to
+        newbits             : can be 1,4 or 8
+        similaritythreshold : how close can a color be to another
+        usemonopal          : True -> image will be monochrome
+        RGBfactors          : (r:float,b:float,g:float) 
+                              value of r,g,b range from 0 to 1
+                              used only  if usemonopal is True
+    Returns:
+        new bitmap file
+
+    """                        
     sbmp=loadBMP(Existing24BMPfile)
     if len(sbmp)>54:
         if sbmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
@@ -5275,7 +5332,19 @@ def invertregion2file(ExistingBMPfile:str,NewBMPfile:str,
     applybyreffunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,invertregion)
 
 @functimer
-def autocropimg2file(ExistingBMPfile:str,NewBMPfile:str,similaritythreshold:float): 
+def autocropimg2file(ExistingBMPfile:str,NewBMPfile:str,
+                    similaritythreshold:float):
+    """Perform an auto crop to the image in a bitmap file
+
+    Args:
+        ExistingBMPfile    : Whole path to existing file
+        NewBMPfile         : New file to save changes in
+        similaritythreshold: used to tune autocrop
+        
+    Returns:
+        new bitmap file
+
+    """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54: 
         cropBMPandsaveusingrectbnd(ExistingBMPfile,NewBMPfile,rectboundarycoords(getimagedgevert(bmp,similaritythreshold)))
@@ -5323,13 +5392,13 @@ def adjustthresholdinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:in
 
 @functimer
 def colorfilter2file(ExistingBMPfile:str,NewBMPfile:str,rgbfactors:list):
-    """Applies acolor filter rgbfactors to a bitmap file
+    """Applies color filter rgbfactors to a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
         rgbfactors     : (r:float,g:float,b:float)
-                        r,g,b values range from 0 to 1
+                          r,g,b values range from 0 to 1
     Returns:
         new bitmap file
 
@@ -5370,7 +5439,7 @@ def colorfilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2
 
 @functimer
 def monofilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int):
-    """Applies a monochrome filter to rectangular region a bitmap file
+    """Applies a monochrome filter to rectangular region in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5386,8 +5455,8 @@ def monofilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:
 
 @functimer
 def pixelizenxntofile(ExistingBMPfile:str,NewBMPfile:str,n:int):
-    """Pixellate a bitmap file with n x n pixel areas
-        in which colors are averaged out
+    """Pixellate a bitmap file with n x n pixel areas in which colors 
+        are averaged out
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5443,7 +5512,7 @@ def upgradeto24bitimage2file(ExistingBMPfile:str,NewBMPfile:str):
 
 @functimer
 def gammaadj2file(ExistingBMPfile:str,NewBMPfile:str,gamma:float):
-    """Applies a gamma correction to  a bitmap file
+    """Applies a gamma correction to a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5457,7 +5526,8 @@ def gammaadj2file(ExistingBMPfile:str,NewBMPfile:str,gamma:float):
     applycoloradjfunc(ExistingBMPfile,NewBMPfile,gammacorrect,gamma)
 
 @functimer
-def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,gamma:float):
+def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,
+                    x1:int,y1:int,x2:int,y2:int,gamma:float):
     """Applies a gamma correction to rectangular region a bitmap file
 
     Args:
@@ -5476,7 +5546,7 @@ def gammaadjtoregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:in
 @functimer
 def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,
                                         x1:int,y1:int,x2:int,y2:int,n:int):
-    """Erase every nth line in a rectangular region in abitmap 
+    """Erase every nth line in a rectangular region in a bitmap 
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5601,8 +5671,7 @@ def showsimilarparts(inputfile1:str,inputfile2:str,diff_file:str):
 
 @functimer
 def monochromecircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
-    """Applies a monochrome filter to a circular region 
-        in a bitmap file
+    """Applies a monochrome filter to a circular region in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5619,8 +5688,7 @@ def monochromecircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:i
 
 @functimer
 def invertbitsincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
-    """Inverts bits in a circular region 
-        in a bitmap file
+    """Inverts bits in a circular region in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5637,8 +5705,7 @@ def invertbitsincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r
 
 @functimer
 def colorfiltercircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,rgbfactors:list):
-    """Applies color filter rgbfactors to a circular region 
-        in a bitmap file
+    """Applies color filter rgbfactors to a circular region in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
@@ -5656,13 +5723,26 @@ def colorfiltercircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,colorfiltercircregion,x,y,r,rgbfactors)
 
 @functimer
-def thresholdadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,lumrange:list): 
+def thresholdadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,
+                                x:int,y:int,r:int,lumrange:list):
+    """Applies threshold adjustment to a circular region in a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x,y            : center  of  circular region
+        r              : radius  of  circular region
+        lumrange       : (byte:byte) threshold range
+        
+    Returns:
+        new bitmap file
+
+    """                                
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thresholdadjcircregion,x,y,r,lumrange)
 
 @functimer
 def gammacorrectcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,gamma:float):
-    """Applies gamma correction to a circular region 
-        in a bitmap file
+    """Applies gamma correction to a circular region in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to existing file
