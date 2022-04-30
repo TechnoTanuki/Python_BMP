@@ -38,8 +38,7 @@ bmpheaderid,bmpfilesize,bmphdrsize,bmpcolorbits,bmpx,bmpy,bmppal=array('B',[66,7
 bmpheadersize={1:62,4:118,8:1078,24:54}
         
 def checklink(func):
-    """Decorator to test if first parameter in a function
-        is a valid file
+    """Decorator to test if first parameter in a function is a valid file
 
     Args:
         function
@@ -56,8 +55,7 @@ def checklink(func):
     return(callf)
 
 def checklinks(func):
-    """Decorator to test if two parameters in a function
-        are a valid files
+    """Decorator to test if two parameters in a function are valid files
 
     Args:
         function
@@ -74,8 +72,7 @@ def checklinks(func):
     return(callf)
 
 def intcircleparam(func):
-    """Decorator to test if 2nd,3rd,4th parameters 
-        in a function that renders circle are ints 
+    """Decorator to test if the 2nd,3rd,4th parameters in a function that renders circle are ints 
 
     Args:
         function(bmp:array,x,y,r....)
@@ -92,10 +89,8 @@ def intcircleparam(func):
     return(callf)
 
 def intcircleparam24bitonly(func):
-    """Decorator to test if 2nd,3rd,4th parameters 
-        in a function that renders circle are ints
-        and restrict  the use of  this function to
-        only 24 bit or RGB bitmaps (1st parameter)
+    """Decorator to test if 2nd,3rd,4th parameters in a function that renders circle are ints
+        and restrict  the use of  this function to only 24 bit or RGB bitmaps (1st parameter)
 
     Args:
         function(bmp:array,x,y,r....)
@@ -115,8 +110,7 @@ def intcircleparam24bitonly(func):
     return(callf)
 
 def func24bitonly(func):
-    """Decorator to restrict the use of this function to
-        only 24 bit or RGB bitmaps (1st parameter)
+    """Decorator to restrict the use of this function to only 24 bit or RGB bitmaps (1st parameter)
 
     Args:
         function(bmp:array,...)
@@ -133,11 +127,9 @@ def func24bitonly(func):
     return(callf)
 
 def func24bitonlyandentirerectinboundary(func):
-    """Decorator to restrict the use of this function to
-        only 24 bit or RGB bitmaps  (1st parameter)  and
-        ensure that the 2nd, 3rd, 4th and 5th parameters
-        are int whose values when interpreted as x and y
-        coordinates lay within the RGB bitmap.
+    """Decorator to restrict the use of this function to only 24 bit or RGB bitmaps (1st parameter)  
+        and ensure that the 2nd, 3rd, 4th and 5th parameters are ints whose values when interpreted 
+        as x and y coordinates lay within the RGB bitmap.
 
     Args:
         function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
@@ -161,11 +153,9 @@ def func24bitonlyandentirerectinboundary(func):
     return(callf)
 
 def func24bitonlyandentirecircleinboundary(func):
-    """Decorator to restrict the use of this function to
-        only 24 bit or RGB bitmaps  (1st parameter)  and
-        ensure that the 2nd, 3rd, 4th parameters are int 
-        whose values when interpreted as  x,y and radius
-        of a circle lay within the RGB bitmap.
+    """Decorator to restrict the use of this function toonly 24 bit or RGB bitmaps (1st parameter)  
+        and ensure that  the 2nd, 3rd, 4th parameters are ints  whose values  when interpreted  as 
+        x,y and radius of a circle lay within the RGB bitmap.
 
     Args:
         function(bmp:array,x:int,y:int,r:int...)
@@ -189,11 +179,9 @@ def func24bitonlyandentirecircleinboundary(func):
     return(callf)
 
 def func8and24bitonlyandentirecircleinboundary(func):
-    """Decorator to restrict the use of this function to
-        only 24 bit or 8 bit bitmaps (1st parameter)  and
-        ensure that the 2nd, 3rd, 4th parameters are int 
-        whose values when interpreted as  x,y and radius
-        of a circle lay within the RGB bitmap.
+    """Decorator to restrict the use of this function toonly 24 bit or 8 bit bitmaps (1st parameter)  
+        and  ensure that  the 2nd, 3rd, 4th  parameters are ints  whose values  when interpreted  as  
+        x,y and radius of a circle lay within the RGB bitmap.
 
     Args:
         function(bmp:array,x:int,y:int,r:int...)
@@ -217,8 +205,7 @@ def func8and24bitonlyandentirecircleinboundary(func):
     return(callf)
 
 def func8and24bitonly(func):
-    """Decorator to restrict the use of this function to
-        only 24 bit or 8 bit bitmaps (1st parameter)
+    """Decorator to restrict the use of this function to only 24 bit or 8 bit bitmaps (1st parameter)
 
     Args:
         function(bmp:array,...)
@@ -235,11 +222,9 @@ def func8and24bitonly(func):
     return(callf)
 
 def func8and24bitonlyandentirerectinboundary(func):
-    """Decorator to restrict the use of this function to
-        only 24 bit or 9 bit bitmaps (1st parameter) and
-        ensure that the 2nd, 3rd, 4th and 5th parameters
-        are int whose values when interpreted as x and y
-        coordinates lay within the RGB bitmap.
+    """Decorator to restrict the use of this function to only 24 bit or 8 bit bitmaps (1st parameter) 
+        and ensure that  the 2nd, 3rd, 4th and 5th parameters are ints  whose values when interpreted 
+        as x and y coordinates of a rectangle lay within the RGB bitmap.
 
     Args:
         function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
@@ -263,9 +248,8 @@ def func8and24bitonlyandentirerectinboundary(func):
     return(callf)
 
 def entirerectinboundary(func):
-    """Decorator to ensure that the 2nd, 3rd, 4th and 5th parameters
-        are int whose values when interpreted as x and y coordinates 
-        lay within the bitmap.
+    """Decorator to ensure that the 2nd, 3rd, 4th and 5th parameters are ints whose values when 
+        interpreted as x and y coordinates of a rectangle lay within the bitmap.
 
     Args:
         function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
@@ -286,9 +270,8 @@ def entirerectinboundary(func):
     return(callf)
 
 def entirecircleinboundary(func):
-    """Decorator to ensure that the 2nd, 3rd, 4th parameters are int 
-        whose values when interpreted as  x,y and radius of a circle 
-        lay within the RGB bitmap.
+    """Decorator to ensure that the 2nd, 3rd, 4th parameters are ints whose values when interpreted 
+        as the centerpoint x,y and radius r of a circle lay within the RGB bitmap.
 
     Args:
         function(bmp:array,x:int,y:int,r:int...)
@@ -313,7 +296,7 @@ def adjustbufsize(bufsize:int,bits:int) -> int :
 
     Args:
         bufsize: initial estimate of buffer size
-        bits: bit depth of bitmap
+        bits   : bit depth of bitmap (1,4,8,24)
         
     Returns:
         An adjusted int value of the buffer size
@@ -331,7 +314,7 @@ def setmaxx(bmp:array,xmax:int):
     """Sets the x value stored in the windows bmp header
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         int: value of x dimension
 
     Returns:
@@ -344,7 +327,7 @@ def getmaxx(bmp:array) -> int:
     """Gets the x value stored in the windows bmp header
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
 
     Returns:
         int value of x bmp dimension
@@ -356,7 +339,7 @@ def setmaxy(bmp:array,ymax:int):
     """Sets the y value stored in the windows bmp header
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         int: value of y dimension
      
     Returns:
@@ -369,7 +352,7 @@ def getmaxy(bmp:array) -> int:
     """Gets the y value stored in the windows bmp header
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
 
     Returns:
         int value of y bmp dimension
@@ -381,7 +364,7 @@ def getmaxxy(bmp:array) -> tuple:
     """Gets the max x and y values stored in the windows bmp header
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
 
     Returns:
         tuple (x:int,y:int) 
@@ -393,7 +376,7 @@ def bottomrightcoord(bmp:array) -> tuple:
     """Gets the maximum bottom right coordinates of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: An unsigned byte array with bmp format
 
     Returns:
         tuple (x:int,y:int) 
@@ -405,7 +388,7 @@ def centercoord(bmp:array) -> tuple:
     """Gets the central coordinates of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: An unsigned byte array with bmp format
 
     Returns:
         tuple (x:int,y:int) 
@@ -414,7 +397,7 @@ def centercoord(bmp:array) -> tuple:
     return ((readint(bmpx,4,bmp)-1)>>1,(readint(bmpy,4,bmp)-1)>>1)
 
 def isinBMPrectbnd(bmp:array,x:int,y:int)->bool:
-    """Checks if x,y coordinates are in the rectangular bounds of a bitmap
+    """Checks if (x,y) coordinates are within the rectangular bounds of a bitmap
 
     Args:
         bmp: An unsigned  byte array with bmp format
@@ -428,7 +411,7 @@ def isinBMPrectbnd(bmp:array,x:int,y:int)->bool:
     return (x<readint(bmpx,4,bmp) and y<readint(bmpy,4,bmp)) and (x>-1 and y>-1)
 
 def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
-    """Checks if a list of (x,y) coordinates are in the rectangular bounds of a bitmap
+    """Checks if a list of (x,y) coordinates are within the rectangular bounds of a bitmap
 
     Args:
         bmp: An unsigned  byte array with bmp format
@@ -449,7 +432,7 @@ def setcolorbits(bmp:array,bits:int):
 
     Args:
         bmp: An unsigned  byte array with bmp format
-        int: value of bit depth
+        int: value of bit depth (1,4,8,24)
         
     Returns:
         byref modified byte array with new file size
@@ -461,10 +444,10 @@ def getcolorbits(bmp:array) -> int:
     """Get the bit depth of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
-        int value of bit depth
+        int value of bit depth (1,4,8,24)
 
     """
     return bmp[bmpcolorbits]
@@ -485,8 +468,8 @@ def setfilesize(bmp:array,size:int):
     """Set the header size of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
-        size: int value of size of the bmp file
+        bmp  : unsigned  byte array with bmp format
+        size : unsigned int value of size of the bmp file
         
     Returns:
         byref modified byte array with new file size
@@ -498,10 +481,10 @@ def getfilesize(bmp:array) -> int:
     """Get the header size of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
-        int value of size of the bmp header
+        unsigned int value of size of the bmp header
 
     """
     return readint(bmpfilesize,8,bmp)
@@ -510,8 +493,8 @@ def sethdrsize(bmp:array,hdsize:int):
     """Set the header size of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
-        hdsize: int value of size of the bmp header
+        bmp   : unsigned byte array with bmp format
+        hdsize: unsigned int value of size of the bmp header
         
     Returns:
         byref modified byte array with new header size
@@ -523,7 +506,7 @@ def gethdrsize(bmp:array) -> int:
     """Get the header size of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
         int value of header size
@@ -535,7 +518,7 @@ def getimageinfo(bmp:array):
     """Gets metadata in a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
         4 int values
@@ -547,7 +530,7 @@ def getmaxcolors(bmp:array) -> int:
     """Get the maximum number of colors supported by a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
         int value
@@ -559,9 +542,9 @@ def compute24bitBMPoffset(bmp:array,x:int,y:int) -> int:
     """Get the offset in a byte array with RGB data given x and y
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -574,9 +557,9 @@ def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
         with bitmap header size also taken into account 
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -585,13 +568,12 @@ def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
     return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))+54
 
 def compute8bitBMPoffset(bmp:array,x:int,y:int) -> int:
-    """Get the offset in a byte array with 8 bit color data 
-        given x and y
+    """Get the offset in a byte array with 8 bit color data given x and y data
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -604,9 +586,9 @@ def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
         given x and y with adjustments made due to bitmap header 
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -615,13 +597,12 @@ def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
     return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))+1078
 
 def compute4bitBMPoffset(bmp:array,x:int,y:int) -> int:
-    """Get the offset in a byte array with 4 bit color data 
-        given x and y
+    """Get the offset in a byte array with 4 bit color data given x and y data
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -630,13 +611,12 @@ def compute4bitBMPoffset(bmp:array,x:int,y:int) -> int:
     return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))
 
 def compute1bitBMPoffset(bmp:array,x:int,y:int) -> int:
-    """Get the offset in a byte array with 1 bit color data 
-        given x and y
+    """Get the offset in a byte array with 1 bit color data given x and y data
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -649,9 +629,9 @@ def compute4bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
         given x and y with adjustments made due to a header 
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -664,9 +644,9 @@ def compute1bitBMPoffsetwithheader(bmp: array,x:int,y:int) -> int:
         given x and y with adjustments made due to a header 
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int value of location in x axis
-        y: unsigned int value of location in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int value of location in x axis
+        y  : unsigned int value of location in y axis
 
     Returns:
         int value of offset to that data in byte array
@@ -675,8 +655,7 @@ def compute1bitBMPoffsetwithheader(bmp: array,x:int,y:int) -> int:
     return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))+62
 
 def getcomputeBMPoffsetwithheaderfunc(bmp:array):
-    """Returns the correct function to use in computing offsets 
-        with headers given a bitmap
+    """Returns the correct function to use in computing offsets with headers given a bitmap
 
     Args:
         bmp: An unsigned byte array with bmp format
@@ -688,8 +667,7 @@ def getcomputeBMPoffsetwithheaderfunc(bmp:array):
     return {24:compute24bitBMPoffsetwithheader,8:compute8bitBMPoffsetwithheader,4:compute4bitBMPoffsetwithheader,1:compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
 
 def getcomputeBMPoffsetfunc(bmp:array):
-    """Returns the correct function to use in computing offsets
-        given a bitmap
+    """Returns the correct function to use in computing offset given a bitmap
 
     Args:
         bmp: An unsigned byte array with bmp format
@@ -705,8 +683,8 @@ def computeBMPoffset(bmp:array,x:int,y:int) -> int:
 
     Args:
         bmp: An unsigned byte array with bmp format
-        x: location in x axis
-        x: location in y axis
+        x  : location in x axis
+        y  : location in y axis
 
     Returns:
         unsigned int offset to data in buffer
@@ -720,8 +698,8 @@ def computeBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
 
     Args:
         bmp: An unsigned byte array with bmp format
-        x: location in x axis
-        x: location in y axis
+        x  : location in x axis
+        y  : location in y axis
 
     Returns:
         unsigned int offset to data in buffer
@@ -768,13 +746,13 @@ def isbmpcompressed(bmp:array) -> bool:
 
 def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int:
     """Get the offset in a byte array with 24 bit color data 
-        given x and y
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        mx: unsigned int value of location in x axis
-        my: unsigned int value of location in y axis
-
+        bmp  : unsigned byte array with bmp format
+        x,y  : unsigned int pixel location 
+        mx   : unsigned int size in x dimension
+        my   : unsigned int size in y dimension
+        
     Returns:
         int value of offset to that data in byte array
 
@@ -782,12 +760,11 @@ def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int:
     return (x*3)+((my-y-1)*computexbytes(mx,24))
 
 def computexbytes(x:int,bits:int) -> int:
-    """Get the number of bytes in a bmp row
-        given x dimension and bit depth
+    """Get the number of bytes in a bmp row given x dimension and bit depth
 
     Args:
-        x: An unsigned int value of x dimension
-        bits: unsigned int value of bit depth
+        x   : unsigned int value of x dimension
+        bits: unsigned int value of bit depth (1,4,8,24)
 
     Returns:
         int value of number of bytes in a row
@@ -805,12 +782,11 @@ def computexbytes(x:int,bits:int) -> int:
     return xbytes
 
 def computepadbytes(x:int,bits:int) -> int:
-    """Get the number of bytes used to pad for 32 bit alignment
-        given x dimension and bit depth
+    """Get the number of bytes used to pad for 32 bit alignment given x dimension and bit depth
 
     Args:
-        x: An unsigned int value of x dimension
-        bits: unsigned int value of bit depth
+        x   : unsigned int value of x dimension
+        bits: unsigned int value of bit depth (1,4,8,24)
 
     Returns:
         int value of number of pad bytes
@@ -856,8 +832,8 @@ def compute_bmpmetadata(x:int,y:int,bits:int) -> tuple:
     """computes bitmap meta data
 
     Args:
-        x: unsigned int value of x dimension
-        y: unsigned int value of y dimension
+        x   : unsigned int value of x dimension
+        y   : unsigned int value of y dimension
         bits: bit depth (1,4,8,24)
 
     Returns:
@@ -870,7 +846,7 @@ def isdefaultpal(bmp: array) -> bool:
     """Checks if bitmap has a default RGB color palette
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned  byte array with bmp format
 
     Returns:
         True if default, False if not default
@@ -882,7 +858,7 @@ def getBMPimgbytes(bmp: array) -> list:
     """Gets the raw image buffer of a bitmap without the header
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
 
     Returns:
         list of unsigned bytes
@@ -894,7 +870,7 @@ def setBMPimgbytes(bmp:array,buf:array):
     """Sets the raw image buffer of a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         buf: array of unsigned bytes
 
     Returns:
@@ -907,7 +883,7 @@ def setbmppal(bmp: array,pallist: list):
     """Sets the RGB palette of a bitmap
 
     Args:
-        bmp    : An unsigned byte array with bmp format
+        bmp    : unsigned byte array with bmp format
         pallist: [(r:byte,g:byte,b:byte),...]
 
     Returns:
@@ -924,7 +900,7 @@ def getallRGBpal(bmp:array) -> list:
     """Gets the RGB palette of a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
 
     Returns:
         [(r:byte,g:byte,b:byte),...]
@@ -937,8 +913,8 @@ def getRGBpal(bmp: array,c: int) -> list:
     """Gets the [R,G,B] values of color c in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        c: unsigned int color 
+        bmp: unsigned byte array with bmp format
+        c  : unsigned int color 
 
     Returns:
         [R:byte,G:byte,B:byte]
@@ -951,11 +927,11 @@ def setRGBpal(bmp:array,c:int,r:int,g:int,b:int):
     """Sets the r,g,b values of color c in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        r: unsigned byte value for red
-        g: unsigned byte value for green
-        b: unsigned byte value for blue
-        c: unsigned int color 
+        bmp: unsigned byte array with bmp format
+        r  : unsigned byte value for red
+        g  : unsigned byte value for green
+        b  : unsigned byte value for blue
+        c  : unsigned int color 
 
     Returns:
         byref modified unsigned byte array
@@ -969,7 +945,7 @@ def colorhistorgram(bmp:array) -> list:
     """Creates a color histogram 
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
         list sorted in descending order of color frequencies
@@ -985,6 +961,17 @@ def colorhistorgram(bmp:array) -> list:
     return  dict2descorderlist(d)
 
 def makenewpalfromcolorhist(chist:list,colors:int,similaritythreshold:float) -> list:
+    """Creates a new palatte based on a color histogram
+
+    Args:
+        chist              : list sorted in descending order of color frequencies
+        colors             : maximum of colors of new palette
+        similaritythreshold: controls how close palette entries can be
+        
+    Returns:
+        unsigned byte array with bmp format
+
+    """
     newpal,palcnt,colorcount=[[0,0,0]],1,len(chist)
     for i in range(0,colorcount):
         rgb=int2RGBlist(chist[i][1])
@@ -1002,10 +989,10 @@ def copyBMPhdr(bmp:array) -> array:
     """Copies the bitmap header of an in-memory bmp to a new unsigned byte array
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
-        An unsigned byte array with bmp format
+        unsigned byte array with bmp format
 
     """
     hdrsize,newbmp=gethdrsize(bmp),array('B',[0]*getfilesize(bmp))
@@ -1013,9 +1000,8 @@ def copyBMPhdr(bmp:array) -> array:
     return newbmp
 
 def copyRGBpal(sourceBMP:array,destBMP:array):
-    """Copies the  RGB palette info  from
-        a source  unsigned byte array  to
-        a destination unsigned byte array
+    """Copies the RGB palette info from a source unsigned byte array 
+        to a destination unsigned byte array
 
     Args:
         sourceBMP: An unsigned byte array with bmp format
@@ -1029,14 +1015,13 @@ def copyRGBpal(sourceBMP:array,destBMP:array):
     destBMP[bmppal:hdl]=sourceBMP[bmppal:hdl]
 
 def setbmp_properties(bmpmeta:list) -> array:
-    """Creates a new bitmap with the properties set by bmpmeta
-        to a new unsigned byte array
+    """Creates a new bitmap with the properties set by bmpmeta to a new unsigned byte array
 
     Args:
         bmpmeta: list composed of 5 unsigned ints
         
     Returns:
-        An unsigned byte array with bmp format
+        unsigned byte array with bmp format
 
     """
     bmp,filesize,hdrsize,x,y,bits=array('B'),bmpmeta[0],bmpmeta[1],bmpmeta[2],bmpmeta[3],bmpmeta[4]
@@ -1053,17 +1038,29 @@ def setbmp_properties(bmpmeta:list) -> array:
     return bmp
 
 def setnewpalfromsourcebmp(sourcebmp:array,newbmp:array,similaritythreshold:float) -> list:
+    """Copies the RGB palette info from a source unsigned byte array 
+        to a destination unsigned byte array source and  destination 
+        can have different bit depths
+
+    Args:
+        sourceBMP,newBMP   : unsigned byte arrays with bmp format
+        similaritythreshold: how close can a color in a palette entry be to another
+        
+    Returns:
+        byRef modified newBMP
+        list of new palette entries based on source bitmap
+
+    """
     newpal=makenewpalfromcolorhist(colorhistorgram(sourcebmp),getmaxcolors(newbmp),similaritythreshold)
     setbmppal(newbmp,newpal)
     return newpal
 
 def RGBpalbrightnessadjust(bmp:array,percentadj:float)-> list:
-    """Copies the  RGB palette info  from
-        a source  unsigned byte array  to
-        a destination unsigned byte array
+    """Copies the RGB palette info from a source unsigned byte array  
+        to a destination unsigned byte array
 
     Args:
-        bmp       : An unsigned byte array with  bmp format
+        bmp       : unsigned byte array with bmp format
         percentadj: signed float brightness adjustment in %
         
     Returns:
@@ -1076,7 +1073,7 @@ def setBMP2monochrome(bmp:array,RGBfactors:list) -> list:
     """Sets a bitmap to use a monochrome palette
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         RGBfactors: (r:float,g:float,b:float)
                     all values range from 0 to 1
         
@@ -1107,7 +1104,7 @@ def CopyBMPxydim2newBMP(bmp:array,newbits:int) -> array:
     """Creates a new bitmap with the same dimensions as bmp
 
     Args:
-        bmp    : An unsigned byte array with bmp format
+        bmp    : unsigned byte array with bmp format
         newbits: bit depth (1,4,8,24)
 
     Returns:
@@ -1121,7 +1118,7 @@ def loadBMP(filename:str) -> array:
     """Load bitmap to a byte array
 
     Args:
-        filename: The full path to the file to be loaded.
+        filename: full path to the file to be loaded
         
     Returns:
         byte array with bmp file contents
@@ -1143,8 +1140,8 @@ def saveBMP(filename:str,bmp:array):
     """Saves bitmap to file
 
     Args:
-        filename: The full path to the file to be saved.
-        bmp: Am unsigned byte array with the layout of bmp file 
+        filename: full path to the file to be saved
+        bmp     : unsigned byte array with the layout of bmp file 
 
     """
     with open(filename,'wb') as f:
@@ -1155,7 +1152,7 @@ def BMPbitBLTput(bmp:array,offset:int,arraybuf:array):
     """Sets offset in array to arraybuf
 
     Args:
-        bmp     : An unsigned byte array with bmp format
+        bmp     : unsigned byte array with bmp format
         offset  : unsigned int address in buffer
         arraybuf: unsigned byte array
 
@@ -1175,7 +1172,7 @@ def BMPbitBLTget(bmp:array,offset:int,bufsize:int) -> array:
     """Gets [offset:offset+bufsize] to a new array 
 
     Args:
-        bmp    : An unsigned byte array with bmp format
+        bmp    : unsigned byte array with bmp format
         offset : unsigned int address in buffer
         bufsize: unsigned int size of buffer
 
@@ -1196,7 +1193,7 @@ def vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int) -> array:
     """Gets vertical slice to a new array 
 
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         x    : unsigned int x coordinate  of vertical slice
         y1,y2: unsigned int y coordinates of vertical slice
 
@@ -1218,6 +1215,19 @@ def vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int) -> array:
         print(sysmsg['lineoutofbnd'])
 
 def applyfuncwithparam2vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int,func,funcparam):
+    """Apply a user defined function to vertical slices
+
+    Args:
+        bmp       : unsigned byte array with bmp format
+        x         : unsigned int x coordinate  of vertical slice
+        y1,y2     : unsigned int y coordinates of vertical slice
+        func      : user defined function func
+        funcparam : parameters of the user defined function
+
+    Returns:
+        byref modified unsigned byte array
+
+    """
     bits=bmp[bmpcolorbits]
     r,m,c=getxcharcount(bmp),getmaxxy(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
     if isinrange(x,m[0],-1):
@@ -1235,13 +1245,13 @@ def plotRGBxybit(bmp: array,x: int,y: int,rgb: list):
     """Sets pixel at x,y in a bitmap to [R,G,B]
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int position in x axis
-        y: unsigned int position in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int position in x axis
+        y  : unsigned int position in y axis
         rgb: [R:byte,G:byte,B:byte] 
 
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     if isinBMPrectbnd(bmp,x,y):
@@ -1256,13 +1266,13 @@ def plotxybit(bmp:array,x:int,y:int,c:int):
     """Sets pixel at x,y in a bitmap to color c
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int position in x axis
-        y: unsigned int position in y axis
-        c: unsigned int color
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int position in x axis
+        y  : unsigned int position in y axis
+        c  : unsigned int color
 
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     if isinBMPrectbnd(bmp,x,y):
@@ -1292,9 +1302,9 @@ def getxybit(bmp:array,x:int,y:int) -> int:
     """Gets color of pixel at x,y in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int position in x axis
-        y: unsigned int position in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int position in x axis
+        y  : unsigned int position in y axis
         
     Returns:
         unsigned int color value
@@ -1336,9 +1346,9 @@ def getRGBxybit(bmp: array,x: int,y: int) -> list:
     """Gets [R:byte,G:byte,B:byte] of pixel at x,y in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        x: unsigned int position in x axis
-        y: unsigned int position in y axis
+        bmp: unsigned byte array with bmp format
+        x  : unsigned int position in x axis
+        y  : unsigned int position in y axis
         
     Returns:
         [R:byte,G:byte,B:byte]
@@ -1357,8 +1367,8 @@ def getxybitvec(bmp:array,v:list) -> int:
     """Gets color of pixel at (x,y) in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        v: tuple of (x:int,y:int)
+        bmp: unsigned byte array with bmp format
+        v  : tuple of (x:int,y:int)
         
     Returns:
         unsigned int color value
@@ -1370,9 +1380,9 @@ def intplotvecxypoint(bmp:array,v:list,c:int):
     """Sets color of pixel at (x,y) in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        v: tuple of (x:int,y:int)
-        c: unsigned int color value
+        bmp: unsigned byte array with bmp format
+        v  : tuple of (x:int,y:int)
+        c  : unsigned int color value
         
     Returns:
         byref modified byte array
@@ -1384,9 +1394,9 @@ def plotvecxypoint(bmp:array,v:list,c:int):
     """Sets color of pixel at (x,y) in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        v: tuple of (x:float,y:float)
-        c: unsigned int color value
+        bmp: unsigned byte array with bmp format
+        v  : tuple of (x:float,y:float)
+        c  : unsigned int color value
         
     Returns:
         byref modified byte array
@@ -1399,8 +1409,8 @@ def plotRGBxybitvec(bmp:array,v:list,rgb:list):
     """Sets [R,G,B] of pixel at (x,y) in a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        v: [x:float,y:float]
+        bmp: unsigned byte array with bmp format
+        v  : [x:float,y:float]
         rgb: [R:byte,G:byte,B:byte]
         
     Returns:
@@ -1414,7 +1424,7 @@ def plotxypointlist(bmp:array,vlist:list,penradius:int,color:int):
         of a given color for all points in a point list
 
     Args:
-        bmp      : An unsigned byte array with bmp format
+        bmp      : unsigned byte array with bmp format
         vlist    : [(x:uint,y:uint) ,...] list of points
         penradius: radius of the pen in pixels
         color    : color of the pen
@@ -1427,12 +1437,11 @@ def plotxypointlist(bmp:array,vlist:list,penradius:int,color:int):
         roundpen(bmp,v,penradius,color)
 
 def roundpen(bmp:array,point:list,penradius:int,color:int):
-    """Draws a circle or a point depending on penradius
-        of a given color
+    """Draws a circle or a point depending on penradius of a given color
 
     Args:
         bmp      : An unsigned byte array with bmp format
-        point    : (x:uint,y:uint) 
+        point    : (x:uint,y:uint) centerpoint
         penradius: radius of the pen in pixels
         color    : color of the pen
         
@@ -1450,9 +1459,8 @@ def swapcolors(bmp:array,p1:list,p2:list):
     """Swaps the colors of two points in a bitmap 
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        p1: first point of the line  (x:uint,y:uint)
-        p2: second point of the line (x:uint,y:uint)
+        bmp  : unsigned byte array with bmp format
+        p1,p2: points of the line (x:uint,y:uint)
         
     Returns:
         byref modified byte array
@@ -1466,7 +1474,7 @@ def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
     """Creates a line in a bitmap 
 
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         x1,y1: first point of the line
         x2,y2: second point of the line
         color: color of the line
@@ -1519,7 +1527,7 @@ def horiline(bmp:array,y:int,x1:int,x2:int,color:int):
     """Creates a horizontal line in a bitmap 
 
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         y    : constant y value of the line
         x1,x2: line starts at x1 and ends at x2
         color: color of the line
@@ -1565,7 +1573,7 @@ def vertline(bmp:array,x:int,y1:int,y2:int,color:int):
     """Creates a vertical line in a bitmap 
 
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         x    : constant x value of the line
         y1,y2: line starts at y1 and ends at y2
         color: color of the line
@@ -1598,7 +1606,7 @@ def fillbackgroundwithgrad(bmp:array,lumrange:list,RGBfactors:list,direction:int
     """Fills entire bitmap with a linear gradient
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         lumrange  : [byte,byte] that define range of gradient
         RGBfactors: [r:float,g:float,b:float] each float 0 to 1
         direction : 0 - vertical or 1 - horizontal gradient
@@ -1655,9 +1663,9 @@ def itercopyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
     """Creates a filled rectangle with a linear gradient in a bitmap 
 
     Args:
-        bmp       : An unsigned byte array with bmp format
-        x1,y1     : point 1 that defines the rectangle
-        x2,y2     : point 2 that defines the rectangle
+        bmp   : unsigned byte array with bmp format
+        x1,y1 : point 1 that defines the rectangle
+        x2,y2 : point 2 that defines the rectangle
         
     Yields:
         unsigned byte array scanlines of the area
@@ -1675,9 +1683,8 @@ def intlinevec(bmp:array,u:list,v:list,color:int):
     """Creates a line in a bitmap 
 
     Args:
-        bmp   : An unsigned byte array with bmp format
-        u     : (x:int,y:int) point 1 that defines the line 
-        v     : (x:int,y:int) point 2 that defines the line 
+        bmp   : unsigned byte array with bmp format
+        u,v   : (x:int,y:int) points that defines the line 
         color : color of the line
         
     Returns:
@@ -1690,9 +1697,8 @@ def linevec(bmp:array,u:list,v:list,color:int):
     """Creates a line in a bitmap 
 
     Args:
-        bmp   : An unsigned byte array with bmp format
-        u     : (x:float,y:float) point 1 that defines the line 
-        v     : (x:float,y:float) point 2 that defines the line 
+        bmp   : unsigned byte array with bmp format
+        u,v   : (x:float,y:float) points that defines the line 
         color : color of the line
         
     Returns:
@@ -1702,15 +1708,12 @@ def linevec(bmp:array,u:list,v:list,color:int):
     intlinevec(bmp,roundvect(u),roundvect(v),color)
 
 def filledparallelogram(bmp:array,p1:list,p2:list,p3:list,color:int):
-    """Creates a filled parallelogram in a bitmap 
-        defined by 3 points
+    """Creates a filled parallelogram in a bitmap defined by 3 points
 
     Args:
-        bmp   : An unsigned byte array with bmp format
-        p1    : (x:float,y:float) point 1 
-        p2    : (x:float,y:float) point 2 
-        p3    : (x:float,y:float) point 3
-        color : color of filled parallelgram
+        bmp     : unsigned byte array with bmp format
+        p1,p2,p3: (x:float,y:float) points that define a parallelogram
+        color   : color of filled parallelgram
         
     Returns:
         byref modified byte array
@@ -1745,12 +1748,18 @@ def drawvec(bmp:array,u:list,v:list,headsize0fordefault:int,color:int):
         linevec(bmp,v,subvect(v,polar2rectcoord2D([hm,a1])),color)
         linevec(bmp,v,subvect(v,polar2rectcoord2D([hm,a2])),color)
     if u[0]<v[0] and u[1]<v[1]: hdsubvect(bmp,v,hm,a1,a2)
-    elif u[0]>v[0] and u[1]>v[1]: hdaddvect(bmp,v,hm,a1,a2)
-    elif v[1]==u[1] and u[0]<v[0]: hdsubvect(bmp,v,hm,a1,a2)
-    elif v[1]==u[1] and u[0]>v[0]: hdaddvect(bmp,v,hm,a1,a2)
-    elif v[0]==u[0] and u[1]>v[1]: hdsubvect(bmp,v,hm,a1,a2)
-    elif v[0]==u[0] and u[1]<v[1]: hdaddvect(bmp,v,hm,a1,a2)
-    elif u[0]<v[0] and u[1]>v[1]: hdsubvect(bmp,v,hm,a1,a2)
+    elif u[0]>v[0] and u[1]>v[1]: 
+        hdaddvect(bmp,v,hm,a1,a2)
+    elif v[1]==u[1] and u[0]<v[0]: 
+        hdsubvect(bmp,v,hm,a1,a2)
+    elif v[1]==u[1] and u[0]>v[0]: 
+        hdaddvect(bmp,v,hm,a1,a2)
+    elif v[0]==u[0] and u[1]>v[1]: 
+        hdsubvect(bmp,v,hm,a1,a2)
+    elif v[0]==u[0] and u[1]<v[1]: 
+        hdaddvect(bmp,v,hm,a1,a2)
+    elif u[0]<v[0] and u[1]>v[1]: 
+        hdsubvect(bmp,v,hm,a1,a2)
     else: 
         hdaddvect(bmp,v,hm,a1,a2)
 
@@ -1758,11 +1767,10 @@ def thickroundline(bmp:array,p1:list,p2:list,penradius:int,color:int):
     """Creates a thick rounded line in a bitmap 
 
     Args:
-        bmp: An unsigned byte array with bmp format
-        p1: first point of the line as (x,y)
-        p2: second point of the line as (x,y)
-        penradius: radius of pen in pixels
-        color: color of the line
+        bmp       : unsigned byte array with bmp format
+        p1,p2     : (x,y) end points of the line
+        penradius : radius of pen in pixels
+        color     : color of the line
         
     Returns:
         byref modified byte array
@@ -1775,9 +1783,8 @@ def gradthickroundline(bmp:array,p1:list,p2:list,penradius:int,lumrange:list,RGB
     """Creates a thick rounded line in a bitmap 
 
     Args:
-        bmp       : An unsigned byte array with bmp format
-        p1        : first point of the line as (x,y)
-        p2        : second point of the line as (x,y)
+        bmp       : unsigned byte array with bmp format
+        p1,p2     : (x,y) points that define of the line
         penradius : radius of pen in pixels
         lumrange  : list of two byte values [gradstart,gradend]
         RGBfactors: [r,g,b] as unsigned float from 0 to 1
@@ -1799,7 +1806,7 @@ def applynoparam24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func):
         with center defined by x,y with a radius r to a 24-bit bitmap
         
     Args:
-        bmp         : An unsigned byte array with bmp format
+        bmp         : unsigned byte array with bmp format
         x,y         : center of circular region
         r           : radius r 
         func        : function to apply
@@ -1832,12 +1839,11 @@ def applynoparam24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func):
 
 @intcircleparam24bitonly       
 def apply24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func,funcparam):
-    """Apply  function func  to a  circular region 
-        with center defined by x,y with a radius r
-        to a 24-bit bitmap
+    """Apply function func to a circular region with center defined by 
+        x,y with a radius r that is within a 24-bit bitmap
         
     Args:
-        bmp         : An unsigned byte array with bmp format
+        bmp         : unsigned byte array with bmp format
         x,y         : center of circular region
         r           : radius r 
         func        : function to apply
@@ -1871,12 +1877,11 @@ def apply24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func,funcparam):
 
 @entirecircleinboundary
 def copycircregion2buf(bmp:array,x:int,y:int,r:int) -> list:
-    """Copies a circular region to a buffer which is
-        defined by  centerpoint (x,y)  and  radius r
-        in an in-memory bitmap
+    """Copies a circular region to a buffer which is defined by centerpoint (x,y)  
+        and radius r from an in-memory bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -1893,11 +1898,10 @@ def copycircregion2buf(bmp:array,x:int,y:int,r:int) -> list:
     return copybuf
 
 def pastecirularbuf(bmp:array,x:int,y:int,circbuf:list):
-    """Paste  a circular buffer  with a  given radius 
-        to a centerpoint (x,y) in an in-memory bitmap
+    """Paste a circular buffer with a given radius to a centerpoint (x,y) in an in-memory bitmap
 
     Args:
-        bmp    : An unsigned byte array with bmp format
+        bmp    : unsigned byte array with bmp format
         x      : x coordinates of circular region
         y      : y coordinates of circular region
         circbuf: list generated by copycircregion2buf
@@ -1924,11 +1928,10 @@ def pastecirularbuf(bmp:array,x:int,y:int,circbuf:list):
         print(sysmsg['invalidbuf'])
 
 def copycircregion(bmp:array,x:int,y:int,r:int,newxy:list):
-    """Copy a circular buffer at x,y with a radius r
-        to a centerpoint newxy [x,y] in an in-memory bitmap
+    """Copy a circular buffer at x,y with a radius r to a centerpoint newxy [x,y] in an in-memory bitmap
 
     Args:
-        bmp    : An unsigned byte array with bmp format
+        bmp    : unsigned byte array with bmp format
         x      : x coordinates of circular region
         y      : y coordinates of circular region
         r      : radius r of area to copy at (x,y)
@@ -1942,11 +1945,10 @@ def copycircregion(bmp:array,x:int,y:int,r:int,newxy:list):
 
 @intcircleparam
 def applynoparamfunctocircregion(bmp:array,x:int,y:int,r:int,func):
-    """Apply a no parameter function func to a circular region 
-        with center defined by x,y with a radius r
+    """Apply a no parameter function to a circular region with center defined by x,y with a radius r
         
     Args:
-        bmp    : An unsigned byte array with bmp format
+        bmp    : unsigned byte array with bmp format
         x,y    : center of circular region
         r      : radius r 
         func   : function to apply
@@ -1979,12 +1981,11 @@ def applynoparamfunctocircregion(bmp:array,x:int,y:int,r:int,func):
 
 @entirecircleinboundary        
 def flipXYcircregion(bmp:array,x:int,y:int,r:int):
-    """Flip the X and Y coordinates of a circular region
-        to  rotate  by  90 degrees  with  center defined 
-        by x,y with a radius r
+    """Flip the X and Y coordinates of a circular region with center defined by x,y with a radius r
+        to rotate by 90 degrees
         
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius r 
@@ -2016,11 +2017,10 @@ def flipXYcircregion(bmp:array,x:int,y:int,r:int):
             bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[4],b[5]
 
 def fliphoricircregion(bmp:array,x:int,y:int,r:int):
-    """Flips horizontally a circular region
-        with  a center x,y with  a radius r
+    """Flips horizontally a circular region with a center x,y with a radius r
         
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius r 
@@ -2033,11 +2033,10 @@ def fliphoricircregion(bmp:array,x:int,y:int,r:int):
 
 @func8and24bitonlyandentirecircleinboundary
 def horitransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
-    """Applies a horizontal transform to circular region
-        with a center x,y with a radius r
+    """Applies a horizontal transform to circular region with a center x,y with a radius r
         
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         x    : x coordinates of circular region
         y    : y coordinates of circular region
         r    : radius r 
@@ -2086,12 +2085,10 @@ def horitransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
         f()
     
 def mirrorleftincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors the top left of  a circular region
-        defined by centerpoint (x,y) and radius r
-        in an in-memory bitmap
+    """Mirrors the top left of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2103,12 +2100,10 @@ def mirrorleftincircregion(bmp:array,x:int,y:int,r:int):
     horitransformincircregion(bmp,x,y,r,'L')
 
 def mirrorrightincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors the right half of a circular region
-        defined by  centerpoint (x,y) and radius r
-        in an in-memory bitmap
+    """Mirrors the right half of a circular region defined by  centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2120,12 +2115,10 @@ def mirrorrightincircregion(bmp:array,x:int,y:int,r:int):
     horitransformincircregion(bmp,x,y,r,'R')
 
 def flipvertcircregion(bmp:array,x:int,y:int,r:int):
-    """Does  a Vertical Flip of  a circular region
-        defined by  centerpoint (x,y) and radius r
-        in an in-memory bitmap
+    """Does a vertical flip of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2138,11 +2131,10 @@ def flipvertcircregion(bmp:array,x:int,y:int,r:int):
 
 @entirecircleinboundary
 def verttransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
-    """Applies a vertical transform to circular region
-        with a center x,y with a radius r
+    """Applies a vertical transform to circular region with a center x,y with a radius r
         
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         x    : x coordinates of circular region
         y    : y coordinates of circular region
         r    : radius r 
@@ -2175,12 +2167,10 @@ def verttransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
         f()
     
 def mirrortopincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors  the top half of  a circular region
-        defined by  centerpoint (x,y) and radius r
-        in an in-memory bitmap
+    """Mirrors the top half of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2192,12 +2182,10 @@ def mirrortopincircregion(bmp:array,x:int,y:int,r:int):
     verttransformincircregion(bmp,x,y,r,'T')
 
 def mirrorbottomincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors the bottom half of a circular region
-        defined by  centerpoint (x,y)  and radius r
-        in an in-memory bitmap
+    """Mirrors the bottom half of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2209,12 +2197,10 @@ def mirrorbottomincircregion(bmp:array,x:int,y:int,r:int):
     verttransformincircregion(bmp,x,y,r,'B')
 
 def mirrortopleftincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors  the top left  of a  circular region
-        defined by  centerpoint (x,y)  and radius r
-        in an in-memory bitmap
-
+    """Mirrors the top left  of a circular region defined by centerpoint (x,y) and radius r
+        
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2227,12 +2213,10 @@ def mirrortopleftincircregion(bmp:array,x:int,y:int,r:int):
     mirrortopincircregion(bmp,x,y,r)
 
 def mirrortoprightincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors  the top right of a  circular region
-        defined by  centerpoint (x,y)  and radius r
-        in an in-memory bitmap
-
+    """Mirrors the top right of a circular region defined by centerpoint (x,y) and radius r
+        
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2245,12 +2229,10 @@ def mirrortoprightincircregion(bmp:array,x:int,y:int,r:int):
     mirrortopincircregion(bmp,x,y,r)
 
 def mirrorbottomleftincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors the bottom left of a circular region
-        defined by  centerpoint (x,y)  and radius r
-        in an in-memory bitmap
+    """Mirrors the bottom left of a circular region defined by  centerpoint (x,y)  and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2263,12 +2245,10 @@ def mirrorbottomleftincircregion(bmp:array,x:int,y:int,r:int):
     mirrorbottomincircregion(bmp,x,y,r)
 
 def mirrorbottomrightincircregion(bmp:array,x:int,y:int,r:int):
-    """Mirrors the bottom right of a circular region
-        defined by  centerpoint (x,y)  and  radius r
-        in an in-memory bitmap
+    """Mirrors the bottom right of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2286,7 +2266,7 @@ def vertbrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
         to a circular region with a center x,y with a radius r
         
     Args:
-        bmp     : An unsigned byte array with bmp format
+        bmp     : unsigned byte array with bmp format
         x       : x coordinates of circular region
         y       : y coordinates of circular region
         r       : radius r 
