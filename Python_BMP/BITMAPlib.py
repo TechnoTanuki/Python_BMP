@@ -3318,7 +3318,7 @@ def upgradeto24bitimage(bmp:array):
         bmp : unsigned byte array with bmp format
         
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     bits=bmp[bmpcolorbits]
@@ -3565,11 +3565,11 @@ def verttrans(bmp,trans):
     """Do vertical image transforms in a bitmap 
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        tran      : single letter transform code
-                    'T' - mirror top half
-                    'B' - mirror bottom half
-                    'F' - flip
+        bmp : unsigned byte array with bmp format
+        tran: single letter transform code
+              'T' - mirror top half
+              'B' - mirror bottom half
+              'F' - flip
     
     Returns:
         byref modified unsigned byte array
@@ -3633,9 +3633,9 @@ def verttransregion(bmp:array,x1:int,y1:int,x2:int,y2:int,trans:str):
         bmp         : unsigned byte array with bmp format
         x1,y1,x2,y2 : defines the rectangle
         trans       : single letter transform code
-                    'T' - mirror top half
-                    'B' - mirror bottom half
-                    'F' - flip
+                      'T' - mirror top half
+                      'B' - mirror bottom half
+                      'F' - flip
     
     Returns:
         byref modified unsigned byte array
@@ -4447,7 +4447,7 @@ def verticalbrightnessgradto24bitimage(bmp,lumrange):
 
 # start non core functions
 def mandelbrot(bmp:array,x1:int,y1:int,x2:int,y2:int,mandelparam:list,RGBfactors:list,maxiter:int):
-    """Draw a mandelbrot set 
+    """Draw a Mandelbrot set 
 
     Args:
         bmp        : An unsigned byte array with bmp format
@@ -4479,7 +4479,23 @@ def mandelbrot(bmp:array,x1:int,y1:int,x2:int,y2:int,mandelparam:list,RGBfactors
             else: c=mcolor-c%maxcolors
             plotxybit(bmp,x,y,c)
 
-def IFS(bmp,IFStransparam,x1,y1,x2,y2,xscale,yscale,xoffset,yoffset,color,maxiter):
+def IFS(bmp:array,IFStransparam:list,x1:int,y1:int,x2:int,y2:int,
+        xscale:int,yscale:int,xoffset:int,yoffset:int,color:int,maxiter:int):
+    """Draw a Interated Function System  (IFS) fractal
+
+    Args:
+        bmp            : An unsigned byte array with bmp format
+        IFStransparam  : see fractals.py 
+        x1,y1,x2,y2    : rectangular area to draw in
+        xscale,yscale  : scaling factors
+        xoffset,yoffset: used to move the fractal
+        color          : color of fractal
+        maxiter        : when to break computing for color
+        
+    Returns:
+        byref modified byte array
+
+    """        
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     af,p,x,y=IFStransparam[0],IFStransparam[1],x1,y1
     dy,i=y2-y1,0
