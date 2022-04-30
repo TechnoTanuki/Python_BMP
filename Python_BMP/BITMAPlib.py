@@ -1440,7 +1440,7 @@ def roundpen(bmp:array,point:list,penradius:int,color:int):
     """Draws a circle or a point depending on penradius of a given color
 
     Args:
-        bmp      : An unsigned byte array with bmp format
+        bmp      : unsigned byte array with bmp format
         point    : (x:uint,y:uint) centerpoint
         penradius: radius of the pen in pixels
         color    : color of the pen
@@ -1623,7 +1623,7 @@ def filledgradrect(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list,
     """Creates a filled rectangle with a linear gradient in a bitmap 
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x1,y1     : point 1 that defines the rectangle
         x2,y2     : point 2 that defines the rectangle
         lumrange  : [byte,byte] that define range of gradient
@@ -1877,8 +1877,7 @@ def apply24bitfunctocircregion(bmp:array,x:int,y:int,r:int,func,funcparam):
 
 @entirecircleinboundary
 def copycircregion2buf(bmp:array,x:int,y:int,r:int) -> list:
-    """Copies a circular region to a buffer which is defined by centerpoint (x,y)  
-        and radius r from an in-memory bitmap
+    """Copies a circular region to a buffer which is defined by centerpoint (x,y) and radius r
 
     Args:
         bmp: unsigned byte array with bmp format
@@ -1898,7 +1897,7 @@ def copycircregion2buf(bmp:array,x:int,y:int,r:int) -> list:
     return copybuf
 
 def pastecirularbuf(bmp:array,x:int,y:int,circbuf:list):
-    """Paste a circular buffer with a given radius to a centerpoint (x,y) in an in-memory bitmap
+    """Paste a circular buffer with a given radius to a centerpoint (x,y)
 
     Args:
         bmp    : unsigned byte array with bmp format
@@ -1928,7 +1927,7 @@ def pastecirularbuf(bmp:array,x:int,y:int,circbuf:list):
         print(sysmsg['invalidbuf'])
 
 def copycircregion(bmp:array,x:int,y:int,r:int,newxy:list):
-    """Copy a circular buffer at x,y with a radius r to a centerpoint newxy [x,y] in an in-memory bitmap
+    """Copy a circular buffer at x,y with a radius r to a centerpoint newxy [x,y]
 
     Args:
         bmp    : unsigned byte array with bmp format
@@ -2291,7 +2290,7 @@ def horibrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
         to a circular region with a center x,y with a radius r
         
     Args:
-        bmp     : An unsigned byte array with bmp format
+        bmp     : unsigned byte array with bmp format
         x       : x coordinates of circular region
         y       : y coordinates of circular region
         r       : radius r 
@@ -2313,11 +2312,10 @@ def horibrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
 
 @intcircleparam    
 def outlinecircregion(bmp:array,x:int,y:int,r:int):
-    """Outlines the area within a circular region defined by centerpoint (x,y)
-        and  radius r in an in-memory bitmap
+    """Outlines the area within a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2360,12 +2358,10 @@ def outlinecircregion(bmp:array,x:int,y:int,r:int):
                     bmp[s1:e1]=array('B',xorvect(bmp[s1:e1],bmp[s1+1:e1+1]))
 
 def monocircle(bmp:array,x:int,y:int,r:int):
-    """Applies a monochrome filter to a circular region
-        defined by centerpoint (x,y) and radius r in an 
-        in-memory bitmap
+    """Applies a monochrome filter to a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         x  : x coordinates of circular region
         y  : y coordinates of circular region
         r  : radius of circular region
@@ -2378,10 +2374,10 @@ def monocircle(bmp:array,x:int,y:int,r:int):
 
 def colorfiltercircregion(bmp:array,x:int,y:int,r:int,rgbfactors:list):
     """Applies a color filter defined by rgbfactors to a circular region
-        defined by centerpoint (x,y) and radius r in an in-memory bitmap
+        defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x         : x coordinates of circular region
         y         : y coordinates of circular region
         r         : radius of circular region
@@ -2395,10 +2391,8 @@ def colorfiltercircregion(bmp:array,x:int,y:int,r:int,rgbfactors:list):
     apply24bitfunctocircregion(bmp,x,y,r,colorfiltertoBGRbuf,rgbfactors)
 
 def gammacorrectcircregion(bmp:array,x:int,y:int,r:int,gamma:float):
-    """Applies gamma correction gamma to a circular region
-        defined by centerpoint (x,y) and radius r 
-        in an in-memory bitmap
-
+    """Applies gamma correction gamma to a circular region defined by centerpoint (x,y) and radius r 
+    
     Args:
         bmp  : An unsigned byte array with bmp format
         x    : x coordinates of circular region
@@ -2413,9 +2407,7 @@ def gammacorrectcircregion(bmp:array,x:int,y:int,r:int,gamma:float):
     apply24bitfunctocircregion(bmp,x,y,r,gammaBGRbuf,gamma)
 
 def brightnessadjcircregion(bmp:array,x:int,y:int,r:int,percentadj:float):
-    """Applies brightness adjustment percentadj to a circular region
-        defined by centerpoint (x,y) and radius r 
-        in an in-memory bitmap
+    """Applies brightness adjustment percentadj to a circular region defined by centerpoint (x,y) and radius r 
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -2431,9 +2423,7 @@ def brightnessadjcircregion(bmp:array,x:int,y:int,r:int,percentadj:float):
     apply24bitfunctocircregion(bmp,x,y,r,applybrightnessadjtoBGRbuf,percentadj)
 
 def invertbitsincircregion(bmp:array,x:int,y:int,r:int):
-    """Inverts the bits in a circular region
-        defined by centerpoint (x,y) and radius r 
-        in an in-memory bitmap
+    """Inverts the bits in a circular region defined by centerpoint (x,y) and radius r 
 
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -2448,11 +2438,10 @@ def invertbitsincircregion(bmp:array,x:int,y:int,r:int):
     applynoparamfunctocircregion(bmp,x,y,r,invertbitsinbuffer)
 
 def circlevec(bmp:array,v:list,r:int,color:int,isfilled:bool=None):
-    """Draws a circle defined by centerpoint v and radius r 
-        with a given color in an in-memory bitmap
+    """Draws a circle defined by centerpoint v and radius r with a given color
 
     Args:
-        bmp     : An unsigned byte array with bmp format
+        bmp     : unsigned byte array with bmp format
         v       : (x,y) coordinates of circular region
         r       : radius of circular region
         color   : color of the circle
@@ -2466,11 +2455,10 @@ def circlevec(bmp:array,v:list,r:int,color:int,isfilled:bool=None):
     circle(bmp,v[0],v[1],r,color,isfilled)
 
 def filledcircle(bmp:array,x:int,y:int,r:int,color:int):
-    """Draws a filled circle defined by centerpoint (x,y) and radius r 
-        with a given color in an in-memory bitmap
+    """Draws a filled circle defined by centerpoint (x,y) and radius r with a given color
 
     Args:
-        bmp     : An unsigned byte array with bmp format
+        bmp     : unsigned byte array with bmp format
         x       : x coordinates of circular region
         y       : y coordinates of circular region
         r       : radius of circular region
@@ -2519,11 +2507,10 @@ def filledcircle(bmp:array,x:int,y:int,r:int,color:int):
                     bmp[s:s+dx]=colorbuf
 
 def circle(bmp:int,x:int,y:int,r:int,color:int,isfilled:bool=None):
-    """Draws a circle defined by centerpoint (x,y) and radius r 
-        with a given color in an in-memory bitmap
+    """Draws a circle defined by centerpoint (x,y) and radius r with a given color
 
     Args:
-        bmp     : An unsigned byte array with bmp format
+        bmp     : unsigned byte array with bmp format
         x       : x coordinates of circular region
         y       : y coordinates of circular region
         r       : radius of circular region
@@ -2572,11 +2559,10 @@ def circle(bmp:int,x:int,y:int,r:int,color:int,isfilled:bool=None):
 
 def thickcircle(bmp:array,x:int,y:int,r:int,penradius:int,color:int):
     """Draws a thick circle defined by centerpoint (x,y) and radius r 
-        with a given color in an in-memory bitmap 
-        using a pen with radius penradius
+        with a given color using a pen with radius penradius
 
     Args:
-        bmp      : An unsigned byte array with bmp format
+        bmp      : unsigned byte array with bmp format
         x        : x coordinates of circular region
         y        : y coordinates of circular region
         r        : radius of circular region
@@ -2591,12 +2577,13 @@ def thickcircle(bmp:array,x:int,y:int,r:int,penradius:int,color:int):
         circle(bmp,p[0],p[1],penradius,color,True)
 
 def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list,RGBfactors:list):
-    """Draws a thick circle with gradient lumrange defined by centerpoint (x,y)
-         and radius r using a pen with radius penradius 
-         and color defined by RGBfactors
+    """Draws a thick circle with gradient lumrange 
+        defined by centerpoint (x,y) and radius r 
+        using a pen with radius penradius 
+        and color defined by RGBfactors
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x         : x coordinates of circular region
         y         : y coordinates of circular region
         r         : radius of circular region
@@ -2617,11 +2604,12 @@ def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list
         thickcircle(bmp,x,y,radius,i,c)
 
 def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
-    """Draws a filled circle with gradient lumrange defined by centerpoint (x,y)
-         and radius r and color defined by RGBfactors
+    """Draws a filled circle with gradient lumrange 
+        defined by centerpoint (x,y) and radius r 
+        and color defined by RGBfactors
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x         : x coordinates of circular region
         y         : y coordinates of circular region
         r         : radius of circular region
@@ -2647,7 +2635,7 @@ def thickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
         and rotated by degrot degrees
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
         degrot    : rotation of the ellipse in degrees
@@ -2663,16 +2651,12 @@ def thickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
 
 def gradthickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
                         penradius:int,lumrange:list,RGBfactors:list):
-    """Draws an thick ellipse 
-        with a defined pen radius
-        defined by centerpoint (x,y) 
-        and major and minor axis (b,a) 
-        and rotated by degrot degrees
-        with a gradient fill 
+    """Draws an thick ellipse with a defined pen radius
+        defined by centerpoint (x,y) and major and minor axis (b,a) 
+        and rotated by degrot degrees with a gradient fill 
 
-        
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
         degrot    : rotation of the ellipse in degrees
@@ -2693,11 +2677,10 @@ def gradthickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
         thickellipserot(bmp,x,y,b,a,degrot,i,c)
 
 def filledellipse(bmp:array,x:int,y:int,b:int,a:int,color:int):
-    """Draws an filled ellipse defined by centerpoint (x,y) 
-        and major and minor axis (b,a) 
+    """Draws an filled ellipse defined by centerpoint (x,y) and major and minor axis (b,a) 
         
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
         color     : color of the ellipse
@@ -2745,8 +2728,7 @@ def filledellipse(bmp:array,x:int,y:int,b:int,a:int,color:int):
                     bmp[s:s+dx]=colorbuf
 
 def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
-    """Draws an ellipse defined by centerpoint (x,y) 
-        and major and minor axis (b,a) 
+    """Draws an ellipse defined by centerpoint (x,y) and major and minor axis (b,a) 
         
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -2791,16 +2773,13 @@ def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
                 plotxybit(bmp,p[0],p[1],color)
 
 def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list):
-    """Draws an ellipical gradient
-        defined by centerpoint (x,y) 
-        and major and minor axis (b,a) 
+    """Draws an ellipical gradient defined by centerpoint (x,y) and major and minor axis (b,a) 
         
     Args:
         bmp       : An unsigned byte array with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
-        lumrange  : [byte:byte] 
-                    controls the range of the gradient
+        lumrange  : [byte:byte] controls the range of the gradient
         rgbfactors: [r,g,b]  all values in list are ufloat
                     range of r, g and b are 0 min to 1 max
 
@@ -2820,8 +2799,7 @@ def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list)
 @intcircleparam
 def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
             color:int,showoutline:bool,fillcolor:int,isfilled:bool):
-    """Draws an arc centered at point (x,y) with radius r
-        and  specified  start and  end angles  in degrees
+    """Draws an arc centered at point (x,y) with radius r and specified start and end angles in degrees
         
     Args:
         bmp        : An unsigned byte array with bmp format
@@ -2831,7 +2809,6 @@ def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
         showoutline : True -> draw arc outline
         fillcolor   : color of arc filling
         isfilled    : True -> set area inside arc to fillcolor
-                    
 
     Returns:
         byref modified byte array
@@ -2847,10 +2824,10 @@ def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
     """Draws a rectangle of a given color
 
     Args:
-        bmp      : An unsigned byte array with bmp format
-        x1,y1    : 1st point to define the rectangle
-        x2,y2    : 2nd point to define the rectangle
-        color    : color of the rectangle
+        bmp   : An unsigned byte array with bmp format
+        x1,y1 : 1st point to define the rectangle
+        x2,y2 : 2nd point to define the rectangle
+        color : color of the rectangle
         
     Returns:
         byref modified byte array
@@ -2863,10 +2840,10 @@ def filledrect(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
     """Draws a filled rectangle of a given color
 
     Args:
-        bmp      : An unsigned byte array with bmp format
-        x1,y1    : 1st point to define the rectangle
-        x2,y2    : 2nd point to define the rectangle
-        color    : color of the rectangle
+        bmp   : An unsigned byte array with bmp format
+        x1,y1 : 1st point to define the rectangle
+        x2,y2 : 2nd point to define the rectangle
+        color : color of the rectangle
         
     Returns:
         byref modified byte array
@@ -3053,8 +3030,8 @@ def thickplotpoly(bmp:array,vertlist:list,penradius:int,color:int):
     """Draws a polygon of a given color and thickness
 
     Args:
-        bmp      : An unsigned byte array with bmp format
-        vertlist  : [(x,y)...] list of vertices
+        bmp      : unsigned byte array with bmp format
+        vertlist : [(x,y)...] list of vertices
         penradius: radius of pen in pixels
         color    : color of bezier curve
 
@@ -3072,7 +3049,7 @@ def gradthickplotpoly(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfac
     """Draws a polygon of a given gradient and thickness
 
     Args:
-        bmp        : An unsigned byte array with bmp format
+        bmp        : unsigned byte array with bmp format
         vertlist   : [(x,y)...] list of vertices
         penradius  : radius of pen in pixels
         lumrange   : [byte,byte] range of the gradient
@@ -3094,7 +3071,7 @@ def plotlines(bmp:array,vertlist:list,color:int):
     """Draws connected lines defined by a list of vertices
 
     Args:
-        bmp      : An unsigned byte array with bmp format
+        bmp      : unsigned byte array with bmp format
         vertlist : [(x:uint,y:uint),...] list of vertices
         color    : color of the lines
         
@@ -3110,7 +3087,7 @@ def plotpoly(bmp:array,vertlist:list,color:int):
     """Draws a polygon defined by a list of vertices
 
     Args:
-        bmp      : An unsigned byte array with bmp format
+        bmp      : unsigned byte array with bmp format
         vertlist : [(x:uint,y:uint),...] list of vertices
         color    : color of the lines
         
@@ -3125,7 +3102,7 @@ def plotpolylist(bmp,polylist,color):
     """Draws a list of polygons of a given color
 
     Args:
-        bmp      : An unsigned byte array with bmp format
+        bmp      : unsigned byte array with bmp format
         polytlist: [[(x:uint,y:uint),...],...] list of polygons  
         color    : color of the lines
         
@@ -3140,7 +3117,7 @@ def plotpolyfillist(bmp:array,sides:list,RGBfactors:list):
     """3D polygon rendering function
 
     Args:
-        bmp        : An unsigned byte array with bmp format
+        bmp        : unsigned byte array with bmp format
         sides      : list of polygons and normals
         RGBfactors : [r:float,g:float,b:float]
                      r,g,b all range in value from 0 to 1 
@@ -3165,6 +3142,20 @@ def plot3Dsolid(bmp,vertandsides,issolid,RGBfactors,showoutline,outlinecolor,rot
     plot3d(bmp,gensides(perspective(vertandsides[0],rotvect,transvect3D,d),transvect,vertandsides[1]),issolid,RGBfactors,showoutline,outlinecolor)
 
 def gradvert(bmp,vertlist,penradius,lumrange,RGBfactors):
+    """Draws a list of 2d vertices as spheres of a given color
+
+    Args:
+        bmp       : unsigned byte array with bmp format
+        vertlist  : [(x,y),...] list of verticea
+        penradius : radius of the spheres
+        lumrange  : [byte,byte] controls the gradient
+        RGBfactors: (r:float,b:float,g:float) 
+                    values of r,g and b -> min 0 to 1 max 
+        
+    Returns:
+        byref modified byte array
+
+    """
     lum1,lumrang=range2baseanddelta(lumrange)
     for i in range(penradius,0,-1):
         c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
@@ -3172,7 +3163,19 @@ def gradvert(bmp,vertlist,penradius,lumrange,RGBfactors):
         for point in vertlist: roundpen(bmp,point,i,c)
 
 @entirerectinboundary        
-def xygrid(bmp,x1,y1,x2,y2,xysteps,color):
+def xygrid(bmp:array,x1:int,y1:int,x2:int,y2:int,xysteps:list,color:int):
+    """Draws a grid
+
+    Args:
+        bmp         : unsigned byte array with bmp format
+        x1,y1,x2,y2 : sets limits of grid
+        xysteps     : [x,y] -> sets the increment in x and y
+        color       : sets the color of the grid
+        
+    Returns:
+        byref modified byte array
+
+    """
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     xstep,ystep=xysteps[0],xysteps[1]
     for x in range(x1,x2,xstep): 
@@ -3180,7 +3183,19 @@ def xygrid(bmp,x1,y1,x2,y2,xysteps,color):
     for y in range(y1,y2,ystep): 
         horiline(bmp,y,x1,x2,color)
 
-def xygridvec(bmp,u,v,steps,gridcolor): 
+def xygridvec(bmp,u,v,steps,gridcolor):
+    """Draws a grid using (x,y) pairs u and v
+
+    Args:
+        bmp         : unsigned byte array with bmp format
+        u,v         : (x,y) sets limits of grid
+        xysteps     : [x,y] -> sets the increment in x and y
+        color       : sets the color of the grid
+        
+    Returns:
+        byref modified byte array
+
+    """
     xygrid(bmp,u[0],u[1],v[0],v[1],steps,gridcolor)
 
 def numbervert(bmp,vlist,xadj,yadj,scale,valstart,valstep,pixspace,spacebetweenchar,color,fontbuf,suppresszero,suppresslastnum,rightjustify):
@@ -3195,11 +3210,39 @@ def numbervert(bmp,vlist,xadj,yadj,scale,valstart,valstep,pixspace,spacebetweenc
         if rightjustify:rjust=(len(stval)-1)<<3
         if plot: plotstring(bmp,v[0]+xadj-rjust,v[1]+yadj,stval,scale,pixspace,spacebetweenchar,color,fontbuf)
 
-def vertlinevert(bmp,vlist,linelen,yadj,color):
-    for v in vlist: vertline(bmp,v[0],v[1],v[1]+linelen+yadj,color)
+def vertlinevert(bmp:array,vlist:list,linelen:int,yadj:int,color:int):
+    """Draws vertical line marks at vertices in vlist
 
-def horilinevert(bmp,vlist,linelen,xadj,color):
-    for v in vlist: horiline(bmp,v[1],v[0],v[0]+linelen+xadj,color)
+    Args:
+        bmp     : unsigned byte array with bmp format
+        vlist   : [(x,y),...] list of vertices
+        linelen : lenght of vertical lines
+        yadj    : sets an adjustment of y coordinates
+        color   : color opf the line
+        
+    Returns:
+        byref modified byte array
+
+    """
+    for v in vlist: 
+        vertline(bmp,v[0],v[1],v[1]+linelen+yadj,color)
+
+def horilinevert(bmp:array,vlist:list,linelen:int,xadj:int,color:int):
+    """Draws horizontal line marks at vertices in vlist
+
+    Args:
+        bmp     : unsigned byte array with bmp format
+        vlist   : [(x,y),...] list of vertices
+        linelen : lenght of vertical lines
+        xadj    : sets an adjustment of x coordinates
+        color   : color opf the line
+        
+    Returns:
+        byref modified byte array
+
+    """
+    for v in vlist: 
+        horiline(bmp,v[1],v[0],v[0]+linelen+xadj,color)
 
 def XYaxis(bmp,origin,steps,xylimits,xyvalstarts,xysteps,color,textcolor,showgrid,gridcolor):
     hvert=horizontalvert(origin[1],origin[0],xylimits[0],steps[0])
@@ -3296,6 +3339,15 @@ def convertbufto24bit(buf,bgrpalbuf,bits):
     return array('B',retval)
 
 def upgradeto24bitimage(bmp:array):
+    """Upgrade an image to 24 bits
+
+    Args:
+        bmp : unsigned byte array with bmp format
+        
+    Returns:
+        byref modified byte array
+
+    """
     bits=bmp[bmpcolorbits]
     if bits==24:
         print(sysmsg['is24bit'])
@@ -3380,7 +3432,16 @@ def iterimagecolor(bmp,waitmsg,rowprocind,finishmsg):
     if finishmsg!='': print(finishmsg)
 
 @entirerectinboundary
-def copyrect(bmp:array,x1:int,y1:int,x2:int,y2:int):
+def copyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
+    """Copy a rectangular region to a buffer
+
+    Args:
+        bmp : unsigned byte array with bmp format
+        
+    Returns:
+        custom unsigned byte array
+        
+    """
     retval=array('B',[bmp[bmpcolorbits]])
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     retval+=int2buf(2,x2-x1+2)
@@ -3398,9 +3459,8 @@ def pasterect(bmp:array,buf:array,x1:int,y1:int):
         buf       : rectangular image buffer
         x1,y1     : point to paste the buffer
     
-        
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     if bmp[bmpcolorbits]!=buf[0]:
@@ -3420,6 +3480,15 @@ def pasterect(bmp:array,buf:array,x1:int,y1:int):
             print(sysmsg['regionoutofbounds'])
 
 def convertselection2BMP(buf:array):
+    """ converts acustom unsigned byte array to bitmap format
+
+    Args:
+        buf : unsigned byte array with buf format
+        
+    Returns:
+        unsigned byte array with bmp format
+        
+    """
     bmp,bits=-1,buf[0]
     if not isvalidcolorbit(bits): print (sysmsg['invalidbuf'])
     else:
@@ -3431,10 +3500,10 @@ def invertimagebits(bmp:array):
     """Inverts the bits a bitmap 
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     offset,maxoffset=gethdrsize(bmp),getfilesize(bmp)
@@ -3453,7 +3522,17 @@ def erasealternatehorizontallines(bmp,int_eraseeverynline,int_eraseNthline,bytep
         s2-=bufsize
         i+=1
 
-def eraseeverynthhorizontalline(bmp:array,n:int): 
+def eraseeverynthhorizontalline(bmp:array,n:int):
+    """Erase every nth horizontal line
+
+    Args:
+        bmp: unsigned byte array with bmp format
+        n  : erase every nth line
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
     erasealternatehorizontallines(bmp,n,0,0)
 
 @entirecircleinboundary
@@ -3468,6 +3547,18 @@ def erasealternatehorizontallinesincircregion(bmp,x,y,r,int_eraseeverynline,int_
         if y2%int_eraseeverynline==int_eraseNthline:bmp[s2:e2]=array('B', [bytepat]*(e2-s2))
 
 def eraseeverynthhorizontallineinccircregion(bmp:array,x:int,y:int,r:int,n:int):
+    """Erase every nth horizontal line in a circular region
+
+    Args:
+        bmp: unsigned byte array with bmp format
+        x,y: centerpoint of circular region
+        r  : radius of circular region
+        n  : erase every nth line
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
     erasealternatehorizontallinesincircregion(bmp,x,y,r,n,0,0)
 
 @entirerectinboundary
@@ -3483,21 +3574,32 @@ def erasealternatehorizontallinesinregion(bmp,x1,y1,x2,y2,int_eraseeverynline,in
         s2-=r
         i+=1
 
-def eraseeverynthhorilineinregion(bmp:array,x1:int,y1:int,x2:int,y2:int,n:int): 
+def eraseeverynthhorilineinregion(bmp:array,x1:int,y1:int,x2:int,y2:int,n:int):
+    """Erase every nth line in a rectangular region
+
+    Args:
+        bmp        : unsigned byte array with bmp format
+        x1,y1,x2,y2: defines the rectangular region
+        n          : erase every nth line in the region
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
     erasealternatehorizontallinesinregion(bmp,x1,y1,x2,y2,n,0,0)
 
 def verttrans(bmp,trans):
     """Do vertical image transforms in a bitmap 
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         tran      : single letter transform code
                     'T' - mirror top half
                     'B' - mirror bottom half
                     'F' - flip
     
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     def flip(): bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
@@ -3518,7 +3620,7 @@ def flipvertical(bmp):
     """Does an in-memory vertical flip of a bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
         byref modified byte array
@@ -3530,7 +3632,7 @@ def mirrortop(bmp):
     """Mirrors the top half of an in-memory bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
         byref modified byte array
@@ -3542,7 +3644,7 @@ def mirrorbottom(bmp):
     """Mirrors the bottom half of an in-memory bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: unsigned byte array with bmp format
         
     Returns:
         byref modified byte array
@@ -3552,11 +3654,10 @@ def mirrorbottom(bmp):
 
 @entirerectinboundary
 def verttransregion(bmp:array,x1:int,y1:int,x2:int,y2:int,trans:str):
-    """Do vertical image transforms in a bitmap
-        to a rectangular region 
+    """Do vertical image transforms in a bitmap in a rectangular region 
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x1,y1     : first point  to define rectangle
         x2,y2     : second point to define rectangle
         trans     : single letter transform code
@@ -3565,7 +3666,7 @@ def verttransregion(bmp:array,x1:int,y1:int,x2:int,y2:int,trans:str):
                     'F' - flip
     
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     def flip(): bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
@@ -3587,12 +3688,12 @@ def flipverticalregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
     """Flips vertical a rectangular region in a bitmap
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x1,y1     : first point  to define rectangle
         x2,y2     : second point to define rectangle
 
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     verttransregion(bmp,x1,y1,x2,y2,'F')
@@ -3601,12 +3702,12 @@ def mirrorbottominregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
     """Mirror the bottom half of a rectangular region in a bitmap
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x1,y1     : first point  to define rectangle
         x2,y2     : second point to define rectangle
 
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     verttransregion(bmp,x1,y1,x2,y2,'B')
@@ -3615,28 +3716,27 @@ def mirrortopinregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
     """Mirror the top half of a rectangular region in a bitmap
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x1,y1     : first point  to define rectangle
         x2,y2     : second point to define rectangle
 
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     verttransregion(bmp,x1,y1,x2,y2,'T')
     
 @entirerectinboundary        
 def fliphorzontalpixelbased(bmp,x1,y1,x2,y2):
-    """Flips horizontal a rectangular region in a bitmap
-        using pixel addressing (slightly slow)
+    """Flips horizontal a rectangular region in a bitmap using pixel addressing (slightly slow)
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x1,y1     : first point  to define rectangle
         x2,y2     : second point to define rectangle
 
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     m=x1+((x2-x1)>>1)
@@ -3650,16 +3750,15 @@ def fliphorzontalpixelbased(bmp,x1,y1,x2,y2):
 
 @entirerectinboundary    
 def fliphverticalalpixelbased(bmp,x1,y1,x2,y2):
-    """Flips vertical a rectangular region in a bitmap
-        using pixel addressing (slightly slow)
+    """Flips vertical a rectangular region in a bitmap using pixel addressing (slightly slow)
 
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : unsigned byte array with bmp format
         x1,y1     : first point  to define rectangle
         x2,y2     : second point to define rectangle
 
     Returns:
-        byref modified unsigned byte array bmp
+        byref modified unsigned byte array
 
     """
     m=y1+((y2-y1)>>1)
@@ -3672,6 +3771,15 @@ def fliphverticalalpixelbased(bmp,x1,y1,x2,y2):
         y2-=1
 
 def flipnibbleinbuf(buf:array) -> array:
+    """Flips a 4 bit image buffer
+
+    Args:
+        buf : unsigned byte array
+        
+    Returns:
+        unsigned byte array
+
+    """    
     return array('B',[(b>>4)+((b%16)<<4) for b in buf])
 
 def rotatebitsinbuf(buf:array) -> array: 
@@ -3983,10 +4091,8 @@ def itergetcolorfromrectregion(bmp,x1,y1,x2,y2):
 
 @entirerectinboundary              
 def crop(bmp:array,x1:int,y1:int,x2:int,y2:int):
-    """Crops the image to a rectangular region
-        defined by (x1,y1) and (x2,y2)
-        in an in-memory bitmap
-
+    """Crops the image to a rectangular region defined by (x1,y1) and (x2,y2)
+    
     Args:
         bmp  : An unsigned byte array with bmp format
         x1,y2: point one that defines the rectangle
@@ -4012,12 +4118,10 @@ def crop(bmp:array,x1:int,y1:int,x2:int,y2:int):
 
 @entirerectinboundary    
 def invertregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
-    """Inverts the bits in a rectangular region
-        defined by (x1,y1) and (x2,y2)
-        in an in-memory bitmap
-
+    """Inverts the bits in a rectangular region defined by (x1,y1) and (x2,y2)
+        
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         x1,y2: point one that defines the rectangle
         x2,y2: point two that defines the rectangle
         
@@ -4039,12 +4143,11 @@ def invertregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
             offset+=r
 
 def monofilterto24bitregion(bmp,x1,y1,x2,y2):
-    """Applies a monochrome filter to a rectangular region
-        defined by (x1,y1) and (x2,y2)
+    """Applies a monochrome filter to a rectangular region defined by (x1,y1) and (x2,y2)
         in an in-memory 24 bit bitmap
 
     Args:
-        bmp  : An unsigned byte array with bmp format
+        bmp  : unsigned byte array with bmp format
         x1,y2: point one that defines the rectangle
         x2,y2: point two that defines the rectangle
         
@@ -4067,8 +4170,7 @@ def monofilterto24bitimage(bmp:array):
     monofilterto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
 
 def horizontalbrightnessgradto24bitimage(bmp:array,lumrange:list):
-    """Applies a horizontal brightness gradient 
-        to a 24 bit in-memory bitmap
+    """Applies a horizontal brightness gradient to a 24 bit in-memory bitmap
 
     Args:
         bmp     : An unsigned byte array with bmp format
@@ -4095,7 +4197,7 @@ def flip24bitbuf(buf):
     return array('B',buf)
 
 def unpack4bitbuf(buf):
-    """Unpacks a 4 bit buffer into a list
+    """Unpacks a 4-bit buffer into a list
     
     Args:
         buf: An unsigned byte array
@@ -4110,8 +4212,7 @@ def unpack4bitbuf(buf):
     return retval
 
 def unpack4bitbufresizeNtimesbigger(buf:array,n:int):
-    """unpacks a 4 bit buffer into a list
-        and repeats 4 bit units to resize
+    """unpacks a 4-bit buffer into a list and repeats 4-bit units to resize
     
     Args:
         buf: An unsigned byte array
@@ -4128,7 +4229,7 @@ def unpack4bitbufresizeNtimesbigger(buf:array,n:int):
     return retval
 
 def pack4bitbuf(unpackedbuf:list) -> list:
-    """Packs an unpacked 4 bit buffer into a list
+    """Packs an unpacked 4-bit buffer into a list
     
     Args:
         buf: An unsigned byte array or list
@@ -4145,7 +4246,7 @@ def pack4bitbuf(unpackedbuf:list) -> list:
     return retval
 
 def resize4bitbufNtimesbigger(buf:array,n:int) -> array:
-    """Resize a 4 bit buffer n times bigger
+    """Resize a 4-bit buffer n times bigger
     
     Args:
         buf: An unsigned byte array
@@ -4158,10 +4259,10 @@ def resize4bitbufNtimesbigger(buf:array,n:int) -> array:
     return array('B',pack4bitbuf(unpack4bitbufresizeNtimesbigger(buf,n)))
 
 def resize8bitbufNtimesbigger(buf:array,n:int):
-    """Resize a 8 bit buffer n times bigger
+    """Resize a 8-bit buffer n times bigger
     
     Args:
-        buf: An unsigned byte array
+        buf: unsigned byte array
         n  : buffer multiplier 
         
     Returns:
@@ -4174,10 +4275,10 @@ def resize8bitbufNtimesbigger(buf:array,n:int):
     return array('B',retval)
 
 def resize24bitbufNtimesbigger(buf:array,n:int):
-    """Resize a 24 bit buffer n times bigger
+    """Resize a 24-bit buffer n times bigger
     
     Args:
-        buf: An unsigned byte array
+        buf: unsigned byte array
         n  : buffer multiplier 
         
     Returns:
@@ -4188,10 +4289,10 @@ def resize24bitbufNtimesbigger(buf:array,n:int):
     return makeBGRbuf(r(c[0],n),r(c[1],n),r(c[2],n))
 
 def resize1bitbufNtimesbigger(buf,n):
-    """Resize a 1 bit buffer n times bigger
+    """Resize a 1-bit buffer n times bigger
     
     Args:
-        buf: An unsigned byte array
+        buf: unsigned byte array
         n  : buffer multiplier 
         
     Returns:
@@ -4218,8 +4319,7 @@ def resizebitpattenNtimesbigger(byteval:int,n:int):
     return retval
 
 def packbitlisttobuf(blist):
-    """Packs a literal list of ones and zeros
-        to a list of bytes
+    """Packs a literal list of ones and zeros to a list of bytes
     
     Args:
         blist: a literal list of ones and zeros
@@ -4239,13 +4339,12 @@ def packbitlisttobuf(blist):
     return retval
 
 def resizebufNtimesbigger(buf:array,n:int,bits:int):
-    """Resize a buffer  n times bigger
-        given a particular bit depth n
+    """Resize a buffer  n times bigger given a particular bit depth n
     
     Args:
         buf : array to resize
         n   : resize factor
-        bits: bit depth of color info
+        bits: bit depth of color info (1,4,8,24)
         
     Returns:
         list 
@@ -4255,13 +4354,12 @@ def resizebufNtimesbigger(buf:array,n:int,bits:int):
     return f(buf,n)
 
 def resizeNtimesbigger(bmp:array,n:int):
-    """Resize an in-memory bmp n times bigger
-        given a particular bit depth n
+    """Resize an in-memory bmp n times bigger given a particular bit depth n
     
     Args:
         buf : array to resize
         n   : resize factor
-        bits: bit depth of color info
+        bits: bit depth of color info (1,4,8,24)
         
     Returns:
         unsigned byte array
@@ -4284,8 +4382,7 @@ def resizeNtimesbigger(bmp:array,n:int):
     return nbmp
 
 def colorfilterto24bitregion(bmp,x1,y1,x2,y2,rgbfactors):
-    """Applies a color filter to a rectangular region
-        defined by (x1,y1) and (x2,y2)
+    """Applies a color filter to a rectangular region defined by (x1,y1) and (x2,y2)
         in an in-memory 24 bit bitmap
 
     Args:
@@ -4302,13 +4399,11 @@ def colorfilterto24bitregion(bmp,x1,y1,x2,y2,rgbfactors):
     applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applycolorfiltertoBGRbuf,rgbfactors)
 
 def colorfilterto24bitimage(bmp,rgbfactors):
-    """Applies a color filter to a whole image
-        in an in-memory 24 bit bitmap
+    """Applies a color filter to a whole image in an in-memory 24 bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
-        rgbfactors: color filter (r:float,g:float,b:float)
-                    r,g and b values are 0 to 1
+        rgbfactors: color filter (r:float,g:float,b:float) r,g and b values are 0 to 1
         
     Returns:
         byref modified byte array
@@ -4317,15 +4412,13 @@ def colorfilterto24bitimage(bmp,rgbfactors):
     colorfilterto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,rgbfactors)
 
 def brightnesseadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,percentadj:float):
-    """Applies a brightness adjustment to a rectangular region
-        in an in-memory 24 bit bitmap
+    """Applies a brightness adjustment to a rectangular region in an in-memory 24 bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
         x1,y2     : point one that defines the rectangle
         x2,y2     : point two that defines the rectangle
-        percentadj: float percentange adjustment
-                    can be positive or negative
+        percentadj: float percentage adjustment can be positive or negative
         
     Returns:
         byref modified byte array
@@ -4333,20 +4426,41 @@ def brightnesseadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,percentadj
     """
     applyfuncto24bitregion(bmp,x1,y1,x2,y2,applybrightnessadjtoBGRbuf,percentadj)
 
-def thresholdadjto24bitregion(bmp,x1,y1,x2,y2,lumrange):
-    applyfuncto24bitregion(bmp,x1,y1,x2,y2,applythresholdadjtoBGRbuf,lumrange)
-
-def thresholdadjcircregion(bmp,x,y,r,lumrange):
-    apply24bitfunctocircregion(bmp,x,y,r,applythresholdadjtoBGRbuf,lumrange)
-
-def brightnesseadjto24bitimage(bmp,percentadj):
-    """Applies a brightness adjustment to a whole image
-        in an in-memory 24 bit bitmap
+def thresholdadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:int):
+    """Applies a threshold adjustment to a rectangular region in an in-memory 24-bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
-        percentadj: float percentange adjustment
-                    can be positive or negative
+        x1,y2     : point one that defines the rectangle
+        x2,y2     : point two that defines the rectangle
+        lumrange  : (byte:byte) threshold adjustment
+        
+    Returns:
+        byref modified byte array
+
+    """
+    applyfuncto24bitregion(bmp,x1,y1,x2,y2,applythresholdadjtoBGRbuf,lumrange)
+
+def thresholdadjcircregion(bmp,x,y,r,lumrange):
+    """Applies a threshold adjustment to a circular region in an in-memory 24-bit bitmap
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        x,y,r     : defines the circular region 
+        lumrange  : (byte:byte) threshold adjustment
+        
+    Returns:
+        byref modified byte array
+
+    """
+    apply24bitfunctocircregion(bmp,x,y,r,applythresholdadjtoBGRbuf,lumrange)
+
+def brightnesseadjto24bitimage(bmp,percentadj):
+    """Applies a brightness adjustment to a whole image in an in-memory 24-bit bitmap
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        percentadj: float percentange adjustment can be positive or negative
         
     Returns:
         byref modified byte array
@@ -4354,14 +4468,47 @@ def brightnesseadjto24bitimage(bmp,percentadj):
     """
     brightnesseadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,percentadj)
 
-def thresholdadjto24bitimage(bmp,lumrange): 
+def thresholdadjto24bitimage(bmp,lumrange):
+    """Applies a threshold adjustment in an in-memory 24-bit bitmap
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        lumrange  : (byte:byte) threshold adjustment
+        
+    Returns:
+        byref modified byte array
+
+    """
     thresholdadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
 
 def verticalbrightnessgradto24bitimage(bmp,lumrange):
+    """Applies a vertical brightness gradient 
+
+    Args:
+        bmp       : An unsigned byte array with bmp format
+        lumrange  : (byte:byte) the brightness gradient to apply
+        
+    Returns:
+        byref modified byte array
+
+    """
     verticalbrightnessgradto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
 
 # start non core functions
-def mandelbrot(bmp,x1,y1,x2,y2,mandelparam,RGBfactors,maxiter):
+def mandelbrot(bmp:array,x1:int,y1:int,x2:int,y2:int,mandelparam:list,RGBfactors:list,maxiter:int):
+    """Draw a mandelbrot set 
+
+    Args:
+        bmp        : An unsigned byte array with bmp format
+        x1,y1,x2,y2: rectangular area to draw in
+        mandelparam: see fractals.py [float,float,float,float]
+        rgbfactors : [r:float,b:float,g:float] ...r,g,b values 0 min -> 1 max
+        maxiter    : when to break computing for color
+        
+    Returns:
+        byref modified byte array
+
+    """
     maxcolors=getmaxcolors(bmp)
     mcolor=maxcolors-1
     Pmax,Pmin,Qmax,Qmin=mandelparam[0],mandelparam[1],mandelparam[2],mandelparam[3]
