@@ -8,14 +8,10 @@ from os import path,sys
         
 def main():
         rootdir=path.abspath(sys.path[0]) # get path of this script
-        x=250
-        y=500
-        bmp=b.newBMP(x,y,4) # 16 color
-        color=10 # color info
-        #IFS(bmp,b.getIFSparams()['fern'],x1,y1,x2,y2,xscale,yscale,xoffset,yoffset,color,maxiter)
-        b.IFS(bmp,b.getIFSparams()['fern'],0,0,x,y,40,55,125,80,color,80000)
-        file='fern.bmp'
-        b.saveBMP(file,bmp)
+        bmp=b.newBMP(250,500,4) # 250 x 500 x 16 color
+        b.fern(bmp,0,0,249,499,10) #b.fern(bmp,x1,y1,x2,y2,color)
+        file='fern.bmp' #random filenme here
+        b.saveBMP(file,bmp) #save the fern
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
