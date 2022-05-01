@@ -18,7 +18,9 @@
 #\--------#--------------------------------------------------------#--------/
 
 from math import sin,cos,radians,comb
-from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,scalarmulvect,setmax,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif,isinrange
+from .mathlib import (sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,
+    scalarmulvect,setmax,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif,
+    isinrange)
 
 def itercirclepart(r:int)->list:
     row,col,r_sqr=r,0,r*r

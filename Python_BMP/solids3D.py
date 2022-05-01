@@ -18,7 +18,8 @@
 #\--------#--------------------------------------------------------#--------/
 
 from math import sqrt,sin,cos,atan,radians
-from .mathlib import distance,adddimz,roundvect,computerotvec,trans,addvect,getnormvec,subvect,cylindrical2rectcoord3D,spherical2rectcoord3D
+from .mathlib import (distance,adddimz,roundvect,computerotvec,trans,addvect,getnormvec,
+    subvect,cylindrical2rectcoord3D,spherical2rectcoord3D)
 from .primitives2D import floatregpolygonvert,regpolygonvert,iterline,rectboundarycoords
 from .messages import sysmsg
 

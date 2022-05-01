@@ -22,11 +22,29 @@ from os.path import isfile
 from math import sin,cos,radians
 from random import random
 from .proctimer import functimer
-from .mathlib import cosaffin,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata,enumbits
-from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,entireellipseisinboundary,ellipsevert
-from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
+from .mathlib import (cosaffin,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,
+    setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,
+    range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,
+    intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata,enumbits)
+from .primitives2D import (iterline,iterparallelogram,itercirclepartlineedge,
+    itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,
+    iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,
+    rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,
+    sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,
+    entireellipseisinboundary,ellipsevert)
+from .solids3D import (gensides,perspective,getshapesidedict,tetrahedravert,cubevert,
+    hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,
+    fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,
+    spherevertandsurface,rotvec3D,conevertandsurface)
 from .fonts import font8x8,font8x14,getcharfont
-from .colors import bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf,RGB2BGRbuf,makeBGRbuf
+from .colors import (bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,
+    RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,
+    getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,
+    monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,
+    applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,
+    monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,
+    invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf,RGB2BGRbuf,
+    makeBGRbuf)
 from .fractals import getIFSparams,mandelparamdict
 from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
 from .chartools import char2int,enumletters,enumreverseletters
