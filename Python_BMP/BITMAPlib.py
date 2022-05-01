@@ -1719,7 +1719,8 @@ def drawvec(bmp:array,u:list,v:list,headsize0fordefault:int,color:int):
     def hdsubvect(bmp,v,hm,a1,a2):
         linevec(bmp,v,subvect(v,polar2rectcoord2D([hm,a1])),color)
         linevec(bmp,v,subvect(v,polar2rectcoord2D([hm,a2])),color)
-    if u[0]<v[0] and u[1]<v[1]: hdsubvect(bmp,v,hm,a1,a2)
+    if u[0]<v[0] and u[1]<v[1]: 
+        hdsubvect(bmp,v,hm,a1,a2)
     elif u[0]>v[0] and u[1]>v[1]: 
         hdaddvect(bmp,v,hm,a1,a2)
     elif v[1]==u[1] and u[0]<v[0]: 
@@ -2513,9 +2514,8 @@ def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list
         thickcircle(bmp,x,y,radius,i,c)
 
 def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
-    """Draws a filled circle with gradient lumrange 
-        defined by centerpoint (x,y) and radius r 
-        and color defined by RGBfactors
+    """Draws a filled circle with gradient lumrange defined by centerpoint (x,y) 
+        and radius r and color defined by RGBfactors
 
     Args:
         bmp       : unsigned byte array with bmp format
@@ -3237,7 +3237,7 @@ def plot3d(bmp:array,sides:list,issolid:bool,RGBfactors:list,showoutline:bool,ou
 def plot3Dsolid(bmp,vertandsides,issolid,RGBfactors,showoutline,outlinecolor,rotvect,transvect3D,d,transvect):
     plot3d(bmp,gensides(perspective(vertandsides[0],rotvect,transvect3D,d),transvect,vertandsides[1]),issolid,RGBfactors,showoutline,outlinecolor)
 
-def gradvert(bmp,vertlist,penradius,lumrange,RGBfactors):
+def gradvert(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list):
     """Draws a list of 2d vertices as spheres of a given color
 
     Args:
@@ -3279,13 +3279,13 @@ def xygrid(bmp:array,x1:int,y1:int,x2:int,y2:int,xysteps:list,color:int):
     for y in range(y1,y2,ystep): 
         horiline(bmp,y,x1,x2,color)
 
-def xygridvec(bmp,u,v,steps,gridcolor):
+def xygridvec(bmp:array,u:list,v:list,steps:list,gridcolor:int):
     """Draws a grid using (x,y) pairs u and v
 
     Args:
         bmp         : unsigned byte array with bmp format
         u,v         : (x,y) sets limits of grid
-        xysteps     : [x,y] -> sets the increment in x and y
+        steps       : [x,y] -> sets the increment in x and y
         color       : sets the color of the grid
         
     Returns:
@@ -3298,13 +3298,18 @@ def numbervert(bmp,vlist,xadj,yadj,scale,valstart,valstep,pixspace,spacebetweenc
     plot,maxv=False,len(vlist)-1
     for v in vlist:
         i=vlist.index(v)
-        if i>0:plot=True
-        else:plot=not suppresszero
-        if i==maxv and suppresslastnum:plot=False
+        if i>0:
+            plot=True
+        else:
+            plot=not suppresszero
+        if i==maxv and suppresslastnum:
+            plot=False
         stval=str(valstart+i*valstep)
         rjust=0
-        if rightjustify:rjust=(len(stval)-1)<<3
-        if plot: plotstring(bmp,v[0]+xadj-rjust,v[1]+yadj,stval,scale,pixspace,spacebetweenchar,color,fontbuf)
+        if rightjustify:
+            rjust=(len(stval)-1)<<3
+        if plot: 
+            plotstring(bmp,v[0]+xadj-rjust,v[1]+yadj,stval,scale,pixspace,spacebetweenchar,color,fontbuf)
 
 def vertlinevert(bmp:array,vlist:list,linelen:int,yadj:int,color:int):
     """Draws vertical line marks at vertices in vlist
