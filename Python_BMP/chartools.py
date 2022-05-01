@@ -4,18 +4,46 @@
 #\--------------------------------------------------------------------------/
 
 def enumletters(st:str) -> str:
+    """Enumerates the characters in a string
+
+    Args:
+        st: string
+        
+    Yeilds:
+        individual characters
+
+    """
     c,i=len(st),0
     while i<c:
         yield st[i:i+1]
         i+=1
 
 def enumreverseletters(st:str) -> str:
+    """Enumerates the characters in a string in reverse order
+
+    Args:
+        st: string
+        
+    Yeilds:
+        individual characters
+
+    """
+
     i=len(st)-1
     while i>-1:
         yield st[i:i+1]
         i-=1
 
 def char2int(charcodestr:str) -> int:
+    """Packs a string into an int using ascii code
+
+    Args:
+        charcodestr: string
+        
+    Yeilds:
+        int value
+
+    """
     place,strhash=0,0
     for c in enumletters(charcodestr):
         strhash=strhash+ord(c)*(256**place)
