@@ -17,7 +17,8 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,combination,scalarmulvect,setmax,radians,sin,cos,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif,isinrange
+from math import sin,cos,radians,comb
+from .mathlib import sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,scalarmulvect,setmax,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif,isinrange
 
 def itercirclepart(r:int)->list:
     row,col,r_sqr=r,0,r*r
@@ -147,7 +148,8 @@ def itercircle(x:int,y:int,r:int)->list:
     for p in itercirclepart(r):
          for v in mirror1stquad(x,y,p): yield v
 
-def bezierblend(i,n,u): return combination(n,i)*(u**i)*((1-u)**(n-i))
+def bezierblend(i,n,u): 
+    return comb(n,i)*(u**i)*((1-u)**(n-i))
 
 def iterbeziercurve(pntlist:list)->list:
     i,cnt,v=0,len(pntlist),pntlist[0]
