@@ -2853,8 +2853,7 @@ def beziercurve(bmp:array,pntlist:list,penradius:int,color:int):
     for v in iterbeziercurve(pntlist): 
         roundpen(bmp,v,penradius,color)
 
-def bspline(bmp:array,pntlist:list,penradius:int,color:int,
-            isclosed:bool,curveback:bool):
+def bspline(bmp:array,pntlist:list,penradius:int,color:int,isclosed:bool,curveback:bool):
     """Draws a bspline of a given color and thickness
 
     Args:
@@ -2872,7 +2871,21 @@ def bspline(bmp:array,pntlist:list,penradius:int,color:int,
     for v in iterbspline(pntlist,isclosed,curveback): 
         roundpen(bmp,v,penradius,color)
 
-def plotrotated8bitpattern(bmp:array,x,y,bitpattern,scale,pixspace,color):
+def plotrotated8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
+    """Draws a 8-bit pattern with the bits rotated
+
+    Args:
+        bmp       : unsigned byte array with bmp format
+        x,y       : where to draw the pattern
+        bitpattern: list of bytes that make a pattern
+        scale     : control how big the pattern is
+        pixspace  : space between each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified unsigned byte array
+
+    """
     inc=scale-1-pixspace
     for bits in bitpattern:
         ox,mask=x,128
@@ -2889,6 +2902,20 @@ def plotrotated8bitpattern(bmp:array,x,y,bitpattern,scale,pixspace,color):
         x=ox
 
 def plot8bitpattern(bmp,x,y,bitpattern,scale,pixspace,color):
+    """Draws a 8-bit pattern
+
+    Args:
+        bmp       : unsigned byte array with bmp format
+        x,y       : where to draw the pattern
+        bitpattern: list of bytes that make a pattern
+        scale     : control how big the pattern is
+        pixspace  : space between each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified unsigned byte array
+
+    """    
     inc=scale-1-pixspace
     for bits in bitpattern:
         ox,mask=x,128
@@ -2904,6 +2931,20 @@ def plot8bitpattern(bmp,x,y,bitpattern,scale,pixspace,color):
         x=ox
 
 def plot8bitpatternupsidedown(bmp,x,y,bitpattern,scale,pixspace,color):
+    """Draws a 8-bit pattern upsidedown
+
+    Args:
+        bmp       : unsigned byte array with bmp format
+        x,y       : where to draw the pattern
+        bitpattern: list of bytes that make a pattern
+        scale     : control how big the pattern is
+        pixspace  : space between each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified unsigned byte array
+
+    """
     inc=scale-1-pixspace
     i=len(bitpattern)-1
     while i>-1:
@@ -2921,7 +2962,21 @@ def plot8bitpatternupsidedown(bmp,x,y,bitpattern,scale,pixspace,color):
         x=ox
         i-=1
 
-def plot8bitpatternsideway(bmp,x,y,bitpattern,scale,pixspace,color):
+def plot8bitpatternsideway(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
+    """Draws a 8-bit pattern sideways
+
+    Args:
+        bmp       : unsigned byte array with bmp format
+        x,y       : where to draw the pattern
+        bitpattern: list of bytes that make a pattern
+        scale     : control how big the pattern is
+        pixspace  : space between each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified unsigned byte array
+
+    """
     inc=scale-1-pixspace
     for bits in bitpattern:
         oy,mask=y,128
@@ -3009,7 +3064,7 @@ def thickplotpoly(bmp:array,vertlist:list,penradius:int,color:int):
         color    : color of bezier curve
 
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     vertcount=len(vertlist)
@@ -3030,7 +3085,7 @@ def gradthickplotpoly(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfac
                      r,g,b all range in value from 0 to 1 
 
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     lum1,lumrang=range2baseanddelta(lumrange)
@@ -3049,7 +3104,7 @@ def plotlines(bmp:array,vertlist:list,color:int):
         color    : color of the lines
         
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     vertcount=len(vertlist)
@@ -3065,7 +3120,7 @@ def plotpoly(bmp:array,vertlist:list,color:int):
         color    : color of the lines
         
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     plotlines(bmp,vertlist,color)
@@ -3080,7 +3135,7 @@ def plotpolylist(bmp,polylist,color):
         color    : color of the lines
         
     Returns:
-        byref modified byte array
+        byref modified umsigned byte array
 
     """
     for poly in polylist: 
@@ -3096,7 +3151,7 @@ def plotpolyfillist(bmp:array,sides:list,RGBfactors:list):
                      r,g,b all range in value from 0 to 1 
         
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     polylist,normlist,i=sides[0],sides[1],0
@@ -3107,9 +3162,25 @@ def plotpolyfillist(bmp:array,sides:list,RGBfactors:list):
         plotpolyfill(bmp,poly,c)
         i=i+1
 
-def plot3d(bmp,sides,issolid,RGBfactors,showoutline,outlinecolor):
-    if issolid: plotpolyfillist(bmp,sides,RGBfactors)
-    if showoutline: plotpolylist(bmp,sides[0],outlinecolor)
+def plot3d(bmp:array,sides:list,issolid:bool,RGBfactors:list,showoutline:bool,outlinecolor:int):
+    """3D rendering function
+
+    Args:
+        bmp         : unsigned byte array with bmp format
+        sides       : list of polygons and normals
+        isolid      : toggles solid render
+        RGBfactors  : [r:float,g:float,b:float] r,g,b all range in value from 0 to 1
+        showoutine  : toggles  polygon outline
+        outlinecolor: color of polygon outline
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
+    if issolid: 
+        plotpolyfillist(bmp,sides,RGBfactors)
+    if showoutline: 
+        plotpolylist(bmp,sides[0],outlinecolor)
 
 def plot3Dsolid(bmp,vertandsides,issolid,RGBfactors,showoutline,outlinecolor,rotvect,transvect3D,d,transvect):
     plot3d(bmp,gensides(perspective(vertandsides[0],rotvect,transvect3D,d),transvect,vertandsides[1]),issolid,RGBfactors,showoutline,outlinecolor)
