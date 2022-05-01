@@ -2797,10 +2797,9 @@ def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
     """Draws a rectangle of a given color
 
     Args:
-        bmp   : An unsigned byte array with bmp format
-        x1,y1 : 1st point to define the rectangle
-        x2,y2 : 2nd point to define the rectangle
-        color : color of the rectangle
+        bmp        : An unsigned byte array with bmp format
+        x1,y1,x2,y2: defines the rectangle        
+        color      : color of the rectangle
         
     Returns:
         byref modified byte array
@@ -2813,10 +2812,9 @@ def filledrect(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
     """Draws a filled rectangle of a given color
 
     Args:
-        bmp   : An unsigned byte array with bmp format
-        x1,y1 : 1st point to define the rectangle
-        x2,y2 : 2nd point to define the rectangle
-        color : color of the rectangle
+        bmp        : unsigned byte array with bmp format
+        x1,y1,x2,y2: defines the rectangle
+        color      : color of the rectangle
         
     Returns:
         byref modified byte array
@@ -2901,7 +2899,7 @@ def plotrotated8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixsp
         y+=scale
         x=ox
 
-def plot8bitpattern(bmp,x,y,bitpattern,scale,pixspace,color):
+def plot8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
     """Draws a 8-bit pattern
 
     Args:
@@ -2930,7 +2928,7 @@ def plot8bitpattern(bmp,x,y,bitpattern,scale,pixspace,color):
         y+=scale
         x=ox
 
-def plot8bitpatternupsidedown(bmp,x,y,bitpattern,scale,pixspace,color):
+def plot8bitpatternupsidedown(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
     """Draws a 8-bit pattern upsidedown
 
     Args:
@@ -2991,7 +2989,8 @@ def plot8bitpatternsideway(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixsp
         x+=scale
         y=oy
 
-def plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,orderfunc,fontrenderfunc):
+def plotstringfunc(bmp:array,x:int,y:int,str2plot:str,scale:int,pixspace:int,
+        spacebetweenchar:int,color:int,fontbuf:list,orderfunc,fontrenderfunc):
     if spacebetweenchar==0:spacebetweenchar=1
     ox,xstep,ypixels=x,(scale<<3)+spacebetweenchar,fontbuf[0] #x factor 8 since 8 bits in byte
     ystep=ypixels*scale+spacebetweenchar #possible to have 8x16 chars
