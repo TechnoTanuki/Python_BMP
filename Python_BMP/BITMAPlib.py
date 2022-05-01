@@ -3416,13 +3416,35 @@ def iterimageregionvertbyRGB(bmp:array,rgb:list,similaritythreshold:int):
     for v in iterimageRGB(bmp,sysmsg['edgedetect'],'*',sysmsg['done']):
         if distance(rgb,v[1])<similaritythreshold: yield v[0]
 
-def getimageregionbyRGB(bmp,rgb,similaritythreshold): 
+def getimageregionbyRGB(bmp,rgb,similaritythreshold):
+    """Select a region by color
+
+    Args:
+        bmp                 : unsigned byte array with bmp format
+        rgb                 : (r:byte,g:byte,b:byte)
+        similaritythreshold : controls edge detection sensitivity
+        
+    Returns:
+        list of vertices
+
+    """
     return [v for v in iterimageregionvertbyRGB(bmp,rgb,similaritythreshold)]
 
 def getimagedgevert(bmp,similaritythreshold): 
     return [v for v in iterimagedgevert(bmp,similaritythreshold)]
 
-def plotimgedges(bmp,similaritythreshold,edgeradius,edgecolor): 
+def plotimgedges(bmp:array,similaritythreshold:int,edgeradius:int,edgecolor:int):
+    """Draw edges 
+
+    Args:
+        bmp                 : unsigned byte array with bmp format
+        similaritythreshold : controls edge detection sensitivity
+        edgeradius,edgecolor: radius and color of pen used to draw the edge
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
     plotxypointlist(bmp,getimagedgevert(bmp,similaritythreshold),edgeradius,edgecolor)
 
 def getBGRpalbuf(bmp):
@@ -5017,7 +5039,7 @@ def gammaadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,gamma:float):
 
     Args:
         bmp         : unsigned byte array with bmp format
-        x1,y1,x2,y2 : Defines rectangular area 
+        x1,y1,x2,y2 : defines rectangular area 
         gamma       : gamma correction
         
     Returns:
@@ -5061,7 +5083,6 @@ def outlineregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
         byref modified unsigned byte array
 
     """
-
     compareimglines(bmp,x1,y1,x2,y2,xorvect)
 
 def outline(bmp:array):
@@ -6015,7 +6036,19 @@ def adjustbrightnessinregion2file(ExistingBMPfile:str,NewBMPfile:str,
     applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,brightnesseadjto24bitregion,percentadj)
 
 @functimer
-def adjustthresholdinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,lumrange:list): 
+def adjustthresholdinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,lumrange:list):
+    """Apply a threshold to a rectangular region in a 24-bit bitmap
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        x1,y1,x2,y2    : defines the rectangular region        
+        lumrange       : (byte:byte) 
+        
+    Returns:
+        new bitmap file
+
+    """
     applybyref24bitcolorfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,thresholdadjto24bitregion,lumrange)
 
 @functimer
