@@ -2642,10 +2642,11 @@ def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
         x,y     : center of ellipse
         b,a     : major amd minor axis
         color   : color of the ellipse
-        isfilled: True -> filled ellipse | False -> one pixel thick ellipse
+        isfilled: True -> filled ellipse  
+                 False -> one pixel thick ellipse
 
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     if isfilled: 
@@ -2690,7 +2691,7 @@ def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list)
                     range of r, g and b are 0 min to 1 max
 
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """     
     lum1,lumrang=range2baseanddelta(lumrange)
@@ -2716,7 +2717,7 @@ def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
         isfilled    : True -> set area inside arc to fillcolor
 
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     av=arcvert(x,y,r,startdegangle,enddegangle,showoutline)
@@ -2734,7 +2735,7 @@ def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
         color      : color of the rectangle
         
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     plotpoly(bmp,recvert(x1,y1,x2,y2),color)
@@ -3233,7 +3234,26 @@ def plot3d(bmp:array,sides:list,issolid:bool,RGBfactors:list,showoutline:bool,ou
     if showoutline: 
         plotpolylist(bmp,sides[0],outlinecolor)
 
-def plot3Dsolid(bmp,vertandsides,issolid,RGBfactors,showoutline,outlinecolor,rotvect,transvect3D,d,transvect):
+def plot3Dsolid(bmp:array,vertandsides:list,issolid:bool,RGBfactors:list,
+    showoutline:bool,outlinecolor:int,rotvect:list,transvect3D:list,d:int,transvect:list):
+    """3D solid rendering function
+
+    Args:
+        bmp         : unsigned byte array with bmp format
+        sides       : list of polygons and normals
+        isolid      : toggles solid render
+        RGBfactors  : [r:float,g:float,b:float] r,g,b all range in value from 0 to 1
+        showoutine  : toggles  polygon outline
+        outlinecolor: color of polygon outline
+        rotvect     : rotation vector
+        transvect3D : 3D translation vector
+        d           : distance of observer from screen
+        transvect   : translatoin vector for screen positioning
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
     plot3d(bmp,gensides(perspective(vertandsides[0],rotvect,transvect3D,d),transvect,vertandsides[1]),issolid,RGBfactors,showoutline,outlinecolor)
 
 def gradvert(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list):
@@ -4972,7 +4992,6 @@ def pixelizenxncircregion(bmp:array,x:int,y:int,r:int,n:int):
         byref modified unsigned byte array
 
     """
-
     b,c=pixelizenxn(bmp,n),computeBMPoffsetwithheader
     for v in itercirclepartlineedge(r):
         x1,x2=mirror(x,v[0])
@@ -6113,8 +6132,7 @@ def monofilterinregion2file(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:
 
 @functimer
 def pixelizenxntofile(ExistingBMPfile:str,NewBMPfile:str,n:int):
-    """Pixellate a bitmap file with n x n pixel areas in which colors 
-        are averaged out
+    """Pixellate a bitmap file with n x n pixel areas by averaging
 
     Args:
         ExistingBMPfile: Whole path to existing file
