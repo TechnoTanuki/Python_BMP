@@ -19,8 +19,10 @@
 
 from array import array
 from os.path import isfile
+from math import sin,cos,radians
+from random import random
 from .proctimer import functimer
-from .mathlib import sin,cos,cosaffin,radians,random,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata,enumbits
+from .mathlib import cosaffin,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata,enumbits
 from .primitives2D import iterline,iterparallelogram,itercirclepartlineedge,itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,rectboundarycoords,regpolygonvert,bsplinevert,itergetneighbors,spiralcontrolpointsvert,sortrecpoints,isinrectbnd,listinrecbnd,entirecircleisinboundary,entireellipseisinboundary,ellipsevert
 from .solids3D import gensides,perspective,getshapesidedict,tetrahedravert,cubevert,hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,spherevertandsurface,rotvec3D,conevertandsurface
 from .fonts import font8x8,font8x14,getcharfont
@@ -6510,7 +6512,7 @@ def vertbrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
 @functimer
 def horibrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
                                         x:int,y:int,r:int,lumrange:list):
-    """Applies a horizontal brightness gradient to a  circular region
+    """Applies a horizontal brightness gradient to a circular region
 
     Args:
         ExistingBMPfile: Whole path to existing file
