@@ -18,7 +18,6 @@
 #\--------#--------------------------------------------------------#--------/
 
 from array import array
-from os.path import isfile
 from math import sin,cos,radians
 from random import random
 from .proctimer import functimer
@@ -51,46 +50,13 @@ from .chartools import char2int,enumletters,enumreverseletters
 from .inttools import readint,writeint,int2buf,buf2int
 from .dicttools import dict2descorderlist
 from .textgraphics import plotbitsastext,plot8bitpatternastext
+from .fileutils import checklink,checklinks
 from .messages import sysmsg
 
 # BMP constants do not edit!!!
 bmpheaderid,bmpfilesize,bmphdrsize,bmpcolorbits,bmpx,bmpy,bmppal=array('B',[66,77]),2,10,28,18,22,54
 bmpheadersize={1:62,4:118,8:1078,24:54}
         
-def checklink(func):
-    """Decorator to test if first parameter in a function is a valid file
-
-    Args:
-        function
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        if isfile(args[0]):  
-            return(func(*args,**kwargs))
-        else: 
-            print(sysmsg['filenotexist'])
-    return(callf)
-
-def checklinks(func):
-    """Decorator to test if two parameters in a function are valid files
-
-    Args:
-        function
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        if isfile(args[0]) and isfile(args[1]):  
-            return(func(*args,**kwargs))
-        else: 
-            print(sysmsg['filenotexist'])
-    return(callf)
-
 def intcircleparam(func):
     """Decorator to test if the 2nd,3rd,4th parameters in a function that renders circle are ints 
 
