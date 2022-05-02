@@ -22,29 +22,35 @@ from math import sin, cos, radians
 from random import random
 from .proctimer import functimer
 from .mathlib import (
-    addvect, addvectinlist,
+    addvect,
+    addvectinlist,
     andvect,
     anglebetween2Dlines,
     centerpoint,
     cosaffin,
     distance,
     enumbits,
-    genpiechartdata, getdatalisttotal,
+    genpiechartdata,
+    getdatalisttotal,
     intscalarmulvect,
     isinrange,
-    LSMslope, LSMYint,
+    LSMslope,
+    LSMYint,
     mirror,
     polar2rectcoord2D,
     range2baseanddelta,
     rotatebits,
     roundvect,
-    setmax, setmin, setminmax,
+    setmax,
+    setmin,
+    setminmax,
     subvect,
     swapxy,
     trans,
     vmag,
     xorvect
     )
+
 from .primitives2D import (
     arcvert,
     bsplinevert,
@@ -55,10 +61,12 @@ from .primitives2D import (
     isinrectbnd,
     iterbeziercurve,
     iterbspline,
-    itercircle, itercirclepart,
+    itercircle,
+    itercirclepart,
     itercirclepartlineedge,
     itercirclepartvertlineedge,
-    iterellipse, iterellipsepart,
+    iterellipse,
+    iterellipsepart,
     iterellipserot,
     itergetneighbors,
     iterline,
@@ -71,6 +79,7 @@ from .primitives2D import (
     spiralcontrolpointsvert,
     verticalvert
     )
+
 from .solids3D import (
     conevertandsurface,
     cubevert,
@@ -89,24 +98,55 @@ from .solids3D import (
     surfplot3Dvertandsurface,
     tetrahedravert
     )
-from .fonts import font8x8, font8x14, getcharfont
-from .colors import (bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,
-    RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,
-    getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,
-    monochromepal,colorfiltertoBGRbuf,gammaBGRbuf,applymonochromefiltertoBGRbuf,
-    applycolorfiltertoBGRbuf,applygammaBGRbuf,probplotRGBto1bit,thresholdadjust,colorfilter,
-    monochrome,gammacorrect,monochromefiltertoBGRbuf,RGBfactorstoBaseandRange,
-    invertbitsinbuffer,applybrightnessadjtoBGRbuf,applythresholdadjtoBGRbuf,RGB2BGRbuf,
-    makeBGRbuf)
-from .fractals import getIFSparams,mandelparamdict
-from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
-from .chartools import char2int,enumletters,enumreverseletters
-from .inttools import readint,writeint,int2buf,buf2int
-from .conditionaltools import iif,swapif
+
+from .colors import (
+    applybrightnessadjtoBGRbuf,
+    applycolorfiltertoBGRbuf,
+    applygammaBGRbuf,
+    applymonochromefiltertoBGRbuf,
+    applythresholdadjtoBGRbuf,
+    bmpstdpal,
+    bmpvalidcolorbits,
+    brightnessadjust,
+    colorfilter,
+    colorfiltertoBGRbuf,
+    colormix,
+    gammaBGRbuf,
+    gammacorrect,
+    getcolorname2RGBdict,
+    getdefaultbitpal,
+    getdefaultlumrange,
+    getRGBfactors,
+    int2BGRarr,
+    int2RGB,
+    int2RGBarr,
+    int2RGBlist,
+    invertbitsinbuffer,
+    isvalidcolorbit,
+    makeBGRbuf,
+    matchRGBtopal,
+    monochrome,
+    monochromefiltertoBGRbuf,
+    monochromepal,
+    probplotRGBto1bit,
+    RGB2BGRbuf,
+    RGB2int,
+    RGBfactors2RGB,
+    RGBfactorstoBaseandRange,
+    RGBtoBGRarr,
+    thresholdadjust
+    )
+
+from .buffersplit import altsplitbuf, altsplitbuf3way, altsplitbufnway
+from .chartools import char2int, enumletters, enumreverseletters
+from .conditionaltools import iif, swapif
 from .dicttools import dict2descorderlist
-from .textgraphics import plotbitsastext,plot8bitpatternastext
-from .fileutils import checklink,checklinks
+from .fileutils import checklink, checklinks
+from .fonts import font8x8, font8x14, getcharfont
+from .fractals import getIFSparams, mandelparamdict
+from .inttools import readint, writeint, int2buf, buf2int
 from .messages import sysmsg
+from .textgraphics import plotbitsastext, plot8bitpatternastext
 
 # BMP constants do not edit!!!
 bmpheaderid,bmpfilesize,bmphdrsize,bmpcolorbits,bmpx,bmpy,bmppal=array('B',[66,77]),2,10,28,18,22,54
