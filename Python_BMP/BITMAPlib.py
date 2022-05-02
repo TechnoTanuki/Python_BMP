@@ -21,6 +21,17 @@ from array import array
 from math import sin, cos, radians
 from random import random
 from .proctimer import functimer
+from .bmpconstants import (
+    bmpheaderid,
+    bmpfilesize,
+    bmphdrsize,
+    bmpcolorbits,
+    bmpx,
+    bmpy,
+    bmppal,
+    bmpheadersize
+    )
+    
 from .mathlib import (
     addvect,
     addvectinlist,
