@@ -6506,26 +6506,37 @@ def circle2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,color:int):
 def thickencirclearea2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,rgbfactors:list): 
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thickencirclearea,x,y,r,rgbfactors)
 
+
 @functimer
-def brightnessadjcircregion2file(ExistingBMPfile:str,NewBMPfile:str,
-                                x:int,y:int,r:int,percentadj:float):
+def brightnessadjcircregion2file(
+    ExistingBMPfile: str, NewBMPfile: str,
+    x: int, y: int, r: int,
+    percentadj: float):
     """Applies brightness gradient lumrange to a circular region
 
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
         x,y,r          : center (x,y) and radius r
-        lumrange       : (byte:byte) the brightness gradient
+        percentadj     : brightness adjustment can be 
+                         positive oe negative
         
     Returns:
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,brightnessadjcircregion,x,y,r,percentadj)
+    apply24bitcoloradjfuncwithparam2circregion(
+        ExistingBMPfile, NewBMPfile,
+        brightnessadjcircregion,
+        x, y, r,
+        percentadj)
+
 
 @functimer
-def vertbrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
-                                        x:int,y:int,r:int,lumrange:list):
+def vertbrightnessgrad2circregion2file(
+    ExistingBMPfile: str, NewBMPfile: str,
+    x: int, y: int, r: int,
+    lumrange: list):
     """Applies a vertical brightness gradient to a circular region
 
     Args:
@@ -6538,11 +6549,18 @@ def vertbrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,vertbrightnessgrad2circregion,x,y,r,lumrange)
+    apply24bitcoloradjfuncwithparam2circregion(
+        ExistingBMPfile, NewBMPfile,
+        vertbrightnessgrad2circregion,
+        x, y, r,
+        lumrange)
+
 
 @functimer
-def horibrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
-                                        x:int,y:int,r:int,lumrange:list):
+def horibrightnessgrad2circregion2file(
+        ExistingBMPfile:str,NewBMPfile:str,
+        x:int,y:int,r:int,
+        lumrange:list):
     """Applies a horizontal brightness gradient to a circular region
 
     Args:
@@ -6555,10 +6573,16 @@ def horibrightnessgrad2circregion2file(ExistingBMPfile:str,NewBMPfile:str,
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,horibrightnessgrad2circregion,x,y,r,lumrange)
+    apply24bitcoloradjfuncwithparam2circregion(
+        ExistingBMPfile, NewBMPfile,
+        horibrightnessgrad2circregion,
+        x, y, r,
+        lumrange)
 
 @functimer
-def flipvertcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def flipvertcircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Does a vertical flip of a circular region 
 
     Args:
@@ -6570,11 +6594,16 @@ def flipvertcircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,flipvertcircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        flipvertcircregion, x, y, r)
+
 
 @functimer
-def eraseeverynthhorilineinccircregion2file(ExistingBMPfile:str,NewBMPfile:str,
-                                            x:int,y:int,r:int,n:int):
+def eraseeverynthhorilineinccircregion2file(
+    ExistingBMPfile: str, NewBMPfile: str,
+    x: int, y: int, r: int,
+    n: int):
     """Erase every nth horzontal line in a circular region 
 
     Args:
@@ -6582,15 +6611,21 @@ def eraseeverynthhorilineinccircregion2file(ExistingBMPfile:str,NewBMPfile:str,
         NewBMPfile     : New file to save changes to
         x,y,r          : center (x,y) and radius r
         n              : omit every nth line in bmp
-        
+
     Returns:
         new bitmap file
 
     """
-    applyfunctocircregionwithparam(ExistingBMPfile,NewBMPfile,eraseeverynthhorizontallineinccircregion,x,y,r,n)
+    applyfunctocircregionwithparam(
+        ExistingBMPfile, NewBMPfile,
+        eraseeverynthhorizontallineinccircregion,
+        x, y, r, n)
+
 
 @functimer
-def mirrortopincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrortopincircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Mirrors the top half of a circular region 
 
     Args:
@@ -6602,10 +6637,16 @@ def mirrortopincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortopincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        mirrortopincircregion,
+        x, y, r)
+
 
 @functimer
-def mirrorbottomincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrorbottomincircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Mirrors the bottom half of a circular region 
 
     Args:
@@ -6617,10 +6658,16 @@ def mirrorbottomincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        mirrorbottomincircregion,
+        x, y, r)
+
 
 @functimer
-def mirrorleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrorleftincircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Mirrors the left half of a circular region 
 
     Args:
@@ -6632,10 +6679,16 @@ def mirrorleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorleftincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile, 
+        mirrorleftincircregion,
+        x, y, r)
+
 
 @functimer
-def mirrorrightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrorrightincircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Mirrors the right half of a circular region 
 
     Args:
@@ -6647,10 +6700,16 @@ def mirrorrightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorrightincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        mirrorrightincircregion,
+        x, y, r)
+
 
 @functimer
-def mirrortopleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrortopleftincircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Mirrors the top left of a circular region 
 
     Args:
@@ -6662,10 +6721,16 @@ def mirrortopleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:in
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortopleftincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        mirrortopleftincircregion,
+        x, y, r)
+
 
 @functimer
-def mirrorbottomleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrorbottomleftincircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int ,y: int ,r: int):
     """Mirrors the bottom left of a circular region 
 
     Args:
@@ -6677,10 +6742,16 @@ def mirrorbottomleftincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomleftincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        mirrorbottomleftincircregion,
+        x, y, r)
+
 
 @functimer
-def mirrortoprightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrortoprightincircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Mirrors the top right of a circular region 
 
     Args:
@@ -6692,25 +6763,37 @@ def mirrortoprightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:i
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrortoprightincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        mirrortoprightincircregion,
+        x, y, r)
+
 
 @functimer
-def mirrorbottomrightincircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def mirrorbottomrightincircregion2file(
+        ExistingBMPfile: str, NewBMPfile:str,
+        x: int, y: int, r: int):
     """Mirrors the bottom right of a circular region 
 
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
         x,y,r          : center (x,y) and radius r
-        
+
     Returns:
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,mirrorbottomrightincircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        mirrorbottomrightincircregion,
+        x, y, r)
+
 
 @functimer
-def fliphoricircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int):
+def fliphoricircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str, 
+        x: int, y: int, r: int):
     """Does a horizontal flip of a circular region 
 
     Args:
@@ -6722,11 +6805,16 @@ def fliphoricircregion2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile,NewBMPfile,fliphoricircregion,x,y,r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile, 
+        fliphoricircregion,
+        x, y, r)
+
 
 @functimer
-def outlinecircregion2file(ExistingBMPfile: str, NewBMPfile: str,
-    x: int, y: int, r: int):
+def outlinecircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
     """Outlines the area in a circular region 
 
     Args:
@@ -6738,26 +6826,38 @@ def outlinecircregion2file(ExistingBMPfile: str, NewBMPfile: str,
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile, NewBMPfile, outlinecircregion, x, y, r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile,
+        outlinecircregion,
+        x, y, r)
 
 @functimer
-def flipXYcircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
-    """Flips the x and y coordinates of a circular region to cause a 90 degree rotation
+def flipXYcircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int):
+    """Flips the x and y coordinates of a circular region 
+        to cause a 90 degree rotation
 
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
         x,y,r          : center (x,y) and radius r
-        
+
     Returns:
         new bitmap file
 
     """
-    applyfunctocircregion(ExistingBMPfile, NewBMPfile, flipXYcircregion, x, y, r)
+    applyfunctocircregion(
+        ExistingBMPfile, NewBMPfile, 
+        flipXYcircregion,
+        x, y, r)
+
 
 @functimer
-def magnifyNtimescircregion2file(ExistingBMPfile: str, NewBMPfile: str,
-    x: int, y: int, r: int, intmagfactor: int):
+def magnifyNtimescircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int,
+        intmagfactor: int):
     """Magnifies of a circular region by n times
         
     Args:
@@ -6774,105 +6874,126 @@ def magnifyNtimescircregion2file(ExistingBMPfile: str, NewBMPfile: str,
         ExistingBMPfile, NewBMPfile, magnifyNtimescircregion,
         x, y, r, intmagfactor)
 
+
 @functimer
 def pixelizenxncircregion2file(
-    ExistingBMPfile: str, NewBMPfile: str,
-    x: int, y: int,r: int, intpixsize: int): 
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int,r: int,
+        intpixsize: int): 
     """Applies a pixel blur by averaging to a circular region
-        
+
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
         x,y,r          : center (x,y) and radius r
         intpixsize     : n x n pixel blur size
-        
-    Returns:
-        new bitmap file
 
-    """
-    applyfunctocircregionwithparam(ExistingBMPfile, NewBMPfile, pixelizenxncircregion,
-        x, y, r, intpixsize)
-
-@functimer
-def copycircregion2file(ExistingBMPfile: str, NewBMPfile: str,
-    x: int, y: int, r: int, newxycenterpoint: list):
-    """Does a copy/paste of a circular region in a bitmap file
-        
-    Args:
-        ExistingBMPfile : Whole path to existing file
-        NewBMPfile      : New file to save changes to
-        x,y,r           : center (x,y) and radius r
-        newxycenterpoint: (x:int,y:int) where to paste
-        
     Returns:
         new bitmap file
 
     """
     applyfunctocircregionwithparam(
-        ExistingBMPfile, NewBMPfile, copycircregion,
-        x, y, r, newxycenterpoint)
+        ExistingBMPfile, NewBMPfile, 
+        pixelizenxncircregion,
+        x, y, r,
+        intpixsize)
+
 
 @functimer
-def horizontalbrightnessgrad2file(ExistingBMPfile: str, NewBMPfile: str, lumrange: list):
-    """Applies a horizontal brightness gradient to a bitmap file
-        
+def copycircregion2file(
+        ExistingBMPfile: str, NewBMPfile: str,
+        x: int, y: int, r: int,
+        newxycenterpoint: list):
+    """Does a copy/paste of a circular region in a bitmap file
+
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes to
-        lumrange       : (byte:byte) defines the gradient
-        
+        ExistingBMPfile : Whole path to existing file
+        NewBMPfile      : New file to save changes to
+        x,y,r           : center (x,y) and radius r
+        newxycenterpoint: (x:int,y:int) where to paste
+
     Returns:
         new bitmap file
 
     """
-    apply24bitcoloradjfunc(ExistingBMPfile, NewBMPfile,
-    horizontalbrightnessgradto24bitimage, lumrange)
+    applyfunctocircregionwithparam(
+        ExistingBMPfile, NewBMPfile,
+        copycircregion,
+        x, y, r,
+        newxycenterpoint)
+
+
+@functimer
+def horizontalbrightnessgrad2file(
+        ExistingBMPfile: str, NewBMPfile: str, 
+        lumrange: list):
+    """Applies a horizontal brightness gradient to a bitmap file
+
+    Args:
+        ExistingBMPfile: Whole path to existing file
+        NewBMPfile     : New file to save changes to
+        lumrange       : (byte:byte) defines the gradient
+
+    Returns:
+        new bitmap file
+
+    """
+    apply24bitcoloradjfunc(
+        ExistingBMPfile, NewBMPfile,
+        horizontalbrightnessgradto24bitimage,
+        lumrange)
 
 
 @functimer
 def horizontalbrightnessgradregion2file(
-    ExistingBMPfile:str,NewBMPfile:str,
-    x1:int,y1:int,x2:int,y2:int,lumrange:list):
+        ExistingBMPfile: str, NewBMPfile: str,
+        x1: int, y1: int, x2: int, y2: int, 
+        lumrange: list):
     """Applies a horizontal brightness gradient to a rectangular area
-        
+
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
         x1,y1,x2,y2    : Defines rectangular area
         lumrange       : (byte:byte) defines the gradient
-        
+
     Returns:
         new bitmap file
 
     """
     applybyref24bitcolorfunctoregionandsave(
-        ExistingBMPfile,NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
-        horizontalbrightnessgradto24bitregion, lumrange)
+        horizontalbrightnessgradto24bitregion,
+        lumrange)
 
 
 @functimer
-def verticalbrightnessgrad2file(ExistingBMPfile: str, NewBMPfile: str, lumrange: list):
+def verticalbrightnessgrad2file(
+        ExistingBMPfile: str, NewBMPfile: str, 
+        lumrange: list):
     """Applies a vertical brightness gradient
-        
+
     Args:
         ExistingBMPfile: Whole path to existing file
         NewBMPfile     : New file to save changes to
         lumrange       : (byte:byte) defines the gradient
-        
+
     Returns:
         new bitmap file
 
     """
-    apply24bitcoloradjfunc(ExistingBMPfile, NewBMPfile,
-        verticalbrightnessgradto24bitimage, lumrange)
+    apply24bitcoloradjfunc(
+        ExistingBMPfile, NewBMPfile,
+        verticalbrightnessgradto24bitimage, 
+        lumrange)
 
 
 @functimer
 def verticalbrightnessgradregion2file(
-    ExistingBMPfile: str, NewBMPfile: str,
-    x1: int, y1: int, x2: int, y2: int, 
-    lumrange: list):
+        ExistingBMPfile: str, NewBMPfile: str,
+        x1: int, y1: int, x2: int, y2: int,
+        lumrange: list):
     """Applies a vertical brightness gradient to a rectangular area
 
     Args:
@@ -6886,6 +7007,7 @@ def verticalbrightnessgradregion2file(
 
     """
     applybyref24bitcolorfunctoregionandsave(
-            ExistingBMPfile, NewBMPfile,
-            x1, y1, x2, y2,
-            verticalbrightnessgradto24bitregion, lumrange)
+        ExistingBMPfile, NewBMPfile,
+        x1, y1, x2, y2,
+        verticalbrightnessgradto24bitregion, 
+        lumrange)
