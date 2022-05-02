@@ -1968,8 +1968,8 @@ def fliphoricircregion(bmp:array,x:int,y:int,r:int):
     """Flips horizontally a circular region with a center x,y with a radius r
         
     Args:
-        bmp   : unsigned byte array with bmp format
-        x,y,r : center (x,y) and radius r of region
+        bmp  : unsigned byte array with bmp format
+        x,y,r: center (x,y) and radius r of region
 
     Returns:
         byref modified unsigned byte array
@@ -2030,8 +2030,8 @@ def mirrorleftincircregion(bmp:array,x:int,y:int,r:int):
     """Mirrors the top left of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp   : unsigned byte array with bmp format
-        x,y,r : center (x,y) and radius r of region
+        bmp  : unsigned byte array with bmp format
+        x,y,r: center (x,y) and radius r of region
 
     Returns:
         byref modified unsigned byte array
@@ -2695,12 +2695,12 @@ def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
     """Draws an arc centered at point (x,y) with radius r and specified start and end angles in degrees
         
     Args:
-        bmp         : unsigned byte array with bmp format
-        x,y,r       : defines a circle that contain the arc
-        color       : color of arc
-        showoutline : True -> draw arc outline
-        fillcolor   : color of arc filling
-        isfilled    : True -> set area inside arc to fillcolor
+        bmp        : unsigned byte array with bmp format
+        x,y,r      : defines a circle that contain the arc
+        color      : color of arc
+        showoutline: True -> draw arc outline
+        fillcolor  : color of arc filling
+        isfilled   : True -> set area inside arc to fillcolor
 
     Returns:
         byref modified unsigned byte array
@@ -3082,9 +3082,9 @@ def plotpolyfill(bmp:array,vertlist:list,color:int):
     """Draws a filled polygon with a given color
 
     Args:
-        bmp      : unsigned byte array with bmp format
-        vertlist : [(x,y)...] list of vertices
-        color    : color of bezier curve
+        bmp     : unsigned byte array with bmp format
+        vertlist: [(x,y)...] list of vertices
+        color   : color of bezier curve
 
     Returns:
         byref modified unsigned byte array
@@ -3115,11 +3115,11 @@ def gradthickplotpoly(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfac
     """Draws a polygon of a given gradient and thickness
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        vertlist   : [(x,y)...] list of vertices
-        penradius  : radius of pen in pixels
-        lumrange   : [byte,byte] range of the gradient
-        RGBfactors : [r:float,g:float,b:float]
+        bmp       : unsigned byte array with bmp format
+        vertlist  : [(x,y)...] list of vertices
+        penradius : radius of pen in pixels
+        lumrange  : [byte,byte] range of the gradient
+        RGBfactors: [r:float,g:float,b:float]
                      r,g,b all range in value from 0 to 1 
 
     Returns:
@@ -3137,9 +3137,9 @@ def plotlines(bmp:array,vertlist:list,color:int):
     """Draws connected lines defined by a list of vertices
 
     Args:
-        bmp      : unsigned byte array with bmp format
-        vertlist : [(x:uint,y:uint),...] list of vertices
-        color    : color of the lines
+        bmp     : unsigned byte array with bmp format
+        vertlist: [(x:uint,y:uint),...] list of vertices
+        color   : color of the lines
         
     Returns:
         byref modified unsigned byte array
@@ -3153,9 +3153,9 @@ def plotpoly(bmp:array,vertlist:list,color:int):
     """Draws a polygon defined by a list of vertices
 
     Args:
-        bmp      : unsigned byte array with bmp format
-        vertlist : [(x:uint,y:uint),...] list of vertices
-        color    : color of the lines
+        bmp     : unsigned byte array with bmp format
+        vertlist: [(x:uint,y:uint),...] list of vertices
+        color   : color of the lines
         
     Returns:
         byref modified unsigned byte array
@@ -3183,9 +3183,9 @@ def plotpolyfillist(bmp:array,sides:list,RGBfactors:list):
     """3D polygon rendering function
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        sides      : list of polygons and normals
-        RGBfactors : [r:float,g:float,b:float]
+        bmp       : unsigned byte array with bmp format
+        sides     : list of polygons and normals
+        RGBfactors: [r:float,g:float,b:float]
                      r,g,b all range in value from 0 to 1 
         
     Returns:
@@ -3234,7 +3234,7 @@ def plot3Dsolid(bmp:array,vertandsides:list,issolid:bool,RGBfactors:list,
         rotvect     : rotation vector
         transvect3D : 3D translation vector
         d           : distance of observer from screen
-        transvect   : translatoin vector for screen positioning
+        transvect   : translation vector for screen positioning
         
     Returns:
         byref modified unsigned byte array
@@ -3251,10 +3251,10 @@ def gradvert(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list
         penradius : radius of the spheres
         lumrange  : [byte,byte] controls the gradient
         RGBfactors: (r:float,b:float,g:float) 
-                    values of r,g and b -> min 0 to 1 max 
+                     values of r,g and b -> min 0 to 1 max 
         
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     lum1,lumrang=range2baseanddelta(lumrange)
@@ -3268,13 +3268,13 @@ def xygrid(bmp:array,x1:int,y1:int,x2:int,y2:int,xysteps:list,color:int):
     """Draws a grid
 
     Args:
-        bmp         : unsigned byte array with bmp format
-        x1,y1,x2,y2 : sets limits of grid
-        xysteps     : [x,y] -> sets the increment in x and y
-        color       : sets the color of the grid
+        bmp        : unsigned byte array with bmp format
+        x1,y1,x2,y2: sets limits of grid
+        xysteps    : [x,y] -> sets the increment in x and y
+        color      : sets the color of the grid
         
     Returns:
-        byref modified byte array
+        byref modified unsigned byte array
 
     """
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
@@ -3288,10 +3288,10 @@ def xygridvec(bmp:array,u:list,v:list,steps:list,gridcolor:int):
     """Draws a grid using (x,y) pairs u and v
 
     Args:
-        bmp         : unsigned byte array with bmp format
-        u,v         : (x,y) sets limits of grid
-        steps       : [x,y] -> sets the increment in x and y
-        color       : sets the color of the grid
+        bmp  : unsigned byte array with bmp format
+        u,v  : (x,y) sets limits of grid
+        steps: (x,y) -> sets the increment for x and y
+        color: sets the color of the grid
         
     Returns:
         byref modified byte array
@@ -3341,7 +3341,7 @@ def horilinevert(bmp:array,vlist:list,linelen:int,xadj:int,color:int):
         vlist  : [(x,y),...] list of vertices
         linelen: lenght of vertical lines
         xadj   : sets an adjustment of x coordinates
-        color  : color opf the line
+        color  : color of the line
         
     Returns:
         byref modified unsigned byte array
@@ -3350,10 +3350,28 @@ def horilinevert(bmp:array,vlist:list,linelen:int,xadj:int,color:int):
     for v in vlist: 
         horiline(bmp,v[1],v[0],v[0]+linelen+xadj,color)
 
-def XYaxis(bmp,origin,steps,xylimits,xyvalstarts,xysteps,color,textcolor,showgrid,gridcolor):
+def XYaxis(bmp:array,origin:list,steps:list,xylimits:list,
+    xyvalstarts:list,xysteps:list,color:int,textcolor:int,showgrid:bool,gridcolor:int):
+    """Draws XY axis with tick marks and numbers
+
+    Args:
+        bmp      : unsigned byte array with bmp format
+        origin   : (x,y) on screen origin point of the axis
+        steps    : (x,y) steps between tick marks onscreen
+        xylimits : (x,y) sets where the graph ends onscreen
+        color    : color of the lines
+        textcolor: color of the numberline text
+        showgird : True -> display gridline | False -> no grid
+        gridcolor: color of the grid
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
     hvert=horizontalvert(origin[1],origin[0],xylimits[0],steps[0])
     vvert=verticalvert(origin[0],origin[1],xylimits[1],-steps[1])
-    if showgrid:xygridvec(bmp,origin,xylimits,steps,gridcolor)
+    if showgrid:
+        xygridvec(bmp,origin,xylimits,steps,gridcolor)
     drawvec(bmp,origin,[origin[0],xylimits[1]],10,color)
     drawvec(bmp,origin,[xylimits[0],origin[1]],10,color)
     vertlinevert(bmp,hvert,5,-2,color)
@@ -3364,7 +3382,19 @@ def XYaxis(bmp,origin,steps,xylimits,xyvalstarts,xysteps,color,textcolor,showgri
     xvalmax,yvalmax=xyvalstarts[0]+(len(hvert)-1)*xysteps[0],xyvalstarts[1]+(len(vvert)-1)*xysteps[1]
     return (origin,steps,xylimits,xyvalstarts,xysteps,(xvalmax,yvalmax))
 
-def userdef2Dcooordsys2screenxy(x,y,lstcooordinfo):
+def userdef2Dcooordsys2screenxy(x:int,y:int,lstcooordinfo:list):
+    """Does a 2D coordinate transformation from user to screen coordinate system
+
+    Args:
+        x,y          : user coordinates
+        lstcooordinfo: info on how to tranform coordinate system
+                       [origin,steps,xylimits,xyvalstarts,xysteps]
+                       all (x:int,y:int) pairs
+        
+    Returns:
+        [x:int,y:int] screen coordinates
+
+    """
     origin,steps,xylimits,xyvalstarts,xysteps=lstcooordinfo[0],lstcooordinfo[1],lstcooordinfo[2],lstcooordinfo[3],lstcooordinfo[4]
     x,y=[origin[0]+((x-xyvalstarts[0])/xysteps[0])*steps[0],origin[1]-((y-xyvalstarts[0])/xysteps[1])*steps[1]]
     if x>xylimits[0] or y<xylimits[1]:
@@ -3372,8 +3402,24 @@ def userdef2Dcooordsys2screenxy(x,y,lstcooordinfo):
         print(sysmsg['regionoutofbounds'])
     return [x,y]
 
-def XYscatterplot(bmp,XYdata,XYcoordinfo,showLinearRegLine,reglinecolor):
-    for v in XYdata:#[[x,y,radius (max rad 5 ),isfilled],...]
+def XYscatterplot(bmp:array,XYdata:list,XYcoordinfo:list,
+                showLinearRegLine:bool,reglinecolor:int):
+    """Create a XY scatterplot
+
+    Args:
+        bmp             : unsigned byte array with bmp format
+        XYData          : [[x,y,radius (max rad 5 ),isfilled],...]
+        lstcooordinfo   : info on how to tranform coordinate system
+                          [origin,steps,xylimits,xyvalstarts,xysteps]
+                          all (x:int,y:int) pairs
+        howLinearRegLine: True -> display linear regression line
+        reglinecolor    : color of linear regression line
+
+    Returns:
+        byref modified unsigned byte array
+
+    """
+    for v in XYdata:
         r,w=v[2],userdef2Dcooordsys2screenxy(v[0],v[1],XYcoordinfo)
         if r>1: circlevec(bmp,w,setmax(r,5),v[3],v[4])
         else: plotvecxypoint(bmp,w,v[3])
