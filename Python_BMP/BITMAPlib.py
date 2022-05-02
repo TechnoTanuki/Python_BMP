@@ -71,11 +71,25 @@ from .primitives2D import (
     spiralcontrolpointsvert,
     verticalvert
     )
-from .solids3D import (gensides,perspective,getshapesidedict,tetrahedravert,cubevert,
-    hexahedravert,octahedravert,decahedvertandsurface,icosahedvertandsurface,
-    fillpolydata,polyboundary,surfplot3Dvertandsurface,cylindervertandsurface,
-    spherevertandsurface,rotvec3D,conevertandsurface)
-from .fonts import font8x8,font8x14,getcharfont
+from .solids3D import (
+    conevertandsurface,
+    cubevert,
+    cylindervertandsurface,
+    decahedvertandsurface,
+    fillpolydata,
+    gensides,
+    getshapesidedict,
+    hexahedravert,
+    icosahedvertandsurface,
+    octahedravert,
+    perspective,
+    polyboundary,
+    rotvec3D,
+    spherevertandsurface,
+    surfplot3Dvertandsurface,
+    tetrahedravert
+    )
+from .fonts import font8x8, font8x14, getcharfont
 from .colors import (bmpvalidcolorbits,isvalidcolorbit,bmpstdpal,getdefaultbitpal,colormix,
     RGBtoBGRarr,int2RGBlist,RGBfactors2RGB,int2BGRarr,RGB2int,int2RGBarr,int2RGB,
     getcolorname2RGBdict,getdefaultlumrange,getRGBfactors,matchRGBtopal,brightnessadjust,
