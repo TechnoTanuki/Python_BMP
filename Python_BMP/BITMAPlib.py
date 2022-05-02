@@ -18,13 +18,16 @@
 #\--------#--------------------------------------------------------#--------/
 
 from array import array
-from math import sin,cos,radians
+from math import sin, cos, radians
 from random import random
 from .proctimer import functimer
-from .mathlib import (cosaffin,distance,vmag,roundvect,addvect,addvectinlist,subvect,
-    setminmax,isinrange,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,
-    range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,
-    intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata,enumbits)
+from .mathlib import (addvect, addvectinlist, andvect, anglebetween2Dlines,
+    centerpoint, cosaffin, distance, enumbits,
+    genpiechartdata, getdatalisttotal, intscalarmulvect, isinrange,
+    LSMslope, LSMYint, mirror, polar2rectcoord2D,
+    range2baseanddelta, rotatebits, roundvect,
+    setmax, setmin, setminmax, subvect, swapxy,
+    trans, vmag, xorvect)
 from .primitives2D import (iterline,iterparallelogram,itercirclepartlineedge,
     itercirclepartvertlineedge,itercircle,itercirclepart,iterellipserot,iterellipsepart,
     iterellipse,iterbeziercurve,iterbspline,recvert,horizontalvert,verticalvert,arcvert,
