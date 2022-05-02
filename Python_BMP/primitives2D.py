@@ -17,9 +17,10 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from math import sin,cos,radians,comb
-from .mathlib import (sign,subvect,addvect,mirror1stquad,computerotvec,roundvect,rotvec2D,
-    scalarmulvect,setmax,roundvectlist,rect2polarcoord2Dwithcenter,pivotlist,swapif,iif,
+from math import sin, cos, radians, comb
+from .conditionaltools import iif, swapif
+from .mathlib import (sign, subvect, addvect, mirror1stquad, computerotvec, roundvect,
+    rotvec2D, scalarmulvect, setmax, roundvectlist, rect2polarcoord2Dwithcenter, pivotlist,
     isinrange)
 
 def itercirclepart(r:int)->list:

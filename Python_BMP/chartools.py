@@ -3,49 +3,51 @@
 #|    We make absolutely no warranty of any kind, expressed or implied.     |
 #\--------------------------------------------------------------------------/
 
-def enumletters(st:str) -> str:
+def enumletters(st: str) -> str:
     """Enumerates the characters in a string
 
     Args:
         st: string
-        
-    Yeilds:
+
+    Yields:
         individual characters
 
     """
-    c,i=len(st),0
-    while i<c:
-        yield st[i:i+1]
-        i+=1
+    c, i = len(st), 0
+    while i < c:
+        yield st[i: i + 1]
+        i += 1
 
-def enumreverseletters(st:str) -> str:
+
+def enumreverseletters(st: str) -> str:
     """Enumerates the characters in a string in reverse order
 
     Args:
         st: string
-        
-    Yeilds:
+
+    Yields:
         individual characters
 
     """
 
-    i=len(st)-1
-    while i>-1:
-        yield st[i:i+1]
-        i-=1
+    i = len(st) - 1
+    while i > -1:
+        yield st[i: i + 1]
+        i -= 1
 
-def char2int(charcodestr:str) -> int:
+
+def char2int(charcodestr: str) -> int:
     """Packs a string into an int using ascii code
 
     Args:
         charcodestr: string
-        
+
     Yeilds:
         int value
 
     """
-    place,strhash=0,0
+    place, strhash = 0, 0
     for c in enumletters(charcodestr):
-        strhash=strhash+ord(c)*(256**place)
-        place+=1
+        strhash = strhash + ord(c) * (256 ** place)
+        place += 1
     return strhash

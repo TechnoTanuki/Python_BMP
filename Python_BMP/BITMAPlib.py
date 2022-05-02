@@ -21,8 +21,8 @@ from array import array
 from math import sin,cos,radians
 from random import random
 from .proctimer import functimer
-from .mathlib import (cosaffin,distance,vmag,iif,roundvect,addvect,addvectinlist,subvect,
-    setminmax,isinrange,swapif,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,
+from .mathlib import (cosaffin,distance,vmag,roundvect,addvect,addvectinlist,subvect,
+    setminmax,isinrange,setmin,setmax,anglebetween2Dlines,polar2rectcoord2D,
     range2baseanddelta,mirror,xorvect,andvect,rotatebits,LSMslope,LSMYint,trans,
     intscalarmulvect,swapxy,centerpoint,getdatalisttotal,genpiechartdata,enumbits)
 from .primitives2D import (iterline,iterparallelogram,itercirclepartlineedge,
@@ -48,6 +48,7 @@ from .fractals import getIFSparams,mandelparamdict
 from .buffersplit import altsplitbuf,altsplitbuf3way,altsplitbufnway
 from .chartools import char2int,enumletters,enumreverseletters
 from .inttools import readint,writeint,int2buf,buf2int
+from .conditionaltools import iif,swapif
 from .dicttools import dict2descorderlist
 from .textgraphics import plotbitsastext,plot8bitpatternastext
 from .fileutils import checklink,checklinks

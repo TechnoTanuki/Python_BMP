@@ -17,30 +17,31 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from math import sqrt,sin,cos,acos,atan,pi,degrees,radians
+from math import sqrt, sin, cos, acos, atan, pi, degrees, radians
 from random import randint,random
 from functools import reduce
+from .conditionaltools import iif
 
-def setmaxvec(vlist:list,maxval:float) -> list: 
-    return [setmax(v,maxval) for v in vlist]
+def setmaxvec(vlist: list, maxval: float) -> list: 
+    return [setmax(v, maxval) for v in vlist]
 
-def setminmaxvec(vlist:list,minval:float,maxval:float) -> list: 
-    return [setminmax(v,minval,maxval) for v in vlist]
+def setminmaxvec(vlist: list, minval: float, maxval: float) -> list: 
+    return [setminmax(v, minval, maxval) for v in vlist]
 
-def intsetminmaxvec(vlist:list,minval:int,maxval:int) -> list:  
-    return [intsetminmax(v,minval,maxval) for v in vlist]
+def intsetminmaxvec(vlist: list, minval: int, maxval: int) -> list:  
+    return [intsetminmax(v, minval, maxval) for v in vlist]
 
-def range2baseanddelta(lst_range:list): 
-    return lst_range[0],lst_range[1]-lst_range[0]
+def range2baseanddelta(lst_range: list): 
+    return lst_range[0], lst_range[1] - lst_range[0]
 
-def roundvect(v:list) -> list: 
+def roundvect(v: list) -> list: 
     return [round(n) for n in v]
 
-def roundvectlist(vlist:list) -> list: 
+def roundvectlist(vlist: list) -> list: 
     return [roundvect(v) for v in vlist]
 
-def addvect(u:list,v:list) -> list: 
-    return [i+j for i,j in zip(u,v)]
+def addvect(u: list, v: list) -> list: 
+    return [i + j for i, j in zip(u,v)]
 
 def trans(vlist:list,u:list) -> list: 
     return [addvect(v,u) for v in vlist]
@@ -322,13 +323,6 @@ def addvectlist(vlist1:list,vlist2:list) -> list:
 
 def mapfunctolist(func,vlist:list) -> list: 
     return [func(v) for v in vlist]
-
-def iif(boolcond:bool,trueval:any,falseval:any) -> any:
-    return trueval if boolcond else falseval
-
-def swapif(val1:any,val2:any,boolcond:bool):
-    if boolcond: val1,val2=val2,val1
-    return val1,val2
 
 def swapxy(v:list) -> list: 
     return [v[1],v[0]]
