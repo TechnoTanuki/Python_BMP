@@ -158,10 +158,6 @@ from .fractals import getIFSparams, mandelparamdict
 from .inttools import readint, writeint, int2buf, buf2int
 from .messages import sysmsg
 from .textgraphics import plotbitsastext, plot8bitpatternastext
-
-# BMP constants do not edit!!!
-bmpheaderid,bmpfilesize,bmphdrsize,bmpcolorbits,bmpx,bmpy,bmppal=array('B',[66,77]),2,10,28,18,22,54
-bmpheadersize={1:62,4:118,8:1078,24:54}
         
 def intcircleparam(func):
     """Decorator to test if the 2nd,3rd,4th parameters in a function that renders circle are ints 
