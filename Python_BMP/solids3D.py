@@ -18,19 +18,29 @@
 #\--------#--------------------------------------------------------#--------/
 
 from math import sqrt, sin, cos, atan, radians
-from .mathlib import (distance, adddimz, roundvect, computerotvec, trans, addvect,
-    getnormvec, subvect, cylindrical2rectcoord3D, spherical2rectcoord3D)
+from .mathlib import (
+    adddimz,
+    addvect,
+    computerotvec,
+    cylindrical2rectcoord3D,
+    distance,
+    getnormvec,
+    roundvect,
+    spherical2rectcoord3D,
+    subvect,
+    trans
+    )
 from .primitives2D import floatregpolygonvert, regpolygonvert, iterline, rectboundarycoords
 from .messages import sysmsg
 
 def getshapesidedict() -> dict: 
     return {"tetrahedra":((2,1,0),(2,3,1),(0,3,2),(3,0,1)),"cube":((1,2,3,0),(5,6,7,4),(0,3,6,5),(4,7,2,1),(4,1,0,5),(2,7,6,3)),"hexahedra":((2,3,1),(0,3,2),(3,0,1),(1,4,2),(2,4,0),(1,0,4)),"octahedra":((1,2,0),(4,1,0),(3,4,0),(2,3,0),(2,1,5),(1,4,5),(4,3,5),(3,2,5))}
 
-def tetrahedravert(x:float) -> list:
+def tetrahedravert(x: float) -> list:
     x_sqr,halfx=x*x,x/2
     return [[0,0,0],[halfx,sqrt(x_sqr/2),0],[x,0,0],[halfx,halfx,sqrt(3/8*x_sqr)]]
 
-def cubevert(x:float) -> list: 
+def cubevert(x: float) -> list: 
     return [[0,0,0],[0,x,0],[x,x,0],[x,0,0],[0,x,x],[0,0,x],[x,0,x],[x,x,x]]
 
 def hexahedravert(x: float) -> list:
@@ -42,12 +52,12 @@ def octahedravert(x:float) -> list:
     halfx=x/2
     return [[halfx,halfx,halfx],[0,0,0],[x,0,0],[x,x,0],[0,x,0],[halfx,halfx,-halfx]]
 
-def decahedvertandsurface(x:float) -> list:
+def decahedvertandsurface(x: float) -> list:
     pts=regpolygonvert(0,0,x,5,0)
     z=sqrt(distance(pts[0],pts[1])**2-x*x)
     return [[[0,0,-z]]+adddimz(pts,0)+[[0,0,z]],((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,6),(4,3,6),(3,2,6),(5,4,6))]
 
-def icosahedvertandsurface(x:float) -> list:#don't edit this it took much computation to make
+def icosahedvertandsurface(x: float) -> list:#don't edit this it took much computation to make
     pts,pts1=floatregpolygonvert(0,0,x,5,0),floatregpolygonvert(0,0,x,5,36)
     z=sqrt(distance(pts[0],pts[1])**2-x*x)
     z1=2*x-z
@@ -56,7 +66,7 @@ def icosahedvertandsurface(x:float) -> list:#don't edit this it took much comput
 def rotvec3D(roll:float,pitch:float,yaw:float)-> tuple: 
     return (computerotvec(roll),computerotvec(pitch),computerotvec(yaw))
 
-def perspective(vlist:list,rotvec:list,dispvec:list,d:float) -> tuple:#translated from C code by Roger Stevens
+def perspective(vlist: list, rotvec: list, dispvec: list, d: float) -> tuple:#translated from C code by Roger Stevens
     rotvlist,projvlist=[],[]
     sroll,croll=rotvec[0][0],rotvec[0][1]
     spitch,cpitch=rotvec[1][0],rotvec[1][1]
@@ -74,7 +84,7 @@ def perspective(vlist:list,rotvec:list,dispvec:list,d:float) -> tuple:#translate
         projvlist.append([-d*x/z,-d*y/z])
     return (rotvlist,projvlist)
 
-def fillpolydata(polybnd:list,xlim:int,ylim:int) -> list:#may be slow if polygon goes offscreen
+def fillpolydata(polybnd: list, xlim: int, ylim: int) -> list:#may be slow if polygon goes offscreen
     filld,bnd={},rectboundarycoords(polybnd)
     minx,miny,maxx,maxy=bnd[0][0],bnd[0][1],bnd[1][0]+1,bnd[1][1]+1
     if (minx>=0 and miny>=0) and (maxx<=xlim and maxy<=ylim):

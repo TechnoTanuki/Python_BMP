@@ -4,7 +4,7 @@
 #|    We make absolutely no warranty of any kind, expressed or implied.     |
 #|--------------------------------------------------------------------------|
 #|    The primary author and any subsequent code contributors shall not     |
-#|    be liable  in any event  for  incidental or consquential  damages     |
+#|    be liable  in any event  for  incidental or consequential damages     |
 #|    in connection with,  or arising out  from  the  use of  this code     |
 #|    in current form or with any modifications.                            |
 #|--------#--------------------------------------------------------#--------|
