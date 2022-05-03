@@ -159,7 +159,8 @@ from .paramchecks import(
     intcircleparam,
     intcircleparam24bitonly
     )
-from .buffersplit import altsplitbuf, altsplitbuf3way, altsplitbufnway
+
+from .buffersplit import altsplitbuf3way, altsplitbufnway
 from .chartools import char2int, enumletters, enumreverseletters
 from .conditionaltools import iif, swapif
 from .dicttools import dict2descorderlist
@@ -171,7 +172,7 @@ from .messages import sysmsg
 from .textgraphics import plotbitsastext, plot8bitpatternastext
 
         
-def adjustbufsize(bufsize:int,bits:int) -> int :
+def adjustbufsize(bufsize: int, bits: int) -> int:
     """Adjust buffer size to account for bit depth
 
     Args:
@@ -182,15 +183,16 @@ def adjustbufsize(bufsize:int,bits:int) -> int :
         An adjusted int value of the buffer size
 
     """
-    if bits==24: 
-        bufsize*=3
-    elif bits==4: 
-        bufsize=bufsize>>1
-    elif bits==1: 
-        bufsize=bufsize>>3
+    if bits == 24: 
+        bufsize *= 3
+    elif bits == 4: 
+        bufsize = bufsize >> 1
+    elif bits == 1: 
+        bufsize = bufsize >> 3
     return bufsize
 
-def setmaxx(bmp:array,xmax:int):
+
+def setmaxx(bmp: array, xmax: int):
     """Sets the x value stored in the windows bmp header
 
     Args:
@@ -201,9 +203,10 @@ def setmaxx(bmp:array,xmax:int):
         byref modified byte array with x dimension
 
     """
-    writeint(bmpx,4,bmp,xmax)
+    writeint(bmpx, 4, bmp, xmax)
 
-def getmaxx(bmp:array) -> int:
+
+def getmaxx(bmp: array) -> int:
     """Gets the x value stored in the windows bmp header
 
     Args:
@@ -213,9 +216,10 @@ def getmaxx(bmp:array) -> int:
         int value of x bmp dimension
 
     """
-    return readint(bmpx,4,bmp)
+    return readint(bmpx, 4, bmp)
 
-def setmaxy(bmp:array,ymax:int):
+
+def setmaxy(bmp: array, ymax: int):
     """Sets the y value stored in the windows bmp header
 
     Args:
@@ -226,9 +230,10 @@ def setmaxy(bmp:array,ymax:int):
         byref modified byte array with y dimension
 
     """
-    writeint(bmpy,4,bmp,ymax)
+    writeint(bmpy, 4, bmp, ymax)
 
-def getmaxy(bmp:array) -> int:
+
+def getmaxy(bmp: array) -> int:
     """Gets the y value stored in the windows bmp header
 
     Args:
@@ -238,9 +243,10 @@ def getmaxy(bmp:array) -> int:
         int value of y bmp dimension
 
     """
-    return readint(bmpy,4,bmp)
+    return readint(bmpy, 4, bmp)
 
-def getmaxxy(bmp:array) -> tuple:
+
+def getmaxxy(bmp: array) -> tuple:
     """Gets the max x and y values stored in the windows bmp header
 
     Args:
@@ -250,9 +256,10 @@ def getmaxxy(bmp:array) -> tuple:
         tuple (x:int,y:int) 
 
     """
-    return (readint(bmpx,4,bmp),readint(bmpy,4,bmp))
+    return (readint(bmpx, 4, bmp), readint(bmpy, 4, bmp))
 
-def bottomrightcoord(bmp:array) -> tuple:
+
+def bottomrightcoord(bmp: array) -> tuple:
     """Gets the maximum bottom right coordinates of a windows bitmap
 
     Args:
@@ -262,38 +269,43 @@ def bottomrightcoord(bmp:array) -> tuple:
         tuple (x:int,y:int) 
 
     """
-    return (readint(bmpx,4,bmp)-1,readint(bmpy,4,bmp)-1)
+    return (readint(bmpx, 4, bmp) - 1,readint(bmpy, 4, bmp) - 1)
+
 
 def centercoord(bmp:array) -> tuple:
     """Gets the central coordinates of a windows bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array with bmp format
 
     Returns:
         tuple (x:int,y:int) 
 
     """
-    return ((readint(bmpx,4,bmp)-1)>>1,(readint(bmpy,4,bmp)-1)>>1)
+    return ((readint(bmpx, 4, bmp) -1) >> 1,(readint(bmpy, 4, bmp) - 1) >> 1)
 
-def isinBMPrectbnd(bmp:array,x:int,y:int)->bool:
-    """Checks if (x,y) coordinates are within the rectangular bounds of a bitmap
+
+def isinBMPrectbnd(bmp: array, x: int, y: int) -> bool:
+    """Checks if (x,y) coordinates are within 
+        the rectangular bounds of a bitmap
 
     Args:
         bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        x,y: unsigned int value of location 
+             in x axis and y axis
 
     Returns:
         True if within bounds, False if out of bounds 
 
     """
-    return (x<readint(bmpx,4,bmp) and y<readint(bmpy,4,bmp)) and (x>-1 and y>-1)
+    return (x < readint(bmpx, 4, bmp) and y < readint(bmpy, 4, bmp)) and (x > -1 and y > -1)
 
-def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
+
+def listinBMPrecbnd(bmp: array, xylist: list) -> bool:
     """Checks if a list of (x,y) coordinates are within the rectangular bounds of a bitmap
 
     Args:
-        bmp   : unsigned  byte array with bmp format
+        bmp   : unsigned byte array with bmp format
         xylist: list of (x,y) coordinates to be checked
 
     Returns:
@@ -302,7 +314,7 @@ def listinBMPrecbnd(bmp:array,xylist:list) -> bool:
     """
     retval=True
     for v in xylist:
-        if isinBMPrectbnd(bmp,v[0],v[1])==False: 
+        if isinBMPrectbnd(bmp, v[0], v[1]) == False: 
             break
     return retval
 
@@ -317,9 +329,9 @@ def setcolorbits(bmp:array,bits:int):
         byref modified byte array with new file size
 
     """
-    bmp[bmpcolorbits]=bits
+    bmp[bmpcolorbits] = bits
 
-def getcolorbits(bmp:array) -> int:
+def getcolorbits(bmp: array) -> int:
     """Get the bit depth of a windows bitmap
 
     Args:
@@ -331,7 +343,7 @@ def getcolorbits(bmp:array) -> int:
     """
     return bmp[bmpcolorbits]
 
-def getxcharcount(bmp:array) -> int:
+def getxcharcount(bmp: array) -> int:
     """Get the chars or bytes in row of a bitmap
 
     Args:
@@ -341,9 +353,10 @@ def getxcharcount(bmp:array) -> int:
         count of bytes or chars in a row (x dim)
 
     """
-    return computexbytes(readint(18,4,bmp),bmp[bmpcolorbits])
+    return computexbytes(readint(bmpx, 4, bmp), bmp[bmpcolorbits])
 
-def setfilesize(bmp:array,size:int):
+
+def setfilesize(bmp: array, size: int):
     """Set the header size of a windows bitmap
 
     Args:
@@ -354,9 +367,10 @@ def setfilesize(bmp:array,size:int):
         byref modified byte array with new file size
 
     """
-    writeint(bmpfilesize,8,bmp,size)
+    writeint(bmpfilesize, 8, bmp, size)
 
-def getfilesize(bmp:array) -> int:
+
+def getfilesize(bmp: array) -> int:
     """Get the header size of a windows bitmap
 
     Args:
@@ -366,9 +380,10 @@ def getfilesize(bmp:array) -> int:
         unsigned int value of size of the bmp header
 
     """
-    return readint(bmpfilesize,8,bmp)
+    return readint(bmpfilesize, 8, bmp)
 
-def sethdrsize(bmp:array,hdsize:int):
+
+def sethdrsize(bmp: array, hdsize: int):
     """Set the header size of a windows bitmap
 
     Args:
@@ -379,9 +394,10 @@ def sethdrsize(bmp:array,hdsize:int):
         byref modified byte array with new header size
 
     """
-    writeint(bmphdrsize,4,bmp,hdsize)
+    writeint(bmphdrsize, 4, bmp, hdsize)
 
-def gethdrsize(bmp:array) -> int:
+
+def gethdrsize(bmp: array) -> int:
     """Get the header size of a windows bitmap
 
     Args:
@@ -391,9 +407,10 @@ def gethdrsize(bmp:array) -> int:
         int value of header size
 
     """
-    return readint(bmphdrsize,4,bmp)
+    return readint(bmphdrsize, 4, bmp)
 
-def getimageinfo(bmp:array):
+
+def getimageinfo(bmp: array):
     """Gets metadata in a windows bitmap
 
     Args:
@@ -403,9 +420,10 @@ def getimageinfo(bmp:array):
         4 int values
 
     """
-    return readint(bmpy,4,bmp),bmp[bmpcolorbits],getxcharcount(bmp),readint(bmphdrsize,4,bmp)
+    return readint(bmpy, 4, bmp), bmp[bmpcolorbits], getxcharcount(bmp), readint(bmphdrsize, 4, bmp)
 
-def getmaxcolors(bmp:array) -> int:
+
+def getmaxcolors(bmp: array) -> int:
     """Get the maximum number of colors supported by a windows bitmap
 
     Args:
@@ -415,9 +433,10 @@ def getmaxcolors(bmp:array) -> int:
         int value
 
     """
-    return 1<<bmp[bmpcolorbits]
+    return 1 << bmp[bmpcolorbits]
 
-def compute24bitBMPoffset(bmp:array,x:int,y:int) -> int:
+
+def compute24bitBMPoffset(bmp: array, x: int, y: int) -> int:
     """Get the offset in a byte array with RGB data given x and y
 
     Args:
@@ -428,9 +447,10 @@ def compute24bitBMPoffset(bmp:array,x:int,y:int) -> int:
         int value of offset to that data in byte array
 
     """
-    return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))
+    return (x * 3) + ((readint(bmpy, 4, bmp) - y - 1)*computexbytes(readint(bmpx ,4, bmp), 24))
 
-def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+
+def compute24bitBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
     """Get the offset in a byte array with RGB data given x and y
         with bitmap header size also taken into account 
 
@@ -444,7 +464,8 @@ def compute24bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
     """
     return (x*3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),24))+54
 
-def compute8bitBMPoffset(bmp:array,x:int,y:int) -> int:
+
+def compute8bitBMPoffset(bmp: array, x: int, y: int) -> int:
     """Get the offset in a byte array with 8 bit color data given x and y data
 
     Args:
@@ -457,7 +478,8 @@ def compute8bitBMPoffset(bmp:array,x:int,y:int) -> int:
     """
     return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))
 
-def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+
+def compute8bitBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
     """Get the offset in a byte array with 8 bit color data 
         given x and y with adjustments made due to bitmap header 
 
@@ -470,6 +492,7 @@ def compute8bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
 
     """
     return x+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),8))+1078
+
 
 def compute4bitBMPoffset(bmp:array,x:int,y:int) -> int:
     """Get the offset in a byte array with 4 bit color data given x and y data
@@ -484,7 +507,8 @@ def compute4bitBMPoffset(bmp:array,x:int,y:int) -> int:
     """
     return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))
 
-def compute1bitBMPoffset(bmp:array,x:int,y:int) -> int:
+
+def compute1bitBMPoffset(bmp: array, x: int, y: int) -> int:
     """Get the offset in a byte array with 1 bit color data given x and y data
 
     Args:
@@ -497,7 +521,8 @@ def compute1bitBMPoffset(bmp:array,x:int,y:int) -> int:
     """
     return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))
 
-def compute4bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+
+def compute4bitBMPoffsetwithheader(bmp: array, x: int,y: int) -> int:
     """Get the offset in a byte array with 4 bit color data 
         given x and y with adjustments made due to a header 
 
@@ -511,7 +536,8 @@ def compute4bitBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
     """
     return (x>>1)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),4))+118
 
-def compute1bitBMPoffsetwithheader(bmp: array,x:int,y:int) -> int:
+
+def compute1bitBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
     """Get the offset in a byte array with 1 bit color data 
         given x and y with adjustments made due to a header 
 
@@ -525,7 +551,8 @@ def compute1bitBMPoffsetwithheader(bmp: array,x:int,y:int) -> int:
     """
     return (x>>3)+((readint(bmpy,4,bmp)-y-1)*computexbytes(readint(bmpx,4,bmp),1))+62
 
-def getcomputeBMPoffsetwithheaderfunc(bmp:array):
+
+def getcomputeBMPoffsetwithheaderfunc(bmp: array):
     """Returns the correct function to use in computing offsets with headers given a bitmap
 
     Args:
@@ -537,7 +564,8 @@ def getcomputeBMPoffsetwithheaderfunc(bmp:array):
     """
     return {24:compute24bitBMPoffsetwithheader,8:compute8bitBMPoffsetwithheader,4:compute4bitBMPoffsetwithheader,1:compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
 
-def getcomputeBMPoffsetfunc(bmp:array):
+
+def getcomputeBMPoffsetfunc(bmp: array):
     """Returns the correct function to use in computing offset given a bitmap
 
     Args:
@@ -549,7 +577,8 @@ def getcomputeBMPoffsetfunc(bmp:array):
     """
     return {24:compute24bitBMPoffset,8:compute8bitBMPoffset,4:compute4bitBMPoffset,1:compute1bitBMPoffset}[bmp[bmpcolorbits]]
 
-def computeBMPoffset(bmp:array,x:int,y:int) -> int:
+
+def computeBMPoffset(bmp: array, x: int, y: int) -> int:
     """Returns the offset given a bitmap
 
     Args:
@@ -560,10 +589,11 @@ def computeBMPoffset(bmp:array,x:int,y:int) -> int:
         unsigned int offset to data in buffer
 
     """
-    f=getcomputeBMPoffsetfunc(bmp)
-    return f(bmp,x,y)
+    f = getcomputeBMPoffsetfunc(bmp)
+    return f(bmp, x, y)
 
-def computeBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
+
+def computeBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
     """Returns the offset given a bitmap with header considered
 
     Args:
@@ -574,11 +604,13 @@ def computeBMPoffsetwithheader(bmp:array,x:int,y:int) -> int:
         unsigned int offset to data in buffer
 
     """
-    f=getcomputeBMPoffsetwithheaderfunc(bmp)
-    return f(bmp,x,y)
+    f = getcomputeBMPoffsetwithheaderfunc(bmp)
+    return f(bmp, x, y)
 
-def getmaxxyandbits(bmp:array) -> tuple:
-    """Returns bitmap metadata (x dimension,y dimension, bit depth)
+
+def getmaxxyandbits(bmp: array) -> tuple:
+    """Returns bitmap metadata 
+       (x dimension,y dimension, bit depth)
 
     Args:
         bmp: unsigned byte array with bmp format
@@ -589,7 +621,8 @@ def getmaxxyandbits(bmp:array) -> tuple:
     """
     return (((readint(bmpx,4,bmp),readint(bmpy,4,bmp)),bmp[bmpcolorbits]))
 
-def computeuncompressedbmpfilesize(bmp:array) -> int:
+
+def computeuncompressedbmpfilesize(bmp: array) -> int:
     """Returns the uncompressed file size of a bitmap
 
     Args:
@@ -601,6 +634,7 @@ def computeuncompressedbmpfilesize(bmp:array) -> int:
     """
     return computeBMPfilesize(getmaxx(bmp),getmaxy(bmp),bmp[bmpcolorbits])
 
+
 def isbmpcompressed(bmp:array) -> bool:
     """Test if bitmap is compressed
 
@@ -611,9 +645,10 @@ def isbmpcompressed(bmp:array) -> bool:
         True if compressed, False if uncompressed
 
     """
-    return computeuncompressedbmpfilesize(bmp)>getfilesize(bmp)
+    return computeuncompressedbmpfilesize(bmp) > getfilesize(bmp)
 
-def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int:
+
+def compute24bitoffset(x: int, y: int, mx: int, my: int) -> int:
     """Get the offset in a byte array with 24 bit color data 
 
     Args:
@@ -625,9 +660,10 @@ def compute24bitoffset(x:int,y:int,mx:int,my:int) -> int:
         int value of offset to that data in byte array
 
     """
-    return (x*3)+((my-y-1)*computexbytes(mx,24))
+    return (x * 3) + ((my - y - 1) * computexbytes(mx, 24))
 
-def computexbytes(x:int,bits:int) -> int:
+
+def computexbytes(x: int, bits: int) -> int:
     """Get the number of bytes in a bmp row given x dimension and bit depth
 
     Args:
@@ -638,19 +674,22 @@ def computexbytes(x:int,bits:int) -> int:
         int value of number of bytes in a row
 
     """
-    if bits<=8:
-        xperbyte=8//bits
-        xbytes,rem=divmod(x,xperbyte)
-        if rem>0: xbytes+=1
-    if bits==24:
-        xbytes=x*3
-    rem=xbytes&3
-    if rem>0: 
-        xbytes=xbytes+(4-rem)
+    if bits <= 8:
+        xperbyte = 8 // bits
+        xbytes, rem = divmod(x, xperbyte)
+        if rem > 0: 
+            xbytes += 1
+    if bits == 24:
+        xbytes = x * 3
+    rem = xbytes & 3
+    if rem > 0: 
+        xbytes = xbytes + (4 - rem)
     return xbytes
 
-def computepadbytes(x:int,bits:int) -> int:
-    """Get the number of bytes used to pad for 32 bit alignment given x dimension and bit depth
+
+def computepadbytes(x: int, bits: int) -> int:
+    """Get the number of bytes used to pad for 
+        32-bit alignment given x dimension and bit depth
 
     Args:
         x   : unsigned int value of x dimension
@@ -660,17 +699,18 @@ def computepadbytes(x:int,bits:int) -> int:
         int value of number of pad bytes
 
     """
-    if bits<=8:
-        xperbyte=8//bits
-        xbytes,rem=divmod(x,xperbyte)
-        if rem>0: 
-            xbytes+=1
-    if bits==24:
-        xbytes=x*3
-    rem=xbytes&3
-    return iif(rem>0,4-rem,0)
+    if bits <= 8:
+        xperbyte = 8 // bits
+        xbytes, rem = divmod(x, xperbyte)
+        if rem > 0: 
+            xbytes += 1
+    if bits == 24:
+        xbytes = x * 3
+    rem = xbytes & 3
+    return iif(rem > 0, 4-rem, 0)
 
-def getdefaultBMPhdrsize(bits:int) -> int:
+
+def getdefaultBMPhdrsize(bits: int) -> int:
     """Gets default bitmap header size
 
     Args:
@@ -682,7 +722,8 @@ def getdefaultBMPhdrsize(bits:int) -> int:
     """
     return bmpheadersize[bits]
 
-def computeBMPfilesize(x:int,y:int,bits:int) -> int:
+
+def computeBMPfilesize(x: int, y: int, bits: int) -> int:
     """computes bitmap file size
 
     Args:
@@ -693,9 +734,10 @@ def computeBMPfilesize(x:int,y:int,bits:int) -> int:
         int value of file size
 
     """
-    return computexbytes(x,bits)*y+bmpheadersize[bits]
+    return computexbytes(x, bits) * y + bmpheadersize[bits]
 
-def compute_bmpmetadata(x:int,y:int,bits:int) -> tuple:
+
+def compute_bmpmetadata(x: int, y: int, bits: int) -> tuple:
     """computes bitmap meta data
 
     Args:
@@ -732,7 +774,7 @@ def getBMPimgbytes(bmp: array) -> list:
     """
     return bmp[gethdrsize(bmp):getfilesize(bmp)]
 
-def setBMPimgbytes(bmp:array,buf:array):
+def setBMPimgbytes(bmp: array, buf: array):
     """Sets the raw image buffer of a bitmap
 
     Args:
@@ -743,7 +785,8 @@ def setBMPimgbytes(bmp:array,buf:array):
         byref modified unsigned byte array
 
     """
-    bmp[gethdrsize(bmp):getfilesize(bmp)]=buf
+    bmp[gethdrsize(bmp):getfilesize(bmp)] = buf
+
 
 def setbmppal(bmp: array,pallist: list):
     """Sets the RGB palette of a bitmap
@@ -757,12 +800,13 @@ def setbmppal(bmp: array,pallist: list):
 
     """
     c=0
-    if len(pallist)==getmaxcolors(bmp):
+    if len(pallist) == getmaxcolors(bmp):
         for p in pallist:
-            setRGBpal(bmp,c,p[0],p[1],p[2])
+            setRGBpal(bmp, c, p[0], p[1], p[2])
             c+=1
 
-def getallRGBpal(bmp:array) -> list:
+
+def getallRGBpal(bmp: array) -> list:
     """Gets the RGB palette of a bitmap
 
     Args:
@@ -772,10 +816,10 @@ def getallRGBpal(bmp:array) -> list:
         [(r:byte,g:byte,b:byte),...]
 
     """
-    colors=getmaxcolors(bmp)
-    return [getRGBpal(bmp,c) for c in range(0,colors)]
+    colors = getmaxcolors(bmp)
+    return [getRGBpal(bmp, c) for c in range(0, colors)]
 
-def getRGBpal(bmp:array,c:int) -> list:
+def getRGBpal(bmp: array, c: int) -> list:
     """Gets the [R,G,B] values of color c in a bitmap
 
     Args:
@@ -786,10 +830,11 @@ def getRGBpal(bmp:array,c:int) -> list:
         [R:byte,G:byte,B:byte]
 
     """
-    i=bmppal+(c<<2)
-    return [bmp[i+2],bmp[i+1],bmp[i]]
+    i= bmppal +(c << 2)
+    return [bmp[i+2], bmp[i+1], bmp[i]]
 
-def setRGBpal(bmp:array,c:int,r:int,g:int,b:int):
+
+def setRGBpal(bmp: array, c: int, r: int, g: int, b: int):
     """Sets the r,g,b values of color c in a bitmap
 
     Args:
@@ -801,11 +846,11 @@ def setRGBpal(bmp:array,c:int,r:int,g:int,b:int):
         byref modified unsigned byte array
 
     """
-    start=bmppal+(c<<2)
-    end=start+3
-    bmp[start:end]=RGBtoBGRarr(r,g,b)
+    start = bmppal + (c << 2)
+    end= start + 3
+    bmp[start:end] = RGBtoBGRarr(r, g, b)
 
-def colorhistorgram(bmp:array) -> list:
+def colorhistorgram(bmp: array) -> list:
     """Creates a color histogram 
 
     Args:
@@ -816,15 +861,16 @@ def colorhistorgram(bmp:array) -> list:
 
     """
     d={}
-    for v in iterimagecolor(bmp,sysmsg['colorhist'],'*',sysmsg['done']):
+    for v in iterimagecolor(bmp, sysmsg['colorhist'], '*', sysmsg['done']):
         c=v[1]
         if c not in d: 
             d.setdefault(c,1)
         else: 
-            d[c]+=1
+            d[c] += 1
     return  dict2descorderlist(d)
 
-def makenewpalfromcolorhist(chist:list,colors:int,similaritythreshold:float) -> list:
+
+def makenewpalfromcolorhist(chist: list, colors: int, similaritythreshold: float) -> list:
     """Creates a new palatte based on a color histogram
 
     Args:
@@ -836,20 +882,25 @@ def makenewpalfromcolorhist(chist:list,colors:int,similaritythreshold:float) -> 
         unsigned byte array with bmp format
 
     """
-    newpal,palcnt,colorcount=[[0,0,0]],1,len(chist)
-    for i in range(0,colorcount):
-        rgb=int2RGBlist(chist[i][1])
-        addcl=True
+    newpal = [[0,0,0]]
+    palcnt = 1
+    colorcount = len(chist)
+    for i in range(0, colorcount):
+        rgb = int2RGBlist(chist[i][1])
+        addcl = True
         for palentry in newpal:
-            if distance(palentry,rgb)<similaritythreshold: addcl=False
+            if distance(palentry, rgb) < similaritythreshold:
+                addcl=False
         if addcl:
             print(palcnt, '=' ,rgb)
             newpal.append(rgb)
-            palcnt+=1
-        if palcnt==colors: break
+            palcnt += 1
+        if palcnt == colors:
+            break
     return newpal
 
-def copyBMPhdr(bmp:array) -> array:
+
+def copyBMPhdr(bmp: array) -> array:
     """Copies the bitmap header of an in-memory bmp to a new unsigned byte array
 
     Args:
@@ -859,9 +910,11 @@ def copyBMPhdr(bmp:array) -> array:
         unsigned byte array with bmp format
 
     """
-    hdrsize,newbmp=gethdrsize(bmp),array('B',[0]*getfilesize(bmp))
-    newbmp[0:hdrsize]=bmp[0:hdrsize]
+    hdrsize = gethdrsize(bmp)
+    newbmp = array('B', [0] * getfilesize(bmp))
+    newbmp[0:hdrsize] = bmp[0:hdrsize]
     return newbmp
+
 
 def copyRGBpal(sourceBMP:array,destBMP:array):
     """Copies the RGB palette info from a source unsigned byte array 
@@ -874,57 +927,74 @@ def copyRGBpal(sourceBMP:array,destBMP:array):
         byRef modified destBMP (unsigned byte array)
 
     """
-    hdl=gethdrsize(sourceBMP)
-    destBMP[bmppal:hdl]=sourceBMP[bmppal:hdl]
+    hdl = gethdrsize(sourceBMP)
+    destBMP[bmppal:hdl] = sourceBMP[bmppal:hdl]
 
-def setbmp_properties(bmpmeta:list) -> array:
-    """Creates a new bitmap with the properties set by bmpmeta to a new unsigned byte array
+
+def setbmp_properties(bmpmeta: list) -> array:
+    """Creates a new bitmap with the properties set 
+        by bmpmeta to a new unsigned byte array
 
     Args:
-        bmpmeta: list composed of 5 unsigned ints
-        
+        bmpmeta: [filesize:int,hdrsize:int,x:int,y:int,bits:int]
+
     Returns:
         unsigned byte array with bmp format
 
     """
-    bmp,filesize,hdrsize,x,y,bits=array('B'),bmpmeta[0],bmpmeta[1],bmpmeta[2],bmpmeta[3],bmpmeta[4]
-    bmp.frombytes(b'\x00'*(filesize))
-    bmp[0:2]=bmpheaderid
-    setfilesize(bmp,filesize)
-    sethdrsize(bmp,hdrsize)
-    setmaxx(bmp,x)
-    setmaxy(bmp,y)
-    bmp[bmpcolorbits]=bits
-    bmp[14]=40 #required
-    if bits<24: 
-        setbmppal(bmp,getdefaultbitpal(bits))
+    bmp = array('B')
+    filesize = bmpmeta[0]
+    hdrsize = bmpmeta[1]
+    x = bmpmeta[2]
+    y = bmpmeta[3]
+    bits = bmpmeta[4]
+    bmp.frombytes(b'\x00' * (filesize))
+    bmp[0:2] = bmpheaderid
+    setfilesize(bmp, filesize)
+    sethdrsize(bmp, hdrsize)
+    setmaxx(bmp, x)
+    setmaxy(bmp ,y)
+    bmp[bmpcolorbits] = bits
+    bmp[14] = 40 #required
+    if bits < 24: 
+        setbmppal(bmp, getdefaultbitpal(bits))
     return bmp
 
-def setnewpalfromsourcebmp(sourcebmp:array,newbmp:array,similaritythreshold:float) -> list:
-    """Copies the RGB palette info from a source unsigned byte array 
-        to a destination unsigned byte array source and  destination 
+
+def setnewpalfromsourcebmp(sourcebmp: array, newbmp: array, similaritythreshold: float) -> list:
+    """Copies the RGB palette info from 
+        a source unsigned byte array
+        to a destination unsigned byte array 
+        source and destination 
         can have different bit depths
 
     Args:
-        sourceBMP,newBMP   : unsigned byte arrays with bmp format
-        similaritythreshold: how close can a color in a palette entry be to another
+        sourceBMP,newBMP   : unsigned byte arrays 
+                             with bmp format
+        similaritythreshold: how close can a color 
+                  in a palette entry be to another
         
     Returns:
         byRef modified newBMP (unsigned byte array)
-        list of new palette entries based on source bitmap
+        list of new palette entries 
+        based on source bitmap
 
     """
-    newpal=makenewpalfromcolorhist(colorhistorgram(sourcebmp),getmaxcolors(newbmp),similaritythreshold)
-    setbmppal(newbmp,newpal)
+    newpal=makenewpalfromcolorhist(
+        colorhistorgram(sourcebmp), getmaxcolors(newbmp),
+        similaritythreshold)
+    setbmppal(newbmp, newpal)
     return newpal
 
-def RGBpalbrightnessadjust(bmp:array,percentadj:float)-> list:
-    """Copies the RGB palette info from a source unsigned byte array  
+
+def RGBpalbrightnessadjust(bmp: array, percentadj: float)-> list:
+    """Copies the RGB palette info from 
+        a source unsigned byte array  
         to a destination unsigned byte array
 
     Args:
         bmp       : unsigned byte array with bmp format
-        percentadj: signed float brightness adjustment in %
+        percentadj: signed float brightness adj in %
         
     Returns:
         list of modified RGB values
@@ -932,50 +1002,55 @@ def RGBpalbrightnessadjust(bmp:array,percentadj:float)-> list:
     """
     return [brightnessadjust(c,percentadj) for c in getallRGBpal(bmp)]
 
-def setBMP2monochrome(bmp:array,RGBfactors:list) -> list:
+
+def setBMP2monochrome(bmp: array, RGBfactors: list) -> list:
     """Sets a bitmap to use a monochrome palette
 
     Args:
         bmp       : unsigned byte array with bmp format
-        RGBfactors: (r:float,g:float,b:float) all values range from 0 to 1
+        RGBfactors: (r:float,g:float,b:float) 
+                    all values range from 0 to 1
         
     Returns:
         list of modified RGB values
         byref modified byte array
 
     """    
-    newpal=monochromepal(getcolorbits(bmp),RGBfactors)
-    setbmppal(bmp,newpal)
+    newpal = monochromepal(getcolorbits(bmp), RGBfactors)
+    setbmppal(bmp, newpal)
     return newpal
 
-def newBMP(x:int,y:int,colorbits:int) -> array:
+
+def newBMP(x: int, y: int, colorbits: int) -> array:
     """Creates a new in memory bitmap
 
     Args:
-        x,y      : unsigned int values of x dimension and y dimension
-        colorbits: bit depth (1,4,8,24)
+        x,y      : unsigned int values of x & y dims
+        colorbits: bit depth (1, 4, 8, 24)
 
     Returns:
         unsigned byte array with bitmap layout
 
     """
-    return setbmp_properties(compute_bmpmetadata(x,y,colorbits))
+    return setbmp_properties(compute_bmpmetadata(x, y, colorbits))
 
-def CopyBMPxydim2newBMP(bmp:array,newbits:int) -> array:
+
+def CopyBMPxydim2newBMP(bmp: array, newbits: int) -> array:
     """Creates a new bitmap with the same dimensions as bmp
 
     Args:
         bmp    : unsigned byte array with bmp format
-        newbits: bit depth (1,4,8,24)
+        newbits: bit depth (1, 4, 8, 24)
 
     Returns:
         unsigned byte array with bitmap layout
 
     """
-    return newBMP(getmaxx(bmp),getmaxy(bmp),newbits)
+    return newBMP(getmaxx(bmp) ,getmaxy(bmp) , newbits)
+
 
 @checklink
-def loadBMP(filename:str) -> array:
+def loadBMP(filename: str) -> array:
     """Load bitmap to a byte array
 
     Args:
@@ -985,19 +1060,19 @@ def loadBMP(filename:str) -> array:
         byte array with bmp file contents
 
     """
-    a=array('B')
-    with open(filename,'rb') as f: #ucompressed BMP only
-        hd=f.read(2)
-        if hd!=b'BM': 
+    a = array('B')
+    with open(filename, 'rb') as f: #ucompressed BMP only
+        hd = f.read(2)
+        if hd != b'BM': 
             print(sysmsg['notBMP'])
         else:
-            fsize=char2int(f.read(8))
+            fsize = char2int(f.read(8))
             f.seek(0)
             a.frombytes(f.read(fsize))
         f.close()
     return a
 
-def saveBMP(filename:str,bmp:array):
+def saveBMP(filename: str, bmp: array):
     """Saves bitmap to file
 
     Args:
@@ -1005,11 +1080,11 @@ def saveBMP(filename:str,bmp:array):
         bmp     : unsigned byte array with the layout of bmp file 
 
     """
-    with open(filename,'wb') as f:
+    with open(filename, 'wb') as f:
         f.write(bmp)
         f.close()
 
-def BMPbitBLTput(bmp:array,offset:int,arraybuf:array):
+def BMPbitBLTput(bmp: array, offset: int, arraybuf: array):
     """Sets offset in array to arraybuf
 
     Args:
@@ -1021,15 +1096,17 @@ def BMPbitBLTput(bmp:array,offset:int,arraybuf:array):
         byref modified unsigned byte array
 
     """
-    hdrsize,bufsize=gethdrsize(bmp),len(arraybuf)
-    startoff=hdrsize+offset
-    endoff=startoff+bufsize
-    if offset>=0 and endoff<=getfilesize(bmp): 
-        bmp[startoff:endoff]=arraybuf
+    hdrsize = gethdrsize(bmp)
+    bufsize = len(arraybuf)
+    startoff = hdrsize + offset
+    endoff = startoff + bufsize
+    if offset >= 0 and endoff <= getfilesize(bmp): 
+        bmp[startoff:endoff] = arraybuf
     else: 
         print (sysmsg['invalidoffset'])
 
-def BMPbitBLTget(bmp:array,offset:int,bufsize:int) -> array:
+
+def BMPbitBLTget(bmp: array, offset: int, bufsize: int) -> array:
     """Gets [offset:offset+bufsize] to a new array 
 
     Args:
@@ -1041,45 +1118,54 @@ def BMPbitBLTget(bmp:array,offset:int,bufsize:int) -> array:
         unsigned byte array
 
     """
-    hdrsize,retval=gethdrsize(bmp),array('B',[])
-    startoff=hdrsize+offset
-    endoff=startoff+bufsize
-    if (offset>=0 and bufsize>0 ) and endoff<=getfilesize(bmp): 
-        retval=bmp[startoff:endoff]
+    hdrsize = gethdrsize(bmp)
+    retval = array('B', [])
+    startoff = hdrsize + offset
+    endoff = startoff + bufsize
+    if (offset >= 0 and bufsize > 0 ) and endoff <= getfilesize(bmp): 
+        retval = bmp[startoff:endoff]
     else: 
         print(sysmsg['invalidoffset'])
     return retval
 
-def vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int) -> array:
+def vertBMPbitBLTget(bmp: array, x: int, y1: int, y2: int) -> array:
     """Gets vertical slice to a new array 
 
     Args:
         bmp     : unsigned byte array with bmp format
-        x,y1,y2 : unsigned int x coordinate and y coordinates of vertical slice
-
+        x,y1,y2 : unsigned int x and y coordinates 
+                
     Returns:
         unsigned byte array
 
     """
-    bits=bmp[bmpcolorbits]
-    r,m,c=getxcharcount(bmp),getmaxxy(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
-    if isinrange(x,m[0],-1):
-        y1,y2=swapif(y1,y2,y1>y2)
-        y1,y2=setmin(y1,0),setmax(y2,m[1]-1)
-        s,e=c(bmp,x,y2),c(bmp,x,y1)+r
-        if bits==24: 
-            return makeBGRbuf(bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r])
+    bits = bmp[bmpcolorbits]
+    r = getxcharcount(bmp)
+    m = getmaxxy(bmp)
+    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    if isinrange(x, m[0], -1):
+        y1, y2 = swapif(y1 ,y2, y1 > y2)
+        y1 = setmin(y1,0)
+        y2 = setmax(y2,m[1]-1)
+        s = c(bmp,x,y2)
+        e = c(bmp,x,y1)+r
+        if bits == 24: 
+            return makeBGRbuf(bmp[s:e-2:r], bmp[s+1:e-1:r], bmp[s+2:e:r])
         else: 
             return bmp[s:e:r]
     else: 
         print(sysmsg['lineoutofbnd'])
 
-def applyfuncwithparam2vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int,func,funcparam):
+
+def applyfuncwithparam2vertBMPbitBLTget(
+    bmp: array,
+    x: int, y1: int, y2: int,
+    func,funcparam):
     """Apply a user defined function to vertical slices
 
     Args:
         bmp       : unsigned byte array with bmp format
-        x,y1,y2   : unsigned int x coordinate and y coordinates of vertical slice
+        x,y1,y2   : unsigned int x and y coordinates 
         func      : user defined function func
         funcparam : parameters of the user defined function
 
@@ -1087,20 +1173,27 @@ def applyfuncwithparam2vertBMPbitBLTget(bmp:array,x:int,y1:int,y2:int,func,funcp
         byref modified unsigned byte array
 
     """
-    bits=bmp[bmpcolorbits]
-    r,m,c=getxcharcount(bmp),getmaxxy(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
-    if isinrange(x,m[0],-1):
-        y1,y2=swapif(y1,y2,y1>y2)
-        y1,y2=setmin(y1,0),setmax(y2,m[1]-1)
-        s,e=c(bmp,x,y2),c(bmp,x,y1)+r
-        if bits==24: 
-            bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=func(bmp[s:e-2:r],funcparam),func(bmp[s+1:e-1:r],funcparam),func(bmp[s+2:e:r],funcparam)
+    bits = bmp[bmpcolorbits]
+    r = getxcharcount(bmp)
+    m = getmaxxy(bmp)
+    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    if isinrange(x, m[0], -1):
+        y1, y2 = swapif(y1, y2, y1 > y2)
+        y1 = setmin(y1, 0)
+        y2 = setmax(y2, m[1] - 1)
+        s = c(bmp,x,y2)
+        e = c(bmp,x,y1) + r
+        if bits == 24: 
+            bmp[s:e-2:r] = func(bmp[s:e-2:r],funcparam)
+            bmp[s+1:e-1:r] = func(bmp[s+1:e-1:r],funcparam)
+            bmp[s+2:e:r] = func(bmp[s+2:e:r],funcparam)
         else: 
-            bmp[s:e:r]=func(bmp[s:e:r],funcparam)
+            bmp[s:e:r] = func(bmp[s:e:r],funcparam)
     else: 
         print(sysmsg['lineoutofbnd'])
 
-def plotRGBxybit(bmp: array,x: int,y: int,rgb: list):
+
+def plotRGBxybit(bmp: array, x: int, y: int, rgb: list):
     """Sets pixel at x,y in a bitmap to [R,G,B]
 
     Args:
@@ -1113,14 +1206,15 @@ def plotRGBxybit(bmp: array,x: int,y: int,rgb: list):
 
     """
     if isinBMPrectbnd(bmp,x,y):
-        if bmp[bmpcolorbits]==24:
-            offset=compute24bitBMPoffsetwithheader(bmp,x,y)
-            endoffset=offset+3
-            bmp[offset:endoffset]= array('B',[rgb[2],rgb[1],rgb[0]])
+        if bmp[bmpcolorbits] == 24:
+            offset = compute24bitBMPoffsetwithheader(bmp, x, y)
+            endoffset = offset + 3
+            bmp[offset:endoffset] = array('B', [rgb[2], rgb[1], rgb[0]])
         else: 
-            plotxybit(bmp,x,y,matchRGBtopal(rgb,getallRGBpal(bmp)))
+            plotxybit(bmp, x, y, matchRGBtopal(rgb, getallRGBpal(bmp)))
 
-def plotxybit(bmp:array,x:int,y:int,c:int):
+
+def plotxybit(bmp: array, x: int, y: int, c: int):
     """Sets pixel at x,y in a bitmap to color c
 
     Args:
@@ -1132,30 +1226,34 @@ def plotxybit(bmp:array,x:int,y:int,c:int):
         byref modified unsigned byte array
 
     """
-    if isinBMPrectbnd(bmp,x,y):
-        offset,bits=computeBMPoffsetwithheader(bmp,x,y),bmp[bmpcolorbits]
-        if bits==24:
-            bmp[offset:offset+3]=int2BGRarr(c)
-        elif bits==8:
-            bmp[offset]=c&0xff
-        elif bits==4:
-            if c>15: 
-                c&=0xf
-            if x&1==1: 
-                bmp[offset]=(bmp[offset] & 0xf0)+c
+    if isinBMPrectbnd(bmp, x, y):
+        offset = computeBMPoffsetwithheader(bmp,x,y)
+        bits = bmp[bmpcolorbits]
+        if bits == 24:
+            bmp[offset:offset + 3] = int2BGRarr(c)
+        elif bits == 8:
+            bmp[offset] = c & 0xff
+        elif bits == 4:
+            if c > 15: 
+                c &= 0xf
+            if x & 1 == 1: 
+                bmp[offset] = (bmp[offset] & 0xf0) + c
             else: 
-                bmp[offset]=(c<<4)+(bmp[offset] & 0xf)
-        elif bits==1:
-            b,mask=bmp[offset],1<<(7-(x%8))
-            if c>1: 
-                c=1
-            if c==1: 
-                b=b | mask
+                bmp[offset] = (c << 4) + (bmp[offset] & 0xf)
+        elif bits == 1:
+            b = bmp[offset]
+            mask = 1 << (7 - (x % 8))
+            if c > 1: 
+                c = 1
+            if c == 1: 
+                b = b | mask
             else:
-                if b & mask>0: b=b ^ mask
-            bmp[offset]=b
+                if b & mask > 0:
+                    b = b ^ mask
+            bmp[offset] = b
 
-def getxybit(bmp:array,x:int,y:int) -> int:
+
+def getxybit(bmp: array, x: int, y: int) -> int:
     """Gets color of pixel at x,y in a bitmap
 
     Args:
@@ -1167,25 +1265,27 @@ def getxybit(bmp:array,x:int,y:int) -> int:
 
     """
     retval=0
-    if isinBMPrectbnd(bmp,x,y):
-        offset,bits=computeBMPoffsetwithheader(bmp,x,y),bmp[bmpcolorbits]
-        if bits==1:
-            mask=7-(x%8)
-            retval=(bmp[offset] & (1<<mask))>>mask
-        elif bits==4:
-            if x&1==1: 
-                retval=(bmp[offset] & 0xf)
+    if isinBMPrectbnd(bmp, x, y):
+        offset = computeBMPoffsetwithheader(bmp,x,y)
+        bits = bmp[bmpcolorbits]
+        if bits == 1:
+            mask = 7 - (x % 8)
+            retval = (bmp[offset] & (1 << mask)) >> mask
+        elif bits == 4:
+            if x & 1 == 1: 
+                retval = (bmp[offset] & 0xf)
             else: 
-                retval=(bmp[offset] & 0xf0)>>4
-        elif bits==8: 
-            retval=bmp[offset]
-        elif bits==24:
-            retval=RGB2int(bmp[offset+2],bmp[offset+1],bmp[offset])
+                retval = (bmp[offset] & 0xf0) >> 4
+        elif bits == 8: 
+            retval = bmp[offset]
+        elif bits == 24:
+            retval = RGB2int(bmp[offset+2], bmp[offset+1], bmp[offset])
     else: 
-        retval=-1
+        retval = -1
     return retval
 
-def getRGBxybitvec(bmp:array,v:list) -> int:
+
+def getRGBxybitvec(bmp: array, v:list) -> int:
     """Gets [R:byte,G:byte,B:byte] of pixel at (x,y) in a bitmap
 
     Args:
@@ -1196,9 +1296,10 @@ def getRGBxybitvec(bmp:array,v:list) -> int:
         [R:byte,G:byte,B:byte]
 
     """
-    return getRGBxybit(bmp,v[0],v[1])
+    return getRGBxybit(bmp, v[0], v[1])
 
-def getRGBxybit(bmp: array,x: int,y: int) -> list:
+
+def getRGBxybit(bmp: array, x: int, y: int) -> list:
     """Gets [R:byte,G:byte,B:byte] of pixel at x,y in a bitmap
 
     Args:
@@ -1211,14 +1312,15 @@ def getRGBxybit(bmp: array,x: int,y: int) -> list:
     """
     retval=[]
     if isinBMPrectbnd(bmp,x,y):
-        if getcolorbits(bmp)==24:
+        if getcolorbits(bmp) == 24:
             i=compute24bitBMPoffsetwithheader(bmp,x,y)
-            retval=[bmp[i+2],bmp[i+1],bmp[i]]
+            retval=[bmp[i+2], bmp[i+1], bmp[i]]
         else: 
-            retval=getRGBpal(bmp,getxybit(bmp,x,y))
+            retval=getRGBpal(bmp, getxybit(bmp, x, y))
     return retval
 
-def getxybitvec(bmp:array,v:list) -> int:
+
+def getxybitvec(bmp: array, v: list) -> int:
     """Gets color of pixel at (x,y) in a bitmap
 
     Args:
@@ -1229,9 +1331,10 @@ def getxybitvec(bmp:array,v:list) -> int:
         unsigned int color value
 
     """
-    return getxybit(bmp,v[0],v[1])
+    return getxybit(bmp, v[0], v[1])
 
-def intplotvecxypoint(bmp:array,v:list,c:int):
+
+def intplotvecxypoint(bmp: array, v: list, c: int):
     """Sets color of pixel at (x,y) in a bitmap
 
     Args:
@@ -1243,9 +1346,10 @@ def intplotvecxypoint(bmp:array,v:list,c:int):
         byref modified unsigned byte array
 
     """
-    plotxybit(bmp,v[0],v[1],c)
+    plotxybit(bmp, v[0], v[1], c)
 
-def plotvecxypoint(bmp:array,v:list,c:int):
+
+def plotvecxypoint(bmp: array, v: list, c: int):
     """Sets color of pixel at (x,y) in a bitmap
 
     Args:
@@ -1257,10 +1361,11 @@ def plotvecxypoint(bmp:array,v:list,c:int):
         byref modified unsigned byte array
 
     """
-    v=roundvect(v)
-    plotxybit(bmp,v[0],v[1],c)
+    v = roundvect(v)
+    plotxybit(bmp, v[0], v[1], c)
 
-def plotRGBxybitvec(bmp:array,v:list,rgb:list):
+
+def plotRGBxybitvec(bmp: array, v: list, rgb: list):
     """Sets [R,G,B] of pixel at (x,y) in a bitmap
 
     Args:
@@ -1272,9 +1377,9 @@ def plotRGBxybitvec(bmp:array,v:list,rgb:list):
         byref modified unsigned byte array
 
     """
-    plotRGBxybit(bmp,v[0],v[1],rgb)
+    plotRGBxybit(bmp, v[0], v[1], rgb)
 
-def plotxypointlist(bmp:array,vlist:list,penradius:int,color:int):
+def plotxypointlist(bmp: array, vlist: list, penradius: int, color: int):
     """Draws a circle or a point depending on penradius
         of a given color for all points in a point list
 
@@ -1289,10 +1394,12 @@ def plotxypointlist(bmp:array,vlist:list,penradius:int,color:int):
 
     """
     for v in vlist: 
-        roundpen(bmp,v,penradius,color)
+        roundpen(bmp, v, penradius, color)
 
-def roundpen(bmp:array,point:list,penradius:int,color:int):
-    """Draws a circle or a point depending on penradius of a given color
+
+def roundpen(bmp: array, point: list, penradius: int, color: int):
+    """Draws a circle or a point depending 
+        on penradius of a given color
 
     Args:
         bmp      : unsigned byte array with bmp format
@@ -1304,13 +1411,15 @@ def roundpen(bmp:array,point:list,penradius:int,color:int):
         byref modified unsigned byte array
 
     """
-    x,y=point[0],point[1]
-    if penradius<=1: 
-        plotxybit(bmp,x,y,color)
+    x = point[0]
+    y = point[1]
+    if penradius <= 1: 
+        plotxybit(bmp, x, y, color)
     else: 
-        circle(bmp,x,y,penradius,color,True)
+        circle(bmp, x, y, penradius, color, True)
 
-def swapcolors(bmp:array,p1:list,p2:list):
+
+def swapcolors(bmp: array, p1: list, p2: list):
     """Swaps the colors of two points in a bitmap 
 
     Args:
@@ -1321,11 +1430,13 @@ def swapcolors(bmp:array,p1:list,p2:list):
         byref modified unsigned byte array
 
     """
-    c=getxybitvec(bmp,p1)
-    intplotvecxypoint(bmp,p1,getxybitvec(bmp,p2))
-    intplotvecxypoint(bmp,p2,c)
+    c = getxybitvec(bmp, p1)
+    intplotvecxypoint(bmp, p1, getxybitvec(bmp, p2))
+    intplotvecxypoint(bmp, p2, c)
 
-def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
+def line(bmp: array,
+        x1: int, y1: int, x2: int ,y2: int,
+        color: int):
     """Creates a line in a bitmap 
 
     Args:
@@ -1337,47 +1448,58 @@ def line(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
         byref modified unsigned byte array
 
     """
-    m=getmaxxy(bmp)
-    mx,my=m[0]-1,m[1]-1
-    x1,x2,y1,y2=setminmax(x1,0,mx),setminmax(x2,0,mx),setminmax(y1,0,my),setminmax(y2,0,my)
-    if x1==x2: 
-        vertline(bmp,x1,y1,y2,color)
-    elif y1==y2: 
-        horiline(bmp,y1,x1,x2,color)
+    m = getmaxxy(bmp)
+    mx = m[0]-1
+    my = m[1]-1
+    x1 = setminmax(x1,0,mx)
+    x2 = setminmax(x2,0,mx)
+    y1 = setminmax(y1,0,my)
+    y2 = setminmax(y2,0,my)
+    if x1 == x2: 
+        vertline(bmp, x1, y1, y2, color)
+    elif y1 == y2: 
+        horiline(bmp, y1, x1, x2, color)
     else:
-        bits=bmp[bmpcolorbits]
-        c=getcomputeBMPoffsetwithheaderfunc(bmp)
-        if bits==24:
-            buf=int2BGRarr(color)
-            for p in iterline((x1,y1),(x2,y2)):
-                s=c(bmp,p[0],p[1])
-                bmp[s:s+3]=buf
-        elif bits==8:
-            color&=0xff
-            for p in iterline((x1,y1),(x2,y2)): 
-                bmp[c(bmp,p[0],p[1])]=color
-        elif bits==4:
-            if color>15: 
-                color&=0xf
-            for p in iterline((x1,y1),(x2,y2)):
-                s=c(bmp,p[0],p[1])
-                if p[0]&1==1: 
-                    bmp[s]=(bmp[s]&0xf0)+color
+        bits = bmp[bmpcolorbits]
+        p1 = (x1,y1)
+        p2 = (x2,y2)
+        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        if bits == 24:
+            buf = int2BGRarr(color)
+            for p in iterline(p1, p2):
+                s = c(bmp, p[0], p[1])
+                bmp[s:s+3] = buf
+        elif bits ==  8:
+            color &= 0xff
+            for p in iterline(p1, p2): 
+                bmp[c(bmp, p[0], p[1])] = color
+        elif bits == 4:
+            if color > 15: 
+                color &= 0xf
+            for p in iterline(p1, p2):
+                s = c(bmp, p[0], p[1])
+                if p[0] & 1 == 1: 
+                    bmp[s] = (bmp[s] & 0xf0) + color
                 else: 
-                    bmp[s]=(color<<4)+(bmp[s]&0xf)
-        elif bits==1:
-            if color>1: 
-                color&=0x1
-            for p in iterline((x1,y1),(x2,y2)):
-                s=c(bmp,p[0],p[1])
-                b,mask=bmp[s],1<<(7-(p[0]%8))
-                if color==1: 
-                    b=b | mask
+                    bmp[s] = (color << 4) + (bmp[s] & 0xf)
+        elif bits == 1:
+            if color > 1: 
+                color &= 0x1
+            for p in iterline(p1, p2):
+                s = c(bmp, p[0], p[1])
+                b = bmp[s]
+                mask = 1 << (7 - (p[0] % 8))
+                if color == 1: 
+                    b = b | mask
                 else:
-                    if b & mask>0: b=b ^ mask
-                bmp[s]=b
+                    if b & mask > 0:
+                        b = b ^ mask
+                bmp[s] = b
 
-def horiline(bmp:array,y:int,x1:int,x2:int,color:int):
+
+def horiline(bmp: array,
+    y: int, x1: int, x2: int,
+    color: int):
     """Creates a horizontal line in a bitmap 
 
     Args:
@@ -1390,24 +1512,26 @@ def horiline(bmp:array,y:int,x1:int,x2:int,color:int):
         byref modified unsigned byte array
 
     """
-    bits,m=bmp[bmpcolorbits],getmaxxy(bmp)
-    if isinrange(y,m[1],-1):
-        x1,x2=swapif(x1,x2,x1>x2)
-        x1,x2=setmin(x1,0),setmax(x2,m[0]-1)
-        dx=x2-x1+1
-        s=computeBMPoffsetwithheader(bmp,x1,y)
-        if bits==24:
-            e=s+(dx*3)
+    bits = bmp[bmpcolorbits]
+    m = getmaxxy(bmp)
+    if isinrange(y, m[1], -1):
+        x1, x2 = swapif(x1,x2,x1>x2)
+        x1 = setmin(x1, 0)
+        x2 = setmax(x2, m[0]-1)
+        dx = x2 - x1 + 1
+        s = computeBMPoffsetwithheader(bmp,x1,y)
+        if bits == 24:
+            e = s + (dx * 3)
             rgb=int2RGBlist(color)
-            bmp[s:e]=array('B',[rgb[2],rgb[1],rgb[0]]*dx)
-        elif bits==8:
-            e=s+dx
-            color&=0xff
-            bmp[s:e]=array('B',[color]*dx)
-        elif bits==4:
-            dx>>=1
-            e=s+dx
-            color&=0xf
+            bmp[s:e] = array('B', [rgb[2], rgb[1], rgb[0]] * dx)
+        elif bits == 8:
+            e = s + dx
+            color &= 0xff
+            bmp[s:e] = array('B', [color] * dx)
+        elif bits == 4:
+            dx >>= 1
+            e = s + dx
+            color &= 0xf
             c1,c2=-1,(color<<4)+color
             if x1&1==1: 
                 c1=(bmp[s] & 0xf0)
