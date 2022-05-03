@@ -148,6 +148,17 @@ from .colors import (
     thresholdadjust
     )
 
+from .paramchecks import(
+    entirecircleinboundary,
+    entirerectinboundary,
+    func24bitonly,
+    func24bitonlyandentirecircleinboundary,
+    func24bitonlyandentirerectinboundary,
+    func8and24bitonlyandentirecircleinboundary,
+    func8and24bitonlyandentirerectinboundary,
+    intcircleparam,
+    intcircleparam24bitonly
+    )
 from .buffersplit import altsplitbuf, altsplitbuf3way, altsplitbufnway
 from .chartools import char2int, enumletters, enumreverseletters
 from .conditionaltools import iif, swapif
@@ -158,227 +169,8 @@ from .fractals import getIFSparams, mandelparamdict
 from .inttools import readint, writeint, int2buf, buf2int
 from .messages import sysmsg
 from .textgraphics import plotbitsastext, plot8bitpatternastext
+
         
-def intcircleparam(func):
-    """Decorator to test if the 2nd,3rd,4th parameters in a function that renders circle are ints 
-
-    Args:
-        function(bmp:array,x,y,r....)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        if (type(args[1])==int and type(args[2])==int) and type(args[3])==int: 
-            return(func(*args,**kwargs))
-        else:  
-            print(sysmsg['inttypereq'])
-    return(callf)
-
-def intcircleparam24bitonly(func):
-    """Decorator to test if 2nd,3rd,4th parameters in a function that renders circle are ints
-        and restrict  the use of  this function to only 24 bit or RGB bitmaps (1st parameter)
-
-    Args:
-        function(bmp:array,x,y,r....)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        if args[0][bmpcolorbits]!=24 : 
-            print(sysmsg['not24bit'])
-        else:
-            if (type(args[1])==int and type(args[2])==int) and type(args[3])==int: 
-                return(func(*args,**kwargs))
-            else:  
-                print(sysmsg['inttypereq'])
-    return(callf)
-
-def func24bitonly(func):
-    """Decorator to restrict the use of this function to only 24 bit or RGB bitmaps (1st parameter)
-
-    Args:
-        function(bmp:array,...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        if args[0][bmpcolorbits]!=24 : 
-            print(sysmsg['not24bit'])
-        else: 
-            return(func(*args,**kwargs))
-    return(callf)
-
-def func24bitonlyandentirerectinboundary(func):
-    """Decorator to restrict the use of this function to only 24 bit or RGB bitmaps (1st parameter)  
-        and ensure that the 2nd, 3rd, 4th and 5th parameters are ints whose values when interpreted 
-        as x and y coordinates lay within the RGB bitmap.
-
-    Args:
-        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
-        if bmp[bmpcolorbits]!=24 : 
-            print(sysmsg['not24bit'])
-        else:
-            if (type(x1)==int and type(x2)==int) and (type(y1)==int and type(y2)==int):
-                if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):
-                    print(sysmsg['regionoutofbounds'])
-                else: 
-                    return(func(*args,**kwargs))
-            else:  
-                print(sysmsg['inttypereq'])
-    return(callf)
-
-def func24bitonlyandentirecircleinboundary(func):
-    """Decorator to restrict the use of this function toonly 24 bit or RGB bitmaps (1st parameter)  
-        and ensure that  the 2nd, 3rd, 4th parameters are ints  whose values  when interpreted  as 
-        x,y and radius of a circle lay within the RGB bitmap.
-
-    Args:
-        function(bmp:array,x:int,y:int,r:int...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        bmp,x,y,r=args[0],args[1],args[2],args[3]
-        if bmp[bmpcolorbits]!=24: 
-            print(sysmsg['not24bit'])
-        else:
-            if (type(x)==int and type(y)==int) and type(r)==int:
-                if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): 
-                    return(func(*args,**kwargs))
-                else: 
-                    print(sysmsg['regionoutofbounds'])
-            else:  
-                print(sysmsg['inttypereq'])
-    return(callf)
-
-def func8and24bitonlyandentirecircleinboundary(func):
-    """Decorator to restrict the use of this function toonly 24 bit or 8 bit bitmaps (1st parameter)  
-        and  ensure that  the 2nd, 3rd, 4th  parameters are ints  whose values  when interpreted  as  
-        x,y and radius of a circle lay within the RGB bitmap.
-
-    Args:
-        function(bmp:array,x:int,y:int,r:int...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        bmp,x,y,r=args[0],args[1],args[2],args[3]
-        if bmp[bmpcolorbits] not in [24,8]: 
-            print(sysmsg['not24or8bit'])
-        else:
-            if (type(x)==int and type(y)==int) and type(r)==int:
-                if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): 
-                    return(func(*args,**kwargs))
-                else: 
-                    print(sysmsg['regionoutofbounds'])
-            else:  
-                print(sysmsg['inttypereq'])
-    return(callf)
-
-def func8and24bitonly(func):
-    """Decorator to restrict the use of this function to only 24 bit or 8 bit bitmaps (1st parameter)
-
-    Args:
-        function(bmp:array,...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        if args[0][bmpcolorbits] not in [24,8]: 
-            print(sysmsg['not24or8bit'])
-        else: 
-            return(func(*args,**kwargs))
-    return(callf)
-
-def func8and24bitonlyandentirerectinboundary(func):
-    """Decorator to restrict the use of this function to only 24 bit or 8 bit bitmaps (1st parameter) 
-        and ensure that  the 2nd, 3rd, 4th and 5th parameters are ints  whose values when interpreted 
-        as x and y coordinates of a rectangle lay within the RGB bitmap.
-
-    Args:
-        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
-        if bmp[bmpcolorbits] not in [24,8]: 
-            print(sysmsg['not24or8bit'])
-        else:
-            if (type(x1)==int and type(x2)==int) and (type(y1)==int and type(y2)==int):
-                if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):
-                    print(sysmsg['regionoutofbounds'])
-                else: 
-                    return(func(*args,**kwargs))
-            else:  
-                print(sysmsg['inttypereq'])
-    return(callf)
-
-def entirerectinboundary(func):
-    """Decorator to ensure that the 2nd, 3rd, 4th and 5th parameters are ints whose values when 
-        interpreted as x and y coordinates of a rectangle lay within the bitmap.
-
-    Args:
-        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        bmp,x1,y1,x2,y2=args[0],args[1],args[2],args[3],args[4]
-        if (type(x1)==int and type(x2)==int) and (type(y1)==int and type(y2)==int):
-            if not (isinBMPrectbnd(bmp,x1,y1) and isinBMPrectbnd(bmp,x2,y2)):
-                print(sysmsg['regionoutofbounds'])
-            else: 
-                return(func(*args,**kwargs))
-        else:  
-            print(sysmsg['inttypereq'])
-    return(callf)
-
-def entirecircleinboundary(func):
-    """Decorator to ensure that the 2nd, 3rd, 4th parameters are ints whose values when interpreted 
-        as the centerpoint x,y and radius r of a circle lay within the RGB bitmap.
-
-    Args:
-        function(bmp:array,x:int,y:int,r:int...)
-        
-    Returns:
-        caller function
-
-    """
-    def callf(*args,**kwargs):
-        bmp,x,y,r=args[0],args[1],args[2],args[3]
-        if (type(x)==int and type(y)==int) and type(r)==int:
-            if entirecircleisinboundary(x,y,-1,getmaxx(bmp),-1,getmaxy(bmp),r): 
-                return(func(*args,**kwargs))
-            else: 
-                print(sysmsg['regionoutofbounds'])
-        else:  
-            print(sysmsg['inttypereq'])
-    return(callf)
-
 def adjustbufsize(bufsize:int,bits:int) -> int :
     """Adjust buffer size to account for bit depth
 
