@@ -3886,8 +3886,9 @@ def userdef2Dcooordsys2screenxy(
     return [x,y]
 
 
-def XYscatterplot(bmp:array,XYdata:list,XYcoordinfo:list,
-                showLinearRegLine:bool,reglinecolor:int):
+def XYscatterplot(bmp: array, 
+        XYdata: list, XYcoordinfo: list,
+        showLinearRegLine: bool, reglinecolor: int):
     """Create a XY scatterplot
 
     Args:
@@ -3904,20 +3905,26 @@ def XYscatterplot(bmp:array,XYdata:list,XYcoordinfo:list,
 
     """
     for v in XYdata:
-        r,w=v[2],userdef2Dcooordsys2screenxy(v[0],v[1],XYcoordinfo)
-        if r>1: circlevec(bmp,w,setmax(r,5),v[3],v[4])
+        r = v[2]
+        w = userdef2Dcooordsys2screenxy(v[0], v[1], XYcoordinfo)
+        if r>1: 
+            circlevec(bmp, w, setmax(r, 5), v[3], v[4])
         else: plotvecxypoint(bmp,w,v[3])
     if showLinearRegLine:
-        m,b=LSMslope(XYdata),LSMYint(XYdata)
-        xmin,xmax=XYcoordinfo[3][0],XYcoordinfo[5][0]
-        ymin,ymax=xmin*m+b,xmax*m+b
-        u=userdef2Dcooordsys2screenxy(xmin,ymin,XYcoordinfo)
-        w=userdef2Dcooordsys2screenxy(xmax,ymax,XYcoordinfo)
-        if w==[-1,-1]:
-            ymax=XYcoordinfo[5][1]
-            xmax=(ymax-b)/m
-            w=userdef2Dcooordsys2screenxy(xmax,ymax,XYcoordinfo)
-        linevec(bmp,u,w,reglinecolor)
+        m = LSMslope(XYdata)
+        b = LSMYint(XYdata)
+        xmin = XYcoordinfo[3][0]
+        xmax = XYcoordinfo[5][0]
+        ymin = xmin * m + b
+        ymax = xmax * m + b
+        u = userdef2Dcooordsys2screenxy(xmin, ymin, XYcoordinfo)
+        w = userdef2Dcooordsys2screenxy(xmax, ymax, XYcoordinfo)
+        if w == [-1, -1]:
+            ymax = XYcoordinfo[5][1]
+            xmax = (ymax - b) / m
+            w = userdef2Dcooordsys2screenxy(xmax, ymax, XYcoordinfo)
+        linevec(bmp, u, w, reglinecolor)
+
 
 def getneighborlist(v,mx,my,includecenter): 
     return [u for u in itergetneighbors(v,mx,my,includecenter)]
@@ -3941,7 +3948,8 @@ def iterimagedgevert(bmp,similaritythreshold):
                 yield u
                 break
 
-def iterimageregionvertbyRGB(bmp:array,rgb:list,similaritythreshold:int):
+def iterimageregionvertbyRGB(bmp: array,
+        rgb: list, similaritythreshold: int):
     """RGB Color selection by similarity
 
     Args:
@@ -3956,7 +3964,8 @@ def iterimageregionvertbyRGB(bmp:array,rgb:list,similaritythreshold:int):
     for v in iterimageRGB(bmp,sysmsg['edgedetect'],'*',sysmsg['done']):
         if distance(rgb,v[1])<similaritythreshold: yield v[0]
 
-def getimageregionbyRGB(bmp,rgb,similaritythreshold):
+def getimageregionbyRGB(bmp: array, 
+        rgb: list, similaritythreshold: int):
     """Select a region by color
 
     Args:
@@ -3968,12 +3977,17 @@ def getimageregionbyRGB(bmp,rgb,similaritythreshold):
         list of vertices
 
     """
-    return [v for v in iterimageregionvertbyRGB(bmp,rgb,similaritythreshold)]
+    return [v for v in iterimageregionvertbyRGB(bmp, rgb, similaritythreshold)]
 
-def getimagedgevert(bmp,similaritythreshold): 
+
+def getimagedgevert(bmp: array, similaritythreshold: int): 
     return [v for v in iterimagedgevert(bmp,similaritythreshold)]
 
-def plotimgedges(bmp:array,similaritythreshold:int,edgeradius:int,edgecolor:int):
+
+def plotimgedges(bmp: array,
+        similaritythreshold: int,
+        edgeradius: int,
+        edgecolor: int):
     """Draw edges 
 
     Args:
@@ -3985,9 +3999,13 @@ def plotimgedges(bmp:array,similaritythreshold:int,edgeradius:int,edgecolor:int)
         byref modified unsigned byte array
 
     """
-    plotxypointlist(bmp,getimagedgevert(bmp,similaritythreshold),edgeradius,edgecolor)
+    plotxypointlist(bmp,
+        getimagedgevert(bmp,
+            similaritythreshold),
+        edgeradius,edgecolor)
 
-def getBGRpalbuf(bmp):
+
+def getBGRpalbuf(bmp: array):
     """Gets bitmap palette info as stored 
 
     Args:
@@ -3997,7 +4015,8 @@ def getBGRpalbuf(bmp):
         unsigned byte array (BGR)
 
     """   
-    return bmp[bmppal:gethdrsize(bmp)]
+    return bmp[bmppal: gethdrsize(bmp)]
+
 
 def convertbufto24bit(buf,bgrpalbuf,bits):
     retval=[]
