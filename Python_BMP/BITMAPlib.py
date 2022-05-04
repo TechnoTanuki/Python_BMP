@@ -2635,40 +2635,52 @@ def circle(bmp: array,
     if isfilled: 
         filledcircle(bmp, x, y, r, color)
     else:
-        m,bits,c=getmaxxy(bmp),bmp[bmpcolorbits],getcomputeBMPoffsetwithheaderfunc(bmp)
-        dobndcheck=not entirecircleisinboundary(x,y,-1,m[0],-1,m[1],r)
-        if bits==24:
-            color=int2BGRarr(color)
+        m = getmaxxy(bmp)
+        bits = bmp[bmpcolorbits]
+        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        dobndcheck = not entirecircleisinboundary(x, y, -1, m[0], -1, m[1], r)
+        if bits == 24:
+            color = int2BGRarr(color)
             if dobndcheck:
                 for p in itercircle(x,y,r):
-                    px,py=p[0],p[1]
-                    if isinBMPrectbnd(bmp,px,py):
-                        s=c(bmp,px,py)
-                        bmp[s:s+3]=color
+                    px = p[0]
+                    py = p[1]
+                    if isinBMPrectbnd(bmp, px, py):
+                        s = c(bmp, px, py)
+                        bmp[s: s + 3] = color
             else:
                 for p in itercirclepart(r):
-                    x1,x2=mirror(x,p[0])
-                    y1,y2=mirror(y,p[1])
-                    x3,x4=mirror(x,p[1])
-                    y3,y4=mirror(y,p[0])
-                    s1,s2,s3,s4,s5,s6,s7,s8=c(bmp,x1,y1),c(bmp,x2,y2),c(bmp,x1,y2),c(bmp,x2,y1),c(bmp,x3,y3),c(bmp,x4,y4),c(bmp,x3,y4),c(bmp,x4,y3)
+                    x1, x2 = mirror(x,p[0])
+                    y1, y2 = mirror(y,p[1])
+                    x3, x4 = mirror(x,p[1])
+                    y3, y4 = mirror(y,p[0])
+                    s1 = c(bmp,x1,y1)
+                    s2 = c(bmp,x2,y2)
+                    s3 = c(bmp,x1,y2)
+                    s4 = c(bmp,x2,y1)
+                    s5 = c(bmp,x3,y3)
+                    s6 = c(bmp,x4,y4)
+                    s7 = c(bmp,x3,y4)
+                    s8 = c(bmp,x4,y3)
                     bmp[s1:s1+3]=bmp[s2:s2+3]=bmp[s3:s3+3]=bmp[s4:s4+3]=bmp[s5:s5+3]=bmp[s6:s6+3]=bmp[s7:s7+3]=bmp[s8:s8+3]=color
-        elif bits==8:
+        elif bits == 8:
             if dobndcheck:
                 for p in itercircle(x,y,r):
-                    px,py=p[0],p[1]
+                    px, py =p[0], p[1]
                     if isinBMPrectbnd(bmp,px,py): 
-                        bmp[c(bmp,px,py)]=color
+                        bmp[c(bmp, px, py)] = color
             else:
                 for p in itercirclepart(r):
-                    x1,x2=mirror(x,p[0])
-                    y1,y2=mirror(y,p[1])
+                    x1, x2 = mirror(x, p[0])
+                    y1, y2 = mirror(y, p[1])
                     bmp[c(bmp,x1,y1)]=bmp[c(bmp,x2,y2)]=bmp[c(bmp,x1,y2)]=bmp[c(bmp,x2,y1)]=color
         else:
             for p in itercircle(x,y,r): 
-                plotxybit(bmp,p[0],p[1],color)
+                plotxybit(bmp, p[0], p[1], color)
 
-def thickcircle(bmp:array,x:int,y:int,r:int,penradius:int,color:int):
+def thickcircle(bmp: array,
+        x: int, y: int, r: int,
+        penradius: int, color: int):
     """Draws a thick circle defined by centerpoint (x,y) and radius r 
         with a given color using a pen with radius penradius
 
@@ -2682,10 +2694,15 @@ def thickcircle(bmp:array,x:int,y:int,r:int,penradius:int,color:int):
         byref modified unsigned byte array
 
     """
-    for p in itercircle(x,y,r): 
-        circle(bmp,p[0],p[1],penradius,color,True)
+    for p in itercircle(x, y, r): 
+        circle(bmp, p[0], p[1],
+        penradius, color, True)
 
-def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list,RGBfactors:list):
+
+def gradthickcircle(bmp: array,
+        x: int, y: int, radius: int,
+        penradius: int,
+        lumrange: list, RGBfactors: list):
     """Draws a thick circle with gradient lumrange 
         defined by centerpoint (x,y) and radius r 
         using a pen with radius penradius 
@@ -2703,16 +2720,22 @@ def gradthickcircle(bmp:array,x:int,y:int,radius:int,penradius:int,lumrange:list
         byref modified unsigned byte array
 
     """
-    lum1,lumrang=range2baseanddelta(lumrange)
-    for i in range(penradius,0,-1):
-        c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:
-            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-        thickcircle(bmp,x,y,radius,i,c)
+    lum1, lumrang = range2baseanddelta(lumrange)
+    for i in range(penradius, 0, -1):
+        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+        thickcircle(bmp, x, y, radius, i, c)
 
-def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
-    """Draws a filled circle with gradient lumrange defined by centerpoint (x,y) 
-        and radius r and color defined by RGBfactors
+
+def gradcircle(bmp: array,
+        x: int, y: int, radius: int,
+        lumrange: list, RGBfactors: list):
+    """Draws a filled circle 
+        with gradient lumrange 
+        defined by centerpoint (x,y) 
+        and radius r 
+        and color defined by RGBfactors
 
     Args:
         bmp       : unsigned byte array with bmp format
@@ -2725,17 +2748,24 @@ def gradcircle(bmp:array,x:int,y:int,radius:int,lumrange:list,RGBfactors:list):
         byref modified unsigned byte array
 
     """
-    lum1,lumrang=range2baseanddelta(lumrange)
-    for r in range(radius-1,0,-1):
-        c=colormix(int(lum1+(lumrang*r/radius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:
-            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-        thickcircle(bmp,x,y,r,2,c)
+    lum1, lumrang=range2baseanddelta(lumrange)
+    for r in range(radius - 1, 0, -1):
+        c = colormix(int(lum1 + (lumrang * r / radius)), RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+        thickcircle(bmp, x, y, r, 2, c)
 
-def thickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
-                    penradius:int,color:int):
-    """Draws an thick ellipse with a defined pen radius
-        defined by centerpoint (x,y) and major and minor axis (b,a) 
+
+def thickellipserot(bmp: array,
+        x: int, y: int,
+        b: int, a: int,
+        degrot: float,
+        penradius: int,
+        color: int):
+    """Draws an thick ellipse with 
+        a defined pen radius
+        defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
         and rotated by degrot degrees
 
     Args:
@@ -2750,14 +2780,23 @@ def thickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
         byref modified byte array
 
     """
-    for p in iterellipserot(x,y,b,a,degrot): 
-        circle(bmp,p[0],p[1],penradius,color,True)
+    for p in iterellipserot(x, y, b, a, degrot): 
+        circle(bmp, p[0], p[1], penradius, color, True)
 
-def gradthickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
-                        penradius:int,lumrange:list,RGBfactors:list):
-    """Draws an thick ellipse with a defined pen radius
-        defined by centerpoint (x,y) and major and minor axis (b,a) 
-        and rotated by degrot degrees with a gradient fill 
+
+def gradthickellipserot(bmp:array,
+        x: int, y: int,
+        b: int, a: int,
+        degrot: float,
+        penradius: int,
+        lumrange: list,
+        RGBfactors: list):
+    """Draws an thick ellipse with 
+        a defined pen radius
+        defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
+        and rotated by degrot degrees 
+        with a gradient fill 
 
     Args:
         bmp       : unsigned byte array with bmp format
@@ -2767,21 +2806,28 @@ def gradthickellipserot(bmp:array,x:int,y:int,b:int,a:int,degrot:float,
         penradius : defines the thickness of the pen
         lumrange  : [byte:byte] 
                     controls the range of the gradient
-        rgbfactors: [r,g,b]  all values in list are ufloat
+        rgbfactors: [r,g,b] all values in list are ufloat
                     range of r, g and b are 0 min to 1 max
 
     Returns:
         byref modified byte array
 
     """                        
-    lum1,lumrang=range2baseanddelta(lumrange)
-    for i in range(penradius,0,-1):
-        c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-        thickellipserot(bmp,x,y,b,a,degrot,i,c)
+    lum1, lumrang = range2baseanddelta(lumrange)
+    for i in range(penradius, 0, -1):
+        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+        thickellipserot(bmp, x, y, b, a, degrot, i, c)
 
-def filledellipse(bmp:array,x:int,y:int,b:int,a:int,color:int):
-    """Draws an filled ellipse defined by centerpoint (x,y) and major and minor axis (b,a) 
+
+def filledellipse(bmp: array,
+        x: int, y: int,
+        b: int, a: int,
+        color: int):
+    """Draws an filled ellipse 
+        defined by centerpoint (x,y) 
+        and major and minor axis (b,a) 
         
     Args:
         bmp  : unsigned byte array with bmp format
@@ -2793,46 +2839,57 @@ def filledellipse(bmp:array,x:int,y:int,b:int,a:int,color:int):
         byref modified byte array
 
     """
-    bits=bmp[bmpcolorbits]
-    if bits<8:
+    bits = bmp[bmpcolorbits]
+    if bits < 8:
         for v in iterellipsepart(b,a):
-            x1,x2=mirror(x,v[0])
-            y1,y2=mirror(y,v[1])
-            horiline(bmp,y1,x1,x2,color)
-            horiline(bmp,y2,x1,x2,color)
+            x1, x2 = mirror(x,v[0])
+            y1, y2 = mirror(y,v[1])
+            horiline(bmp, y1, x1, x2, color)
+            horiline(bmp, y2, x1, x2, color)
     else:
-        m=getmaxxy(bmp)
-        if bits==24:
-            for v in iterellipsepart(b,a):
-                x1,x2=mirror(x,v[0])
-                y1,y2=mirror(y,v[1])
-                x1,x2=setmin(x1,0),setmax(x2,m[0]-1)
-                dx,ymax=x2-x1+1,m[1]
-                rgb=int2RGBlist(color)
-                colorbuf=array('B',[rgb[2],rgb[1],rgb[0]]*dx)
-                lbuf=dx*3
-                if isinrange(y2,ymax,-1):
-                    s=compute24bitBMPoffsetwithheader(bmp,x1,y2)
-                    bmp[s:s+lbuf]=colorbuf
-                if isinrange(y1,ymax,-1):
-                    s=compute24bitBMPoffsetwithheader(bmp,x1,y1)
-                    bmp[s:s+lbuf]=colorbuf
-        elif bits==8:
-            for v in iterellipsepart(b,a):
-                x1,x2=mirror(x,v[0])
-                y1,y2=mirror(y,v[1])
-                x1,x2=setmin(x1,0),setmax(x2,m[0]-1)
-                dx,ymax=x2-x1+1,m[1]
-                colorbuf=array('B',[color&0xff]*dx)
-                if isinrange(y2,ymax,-1):
-                    s=compute8bitBMPoffsetwithheader(bmp,x1,y2)
-                    bmp[s:s+dx]=colorbuf
-                if isinrange(y1,ymax,-1):
-                    s=compute8bitBMPoffsetwithheader(bmp,x1,y1)
-                    bmp[s:s+dx]=colorbuf
+        m = getmaxxy(bmp)
+        if bits == 24:
+            for v in iterellipsepart(b, a):
+                x1, x2 =mirror(x,v[0])
+                y1, y2 =mirror(y,v[1])
+                x1 = setmin(x1, 0) 
+                x2 = setmax(x2, m[0] - 1)
+                dx = x2 - x1 + 1
+                ymax = m[1]
+                rgb = int2RGBlist(color)
+                colorbuf = array('B', [rgb[2], rgb[1], rgb[0]] * dx)
+                lbuf = dx * 3
+                if isinrange(y2, ymax, -1):
+                    s = compute24bitBMPoffsetwithheader(bmp, x1, y2)
+                    bmp[s: s + lbuf] = colorbuf
+                if isinrange(y1, ymax, -1):
+                    s = compute24bitBMPoffsetwithheader(bmp, x1, y1)
+                    bmp[s: s + lbuf] = colorbuf
+        elif bits == 8:
+            for v in iterellipsepart(b, a):
+                x1, x2 = mirror(x, v[0])
+                y1, y2 = mirror(y, v[1])
+                x1 = setmin(x1,0)
+                x2 = setmax(x2,m[0]-1)
+                dx = x2 - x1 + 1
+                ymax = m[1]
+                colorbuf = array('B', [color & 0xff] * dx)
+                if isinrange(y2, ymax, -1):
+                    s = compute8bitBMPoffsetwithheader(bmp, x1, y2)
+                    bmp[s: s + dx] = colorbuf
+                if isinrange(y1, ymax, -1):
+                    s = compute8bitBMPoffsetwithheader(bmp, x1, y1)
+                    bmp[s: s + dx] = colorbuf
 
-def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
-    """Draws an ellipse defined by centerpoint (x,y) and major and minor axis (b,a) 
+
+def ellipse(bmp: array,
+        x: int, y: int,
+        b: int, a: int,
+        color: int,
+        isfilled: bool = None):
+    """Draws an ellipse defined 
+        by centerpoint (x,y) and 
+        major and minor axis (b,a) 
         
     Args:
         bmp     : unsigned byte array with bmp format
@@ -2847,36 +2904,46 @@ def ellipse(bmp:array,x:int,y:int,b:int,a:int,color:int,isfilled:bool=None):
 
     """
     if isfilled: 
-        filledellipse(bmp,x,y,b,a,color)
+        filledellipse(bmp, x, y, b, a, color)
     else:
-        m,bits,c=getmaxxy(bmp),bmp[bmpcolorbits],getcomputeBMPoffsetwithheaderfunc(bmp)
-        dobndcheck=not entireellipseisinboundary(x,y,-1,m[0],-1,m[1],b,a)
+        m = getmaxxy(bmp)
+        bits = bmp[bmpcolorbits]
+        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        dobndcheck = not entireellipseisinboundary(
+                            x, y, -1, m[0], -1, m[1], b, a)
         if bits==24:
             color=int2BGRarr(color)
             if dobndcheck:
-                for p in iterellipse(x,y,b,a):
-                    px,py=p[0],p[1]
-                    if isinBMPrectbnd(bmp,px,py):
-                        s=c(bmp,px,py)
-                        bmp[s:s+3]=color
+                for p in iterellipse(x, y, b, a):
+                    px = p[0]
+                    py = p[1]
+                    if isinBMPrectbnd(bmp, px, py):
+                        s = c(bmp, px, py)
+                        bmp[s: s + 3] = color
             else:
-                for p in iterellipse(x,y,b,a):
-                    s=c(bmp,p[0],p[1])
+                for p in iterellipse(x, y, b, a):
+                    s = c(bmp, p[0], p[1])
                     bmp[s:s+3]=color
         elif bits==8:
             if dobndcheck:
-                for p in iterellipse(x,y,b,a):
-                    px,py=p[0],p[1]
+                for p in iterellipse(x, y, b, a):
+                    px = p[0]
+                    py = p[1]
                     if isinBMPrectbnd(bmp,px,py): 
-                        bmp[c(bmp,px,py)]=color
+                        bmp[c(bmp, px, py)] = color
             else:
                 for p in iterellipse(x,y,b,a):
-                    bmp[c(bmp,p[0],p[1])]=color
+                    bmp[c(bmp, p[0], p[1])] = color
         else:
             for p in iterellipse(x,y,b,a): 
-                plotxybit(bmp,p[0],p[1],color)
+                plotxybit(bmp, p[0], p[1], color)
 
-def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list):
+
+def gradellipse(bmp: array,
+        x: int, y: int,
+        b: int, a: int,
+        lumrange: list,
+        RGBfactors: list):
     """Draws an ellipical gradient defined by centerpoint (x,y) and major and minor axis (b,a) 
         
     Args:
@@ -2891,18 +2958,23 @@ def gradellipse(bmp:array,x:int,y:int,b:int,a:int,lumrange:list,RGBfactors:list)
         byref modified unsigned byte array
 
     """     
-    lum1,lumrang=range2baseanddelta(lumrange)
-    r=iif(a>b,a,b)
-    a-=r
-    b-=r
+    lum1, lumrang = range2baseanddelta(lumrange)
+    r = iif(a > b, a, b)
+    a -= r
+    b -= r
     for i in range(r,0,-1):
-        c=colormix(int(lum1+(lumrang*i/r)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-        ellipse(bmp,x,y,b+i,a+i,c,True)
-        
+        c = colormix(int(lum1 + (lumrang * i / r)), RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+        ellipse(bmp, x, y, b + i, a + i, c, True)
+
+
 @intcircleparam
-def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
-            color:int,showoutline:bool,fillcolor:int,isfilled:bool):
+def drawarc(bmp: array,
+        x: int, y: int, r: int,
+        startdegangle: float, enddegangle: float,
+        color: int, showoutline: bool,
+        fillcolor: int, isfilled: bool):
     """Draws an arc centered at point (x,y) with radius r and specified start and end angles in degrees
         
     Args:
@@ -2917,13 +2989,17 @@ def drawarc(bmp:array,x:int,y:int,r:int,startdegangle:float,enddegangle:float,
         byref modified unsigned byte array
 
     """
-    av=arcvert(x,y,r,startdegangle,enddegangle,showoutline)
+    av = arcvert(x, y, r, startdegangle, enddegangle, showoutline)
     for p in av: 
-        plotxybit(bmp,p[0],p[1],color)
+        plotxybit(bmp, p[0], p[1], color)
     if isfilled: 
-        fillboundary(bmp,fillpolydata(av,getmaxx(bmp),getmaxy(bmp)),fillcolor)
+        fillboundary(bmp, fillpolydata(av, getmaxx(bmp), getmaxy(bmp)), fillcolor)
 
-def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
+
+def rectangle(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        color: int):
     """Draws a rectangle of a given color
 
     Args:
@@ -2935,10 +3011,14 @@ def rectangle(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
         byref modified unsigned byte array
 
     """
-    plotpoly(bmp,recvert(x1,y1,x2,y2),color)
+    plotpoly(bmp, recvert(x1, y1, x2, y2), color)
+
 
 @entirerectinboundary    
-def filledrect(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
+def filledrect(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        color: int):
     """Draws a filled rectangle of a given color
 
     Args:
@@ -2950,12 +3030,12 @@ def filledrect(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
         byref modified unsigned byte array
 
     """
-    bits=bmp[bmpcolorbits]
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    if bits not in [8,24]:
-        y2+=1
-        for y in range(y1,y2): 
-            horiline(bmp,y,x1,x2,color)
+    bits = bmp[bmpcolorbits]
+    x1, y1, x2, y2 = sortrecpoints(x1,y1,x2,y2)
+    if bits not in [8, 24]:
+        y2 +=1
+        for y in range(y1, y2): 
+            horiline(bmp, y, x1, x2, color)
     else:
         dx,r,rgb,c=x2-x1+1,getxcharcount(bmp),int2RGB(color),getcomputeBMPoffsetwithheaderfunc(bmp)
         if bits==24: buf=array('B',[rgb[2],rgb[1],rgb[0]]*dx)
