@@ -4382,7 +4382,9 @@ def erasealternatehorizontallinesincircregion(bmp: array,
 
 
 def eraseeverynthhorizontallineinccircregion(
-    bmp: array, x: int, y: int, r: int, n: int):
+        bmp: array,
+        x: int, y: int, r: int,
+        n: int):
     """Erase every nth horizontal line in a circular region
 
     Args:
@@ -4397,8 +4399,13 @@ def eraseeverynthhorizontallineinccircregion(
     erasealternatehorizontallinesincircregion(bmp, x, y, r, n, 0, 0)
 
 @entirerectinboundary
-def erasealternatehorizontallinesinregion(bmp:array,x1:int,y1:int,x2:int,y2:int,
-                        int_eraseeverynline:int,int_eraseNthline:int,bytepat:int):
+def erasealternatehorizontallinesinregion(
+        bmp: array,
+        x1: int, y1: int, 
+        x2: int, y2: int,
+        int_eraseeverynline: int,
+        int_eraseNthline: int,
+        bytepat:int):
     """Erase every nth line in a rectangular region
 
     Args:
@@ -4412,18 +4419,27 @@ def erasealternatehorizontallinesinregion(bmp:array,x1:int,y1:int,x2:int,y2:int,
         byref modified unsigned byte array
 
     """    
-    bytepat&=0xff
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    bufsize,r,f=adjustbufsize(x2-x1+1,bmp[28]),getxcharcount(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
-    s1,s2=f(bmp,x1,y2),f(bmp,x1,y1)
-    blank=array('B', [bytepat]*bufsize)
-    i=1
-    while s2>s1:
-        if i%int_eraseeverynline==int_eraseNthline: bmp[s2:s2+bufsize]=blank
-        s2-=r
-        i+=1
+    bytepat &= 0xff
+    x1, y1, x2, y2 = sortrecpoints(x1,y1,x2,y2)
+    bufsize = adjustbufsize(x2 - x1 + 1, bmp[bmpcolorbits])
+    r = getxcharcount(bmp)
+    f = getcomputeBMPoffsetwithheaderfunc(bmp)
+    s1 = f(bmp,x1,y2)
+    s2 = f(bmp,x1,y1)
+    blank = array('B', [bytepat] * bufsize)
+    i = 1
+    while s2 > s1:
+        if i % int_eraseeverynline == int_eraseNthline:
+            bmp[s2: s2+ bufsize] = blank
+        s2 -= r
+        i += 1
 
-def eraseeverynthhorilineinregion(bmp:array,x1:int,y1:int,x2:int,y2:int,n:int):
+
+def eraseeverynthhorilineinregion(
+        bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        n:int):
     """Erase every nth line in a rectangular region
 
     Args:
@@ -4435,9 +4451,11 @@ def eraseeverynthhorilineinregion(bmp:array,x1:int,y1:int,x2:int,y2:int,n:int):
         byref modified unsigned byte array
 
     """
-    erasealternatehorizontallinesinregion(bmp,x1,y1,x2,y2,n,0,0)
+    erasealternatehorizontallinesinregion(
+        bmp, x1, y1, x2, y2, n, 0, 0)
 
-def verttrans(bmp,trans):
+
+def verttrans(bmp: array, trans: str):
     """Do vertical image transforms in a bitmap 
 
     Args:
@@ -4450,26 +4468,29 @@ def verttrans(bmp,trans):
 
     """
     def flip(): 
-        bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
+        bmp[s1: e1], bmp[s2: e2] = bmp[s2: e2], bmp[s1: e1]
     def mirrortop(): 
-        bmp[s1:s1+bufsize]=bmp[s2:s2+bufsize]
+        bmp[s1: s1 + bufsize] = bmp[s2: s2 + bufsize]
     def mirrorbottom(): 
-        bmp[s2:s2+bufsize]=bmp[s1:s1+bufsize]
-    if trans=='F': 
-        f=flip
-    elif trans=='T': 
-        f=mirrortop
-    elif trans=='B': 
-        f=mirrorbottom
-    bufsize,s1=getxcharcount(bmp),gethdrsize(bmp)
-    s2=getfilesize(bmp)-bufsize
-    while s1<s2:
-        e1,e2=s1+bufsize,s2+bufsize
+        bmp[s2: s2 + bufsize] = bmp[s1: s1 + bufsize]
+    if trans == 'F': 
+        f = flip
+    elif trans == 'T': 
+        f = mirrortop
+    elif trans == 'B': 
+        f = mirrorbottom
+    bufsize = getxcharcount(bmp)
+    s1 = gethdrsize(bmp)
+    s2 = getfilesize(bmp)-bufsize
+    while s1 < s2:
+        e1 = s1 + bufsize
+        e2 = s2 + bufsize
         f()
-        s1+=bufsize
-        s2-=bufsize
+        s1 += bufsize
+        s2 -= bufsize
 
-def flipvertical(bmp):
+
+def flipvertical(bmp: array):
     """Does an in-memory vertical flip of a bitmap
 
     Args:
@@ -4479,9 +4500,10 @@ def flipvertical(bmp):
         byref modified byte array
 
     """
-    verttrans(bmp,'F')
+    verttrans(bmp, 'F')
 
-def mirrortop(bmp):
+
+def mirrortop(bmp: array):
     """Mirrors the top half of an in-memory bitmap
 
     Args:
@@ -4491,9 +4513,10 @@ def mirrortop(bmp):
         byref modified byte array
 
     """
-    verttrans(bmp,'T')
+    verttrans(bmp, 'T')
 
-def mirrorbottom(bmp):
+
+def mirrorbottom(bmp: array):
     """Mirrors the bottom half of an in-memory bitmap
 
     Args:
@@ -4503,10 +4526,12 @@ def mirrorbottom(bmp):
         byref modified byte array
 
     """
-    verttrans(bmp,'B')
+    verttrans(bmp, 'B')
+
 
 @entirerectinboundary
-def verttransregion(bmp:array,x1:int,y1:int,x2:int,y2:int,trans:str):
+def verttransregion(bmp: array,
+        x1:int,y1:int,x2:int,y2:int,trans:str):
     """Do vertical image transforms in a bitmap in a rectangular region 
 
     Args:
