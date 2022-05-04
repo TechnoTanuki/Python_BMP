@@ -807,7 +807,7 @@ def setbmppal(bmp: array,pallist: list):
     if len(pallist) == getmaxcolors(bmp):
         for p in pallist:
             setRGBpal(bmp, c, p[0], p[1], p[2])
-            c+=1
+            c += 1
 
 
 def getallRGBpal(bmp: array) -> list:
@@ -822,6 +822,7 @@ def getallRGBpal(bmp: array) -> list:
     """
     colors = getmaxcolors(bmp)
     return [getRGBpal(bmp, c) for c in range(0, colors)]
+
 
 def getRGBpal(bmp: array, c: int) -> list:
     """Gets the [R,G,B] values of color c in a bitmap
@@ -1082,6 +1083,7 @@ def loadBMP(filename: str) -> array:
         f.close()
     return a
 
+
 def saveBMP(filename: str, bmp: array):
     """Saves bitmap to file
 
@@ -1093,6 +1095,7 @@ def saveBMP(filename: str, bmp: array):
     with open(filename, 'wb') as f:
         f.write(bmp)
         f.close()
+
 
 def BMPbitBLTput(bmp: array, offset: int, arraybuf: array):
     """Sets offset in array to arraybuf
@@ -1137,6 +1140,7 @@ def BMPbitBLTget(bmp: array, offset: int, bufsize: int) -> array:
     else: 
         print(sysmsg['invalidoffset'])
     return retval
+
 
 def vertBMPbitBLTget(bmp: array, x: int, y1: int, y2: int) -> array:
     """Gets vertical slice to a new array 
@@ -1393,7 +1397,10 @@ def plotRGBxybitvec(bmp: array, v: list, rgb: list):
     """
     plotRGBxybit(bmp, v[0], v[1], rgb)
 
-def plotxypointlist(bmp: array, vlist: list, penradius: int, color: int):
+def plotxypointlist(bmp: array, 
+        vlist: list,
+        penradius: int,
+        color: int):
     """Draws a circle or a point depending on penradius
         of a given color for all points in a point list
 
@@ -1411,7 +1418,10 @@ def plotxypointlist(bmp: array, vlist: list, penradius: int, color: int):
         roundpen(bmp, v, penradius, color)
 
 
-def roundpen(bmp: array, point: list, penradius: int, color: int):
+def roundpen(bmp: array,
+        point: list,
+        penradius: int,
+        color: int):
     """Draws a circle or a point depending 
         on penradius of a given color
 
@@ -1448,8 +1458,10 @@ def swapcolors(bmp: array, p1: list, p2: list):
     intplotvecxypoint(bmp, p1, getxybitvec(bmp, p2))
     intplotvecxypoint(bmp, p2, c)
 
+
 def line(bmp: array,
-        x1: int, y1: int, x2: int ,y2: int,
+        x1: int, y1: int,
+        x2: int ,y2: int,
         color: int):
     """Creates a line in a bitmap 
 
@@ -1630,8 +1642,10 @@ def fillbackgroundwithgrad(bmp: array,
 
 @func8and24bitonlyandentirerectinboundary
 def filledgradrect(bmp: array,
-        x1: int, y1: int, x2: int, y2: int,
-        lumrange: list, RGBfactors: list,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        lumrange: list, 
+        RGBfactors: list,
         direction: int):
     """Creates a filled rectangle with a linear gradient in a bitmap 
 
@@ -1675,7 +1689,8 @@ def filledgradrect(bmp: array,
 
 @entirerectinboundary            
 def itercopyrect(bmp: array,
-        x1: int, y1: int, x2: int, y2: int) -> array:
+        x1: int, y1: int,
+        x2: int, y2: int) -> array:
     """Creates a filled rectangle with a linear gradient in a bitmap 
 
     Args:
@@ -1713,7 +1728,10 @@ def intlinevec(bmp: array,
     line(bmp, u[0], u[1], v[0], v[1], color)
 
 
-def linevec(bmp: array, u: list, v: list, color: int):
+def linevec(bmp: array,
+        u: list,
+        v: list,
+        color: int):
     """Creates a line in a bitmap 
 
     Args:
@@ -1887,7 +1905,7 @@ def applynoparam24bitfunctocircregion(bmp: array,
 @intcircleparam24bitonly       
 def apply24bitfunctocircregion(bmp: array,
         x: int, y: int, r: int,
-        func, funcparam):
+        func: Callable, funcparam):
     """Apply function func to a circular region with center defined by 
         x,y with a radius r that is within a 24-bit bitmap
         
@@ -1953,7 +1971,8 @@ def copycircregion2buf(bmp: array,
     return copybuf
 
 def pastecirularbuf(bmp: array,
-        x: int, y: int, circbuf: list):
+        x: int, y: int,
+        circbuf: list):
     """Paste a circular buffer with a given radius
         to a centerpoint (x,y)
 
@@ -2242,6 +2261,7 @@ def verttransformincircregion(bmp: array,
 
     def flip(): 
         bmp[s1: e1], bmp[s2: e2] = bmp[s2: e2], bmp[s1: e1]
+
     if trans == 'T': 
         f = mirrorT
     elif trans == 'B': 
@@ -2304,7 +2324,9 @@ def mirrortopleftincircregion(bmp: array,
 
 def mirrortoprightincircregion(bmp: array,
         x: int, y: int, r: int):
-    """Mirrors the top right of a circular region defined by centerpoint (x,y) and radius r
+    """Mirrors the top right of 
+        a circular region defined
+        by centerpoint (x,y) and radius r
         
     Args:
         bmp  : unsigned byte array with bmp format
@@ -2320,7 +2342,9 @@ def mirrortoprightincircregion(bmp: array,
 
 def mirrorbottomleftincircregion(bmp: array,
         x: int, y: int, r: int):
-    """Mirrors the bottom left of a circular region defined by centerpoint (x,y) and radius r
+    """Mirrors the bottom left of 
+        a circular region defined
+        by centerpoint (x,y) and radius r
 
     Args:
         bmp  : unsigned byte array with bmp format
@@ -2336,7 +2360,9 @@ def mirrorbottomleftincircregion(bmp: array,
 
 def mirrorbottomrightincircregion(bmp: array,
         x: int, y: int, r: int):
-    """Mirrors the bottom right of a circular region defined by centerpoint (x,y) and radius r
+    """Mirrors the bottom right of 
+        a circular region defined
+        by centerpoint (x,y) and radius r
 
     Args:
         bmp  : unsigned byte array with bmp format
@@ -2353,7 +2379,7 @@ def mirrorbottomrightincircregion(bmp: array,
 def vertbrightnessgrad2circregion(bmp: array,
         x: int, y: int, r: int,
         lumrange: list):
-    """Applies a vertical brightness gradient adjustment with lumrange
+    """Applies a vertical brightness gradient adjustment 
         to a circular region with a center x,y with a radius r
         
     Args:
@@ -2385,7 +2411,7 @@ def vertbrightnessgrad2circregion(bmp: array,
 def horibrightnessgrad2circregion(bmp: array,
         x: int, y: int, r: int,
         lumrange: list):
-    """Applies a horizontal brightness gradient adjustment with lumrange
+    """Applies a horizontal brightness gradient adjustment
         to a circular region with a center x,y with a radius r
         
     Args:
@@ -2582,6 +2608,7 @@ def circlevec(bmp: array,
     v = roundvect(v)
     circle(bmp, v[0], v[1], r, color, isfilled)
 
+
 def filledcircle(bmp: array,
         x: int, y: int, r: int,
         color: int):
@@ -2701,9 +2728,11 @@ def circle(bmp: array,
             for p in itercircle(x,y,r): 
                 plotxybit(bmp, p[0], p[1], color)
 
+
 def thickcircle(bmp: array,
         x: int, y: int, r: int,
-        penradius: int, color: int):
+        penradius: int,
+        color: int):
     """Draws a thick circle defined by centerpoint (x,y) and radius r 
         with a given color using a pen with radius penradius
 
@@ -2967,7 +2996,9 @@ def gradellipse(bmp: array,
         b: int, a: int,
         lumrange: list,
         RGBfactors: list):
-    """Draws an ellipical gradient defined by centerpoint (x,y) and major and minor axis (b,a) 
+    """Draws an ellipical gradient defined
+        by centerpoint (x,y) 
+        and major and minor axis (b,a) 
         
     Args:
         bmp       : An unsigned byte array with bmp format
@@ -2998,7 +3029,10 @@ def drawarc(bmp: array,
         startdegangle: float, enddegangle: float,
         color: int, showoutline: bool,
         fillcolor: int, isfilled: bool):
-    """Draws an arc centered at point (x,y) with radius r and specified start and end angles in degrees
+    """Draws an arc centered 
+        at point (x,y) with radius r 
+        and specified start 
+        and end angles in degrees
         
     Args:
         bmp        : unsigned byte array with bmp format
@@ -3478,7 +3512,10 @@ def plotstringvertical(bmp: array,
                 scale, pixspace, color)
             y += ystep
 
-def fillboundary(bmp: array, bndfilldic: dict, color: int):
+
+def fillboundary(bmp: array,
+        bndfilldic: dict,
+        color: int):
     """Draws lines in a boundary to fill it
 
     Args:
@@ -3501,7 +3538,9 @@ def fillboundary(bmp: array, bndfilldic: dict, color: int):
                 horiline(bmp, y, x1, x2, color)
 
 
-def plotpolyfill(bmp: array, vertlist: list, color: int):
+def plotpolyfill(bmp: array,
+        vertlist: list,
+        color: int):
     """Draws a filled polygon with a given color
 
     Args:
@@ -3519,9 +3558,9 @@ def plotpolyfill(bmp: array, vertlist: list, color: int):
 
 
 def thickplotpoly(bmp: array,
-    vertlist: list,
-    penradius: int,
-    color: int):
+        vertlist: list,
+        penradius: int,
+        color: int):
     """Draws a polygon of a given color and thickness
 
     Args:
@@ -3572,8 +3611,11 @@ def gradthickplotpoly(bmp: array,
         thickplotpoly(bmp, vertlist, i, c)
 
 
-def plotlines(bmp: array, vertlist: list, color: int):
-    """Draws connected lines defined by a list of vertices
+def plotlines(bmp: array,
+        vertlist: list,
+        color: int):
+    """Draws connected lines defined 
+            by a list of vertices
 
     Args:
         bmp     : unsigned byte array with bmp format
@@ -3590,7 +3632,9 @@ def plotlines(bmp: array, vertlist: list, color: int):
             linevec(bmp, vertlist[i - 1], vertlist[i], color)
 
 
-def plotpoly(bmp: array, vertlist: list, color: int):
+def plotpoly(bmp: array,
+        vertlist: list,
+        color: int):
     """Draws a polygon defined by a list of vertices
 
     Args:
@@ -3621,7 +3665,9 @@ def plotpolylist(bmp: array, polylist: list, color: int):
         plotpoly(bmp, poly, color)
 
 
-def plotpolyfillist(bmp: array, sides: list, RGBfactors: list):
+def plotpolyfillist(bmp: array,
+        sides: list,
+        RGBfactors: list):
     """3D polygon rendering function
 
     Args:
@@ -3645,7 +3691,8 @@ def plotpolyfillist(bmp: array, sides: list, RGBfactors: list):
         i += 1
 
 
-def plot3d(bmp: array, sides: list,
+def plot3d(bmp: array,
+        sides: list,
         issolid: bool, RGBfactors: list,
         showoutline: bool, outlinecolor: int):
     """3D rendering function
@@ -3668,7 +3715,8 @@ def plot3d(bmp: array, sides: list,
         plotpolylist(bmp, sides[0], outlinecolor)
 
 
-def plot3Dsolid(bmp: array, vertandsides: list,
+def plot3Dsolid(bmp: array,
+        vertandsides: list,
         issolid: bool, RGBfactors: list,
         showoutline: bool, outlinecolor: int,
         rotvect: list, transvect3D: list,
@@ -3840,11 +3888,16 @@ def horilinevert(bmp: array,
         horiline(bmp, v[1], v[0], v[0] + linelen + xadj, color)
 
 
-def XYaxis(bmp: array, origin: list,
-        steps: list, xylimits: list,
-        xyvalstarts: list, xysteps: list,
-        color: int, textcolor: int,
-        showgrid: bool, gridcolor: int):
+def XYaxis(bmp: array,
+        origin: list,
+        steps: list,
+        xylimits: list,
+        xyvalstarts: list,
+        xysteps: list,
+        color: int,
+        textcolor: int,
+        showgrid: bool,
+        gridcolor: int):
     """Draws XY axis with tick marks and numbers
 
     Args:
@@ -3947,11 +4000,9 @@ def XYscatterplot(bmp: array,
         linevec(bmp, u, w, reglinecolor)
 
 
-def getneighborlist(v,mx,my,includecenter): 
-    return [u for u in itergetneighbors(v,mx,my,includecenter)]
-
 def getneighborcolorlist(bmp,v): 
     return [getRGBxybitvec(bmp,u) for u in itergetneighbors(v,getmaxx(bmp),getmaxy(bmp),True)]
+
 
 def isimgedge(bmp,v,mx,my,similaritythreshold):
     retval,rgb=False,getRGBxybitvec(bmp,v)

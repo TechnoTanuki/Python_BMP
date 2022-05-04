@@ -19,13 +19,28 @@
 
 from math import sin, cos, radians, comb
 from .conditionaltools import iif, swapif
-from .mathlib import (sign, subvect, addvect, mirror1stquad, computerotvec, roundvect,
-    rotvec2D, scalarmulvect, setmax, roundvectlist, rect2polarcoord2Dwithcenter, pivotlist,
-    isinrange)
+from .mathlib import (
+    addvect,
+    computerotvec,
+    isinrange,
+    mirror1stquad,
+    pivotlist,
+    rect2polarcoord2Dwithcenter,
+    rotvec2D,
+    roundvect,
+    roundvectlist,
+    scalarmulvect,
+    setmax,
+    sign,
+    subvect,
+    )
 
-def itercirclepart(r:int)->list:
-    row,col,r_sqr=r,0,r*r
-    two_r_sqr,four_r_sqr=r_sqr<<1,r_sqr<<2
+def itercirclepart(r: int) -> list:
+    row = r
+    col = 0
+    r_sqr = r * r
+    two_r_sqr = r_sqr << 1
+    four_r_sqr = r_sqr << 2
     d=two_r_sqr*((row-1)*(row))+r_sqr+two_r_sqr*(1-r_sqr)
     while row>=col:
         yield([col,row])
@@ -246,6 +261,11 @@ def itergetneighbors(v:list,mx:int,my:int,includecenter:bool)->list:
             if ty>0: yield [rx,ty]
             yield [rx,y]
             if by<my: yield [rx,by]
+
+
+def getneighborlist(v,mx,my,includecenter): 
+    return [u for u in itergetneighbors(v,mx,my,includecenter)]
+
 
 def spiralcontrolpointsvert(x:int,y:int,step:int,growthfactor:int,turns:int):
     v=[[x,y]]
