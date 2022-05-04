@@ -2150,8 +2150,10 @@ def horitransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
         k=getxcharcount(bmp)
         s1,e1,s2,e2=c(bmp,x1,y2),c(bmp,x1,y1)+k,c(bmp,x2,y2),c(bmp,x2,y1)+k
         f()
-    
-def mirrorleftincircregion(bmp:array,x:int,y:int,r:int):
+
+
+def mirrorleftincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the top left of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
@@ -2162,9 +2164,11 @@ def mirrorleftincircregion(bmp:array,x:int,y:int,r:int):
         byref modified unsigned byte array
 
     """
-    horitransformincircregion(bmp,x,y,r,'L')
+    horitransformincircregion(bmp, x, y, r, 'L')
 
-def mirrorrightincircregion(bmp:array,x:int,y:int,r:int):
+
+def mirrorrightincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the right half of a circular region defined by  centerpoint (x,y) and radius r
 
     Args:
@@ -2175,7 +2179,8 @@ def mirrorrightincircregion(bmp:array,x:int,y:int,r:int):
         byref modified byte unsigned array
 
     """
-    horitransformincircregion(bmp,x,y,r,'R')
+    horitransformincircregion(bmp, x, y, r, 'R')
+
 
 def flipvertcircregion(bmp:array,x:int,y:int,r:int):
     """Does a vertical flip of a circular region defined by centerpoint (x,y) and radius r
@@ -2190,8 +2195,10 @@ def flipvertcircregion(bmp:array,x:int,y:int,r:int):
     """
     verttransformincircregion(bmp,x,y,r,'F')
 
+
 @entirecircleinboundary
-def verttransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
+def verttransformincircregion(bmp: array,
+        x: int, y: int, r: int, trans: str):
     """Applies a vertical transform to circular region with a center x,y with a radius r
         
     Args:
@@ -2205,25 +2212,30 @@ def verttransformincircregion(bmp:array,x:int,y:int,r:int,trans:str):
 
     """
     def mirrorT(): 
-        bmp[s2:e2]=bmp[s1:e1]
+        bmp[s2: e2] = bmp[s1: e1]
+
     def mirrorB(): 
-        bmp[s1:e1]=bmp[s2:e2]
+        bmp[s1: e1] = bmp[s2: e2]
+
     def flip(): 
-        bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
-    if trans=='T': 
-        f=mirrorT
-    elif trans=='B': 
-        f=mirrorB
-    elif trans=='F': 
-        f=flip
+        bmp[s1: e1], bmp[s2: e2] = bmp[s2: e2], bmp[s1: e1]
+    if trans == 'T': 
+        f = mirrorT
+    elif trans == 'B': 
+        f = mirrorB
+    elif trans == 'F': 
+        f = flip
+
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     for v in itercirclepartlineedge(r):
-        x1,x2=mirror(x,v[0])
-        y1,y2=mirror(y,v[1])
-        s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
+        x1, x2 = mirror(x, v[0])
+        y1, y2 = mirror(y, v[1])
+        s1, e1, s2, e2=c(bmp,x1,y1), c(bmp,x2,y1), c(bmp,x1,y2), c(bmp,x2,y2)
         f()
-    
-def mirrortopincircregion(bmp:array,x:int,y:int,r:int):
+
+
+def mirrortopincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the top half of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
@@ -2234,9 +2246,11 @@ def mirrortopincircregion(bmp:array,x:int,y:int,r:int):
         byref modified unsigned byte array
 
     """
-    verttransformincircregion(bmp,x,y,r,'T')
+    verttransformincircregion(bmp, x, y, r, 'T')
 
-def mirrorbottomincircregion(bmp:array,x:int,y:int,r:int):
+
+def mirrorbottomincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the bottom half of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
@@ -2247,9 +2261,11 @@ def mirrorbottomincircregion(bmp:array,x:int,y:int,r:int):
         byref modified unsigned byte array
 
     """
-    verttransformincircregion(bmp,x,y,r,'B')
+    verttransformincircregion(bmp, x, y, r, 'B')
 
-def mirrortopleftincircregion(bmp:array,x:int,y:int,r:int):
+
+def mirrortopleftincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the top left  of a circular region defined by centerpoint (x,y) and radius r
         
     Args:
@@ -2260,10 +2276,11 @@ def mirrortopleftincircregion(bmp:array,x:int,y:int,r:int):
         byref modified unsigned byte array
 
     """
-    mirrorleftincircregion(bmp,x,y,r)
-    mirrortopincircregion(bmp,x,y,r)
+    mirrorleftincircregion(bmp, x, y, r)
+    mirrortopincircregion(bmp, x, y, r)
 
-def mirrortoprightincircregion(bmp:array,x:int,y:int,r:int):
+def mirrortoprightincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the top right of a circular region defined by centerpoint (x,y) and radius r
         
     Args:
@@ -2274,10 +2291,12 @@ def mirrortoprightincircregion(bmp:array,x:int,y:int,r:int):
         byref modified unsigned byte array
 
     """
-    mirrorrightincircregion(bmp,x,y,r)
-    mirrortopincircregion(bmp,x,y,r)
+    mirrorrightincircregion(bmp, x, y, r)
+    mirrortopincircregion(bmp, x, y, r)
 
-def mirrorbottomleftincircregion(bmp:array,x:int,y:int,r:int):
+
+def mirrorbottomleftincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the bottom left of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
@@ -2288,10 +2307,12 @@ def mirrorbottomleftincircregion(bmp:array,x:int,y:int,r:int):
         byref modified unsigned byte array
 
     """
-    mirrorleftincircregion(bmp,x,y,r)
-    mirrorbottomincircregion(bmp,x,y,r)
+    mirrorleftincircregion(bmp, x, y, r)
+    mirrorbottomincircregion(bmp, x, y, r)
 
-def mirrorbottomrightincircregion(bmp:array,x:int,y:int,r:int):
+
+def mirrorbottomrightincircregion(bmp: array,
+        x: int, y: int, r: int):
     """Mirrors the bottom right of a circular region defined by centerpoint (x,y) and radius r
 
     Args:
@@ -2302,11 +2323,13 @@ def mirrorbottomrightincircregion(bmp:array,x:int,y:int,r:int):
         byref modified unsigned byte array
 
     """
-    mirrorrightincircregion(bmp,x,y,r)
-    mirrorbottomincircregion(bmp,x,y,r)
+    mirrorrightincircregion(bmp, x, y, r)
+    mirrorbottomincircregion(bmp, x, y, r)
 
 @func24bitonlyandentirecircleinboundary  
-def vertbrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
+def vertbrightnessgrad2circregion(bmp: array,
+        x: int, y: int, r: int,
+        lumrange: list):
     """Applies a vertical brightness gradient adjustment with lumrange
         to a circular region with a center x,y with a radius r
         
@@ -2319,17 +2342,26 @@ def vertbrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
         byref modified unsigned byte array
 
     """
-    c,f=getcomputeBMPoffsetwithheaderfunc(bmp),applybrightnessadjtoBGRbuf
-    l,dl,b,=lumrange[0],(lumrange[1]-lumrange[0])/(2*r),y-r
+    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    f = applybrightnessadjtoBGRbuf
+    l = lumrange[0]
+    dl = (lumrange[1] - l) / (2 * r)
+    b = y - r
     for v in itercirclepartlineedge(r):
-        x1,x2=mirror(x,v[0])
-        y1,y2=mirror(y,v[1])
-        l1,l2=l+(y1-b)*dl,l+(y2-b)*dl
-        s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
-        bmp[s1:e1],bmp[s2:e2]=f(bmp[s1:e1],l1),f(bmp[s2:e2],l2)
+        x1, x2 = mirror(x, v[0])
+        y1, y2 = mirror(y, v[1])
+        l1, l2 = l + (y1 - b) * dl, l + (y2 - b) * dl
+        s1 = c(bmp,x1,y1)
+        e1 = c(bmp,x2,y1)
+        s2 = c(bmp,x1,y2)
+        e2 = c(bmp,x2,y2)
+        bmp[s1: e1], bmp[s2: e2] = f(bmp[s1: e1], l1), f(bmp[s2: e2], l2)
+
 
 @func24bitonlyandentirecircleinboundary     
-def horibrightnessgrad2circregion(bmp:array,x:int,y:int,r:int,lumrange:list):
+def horibrightnessgrad2circregion(bmp: array,
+        x: int, y: int, r: int,
+        lumrange: list):
     """Applies a horizontal brightness gradient adjustment with lumrange
         to a circular region with a center x,y with a radius r
         
