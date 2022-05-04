@@ -3037,15 +3037,27 @@ def filledrect(bmp: array,
         for y in range(y1, y2): 
             horiline(bmp, y, x1, x2, color)
     else:
-        dx,r,rgb,c=x2-x1+1,getxcharcount(bmp),int2RGB(color),getcomputeBMPoffsetwithheaderfunc(bmp)
-        if bits==24: buf=array('B',[rgb[2],rgb[1],rgb[0]]*dx)
-        elif bits==8: buf=array('B',[matchRGBtopal(rgb,getallRGBpal(bmp))]*dx)
-        offset,lim,bufsize,fsize=c(bmp,x1,y2),c(bmp,x2,y1),len(buf),getfilesize(bmp)
-        while (offset<=lim) and ((offset+bufsize)<=fsize):
-            bmp[offset:offset+bufsize]=buf
-            offset+=r
+        dx = x2 - x1 + 1
+        r = getxcharcount(bmp)
+        rgb = int2RGB(color)
+        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        if bits == 24: 
+            buf = array('B', [rgb[2], rgb[1], rgb[0]] * dx)
+        elif bits == 8: 
+            buf = array('B', [matchRGBtopal(rgb, getallRGBpal(bmp))] * dx)
+        offset = c(bmp, x1, y2)
+        lim = c(bmp, x2, y1)
+        bufsize = len(buf)
+        fsize = getfilesize(bmp)
+        while (offset <= lim) and ((offset + bufsize) <= fsize):
+            bmp[offset: offset + bufsize] = buf
+            offset += r
 
-def beziercurve(bmp:array,pntlist:list,penradius:int,color:int):
+
+def beziercurve(bmp: array,
+        pntlist: list,
+        penradius: int,
+        color: int):
     """Draws a bezier curve of a given color and thickness
 
     Args:
@@ -3059,9 +3071,15 @@ def beziercurve(bmp:array,pntlist:list,penradius:int,color:int):
 
     """
     for v in iterbeziercurve(pntlist): 
-        roundpen(bmp,v,penradius,color)
+        roundpen(bmp, v, penradius, color)
 
-def bspline(bmp:array,pntlist:list,penradius:int,color:int,isclosed:bool,curveback:bool):
+
+def bspline(bmp: array,
+        pntlist: list,
+        penradius: int,
+        color: int,
+        isclosed: bool,
+        curveback: bool):
     """Draws a bspline of a given color and thickness
 
     Args:
@@ -3076,10 +3094,16 @@ def bspline(bmp:array,pntlist:list,penradius:int,color:int,isclosed:bool,curveba
         byref modified unsigned byte array
 
     """
-    for v in iterbspline(pntlist,isclosed,curveback): 
-        roundpen(bmp,v,penradius,color)
+    for v in iterbspline(pntlist, isclosed, curveback): 
+        roundpen(bmp, v, penradius, color)
 
-def plotrotated8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
+
+def plotrotated8bitpattern(bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
     """Draws a 8-bit pattern with the bits rotated
 
     Args:
@@ -3094,20 +3118,22 @@ def plotrotated8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixsp
         byref modified unsigned byte array
 
     """
-    inc=scale-1-pixspace
+    inc= scale - 1 - pixspace
     for bits in bitpattern:
-        ox,mask=x,128
-        bits=rotatebits(bits)
-        while mask>0:
-            if (mask & bits)>0:
-                if scale==1 or inc<=0: 
-                    plotxybit(bmp,x,y,color)
+        ox = x
+        mask = 128
+        bits = rotatebits(bits)
+        while mask > 0:
+            if (mask & bits) > 0:
+                if scale == 1 or inc <= 0: 
+                    plotxybit(bmp, x, y, color)
                 else: 
-                    filledrect(bmp,x,y,x+inc,y+inc,color)
-            mask=mask>>1
-            x+=scale
-        y+=scale
-        x=ox
+                    filledrect(bmp, x, y, x + inc, y + inc, color)
+            mask >>= 1
+            x += scale
+        y += scale
+        x = ox
+
 
 def plot8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
     """Draws a 8-bit pattern
