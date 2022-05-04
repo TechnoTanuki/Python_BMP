@@ -162,6 +162,7 @@ from .paramchecks import(
     intcircleparam24bitonly
     )
 
+from .bufferflip import flipnibbleinbuf, rotatebitsinbuf
 from .buffersplit import altsplitbuf3way, altsplitbufnway
 from .chartools import char2int, enumletters, enumreverseletters
 from .conditionaltools import iif, swapif
@@ -4531,7 +4532,9 @@ def mirrorbottom(bmp: array):
 
 @entirerectinboundary
 def verttransregion(bmp: array,
-        x1:int,y1:int,x2:int,y2:int,trans:str):
+        x1: int, y1: int,
+        x2: int, y2: int,
+        trans: str):
     """Do vertical image transforms in a bitmap in a rectangular region 
 
     Args:
@@ -4545,27 +4548,34 @@ def verttransregion(bmp: array,
 
     """
     def flip(): 
-        bmp[s1:e1],bmp[s2:e2]=bmp[s2:e2],bmp[s1:e1]
+        bmp[s1: e1], bmp[s2: e2] = bmp[s2: e2], bmp[s1:e1]
     def mirrortop(): 
-        bmp[s1:s1+bufsize]=bmp[s2:s2+bufsize]
+        bmp[s1: s1 + bufsize] = bmp[s2: s2 + bufsize]
     def mirrorbottom(): 
-        bmp[s2:s2+bufsize]=bmp[s1:s1+bufsize]
-    if trans=='F': 
-        f=flip
-    elif trans=='T': 
-        f=mirrortop
-    elif trans=='B': 
-        f=mirrorbottom
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    bufsize,r,c=adjustbufsize(x2-x1+1,bmp[28]),getxcharcount(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
-    s1,s2=c(bmp,x1,y2),c(bmp,x1,y1)
-    while s1<s2:
-        e1,e2=s1+bufsize,s2+bufsize
+        bmp[s2: s2 + bufsize] = bmp[s1: s1 + bufsize]
+    if trans == 'F': 
+        f = flip
+    elif trans == 'T': 
+        f = mirrortop
+    elif trans == 'B': 
+        f = mirrorbottom
+    x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
+    bufsize = adjustbufsize(x2 - x1 + 1, bmp[bmpcolorbits])
+    r = getxcharcount(bmp)
+    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    s1 = c(bmp, x1, y2)
+    s2 = c(bmp, x1, y1)
+    while s1 < s2:
+        e1 = s1 + bufsize
+        e2 = s2 + bufsize
         f()
-        s1+=r
-        s2-=r
+        s1 += r
+        s2 -= r
 
-def flipverticalregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
+
+def flipverticalregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Flips vertical a rectangular region in a bitmap
 
     Args:
@@ -4576,9 +4586,12 @@ def flipverticalregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
         byref modified unsigned byte array
 
     """
-    verttransregion(bmp,x1,y1,x2,y2,'F')
+    verttransregion(bmp, x1, y1, x2, y2, 'F')
 
-def mirrorbottominregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
+
+def mirrorbottominregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Mirror the bottom half of a rectangular region in a bitmap
 
     Args:
@@ -4589,9 +4602,12 @@ def mirrorbottominregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
         byref modified unsigned byte array
 
     """
-    verttransregion(bmp,x1,y1,x2,y2,'B')
+    verttransregion(bmp, x1, y1, x2, y2, 'B')
 
-def mirrortopinregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
+
+def mirrortopinregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Mirror the top half of a rectangular region in a bitmap
 
     Args:
@@ -4602,10 +4618,12 @@ def mirrortopinregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
         byref modified unsigned byte array
 
     """
-    verttransregion(bmp,x1,y1,x2,y2,'T')
+    verttransregion(bmp, x1, y1, x2, y2, 'T')
     
 @entirerectinboundary        
-def fliphorzontalpixelbased(bmp,x1,y1,x2,y2):
+def fliphorzontalpixelbased(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Flips horizontal a rectangular region in a bitmap using pixel addressing (slightly slow)
 
     Args:
@@ -4616,17 +4634,20 @@ def fliphorzontalpixelbased(bmp,x1,y1,x2,y2):
         byref modified unsigned byte array
 
     """
-    m=x1+((x2-x1)>>1)
-    while x1<=m:
-        y=y1
-        while y<=y2:
-            swapcolors(bmp,(x1,y),(x2,y))
-            y+=1
-        x1+=1
-        x2-=1
+    m = x1 + ((x2 - x1) >> 1)
+    while x1 <= m:
+        y = y1
+        while y <= y2:
+            swapcolors(bmp, (x1, y), (x2, y))
+            y += 1
+        x1 += 1
+        x2 -= 1
+
 
 @entirerectinboundary    
-def fliphverticalalpixelbased(bmp,x1,y1,x2,y2):
+def fliphverticalalpixelbased(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Flips vertical a rectangular region in a bitmap using pixel addressing
 
     Args:
@@ -4637,50 +4658,15 @@ def fliphverticalalpixelbased(bmp,x1,y1,x2,y2):
         byref modified unsigned byte array
 
     """
-    m=y1+((y2-y1)>>1)
-    while y1<=m:
-        x=x1
-        while x<=x2:
-            swapcolors(bmp,(x,y1),(x,y2))
-            x+=1
-        y1+=1
-        y2-=1
+    m = y1 + ((y2 - y1) >> 1)
+    while y1 <= m:
+        x = x1
+        while x <= x2:
+            swapcolors(bmp, (x, y1), (x, y2))
+            x += 1
+        y1 += 1
+        y2 -= 1
 
-def flipnibbleinbuf(buf:array) -> array:
-    """Flips a 4 bit image buffer
-
-    Args:
-        buf : unsigned byte array
-        
-    Returns:
-        unsigned byte array
-
-    """    
-    return array('B',[(b>>4)+((b%16)<<4) for b in buf])
-
-def rotatebitsinbuf(buf:array) -> array: 
-    return array('B',[ rotatebits(b) for b in buf])
-
-def flipbuf(buf:array,bits:int) -> array:
-    """Flips/rotates bits in buffer
-
-    Args:
-        buf : unsigned byte array
-        bits: (1,4,8,24)
-        
-    Returns:
-        unsigned byte array
-
-    """  
-    if bits==24: 
-        buf=flip24bitbuf(buf)
-    else: 
-        buf.reverse()
-    if bits==4: 
-        buf=flipnibbleinbuf(buf)
-    if bits==1: 
-        buf=rotatebitsinbuf(buf)
-    return buf
 
 @entirerectinboundary    
 def horizontalbulkswap(bmp:array,x1:int,y1:int,x2:int,y2:int,swapfunc):
@@ -5046,19 +5032,6 @@ def horizontalbrightnessgradto24bitimage(bmp:array,lumrange:list):
     """
     horizontalbrightnessgradto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
 
-def flip24bitbuf(buf):
-    """Flips a 24 bit buffer
-    
-    Args:
-        buf: unsigned byte array
-        
-    Returns:
-        unsigned byte array
-
-    """
-    buf.reverse()
-    RGB2BGRbuf(buf)
-    return array('B',buf)
 
 def unpack4bitbuf(buf):
     """Unpacks a 4-bit buffer into a list
