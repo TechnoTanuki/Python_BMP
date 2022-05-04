@@ -20,6 +20,8 @@
 from array import array
 from math import sin, cos, radians
 from random import random
+from typing import Callable
+from xmlrpc.client import Boolean
 from .proctimer import functimer
 from .bmpconstants import (
     bmpheaderid,
@@ -3135,7 +3137,12 @@ def plotrotated8bitpattern(bmp: array,
         x = ox
 
 
-def plot8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
+def plot8bitpattern(bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
     """Draws a 8-bit pattern
 
     Args:
@@ -3150,21 +3157,28 @@ def plot8bitpattern(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int
         byref modified unsigned byte array
 
     """    
-    inc=scale-1-pixspace
+    inc= scale - 1 - pixspace
     for bits in bitpattern:
-        ox,mask=x,128
-        while mask>0:
-            if (mask & bits)>0:
-                if scale==1 or inc<=0: 
-                    plotxybit(bmp,x,y,color)
+        ox = x
+        mask = 128
+        while mask > 0:
+            if (mask & bits) > 0:
+                if scale == 1 or inc <= 0: 
+                    plotxybit(bmp, x, y, color)
                 else: 
-                    filledrect(bmp,x,y,x+inc,y+inc,color)
-            mask=mask>>1
-            x+=scale
+                    filledrect(bmp, x, y, x + inc, y + inc, color)
+            mask >>= 1
+            x += scale
         y+=scale
         x=ox
 
-def plot8bitpatternupsidedown(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
+
+def plot8bitpatternupsidedown(bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
     """Draws a 8-bit pattern upsidedown
 
     Args:
@@ -3179,24 +3193,31 @@ def plot8bitpatternupsidedown(bmp:array,x:int,y:int,bitpattern:list,scale:int,pi
         byref modified unsigned byte array
 
     """
-    inc=scale-1-pixspace
-    i=len(bitpattern)-1
-    while i>-1:
-        bits=bitpattern[i]
-        ox,mask=x,128
-        while mask>0:
+    inc = scale - 1 - pixspace
+    i = len(bitpattern)-1
+    while i > -1:
+        bits = bitpattern[i]
+        ox = x 
+        mask = 128
+        while mask > 0:
             if (mask & bits)>0:
-                if scale==1 or inc<=0: 
-                    plotxybit(bmp,x,y,color)
+                if scale == 1 or inc <= 0: 
+                    plotxybit(bmp, x, y, color)
                 else: 
-                    filledrect(bmp,x,y,x+inc,y+inc,color)
-            mask=mask>>1
-            x+=scale
-        y+=scale
-        x=ox
-        i-=1
+                    filledrect(bmp, x, y, x + inc, y + inc, color)
+            mask >>= 1
+            x += scale
+        y += scale
+        x = ox
+        i -= 1
 
-def plot8bitpatternsideway(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixspace:int,color:int):
+
+def plot8bitpatternsideway(bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
     """Draws a 8-bit pattern sideways
 
     Args:
@@ -3211,22 +3232,32 @@ def plot8bitpatternsideway(bmp:array,x:int,y:int,bitpattern:list,scale:int,pixsp
         byref modified unsigned byte array
 
     """
-    inc=scale-1-pixspace
+    inc = scale - 1 - pixspace
     for bits in bitpattern:
-        oy,mask=y,128
-        while mask>0:
-            if (mask & bits)>0:
-                if scale==1 or inc<=0: 
-                    plotxybit(bmp,x,y,color)
+        oy = y
+        mask = 128
+        while mask > 0:
+            if (mask & bits) > 0:
+                if scale == 1 or inc <= 0: 
+                    plotxybit(bmp, x, y, color)
                 else: 
-                    filledrect(bmp,x,y,x+inc,y+inc,color)
-            mask=mask>>1
-            y-=scale
-        x+=scale
-        y=oy
+                    filledrect(bmp, x, y, x + inc, y + inc, color)
+            mask >>= 1
+            y -= scale
+        x += scale
+        y = oy
 
-def plotstringfunc(bmp:array,x:int,y:int,str2plot:str,scale:int,pixspace:int,
-        spacebetweenchar:int,color:int,fontbuf:list,orderfunc,fontrenderfunc):
+
+def plotstringfunc(bmp: array,
+        x: int, y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list,
+        orderfunc: Callable,
+        fontrenderfunc: Callable):
     """Draws a string
 
     Args:
@@ -3245,21 +3276,33 @@ def plotstringfunc(bmp:array,x:int,y:int,str2plot:str,scale:int,pixspace:int,
         byref modified unsigned byte array
 
     """        
-    if spacebetweenchar==0:spacebetweenchar=1
-    ox,xstep,ypixels=x,(scale<<3)+spacebetweenchar,fontbuf[0] #x factor 8 since 8 bits in byte
-    ystep=ypixels*scale+spacebetweenchar #possible to have 8x16 chars
+    if spacebetweenchar == 0:
+        spacebetweenchar = 1
+    ox = x
+    xstep = (scale << 3) + spacebetweenchar
+    ypixels = fontbuf[0] 
+    ystep = ypixels * scale + spacebetweenchar
     for c in orderfunc(str2plot):
-        if c=='\n':
-            y+=ystep
-            x=ox
-        elif c=='\t': 
-            x+=xstep<<2
+        if c == '\n':
+            y += ystep
+            x = ox
+        elif c == '\t': 
+            x += xstep << 2
         else:
-            fontrenderfunc(bmp,x,y,getcharfont(fontbuf,c),scale,pixspace,color)
-            x+=xstep
+            fontrenderfunc(bmp, x, y,
+                getcharfont(fontbuf, c),
+                scale, pixspace, color)
+            x += xstep
 
-def plotstring(bmp:array,x:int,y:int,str2plot:str,scale:int,
-                pixspace:int,spacebetweenchar:int,color:int,fontbuf:list):
+
+def plotstring(bmp: array,
+        x: int, y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list):
     """Draws a string
 
     Args:
@@ -3276,9 +3319,17 @@ def plotstring(bmp:array,x:int,y:int,str2plot:str,scale:int,
         byref modified unsigned byte array
 
     """
-    plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumletters,plot8bitpattern)
+    plotstringfunc(bmp, x, y,
+        str2plot,scale,pixspace,
+        spacebetweenchar,color,
+        fontbuf,enumletters,plot8bitpattern)
 
-def plotstringupsidedown(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf):
+
+def plotstringupsidedown(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
     """Draws a string upsidedown
 
     Args:
@@ -3295,9 +3346,17 @@ def plotstringupsidedown(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,
         byref modified unsigned byte array
 
     """
-    plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumletters,plot8bitpatternupsidedown)
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace, spacebetweenchar,
+        color, fontbuf,
+        enumletters, plot8bitpatternupsidedown)
 
-def plotreversestring(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf):
+
+def plotreversestring(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
     """Draws a string reversed
 
     Args:
@@ -3314,9 +3373,17 @@ def plotreversestring(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fon
         byref modified unsigned byte array
 
     """
-    plotstringfunc(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf,enumreverseletters,plotrotated8bitpattern)
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace, spacebetweenchar,
+        color, fontbuf,
+        enumreverseletters, plotrotated8bitpattern)
 
-def plotstringsideway(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf):
+
+def plotstringsideway(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
     """Draws a string sideways
 
     Args:
@@ -3333,19 +3400,29 @@ def plotstringsideway(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fon
         byref modified unsigned byte array
 
     """
-    if spacebetweenchar==0:spacebetweenchar=1
-    oy,xstep,ypixels=y,(scale<<3)+spacebetweenchar,fontbuf[0]
-    ystep=ypixels*scale+spacebetweenchar
+    if spacebetweenchar == 0:
+        spacebetweenchar=1
+    oy = y
+    xstep = (scale << 3 ) + spacebetweenchar
+    ypixels = fontbuf[0]
+    ystep = ypixels * scale + spacebetweenchar
     for c in enumletters(str2plot):
         if c=='\n':
-            x+=ystep #we swap x and y since sideways
-            y=oy
-        elif c=='\t': y-=xstep<<2 #we swap x and y since sideways
+            x += ystep #we swap x and y since sideways
+            y = oy
+        elif c=='\t':
+            y -= xstep << 2 #we swap x and y since sideways
         else:
-            plot8bitpatternsideway(bmp,x,y,getcharfont(fontbuf,c),scale,pixspace,color)
-            y-=xstep
+            plot8bitpatternsideway(bmp, x, y, 
+                getcharfont(fontbuf, c), scale, pixspace, color)
+            y -= xstep
 
-def plotstringvertical(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fontbuf):
+
+def plotstringvertical(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
     """Draws a string vertically
 
     Args:
@@ -3362,19 +3439,25 @@ def plotstringvertical(bmp,x,y,str2plot,scale,pixspace,spacebetweenchar,color,fo
         byref modified unsigned byte array
 
     """
-    if spacebetweenchar==0:spacebetweenchar=1
-    oy,ypixels=y,fontbuf[0]
-    xstep,ystep=(scale<<3)+spacebetweenchar,ypixels*scale+spacebetweenchar
+    if spacebetweenchar == 0:
+        spacebetweenchar=1
+    oy =y
+    ypixels = fontbuf[0]
+    xstep = (scale << 3) + spacebetweenchar
+    ystep = ypixels * scale + spacebetweenchar
     for c in enumletters(str2plot):
-        if c=='\n':
-            x+=xstep
-            y=oy
-        elif c=='\t': y+=ystep<<2
+        if c == '\n':
+            x += xstep
+            y = oy
+        elif c == '\t':
+            y += ystep << 2
         else:
-            plot8bitpattern(bmp,x,y,getcharfont(fontbuf,c),scale,pixspace,color)
-            y+=ystep
+            plot8bitpattern(bmp, x, y,
+                getcharfont(fontbuf,c),
+                scale, pixspace, color)
+            y += ystep
 
-def fillboundary(bmp:array,bndfilldic:dict,color:int):
+def fillboundary(bmp: array, bndfilldic: dict, color: int):
     """Draws lines in a boundary to fill it
 
     Args:
@@ -3387,15 +3470,17 @@ def fillboundary(bmp:array,bndfilldic:dict,color:int):
 
     """
     for y in bndfilldic:
-        yint=len(bndfilldic[y])
-        if yint==1: 
-            plotxybit(bmp,bndfilldic[y][0],y,color)
+        yint = len(bndfilldic[y])
+        if yint == 1: 
+            plotxybit(bmp, bndfilldic[y][0], y, color)
         else:
-            for j in range(1,yint):
-                x1,x2=bndfilldic[y][j-1],bndfilldic[y][j]
-                horiline(bmp,y,x1,x2,color)
+            for j in range(1, yint):
+                x1 = bndfilldic[y][j - 1]
+                x2 = bndfilldic[y][j]
+                horiline(bmp, y, x1, x2, color)
 
-def plotpolyfill(bmp:array,vertlist:list,color:int):
+
+def plotpolyfill(bmp: array, vertlist: list, color: int):
     """Draws a filled polygon with a given color
 
     Args:
@@ -3407,9 +3492,15 @@ def plotpolyfill(bmp:array,vertlist:list,color:int):
         byref modified unsigned byte array
 
     """
-    fillboundary(bmp,fillpolydata(polyboundary(vertlist),getmaxx(bmp),getmaxy(bmp)),color)
+    fillboundary(bmp,
+        fillpolydata(polyboundary(vertlist),
+            getmaxx(bmp), getmaxy(bmp)), color)
 
-def thickplotpoly(bmp:array,vertlist:list,penradius:int,color:int):
+
+def thickplotpoly(bmp: array,
+    vertlist: list,
+    penradius: int,
+    color: int):
     """Draws a polygon of a given color and thickness
 
     Args:
@@ -3422,13 +3513,22 @@ def thickplotpoly(bmp:array,vertlist:list,penradius:int,color:int):
         byref modified unsigned byte array
 
     """
-    vertcount=len(vertlist)
-    for i in range(0,vertcount):
-        if i>0: 
-            thickroundline(bmp,vertlist[i-1],vertlist[i],penradius,color)
-    thickroundline(bmp,vertlist[0],vertlist[vertcount-1],penradius,color)
+    vertcount = len(vertlist)
+    for i in range(0, vertcount):
+        if i > 0: 
+            thickroundline(bmp,
+                vertlist[i - 1], vertlist[i],
+                penradius, color)
+    thickroundline(bmp,
+        vertlist[0], vertlist[vertcount - 1],
+        penradius, color)
 
-def gradthickplotpoly(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list):
+
+def gradthickplotpoly(bmp: array,
+        vertlist: list,
+        penradius: int,
+        lumrange: list,
+        RGBfactors: list):
     """Draws a polygon of a given gradient and thickness
 
     Args:
@@ -3443,14 +3543,15 @@ def gradthickplotpoly(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfac
         byref modified unsigned byte array
 
     """
-    lum1,lumrang=range2baseanddelta(lumrange)
-    for i in range(penradius,0,-1):
-        c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:
-            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-        thickplotpoly(bmp,vertlist,i,c)
-        
-def plotlines(bmp:array,vertlist:list,color:int):
+    lum1, lumrang = range2baseanddelta(lumrange)
+    for i in range(penradius, 0, -1):
+        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+        thickplotpoly(bmp, vertlist, i, c)
+
+
+def plotlines(bmp: array, vertlist: list, color: int):
     """Draws connected lines defined by a list of vertices
 
     Args:
@@ -3462,11 +3563,13 @@ def plotlines(bmp:array,vertlist:list,color:int):
         byref modified unsigned byte array
 
     """
-    vertcount=len(vertlist)
+    vertcount = len(vertlist)
     for i in range(0,vertcount):
-        if i>0: linevec(bmp,vertlist[i-1],vertlist[i],color)
+        if i > 0:
+            linevec(bmp, vertlist[i - 1], vertlist[i], color)
 
-def plotpoly(bmp:array,vertlist:list,color:int):
+
+def plotpoly(bmp: array, vertlist: list, color: int):
     """Draws a polygon defined by a list of vertices
 
     Args:
@@ -3478,10 +3581,10 @@ def plotpoly(bmp:array,vertlist:list,color:int):
         byref modified unsigned byte array
 
     """
-    plotlines(bmp,vertlist,color)
-    linevec(bmp,vertlist[0],vertlist[len(vertlist)-1],color)
+    plotlines(bmp, vertlist, color)
+    linevec(bmp, vertlist[0], vertlist[len(vertlist) - 1], color)
 
-def plotpolylist(bmp,polylist,color):
+def plotpolylist(bmp: array, polylist: list, color: int):
     """Draws a list of polygons of a given color
 
     Args:
@@ -3494,9 +3597,10 @@ def plotpolylist(bmp,polylist,color):
 
     """
     for poly in polylist: 
-        plotpoly(bmp,poly,color)
+        plotpoly(bmp, poly, color)
 
-def plotpolyfillist(bmp:array,sides:list,RGBfactors:list):
+
+def plotpolyfillist(bmp: array, sides: list, RGBfactors: list):
     """3D polygon rendering function
 
     Args:
@@ -3509,15 +3613,20 @@ def plotpolyfillist(bmp:array,sides:list,RGBfactors:list):
         byref modified unsigned byte array
 
     """
-    polylist,normlist,i=sides[0],sides[1],0
+    polylist = sides[0]
+    normlist = sides[1]
+    i = 0
     for poly in polylist:
-        c=colormix(int(cosaffin(normlist[i],[0,0,1])*128)+127,RGBfactors)
-        if bmp[bmpcolorbits]!=24:
-            c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-        plotpolyfill(bmp,poly,c)
-        i=i+1
+        c = colormix(int(cosaffin(normlist[i], [0, 0, 1]) * 128) + 127, RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+        plotpolyfill(bmp, poly, c)
+        i += 1
 
-def plot3d(bmp:array,sides:list,issolid:bool,RGBfactors:list,showoutline:bool,outlinecolor:int):
+
+def plot3d(bmp: array, sides: list,
+        issolid: bool, RGBfactors: list,
+        showoutline: bool, outlinecolor: int):
     """3D rendering function
 
     Args:
@@ -3533,19 +3642,24 @@ def plot3d(bmp:array,sides:list,issolid:bool,RGBfactors:list,showoutline:bool,ou
 
     """
     if issolid: 
-        plotpolyfillist(bmp,sides,RGBfactors)
+        plotpolyfillist(bmp, sides, RGBfactors)
     if showoutline: 
-        plotpolylist(bmp,sides[0],outlinecolor)
+        plotpolylist(bmp, sides[0], outlinecolor)
 
-def plot3Dsolid(bmp:array,vertandsides:list,issolid:bool,RGBfactors:list,
-    showoutline:bool,outlinecolor:int,rotvect:list,transvect3D:list,d:int,transvect:list):
+
+def plot3Dsolid(bmp: array, vertandsides: list,
+        issolid: bool, RGBfactors: list,
+        showoutline: bool, outlinecolor: int,
+        rotvect: list, transvect3D: list,
+        d: int, transvect: list):
     """3D solid rendering function
 
     Args:
         bmp         : unsigned byte array with bmp format
         sides       : list of polygons and normals
         isolid      : toggles solid render
-        RGBfactors  : [r:float,g:float,b:float] r,g,b all range in value from 0 to 1
+        RGBfactors  : [r:float,g:float,b:float] 
+        r,g,b all range in value from 0 to 1
         showoutine  : toggles  polygon outline
         outlinecolor: color of polygon outline
         rotvect     : rotation vector
@@ -3557,9 +3671,19 @@ def plot3Dsolid(bmp:array,vertandsides:list,issolid:bool,RGBfactors:list,
         byref modified unsigned byte array
 
     """
-    plot3d(bmp,gensides(perspective(vertandsides[0],rotvect,transvect3D,d),transvect,vertandsides[1]),issolid,RGBfactors,showoutline,outlinecolor)
+    plot3d(bmp,
+        gensides(
+            perspective(
+                vertandsides[0], rotvect, transvect3D, d),
+            transvect, vertandsides[1]),
+        issolid, RGBfactors, showoutline, outlinecolor)
 
-def gradvert(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list):
+
+def gradvert(bmp: array,
+        vertlist: list,
+        penradius: int,
+        lumrange: list, 
+        RGBfactors: list):
     """Draws a list of 2d vertices as spheres of a given color
 
     Args:
@@ -3574,14 +3698,21 @@ def gradvert(bmp:array,vertlist:list,penradius:int,lumrange:list,RGBfactors:list
         byref modified unsigned byte array
 
     """
-    lum1,lumrang=range2baseanddelta(lumrange)
-    for i in range(penradius,0,-1):
-        c=colormix(int(lum1+(lumrang*i/penradius)),RGBfactors)
-        if bmp[bmpcolorbits]!=24:c=matchRGBtopal(int2RGBarr(c),getallRGBpal(bmp))
-        for point in vertlist: roundpen(bmp,point,i,c)
+    lum1, lumrang = range2baseanddelta(lumrange)
+    for i in range(penradius, 0, -1):
+        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+        for point in vertlist: 
+            roundpen(bmp, point, i, c)
+
 
 @entirerectinboundary        
-def xygrid(bmp:array,x1:int,y1:int,x2:int,y2:int,xysteps:list,color:int):
+def xygrid(bmp: array,
+    x1: int, y1: int,
+    x2: int, y2: int,
+    xysteps: list,
+    color: int):
     """Draws a grid
 
     Args:
@@ -3594,14 +3725,19 @@ def xygrid(bmp:array,x1:int,y1:int,x2:int,y2:int,xysteps:list,color:int):
         byref modified unsigned byte array
 
     """
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    xstep,ystep=xysteps[0],xysteps[1]
-    for x in range(x1,x2,xstep): 
-        vertline(bmp,x,y1,y2,color)
-    for y in range(y1,y2,ystep): 
-        horiline(bmp,y,x1,x2,color)
+    x1, y1, x2, y2 = sortrecpoints(x1,y1,x2,y2)
+    xstep = xysteps[0]
+    ystep = xysteps[1]
+    for x in range(x1, x2, xstep): 
+        vertline(bmp, x, y1, y2, color)
+    for y in range(y1, y2, ystep): 
+        horiline(bmp, y, x1, x2, color)
 
-def xygridvec(bmp:array,u:list,v:list,steps:list,gridcolor:int):
+
+def xygridvec(bmp: array,
+        u: list, v: list,
+        steps: list,
+        gridcolor: int):
     """Draws a grid using (x,y) pairs u and v
 
     Args:
@@ -3614,26 +3750,38 @@ def xygridvec(bmp:array,u:list,v:list,steps:list,gridcolor:int):
         byref modified byte array
 
     """
-    xygrid(bmp,u[0],u[1],v[0],v[1],steps,gridcolor)
+    xygrid(bmp, u[0], u[1], v[0], v[1], steps, gridcolor)
 
-def numbervert(bmp,vlist,xadj,yadj,scale,valstart,valstep,pixspace,spacebetweenchar,color,fontbuf,suppresszero,suppresslastnum,rightjustify):
-    plot,maxv=False,len(vlist)-1
+
+def numbervert(bmp: array, vlist: list,
+        xadj: int,yadj:int, scale: int,
+        valstart: int, valstep: int,
+        pixspace: int, spacebetweenchar: int,
+        color: int, fontbuf: list,
+        suppresszero: bool, suppresslastnum: bool,
+        rightjustify: bool):
+    plot = False
+    maxv = len(vlist) - 1
     for v in vlist:
-        i=vlist.index(v)
-        if i>0:
-            plot=True
+        i = vlist.index(v)
+        if i > 0:
+            plot = True
         else:
-            plot=not suppresszero
-        if i==maxv and suppresslastnum:
-            plot=False
-        stval=str(valstart+i*valstep)
-        rjust=0
+            plot = not suppresszero
+        if i == maxv and suppresslastnum:
+            plot = False
+        stval = str(valstart + i * valstep)
+        rjust = 0
         if rightjustify:
-            rjust=(len(stval)-1)<<3
+            rjust = (len(stval) - 1) << 3
         if plot: 
-            plotstring(bmp,v[0]+xadj-rjust,v[1]+yadj,stval,scale,pixspace,spacebetweenchar,color,fontbuf)
+            plotstring(bmp, v[0] + xadj - rjust,
+                v[1] + yadj, stval, scale, pixspace,
+                spacebetweenchar, color, fontbuf)
 
-def vertlinevert(bmp:array,vlist:list,linelen:int,yadj:int,color:int):
+
+def vertlinevert(bmp: array, vlist: list,
+        linelen: int, yadj: int, color: int):
     """Draws vertical line marks at vertices in vlist
 
     Args:
@@ -3648,9 +3796,12 @@ def vertlinevert(bmp:array,vlist:list,linelen:int,yadj:int,color:int):
 
     """
     for v in vlist: 
-        vertline(bmp,v[0],v[1],v[1]+linelen+yadj,color)
+        vertline(bmp, v[0], v[1], v[1] + linelen + yadj, color)
 
-def horilinevert(bmp:array,vlist:list,linelen:int,xadj:int,color:int):
+
+def horilinevert(bmp: array,
+        vlist: list, linelen: int,
+        xadj: int, color: int):
     """Draws horizontal line marks at vertices in vlist
 
     Args:
@@ -3665,10 +3816,14 @@ def horilinevert(bmp:array,vlist:list,linelen:int,xadj:int,color:int):
 
     """
     for v in vlist: 
-        horiline(bmp,v[1],v[0],v[0]+linelen+xadj,color)
+        horiline(bmp, v[1], v[0], v[0] + linelen + xadj, color)
 
-def XYaxis(bmp:array,origin:list,steps:list,xylimits:list,
-    xyvalstarts:list,xysteps:list,color:int,textcolor:int,showgrid:bool,gridcolor:int):
+
+def XYaxis(bmp: array, origin: list,
+        steps: list, xylimits: list,
+        xyvalstarts: list, xysteps: list,
+        color: int, textcolor: int,
+        showgrid: bool, gridcolor: int):
     """Draws XY axis with tick marks and numbers
 
     Args:
@@ -3685,21 +3840,27 @@ def XYaxis(bmp:array,origin:list,steps:list,xylimits:list,
         byref modified unsigned byte array
 
     """
-    hvert=horizontalvert(origin[1],origin[0],xylimits[0],steps[0])
-    vvert=verticalvert(origin[0],origin[1],xylimits[1],-steps[1])
+    hvert = horizontalvert(origin[1], origin[0], xylimits[0], steps[0])
+    vvert = verticalvert(origin[0], origin[1], xylimits[1], -steps[1])
     if showgrid:
-        xygridvec(bmp,origin,xylimits,steps,gridcolor)
-    drawvec(bmp,origin,[origin[0],xylimits[1]],10,color)
-    drawvec(bmp,origin,[xylimits[0],origin[1]],10,color)
-    vertlinevert(bmp,hvert,5,-2,color)
-    horilinevert(bmp,vvert,-3,0,color)
-    font=font8x14
-    numbervert(bmp,vvert,-15,-4,1,xyvalstarts[1],xysteps[1],0,0,textcolor,font,False,False,True)
-    numbervert(bmp,hvert,-4,7,1,xyvalstarts[0],xysteps[0],0,0,textcolor,font,False,False,False)
-    xvalmax,yvalmax=xyvalstarts[0]+(len(hvert)-1)*xysteps[0],xyvalstarts[1]+(len(vvert)-1)*xysteps[1]
-    return (origin,steps,xylimits,xyvalstarts,xysteps,(xvalmax,yvalmax))
+        xygridvec(bmp, origin, xylimits, steps, gridcolor)
+    drawvec(bmp, origin, [origin[0], xylimits[1]], 10, color)
+    drawvec(bmp, origin, [xylimits[0], origin[1]], 10, color)
+    vertlinevert(bmp, hvert, 5, -2, color)
+    horilinevert(bmp, vvert, -3, 0, color)
+    font = font8x14
+    numbervert(bmp, vvert, -15, -4, 1,
+        xyvalstarts[1], xysteps[1], 0, 0, textcolor, font, False, False, True)
+    numbervert(bmp, hvert, -4, 7, 1,
+        xyvalstarts[0], xysteps[0], 0, 0, textcolor, font, False, False, False)
+    xvalmax = xyvalstarts[0] + (len(hvert) - 1) * xysteps[0] 
+    yvalmax = xyvalstarts[1] + (len(vvert) - 1) * xysteps[1]
+    return (origin, steps, xylimits, xyvalstarts, xysteps, (xvalmax, yvalmax))
 
-def userdef2Dcooordsys2screenxy(x:int,y:int,lstcooordinfo:list):
+
+def userdef2Dcooordsys2screenxy(
+        x: int, y: int,
+        lstcooordinfo: list):
     """Does a 2D coordinate transformation from user to screen coordinate system
 
     Args:
@@ -3712,12 +3873,18 @@ def userdef2Dcooordsys2screenxy(x:int,y:int,lstcooordinfo:list):
         [x:int,y:int] screen coordinates
 
     """
-    origin,steps,xylimits,xyvalstarts,xysteps=lstcooordinfo[0],lstcooordinfo[1],lstcooordinfo[2],lstcooordinfo[3],lstcooordinfo[4]
-    x,y=[origin[0]+((x-xyvalstarts[0])/xysteps[0])*steps[0],origin[1]-((y-xyvalstarts[0])/xysteps[1])*steps[1]]
+    origin = lstcooordinfo[0]
+    steps = lstcooordinfo[1]
+    xylimits = lstcooordinfo[2]
+    xyvalstarts = lstcooordinfo[3]
+    xysteps = lstcooordinfo[4]
+    x , y = [origin[0]+((x-xyvalstarts[0])/xysteps[0])*steps[0],origin[1]-((y-xyvalstarts[0])/xysteps[1])*steps[1]]
     if x>xylimits[0] or y<xylimits[1]:
-        x,y=-1,-1
+        x = -1
+        y = -1
         print(sysmsg['regionoutofbounds'])
     return [x,y]
+
 
 def XYscatterplot(bmp:array,XYdata:list,XYcoordinfo:list,
                 showLinearRegLine:bool,reglinecolor:int):
