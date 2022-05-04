@@ -4191,7 +4191,7 @@ def iterimagecolor(bmp: array,
             if x < mx:
                 yield ((x, y), c1)
             x += 1
-        elif bits ==8:
+        elif bits == 8:
             if x < mx:
                 yield ((x, y), b[offset])
             x += 1
@@ -4371,13 +4371,18 @@ def erasealternatehorizontallinesincircregion(bmp: array,
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
-        s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
-        if y1%int_eraseeverynline==int_eraseNthline:
-            bmp[s1:e1]=array('B', [bytepat]*(e1-s1))
-        if y2%int_eraseeverynline==int_eraseNthline:
-            bmp[s2:e2]=array('B', [bytepat]*(e2-s2))
+        s1 = c(bmp, x1, y1)
+        e1 = c(bmp, x2, y1)
+        s2 = c(bmp, x1, y2)
+        e2 = c(bmp, x2, y2)
+        if y1 % int_eraseeverynline == int_eraseNthline:
+            bmp[s1: e1] = array('B', [bytepat] * (e1 - s1))
+        if y2 % int_eraseeverynline == int_eraseNthline:
+            bmp[s2: e2] = array('B', [bytepat] * (e2 - s2))
 
-def eraseeverynthhorizontallineinccircregion(bmp:array,x:int,y:int,r:int,n:int):
+
+def eraseeverynthhorizontallineinccircregion(
+    bmp: array, x: int, y: int, r: int, n: int):
     """Erase every nth horizontal line in a circular region
 
     Args:
@@ -4389,7 +4394,7 @@ def eraseeverynthhorizontallineinccircregion(bmp:array,x:int,y:int,r:int,n:int):
         byref modified unsigned byte array
 
     """
-    erasealternatehorizontallinesincircregion(bmp,x,y,r,n,0,0)
+    erasealternatehorizontallinesincircregion(bmp, x, y, r, n, 0, 0)
 
 @entirerectinboundary
 def erasealternatehorizontallinesinregion(bmp:array,x1:int,y1:int,x2:int,y2:int,
