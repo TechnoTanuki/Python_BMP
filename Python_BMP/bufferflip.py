@@ -7,6 +7,7 @@ from array import array
 from .mathlib import rotatebits
 from .colors import RGB2BGRbuf
 
+
 def rotatebitsinbuf(buf: array) -> array: 
     return array('B',[ rotatebits(b) for b in buf])
 
