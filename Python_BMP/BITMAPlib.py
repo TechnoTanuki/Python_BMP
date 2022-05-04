@@ -4010,30 +4010,45 @@ def getBGRpalbuf(bmp: array):
 
     Args:
         bmp: unsigned byte array with bmp format
-        
+
     Returns:
         unsigned byte array (BGR)
 
-    """   
+    """
     return bmp[bmppal: gethdrsize(bmp)]
 
 
-def convertbufto24bit(buf,bgrpalbuf,bits):
+def convertbufto24bit(buf: array,
+        bgrpalbuf: array,
+        bits: int) -> array:
+    """Converts 1,4 and 8-bit buffers
+        to BGR buffer
+
+    Args:
+        buf      : unsigned byte array
+        bgrpalbuf: BGR palette info
+        bits     : color depth (1,4,8)
+
+    Returns:
+        unsigned byte array
+
+    """
     retval=[]
     for b in buf:
-        if bits==8:
-            s=b<<2
-            retval+=bgrpalbuf[s:s+3]
-        elif bits==4:
-            s1,s2=divmod(b,16)
-            s1<<=2
-            s2<<=2
-            retval+=bgrpalbuf[s1:s1+3]+bgrpalbuf[s2:s2+3]
-        elif bits==1:
+        if bits == 8:
+            s = b << 2
+            retval += bgrpalbuf[s: s + 3]
+        elif bits == 4:
+            s1, s2 = divmod(b,16)
+            s1 <<= 2
+            s2 <<= 2
+            retval += bgrpalbuf[s1: s1 + 3] + bgrpalbuf[s2: s2 + 3]
+        elif bits == 1:
             for i in enumbits(b):
-                s=i<<2
-                retval+=bgrpalbuf[s:s+3]
-    return array('B',retval)
+                s = i << 2
+                retval += bgrpalbuf[s: s + 3]
+    return array('B', retval)
+
 
 def upgradeto24bitimage(bmp:array):
     """Upgrade an image to 24 bits
@@ -4045,19 +4060,27 @@ def upgradeto24bitimage(bmp:array):
         byref modified unsigned byte array
 
     """
-    bits=bmp[bmpcolorbits]
-    if bits==24:
+    bits = bmp[bmpcolorbits]
+    if bits == 24:
         print(sysmsg['is24bit'])
-        nbmp=bmp
+        nbmp = bmp
     else:
-        nbmp,bgrpal,mx,my=CopyBMPxydim2newBMP(bmp,24),getBGRpalbuf(bmp),getmaxx(bmp)-1,getmaxy(bmp)-1
-        offset,r=computeBMPoffset(nbmp,0,my),getxcharcount(nbmp)
-        for buf in itercopyrect(bmp,0,0,mx,my):
-            BMPbitBLTput(nbmp,offset,convertbufto24bit(buf,bgrpal,bits))
-            offset+=r
+        nbmp = CopyBMPxydim2newBMP(bmp, 24)
+        bgrpal = getBGRpalbuf(bmp)
+        mx = getmaxx(bmp) - 1
+        my = getmaxy(bmp) - 1
+        offset = computeBMPoffset(nbmp, 0, my)
+        r = getxcharcount(nbmp)
+        for buf in itercopyrect(bmp, 0, 0, mx, my):
+            BMPbitBLTput(nbmp, offset,
+                convertbufto24bit(buf, bgrpal, bits))
+            offset += r
     return nbmp
 
-def iterimageRGB(bmp:array,waitmsg:str,rowprocind:str,finishmsg:str):
+def iterimageRGB(bmp: array,
+        waitmsg: str,
+        rowprocind: str,
+        finishmsg: str):
     """Yields (r,g,b) information for entire bitnap
 
     Args:
@@ -4070,42 +4093,61 @@ def iterimageRGB(bmp:array,waitmsg:str,rowprocind:str,finishmsg:str):
         ((x:int,y:int),(r:byte,g:byte,b:byte))
 
     """
-    if waitmsg!='': print(waitmsg)
-    r,y,offset,b=getxcharcount(bmp),getmaxy(bmp)-1,0,getBMPimgbytes(bmp)
-    maxoffset,x,mx,bits=len(b),0,getmaxx(bmp),bmp[28]
-    if bits<24: 
-        p=getallRGBpal(bmp)
-        doff=1
-    else:doff=3
-    while offset<maxoffset:
-        if bits==1:
-            c=b[offset]
-            bit=7
-            while bit>-1:
-                if x<mx: yield ((x,y),p[(c & 1<<bit)>>bit])
-                x+=1
-                bit-=1
-        elif bits==4:
-            c0,c1=divmod(b[offset],16)
-            if x<mx: yield ((x,y),p[c0])
-            x+=1
-            if x<mx: yield ((x,y),p[c1])
-            x+=1
-        elif bits==8:
-            if x<mx: yield ((x,y),p[b[offset]])
-            x+=1
-        elif bits==24:
-            if x<mx: yield ((x,y),(b[offset+2],b[offset+1],b[offset]))
-            x+=1
-        if offset%r==0:
-            x=0
-            y-=1
-            if rowprocind!='': print(rowprocind,end='')
-        offset+=doff
+    if waitmsg != '':
+        print(waitmsg)
+    r = getxcharcount(bmp)
+    y = getmaxy(bmp) - 1
+    offset = 0
+    b = getBMPimgbytes(bmp)
+    maxoffset = len(b)
+    x = 0
+    mx = getmaxx(bmp)
+    bits = bmp[bmpcolorbits]
+    if bits < 24: 
+        p = getallRGBpal(bmp)
+        doff = 1
+    else:
+        doff = 3
+    while offset < maxoffset:
+        if bits == 1:
+            c = b[offset]
+            bit = 7
+            while bit >- 1:
+                if x < mx: 
+                    yield ((x, y), p[(c & 1 << bit) >> bit])
+                x += 1
+                bit -= 1
+        elif bits == 4:
+            c0, c1 = divmod(b[offset], 16)
+            if x<mx:
+                yield ((x, y), p[c0])
+            x += 1
+            if x < mx:
+                yield ((x, y), p[c1])
+            x += 1
+        elif bits == 8:
+            if x<mx:
+                yield ((x, y), p[b[offset]])
+            x += 1
+        elif bits == 24:
+            if x < mx:
+                yield ((x, y), (b[offset + 2], b[offset + 1], b[offset]))
+            x += 1
+        if offset % r == 0:
+            x = 0
+            y -= 1
+            if rowprocind != '':
+                print(rowprocind,end='')
+        offset += doff
     print('\n')
-    if finishmsg!='': print(finishmsg)
+    if finishmsg != '':
+        print(finishmsg)
 
-def iterimagecolor(bmp,waitmsg,rowprocind,finishmsg):
+
+def iterimagecolor(bmp: array,
+        waitmsg: str,
+        rowprocind: str,
+        finishmsg: str):
     """Yields color information for entire bitnap
 
     Args:
@@ -4118,42 +4160,60 @@ def iterimagecolor(bmp,waitmsg,rowprocind,finishmsg):
         ((x:int,y:int),color:int)
 
     """
-    if waitmsg!='': 
+    if waitmsg != '': 
         print(waitmsg)
-    r,y,offset,b=getxcharcount(bmp),getmaxy(bmp)-1,0,getBMPimgbytes(bmp)
-    maxoffset,x,mx,bits=len(b),0,getmaxx(bmp),bmp[bmpcolorbits]
-    if bits==24: doff=3
-    else: doff=1
-    while offset<maxoffset:
-        if bits==1:
-            c=b[offset]
-            bit=7
-            while bit>-1:
-                if x<mx: yield ((x,y),(c & 1<<bit)>>bit)
-                x+=1
-                bit-=1
-        elif bits==4:
-            c0,c1=divmod(b[offset],16)
-            if x<mx: yield ((x,y),c0)
-            x+=1
-            if x<mx: yield ((x,y),c1)
-            x+=1
-        elif bits==8:
-            if x<mx: yield ((x,y),b[offset])
-            x+=1
-        elif bits==24:
-            if x<mx: yield ((x,y),(b[offset+2]<<16)+(b[offset+1]<<8)+b[offset])
-            x+=1
-        if offset%r==0:
-            x=0
-            y-=1
-            if rowprocind!='': print(rowprocind,end='')
-        offset+=doff
+    r = getxcharcount(bmp)
+    y = getmaxy(bmp) - 1
+    offset = 0
+    b = getBMPimgbytes(bmp)
+    maxoffset = len(b)
+    x = 0
+    mx = getmaxx(bmp)
+    bits = bmp[bmpcolorbits]
+    if bits == 24:
+        doff=3
+    else:
+        doff=1
+    while offset < maxoffset:
+        if bits == 1:
+            c = b[offset]
+            bit = 7
+            while bit > -1:
+                if x < mx:
+                    yield ((x, y), (c & 1 << bit) >> bit)
+                x += 1
+                bit -= 1
+        elif bits == 4:
+            c0, c1 = divmod(b[offset], 16)
+            if x < mx:
+                yield ((x, y), c0)
+            x += 1
+            if x < mx:
+                yield ((x, y), c1)
+            x += 1
+        elif bits ==8:
+            if x < mx:
+                yield ((x, y), b[offset])
+            x += 1
+        elif bits == 24:
+            if x < mx:
+                yield ((x, y), (b[offset + 2] << 16) + (b[offset + 1] << 8) + b[offset])
+            x += 1
+        if offset % r == 0:
+            x = 0
+            y -= 1
+            if rowprocind != '': 
+                print(rowprocind,end='')
+        offset += doff
     print('\n')
-    if finishmsg!='': print(finishmsg)
+    if finishmsg != '':
+        print(finishmsg)
+
 
 @entirerectinboundary
-def copyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
+def copyrect(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int) -> array:
     """Copy a rectangular region to a buffer
 
     Args:
@@ -4163,16 +4223,18 @@ def copyrect(bmp:array,x1:int,y1:int,x2:int,y2:int) -> array:
         custom unsigned byte array
         
     """
-    retval=array('B',[bmp[bmpcolorbits]])
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    retval+=int2buf(2,x2-x1+2)
-    retval+=int2buf(2,y2-y1+1)
-    retval+=int2buf(2,adjustbufsize(x2-x1+1,bmp[28]))
-    for buf in itercopyrect(bmp,x1,y1,x2,y2):
-        retval+=buf
+    retval = array('B', [bmp[bmpcolorbits]])
+    x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
+    retval += int2buf(2, x2 - x1 + 2)
+    retval += int2buf(2, y2 - y1 + 1)
+    retval += int2buf(2, adjustbufsize(x2 - x1 + 1, bmp[bmpcolorbits]))
+    for buf in itercopyrect(bmp, x1, y1, x2, y2):
+        retval += buf
     return retval
 
-def pasterect(bmp:array,buf:array,x1:int,y1:int):
+
+def pasterect(bmp: array, buf: array,
+        x1: int, y1: int):
     """Paste a rectangular area defined in buf in a bitmap 
 
     Args:
@@ -4187,37 +4249,45 @@ def pasterect(bmp:array,buf:array,x1:int,y1:int):
     if bmp[bmpcolorbits]!=buf[0]:
         print(sysmsg['bitsnotequal'])
     else:
-        x2,y2,r=x1+buf2int(buf[1:3]),y1+buf2int(buf[3:5]),getxcharcount(bmp)
-        if listinBMPrecbnd(bmp,((x1,y1),(x2,y2))):
-            offset=computeBMPoffset(bmp,x1,y2)
-            br=buf2int(buf[5:7])
-            startoff,endoff,bufsize=7,br+7,len(buf)
-            while startoff<bufsize:
-                BMPbitBLTput(bmp,offset,buf[startoff:endoff])
-                offset+=r
-                startoff=endoff
-                endoff+=br
+        x2 = x1 + buf2int(buf[1: 3])
+        y2 = y1 + buf2int(buf[3: 5])
+        r = getxcharcount(bmp)
+        if listinBMPrecbnd(bmp, ((x1, y1), (x2, y2))):
+            offset = computeBMPoffset(bmp, x1, y2)
+            br = buf2int(buf[5: 7])
+            startoff = 7
+            endoff = br+7
+            bufsize = len(buf)
+            while startoff < bufsize:
+                BMPbitBLTput(bmp, offset, buf[startoff: endoff])
+                offset += r
+                startoff = endoff
+                endoff += br
         else: 
             print(sysmsg['regionoutofbounds'])
 
+
 def convertselection2BMP(buf:array):
-    """ converts acustom unsigned byte array to bitmap format
+    """ converts a custom unsigned byte array to bitmap format
 
     Args:
-        buf: unsigned byte array with buf format
+        buf: unsigned byte array
         
     Returns:
         unsigned byte array with bmp format
         
     """
-    bmp,bits=-1,buf[0]
-    if not isvalidcolorbit(bits): print (sysmsg['invalidbuf'])
+    bmp = -1
+    bits = buf[0]
+    if not isvalidcolorbit(bits): 
+        print (sysmsg['invalidbuf'])
     else:
-        bmp=newBMP(buf2int(buf[1:3])+1,buf2int(buf[3:5])+1,bits)
-        pasterect(bmp,buf,0,0)
+        bmp = newBMP(buf2int(buf[1: 3]) + 1, buf2int(buf[3: 5]) + 1, bits)
+        pasterect(bmp, buf, 0, 0)
     return bmp
 
-def invertimagebits(bmp:array):
+
+def invertimagebits(bmp: array):
     """Inverts the bits a bitmap 
 
     Args:
@@ -4227,12 +4297,17 @@ def invertimagebits(bmp:array):
         byref modified unsigned byte array
 
     """
-    offset,maxoffset=gethdrsize(bmp),getfilesize(bmp)
-    while offset<maxoffset:
-        bmp[offset]=~bmp[offset]
-        offset+=1
+    offset = gethdrsize(bmp)
+    maxoffset = getfilesize(bmp)
+    while offset < maxoffset:
+        bmp[offset] = ~bmp[offset]
+        offset += 1
 
-def erasealternatehorizontallines(bmp:array,int_eraseeverynline:int,int_eraseNthline:int,bytepat:int):
+
+def erasealternatehorizontallines(bmp: array,
+        int_eraseeverynline: int,
+        int_eraseNthline: int,
+        bytepat: int):
     """Erase every nth line
 
     Args:
@@ -4245,18 +4320,20 @@ def erasealternatehorizontallines(bmp:array,int_eraseeverynline:int,int_eraseNth
         byref modified unsigned byte array
 
     """   
-    bufsize,s1=getxcharcount(bmp),gethdrsize(bmp),
-    s2=getfilesize(bmp)-bufsize
-    bytepat&=0xff
-    blank=array('B', [bytepat]*bufsize)
-    i=1
-    while s2>s1:
-        if i%int_eraseeverynline==int_eraseNthline: 
-            bmp[s2:s2+bufsize]=blank
-        s2-=bufsize
-        i+=1
+    bufsize = getxcharcount(bmp)
+    s1 = gethdrsize(bmp)
+    s2 = getfilesize(bmp) - bufsize
+    bytepat &= 0xff
+    blank = array('B', [bytepat] * bufsize)
+    i = 1
+    while s2 > s1:
+        if i % int_eraseeverynline == int_eraseNthline: 
+            bmp[s2: s2 + bufsize] = blank
+        s2 -= bufsize
+        i += 1
 
-def eraseeverynthhorizontalline(bmp:array,n:int):
+
+def eraseeverynthhorizontalline(bmp: array, n: int):
     """Erase every nth horizontal line
 
     Args:
@@ -4267,10 +4344,15 @@ def eraseeverynthhorizontalline(bmp:array,n:int):
         byref modified unsigned byte array
 
     """
-    erasealternatehorizontallines(bmp,n,0,0)
+    erasealternatehorizontallines(bmp, n, 0, 0)
+
 
 @entirecircleinboundary
-def erasealternatehorizontallinesincircregion(bmp,x,y,r,int_eraseeverynline,int_eraseNthline,bytepat):
+def erasealternatehorizontallinesincircregion(bmp: array,
+    x: int, y:int, r: int,
+    int_eraseeverynline: int,
+    int_eraseNthline: int,
+    bytepat: int):
     """Erase every nth line in a circular region
 
     Args:
@@ -4284,11 +4366,11 @@ def erasealternatehorizontallinesincircregion(bmp,x,y,r,int_eraseeverynline,int_
         byref modified unsigned byte array
 
     """   
-    c=getcomputeBMPoffsetwithheaderfunc(bmp)
-    bytepat&=0xff
+    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    bytepat &= 0xff
     for v in itercirclepartlineedge(r):
-        x1,x2=mirror(x,v[0])
-        y1,y2=mirror(y,v[1])
+        x1, x2 = mirror(x, v[0])
+        y1, y2 = mirror(y, v[1])
         s1,e1,s2,e2=c(bmp,x1,y1),c(bmp,x2,y1),c(bmp,x1,y2),c(bmp,x2,y2)
         if y1%int_eraseeverynline==int_eraseNthline:
             bmp[s1:e1]=array('B', [bytepat]*(e1-s1))
