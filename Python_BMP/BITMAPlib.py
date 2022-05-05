@@ -5524,6 +5524,7 @@ def plotfilledflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
     """
     for nr in range (r,2,-1): plotflower(bmp,cx,cy,nr,petals,angrot,lumrange,RGBfactors)
 
+
 def plotbmpastext(bmp:array):
     """Plot a bitmap as text (cannot output 24-bit bmp)
 
@@ -5544,7 +5545,10 @@ def plotbmpastext(bmp:array):
             if bits==8: print(chr(bmp[offset+r*y+x]),end='')
         print()
 
-def piechart(bmp:array,x:int,y:int,r:int,dataandcolorlist:list):
+
+def piechart(bmp: array,
+    x: int, y: int, r: int,
+    dataandcolorlist: list):
     """Apply func to a rectangular area in a 24-bit bitmap
 
     Args:
@@ -5556,16 +5560,21 @@ def piechart(bmp:array,x:int,y:int,r:int,dataandcolorlist:list):
         byref modified unsigned byte array
 
     """
-    alist,big=genpiechartdata(dataandcolorlist)
-    if big>-1:#for speed more computions in drawarc
-            circle(bmp,x,y,r,alist[big][2],True)
+    alist, big = genpiechartdata(dataandcolorlist)
+    if big > -1:#for speed more computions in drawarc
+            circle(bmp, x, y, r, alist[big][2], True)
     for a in alist:
         if a[4]<50: 
-            drawarc(bmp,x,y,r,a[0],a[1],a[2],True,a[2],True)
-    return [alist,big]
+            drawarc(bmp, x, y, r, a[0], a[1], a[2], True, a[2], True)
+    return [alist, big]
+
 
 @func24bitonlyandentirerectinboundary
-def applybyrefnoparamfuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func):
+def applybyrefnoparamfuncto24bitregion(
+        bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable):
     """Apply func to a rectangular area in a 24-bit bitmap
 
     Args:
@@ -5577,16 +5586,24 @@ def applybyrefnoparamfuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,fun
         byref modified unsigned byte array
 
     """
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
-    for buf in itercopyrect(bmp,x1,y1,x2,y2):
+    x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
+    offset = compute24bitBMPoffset(bmp, x1, y2)
+    r = getxcharcount(bmp)
+    for buf in itercopyrect(bmp, x1, y1, x2, y2):
         func(buf)
-        BMPbitBLTput(bmp,offset,buf)
-        offset+=r
-    
+        BMPbitBLTput(bmp, offset, buf)
+        offset += r
+
+
 @func24bitonlyandentirerectinboundary
-def applybyreffuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func,funcparam):
-    """Apply byref func(funcparam) to a rectangular area in a 24-bit bitmap
+def applybyreffuncto24bitregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable,
+        funcparam):
+    """Apply byref func(funcparam) to 
+        a rectangular area in 
+        a 24-bit bitmap
 
     Args:
         bmp        : unsigned byte array with bmp format
@@ -5598,15 +5615,21 @@ def applybyreffuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func,funcp
         byref modified unsigned byte array
 
     """
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
-    for buf in itercopyrect(bmp,x1,y1,x2,y2):
-        func(buf,funcparam)
+    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    offset = compute24bitBMPoffset(bmp, x1, y2)
+    r = getxcharcount(bmp)
+    for buf in itercopyrect(bmp, x1, y1, x2, y2):
+        func(buf, funcparam)
         BMPbitBLTput(bmp,offset,buf)
-        offset+=r
+        offset += r
+
 
 @func24bitonlyandentirerectinboundary
-def applyfuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func,funcparam):
+def applyfuncto24bitregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: callable,
+        funcparam):
     """Apply func(funcparam) to a rectangular area in a 24-bit bitmap
 
     Args:
@@ -5621,12 +5644,16 @@ def applyfuncto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,func,funcparam)
     """
     x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
     offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
-    for buf in itercopyrect(bmp,x1,y1,x2,y2):
-        BMPbitBLTput(bmp,offset,func(buf,funcparam))
-        offset+=r
+    for buf in itercopyrect(bmp, x1, y1, x2, y2):
+        BMPbitBLTput(bmp, offset, func(buf, funcparam))
+        offset += r
 
 @func24bitonlyandentirerectinboundary
-def verticalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list):
+def verticalbrightnessgradto24bitregion(
+        bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        lumrange: list[int, int]):
     """Apply a vertical brightness gradient to a rectangular area in a 24-bit bitmap
 
     Args:
@@ -5638,18 +5665,25 @@ def verticalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lu
         byref modified unsigned byte array
 
     """
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
-    lum=lumrange[1]
-    dlum=(lumrange[0]-lumrange[1])/(y2-y1)
-    for buf in itercopyrect(bmp,x1,y1,x2,y2):
-        BMPbitBLTput(bmp,offset,applybrightnessadjtoBGRbuf(buf,lum))
-        offset+=r
-        lum+=dlum
+    x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
+    offset = compute24bitBMPoffset(bmp, x1, y2)
+    r = getxcharcount(bmp)
+    lum = lumrange[1]
+    dlum = (lumrange[0] - lumrange[1]) / (y2 - y1)
+    for buf in itercopyrect(bmp, x1, y1, x2, y2):
+        BMPbitBLTput(bmp, offset, applybrightnessadjtoBGRbuf(buf, lum))
+        offset += r
+        lum += dlum
+
 
 @func24bitonlyandentirerectinboundary
-def horizontalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:list):
-    """Apply a horizontal brightness gradient to a rectangular area in a 24-bit bitmap
+def horizontalbrightnessgradto24bitregion(
+        bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        lumrange: list[int, int]):
+    """Apply a horizontal brightness gradient 
+        to a rectangular area in a 24-bit bitmap
 
     Args:
         bmp        : unsigned byte array with bmp format
@@ -5660,13 +5694,16 @@ def horizontalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,
         byref modified unsigned byte array
 
     """
-    r,c=getxcharcount(bmp),getcomputeBMPoffsetwithheaderfunc(bmp)
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    xlim,f=x2+1,applybrightnessadjtoBGRbuf
-    l=lumrange[0]
-    dl=(lumrange[1]-lumrange[0])/(x2-x1)
-    for x in range(x1,xlim):
-        s,e=c(bmp,x,y2),c(bmp,x,y1)
+    r = getxcharcount(bmp)
+    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    xlim = x2 + 1
+    f = applybrightnessadjtoBGRbuf
+    l = lumrange[0]
+    dl = (lumrange[1] - lumrange[0]) / (x2 - x1)
+    for x in range(x1, xlim):
+        s = c(bmp,x,y2)
+        e = c(bmp,x,y1)
         bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=f(bmp[s:e-2:r],l),f(bmp[s+1:e-1:r],l),f(bmp[s+2:e:r],l)
         l += dl
 
