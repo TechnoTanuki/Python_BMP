@@ -1,21 +1,21 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|--------------------------------------------------------------------------|
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#|--------------------------------------------------------------------------|
-#|    The primary author and any subsequent code contributors shall not     |
-#|    be liable  in any event  for  incidental or consequential damages     |
-#|    in connection with,  or arising out  from  the  use of  this code     |
-#|    in current form or with any modifications.                            |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Contact primary author if you plan to use this        |        |
-#|        |  in a commercial product at joelalcarez1975@gmail.com  |        |
-#|--------#--------------------------------------------------------#--------|
-#|    Educational or hobby use highly encouraged... have fun coding !       |
-#|    ps:created out of extreme boredom during the COVID-19 pandemic.       |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Note: This graphics library outputs to a bitmap file. |        |
-#\--------#--------------------------------------------------------#--------/
+#/--------------------------------------------------------------------\
+#|  Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]  |
+#|--------------------------------------------------------------------|
+#|  We make absolutely no warranty of any kind, expressed or implied. |
+#|--------------------------------------------------------------------|
+#|  The primary author and any subsequent code contributors shall not |
+#|  be liable  in any event  for  incidental or consequential damages |
+#|  in connection with,  or arising out  from  the  use of  this code |
+#|  in current form or with any modifications.                        |
+#|-----#--------------------------------------------------------#-----|
+#      |  Contact primary author if you plan to use this        |     |
+#|     |  in a commercial product at joelalcarez1975@gmail.com  |     |
+#|-----#--------------------------------------------------------#-----|
+#|  Educational or hobby use highly encouraged... have fun coding !   |
+#|  ps:created out of extreme boredom during the COVID-19 pandemic.   |
+#|-----#--------------------------------------------------------#-----|
+#|     |  Note: This graphics library outputs to a bitmap file. |     |
+#\-----#--------------------------------------------------------------/
 
 import unittest,os
 from Python_BMP.BITMAPlib import loadBMP,getRGBfactors,int2RGB,getcolorname2RGBdict,invertregion2file,flipXY2file,fliphorizontal2file,flipverticalregion2file,fliphorizontalregion2file,cropBMPandsave,imgregionbyRGB2file,adjustbrightness2file,gammaadj2file,adjustbrightnessinregion2file,monochrome2file,monofilterinregion2file,colorfilter2file,colorfilterinregion2file,adjustthresholdinregion2file,gammaadjtoregion2file,resizeNtimessmaller2file,resizeNtimesbigger2file,outline2file,outlineregion2file,monochromecircregion2file,colorfiltercircregion2file,circle2file,thresholdadjcircregion2file,gammacorrectcircregion2file,brightnessadjcircregion2file,invertbitsincircregion2file,flipvertcircregion2file,fliphoricircregion2file,outlinecircregion2file,flipXYcircregion2file,magnifyNtimescircregion2file,copycircregion2file,verticalbrightnessgradregion2file,horizontalbrightnessgradregion2file,mirrortop2file,mirrorbottom2file,mirrortopleft2file,mirrortopright2file,mirrorbottomleft2file,mirrorbottomright2file,mirrorleft2file,mirrorright2file,verticalbrightnessgrad2file,horizontalbrightnessgrad2file,vertbrightnessgrad2circregion2file,horibrightnessgrad2circregion2file,mirrorrightinregion2file,mirrorleftinregion2file,mirrortopinregion2file,mirrorbottominregion2file,mirrortopleftinregion2file,mirrortoprightinregion2file,mirrorbottomleftinregion2file,mirrorbottomrightinregion2file,rectangle2file,fern2file,thresholdadjust2file,eraseeverynthhoriline2file,eraseeverynthhorilineinregion2file,eraseeverynthhorilineinccircregion2file,pixelizenxncircregion2file,pixelizenxntofile,sphere2file,thickencirclearea2file,filledcircle2file,mirrortopincircregion2file,mirrorbottomincircregion2file,mirrorleftincircregion2file,mirrorrightincircregion2file,mirrortopleftincircregion2file,mirrorbottomleftincircregion2file,mirrortoprightincircregion2file,mirrorbottomrightincircregion2file,upgradeto24bitimage2file,reduce24bitimagebits,autocropimg2file
