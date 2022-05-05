@@ -4458,8 +4458,10 @@ def userdef2Dcooordsys2screenxy(
 
 
 def XYscatterplot(bmp: array, 
-        XYdata: list, XYcoordinfo: list,
-        showLinearRegLine: bool, reglinecolor: int):
+        XYdata: list,
+        XYcoordinfo: list,
+        showLinearRegLine: bool,
+        reglinecolor: int):
     """Create a XY scatterplot
 
     Args:
@@ -4509,19 +4511,43 @@ def getneighborcolorlist(bmp,v):
     return [getRGBxybitvec(bmp,u) for u in itergetneighbors(v,getmaxx(bmp),getmaxy(bmp),True)]
 
 
-def isimgedge(bmp,v,mx,my,similaritythreshold):
-    retval,rgb=False,getRGBxybitvec(bmp,v)
-    for u in itergetneighbors(v,mx,my,False):
-        if distance(getRGBxybitvec(bmp,u),rgb)>similaritythreshold:
-            retval=True
+def isimgedge(bmp: array,
+        v: list,
+        mx: int, my: int,
+        similaritythreshold: float):
+
+    retval = False
+    rgb = getRGBxybitvec(bmp,v)
+    for u in itergetneighbors(v, mx, my, False):
+        if distance(getRGBxybitvec(
+                    bmp, u), rgb) > similaritythreshold:
+            retval = True
             break
     return retval
 
-def iterimagedgevert(bmp,similaritythreshold):
-    m=getmaxxy(bmp)
-    for v in iterimageRGB(bmp,sysmsg['edgedetect'],'*',sysmsg['done']):
-        for u in itergetneighbors(v[0],m[0],m[1],False):
-            if distance(getRGBxybitvec(bmp,u),v[1])>similaritythreshold:
+
+def iterimagedgevert(bmp: array,
+        similaritythreshold: float):
+    """Find edges in an image
+        iteratively
+
+    Args:
+        bmp                : unsigned byte array 
+                             with bmp format
+        similaritythreshold: how close to the color
+                             before we yield it
+        
+    Yeilds:
+        (x:int,y:int)
+
+    """  
+    m = getmaxxy(bmp)
+    for v in iterimageRGB(bmp,
+                sysmsg['edgedetect'],
+                '*' , sysmsg['done']):
+        for u in itergetneighbors(
+                    v[0], m[0], m[1], False):
+            if distance(getRGBxybitvec(bmp, u), v[1]) > similaritythreshold:
                 yield u
                 break
 
@@ -4557,8 +4583,21 @@ def getimageregionbyRGB(bmp: array,
     return [v for v in iterimageregionvertbyRGB(bmp, rgb, similaritythreshold)]
 
 
-def getimagedgevert(bmp: array, similaritythreshold: int): 
-    return [v for v in iterimagedgevert(bmp,similaritythreshold)]
+def getimagedgevert(bmp: array,
+        similaritythreshold: int):
+    """Find edges in an image
+
+    Args:
+        bmp                : unsigned byte array 
+                             with bmp format
+        similaritythreshold: how close to the color
+                             before we yield it
+        
+    Yeilds:
+        [(x:int,y:int),...]
+
+    """        
+    return [v for v in iterimagedgevert(bmp, similaritythreshold)]
 
 
 def plotimgedges(bmp: array,
@@ -4568,9 +4607,12 @@ def plotimgedges(bmp: array,
     """Draw edges 
 
     Args:
-        bmp                 : unsigned byte array with bmp format
-        similaritythreshold : controls edge detection sensitivity
-        edgeradius,edgecolor: radius and color of pen used to draw the edge
+        bmp                 : unsigned byte array
+                              with bmp format
+        similaritythreshold : controls edge detection 
+                              sensitivity
+        edgeradius,edgecolor: radius and color of pen
+                              used to draw the edges
         
     Returns:
         byref modified unsigned byte array
@@ -4631,7 +4673,8 @@ def upgradeto24bitimage(bmp:array):
     """Upgrade an image to 24 bits
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
         byref modified unsigned byte array
@@ -4658,13 +4701,19 @@ def iterimageRGB(bmp: array,
         waitmsg: str,
         rowprocind: str,
         finishmsg: str):
-    """Yields (r,g,b) information for entire bitnap
+    """Yields (r,g,b) information for entire bitmap
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        waitmsg   : what to display in terminal at start
-        rowprocind: char to display as a row is processed
-        finishmsg : what to display in terminal at end
+        bmp       : unsigned byte array
+                    with bmp format
+        waitmsg   : what to display
+                    in terminal at
+                    process start
+        rowprocind: char to display
+                    as a row is processed
+        finishmsg : what to display
+                    in terminal at
+                    process end
 
     Yields:
         ((x:int,y:int),(r:byte,g:byte,b:byte))
@@ -4725,13 +4774,17 @@ def iterimagecolor(bmp: array,
         waitmsg: str,
         rowprocind: str,
         finishmsg: str):
-    """Yields color information for entire bitnap
+    """Yields color information for entire bitmap
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        waitmsg   : what to display in terminal at start
-        rowprocind: char to display as a row is processed
-        finishmsg : what to display in terminal at end
+        bmp       : unsigned byte array 
+                    with bmp format
+        waitmsg   : what to display in terminal
+                    at process start
+        rowprocind: char to display
+                    as a row is processed
+        finishmsg : what to display in terminal
+                    at process end
 
     Yields:
         ((x:int,y:int),color:int)
@@ -4794,7 +4847,8 @@ def copyrect(bmp: array,
     """Copy a rectangular region to a buffer
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
         custom unsigned byte array
@@ -4812,10 +4866,13 @@ def copyrect(bmp: array,
 
 def pasterect(bmp: array, buf: array,
         x1: int, y1: int):
-    """Paste a rectangular area defined in buf in a bitmap 
+    """Paste a rectangular area
+        defined in a buffer
+        to a bitmap 
 
     Args:
-        bmp  : unsigned byte array with bmp format
+        bmp  : unsigned byte array
+               with bmp format
         buf  : rectangular image buffer
         x1,y1: point to paste the buffer
     
@@ -4823,7 +4880,7 @@ def pasterect(bmp: array, buf: array,
         byref modified unsigned byte array
 
     """
-    if bmp[bmpcolorbits]!=buf[0]:
+    if bmp[bmpcolorbits] != buf[0]:
         print(sysmsg['bitsnotequal'])
     else:
         x2 = x1 + buf2int(buf[1: 3])
@@ -4833,7 +4890,7 @@ def pasterect(bmp: array, buf: array,
             offset = computeBMPoffset(bmp, x1, y2)
             br = buf2int(buf[5: 7])
             startoff = 7
-            endoff = br+7
+            endoff = br + 7
             bufsize = len(buf)
             while startoff < bufsize:
                 BMPbitBLTput(bmp, offset, buf[startoff: endoff])
@@ -4846,13 +4903,14 @@ def pasterect(bmp: array, buf: array,
 
 def convertselection2BMP(buf: array):
     """ converts a custom unsigned byte array 
-            to bitmap format
+            to the windows bitmap format
 
     Args:
         buf: unsigned byte array
         
     Returns:
-        unsigned byte array with bmp format
+        unsigned byte array
+        with bmp format
         
     """
     bmp = -1
@@ -4869,10 +4927,12 @@ def invertimagebits(bmp: array):
     """Inverts the bits a bitmap 
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     offset = gethdrsize(bmp)
@@ -4882,17 +4942,22 @@ def invertimagebits(bmp: array):
         offset += 1
 
 
-def erasealternatehorizontallines(bmp: array,
+def erasealternatehorizontallines(
+        bmp: array,
         int_eraseeverynline: int,
         int_eraseNthline: int,
         bytepat: int):
     """Erase every nth line
 
     Args:
-        bmp                : unsigned byte array with bmp format
-        int_eraseeverynline: erase every nth line in the region
-        int_eraseNthline   : control which line every n lines to erase
-        bytepat            : byte pattern to overwrite erased lines
+        bmp                : unsigned byte array
+                             with bmp format
+        int_eraseeverynline: erase every nth line
+                             in the region
+        int_eraseNthline   : control which line
+                             every n lines to erase
+        bytepat            : byte pattern to overwrite
+                             erased lines
 
     Returns:
         byref modified unsigned byte array
@@ -4911,22 +4976,27 @@ def erasealternatehorizontallines(bmp: array,
         i += 1
 
 
-def eraseeverynthhorizontalline(bmp: array, n: int):
+def eraseeverynthhorizontalline(
+        bmp: array, n: int):
     """Erase every nth horizontal line
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         n  : erase every nth line
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    erasealternatehorizontallines(bmp, n, 0, 0)
+    erasealternatehorizontallines(
+        bmp, n, 0, 0)
 
 
 @entirecircleinboundary
-def erasealternatehorizontallinesincircregion(bmp: array,
+def erasealternatehorizontallinesincircregion(
+    bmp: array,
     x: int, y:int, r: int,
     int_eraseeverynline: int,
     int_eraseNthline: int,
@@ -4934,11 +5004,15 @@ def erasealternatehorizontallinesincircregion(bmp: array,
     """Erase every nth line in a circular region
 
     Args:
-        bmp                : unsigned byte array with bmp format
+        bmp                : unsigned byte array
+                             with bmp format
         x,y,r              : defines the circular region
-        int_eraseeverynline: erase every nth line in the region
-        int_eraseNthline   : control which line every n lines to erase
-        bytepat            : byte pattern to overwrite erased lines
+        int_eraseeverynline: erase every nth line 
+                             in the circular region
+        int_eraseNthline   : control which line
+                             every n lines to erase
+        bytepat            : byte pattern to overwrite
+                             erased lines
 
     Returns:
         byref modified unsigned byte array
@@ -4963,10 +5037,12 @@ def eraseeverynthhorizontallineinccircregion(
         bmp: array,
         x: int, y: int, r: int,
         n: int):
-    """Erase every nth horizontal line in a circular region
+    """Erase every nth horizontal line
+        in a circular region
 
     Args:
-        bmp  : unsigned byte array with bmp format
+        bmp  : unsigned byte array
+               with bmp format
         x,y,r: center (x,y) and radius r        
         n    : erase every nth line
         
@@ -4974,7 +5050,8 @@ def eraseeverynthhorizontallineinccircregion(
         byref modified unsigned byte array
 
     """
-    erasealternatehorizontallinesincircregion(bmp, x, y, r, n, 0, 0)
+    erasealternatehorizontallinesincircregion(
+        bmp, x, y, r, n, 0, 0)
 
 @entirerectinboundary
 def erasealternatehorizontallinesinregion(
@@ -4987,23 +5064,28 @@ def erasealternatehorizontallinesinregion(
     """Erase every nth line in a rectangular region
 
     Args:
-        bmp                : unsigned byte array with bmp format
-        x1,y1,x2,y2        : defines the rectangular region
-        int_eraseeverynline: erase every nth line in the region
-        int_eraseNthline   : control which line every n lines to erase
-        bytepat            : byte pattern to overwrite erased lines
+        bmp                : unsigned byte array
+                             with bmp format
+        x1,y1,x2,y2        : ints that defines the 
+                             rectangular region
+        int_eraseeverynline: erase every nth line
+                             in the region
+        int_eraseNthline   : control which line every
+                             n lines to erase
+        bytepat            : byte pattern to overwrite
+                             erased lines
 
     Returns:
         byref modified unsigned byte array
 
     """    
     bytepat &= 0xff
-    x1, y1, x2, y2 = sortrecpoints(x1,y1,x2,y2)
+    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
     bufsize = adjustbufsize(x2 - x1 + 1, bmp[bmpcolorbits])
     r = getxcharcount(bmp)
     f = getcomputeBMPoffsetwithheaderfunc(bmp)
-    s1 = f(bmp,x1,y2)
-    s2 = f(bmp,x1,y1)
+    s1 = f(bmp, x1, y2)
+    s2 = f(bmp, x1, y1)
     blank = array('B', [bytepat] * bufsize)
     i = 1
     while s2 > s1:
@@ -5018,12 +5100,16 @@ def eraseeverynthhorilineinregion(
         x1: int, y1: int,
         x2: int, y2: int,
         n:int):
-    """Erase every nth line in a rectangular region
+    """Erase every nth line in
+        a rectangular region
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        x1,y1,x2,y2: defines the rectangular region
-        n          : erase every nth line in the region
+        bmp        : unsigned byte array
+                     with bmp format
+        x1,y1,x2,y2: ints that defines the 
+                     rectangular region
+        n          : erase every nth line
+                     in the rectangular region
         
     Returns:
         byref modified unsigned byte array
@@ -5034,12 +5120,15 @@ def eraseeverynthhorilineinregion(
 
 
 def verttrans(bmp: array, trans: str):
-    """Do vertical image transforms in a bitmap 
+    """Do vertical image transforms
 
     Args:
-        bmp : unsigned byte array with bmp format
+        bmp : unsigned byte array
+              with bmp format
         tran: single letter transform code
-              'T' - mirror top half 'B' - mirror bottom half 'F' - flip
+              'T' - mirror top half
+              'B' - mirror bottom half
+              'F' - flip
     
     Returns:
         byref modified unsigned byte array
@@ -5069,10 +5158,11 @@ def verttrans(bmp: array, trans: str):
 
 
 def flipvertical(bmp: array):
-    """Does an in-memory vertical flip of a bitmap
+    """Does an in-memory vertical flip
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+        with bmp format
         
     Returns:
         byref modified byte array
@@ -5082,10 +5172,11 @@ def flipvertical(bmp: array):
 
 
 def mirrortop(bmp: array):
-    """Mirrors the top half of an in-memory bitmap
+    """Mirrors the top half
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
         byref modified byte array
@@ -5095,10 +5186,11 @@ def mirrortop(bmp: array):
 
 
 def mirrorbottom(bmp: array):
-    """Mirrors the bottom half of an in-memory bitmap
+    """Mirrors the bottom half
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
         byref modified byte array
@@ -5112,13 +5204,18 @@ def verttransregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         trans: str):
-    """Do vertical image transforms in a bitmap in a rectangular region 
+    """Do vertical image transforms
+        in a rectangular region 
 
     Args:
-        bmp         : unsigned byte array with bmp format
-        x1,y1,x2,y2 : defines the rectangle
+        bmp         : unsigned byte array
+                      with bmp format
+        x1,y1,x2,y2 : ints that defines the 
+                      rectangular region
         trans       : single letter transform code
-                      'T' - mirror top half 'B' - mirror bottom half 'F' - flip
+                      'T' - mirror top half
+                      'B' - mirror bottom half
+                      'F' - flip
     
     Returns:
         byref modified unsigned byte array
@@ -5153,58 +5250,69 @@ def verttransregion(bmp: array,
 def flipverticalregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips vertical a rectangular region in a bitmap
+    """Flips vertical a rectangular region
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
         byref modified unsigned byte array
 
     """
-    verttransregion(bmp, x1, y1, x2, y2, 'F')
+    verttransregion(
+        bmp, x1, y1, x2, y2, 'F')
 
 
 def mirrorbottominregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirror the bottom half of a rectangular region in a bitmap
+    """Mirror the bottom half
+        of a rectangular region
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
         byref modified unsigned byte array
 
     """
-    verttransregion(bmp, x1, y1, x2, y2, 'B')
+    verttransregion(
+        bmp, x1, y1, x2, y2, 'B')
 
 
 def mirrortopinregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirror the top half of a rectangular region in a bitmap
+    """Mirror the top half of
+        a rectangular region
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp        : unsigned byte array
+                     with bmp format
+        x1,y1,x2,y2: ints that defines
+                     the rectangular region
 
     Returns:
         byref modified unsigned byte array
 
     """
-    verttransregion(bmp, x1, y1, x2, y2, 'T')
+    verttransregion(
+        bmp, x1, y1, x2, y2, 'T')
     
 @entirerectinboundary        
 def fliphorzontalpixelbased(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips horizontal a rectangular region in a bitmap using pixel addressing (slightly slow)
+    """Flips horizontal a rectangular region
+        using pixel addressing (slightly slow)
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
@@ -5225,10 +5333,12 @@ def fliphorzontalpixelbased(bmp: array,
 def fliphverticalalpixelbased(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips vertical a rectangular region in a bitmap using pixel addressing
+    """Flips vertical a rectangular region
+        using pixel addressing (slightly slow)
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array 
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
@@ -5246,11 +5356,16 @@ def fliphverticalalpixelbased(bmp: array,
 
 
 @entirerectinboundary    
-def horizontalbulkswap(bmp:array,x1:int,y1:int,x2:int,y2:int,swapfunc):
-    """Applies function swapfunc to a rectangular area in a bitmap 
+def horizontalbulkswap(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        swapfunc: Callable):
+    """Applies function swapfunc
+        to a rectangular area
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5272,10 +5387,12 @@ def horizontalbulkswap(bmp:array,x1:int,y1:int,x2:int,y2:int,swapfunc):
 def fliphorizontalregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Does a horizontal flip of a rectangular area in a bitmap 
+    """Does a horizontal flip
+        of a rectangular area
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5283,7 +5400,7 @@ def fliphorizontalregion(bmp: array,
 
     """
     def swap24bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1-2:r],bmp[s2:e2-2:r],bmp[s1+1:e1-1:r],bmp[s2+1:e2-1:r],bmp[s1+2:e1:r],bmp[s2+2:e2:r]=bmp[s2:e2-2:r],bmp[s1:e1-2:r],bmp[s2+1:e2-1:r],bmp[s1+1:e1-1:r],bmp[s2+2:e2:r],bmp[s1+2:e1:r]
+        bmp[s1:e1-2:r], bmp[s2:e2-2:r], bmp[s1+1:e1-1:r], bmp[s2+1:e2-1:r],bmp[s1+2:e1:r],bmp[s2+2:e2:r]=bmp[s2:e2-2:r],bmp[s1:e1-2:r],bmp[s2+1:e2-1:r],bmp[s1+1:e1-1:r],bmp[s2+2:e2:r],bmp[s1+2:e1:r]
 
     def swap8bit(bmp, s1, e1, s2, e2, r): 
         bmp[s1:e1:r],bmp[s2:e2:r]=bmp[s2:e2:r],bmp[s1:e1:r]
@@ -5294,16 +5411,19 @@ def fliphorizontalregion(bmp: array,
     def swap1bit(bmp, s1, e1, s2, e2, r): 
         bmp[s1:e1:r],bmp[s2:e2:r]=rotatebitsinbuf(bmp[s2:e2:r]),rotatebitsinbuf(bmp[s1:e1:r])
 
-    horizontalbulkswap(bmp,x1,y1,x2,y2,{24:swap24bit,8:swap8bit,4:swap4bit,1:swap1bit}[bmp[bmpcolorbits]])
+    horizontalbulkswap(bmp, x1, y1, x2, y2,
+        {24:swap24bit,8:swap8bit,4:swap4bit,1:swap1bit}[bmp[bmpcolorbits]])
 
 
 def mirrorleftinregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the left half of a rectangular area in a bitmap 
+    """Mirrors the left half
+        of a rectangular area
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5315,16 +5435,19 @@ def mirrorleftinregion(bmp: array,
         bmp[s2:e2-2:r],bmp[s2+1:e2-1:r],bmp[s2+2:e2:r]=bmp[s1:e1-2:r],bmp[s1+1:e1-1:r],bmp[s1+2:e1:r]
 
     def swap8bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s2:e2:r]=bmp[s1:e1:r]
+        bmp[s2: e2: r] = bmp[s1: e1: r]
 
     def swap4bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s2:e2:r]=flipnibbleinbuf(bmp[s1:e1:r])
+        bmp[s2: e2: r] = flipnibbleinbuf(bmp[s1: e1: r])
 
     def swap1bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s2:e2:r]=rotatebitsinbuf(bmp[s1:e1:r])
+        bmp[s2: e2: r] = rotatebitsinbuf(bmp[s1: e1: r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24:swap24bit,8:swap8bit,4:swap4bit,1:swap1bit}[bmp[bmpcolorbits]])
+        {24: swap24bit,
+          8: swap8bit,
+          4: swap4bit,
+          1: swap1bit}[bmp[bmpcolorbits]])
 
 
 def mirrorrightinregion(bmp: array,
