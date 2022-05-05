@@ -3344,12 +3344,14 @@ def ellipse(bmp: array,
         major and minor axis (b,a) 
         
     Args:
-        bmp     : unsigned byte array with bmp format
+        bmp     : unsigned byte array
+                  with bmp format
         x,y     : center of ellipse
         b,a     : major amd minor axis
         color   : color of the ellipse
         isfilled: True -> filled ellipse  
-                  False -> one pixel thick ellipse
+                  False -> one pixel thick 
+                           ellipse
 
     Returns:
         byref modified unsigned byte array
@@ -3401,12 +3403,14 @@ def gradellipse(bmp: array,
         and major and minor axis (b,a) 
         
     Args:
-        bmp       : An unsigned byte array with bmp format
+        bmp       : An unsigned byte array
+                    with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
-        lumrange  : [byte:byte] controls the range of the gradient
-        rgbfactors: [r,g,b]  all values in list are ufloat
-                    range of r, g and b are 0 min to 1 max
+        lumrange  : [byte:byte] controls the range
+                    of the luminosity gradient
+        rgbfactors: [r,g,b] range of r, g and b 
+                    are from 0 min to 1 max
 
     Returns:
         byref modified unsigned byte array
@@ -3426,7 +3430,8 @@ def gradellipse(bmp: array,
 @intcircleparam
 def drawarc(bmp: array,
         x: int, y: int, r: int,
-        startdegangle: float, enddegangle: float,
+        startdegangle: float,
+        enddegangle: float,
         color: int, showoutline: bool,
         fillcolor: int, isfilled: bool):
     """Draws an arc centered 
@@ -3435,23 +3440,28 @@ def drawarc(bmp: array,
         and end angles in degrees
         
     Args:
-        bmp        : unsigned byte array with bmp format
-        x,y,r      : defines a circle that contain the arc
+        bmp        : unsigned byte array
+                     with bmp format
+        x,y,r      : defines a circle
+                     that contain the arc
         color      : color of arc
         showoutline: True -> draw arc outline
         fillcolor  : color of arc filling
-        isfilled   : True -> set area inside arc to fillcolor
+        isfilled   : True -> set area inside
+                             arc to fillcolor
 
     Returns:
         byref modified unsigned byte array
 
     """
-    av = arcvert(x, y, r, startdegangle, enddegangle, showoutline)
+    av = arcvert(x, y, r,
+            startdegangle, enddegangle, showoutline)
     for p in av: 
         plotxybit(bmp, p[0], p[1], color)
     if isfilled: 
         fillboundary(bmp,
-            fillpolydata(av, getmaxx(bmp), getmaxy(bmp)), fillcolor)
+            fillpolydata(av,
+                getmaxx(bmp), getmaxy(bmp)), fillcolor)
 
 
 def rectangle(bmp: array,
@@ -3461,7 +3471,8 @@ def rectangle(bmp: array,
     """Draws a rectangle of a given color
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle        
         color      : color of the rectangle
         
@@ -3477,7 +3488,8 @@ def filledrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         color: int):
-    """Draws a filled rectangle of a given color
+    """Draws a filled rectangle
+        of a given color
 
     Args:
         bmp        : unsigned byte array
@@ -3517,11 +3529,14 @@ def beziercurve(bmp: array,
         pntlist: list,
         penradius: int,
         color: int):
-    """Draws a bezier curve of a given color and thickness
+    """Draws a bezier curve of
+        a given color and thickness
 
     Args:
-        bmp      : unsigned byte array with bmp format
-        pntlist  : [(x,y)...] list of control points
+        bmp      : unsigned byte array
+                   with bmp format
+        pntlist  : [(x,y)...] list of
+                   control points
         penradius: radius of pen in pixels
         color    : color of bezier curve
         
@@ -3539,11 +3554,14 @@ def bspline(bmp: array,
         color: int,
         isclosed: bool,
         curveback: bool):
-    """Draws a bspline of a given color and thickness
+    """Draws a bspline of
+        a given color and thickness
 
     Args:
-        bmp      : An unsigned byte array with bmp format
-        pntlist  : [(x,y)...] list of control points
+        bmp      : An unsigned byte array
+                   with bmp format
+        pntlist  : [(x,y)...] list of
+                   control points
         penradius: radius of pen in pixels
         color    : color of bezier curve
         isclosed : True means the curve is closed 
@@ -3566,11 +3584,15 @@ def plotrotated8bitpattern(bmp: array,
     """Draws a 8-bit pattern with the bits rotated
 
     Args:
-        bmp       : unsigned byte array with bmp format
+        bmp       : unsigned byte array
+                    with bmp format
         x,y       : where to draw the pattern
-        bitpattern: list of bytes that make a pattern
-        scale     : control how big the pattern is
-        pixspace  : space between each bit in pixels
+        bitpattern: list of bytes
+                    that make a pattern
+        scale     : control how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
         color     : color of the pattern
 
     Returns:
@@ -3603,11 +3625,16 @@ def plot8bitpattern(bmp: array,
     """Draws a 8-bit pattern
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        x,y       : where to draw the pattern
-        bitpattern: list of bytes that make a pattern
-        scale     : control how big the pattern is
-        pixspace  : space between each bit in pixels
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
         color     : color of the pattern
 
     Returns:
@@ -3639,11 +3666,16 @@ def plot8bitpatternupsidedown(bmp: array,
     """Draws a 8-bit pattern upsidedown
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        x,y       : where to draw the pattern
-        bitpattern: list of bytes that make a pattern
-        scale     : control how big the pattern is
-        pixspace  : space between each bit in pixels
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to 
+                    draw the pattern
+        bitpattern: list of bytes that
+                    makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
         color     : color of the pattern
 
     Returns:
@@ -3661,7 +3693,8 @@ def plot8bitpatternupsidedown(bmp: array,
                 if scale == 1 or inc <= 0: 
                     plotxybit(bmp, x, y, color)
                 else: 
-                    filledrect(bmp, x, y, x + inc, y + inc, color)
+                    filledrect(bmp,
+                        x, y, x + inc, y + inc, color)
             mask >>= 1
             x += scale
         y += scale
@@ -3678,11 +3711,16 @@ def plot8bitpatternsideway(bmp: array,
     """Draws a 8-bit pattern sideways
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        x,y       : where to draw the pattern
-        bitpattern: list of bytes that make a pattern
-        scale     : control how big the pattern is
-        pixspace  : space between each bit in pixels
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to 
+                    draw the pattern
+        bitpattern: list of bytes that
+                    makes the pattern
+        scale     : control how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
         color     : color of the pattern
 
     Returns:
@@ -3698,7 +3736,8 @@ def plot8bitpatternsideway(bmp: array,
                 if scale == 1 or inc <= 0: 
                     plotxybit(bmp, x, y, color)
                 else: 
-                    filledrect(bmp, x, y, x + inc, y + inc, color)
+                    filledrect(bmp,
+                        x, y, x + inc, y + inc, color)
             mask >>= 1
             y -= scale
         x += scale
@@ -3718,16 +3757,24 @@ def plotstringfunc(bmp: array,
     """Draws a string
 
     Args:
-        bmp             : unsigned byte array with bmp format
-        x,y             : where to draw the string
+        bmp             : unsigned byte array
+                          with bmp format
+        x,y             : sets where to
+                          draw the string
         str2plot        : string to draw
-        scale           : control how big the font is
-        pixspace        : space between each bit in pixels
-        spacebetweenchar: space between the characters
+        scale           : control how big
+                          the font is
+        pixspace        : space between each
+                          bit in pixels
+        spacebetweenchar: space between
+                          the characters
         color           : color of the font
         fontbuf         : the font ...see fonts.py
-        orderfunc       : function that enumerates each char in string
-        fontrenderfunc  : function that renders the font
+        orderfunc       : function that 
+                          enumerates each char 
+                          in the input string
+        fontrenderfunc  : function that 
+                          renders the font
         
     Returns:
         byref modified unsigned byte array
@@ -3765,11 +3812,15 @@ def plotstring(bmp: array,
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : where to draw the string
+        x,y             : sets where to
+                          draw the string
         str2plot        : string to draw
-        scale           : control how big the font is
-        pixspace        : space between each bit in pixels
-        spacebetweenchar: space between the characters
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
         color           : color of the font
         fontbuf         : the font ...see fonts.py
         
@@ -3793,11 +3844,15 @@ def plotstringupsidedown(bmp: array,
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : where to draw the string
+        x,y             : sets where to 
+                          draw the string
         str2plot        : string to draw
-        scale           : control how big the font is
-        pixspace        : space between each bit in pixels
-        spacebetweenchar: space between the characters
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
         color           : color of the font
         fontbuf         : the font ...see fonts.py
         
@@ -3808,7 +3863,8 @@ def plotstringupsidedown(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace, spacebetweenchar,
         color, fontbuf,
-        enumletters, plot8bitpatternupsidedown)
+        enumletters,
+        plot8bitpatternupsidedown)
 
 
 def plotreversestring(bmp: array,
@@ -3821,11 +3877,15 @@ def plotreversestring(bmp: array,
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : where to draw the string
+        x,y             : sets where to
+                          draw the string
         str2plot        : string to draw
-        scale           : control how big the font is
-        pixspace        : space between each bit in pixels
-        spacebetweenchar: space between the characters
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
         color           : color of the font
         fontbuf         : the font ...see fonts.py
         
@@ -3836,7 +3896,8 @@ def plotreversestring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace, spacebetweenchar,
         color, fontbuf,
-        enumreverseletters, plotrotated8bitpattern)
+        enumreverseletters,
+        plotrotated8bitpattern)
 
 
 def plotstringsideway(bmp: array,
@@ -3849,11 +3910,15 @@ def plotstringsideway(bmp: array,
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : where to draw the string
+        x,y             : sets where to
+                          draw the string
         str2plot        : string to draw
-        scale           : control how big the font is
-        pixspace        : space between each bit in pixels
-        spacebetweenchar: space between the characters
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
         color           : color of the font
         fontbuf         : the font ...see fonts.py
         
@@ -3889,11 +3954,15 @@ def plotstringvertical(bmp: array,
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : where to draw the string
+        x,y             : sets where to
+                          draw the string
         str2plot        : string to draw
-        scale           : control how big the font is
-        pixspace        : space between each bit in pixels
-        spacebetweenchar: space between the characters
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
         color           : color of the font
         fontbuf         : the font ...see fonts.py
         
@@ -3949,7 +4018,8 @@ def fillboundary(bmp: array,
 def plotpolyfill(bmp: array,
         vertlist: list,
         color: int):
-    """Draws a filled polygon with a given color
+    """Draws a filled polygon
+        with a given color
 
     Args:
         bmp     : unsigned byte array
