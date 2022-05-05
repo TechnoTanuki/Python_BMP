@@ -6185,8 +6185,8 @@ def applycoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
 
     """
     bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: 
+    if len(bmp) > 54:
+        if bmp[bmpcolorbits] != 24: 
             setbmppal(bmp,[func(c,funcparam) for c in getallRGBpal(bmp)])
         else:
             if func.__name__=='colorfilter': 
@@ -6204,7 +6204,11 @@ def applycoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
         print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 @checklink
-def apply24bitcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
+def apply24bitcoloradjfunc(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        func: callable,
+        funcparam):
     """Apply a user provided color adjustment function to a 24-bit bitmap
 
     Args:
@@ -6219,15 +6223,19 @@ def apply24bitcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func,funcparam):
     """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: 
+        if bmp[bmpcolorbits] != 24: 
             print(sysmsg['not24bit'])
         else:
-            func(bmp,funcparam)
-            saveBMP(NewBMPfile,bmp)
+            func(bmp, funcparam)
+            saveBMP(NewBMPfile, bmp)
             print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
+
 @checklink        
-def applynoparamcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func):
+def applynoparamcoloradjfunc(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        func: callable):
     """Apply a user provided no parameter color adjustment function
         to an existing bitmap
 
@@ -6240,11 +6248,12 @@ def applynoparamcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func):
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: setbmppal(bmp,[func(c) for c in getallRGBpal(bmp)])
+    bmp = loadBMP(ExistingBMPfile)
+    if len(bmp) > 54:
+        if bmp[bmpcolorbits] != 24: 
+            setbmppal(bmp,[func(c) for c in getallRGBpal(bmp)])
         else:
-            if func.__name__=='monochrome': 
+            if func.__name__ == 'monochrome': 
                 monofilterto24bitimage(bmp)
             else:
                 for v in iterimageRGB(bmp,sysmsg['coloradj'],'*',sysmsg['done']):  
@@ -6252,9 +6261,13 @@ def applynoparamcoloradjfunc(ExistingBMPfile:str,NewBMPfile:str,func):
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savenoparamfunc']%(func.__name__,ExistingBMPfile,NewBMPfile))
 
+
 @checklink
-def cropBMPandsave(ExistingBMPfile:str,NewBMPfile:str,
-                        x1:int,y1:int,x2:int,y2:int):
+def cropBMPandsave(
+    ExistingBMPfile: str,
+    NewBMPfile: str,
+    x1: int, y1: int,
+    x2: int, y2: int):
     """Crops and saves a rectangular area to a bitmap file
 
     Args:
@@ -6266,10 +6279,16 @@ def cropBMPandsave(ExistingBMPfile:str,NewBMPfile:str,
         new bitmap file
 
     """
-    applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,x1,y1,x2,y2,crop)
+    applyfunctoregionandsave(
+        ExistingBMPfile, NewBMPfile,
+        x1, y1, x2, y2, crop)
+
 
 @checklink
-def cropBMPandsaveusingrectbnd(ExistingBMPfile:str,NewBMPfile:str,rectbnd:list):
+def cropBMPandsaveusingrectbnd(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        rectbnd: list):
     """Crops and saves a rectangular area to a bitmap file
 
     Args:
@@ -6282,10 +6301,19 @@ def cropBMPandsaveusingrectbnd(ExistingBMPfile:str,NewBMPfile:str,rectbnd:list):
         new bitmap file
 
     """
-    applyfunctoregionandsave(ExistingBMPfile,NewBMPfile,rectbnd[0][0],rectbnd[0][1],rectbnd[1][0]+1,rectbnd[1][1]+1,crop)
+    applyfunctoregionandsave(
+        ExistingBMPfile, NewBMPfile,
+        rectbnd[0][0], rectbnd[0][1],
+        rectbnd[1][0] + 1, rectbnd[1][1] + 1,
+        crop)
+
 
 @checklinks
-def imagecomp(inputfile1:str,inputfile2:str,diff_file:str,func):
+def imagecomp(
+        inputfile1: str,
+        inputfile2: str,
+        diff_file: str,
+        func: callable):
     """Perform a bitwise comparison  of two bitmap files
         with  the same x and y dimensions  and bit depth
         using a user defined bitwise comparator function
@@ -6299,26 +6327,37 @@ def imagecomp(inputfile1:str,inputfile2:str,diff_file:str,func):
         new bitmap file
 
     """
-    bmp1,bmp2=loadBMP(inputfile1),loadBMP(inputfile2)
-    if len(bmp1)>54 and len(bmp2)>54:
-        s1,s2=getmaxxyandbits(bmp1),getmaxxyandbits(bmp2)
-        if s1!=s2: print(sysmsg['cantcomparefiles']%(s1,s2))
+    bmp1 = loadBMP(inputfile1)
+    bmp2 = loadBMP(inputfile2)
+    if len(bmp1) > 54 and len(bmp2) > 54:
+        s1 = getmaxxyandbits(bmp1)
+        s2 = getmaxxyandbits(bmp2)
+        if s1 != s2: 
+            print(sysmsg['cantcomparefiles']%(s1,s2))
         else:
             bits=s1[1]
-            nbmp=CopyBMPxydim2newBMP(bmp1,bits)
+            nbmp=CopyBMPxydim2newBMP(bmp1, bits)
             if bits<24:
-                pal1,pal2=getallRGBpal(bmp1),getallRGBpal(bmp2)
-                if pal1!=pal2: print(sysmsg['diffpal'])
-                copyRGBpal(bmp1,nbmp)
-            setBMPimgbytes(nbmp,array('B',func(getBMPimgbytes(bmp1),getBMPimgbytes(bmp2))))
-            saveBMP(diff_file,nbmp)
+                pal1 = getallRGBpal(bmp1)
+                pal2 = getallRGBpal(bmp2)
+                if pal1 != pal2:
+                    print(sysmsg['diffpal'])
+                copyRGBpal(bmp1, nbmp)
+            setBMPimgbytes(nbmp, array('B', func(getBMPimgbytes(bmp1), getBMPimgbytes(bmp2))))
+            saveBMP(diff_file, nbmp)
             print(sysmsg['savdifffile']%diff_file)
-    
+
+
 @checklink
 @functimer
-def reduce24bitimagebits(Existing24BMPfile:str,NewBMPfile:str,newbits:int,
-                        similaritythreshold:float,usemonopal:bool,
-                        RGBfactors:list):
+def reduce24bitimagebits(
+        Existing24BMPfile: str,
+        NewBMPfile: str,
+        newbits: int,
+        similaritythreshold: float,
+        usemonopal: bool,
+        RGBfactors: list):
+
     """Reduce the bits used to encode color in a 24-bit bitmap file
 
     Args:
@@ -6334,24 +6373,25 @@ def reduce24bitimagebits(Existing24BMPfile:str,NewBMPfile:str,newbits:int,
         new bitmap file
 
     """                        
-    sbmp=loadBMP(Existing24BMPfile)
+    sbmp = loadBMP(Existing24BMPfile)
     if len(sbmp)>54:
-        if sbmp[bmpcolorbits]!=24: print(sysmsg['not24bit'])
+        if sbmp[bmpcolorbits] != 24:
+            print(sysmsg['not24bit'])
         else:
-            bmp=CopyBMPxydim2newBMP(sbmp,newbits)
+            bmp=CopyBMPxydim2newBMP(sbmp, newbits)
             if newbits>1:
                 if usemonopal: 
-                    newpal=setBMP2monochrome(bmp,RGBfactors)
+                    newpal = setBMP2monochrome(bmp, RGBfactors)
                 else: 
-                    newpal=setnewpalfromsourcebmp(sbmp,bmp,similaritythreshold)
+                    newpal = setnewpalfromsourcebmp(sbmp, bmp, similaritythreshold)
             for v in iterimageRGB(sbmp,sysmsg['colorquant'],'*',sysmsg['done']):
-                    if newbits==1: 
-                        c=probplotRGBto1bit(v[1],2)
+                    if newbits == 1: 
+                        c = probplotRGBto1bit(v[1], 2)
                     else: 
-                        c=matchRGBtopal(v[1],newpal)
-                    intplotvecxypoint(bmp,v[0],c)
-            saveBMP(NewBMPfile,bmp)
-            print(sysmsg['savemod']%(Existing24BMPfile,NewBMPfile))
+                        c = matchRGBtopal(v[1], newpal)
+                    intplotvecxypoint(bmp, v[0], c)
+            saveBMP(NewBMPfile, bmp)
+            print(sysmsg['savemod']%(Existing24BMPfile, NewBMPfile))
 
 
 @checklink
