@@ -4463,11 +4463,19 @@ def XYscatterplot(bmp: array,
     """Create a XY scatterplot
 
     Args:
-        bmp             : unsigned byte array with bmp format
-        XYData          : [[x,y,radius (max rad 5 ),isfilled],...]
-        lstcooordinfo   : info on how to tranform coordinate system
-                          [origin,steps,xylimits,xyvalstarts,xysteps]
-                          all (x:int,y:int) pairs
+        bmp             : unsigned byte array 
+                         with bmp format
+        XYData          : [[x,y,
+                            radius (max radius is 5),
+                            isfilled],...]
+        lstcooordinfo   : info on how to 
+                          tranform the coordinate system
+                          [origin, -> origin point on screen  
+                          steps, -> on screen steps
+                          xylimits, -> x and y clipping limit
+                          xyvalstarts, -> number line starts
+                          xysteps -> increments for number line]
+                          * all (x:int,y:int) pairs
         howLinearRegLine: True -> display linear regression line
         reglinecolor    : color of linear regression line
 
