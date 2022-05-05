@@ -20,6 +20,7 @@
 from array import array
 from math import sin, cos, radians
 from random import random
+from tkinter import ARC
 from typing import Callable
 from xmlrpc.client import Boolean
 from .proctimer import functimer
@@ -5451,8 +5452,14 @@ def mandelbrot(bmp:array,x1:int,y1:int,x2:int,y2:int,mandelparam:list,RGBfactors
             else: c=mcolor-c%maxcolors
             plotxybit(bmp,x,y,c)
 
-def IFS(bmp:array,IFStransparam:list,x1:int,y1:int,x2:int,y2:int,
-        xscale:int,yscale:int,xoffset:int,yoffset:int,color:int,maxiter:int):
+
+def IFS(bmp:array, 
+        IFStransparam: list,
+        x1: int, y1: int,
+        x2: int, y2:int,
+        xscale: int, yscale: int,
+        xoffset: int, yoffset: int,
+        color: int, maxiter: int):
     """Draw a Interated Function System  (IFS) fractal
 
     Args:
@@ -5468,17 +5475,24 @@ def IFS(bmp:array,IFStransparam:list,x1:int,y1:int,x2:int,y2:int,
         byref modified unsigned byte array
 
     """        
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    af,p,x,y=IFStransparam[0],IFStransparam[1],x1,y1
-    dy,i=y2-y1,0
-    while i<maxiter:
-        j=random()
-        t=af[iif(j<p[0],0,iif(j<p[1],1,iif(j<p[2],2,3)))]
-        nx=t[0]*x+t[1]*y+t[4]
-        x,y=nx,t[2]*x+t[3]*y+t[5]
-        px,py=int(x*xscale+xoffset+x1),int((dy-y*yscale+yoffset)+y1)
-        if isinrectbnd(px,py,x1,y1,x2,y2): plotxybit(bmp,px,py,color)
-        i+=1
+    x1, y1, x2, y2=sortrecpoints(x1,y1,x2,y2)
+    af = IFStransparam[0]
+    p = IFStransparam[1]
+    x = x1
+    y = y1
+    dy = y2 - y1
+    i = 0
+    while i < maxiter:
+        j = random()
+        t = af[iif(j < p[0], 0, iif(j < p[1], 1, iif(j < p[2], 2, 3)))]
+        nx = t[0] * x +t[1] * y + t[4]
+        x, y = nx, t[2] * x + t[3] * y + t[5]
+        px = int(x * xscale + xoffset + x1)
+        py = int((dy - y * yscale + yoffset) + y1)
+        if isinrectbnd(px, py, x1, y1, x2, y2):
+            plotxybit(bmp,px,py,color)
+        i += 1
+
 
 def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
     """Draw a flower
@@ -5495,19 +5509,30 @@ def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
         byref modified unsigned byte array
 
     """
-    maxcolors=getmaxcolors(bmp)
-    mcolor=maxcolors-1
-    lum1,dlum=range2baseanddelta(lumrange)
-    p,angmax,angrot=petals/2,360*petals,radians(angrot)
-    for a in range(0,angmax):
+    maxcolors = getmaxcolors(bmp)
+    mcolor = maxcolors - 1
+    lum1, dlum = range2baseanddelta(lumrange)
+    p = petals / 2
+    angmax = 360 * petals
+    angrot = radians(angrot)
+    for a in range(0 ,angmax):
         ang=radians(a/petals)
-        f,rang=cos(p*ang)**2,ang+angrot
-        x,y=int(cx-r*sin(rang)*f),int(cy-r*cos(rang)*f)
-        c=colormix(setmax(abs(int(lum1+dlum*(distance([x,y],[cx,cy])/r))),255),RGBfactors)
-        if bmp[bmpcolorbits]!=24: c=mcolor-c%maxcolors
-        plotxybit(bmp,x,y,c)
+        f = cos(p * ang) ** 2
+        rang = ang + angrot
+        x = int(cx - r * sin(rang) *f) 
+        y = int(cy - r * cos(rang) *f)
+        c = colormix(setmax(abs(int(lum1 + dlum * (distance([x, y], [cx, cy]) / r))),255), RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = mcolor - c % maxcolors
+        plotxybit(bmp, x, y, c)
 
-def plotfilledflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
+
+def plotfilledflower(bmp: array,
+    cx: int, cy: int, r: int,
+    petals: float, 
+    angrot: float,
+    lumrange: list[int, int],
+    RGBfactors: list[float, float,  float]):
     """Draw a filled flower
 
     Args:
@@ -5515,17 +5540,20 @@ def plotfilledflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
         cx,cy,r   : center (cx,cy) and radius r
         petals    : number of petals
         angrot    : angle of rotation
-        lumrange  : (byte:byte) range of brightness for gradient
-        rgbfactors: [r:float,b:float,g:float] ...r,g,b values 0 min -> 1 max
+        lumrange  : (byte:byte) range of brightness
+        rgbfactors: [r:float,b:float,g:float]
+                    r,g,b values 0 min -> 1 max
         
     Returns:
         byref modified unsigned byte array
 
     """
-    for nr in range (r,2,-1): plotflower(bmp,cx,cy,nr,petals,angrot,lumrange,RGBfactors)
+    for nr in range (r, 2, -1):
+        plotflower(bmp, cx, cy, nr, petals,
+            angrot, lumrange, RGBfactors)
 
 
-def plotbmpastext(bmp:array):
+def plotbmpastext(bmp: array):
     """Plot a bitmap as text (cannot output 24-bit bmp)
 
     Args:
