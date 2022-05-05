@@ -5802,7 +5802,10 @@ def compareimglines(bmp:array,x1:int,y1:int,x2:int,y2:int,func):
         oldbuf=buf
     BMPbitBLTput(bmp,offset,array('B',func(buf,oldbuf)))
 
-def outlineregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
+
+def outlineregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Outines area in rectangular region in a bitmap file
 
     Args:
@@ -5813,7 +5816,8 @@ def outlineregion(bmp:array,x1:int,y1:int,x2:int,y2:int):
         byref modified unsigned byte array
 
     """
-    compareimglines(bmp,x1,y1,x2,y2,xorvect)
+    compareimglines(bmp, x1, y1, x2, y2, xorvect)
+
 
 def outline(bmp:array):
     """Applies an outline filter to an in-memory 24 bit bitmap
@@ -5825,10 +5829,14 @@ def outline(bmp:array):
         byref modified unsigned byte array
 
     """
-    outlineregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1)
+    outlineregion(bmp,
+        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
+
 
 @intcircleparam
-def sphere(bmp:array,x:int,y:int,r:int,rgbfactors:list):
+def sphere(bmp: array,
+        x: int, y: int, r: int,
+        rgbfactors: list[int,int,int]):
     """Draws a rendered sphere
 
     Args:
@@ -5842,7 +5850,7 @@ def sphere(bmp:array,x:int,y:int,r:int,rgbfactors:list):
         byref modified unsigned byte array
 
     """
-    gradcircle(bmp,x,y,r,[255,0],rgbfactors)
+    gradcircle(bmp, x, y, r, [255, 0], rgbfactors)
 
 @intcircleparam
 def thickencirclearea(bmp:array,x:int,y:int,r:int,rgbfactors:list): 
