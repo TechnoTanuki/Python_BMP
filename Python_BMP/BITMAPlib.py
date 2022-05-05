@@ -5417,9 +5417,17 @@ def verticalbrightnessgradto24bitimage(bmp,lumrange):
         byref modified unsigned byte array
 
     """
-    verticalbrightnessgradto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
+    verticalbrightnessgradto24bitregion(bmp,
+        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1,
+        lumrange)
 
-def mandelbrot(bmp:array,x1:int,y1:int,x2:int,y2:int,mandelparam:list,RGBfactors:list,maxiter:int):
+
+def mandelbrot(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        mandelparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
     """Draw a Mandelbrot set 
 
     Args:
@@ -5433,24 +5441,32 @@ def mandelbrot(bmp:array,x1:int,y1:int,x2:int,y2:int,mandelparam:list,RGBfactors
         byref modified unsigned byte array
 
     """
-    maxcolors=getmaxcolors(bmp)
-    mcolor=maxcolors-1
-    Pmax,Pmin,Qmax,Qmin=mandelparam[0],mandelparam[1],mandelparam[2],mandelparam[3]
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    maxx,maxy=x2-x1,y2-y1
-    dp,dq,max_size=(Pmax-Pmin)/maxx,(Qmax-Qmin)/maxy,4
-    for y in range(y1,y2,1):
-        Q=Qmin+(y-y1)*dq
-        for x in range(x1,x2,1):
-            P,xp,yp,c,Xsq,Ysq=Pmin+(x-x1)*dp,0,0,0,0,0
-            while (Xsq+Ysq)<max_size:
-                 xp,yp=Xsq-Ysq+P,2*xp*yp+Q
-                 Xsq,Ysq=xp*xp,yp*yp
-                 c+=1
-                 if c>maxiter: break
-            if bmp[bmpcolorbits]==24:c=colormix(((255-c)*20)%256,RGBfactors)
-            else: c=mcolor-c%maxcolors
-            plotxybit(bmp,x,y,c)
+    maxcolors = getmaxcolors(bmp)
+    mcolor = maxcolors - 1
+    [Pmax, Pmin, Qmax, Qmin] =  mandelparam
+    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    maxx = x2 - x1
+    maxy = y2 - y1
+    dp = (Pmax - Pmin) / maxx
+    dq = (Qmax - Qmin) / maxy
+    max_size = 4
+    for y in range(y1, y2, 1):
+        Q = Qmin + (y - y1) * dq
+        for x in range(x1, x2, 1):
+            P = Pmin + (x - x1) * dp
+            xp = yp = c= Xsq = Ysq = 0
+            while (Xsq + Ysq) < max_size:
+                 xp, yp =Xsq - Ysq + P, 2 * xp * yp + Q
+                 Xsq = xp * xp
+                 Ysq = yp * yp
+                 c += 1
+                 if c>maxiter:
+                     break
+            if bmp[bmpcolorbits] == 24:
+                c = colormix(((255 - c) * 20) % 256, RGBfactors)
+            else:
+                c = mcolor - c % maxcolors
+            plotxybit(bmp, x, y, c)
 
 
 def IFS(bmp:array, 
