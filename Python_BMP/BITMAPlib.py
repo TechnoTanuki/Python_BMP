@@ -20,12 +20,9 @@
 from array import array
 from math import sin, cos, radians
 from random import random
-from re import A
-from tkinter import ARC
 from typing import Callable
-from xmlrpc.client import Boolean
 from .proctimer import functimer
-from .bmpconstants import (
+from .bmpconstants import(
     bmpheaderid,
     bmpfilesize,
     bmphdrsize,
@@ -36,7 +33,7 @@ from .bmpconstants import (
     bmpheadersize
     )
     
-from .mathlib import (
+from .mathlib import(
     addvect,
     addvectinlist,
     andvect,
@@ -66,7 +63,7 @@ from .mathlib import (
     xorvect
     )
 
-from .primitives2D import (
+from .primitives2D import(
     arcvert,
     bsplinevert,
     ellipsevert,
@@ -95,7 +92,7 @@ from .primitives2D import (
     verticalvert
     )
 
-from .solids3D import (
+from .solids3D import(
     conevertandsurface,
     cubevert,
     cylindervertandsurface,
@@ -114,7 +111,7 @@ from .solids3D import (
     tetrahedravert
     )
 
-from .colors import (
+from .colors import(
     applybrightnessadjtoBGRbuf,
     applycolorfiltertoBGRbuf,
     applygammaBGRbuf,
@@ -167,17 +164,39 @@ from .paramchecks import(
 from .bittools import packbitlisttobuf
 from .bufferflip import flipnibbleinbuf, rotatebitsinbuf
 from .buffersplit import altsplitbuf3way, altsplitbufnway
-from .chartools import char2int, enumletters, enumreverseletters
+from .chartools import(
+    char2int,
+    enumletters,
+    enumreverseletters
+    )
+
 from .conditionaltools import iif, swapif
 from .dicttools import dict2descorderlist
 from .fileutils import checklink, checklinks
-from .fonts import font8x8, font8x14, getcharfont
-from .fractals import getIFSparams, mandelparamdict
-from .inttools import readint, writeint, int2buf, buf2int
+from .fonts import(
+    font8x8,
+    font8x14,
+    getcharfont
+    )
+
+from .fractals import(
+    getIFSparams,
+    mandelparamdict
+    )
+
+from .inttools import(
+    readint,
+    writeint, 
+    int2buf,
+    buf2int
+    )
+
 from .messages import sysmsg
 from .nibbletools import resize4bitbufNtimesbigger
-from .textgraphics import plotbitsastext, plot8bitpatternastext
-
+from .textgraphics import(
+    plotbitsastext,
+    plot8bitpatternastext
+    )
         
 def adjustbufsize(bufsize: int,
         bits: int) -> int:
@@ -185,11 +204,14 @@ def adjustbufsize(bufsize: int,
         to account for bit depth
 
     Args:
-        bufsize: initial estimate of buffer size
-        bits   : bit depth of bitmap (1,4,8,24)
+        bufsize: initial estimate
+                 of buffer size
+        bits   : bit depth of bitmap
+                 (1,4,8,24)
         
     Returns:
-        An adjusted int value of the buffer size
+        An adjusted int value
+        of the buffer size
 
     """
     if bits == 24: 
@@ -202,24 +224,28 @@ def adjustbufsize(bufsize: int,
 
 
 def setmaxx(bmp: array, xmax: int):
-    """Sets the x value stored in the windows bmp header
+    """Sets the x value stored
+        in the windows bmp header
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         int: value of x dimension
 
     Returns:
-        byref modified byte array with x dimension
-
+        byref modified byte array
+        
     """
     writeint(bmpx, 4, bmp, xmax)
 
 
 def getmaxx(bmp: array) -> int:
-    """Gets the x value stored in the windows bmp header
+    """Gets the x value stored
+        in the windows bmp header
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         int value of x bmp dimension
@@ -229,24 +255,28 @@ def getmaxx(bmp: array) -> int:
 
 
 def setmaxy(bmp: array, ymax: int):
-    """Sets the y value stored in the windows bmp header
+    """Sets the y value stored
+        in the windows bmp header
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         int: value of y dimension
      
     Returns:
-        byref modified byte array with y dimension
+        byref modified byte array
 
     """
     writeint(bmpy, 4, bmp, ymax)
 
 
 def getmaxy(bmp: array) -> int:
-    """Gets the y value stored in the windows bmp header
+    """Gets the y value stored
+        in the windows bmp header
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         int value of y bmp dimension
@@ -260,13 +290,15 @@ def getmaxxy(bmp: array) -> tuple:
         stored in the windows bmp header
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         tuple (x:int,y:int) 
 
     """
-    return (readint(bmpx, 4, bmp), readint(bmpy, 4, bmp))
+    return (readint(bmpx, 4, bmp),
+            readint(bmpy, 4, bmp))
 
 
 def bottomrightcoord(bmp: array) -> tuple:
@@ -289,7 +321,8 @@ def centercoord(bmp: array) -> tuple:
         of a windows bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+            with bmp format
 
     Returns:
         tuple (x:int,y:int) 
@@ -310,7 +343,8 @@ def isinBMPrectbnd(bmp: array,
              in x axis and y axis
 
     Returns:
-        True if within bounds, False if out of bounds 
+        True if within bounds
+        False if out of bounds 
 
     """
     return (x < readint(bmpx, 4, bmp) and
@@ -417,13 +451,15 @@ def getfilesize(bmp: array) -> int:
 
 
 def sethdrsize(bmp: array, hdsize: int):
-    """Set the header size of a windows bitmap
+    """Set the header size
+        of a windows bitmap
 
     Args:
         bmp   : unsigned byte array 
                 with bmp format
         hdsize: unsigned int value
-                of size of the bmp header
+                of size of the
+                bmp header
         
     Returns:
         byref modified byte array
@@ -756,7 +792,9 @@ def computeuncompressedbmpfilesize(
 
     """
     return computeBMPfilesize(
-                getmaxx(bmp), getmaxy(bmp), bmp[bmpcolorbits])
+                getmaxx(bmp),
+                getmaxy(bmp),
+                bmp[bmpcolorbits])
 
 
 def isbmpcompressed(bmp:array) -> bool:
@@ -775,7 +813,8 @@ def isbmpcompressed(bmp:array) -> bool:
 
 
 def compute24bitoffset(
-        x: int, y: int, mx: int, my: int) -> int:
+        x: int, y: int,
+        mx: int, my: int) -> int:
     """Get the offset in a byte array
         with 24-bit color data 
 
@@ -882,14 +921,17 @@ def compute_bmpmetadata(
     """computes bitmap meta data
 
     Args:
-        x,y  : unsigned int value of x dimension and y dimension
+        x,y  : unsigned int value of
+               x and y dimension
         bits : bit depth (1,4,8,24)
 
     Returns:
-        uint values for (filesize,headersize,xdim,ydim,bitdepth) 
+        uint values for 
+        (filesize,headersize,xdim,ydim,bitdepth) 
 
     """
-    return (computeBMPfilesize(x, y, bits), bmpheadersize[bits], x, y, bits)
+    return (computeBMPfilesize(x, y, bits),
+            bmpheadersize[bits], x, y, bits)
 
 def isdefaultpal(bmp: array) -> bool:
     """Checks if bitmap has a default RGB color palette
@@ -965,7 +1007,8 @@ def getallRGBpal(bmp: array) -> list:
 
     """
     colors = getmaxcolors(bmp)
-    return [getRGBpal(bmp, c) for c in range(0, colors)]
+    return [getRGBpal(bmp, c)
+            for c in range(0, colors)]
 
 
 def getRGBpal(bmp: array,
@@ -1101,7 +1144,7 @@ def copyRGBpal(sourceBMP: array, destBMP: array):
 
 
 def setbmp_properties(
-    bmpmeta: list[int, int, int, int, int]) -> array:
+    bmpmeta: list) -> array:
     """Creates a new bitmap with the properties set 
         by bmpmeta to a new unsigned byte array
 
@@ -1113,11 +1156,7 @@ def setbmp_properties(
 
     """
     bmp = array('B')
-    filesize = bmpmeta[0]
-    hdrsize = bmpmeta[1]
-    x = bmpmeta[2]
-    y = bmpmeta[3]
-    bits = bmpmeta[4]
+    [filesize, hdrsize, x, y, bits] = bmpmeta
     bmp.frombytes(b'\x00' * (filesize))
     bmp[0:2] = bmpheaderid
     setfilesize(bmp, filesize)
@@ -1173,7 +1212,8 @@ def RGBpalbrightnessadjust(bmp: array,
         list of modified RGB values
 
     """
-    return [brightnessadjust(c,percentadj) for c in getallRGBpal(bmp)]
+    return [brightnessadjust(c,percentadj)
+                for c in getallRGBpal(bmp)]
 
 
 def setBMP2monochrome(bmp: array,
