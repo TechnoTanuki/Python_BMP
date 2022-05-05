@@ -179,8 +179,10 @@ from .nibbletools import resize4bitbufNtimesbigger
 from .textgraphics import plotbitsastext, plot8bitpatternastext
 
         
-def adjustbufsize(bufsize: int, bits: int) -> int:
-    """Adjust buffer size to account for bit depth
+def adjustbufsize(bufsize: int,
+        bits: int) -> int:
+    """Adjust buffer size 
+        to account for bit depth
 
     Args:
         bufsize: initial estimate of buffer size
@@ -254,7 +256,8 @@ def getmaxy(bmp: array) -> int:
 
 
 def getmaxxy(bmp: array) -> tuple:
-    """Gets the max x and y values stored in the windows bmp header
+    """Gets the max x and y values 
+        stored in the windows bmp header
 
     Args:
         bmp: unsigned byte array with bmp format
@@ -267,7 +270,8 @@ def getmaxxy(bmp: array) -> tuple:
 
 
 def bottomrightcoord(bmp: array) -> tuple:
-    """Gets the maximum bottom right coordinates of a windows bitmap
+    """Gets the maximum bottom right 
+        coordinates of a windows bitmap
 
     Args:
         bmp: An unsigned byte array with bmp format
@@ -276,11 +280,13 @@ def bottomrightcoord(bmp: array) -> tuple:
         tuple (x:int,y:int) 
 
     """
-    return (readint(bmpx, 4, bmp) - 1,readint(bmpy, 4, bmp) - 1)
+    return (readint(bmpx, 4, bmp) - 1,
+            readint(bmpy, 4, bmp) - 1)
 
 
-def centercoord(bmp:array) -> tuple:
-    """Gets the central coordinates of a windows bitmap
+def centercoord(bmp: array) -> tuple:
+    """Gets the central coordinates
+        of a windows bitmap
 
     Args:
         bmp: unsigned byte array with bmp format
@@ -289,10 +295,12 @@ def centercoord(bmp:array) -> tuple:
         tuple (x:int,y:int) 
 
     """
-    return ((readint(bmpx, 4, bmp) -1) >> 1,(readint(bmpy, 4, bmp) - 1) >> 1)
+    return ((readint(bmpx, 4, bmp) -1) >> 1,
+            (readint(bmpy, 4, bmp) - 1) >> 1)
 
 
-def isinBMPrectbnd(bmp: array, x: int, y: int) -> bool:
+def isinBMPrectbnd(bmp: array,
+        x: int, y: int) -> bool:
     """Checks if (x,y) coordinates are within 
         the rectangular bounds of a bitmap
 
@@ -305,18 +313,25 @@ def isinBMPrectbnd(bmp: array, x: int, y: int) -> bool:
         True if within bounds, False if out of bounds 
 
     """
-    return (x < readint(bmpx, 4, bmp) and y < readint(bmpy, 4, bmp)) and (x > -1 and y > -1)
+    return (x < readint(bmpx, 4, bmp) and
+            y < readint(bmpy, 4, bmp)) and (x > -1 and y > -1)
 
 
-def listinBMPrecbnd(bmp: array, xylist: list) -> bool:
-    """Checks if a list of (x,y) coordinates are within the rectangular bounds of a bitmap
+def listinBMPrecbnd(bmp: array,
+        xylist: list) -> bool:
+    """Checks if a list of (x,y) coordinates 
+        are within the rectangular bounds 
+        of a bitmap
 
     Args:
-        bmp   : unsigned byte array with bmp format
-        xylist: list of (x,y) coordinates to be checked
+        bmp   : unsigned byte array 
+                with bmp format
+        xylist: list of (x,y) coordinates 
+                to be checked
 
     Returns:
-        True if within bounds, False if out of bounds 
+        True if within bounds
+        False if out of bounds 
 
     """
     retval=True
@@ -329,7 +344,8 @@ def setcolorbits(bmp: array, bits: int):
     """Set the bit depth of a windows bitmap
 
     Args:
-        bmp: An unsigned  byte array with bmp format
+        bmp: An unsigned  byte array 
+             with bmp format
         int: value of bit depth (1,4,8,24)
         
     Returns:
@@ -339,10 +355,11 @@ def setcolorbits(bmp: array, bits: int):
     bmp[bmpcolorbits] = bits
 
 def getcolorbits(bmp: array) -> int:
-    """Get the bit depth of a windows bitmap
+    """Get the bit depth of a windows bmp
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array 
+             with bmp format
         
     Returns:
         int value of bit depth (1,4,8,24)
@@ -351,40 +368,49 @@ def getcolorbits(bmp: array) -> int:
     return bmp[bmpcolorbits]
 
 def getxcharcount(bmp: array) -> int:
-    """Get the chars or bytes in row of a bitmap
+    """Get the chars or bytes in row of a bmp
 
     Args:
-        bmp: unsigned  byte array with bmp format
+        bmp: unsigned byte array 
+             with bmp format
         
     Returns:
-        count of bytes or chars in a row (x dim)
+        count of bytes or 
+        chars in a row (x dim)
 
     """
-    return computexbytes(readint(bmpx, 4, bmp), bmp[bmpcolorbits])
+    return computexbytes(
+                readint(bmpx, 4, bmp), 
+                    bmp[bmpcolorbits])
 
 
 def setfilesize(bmp: array, size: int):
     """Set the header size of a windows bitmap
 
     Args:
-        bmp  : unsigned  byte array with bmp format
-        size : unsigned int value of size of the bmp file
+        bmp  : unsigned byte array 
+               with bmp format
+        size : unsigned int value 
+               of size of the bmp file
         
     Returns:
-        byref modified byte array with new file size
+        byref modified byte array 
+        with new file size
 
     """
     writeint(bmpfilesize, 8, bmp, size)
 
 
 def getfilesize(bmp: array) -> int:
-    """Get the header size of a windows bitmap
+    """Get the header size of a windows bMp
 
     Args:
-        bmp: unsigned byte array with bmp format
-        
+        bmp: unsigned byte array 
+             with bmp format
+
     Returns:
-        unsigned int value of size of the bmp header
+        unsigned int value of size
+        of the bmp header
 
     """
     return readint(bmpfilesize, 8, bmp)
@@ -394,21 +420,25 @@ def sethdrsize(bmp: array, hdsize: int):
     """Set the header size of a windows bitmap
 
     Args:
-        bmp   : unsigned byte array with bmp format
-        hdsize: unsigned int value of size of the bmp header
+        bmp   : unsigned byte array 
+                with bmp format
+        hdsize: unsigned int value
+                of size of the bmp header
         
     Returns:
-        byref modified byte array with new header size
+        byref modified byte array
+        with new header size
 
     """
     writeint(bmphdrsize, 4, bmp, hdsize)
 
 
 def gethdrsize(bmp: array) -> int:
-    """Get the header size of a windows bitmap
+    """Get the header size of a windows bMp
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array 
+             with bmp format
         
     Returns:
         int value of header size
@@ -421,7 +451,8 @@ def getimageinfo(bmp: array):
     """Gets metadata in a windows bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
         4 int values
@@ -431,10 +462,13 @@ def getimageinfo(bmp: array):
 
 
 def getmaxcolors(bmp: array) -> int:
-    """Get the maximum number of colors supported by a windows bitmap
+    """Get the maximum number 
+        of colors supported 
+        by a windows bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
         int value
@@ -443,179 +477,258 @@ def getmaxcolors(bmp: array) -> int:
     return 1 << bmp[bmpcolorbits]
 
 
-def compute24bitBMPoffset(bmp: array, x: int, y: int) -> int:
-    """Get the offset in a byte array with RGB data given x and y
+def compute24bitBMPoffset(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array 
+        with RGB data given x and y
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int value 
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
-    return (x * 3) + ((readint(bmpy, 4, bmp) - y - 1)*computexbytes(readint(bmpx ,4, bmp), 24))
+    return (x * 3) + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 24))
 
 
-def compute24bitBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
-    """Get the offset in a byte array with RGB data given x and y
-        with bitmap header size also taken into account 
+def compute24bitBMPoffsetwithheader(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
+        with RGB data given x and y
+        with bitmap header size 
+        also taken into account 
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int value
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
     return (x * 3) + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 24 )) + 54
 
 
-def compute8bitBMPoffset(bmp: array, x: int, y: int) -> int:
-    """Get the offset in a byte array with 8 bit color data given x and y data
+def compute8bitBMPoffset(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
+        with 8 bit color data 
+        given x and y data
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array 
+             with bmp format
+        x,y: unsigned int value 
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
     return x + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 8))
 
 
-def compute8bitBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
-    """Get the offset in a byte array with 8 bit color data 
-        given x and y with adjustments made due to bitmap header 
+def compute8bitBMPoffsetwithheader(
+        bmp: array, x: int, y: int) -> int:
+    """Get the offset in a byte array 
+        with 8 bit color data 
+        given x and y 
+        with adjustments
+        made due to bitmap header 
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int value 
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
-    return x + ((readint(bmpy,4 , bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 8)) + 1078
+    return x + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 8)) + 1078
 
 
-def compute4bitBMPoffset(bmp:array,x:int,y:int) -> int:
-    """Get the offset in a byte array with 4 bit color data given x and y data
+def compute4bitBMPoffset(
+        bmp: array, x: int, y: int) -> int:
+    """Get the offset in a byte array 
+        with 4 bit color data 
+        given x and y data
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int value
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
     return (x >> 1) + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 4))
 
 
-def compute1bitBMPoffset(bmp: array, x: int, y: int) -> int:
-    """Get the offset in a byte array with 1 bit color data given x and y data
+def compute1bitBMPoffset(
+        bmp: array, x: int, y: int) -> int:
+    """Get the offset in a byte array
+        with 1 bit color data
+        given x and y data
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int value 
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
     return (x >> 3) + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 1))
 
 
-def compute4bitBMPoffsetwithheader(bmp: array, x: int,y: int) -> int:
-    """Get the offset in a byte array with 4 bit color data 
-        given x and y with adjustments made due to a header 
+def compute4bitBMPoffsetwithheader(
+        bmp: array, x: int,y: int) -> int:
+    """Get the offset in a byte array
+        with 4 bit color data 
+        given x and y
+        with adjustments
+        made due to a header
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int value
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
     return (x >> 1) + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 4)) + 118
 
 
-def compute1bitBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
-    """Get the offset in a byte array with 1 bit color data 
-        given x and y with adjustments made due to a header 
+def compute1bitBMPoffsetwithheader(
+        bmp: array, x: int, y: int) -> int:
+    """Get the offset in a byte array
+        with 1 bit color data 
+        given x and y with adjustments
+        made due to a header 
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int value
+             of location in
+             x-axis and y-axis
 
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
     return (x >> 3) + ((readint(bmpy, 4, bmp) - y - 1) * computexbytes(readint(bmpx, 4, bmp), 1)) + 62
 
 
 def getcomputeBMPoffsetwithheaderfunc(bmp: array):
-    """Returns the correct function to use in computing offsets with headers given a bitmap
+    """Returns the correct function to use
+        in computing offsets with headers
+        given a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: An unsigned byte array
+             with bmp format
 
     Returns:
-        function to compute offsets with headera
+        function to compute offsets
+        with headers
 
     """
-    return {24:compute24bitBMPoffsetwithheader,8:compute8bitBMPoffsetwithheader,4:compute4bitBMPoffsetwithheader,1:compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
+    return {24: compute24bitBMPoffsetwithheader,
+            8: compute8bitBMPoffsetwithheader,
+            4: compute4bitBMPoffsetwithheader,
+            1: compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
 
 
 def getcomputeBMPoffsetfunc(bmp: array):
-    """Returns the correct function to use in computing offset given a bitmap
+    """Returns the correct function to use
+        in computing offset given a bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: An unsigned byte array
+        with bmp format
 
     Returns:
         function to compute offsets
 
     """
-    return {24: compute24bitBMPoffset, 8: compute8bitBMPoffset, 4: compute4bitBMPoffset, 1: compute1bitBMPoffset}[bmp[bmpcolorbits]]
+    return {24: compute24bitBMPoffset,
+            8: compute8bitBMPoffset,
+            4: compute4bitBMPoffset,
+            1: compute1bitBMPoffset}[bmp[bmpcolorbits]]
 
 
-def computeBMPoffset(bmp: array, x: int, y: int) -> int:
+def computeBMPoffset(bmp: array,
+        x: int, y: int) -> int:
     """Returns the offset given a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int location
+             in x-axis and y-axis
 
     Returns:
-        unsigned int offset to data in buffer
+        unsigned int offset 
+        to data in buffer
 
     """
     f = getcomputeBMPoffsetfunc(bmp)
     return f(bmp, x, y)
 
 
-def computeBMPoffsetwithheader(bmp: array, x: int, y: int) -> int:
-    """Returns the offset given a bitmap with header considered
+def computeBMPoffsetwithheader(
+        bmp: array, x: int, y: int) -> int:
+    """Returns the offset given a bitmap
+        with header considered
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int location in x axis and y axis
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int location
+             in x-axis and y-axis
 
     Returns:
-        unsigned int offset to data in buffer
+        unsigned int offset
+        to data in buffer
 
     """
     f = getcomputeBMPoffsetwithheaderfunc(bmp)
     return f(bmp, x, y)
 
 
-def getmaxxyandbits(bmp: array) -> tuple:
+def getmaxxyandbits(
+        bmp: array) -> tuple:
     """Returns bitmap metadata 
        (x dimension,y dimension, bit depth)
 
@@ -629,56 +742,71 @@ def getmaxxyandbits(bmp: array) -> tuple:
     return (((readint(bmpx, 4, bmp), readint(bmpy, 4, bmp)), bmp[bmpcolorbits]))
 
 
-def computeuncompressedbmpfilesize(bmp: array) -> int:
-    """Returns the uncompressed file size of a bitmap
+def computeuncompressedbmpfilesize(
+        bmp: array) -> int:
+    """Returns the uncompressed file size
+        of a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         unsigned int file size in bytes
 
     """
-    return computeBMPfilesize(getmaxx(bmp), getmaxy(bmp), bmp[bmpcolorbits])
+    return computeBMPfilesize(
+                getmaxx(bmp), getmaxy(bmp), bmp[bmpcolorbits])
 
 
 def isbmpcompressed(bmp:array) -> bool:
     """Test if bitmap is compressed
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
-        True if compressed, False if uncompressed
+        True if compressed
+        False if uncompressed
 
     """
     return computeuncompressedbmpfilesize(bmp) > getfilesize(bmp)
 
 
-def compute24bitoffset(x: int, y: int, mx: int, my: int) -> int:
-    """Get the offset in a byte array with 24 bit color data 
+def compute24bitoffset(
+        x: int, y: int, mx: int, my: int) -> int:
+    """Get the offset in a byte array
+        with 24-bit color data 
 
     Args:
-        bmp  : unsigned byte array with bmp format
+        bmp  : unsigned byte array
+             with bmp format
         x,y  : unsigned int pixel location 
-        mx,my: unsigned int size in x dimension and y dimension
+        mx,my: unsigned int size 
+               in x-dimension and y-dimension
         
     Returns:
-        int value of offset to that data in byte array
+        int value of offset to
+        that data in byte array
 
     """
     return (x * 3) + ((my - y - 1) * computexbytes(mx, 24))
 
 
 def computexbytes(x: int, bits: int) -> int:
-    """Get the number of bytes in a bmp row given x dimension and bit depth
+    """Get the number of bytes in a bmp row
+        given x dimension and bit depth
 
     Args:
-        x   : unsigned int value of x dimension
-        bits: unsigned int value of bit depth (1,4,8,24)
+        x   : unsigned int value of
+              x-dimension
+        bits: unsigned int value of
+              bit depth (1,4,8,24)
 
     Returns:
-        int value of number of bytes in a row
+        int value of number
+        of bytes in a row
 
     """
     if bits <= 8:
@@ -696,11 +824,14 @@ def computexbytes(x: int, bits: int) -> int:
 
 def computepadbytes(x: int, bits: int) -> int:
     """Get the number of bytes used to pad for 
-        32-bit alignment given x dimension and bit depth
+        32-bit alignment
+        given x dimension and bit depth
 
     Args:
-        x   : unsigned int value of x dimension
-        bits: unsigned int value of bit depth (1,4,8,24)
+        x   : unsigned int value of
+              x-dimension
+        bits: unsigned int value of
+              bit depth (1,4,8,24)
 
     Returns:
         int value of number of pad bytes
@@ -730,7 +861,8 @@ def getdefaultBMPhdrsize(bits: int) -> int:
     return bmpheadersize[bits]
 
 
-def computeBMPfilesize(x: int, y: int, bits: int) -> int:
+def computeBMPfilesize(
+        x: int, y: int, bits: int) -> int:
     """computes bitmap file size
 
     Args:
@@ -744,7 +876,9 @@ def computeBMPfilesize(x: int, y: int, bits: int) -> int:
     return computexbytes(x, bits) * y + bmpheadersize[bits]
 
 
-def compute_bmpmetadata(x: int, y: int, bits: int) -> tuple:
+def compute_bmpmetadata(
+        x: int, y: int,
+        bits: int) -> tuple:
     """computes bitmap meta data
 
     Args:
@@ -769,11 +903,14 @@ def isdefaultpal(bmp: array) -> bool:
     """
     return getdefaultbitpal(getcolorbits(bmp)) == getallRGBpal(bmp)
 
+
 def getBMPimgbytes(bmp: array) -> list:
-    """Gets the raw image buffer of a bitmap without the header
+    """Gets the raw image buffer
+        of a bitmap without the header
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         list of unsigned bytes
@@ -786,7 +923,8 @@ def setBMPimgbytes(bmp: array, buf: array):
     """Sets the raw image buffer of a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         buf: array of unsigned bytes
 
     Returns:
@@ -796,7 +934,8 @@ def setBMPimgbytes(bmp: array, buf: array):
     bmp[gethdrsize(bmp): getfilesize(bmp)] = buf
 
 
-def setbmppal(bmp: array,pallist: list):
+def setbmppal(bmp: array,
+        pallist: list):
     """Sets the RGB palette of a bitmap
 
     Args:
@@ -818,7 +957,8 @@ def getallRGBpal(bmp: array) -> list:
     """Gets the RGB palette of a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         [(r:byte,g:byte,b:byte),...]
@@ -828,11 +968,14 @@ def getallRGBpal(bmp: array) -> list:
     return [getRGBpal(bmp, c) for c in range(0, colors)]
 
 
-def getRGBpal(bmp: array, c: int) -> list:
-    """Gets the [R,G,B] values of color c in a bitmap
+def getRGBpal(bmp: array,
+        c: int) -> list[int, int, int]:
+    """Gets the [R,G,B] values of color c 
+        in a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         c  : unsigned int color 
 
     Returns:
@@ -845,11 +988,14 @@ def getRGBpal(bmp: array, c: int) -> list:
 
 def setRGBpal(bmp: array, c: int,
         r: int, g: int, b: int):
-    """Sets the r,g,b values of color c in a bitmap
+    """Sets the r,g,b values
+        of color c in a bitmap
 
     Args:
-        bmp   : unsigned byte array with bmp format
-        r,g,b : unsigned byte values for red, green and blue
+        bmp   : unsigned byte array
+                with bmp format
+        r,g,b : unsigned byte values
+                for red, green and blue
         c     : unsigned int color 
 
     Returns:
@@ -864,14 +1010,18 @@ def colorhistorgram(bmp: array) -> list:
     """Creates a color histogram 
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        list sorted in descending order of color frequencies
+        list sorted in
+        descending order
+        of color frequencies
 
     """
     d={}
-    for v in iterimagecolor(bmp, sysmsg['colorhist'], '*', sysmsg['done']):
+    for v in iterimagecolor(bmp,
+                sysmsg['colorhist'], '*', sysmsg['done']):
         c=v[1]
         if c not in d: 
             d.setdefault(c,1)
@@ -914,13 +1064,16 @@ def makenewpalfromcolorhist(
 
 
 def copyBMPhdr(bmp: array) -> array:
-    """Copies the bitmap header of an in-memory bmp to a new unsigned byte array
+    """Copies the bitmap header of an in-memory bmp
+        to a new unsigned byte array
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+            with bmp format
         
     Returns:
-        unsigned byte array with bmp format
+        unsigned byte array
+        with bmp format
 
     """
     hdrsize = gethdrsize(bmp)
@@ -930,26 +1083,30 @@ def copyBMPhdr(bmp: array) -> array:
 
 
 def copyRGBpal(sourceBMP: array, destBMP: array):
-    """Copies the RGB palette info from a source unsigned byte array 
+    """Copies the RGB palette info from
+        a source unsigned byte array 
         to a destination unsigned byte array
 
     Args:
-        sourceBMP,destBMP : unsigned byte array with bmp format
+        sourceBMP,destBMP : unsigned byte array
+                            with bmp format
         
     Returns:
-        byRef modified destBMP (unsigned byte array)
+        byRef modified destBMP 
+        (unsigned byte array)
 
     """
     hdl = gethdrsize(sourceBMP)
     destBMP[bmppal: hdl] = sourceBMP[bmppal: hdl]
 
 
-def setbmp_properties(bmpmeta: list) -> array:
+def setbmp_properties(
+    bmpmeta: list[int, int, int, int, int]) -> array:
     """Creates a new bitmap with the properties set 
         by bmpmeta to a new unsigned byte array
 
     Args:
-        bmpmeta: [filesize:int,hdrsize:int,x:int,y:int,bits:int]
+        bmpmeta: [filesize,hdrsize,x,y,bits]
 
     Returns:
         unsigned byte array with bmp format
@@ -1002,7 +1159,8 @@ def setnewpalfromsourcebmp(
     return newpal
 
 
-def RGBpalbrightnessadjust(bmp: array, percentadj: float)-> list:
+def RGBpalbrightnessadjust(bmp: array,
+        percentadj: float)-> list:
     """Copies the RGB palette info from 
         a source unsigned byte array  
         to a destination unsigned byte array
@@ -1018,11 +1176,13 @@ def RGBpalbrightnessadjust(bmp: array, percentadj: float)-> list:
     return [brightnessadjust(c,percentadj) for c in getallRGBpal(bmp)]
 
 
-def setBMP2monochrome(bmp: array, RGBfactors: list) -> list:
+def setBMP2monochrome(bmp: array,
+        RGBfactors: list) -> list:
     """Sets a bitmap to use a monochrome palette
 
     Args:
-        bmp       : unsigned byte array with bmp format
+        bmp       : unsigned byte array
+                    with bmp format
         RGBfactors: (r:float,g:float,b:float) 
                     all values range from 0 to 1
         
@@ -1040,21 +1200,27 @@ def newBMP(x: int, y: int, colorbits: int) -> array:
     """Creates a new in memory bitmap
 
     Args:
-        x,y      : unsigned int values of x & y dims
+        x,y      : unsigned int values 
+                   of x and y dims
         colorbits: bit depth (1, 4, 8, 24)
 
     Returns:
-        unsigned byte array with bitmap layout
+        unsigned byte array
+        with bitmap layout
 
     """
-    return setbmp_properties(compute_bmpmetadata(x, y, colorbits))
+    return setbmp_properties(
+                compute_bmpmetadata(x, y, colorbits))
 
 
-def CopyBMPxydim2newBMP(bmp: array, newbits: int) -> array:
-    """Creates a new bitmap with the same dimensions as bmp
+def CopyBMPxydim2newBMP(bmp: array,
+        newbits: int) -> array:
+    """Creates a new bitmap with
+        the same dimensions as bmp
 
     Args:
-        bmp    : unsigned byte array with bmp format
+        bmp    : unsigned byte array
+                 with bmp format
         newbits: bit depth (1, 4, 8, 24)
 
     Returns:
@@ -1069,10 +1235,12 @@ def loadBMP(filename: str) -> array:
     """Load bitmap to a byte array
 
     Args:
-        filename: full path to the file to be loaded
+        filename: full path to 
+                  the file to be loaded
         
     Returns:
-        byte array with bmp file contents
+        byte array with
+        bmp file contents
 
     """
     a = array('B')
@@ -1092,8 +1260,10 @@ def saveBMP(filename: str, bmp: array):
     """Saves bitmap to file
 
     Args:
-        filename: full path to the file to be saved
-        bmp     : unsigned byte array with the layout of bmp file 
+        filename: full path to 
+                  the file to be saved
+        bmp     : unsigned byte array 
+                  with the layout of bmp file 
 
     """
     with open(filename, 'wb') as f:
@@ -1101,12 +1271,15 @@ def saveBMP(filename: str, bmp: array):
         f.close()
 
 
-def BMPbitBLTput(bmp: array, offset: int, arraybuf: array):
+def BMPbitBLTput(bmp: array,
+        offset: int, arraybuf: array):
     """Sets offset in array to arraybuf
 
     Args:
-        bmp     : unsigned byte array with bmp format
-        offset  : unsigned int address in buffer
+        bmp     : unsigned byte array
+                  with bmp format
+        offset  : unsigned int
+                  address in buffer
         arraybuf: unsigned byte array
 
     Returns:
@@ -1118,18 +1291,22 @@ def BMPbitBLTput(bmp: array, offset: int, arraybuf: array):
     startoff = hdrsize + offset
     endoff = startoff + bufsize
     if offset >= 0 and endoff <= getfilesize(bmp): 
-        bmp[startoff:endoff] = arraybuf
+        bmp[startoff: endoff] = arraybuf
     else: 
         print (sysmsg['invalidoffset'])
 
 
-def BMPbitBLTget(bmp: array, offset: int, bufsize: int) -> array:
+def BMPbitBLTget(bmp: array,
+        offset: int, bufsize: int) -> array:
     """Gets [offset:offset+bufsize] to a new array 
 
     Args:
-        bmp    : unsigned byte array with bmp format
-        offset : unsigned int address in buffer
-        bufsize: unsigned int size of buffer
+        bmp    : unsigned byte array
+                 with bmp format
+        offset : unsigned int 
+                 address in buffer
+        bufsize: unsigned int
+                 size of buffer
 
     Returns:
         unsigned byte array
@@ -1146,12 +1323,15 @@ def BMPbitBLTget(bmp: array, offset: int, bufsize: int) -> array:
     return retval
 
 
-def vertBMPbitBLTget(bmp: array, x: int, y1: int, y2: int) -> array:
+def vertBMPbitBLTget(bmp: array,
+        x: int, y1: int, y2: int) -> array:
     """Gets vertical slice to a new array 
 
     Args:
-        bmp     : unsigned byte array with bmp format
-        x,y1,y2 : unsigned int x and y coordinates 
+        bmp     : unsigned byte array
+                  with bmp format
+        x,y1,y2 : unsigned int
+                  x and y coordinates 
                 
     Returns:
         unsigned byte array
@@ -1178,14 +1358,19 @@ def vertBMPbitBLTget(bmp: array, x: int, y1: int, y2: int) -> array:
 def applyfuncwithparam2vertBMPbitBLTget(
     bmp: array,
     x: int, y1: int, y2: int,
-    func,funcparam):
-    """Apply a user defined function to vertical slices
+    func: Callable,
+    funcparam):
+    """Apply a user defined function 
+        to vertical slices
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        x,y1,y2   : unsigned int x and y coordinates 
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y1,y2   : unsigned int 
+                    x and y coordinates 
         func      : user defined function func
-        funcparam : parameters of the user defined function
+        funcparam : parameters of
+                    the user defined function
 
     Returns:
         byref modified unsigned byte array
@@ -1215,13 +1400,18 @@ def applyfuncwithparam2vertBMPbitBLTget(
         print(sysmsg['lineoutofbnd'])
 
 
-def plotRGBxybit(bmp: array, x: int, y: int, rgb: list):
-    """Sets pixel at x,y in a bitmap to [R,G,B]
+def plotRGBxybit(bmp: array,
+        x: int, y: int, rgb: list):
+    """Sets pixel at x,y in a bitmap
+        to color [R,G,B]
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int locations in x and y
-        rgb: [R:byte,G:byte,B:byte] 
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int locations
+             in x and y
+        rgb: color defined by 
+             [R:byte,G:byte,B:byte] 
 
     Returns:
         byref modified unsigned byte array
@@ -1233,15 +1423,18 @@ def plotRGBxybit(bmp: array, x: int, y: int, rgb: list):
             endoffset = offset + 3
             bmp[offset:endoffset] = array('B', [rgb[2], rgb[1], rgb[0]])
         else: 
-            plotxybit(bmp, x, y, matchRGBtopal(rgb, getallRGBpal(bmp)))
+            plotxybit(bmp,
+                x, y, matchRGBtopal(rgb, getallRGBpal(bmp)))
 
 
 def plotxybit(bmp: array, x: int, y: int, c: int):
     """Sets pixel at x,y in a bitmap to color c
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int locations in x and y
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int
+             locations in x and y
         c  : unsigned int color
 
     Returns:
@@ -1275,7 +1468,8 @@ def plotxybit(bmp: array, x: int, y: int, c: int):
             bmp[offset] = b
 
 
-def getxybit(bmp: array, x: int, y: int) -> int:
+def getxybit(bmp: array,
+        x: int, y: int) -> int:
     """Gets color of pixel at x,y in a bitmap
 
     Args:
@@ -1307,12 +1501,15 @@ def getxybit(bmp: array, x: int, y: int) -> int:
     return retval
 
 
-def getRGBxybitvec(bmp: array, v:list) -> int:
-    """Gets [R:byte,G:byte,B:byte] of pixel at (x,y) in a bitmap
+def getRGBxybitvec(
+        bmp: array, v:list) -> list:
+    """Gets [R:byte,G:byte,B:byte] 
+        of pixel at (x,y) in a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
-        v  : (x:int,y:int)
+        bmp: unsigned byte array with
+             bmp format
+        v  : pixel location (x:int,y:int)
         
     Returns:
         [R:byte,G:byte,B:byte]
