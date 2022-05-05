@@ -3141,18 +3141,22 @@ def gradthickcircle(bmp: array,
         x: int, y: int, radius: int,
         penradius: int,
         lumrange: list, RGBfactors: list):
-    """Draws a thick circle with gradient lumrange 
-        defined by centerpoint (x,y) and radius r 
+    """Draws a thick circle 
+        with gradient lumrange 
+        defined by centerpoint (x,y) 
+        and radius r 
         using a pen with radius penradius 
         and color defined by RGBfactors
 
     Args:
-        bmp       : unsigned byte array with bmp format
+        bmp       : unsigned byte array
+                    with bmp format
         x,y,r     : center (x,y) and radius r
         penradius : radius of round pen 
-        lumrange  : [byte,byte] range of the gradient
-        rgbfactors: [r,g,b]  all values in list are ufloat
-                    range of r, g and b are 0 min to 1 max
+        lumrange  : [byte,byte] range of the 
+                    luminosity gradient
+        rgbfactors: [r,g,b] range of r, g and b 
+                    are from 0 min to 1 max
         
     Returns:
         byref modified unsigned byte array
@@ -3160,7 +3164,8 @@ def gradthickcircle(bmp: array,
     """
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
-        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        c = colormix(int(
+                lum1 + (lumrang * i / penradius)), RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         thickcircle(bmp, x, y, radius, i, c)
@@ -3207,11 +3212,14 @@ def thickellipserot(bmp: array,
         and rotated by degrot degrees
 
     Args:
-        bmp       : unsigned byte array with bmp format
+        bmp       : unsigned byte array
+                    with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
-        degrot    : rotation of the ellipse in degrees
-        penradius : defines the thickness of the pen
+        degrot    : rotation of the ellipse
+                    in degrees
+        penradius : defines the thickness
+                    of the pen
         color     : color of the ellipse
 
     Returns:
@@ -3219,7 +3227,8 @@ def thickellipserot(bmp: array,
 
     """
     for p in iterellipserot(x, y, b, a, degrot): 
-        circle(bmp, p[0], p[1], penradius, color, True)
+        circle(bmp,
+            p[0], p[1], penradius, color, True)
 
 
 def gradthickellipserot(bmp:array,
@@ -3237,15 +3246,18 @@ def gradthickellipserot(bmp:array,
         with a gradient fill 
 
     Args:
-        bmp       : unsigned byte array with bmp format
+        bmp       : unsigned byte array
+                    with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
-        degrot    : rotation of the ellipse in degrees
-        penradius : defines the thickness of the pen
-        lumrange  : [byte:byte] 
-                    controls the range of the gradient
-        rgbfactors: [r,g,b] all values in list are ufloat
-                    range of r, g and b are 0 min to 1 max
+        degrot    : rotation of the ellipse
+                    in degrees
+        penradius : defines the thickness
+                    of the pen
+        lumrange  : [byte:byte] controls the range
+                    of the luminosity gradient
+        rgbfactors: [r,g,b] range of r, g and b 
+                    are from 0 min to 1 max
 
     Returns:
         byref modified byte array
@@ -3253,7 +3265,8 @@ def gradthickellipserot(bmp:array,
     """                        
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
-        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        c = colormix(int(
+                lum1 + (lumrang * i / penradius)), RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         thickellipserot(bmp, x, y, b, a, degrot, i, c)
@@ -3268,7 +3281,8 @@ def filledellipse(bmp: array,
         and major and minor axis (b,a) 
         
     Args:
-        bmp  : unsigned byte array with bmp format
+        bmp  : unsigned byte array
+               with bmp format
         x,y  : center of ellipse
         b,a  : major amd minor axis
         color: color of the ellipse
