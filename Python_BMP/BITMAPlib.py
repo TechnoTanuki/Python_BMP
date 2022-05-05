@@ -5668,10 +5668,12 @@ def horizontalbrightnessgradto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,
     for x in range(x1,xlim):
         s,e=c(bmp,x,y2),c(bmp,x,y1)
         bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=f(bmp[s:e-2:r],l),f(bmp[s+1:e-1:r],l),f(bmp[s+2:e:r],l)
-        l+=dl
+        l += dl
+
 
 @func24bitonlyandentirecircleinboundary 
-def magnifyNtimescircregion(bmp:array,x:int,y:int,r:int,n:int):
+def magnifyNtimescircregion(bmp: array,
+        x: int, y: int, r: int, n: int):
     """Magnify a circular region in a bitmap file by n
 
     Args:
@@ -5683,16 +5685,21 @@ def magnifyNtimescircregion(bmp:array,x:int,y:int,r:int,n:int):
         byref modified unsigned byte array
 
     """
-    nx,ny,b,c=x*n,y*n,resizeNtimesbigger(bmp,n),computeBMPoffsetwithheader
+    nx = x * n
+    ny = y * n
+    b = resizeNtimesbigger(bmp, n)
+    c = computeBMPoffsetwithheader
     for v in itercirclepartlineedge(r):
-        x1,x2=mirror(x,v[0])
-        y1,y2=mirror(y,v[1])
-        x3,x4=mirror(nx,v[0])
-        y3,y4=mirror(ny,v[1])
+        x1, x2 = mirror(x, v[0])
+        y1, y2 = mirror(y, v[1])
+        x3, x4 = mirror(nx, v[0])
+        y3, y4 = mirror(ny, v[1])
         bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[c(b,x3,y3):c(b,x4,y3)],b[c(b,x3,y4):c(b,x4,y4)]
 
+
 @func24bitonlyandentirecircleinboundary 
-def pixelizenxncircregion(bmp:array,x:int,y:int,r:int,n:int):
+def pixelizenxncircregion(bmp: array,
+        x: int, y: int, r: int, n: int):
     """Pixelizze a circular region in a bitmap file by n
 
     Args:
@@ -5704,19 +5711,22 @@ def pixelizenxncircregion(bmp:array,x:int,y:int,r:int,n:int):
         byref modified unsigned byte array
 
     """
-    b,c=pixelizenxn(bmp,n),computeBMPoffsetwithheader
+    b = pixelizenxn(bmp, n)
+    c = computeBMPoffsetwithheader
     for v in itercirclepartlineedge(r):
-        x1,x2=mirror(x,v[0])
-        y1,y2=mirror(y,v[1])
+        x1, x2 = mirror(x, v[0])
+        y1, y2 = mirror(y, v[1])
         bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[c(b,x1,y1):c(b,x2,y1)],b[c(b,x1,y2):c(b,x2,y2)]
+
 
 def resizesmaller24bitbuf(buflist):
     n,a,m,s=len(buflist),addvectinlist,intscalarmulvect,altsplitbufnway
     c,f=altsplitbuf3way(a(buflist)),1/(n*n)
     return  makeBGRbuf(m(a(s(c[0],n)),f),m(a(s(c[1],n)),f),m(a(s(c[2],n)),f))
 
+
 @func24bitonly
-def resizeNtimessmaller(bmp:array,n:int) -> array:
+def resizeNtimessmaller(bmp: array, n:int) -> array:
     """Resize a whole image by n times smaller (in-memory 24-bit bitmap)
 
     Args:
@@ -5727,26 +5737,35 @@ def resizeNtimessmaller(bmp:array,n:int) -> array:
         byref modified byte array
 
     """
-    bits,nbmp=bmp[bmpcolorbits],-1
-    m=getmaxxy(bmp)
-    nx,ny=m[0]//n,m[1]//n
-    nbmp,mx,my=newBMP(nx,ny,bits),m[0]-1,m[1]-1
-    ny-=1
-    offset,r=compute24bitBMPoffset(nbmp,0,ny),getxcharcount(nbmp)
-    i,bufl,y=1,[],0
-    for buf in itercopyrect(bmp,0,0,mx,my):
-        j=i%n
-        bufl+=[buf]
-        if j==0:
-            BMPbitBLTput(nbmp,offset,resizesmaller24bitbuf(bufl))
-            offset+=r
-            bufl=[]
-            y+=1
-            if y>ny: break
-        i+=1
+    bits = bmp[bmpcolorbits]
+    nbmp = -1
+    m = getmaxxy(bmp)
+    nx = m[0] // n
+    ny = m[1] // n
+    nbmp = newBMP(nx, ny, bits)
+    mx = m[0]-1
+    my = m[1]-1
+    ny -= 1
+    offset = compute24bitBMPoffset(nbmp, 0, ny)
+    r = getxcharcount(nbmp)
+    i = 1
+    bufl = []
+    y = 0
+    for buf in itercopyrect(bmp, 0, 0, mx, my):
+        j = i % n
+        bufl += [buf]
+        if j == 0:
+            BMPbitBLTput(nbmp, offset, resizesmaller24bitbuf(bufl))
+            offset += r
+            bufl = []
+            y += 1
+            if y > ny:
+                break
+        i += 1
     return nbmp
 
-def pixelizenxn(bmp:array,n:int) -> array:
+
+def pixelizenxn(bmp: array, n: int) -> array:
     """Pixelize a whole image with n by n areas in which colors are averaged
 
     Args:
@@ -5757,14 +5776,19 @@ def pixelizenxn(bmp:array,n:int) -> array:
         byref modified byte array
 
     """
-    return resizeNtimesbigger(resizeNtimessmaller(bmp,n),n)
+    return resizeNtimesbigger( resizeNtimessmaller(bmp, n), n)
+
 
 def adjustcolordicttopal(bmp:array,colordict:dict):
     if getcolorbits(bmp)<24:
         for color in colordict:
             colordict[color]=matchRGBtopal(int2RGBarr(colordict[color]),getallRGBpal(bmp))
 
-def gammaadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,gamma:float):
+
+def gammaadjto24bitregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        gamma: float):
     """Applies a gamma correction to a rectangular region in a 24-bit bitmap
 
     Args:
@@ -5776,9 +5800,12 @@ def gammaadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,gamma:float):
         byref modified byte array
 
     """
-    applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applygammaBGRbuf,gamma)
+    applybyreffuncto24bitregion(bmp,
+        x1, y1, x2, y2,
+        applygammaBGRbuf, gamma)
 
-def gammaadjto24bitimage(bmp:array,gamma:float):
+
+def gammaadjto24bitimage(bmp: array, gamma: float):
     """Applies a gamma correction to an in-memory 24-bit bitmap
 
     Args:
@@ -5789,18 +5816,23 @@ def gammaadjto24bitimage(bmp:array,gamma:float):
         byref modified unsigned byte array
 
     """
-    gammaadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,gamma)
+    gammaadjto24bitregion(bmp, 0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1, gamma)
+
 
 @entirerectinboundary
-def compareimglines(bmp:array,x1:int,y1:int,x2:int,y2:int,func):
-    offset,r=computeBMPoffset(bmp,x1,y2),getxcharcount(bmp)
-    oldbuf=[]
-    for buf in itercopyrect(bmp,x1,y1,x2,y2):
-        if oldbuf!=[]:
-            BMPbitBLTput(bmp,offset,array('B',func(buf,oldbuf)))
-            offset+=r
-        oldbuf=buf
-    BMPbitBLTput(bmp,offset,array('B',func(buf,oldbuf)))
+def compareimglines(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: callable):
+    offset = computeBMPoffset(bmp,x1,y2)
+    r = getxcharcount(bmp)
+    oldbuf = []
+    for buf in itercopyrect(bmp, x1, y1, x2, y2):
+        if oldbuf != []:
+            BMPbitBLTput(bmp, offset, array('B', func(buf, oldbuf)))
+            offset += r
+        oldbuf = buf
+    BMPbitBLTput(bmp, offset, array('B', func(buf, oldbuf)))
 
 
 def outlineregion(bmp: array,
@@ -5829,14 +5861,13 @@ def outline(bmp:array):
         byref modified unsigned byte array
 
     """
-    outlineregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
+    outlineregion(bmp, 0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
 
 
 @intcircleparam
 def sphere(bmp: array,
         x: int, y: int, r: int,
-        rgbfactors: list[int,int,int]):
+        rgbfactors: list[float, float, float]):
     """Draws a rendered sphere
 
     Args:
@@ -5852,9 +5883,26 @@ def sphere(bmp: array,
     """
     gradcircle(bmp, x, y, r, [255, 0], rgbfactors)
 
+
 @intcircleparam
-def thickencirclearea(bmp:array,x:int,y:int,r:int,rgbfactors:list): 
-    gradthickcircle(bmp,x,y,r,8,[255,0],rgbfactors)
+def thickencirclearea(bmp: array,
+        x: int, y: int, r: int,
+        rgbfactors: list[float, float, float]): 
+    """Encircle area with a gradient
+
+    Args:
+        bmp       : unsigned byte array with bmp format
+        x,y       : center of circle
+        r         : radius of circle
+        rgbfactors: (r:float,g:float,b:float) 
+                   r,g and b values are 0 to 1 
+        
+    Returns:
+        byref modified unsigned byte array
+
+    """
+    gradthickcircle(bmp, x, y, r,
+        8, [255,0], rgbfactors)
 
 
 @entirerectinboundary
