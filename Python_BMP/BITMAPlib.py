@@ -4428,12 +4428,15 @@ def XYaxis(bmp: array,
 def userdef2Dcooordsys2screenxy(
         x: int, y: int,
         lstcooordinfo: list):
-    """Does a 2D coordinate transformation from user to screen coordinate system
+    """Does a 2D coordinate transformation
+        from user to screen coordinate system
 
     Args:
         x,y          : user coordinates
-        lstcooordinfo: info on how to tranform coordinate system
-                       [origin,steps,xylimits,xyvalstarts,xysteps]
+        lstcooordinfo: info on how to 
+                       tranform coordinate system
+                       [origin,steps,xylimits,
+                          xyvalstarts,xysteps]
                        all (x:int,y:int) pairs
         
     Returns:
@@ -4445,12 +4448,13 @@ def userdef2Dcooordsys2screenxy(
     xylimits = lstcooordinfo[2]
     xyvalstarts = lstcooordinfo[3]
     xysteps = lstcooordinfo[4]
-    x , y = [origin[0]+((x-xyvalstarts[0])/xysteps[0])*steps[0],origin[1]-((y-xyvalstarts[0])/xysteps[1])*steps[1]]
-    if x>xylimits[0] or y<xylimits[1]:
+    x = origin[0] + ((x - xyvalstarts[0]) / xysteps[0]) * steps[0]
+    y = origin[1] - ((y - xyvalstarts[1]) / xysteps[1]) * steps[1]
+    if x > xylimits[0] or y < xylimits[1]:
         x = -1
         y = -1
         print(sysmsg['regionoutofbounds'])
-    return [x,y]
+    return [x, y]
 
 
 def XYscatterplot(bmp: array, 
