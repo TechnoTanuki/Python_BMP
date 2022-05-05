@@ -5848,8 +5848,12 @@ def sphere(bmp:array,x:int,y:int,r:int,rgbfactors:list):
 def thickencirclearea(bmp:array,x:int,y:int,r:int,rgbfactors:list): 
     gradthickcircle(bmp,x,y,r,8,[255,0],rgbfactors)
 
+
 @entirerectinboundary
-def fern(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
+def fern(bmp: array,
+    x1: int, y1: int,
+    x2: int, y2: int,
+    color: int):
     """Draws a fern
 
     Args:
@@ -5861,11 +5865,19 @@ def fern(bmp:array,x1:int,y1:int,x2:int,y2:int,color:int):
         byref modified unsigned byte array
 
     """
-    IFS(bmp,getIFSparams()['fern'],x1,y1,x2,y2,abs(y2-y1)//10,abs(y2-y1)//10,abs(x2-x1)//2,0,color,100000)
+    y = abs(y2 - y1) // 10
+    IFS(bmp, getIFSparams()['fern'], x1, y1, x2, y2,
+        y, y, abs(x2 - x1) // 2, 0, color, 100000)
+
 
 @checklink
-def applybyreffuncwithparamtoregionandsave(ExistingBMPfile:str,NewBMPfile:str,
-                                            x1:int,y1:int,x2:int,y2:int,func,funcparam):
+def applybyreffuncwithparamtoregionandsave(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: callable,
+        funcparam):
     """Apply a 24-bit by-ref function to a rectangular area and save
 
     Args:
@@ -5880,14 +5892,20 @@ def applybyreffuncwithparamtoregionandsave(ExistingBMPfile:str,NewBMPfile:str,
 
     """
     bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
-        func(bmp,x1,y1,x2,y2,funcparam)
-        saveBMP(NewBMPfile,bmp)
+    if len(bmp) > 54:
+        func(bmp, x1, y1, x2, y2, funcparam)
+        saveBMP(NewBMPfile, bmp)
         print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
+
 @checklink
-def applybyref24bitcolorfunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,
-                                            x1:int,y1:int,x2:int,y2:int,func,funcparam):
+def applybyref24bitcolorfunctoregionandsave(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: callable,
+        funcparam):
     """Apply a 24-bit by-ref color function to a rectangular area and save
 
     Args:
@@ -5901,17 +5919,23 @@ def applybyref24bitcolorfunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24 : 
+    bmp = loadBMP(ExistingBMPfile)
+    if len(bmp) > 54:
+        if bmp[bmpcolorbits] != 24: 
             print(sysmsg['not24bit'])
         else:
-            func(bmp,x1,y1,x2,y2,funcparam)
+            func(bmp, x1, y1, x2, y2, funcparam)
             saveBMP(NewBMPfile,bmp)
             print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
+
 @checklink        
-def applybyref24bitfunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,func):
+def applybyref24bitfunctoregionandsave(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: callable):
     """Apply a 24-bit by-ref function with no parameters to a rectangular area and save
 
     Args:
@@ -5925,17 +5949,26 @@ def applybyref24bitfunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,x1:int
 
     """
     bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
-        if bmp[bmpcolorbits]!=24: 
+    if len(bmp) > 54:
+        if bmp[bmpcolorbits] != 24: 
             print(sysmsg['not24bit'])
         else:
-            func(bmp,x1,y1,x2,y2)
-            saveBMP(NewBMPfile,bmp)
+            func(bmp, x1, y1, x2, y2)
+            saveBMP(NewBMPfile, bmp)
             print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
+
 @checklink
-def applybyreffunctoregionandsave(ExistingBMPfile:str,NewBMPfile:str,x1:int,y1:int,x2:int,y2:int,func):
-    """Apply a by-ref function with no parameters to a rectangular region and save
+def applybyreffunctoregionandsave(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: callable):
+    """Apply a by-ref function with 
+        no parameters 
+        to a rectangular region 
+        and save
 
     Args:
         ExistingBMPfile: Whole path to existing file
