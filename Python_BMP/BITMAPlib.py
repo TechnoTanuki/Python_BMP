@@ -20,6 +20,7 @@
 from array import array
 from math import sin, cos, radians
 from random import random
+from re import A
 from tkinter import ARC
 from typing import Callable
 from xmlrpc.client import Boolean
@@ -163,6 +164,7 @@ from .paramchecks import(
     intcircleparam24bitonly
     )
 
+from .bittools import packbitlisttobuf
 from .bufferflip import flipnibbleinbuf, rotatebitsinbuf
 from .buffersplit import altsplitbuf3way, altsplitbufnway
 from .chartools import char2int, enumletters, enumreverseletters
@@ -5248,27 +5250,9 @@ def resizebitpattenNtimesbigger(byteval:int,n:int):
     for bit in enumbits(byteval): retval+=[bit]*n
     return retval
 
-def packbitlisttobuf(blist):
-    """Packs literal list of ones and zeros to a list of bytes
-    
-    Args:
-        blist: literal list of ones and zeros
-        
-    Returns:
-        list 
 
-    """
-    retval,j,i,b=[],len(blist)+1,1,0
-    while i<j:
-        m=i%8
-        b+=blist[i-1]<<(7-m)
-        if m==0 and i>1:
-            retval+=[b]
-            b=0
-        i+=1
-    return retval
-
-def resizebufNtimesbigger(buf:array,n:int,bits:int):
+def resizebufNtimesbigger(buf:array,
+        n: int, bits: int):
     """Resize a buffer  n times bigger given a particular bit depth n
     
     Args:
@@ -5280,36 +5264,48 @@ def resizebufNtimesbigger(buf:array,n:int,bits:int):
         list 
 
     """
-    f={24:resize24bitbufNtimesbigger,8:resize8bitbufNtimesbigger,4:resize4bitbufNtimesbigger,1:resize1bitbufNtimesbigger}[bits]
-    return f(buf,n)
+    f={24: resize24bitbufNtimesbigger,
+        8: resize8bitbufNtimesbigger,
+        4: resize4bitbufNtimesbigger,
+        1: resize1bitbufNtimesbigger}[bits]
+    return f(buf, n)
+
 
 def resizeNtimesbigger(bmp:array,n:int):
-    """Resize an in-memory bmp n times bigger given a particular bit depth n
+    """Resize an in-memory bmp n times bigger 
+            given a particular bit depth n
     
     Args:
         buf : array to resize
         n   : resize factor
-        bits: bit depth of color info (1,4,8,24)
+        bits: bit depth of color info 
+             (1,4,8,24)
         
     Returns:
         unsigned byte array
 
     """
-    bits=bmp[bmpcolorbits]
-    m=getmaxxy(bmp)
-    nx,ny=m[0]*n,m[1]*n
-    nbmp,mx,my=newBMP(nx,ny,bits),m[0]-1,m[1]-1
-    ny-=1
-    if bits<24:copyRGBpal(bmp,nbmp)
-    offset,r=computeBMPoffset(nbmp,0,ny),getxcharcount(nbmp)
-    for buf in itercopyrect(bmp,0,0,mx,my):
-        nbuf=resizebufNtimesbigger(buf,n,bits)
-        i=0
-        while i<n:
-            BMPbitBLTput(nbmp,offset,nbuf)
-            offset+=r
-            i+=1
+    bits = bmp[bmpcolorbits]
+    m = getmaxxy(bmp)
+    nx = m[0] * n
+    ny = m[1] * n
+    nbmp = newBMP(nx, ny, bits)
+    mx = m[0] - 1
+    my = m[1] - 1
+    ny -= 1
+    if bits < 24:
+        copyRGBpal(bmp, nbmp)
+    offset = computeBMPoffset(nbmp, 0, ny)
+    r = getxcharcount(nbmp)
+    for buf in itercopyrect(bmp, 0, 0, mx, my):
+        nbuf = resizebufNtimesbigger(buf, n, bits)
+        i = 0
+        while i < n:
+            BMPbitBLTput(nbmp, offset, nbuf)
+            offset += r
+            i += 1
     return nbmp
+
 
 def colorfilterto24bitregion(bmp,x1,y1,x2,y2,rgbfactors):
     """Applies a color filter to a rectangular area defined by (x1,y1) and (x2,y2) in a 24-bit bitmap
@@ -5323,36 +5319,56 @@ def colorfilterto24bitregion(bmp,x1,y1,x2,y2,rgbfactors):
         byref modified unsigned byte array
 
     """
-    applybyreffuncto24bitregion(bmp,x1,y1,x2,y2,applycolorfiltertoBGRbuf,rgbfactors)
+    applybyreffuncto24bitregion(bmp,
+        x1, y1, x2, y2,
+        applycolorfiltertoBGRbuf, rgbfactors)
 
-def colorfilterto24bitimage(bmp,rgbfactors):
+
+def colorfilterto24bitimage(bmp: array,
+        rgbfactors: list[float, float, float]):
     """Applies a color filter to a whole image in an in-memory 24 bit bitmap
 
     Args:
         bmp       : An unsigned byte array with bmp format
-        rgbfactors: color filter (r:float,g:float,b:float) r,g and b values are 0 to 1
+        rgbfactors: color filter (r:float,g:float,b:float) 
+                    r,g and b values are 0 to 1
         
     Returns:
         byref modified byte array
 
     """
-    colorfilterto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,rgbfactors)
+    colorfilterto24bitregion(bmp,
+        0, 0, getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1, rgbfactors)
 
-def brightnesseadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,percentadj:float):
-    """Applies a brightness adjustment to a rectangular region in an in-memory 24 bit bitmap
+
+def brightnesseadjto24bitregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        percentadj: float):
+    """Applies a brightness adjustment 
+        to a rectangular region 
+        in an in-memory 24 bit bitmap
 
     Args:
-        bmp        \: unsigned byte array with bmp format
+        bmp        : unsigned byte array with bmp format
         x1,y1,x2,y2: defines the rectangle
-        percentadj : float percentage adjustment can be positive or negative
+        percentadj : float percentage adjustment
+                     can be positive or negative
         
     Returns:
         byref modified unsigned byte array
 
     """
-    applyfuncto24bitregion(bmp,x1,y1,x2,y2,applybrightnessadjtoBGRbuf,percentadj)
+    applyfuncto24bitregion(bmp,
+        x1, y1, x2, y2,
+        applybrightnessadjtoBGRbuf, percentadj)
 
-def thresholdadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:int):
+
+def thresholdadjto24bitregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        lumrange: list[int: int]):
     """Applies a threshold adjustment to a rectangular region in an in-memory 24-bit bitmap
 
     Args:
@@ -5364,9 +5380,14 @@ def thresholdadjto24bitregion(bmp:array,x1:int,y1:int,x2:int,y2:int,lumrange:int
         byref modified unsigned byte array
 
     """
-    applyfuncto24bitregion(bmp,x1,y1,x2,y2,applythresholdadjtoBGRbuf,lumrange)
+    applyfuncto24bitregion(bmp,
+        x1, y1, x2, y2,
+        applythresholdadjtoBGRbuf, lumrange)
 
-def thresholdadjcircregion(bmp,x,y,r,lumrange):
+
+def thresholdadjcircregion(bmp: array,
+        x: int,y: int, r: int,
+        lumrange: list[int: int]):
     """Applies a threshold adjustment to a circular region in an in-memory 24-bit bitmap
 
     Args:
@@ -5378,10 +5399,16 @@ def thresholdadjcircregion(bmp,x,y,r,lumrange):
         byref modified byte array
 
     """
-    apply24bitfunctocircregion(bmp,x,y,r,applythresholdadjtoBGRbuf,lumrange)
+    apply24bitfunctocircregion(bmp,
+        x, y, r,
+        applythresholdadjtoBGRbuf, lumrange)
 
-def brightnesseadjto24bitimage(bmp,percentadj):
-    """Applies a brightness adjustment to a whole image in an in-memory 24-bit bitmap
+
+def brightnesseadjto24bitimage(bmp: array, 
+        percentadj: float):
+    """Applies a brightness adjustment 
+        to a whole image 
+        in an in-memory 24-bit bitmap
 
     Args:
         bmp       : unsigned byte array with bmp format
@@ -5391,10 +5418,15 @@ def brightnesseadjto24bitimage(bmp,percentadj):
         byref modified unsigned byte array
 
     """
-    brightnesseadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,percentadj)
+    brightnesseadjto24bitregion(bmp,
+        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1,
+        percentadj)
 
-def thresholdadjto24bitimage(bmp,lumrange):
-    """Applies a threshold adjustment in an in-memory 24-bit bitmap
+
+def thresholdadjto24bitimage(bmp: array,
+        lumrange: list[int :int]):
+    """Applies a threshold adjustment 
+        in an in-memory 24-bit bitmap
 
     Args:
         bmp     : unsigned byte array with bmp format
@@ -5404,9 +5436,12 @@ def thresholdadjto24bitimage(bmp,lumrange):
         byref modified unsigned byte array
 
     """
-    thresholdadjto24bitregion(bmp,0,0,getmaxx(bmp)-1,getmaxy(bmp)-1,lumrange)
+    thresholdadjto24bitregion(bmp,
+        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1,
+        lumrange)
 
-def verticalbrightnessgradto24bitimage(bmp,lumrange):
+
+def verticalbrightnessgradto24bitimage(bmp, lumrange):
     """Applies a vertical brightness gradient 
 
     Args:
