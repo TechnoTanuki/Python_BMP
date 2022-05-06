@@ -150,7 +150,7 @@ from .colors import(
     )
 
 from .paramchecks import(
-    entirecircleinboundary,
+    entirecircleinboundary as _encircbnd,
     entirerectinboundary,
     func24bitonly,
     func24bitonlyandentirecircleinboundary,
@@ -2248,7 +2248,7 @@ def apply24bitfunctocircregion(bmp: array,
                 bmp[s1: e1] = func(bmp[s1: e1], funcparam)
 
 
-@entirecircleinboundary
+@_encircbnd
 def copycircregion2buf(bmp: array,
         x: int, y: int, r: int) -> list:
     """Copies a circular region 
@@ -2386,7 +2386,7 @@ def applynoparamfunctocircregion(bmp: array,
                 bmp[s1: e1] = func(bmp[s1: e1])
 
 
-@entirecircleinboundary        
+@_encircbnd        
 def flipXYcircregion(bmp: array,
         x: int, y: int, r: int):
     """Flip the X and Y coordinates 
@@ -2565,7 +2565,7 @@ def flipvertcircregion(bmp: array,
     verttransformincircregion(bmp, x, y, r, 'F')
 
 
-@entirecircleinboundary
+@_encircbnd
 def verttransformincircregion(bmp: array,
         x: int, y: int, r: int, 
         trans: str):
@@ -4994,7 +4994,7 @@ def eraseeverynthhorizontalline(
         bmp, n, 0, 0)
 
 
-@entirecircleinboundary
+@_encircbnd
 def erasealternatehorizontallinesincircregion(
     bmp: array,
     x: int, y:int, r: int,
