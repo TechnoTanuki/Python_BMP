@@ -2181,11 +2181,11 @@ def applynoparam24bitfunctocircregion(bmp: array,
         and a radius r to a 24-bit bitmap
         
     Args:
-        bmp   : unsigned byte array
+        bmp    : unsigned byte array
                 with bmp format
-        x,y,r : center (x,y) and radius r 
-                of the circular region
-        func  : function to apply
+        x, y, r: center (x,y) and radius r 
+                 of the circular region
+        func   : function to apply
         
     Returns:
         byref modified unsigned byte array
@@ -2234,7 +2234,7 @@ def apply24bitfunctocircregion(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y,r     : center (x,y) and radius r
+        x, y, r   : center (x,y) and radius r
                     of the circular region
         func      : function to apply
         funcparam : parameters of the function
@@ -2283,10 +2283,10 @@ def copycircregion2buf(bmp: array,
         and radius r
 
     Args:
-        bmp   : unsigned byte array
-                with bmp format
-        x,y,r : center (x,y) and radius r
-                of the circular region
+        bmp     : unsigned byte array
+                  with bmp format
+        x, y, r : center (x,y) and radius r
+                  of the circular region
 
     Returns:
         list with buffer of circular region
@@ -2349,7 +2349,7 @@ def copycircregion(bmp: array,
     Args:
         bmp   : unsigned byte array
                 with bmp format
-        x,y,r : center (x,y) and radius r
+        x, y, r: center (x,y) and radius r
                 of the circular region
         newxy : center of circular area
                 to paste the buffer into
@@ -2371,11 +2371,11 @@ def applynoparamfunctocircregion(bmp: array,
         defined by x,y with a radius r
         
     Args:
-        bmp  : unsigned byte array 
-               with bmp format
-        x,y,r: center (x,y) and radius r
-               of the circular region
-        func : function to apply
+        bmp    : unsigned byte array 
+                 with bmp format
+        x, y, r: center (x,y) and radius r
+                 of the circular region
+        func   : function to apply
         
     Returns:
         byref modified unsigned byte array
@@ -2422,10 +2422,10 @@ def flipXYcircregion(bmp: array,
         to rotate itby 90 degrees
         
     Args:
-        bmp   : unsigned byte array 
-                with bmp format
-        x,y,r : center (x,y) and 
-                radius r of region
+        bmp     : unsigned byte array 
+                  with bmp format
+        x, y, r : center (x,y) and 
+                  radius r of region
 
     Returns:
         byref modified unsigned byte array
@@ -2467,8 +2467,10 @@ def fliphoricircregion(bmp: array,
        with a center x,y with a radius r
         
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array 
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r of region
 
     Returns:
         byref modified unsigned byte array
@@ -2486,9 +2488,11 @@ def horitransformincircregion(bmp: array,
         a center x,y with a radius r
         
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
-        trans: single letter transform code
+        bmp  :   unsigned byte array 
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r of region
+        trans:   single letter transform code
                 'L' mirror left 
                 'R' mirror right 
                 'F' flip
@@ -2549,8 +2553,10 @@ def mirrorleftincircregion(bmp: array,
         defined by centerpoint (x,y) and radius r
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) and 
+                 radius r of region
 
     Returns:
         byref modified unsigned byte array
@@ -2561,12 +2567,17 @@ def mirrorleftincircregion(bmp: array,
 
 def mirrorrightincircregion(bmp: array,
         x: int, y: int, r: int):
-    """Mirrors the right half of a circular region
-       defined by  centerpoint (x,y) and radius r
+    """Mirrors the right half
+        of a circular region
+        defined by  centerpoint (x,y)
+        and radius r
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r 
+                 of region
 
     Returns:
         byref modified byte unsigned array
@@ -2577,15 +2588,21 @@ def mirrorrightincircregion(bmp: array,
 
 def flipvertcircregion(bmp: array,
         x: int, y: int, r: int):
-    """Does a vertical flip of a circular region
-       defined by centerpoint (x,y) and radius r
+    """Does a vertical flip
+        of a circular region
+        defined by centerpoint (x,y)
+        and radius r
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array 
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r 
+                 of region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified 
+        unsigned byte array
 
     """
     verttransformincircregion(bmp, x, y, r, 'F')
@@ -2595,16 +2612,22 @@ def flipvertcircregion(bmp: array,
 def verttransformincircregion(bmp: array,
         x: int, y: int, r: int, 
         trans: str):
-    """Applies a vertical transform to circular region
-        with a center x,y with a radius r
+    """Applies a vertical 
+        transform to circular region
+        with a center x,y and 
+        a radius r
         
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
-        trans: single letter transform code
-               'T' mirror top
-               'B' mirror bottom
-               'F' flip
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y)
+                 and radius r
+                 of region
+        trans  :single letter
+                transform code
+                'T' mirror top
+                'B' mirror bottom
+                'F' flip
 
     Returns:
         byref modified unsigned byte array
@@ -2639,15 +2662,21 @@ def verttransformincircregion(bmp: array,
 
 def mirrortopincircregion(bmp: array,
         x: int, y: int, r: int):
-    """Mirrors the top half of a circular region
-        defined by centerpoint (x,y) and radius r
+    """Mirrors the top half
+        of a circular region
+        defined by centerpoint (x,y)
+        and radius r
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r
+                 of region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     verttransformincircregion(bmp, x, y, r, 'T')
@@ -2655,15 +2684,21 @@ def mirrortopincircregion(bmp: array,
 
 def mirrorbottomincircregion(bmp: array,
         x: int, y: int, r: int):
-    """Mirrors the bottom half of a circular region
-        defined by centerpoint (x,y) and radius r
+    """Mirrors the bottom half
+        of a circular region
+        defined by centerpoint (x,y)
+        and radius r
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r
+                 of region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     verttransformincircregion(bmp, x, y, r, 'B')
@@ -2671,47 +2706,62 @@ def mirrorbottomincircregion(bmp: array,
 
 def mirrortopleftincircregion(bmp: array,
         x: int, y: int, r: int):
-    """Mirrors the top left  of a circular region
-        defined by centerpoint (x,y) and radius r
+    """Mirrors the top left
+        of a circular region
+        defined by centerpoint (x,y)
+        and radius r
         
-    Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+    Args: 
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y)
+                 and radius r
+                 of region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     mirrorleftincircregion(bmp, x, y, r)
     mirrortopincircregion(bmp, x, y, r)
 
-def mirrortoprightincircregion(bmp: array,
+def mirrortoprightincircregion(
+        bmp: array,
         x: int, y: int, r: int):
     """Mirrors the top right of 
         a circular region defined
-        by centerpoint (x,y) and radius r
+        by centerpoint (x,y)
+        and radius r
         
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) and
+                 radius r of region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     mirrorrightincircregion(bmp, x, y, r)
     mirrortopincircregion(bmp, x, y, r)
 
 
-def mirrorbottomleftincircregion(bmp: array,
+def mirrorbottomleftincircregion(
+        bmp: array,
         x: int, y: int, r: int):
     """Mirrors the bottom left of 
         a circular region defined
-        by centerpoint (x,y) and radius r
+        by centerpoint (x,y) 
+        and radius r
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) and 
+                 radius r of region
 
     Returns:
         byref modified unsigned byte array
@@ -2721,15 +2771,19 @@ def mirrorbottomleftincircregion(bmp: array,
     mirrorbottomincircregion(bmp, x, y, r)
 
 
-def mirrorbottomrightincircregion(bmp: array,
+def mirrorbottomrightincircregion(
+        bmp: array,
         x: int, y: int, r: int):
     """Mirrors the bottom right of 
         a circular region defined
-        by centerpoint (x,y) and radius r
+        by centerpoint (x,y)
+        and radius r
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r of region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) and 
+                 radius r of region
 
     Returns:
         byref modified unsigned byte array
@@ -2750,7 +2804,7 @@ def vertbrightnessgrad2circregion(bmp: array,
     Args:
         bmp     : unsigned byte array
                   with bmp format
-        x,y,r   : center (x,y) and radius r 
+        x, y, r : center (x,y) and radius r 
                   of a circular region        
         lumrange: [byte,byte] that defines 
                   the range of luminosity
@@ -2787,7 +2841,7 @@ def horibrightnessgrad2circregion(bmp: array,
     Args:
         bmp     : unsigned byte array
                   with bmp format
-        x,y,r   : center (x,y) and radius r 
+        x, y, r : center (x,y) and radius r 
                   of a circular region
         lumrange: [byte,byte] that defines 
                   the range of luminosity
@@ -2818,13 +2872,15 @@ def outlinecircregion(bmp: array,
         and radius r
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        x,y,r: center (x,y) and radius r 
-               of the circular region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r 
+                 of the region
 
     Returns:
-        byref modified byte array
+        byref modified 
+        unsigned byte array
 
     """
     bits = bmp[_bmclrbits]
@@ -2874,16 +2930,19 @@ def monocircle(bmp: array,
         x: int, y: int, r: int):
     """Applies a monochrome filter 
         to a circular region defined 
-        by centerpoint (x,y) and radius r
+        by centerpoint (x,y)
+        and radius r
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        x,y,r: center (x,y) and radius r
-               of the circular region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r
+                 of the region
 
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     applynoparam24bitfunctocircregion(bmp,
@@ -2893,18 +2952,21 @@ def monocircle(bmp: array,
 def colorfiltercircregion(bmp: array,
         x: int, y: int, r: int,
         rgbfactors: list):
-    """Applies a color filter defined 
-        by rgbfactors to a circular region
+    """Applies a color filter 
+        defined by rgbfactors
+        to a circular region
         defined by centerpoint (x,y) 
         and radius r
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y,r     : center (x,y) and radius r 
-                    of the circular region
-        rgbfactors: [r,g,b] range of r,g and b
-                    are from 0 min to 1 max
+        x, y, r   : center (x,y)
+                    and radius r 
+                    of the region
+        rgbfactors: [r,g,b] 
+                    range of r,g and b are
+                    from 0 min to 1 max
         
     Returns:
         byref modified byte array
@@ -2919,13 +2981,15 @@ def gammacorrectcircregion(bmp: array,
         gamma: float):
     """Applies gamma correction gamma 
         to a circular region defined 
-        by centerpoint (x,y) and radius r 
+        by centerpoint (x,y)
+        and radius r 
     
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        x,y,r: center (x,y) and radius r
-               of the circular region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y)
+                 and radius r
+                 of the region
         gamma: float value of the
                gamma adjustment
         
@@ -2946,8 +3010,9 @@ def brightnessadjcircregion(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y,r     : center (x,y) and radius r
-                    of thre circular region
+        x, y, r   : center (x,y)
+                    and radius r
+                    of the region
         percentadj: float percent of the 
                     brightness adjustment
         
@@ -2968,13 +3033,15 @@ def invertbitsincircregion(bmp: array,
         and radius r 
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        x,y,r: center (x,y) and radius r 
-               of the circular region
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y)
+                 and radius r 
+                 of the region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     applynoparamfunctocircregion(bmp,
@@ -2999,7 +3066,8 @@ def circlevec(bmp: array,
         isfilled: toggles if circle is filled
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     v = roundvect(v)
@@ -3014,14 +3082,16 @@ def filledcircle(bmp: array,
         with a given color
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        x,y,r: center (x,y) and radius r
-               of the filled circle
-        color: color of the filled circle
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r
+                 of filled circle
+        color: color of filled circle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     bits = bmp[_bmclrbits]
@@ -3079,7 +3149,8 @@ def circle(bmp: array,
     Args:
         bmp     : unsigned byte array 
                   with bmp format
-        x,y,r   : center (x,y) and radius r
+        x, y, r : center (x,y)
+                  and radius r
                   of the circle
         color   : color of the circle
         isfilled: toggles if circle is filled
@@ -3101,7 +3172,7 @@ def circle(bmp: array,
         if bits == 24:
             color = int2BGRarr(color)
             if dobndcheck:
-                for p in itercircle(x,y,r):
+                for p in itercircle(x, y, r):
                     px = p[0]
                     py = p[1]
                     if isinBMPrectbnd(bmp, px, py):
@@ -3124,9 +3195,9 @@ def circle(bmp: array,
                     bmp[s1:s1+3]=bmp[s2:s2+3]=bmp[s3:s3+3]=bmp[s4:s4+3]=bmp[s5:s5+3]=bmp[s6:s6+3]=bmp[s7:s7+3]=bmp[s8:s8+3]=color
         elif bits == 8:
             if dobndcheck:
-                for p in itercircle(x,y,r):
+                for p in itercircle(x, y, r):
                     px, py =p[0], p[1]
-                    if isinBMPrectbnd(bmp,px,py): 
+                    if isinBMPrectbnd(bmp, px, py): 
                         bmp[c(bmp, px, py)] = color
             else:
                 for p in itercirclepart(r):
@@ -3134,7 +3205,7 @@ def circle(bmp: array,
                     y1, y2 = mirror(y, p[1])
                     bmp[c(bmp,x1,y1)] = bmp[c(bmp,x2,y2)] = bmp[c(bmp,x1,y2)] = bmp[c(bmp,x2,y1)] = color
         else:
-            for p in itercircle(x,y,r): 
+            for p in itercircle(x, y, r): 
                 plotxybit(bmp, p[0], p[1], color)
 
 
@@ -3143,14 +3214,16 @@ def thickcircle(bmp: array,
         penradius: int,
         color: int):
     """Draws a thick circle defined
-        by centerpoint (x,y) and radius r 
+        by centerpoint (x,y)
+        and radius r 
         with a given color using
         a pen with radius penradius
 
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        x,y,r    : center (x,y) and radius r
+        x, y, r  : center (x,y)
+                   and radius r
         penradius: radius of round pen 
         color    : color of the circle
         
@@ -3177,7 +3250,7 @@ def gradthickcircle(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y,r     : center (x,y) and radius r
+        x, y, r   : center (x,y) and radius r
         penradius : radius of round pen 
         lumrange  : [byte,byte] range of the 
                     luminosity gradient
@@ -3207,11 +3280,15 @@ def gradcircle(bmp: array,
         and color defined by RGBfactors
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        x,y,r     : center (x,y) and radius r
-        lumrange  : [byte,byte] range of the gradient
-        rgbfactors: [r,g,b]  all values in list are ufloat
-                    range of r, g and b are 0 min to 1 max
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y, r   : center (x,y)
+                    and radius r
+        lumrange  : [byte,byte] range of
+                    the gradient
+        rgbfactors: [r,g,b] range of 
+                    r, g and b are 
+                    from 0 min to 1 max
         
     Returns:
         byref modified unsigned byte array
@@ -3468,7 +3545,7 @@ def drawarc(bmp: array,
     Args:
         bmp        : unsigned byte array
                      with bmp format
-        x,y,r      : defines a circle
+        x, y, r     : defines a circle
                      that contain the arc
         color      : color of arc
         showoutline: True -> draw arc outline
@@ -5032,7 +5109,7 @@ def erasealternatehorizontallinesincircregion(
     Args:
         bmp                : unsigned byte array
                              with bmp format
-        x,y,r              : defines the circular region
+        x, y, r            : defines the circular region
         int_eraseeverynline: erase every nth line 
                              in the circular region
         int_eraseNthline   : control which line
@@ -5067,10 +5144,11 @@ def eraseeverynthhorizontallineinccircregion(
         in a circular region
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        x,y,r: center (x,y) and radius r        
-        n    : erase every nth line
+        bmp    : unsigned byte array
+                 with bmp format
+        x, y, r: center (x,y)
+                 and radius r        
+        n      : erase every nth line
         
     Returns:
         byref modified unsigned byte array
@@ -6044,12 +6122,17 @@ def thresholdadjto24bitregion(bmp: array,
 def thresholdadjcircregion(bmp: array,
         x: int,y: int, r: int,
         lumrange: list[int: int]):
-    """Applies a threshold adjustment to a circular region in an in-memory 24-bit bitmap
+    """Applies a threshold adjustment
+        to a circular region
+        in an in-memory 24-bit bitmap
 
     Args:
-        bmp      : An unsigned byte array with bmp format
-        x,y,r    : defines the circular region 
-        lumrange : (byte:byte) threshold adjustment
+        bmp      : unsigned byte array
+                   with bmp format
+        x, y, r  : centerpoint (x,y) 
+                   and radius r 
+        lumrange : (byte:byte) 
+                   threshold adjustment
         
     Returns:
         byref modified byte array
@@ -6261,34 +6344,47 @@ def plotfilledflower(bmp: array,
 
 
 def plotbmpastext(bmp: array):
-    """Plot a bitmap as text (cannot output 24-bit bmp)
+    """Plot a bitmap as text
+       (cannot output 24-bit bmp)
 
     Args:
-        bmp : unsigned byte array with bmp format
+        bmp : unsigned byte array
+              with bmp format
         
     Returns:
-        console text output for debug and ascii art
+        console text output
+        for debug and ascii art
 
     """
-    bits,my,r,offset=getcolorbits(bmp),getmaxy(bmp)-1,getxcharcount(bmp),gethdrsize(bmp)
-    for y in range(my,0,-1):
-        for x in range(0,r):
-            if bits==1: plotbitsastext(bmp[offset+r*y+x])
-            if bits==4:
-                c0,c1=divmod(bmp[offset+r*y+x],16)
+    bits = getcolorbits(bmp)
+    my = getmaxy(bmp) - 1
+    r = getxcharcount(bmp)
+    offset = gethdrsize(bmp)
+    for y in range(my, 0, -1):
+        for x in range(0, r):
+            i = offset + r * y + x
+            if bits == 1:
+                plotbitsastext(bmp[i])
+            if bits == 4:
+                c0, c1= divmod(bmp[i],16)
                 print(chr(97+c0)+chr(97+c1),end='')
-            if bits==8: print(chr(bmp[offset+r*y+x]),end='')
+            if bits==8: 
+                print(chr(bmp[i]),end='')
         print()
 
 
 def piechart(bmp: array,
     x: int, y: int, r: int,
     dataandcolorlist: list):
-    """Apply func to a rectangular area in a 24-bit bitmap
+    """Apply func to a
+        rectangular area in 
+        a 24-bit bitmap
 
     Args:
-        bmp              : unsigned byte array with bmp format
-        x,y,r            : center (x,y) and radius r
+        bmp              : unsigned byte array
+                           with bmp format
+        x, y, r          : center (x,y) 
+                           and radius r
         dataandcolorlist : stuff to plot + color
         
     Returns:
@@ -8899,7 +8995,7 @@ def mirrortoprightincircregion2file(
 @_fntimer
 def mirrorbottomrightincircregion2file(
         ExistingBMPfile: str,
-        NewBMPfile:str,
+        NewBMPfile: str,
         x: int, y: int, r: int):
     """Mirrors the bottom right
         of a circular region 
@@ -9076,7 +9172,7 @@ def copycircregion2file(
                           to existing file
         NewBMPfile      : New file to
                           save changes to
-        x,y,r           : center (x,y)
+        x, y, r         : center (x,y)
                           and radius r
         newxycenterpoint: (x:int,y:int)
                           where to paste
@@ -9123,7 +9219,8 @@ def horizontalbrightnessgradregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int, x2: int, y2: int, 
         lumrange: list):
-    """Applies a horizontal brightness gradient
+    """Applies a horizontal
+        brightness gradient
         to a rectangular area
 
     Args:
@@ -9131,7 +9228,7 @@ def horizontalbrightnessgradregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x1,y1,x2,y2    : defines rectangular area
+        x1, y1, x2 ,y2 : defines rectangular area
         lumrange       : (byte:byte) defines 
                          the gradient
 
@@ -9151,7 +9248,8 @@ def verticalbrightnessgrad2file(
         ExistingBMPfile: str,
         NewBMPfile: str, 
         lumrange: list):
-    """Applies a vertical brightness gradient
+    """Applies a vertical 
+        brightness gradient
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9173,10 +9271,13 @@ def verticalbrightnessgrad2file(
 
 @_fntimer
 def verticalbrightnessgradregion2file(
-        ExistingBMPfile: str, NewBMPfile: str,
-        x1: int, y1: int, x2: int, y2: int,
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
         lumrange: list):
-    """Applies a vertical brightness gradient
+    """Applies a vertical 
+        brightness gradient
         to a rectangular area
 
     Args:
@@ -9184,7 +9285,8 @@ def verticalbrightnessgradregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x1,y1,x2,y2    : defines rectangular area
+        x1, y1, x2, y2 : defines the
+                         rectangular area
         lumrange       : (byte:byte)
                          defines the gradient
 
