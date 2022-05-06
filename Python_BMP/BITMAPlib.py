@@ -196,7 +196,10 @@ from .inttools import(
     )
 
 from .messages import sysmsg
-from .nibbletools import resize4bitbufNtimesbigger
+from .nibbletools import(
+    resize4bitbufNtimesbigger
+    )
+
 from .textgraphics import(
     plotbitsastext,
     plot8bitpatternastext
@@ -291,7 +294,8 @@ def getmaxy(bmp: array) -> int:
 
 def getmaxxy(bmp: array) -> tuple:
     """Gets the max x and y values 
-        stored in the windows bmp header
+        stored in the
+        windows bmp header
 
     Args:
         bmp: unsigned byte array
@@ -306,11 +310,14 @@ def getmaxxy(bmp: array) -> tuple:
 
 
 def bottomrightcoord(bmp: array) -> tuple:
-    """Gets the maximum bottom right 
-        coordinates of a windows bitmap
+    """Gets the maximum
+        bottom right 
+        coordinates of 
+        a windows bitmap
 
     Args:
-        bmp: An unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         tuple (x:int,y:int) 
@@ -326,7 +333,7 @@ def centercoord(bmp: array) -> tuple:
 
     Args:
         bmp: unsigned byte array
-            with bmp format
+             with bmp format
 
     Returns:
         tuple (x:int,y:int) 
@@ -338,13 +345,17 @@ def centercoord(bmp: array) -> tuple:
 
 def isinBMPrectbnd(bmp: array,
         x: int, y: int) -> bool:
-    """Checks if (x,y) coordinates are within 
-        the rectangular bounds of a bitmap
+    """Checks if (x,y) coordinates 
+        are within 
+        the rectangular bounds 
+        of a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int value of location 
-             in x axis and y axis
+        bmp: unsigned byte array 
+             with bmp format
+        x,y: unsigned int value 
+             of location 
+             in x-axis and y-axis
 
     Returns:
         True if within bounds
@@ -352,13 +363,16 @@ def isinBMPrectbnd(bmp: array,
 
     """
     return (x < _rdint(_bmx, 4, bmp) and
-            y < _rdint(_bmy, 4, bmp)) and (x > -1 and y > -1)
+            y < _rdint(_bmy, 4, bmp)) and \
+           (x > -1 and y > -1)
 
 
 def listinBMPrecbnd(bmp: array,
         xylist: list) -> bool:
-    """Checks if a list of (x,y) coordinates 
-        are within the rectangular bounds 
+    """Checks if a list of 
+        (x,y) coordinates 
+        are within 
+        the rectangular bounds 
         of a bitmap
 
     Args:
@@ -379,21 +393,25 @@ def listinBMPrecbnd(bmp: array,
     return retval
 
 def setcolorbits(bmp: array, bits: int):
-    """Set the bit depth of a windows bitmap
+    """Set the bit depth
+        of a windows bitmap
 
     Args:
         bmp: An unsigned  byte array 
              with bmp format
-        int: value of bit depth (1,4,8,24)
+        int: value of bit depth
+             (1,4,8,24)
         
     Returns:
-        byref modified byte array with new file size
+        byref modified byte array
+        with new file size
 
     """
     bmp[_bmclrbits] = bits
 
 def getcolorbits(bmp: array) -> int:
-    """Get the bit depth of a windows bmp
+    """Get the bit depth
+        of a windows bmp
 
     Args:
         bmp: unsigned byte array 
@@ -406,7 +424,8 @@ def getcolorbits(bmp: array) -> int:
     return bmp[_bmclrbits]
 
 def getxcharcount(bmp: array) -> int:
-    """Get the chars or bytes in row of a bmp
+    """Get the chars or bytes
+        in row of a bmp
 
     Args:
         bmp: unsigned byte array 
@@ -423,7 +442,8 @@ def getxcharcount(bmp: array) -> int:
 
 
 def setfilesize(bmp: array, size: int):
-    """Set the header size of a windows bitmap
+    """Set the header size
+        of a windows bitmap
 
     Args:
         bmp  : unsigned byte array 
@@ -440,7 +460,8 @@ def setfilesize(bmp: array, size: int):
 
 
 def getfilesize(bmp: array) -> int:
-    """Get the header size of a windows bMp
+    """Get the header size
+        of a windows bmp
 
     Args:
         bmp: unsigned byte array 
