@@ -23,13 +23,13 @@ from random import random
 from typing import Callable
 from .proctimer import functimer as _fntimer
 from .bmpconstants import(
-    bmpheaderid,
-    bmpfilesize,
-    bmphdrsize,
+    bmpheaderid as _bmhdid,
+    bmpfilesize as _bmflsz,
+    bmphdrsize as _bmhdsz,
     bmpcolorbits as _bmclrbits,
     bmpx as _bmx,
     bmpy as _bmy,
-    bmppal,
+    bmppal as _bmpal,
     bmpheadersize
     )
     
@@ -436,7 +436,7 @@ def setfilesize(bmp: array, size: int):
         with new file size
 
     """
-    _wrint(bmpfilesize, 8, bmp, size)
+    _wrint(_bmflsz, 8, bmp, size)
 
 
 def getfilesize(bmp: array) -> int:
@@ -451,7 +451,7 @@ def getfilesize(bmp: array) -> int:
         of the bmp header
 
     """
-    return _rdint(bmpfilesize, 8, bmp)
+    return _rdint(_bmflsz, 8, bmp)
 
 
 def sethdrsize(bmp: array, hdsize: int):
@@ -470,7 +470,7 @@ def sethdrsize(bmp: array, hdsize: int):
         with new header size
 
     """
-    _wrint(bmphdrsize, 4, bmp, hdsize)
+    _wrint(_bmhdsz, 4, bmp, hdsize)
 
 
 def gethdrsize(bmp: array) -> int:
@@ -484,7 +484,7 @@ def gethdrsize(bmp: array) -> int:
         int value of header size
 
     """
-    return _rdint(bmphdrsize, 4, bmp)
+    return _rdint(_bmhdsz, 4, bmp)
 
 
 def getimageinfo(bmp: array):
@@ -498,7 +498,7 @@ def getimageinfo(bmp: array):
         4 int values
 
     """
-    return _rdint(_bmy, 4, bmp), bmp[_bmclrbits], getxcharcount(bmp), _rdint(bmphdrsize, 4, bmp)
+    return _rdint(_bmy, 4, bmp), bmp[_bmclrbits], getxcharcount(bmp), _rdint(_bmhdsz, 4, bmp)
 
 
 def getmaxcolors(bmp: array) -> int:
@@ -1029,7 +1029,7 @@ def getRGBpal(bmp: array,
         [R:byte,G:byte,B:byte]
 
     """
-    i= bmppal + (c << 2)
+    i= _bmpal + (c << 2)
     return [bmp[i + 2], bmp[i + 1], bmp[i]]
 
 
@@ -1049,7 +1049,7 @@ def setRGBpal(bmp: array, c: int,
         byref modified unsigned byte array
 
     """
-    start = bmppal + (c << 2)
+    start = _bmpal + (c << 2)
     end= start + 3
     bmp[start: end] = RGBtoBGRarr(r, g, b)
 
@@ -1144,7 +1144,7 @@ def copyRGBpal(sourceBMP: array, destBMP: array):
 
     """
     hdl = gethdrsize(sourceBMP)
-    destBMP[bmppal: hdl] = sourceBMP[bmppal: hdl]
+    destBMP[_bmpal: hdl] = sourceBMP[_bmpal: hdl]
 
 
 def setbmp_properties(
@@ -1162,7 +1162,7 @@ def setbmp_properties(
     bmp = array('B')
     [filesize, hdrsize, x, y, bits] = bmpmeta
     bmp.frombytes(b'\x00' * (filesize))
-    bmp[0:2] = bmpheaderid
+    bmp[0:2] = _bmhdid
     setfilesize(bmp, filesize)
     sethdrsize(bmp, hdrsize)
     setmaxx(bmp, x)
@@ -4639,7 +4639,7 @@ def getBGRpalbuf(bmp: array):
         unsigned byte array (BGR)
 
     """
-    return bmp[bmppal: gethdrsize(bmp)]
+    return bmp[_bmpal: gethdrsize(bmp)]
 
 
 def convertbufto24bit(buf: array,
