@@ -165,9 +165,9 @@ from .bittools import packbitlisttobuf
 from .bufferflip import flipnibbleinbuf, rotatebitsinbuf
 from .buffersplit import altsplitbuf3way, altsplitbufnway
 from .chartools import(
-    char2int,
-    enumletters,
-    enumreverseletters
+    char2int as _ch2in,
+    enumletters as _enchr,
+    enumreverseletters as _enchrev
     )
 
 from .conditionaltools import iif, swapif
@@ -1314,7 +1314,7 @@ def loadBMP(filename: str) -> array:
         if hd != b'BM': 
             print(sysmsg['notBMP'])
         else:
-            fsize = char2int(f.read(8))
+            fsize = _ch2in(f.read(8))
             f.seek(0)
             a.frombytes(f.read(fsize))
         f.close()
@@ -3857,7 +3857,7 @@ def plotstring(bmp: array,
     plotstringfunc(bmp, x, y,
         str2plot,scale,pixspace,
         spacebetweenchar,color,
-        fontbuf,enumletters,plot8bitpattern)
+        fontbuf,_enchr,plot8bitpattern)
 
 
 def plotstringupsidedown(bmp: array,
@@ -3889,7 +3889,7 @@ def plotstringupsidedown(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace, spacebetweenchar,
         color, fontbuf,
-        enumletters,
+        _enchr,
         plot8bitpatternupsidedown)
 
 
@@ -3922,7 +3922,7 @@ def plotreversestring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace, spacebetweenchar,
         color, fontbuf,
-        enumreverseletters,
+        _enchrev,
         plotrotated8bitpattern)
 
 
@@ -3958,7 +3958,7 @@ def plotstringsideway(bmp: array,
     xstep = (scale << 3 ) + spacebetweenchar
     ypixels = fontbuf[0]
     ystep = ypixels * scale + spacebetweenchar
-    for c in enumletters(str2plot):
+    for c in _enchr(str2plot):
         if c=='\n':
             x += ystep #we swap x and y since sideways
             y = oy
@@ -4002,7 +4002,7 @@ def plotstringvertical(bmp: array,
     ypixels = fontbuf[0]
     xstep = (scale << 3) + spacebetweenchar
     ystep = ypixels * scale + spacebetweenchar
-    for c in enumletters(str2plot):
+    for c in _enchr(str2plot):
         if c == '\n':
             x += xstep
             y = oy
