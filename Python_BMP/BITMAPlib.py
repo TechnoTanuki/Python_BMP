@@ -191,8 +191,8 @@ from .fractals import(
 from .inttools import(
     readint as _rdint,
     writeint as _wrint, 
-    int2buf,
-    buf2int
+    int2buf as _in2bf,
+    buf2int as _bf2in
     )
 
 from .messages import sysmsg
@@ -4861,9 +4861,9 @@ def copyrect(bmp: array,
     """
     retval = array('B', [bmp[_bmclrbits]])
     x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
-    retval += int2buf(2, x2 - x1 + 2)
-    retval += int2buf(2, y2 - y1 + 1)
-    retval += int2buf(2, adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits]))
+    retval += _in2bf(2, x2 - x1 + 2)
+    retval += _in2bf(2, y2 - y1 + 1)
+    retval += _in2bf(2, adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits]))
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         retval += buf
     return retval
@@ -4888,12 +4888,12 @@ def pasterect(bmp: array, buf: array,
     if bmp[_bmclrbits] != buf[0]:
         print(sysmsg['bitsnotequal'])
     else:
-        x2 = x1 + buf2int(buf[1: 3])
-        y2 = y1 + buf2int(buf[3: 5])
+        x2 = x1 + _bf2in(buf[1: 3])
+        y2 = y1 + _bf2in(buf[3: 5])
         r = getxcharcount(bmp)
         if listinBMPrecbnd(bmp, ((x1, y1), (x2, y2))):
             offset = computeBMPoffset(bmp, x1, y2)
-            br = buf2int(buf[5: 7])
+            br = _bf2in(buf[5: 7])
             startoff = 7
             endoff = br + 7
             bufsize = len(buf)
@@ -4923,7 +4923,7 @@ def convertselection2BMP(buf: array):
     if not isvalidcolorbit(bits): 
         print (sysmsg['invalidbuf'])
     else:
-        bmp = newBMP(buf2int(buf[1: 3]) + 1, buf2int(buf[3: 5]) + 1, bits)
+        bmp = newBMP(_bf2in(buf[1: 3]) + 1, _bf2in(buf[3: 5]) + 1, bits)
         pasterect(bmp, buf, 0, 0)
     return bmp
 
