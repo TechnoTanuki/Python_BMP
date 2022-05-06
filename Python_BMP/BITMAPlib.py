@@ -172,7 +172,11 @@ from .chartools import(
 
 from .conditionaltools import iif, swapif
 from .dicttools import dict2descorderlist
-from .fileutils import checklink, checklinks
+from .fileutils import(
+    checklink as _filechk,
+    checklinks as _filechks
+    )
+
 from .fonts import(
     font8x8,
     font8x14,
@@ -1270,7 +1274,7 @@ def CopyBMPxydim2newBMP(bmp: array,
     return newBMP(getmaxx(bmp) ,getmaxy(bmp) , newbits)
 
 
-@checklink
+@_filechk
 def loadBMP(filename: str) -> array:
     """Load bitmap to a byte array
 
@@ -6667,7 +6671,7 @@ def fern(bmp: array,
         y, y, abs(x2 - x1) // 2, 0, color, 100000)
 
 
-@checklink
+@_filechk
 def applybyreffuncwithparamtoregionandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6695,7 +6699,7 @@ def applybyreffuncwithparamtoregionandsave(
         print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def applybyref24bitcolorfunctoregionandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6726,7 +6730,7 @@ def applybyref24bitcolorfunctoregionandsave(
             print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 
-@checklink        
+@_filechk        
 def applybyref24bitfunctoregionandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6755,7 +6759,7 @@ def applybyref24bitfunctoregionandsave(
             print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def applybyreffunctoregionandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6783,7 +6787,7 @@ def applybyreffunctoregionandsave(
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
-@checklink    
+@_filechk    
 def applyfunctoregionandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6810,7 +6814,7 @@ def applyfunctoregionandsave(
             print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def applybyreffuncandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6833,7 +6837,7 @@ def applybyreffuncandsave(
         print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 
-@checklink    
+@_filechk    
 def applybyreffuncwithparamandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6846,7 +6850,7 @@ def applybyreffuncwithparamandsave(
         print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def applyfuncandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6868,7 +6872,7 @@ def applyfuncandsave(
         print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def apply24bitfuncandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6893,7 +6897,7 @@ def apply24bitfuncandsave(
             print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def apply24bitfuncwithparamandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6920,7 +6924,7 @@ def apply24bitfuncwithparamandsave(
             print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def apply8bitabovefuncandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6945,7 +6949,7 @@ def apply8bitabovefuncandsave(
             print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def applyfunctocircregion(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6970,7 +6974,7 @@ def applyfunctocircregion(
         print(sysmsg['savecircfunc']%(func.__name__ ,x,y,r,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def applyfunctocircregionwithparam(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -6997,7 +7001,7 @@ def applyfunctocircregionwithparam(
         print(sysmsg['savecircfuncwithparam']%(func.__name__ ,x,y,r,funcparam,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def apply24bitcoloradjfunctocircregion(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7025,7 +7029,7 @@ def apply24bitcoloradjfunctocircregion(
             print(sysmsg['savecircfunc']%(func.__name__ ,x,y,r,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def apply24bitcoloradjfuncwithparam2circregion(
     ExistingBMPfile: str, 
     NewBMPfile: str,
@@ -7055,7 +7059,7 @@ def apply24bitcoloradjfuncwithparam2circregion(
             print(sysmsg['savecircfuncwithparam']%(func.__name__ ,x,y,r,funcparam,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def applycoloradjfunc(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7092,7 +7096,7 @@ def applycoloradjfunc(
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
-@checklink
+@_filechk
 def apply24bitcoloradjfunc(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7120,7 +7124,7 @@ def apply24bitcoloradjfunc(
             print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
 
 
-@checklink        
+@_filechk        
 def applynoparamcoloradjfunc(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7151,7 +7155,7 @@ def applynoparamcoloradjfunc(
         print(sysmsg['savenoparamfunc']%(func.__name__,ExistingBMPfile,NewBMPfile))
 
 
-@checklink
+@_filechk
 def cropBMPandsave(
     ExistingBMPfile: str,
     NewBMPfile: str,
@@ -7173,7 +7177,7 @@ def cropBMPandsave(
         x1, y1, x2, y2, crop)
 
 
-@checklink
+@_filechk
 def cropBMPandsaveusingrectbnd(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7197,7 +7201,7 @@ def cropBMPandsaveusingrectbnd(
         crop)
 
 
-@checklinks
+@_filechks
 def imagecomp(
         inputfile1: str,
         inputfile2: str,
@@ -7237,7 +7241,7 @@ def imagecomp(
             print(sysmsg['savdifffile']%diff_file)
 
 
-@checklink
+@_filechk
 @functimer
 def reduce24bitimagebits(
         Existing24BMPfile: str,
@@ -7283,7 +7287,7 @@ def reduce24bitimagebits(
             print(sysmsg['savemod']%(Existing24BMPfile, NewBMPfile))
 
 
-@checklink
+@_filechk
 @functimer
 def imgregionbyRGB2file(
         ExistingBMPfile: str, NewBMPfile: str,
