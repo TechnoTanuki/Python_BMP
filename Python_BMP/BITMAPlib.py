@@ -153,8 +153,8 @@ from .paramchecks import(
     entirecircleinboundary as _encircbnd,
     entirerectinboundary as _enrectbnd,
     func24bitonly as _fn24bit,
-    func24bitonlyandentirecircleinboundary,
-    func24bitonlyandentirerectinboundary,
+    func24bitonlyandentirecircleinboundary as _fn24bitencircbnd,
+    func24bitonlyandentirerectinboundary as _fn24bitenrectbnd,
     func8and24bitonlyandentirecircleinboundary,
     func8and24bitonlyandentirerectinboundary,
     intcircleparam,
@@ -2712,7 +2712,7 @@ def mirrorbottomrightincircregion(bmp: array,
     mirrorrightincircregion(bmp, x, y, r)
     mirrorbottomincircregion(bmp, x, y, r)
 
-@func24bitonlyandentirecircleinboundary  
+@_fn24bitencircbnd  
 def vertbrightnessgrad2circregion(bmp: array,
         x: int, y: int, r: int,
         lumrange: list):
@@ -2749,7 +2749,7 @@ def vertbrightnessgrad2circregion(bmp: array,
         bmp[s1: e1], bmp[s2: e2] = f(bmp[s1: e1], l1), f(bmp[s2: e2], l2)
 
 
-@func24bitonlyandentirecircleinboundary     
+@_fn24bitencircbnd     
 def horibrightnessgrad2circregion(bmp: array,
         x: int, y: int, r: int,
         lumrange: list):
@@ -6272,7 +6272,7 @@ def piechart(bmp: array,
     return [alist, big]
 
 
-@func24bitonlyandentirerectinboundary
+@_fn24bitenrectbnd
 def applybyrefnoparamfuncto24bitregion(
         bmp: array,
         x1: int, y1: int,
@@ -6298,7 +6298,7 @@ def applybyrefnoparamfuncto24bitregion(
         offset += r
 
 
-@func24bitonlyandentirerectinboundary
+@_fn24bitenrectbnd
 def applybyreffuncto24bitregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -6327,7 +6327,7 @@ def applybyreffuncto24bitregion(bmp: array,
         offset += r
 
 
-@func24bitonlyandentirerectinboundary
+@_fn24bitenrectbnd
 def applyfuncto24bitregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -6351,7 +6351,7 @@ def applyfuncto24bitregion(bmp: array,
         BMPbitBLTput(bmp, offset, func(buf, funcparam))
         offset += r
 
-@func24bitonlyandentirerectinboundary
+@_fn24bitenrectbnd
 def verticalbrightnessgradto24bitregion(
         bmp: array,
         x1: int, y1: int,
@@ -6379,7 +6379,7 @@ def verticalbrightnessgradto24bitregion(
         lum += dlum
 
 
-@func24bitonlyandentirerectinboundary
+@_fn24bitenrectbnd
 def horizontalbrightnessgradto24bitregion(
         bmp: array,
         x1: int, y1: int,
@@ -6411,7 +6411,7 @@ def horizontalbrightnessgradto24bitregion(
         l += dl
 
 
-@func24bitonlyandentirecircleinboundary 
+@_fn24bitencircbnd 
 def magnifyNtimescircregion(bmp: array,
         x: int, y: int, r: int, n: int):
     """Magnify a circular region in a bitmap file by n
@@ -6437,7 +6437,7 @@ def magnifyNtimescircregion(bmp: array,
         bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[c(b,x3,y3):c(b,x4,y3)],b[c(b,x3,y4):c(b,x4,y4)]
 
 
-@func24bitonlyandentirecircleinboundary 
+@_fn24bitencircbnd 
 def pixelizenxncircregion(bmp: array,
         x: int, y: int, r: int, n: int):
     """Pixelizze a circular region in a bitmap file by n
