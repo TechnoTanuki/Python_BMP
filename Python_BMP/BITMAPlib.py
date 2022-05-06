@@ -21,7 +21,7 @@ from array import array
 from math import sin, cos, radians
 from random import random
 from typing import Callable
-from .proctimer import functimer
+from .proctimer import functimer as _fntimer
 from .bmpconstants import(
     bmpheaderid,
     bmpfilesize,
@@ -7268,7 +7268,7 @@ def imagecomp(
 
 
 @_filechk
-@functimer
+@_fntimer
 def reduce24bitimagebits(
         Existing24BMPfile: str,
         NewBMPfile: str,
@@ -7321,7 +7321,7 @@ def reduce24bitimagebits(
 
 
 @_filechk
-@functimer
+@_fntimer
 def imgregionbyRGB2file(
         ExistingBMPfile: str, NewBMPfile: str,
         edgeradius: int, edgecolor: int,
@@ -7355,7 +7355,7 @@ def imgregionbyRGB2file(
         print(sysmsg['savemod']%(ExistingBMPfile,NewBMPfile))
 
 
-@functimer
+@_fntimer
 def invertbits2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
@@ -7375,7 +7375,7 @@ def invertbits2file(
         invertimagebits)
 
 
-@functimer
+@_fntimer
 def flipvertical2file(
     ExistingBMPfile: str,
     NewBMPfile: str):
@@ -7395,7 +7395,7 @@ def flipvertical2file(
         flipvertical)
 
 
-@functimer
+@_fntimer
 def mirrortop2file(
         ExistingBMPfile: str, NewBMPfile: str):
     """Mirrors the top half of a bitmap file
@@ -7412,7 +7412,7 @@ def mirrortop2file(
         ExistingBMPfile, NewBMPfile, mirrortop)
 
 
-@functimer
+@_fntimer
 def mirrortopleft2file(
         ExistingBMPfile: str, NewBMPfile: str):
     """Mirrors the top left of a bitmap file
@@ -7428,7 +7428,7 @@ def mirrortopleft2file(
     applybyreffuncandsave(ExistingBMPfile, NewBMPfile,
         mirrortopleft)
 
-@functimer
+@_fntimer
 def mirrortopright2file(
     ExistingBMPfile: str, NewBMPfile: str):
     """Mirrors the top right of a bitmap file
@@ -7447,7 +7447,7 @@ def mirrortopright2file(
         mirrortopright)
 
 
-@functimer
+@_fntimer
 def mirrorbottomleft2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
@@ -7465,7 +7465,7 @@ def mirrorbottomleft2file(
         ExistingBMPfile, NewBMPfile, mirrorbottomleft)
 
 
-@functimer
+@_fntimer
 def mirrorbottomright2file(ExistingBMPfile: str, NewBMPfile: str):
     """Mirrors the bottom right of a bitmap file
 
@@ -7481,7 +7481,7 @@ def mirrorbottomright2file(ExistingBMPfile: str, NewBMPfile: str):
         ExistingBMPfile, NewBMPfile, mirrorbottomright)
 
 
-@functimer
+@_fntimer
 def mirrorbottom2file(ExistingBMPfile: str, NewBMPfile: str):
     """Mirrors the bottom half of a bitmap file
 
@@ -7496,7 +7496,7 @@ def mirrorbottom2file(ExistingBMPfile: str, NewBMPfile: str):
     applybyreffuncandsave(ExistingBMPfile, NewBMPfile, mirrorbottom)
 
 
-@functimer
+@_fntimer
 def mirrorleft2file(ExistingBMPfile: str, NewBMPfile: str):
     """Mirrors the left half of a bitmap file
 
@@ -7511,7 +7511,7 @@ def mirrorleft2file(ExistingBMPfile: str, NewBMPfile: str):
     applybyreffuncandsave(ExistingBMPfile, NewBMPfile, mirrorleft)
 
 
-@functimer
+@_fntimer
 def mirrorright2file(ExistingBMPfile: str, NewBMPfile: str):
     """Mirrors the right half of a bitmap file
 
@@ -7526,7 +7526,7 @@ def mirrorright2file(ExistingBMPfile: str, NewBMPfile: str):
     applybyreffuncandsave(ExistingBMPfile, NewBMPfile, mirrorright)
 
 
-@functimer
+@_fntimer
 def fliphorizontal2file(ExistingBMPfile: str, NewBMPfile: str):
     """Flips horizontally the image in a bitmap file
 
@@ -7541,7 +7541,7 @@ def fliphorizontal2file(ExistingBMPfile: str, NewBMPfile: str):
     applybyreffuncandsave(ExistingBMPfile, NewBMPfile, fliphorizontal)
 
 
-@functimer
+@_fntimer
 def flipXY2file(ExistingBMPfile: str, NewBMPfile: str):
     """Flips the x and y coordinates to rotate by 90 degrees
         the image in a bitmap file
@@ -7557,7 +7557,7 @@ def flipXY2file(ExistingBMPfile: str, NewBMPfile: str):
     applyfuncandsave(ExistingBMPfile, NewBMPfile, flipXY)
 
 
-@functimer
+@_fntimer
 def flipverticalregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7580,7 +7580,7 @@ def flipverticalregion2file(
         x1, y1, x2, y2, flipverticalregion)
 
 
-@functimer
+@_fntimer
 def fliphorizontalregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7602,7 +7602,7 @@ def fliphorizontalregion2file(
         x1, y1, x2, y2, fliphorizontalregion)
 
 
-@functimer
+@_fntimer
 def mirrorleftinregion2file(
     ExistingBMPfile: str, NewBMPfile: str,
     x1: int, y1: int,
@@ -7623,7 +7623,7 @@ def mirrorleftinregion2file(
         x1, y1, x2, y2, mirrorleftinregion)
 
 
-@functimer
+@_fntimer
 def mirrorrightinregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int,
@@ -7644,7 +7644,7 @@ def mirrorrightinregion2file(
         x1, y1, x2, y2, mirrorrightinregion)
 
 
-@functimer
+@_fntimer
 def mirrortopinregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int,
@@ -7665,7 +7665,7 @@ def mirrortopinregion2file(
         x1, y1, x2, y2, mirrortopinregion)
 
 
-@functimer
+@_fntimer
 def mirrorbottominregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7688,7 +7688,7 @@ def mirrorbottominregion2file(
         mirrorbottominregion)
 
 
-@functimer
+@_fntimer
 def mirrortopleftinregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int,
@@ -7710,7 +7710,7 @@ def mirrortopleftinregion2file(
         mirrortopleftinregion)
 
 
-@functimer
+@_fntimer
 def mirrortoprightinregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int,
@@ -7732,7 +7732,7 @@ def mirrortoprightinregion2file(
         mirrortoprightinregion)
 
 
-@functimer
+@_fntimer
 def mirrorbottomleftinregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7755,7 +7755,7 @@ def mirrorbottomleftinregion2file(
         mirrorbottomleftinregion)
 
 
-@functimer
+@_fntimer
 def mirrorbottomrightinregion2file(
         ExistingBMPfile: str, 
         NewBMPfile: str,
@@ -7780,7 +7780,7 @@ def mirrorbottomrightinregion2file(
         mirrorbottomrightinregion)
 
 
-@functimer
+@_fntimer
 def invertregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int,
@@ -7801,7 +7801,7 @@ def invertregion2file(
         x1, y1, x2, y2, invertregion)
 
 
-@functimer
+@_fntimer
 def autocropimg2file(
     ExistingBMPfile: str,
     NewBMPfile: str,
@@ -7825,7 +7825,7 @@ def autocropimg2file(
             rectboundarycoords(getimagedgevert(bmp, similaritythreshold)))
 
 
-@functimer
+@_fntimer
 def adjustbrightness2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7846,7 +7846,7 @@ def adjustbrightness2file(
         brightnessadjust, percentadj)
 
 
-@functimer
+@_fntimer
 def thresholdadjust2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -7869,7 +7869,7 @@ def thresholdadjust2file(
         lumrange)
 
 
-@functimer
+@_fntimer
 def adjustbrightnessinregion2file(
     ExistingBMPfile: str, 
     NewBMPfile: str,
@@ -7894,7 +7894,7 @@ def adjustbrightnessinregion2file(
         brightnesseadjto24bitregion, percentadj)
 
 
-@functimer
+@_fntimer
 def adjustthresholdinregion2file(
     ExistingBMPfile: str, NewBMPfile: str,
     x1: int, y1: int,
@@ -7918,7 +7918,7 @@ def adjustthresholdinregion2file(
         thresholdadjto24bitregion, lumrange)
 
 
-@functimer
+@_fntimer
 def colorfilter2file(ExistingBMPfile: str, NewBMPfile: str,
         rgbfactors: list):
     """Applies color filter rgbfactors to a bitmap file
@@ -7936,7 +7936,7 @@ def colorfilter2file(ExistingBMPfile: str, NewBMPfile: str,
         colorfilter, rgbfactors)
 
 
-@functimer
+@_fntimer
 def monochrome2file(ExistingBMPfile: str, NewBMPfile: str):
     """Applies a monochrome filter to a bitmap file
 
@@ -7953,7 +7953,7 @@ def monochrome2file(ExistingBMPfile: str, NewBMPfile: str):
         monochrome)
 
 
-@functimer
+@_fntimer
 def colorfilterinregion2file(
     ExistingBMPfile: str, NewBMPfile: str,
     x1: int, y1: int,
@@ -7978,7 +7978,7 @@ def colorfilterinregion2file(
         colorfilterto24bitregion, rgbfactors)
 
 
-@functimer
+@_fntimer
 def monofilterinregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int,
@@ -7999,7 +7999,7 @@ def monofilterinregion2file(
         x1, y1, x2, y2, monofilterto24bitregion)
 
 
-@functimer
+@_fntimer
 def pixelizenxntofile(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8019,7 +8019,7 @@ def pixelizenxntofile(
         pixelizenxn, n)
 
 
-@functimer
+@_fntimer
 def resizeNtimessmaller2file(
         ExistingBMPfile: str, NewBMPfile: str,
         n: int):
@@ -8038,7 +8038,7 @@ def resizeNtimessmaller2file(
         resizeNtimessmaller, n)
 
 
-@functimer
+@_fntimer
 def resizeNtimesbigger2file(
         ExistingBMPfile: str, NewBMPfile: str, n: int):
     """Resize a bitmap file n times bigger
@@ -8056,7 +8056,7 @@ def resizeNtimesbigger2file(
         resizeNtimesbigger, n)
 
 
-@functimer
+@_fntimer
 def upgradeto24bitimage2file(
         ExistingBMPfile: str, NewBMPfile: str):
     """Upgrades a bitmap file 
@@ -8074,7 +8074,7 @@ def upgradeto24bitimage2file(
         upgradeto24bitimage)
 
 
-@functimer
+@_fntimer
 def gammaadj2file(
     ExistingBMPfile: str, NewBMPfile: str, gamma: float):
     """Applies a gamma correction
@@ -8092,7 +8092,7 @@ def gammaadj2file(
         gammacorrect, gamma)
 
 
-@functimer
+@_fntimer
 def gammaadjtoregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int, x2: int, y2: int,
@@ -8115,7 +8115,7 @@ def gammaadjtoregion2file(
         gammaadjto24bitregion, gamma)
 
 
-@functimer
+@_fntimer
 def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,
                                         x1:int,y1:int,x2:int,y2:int,n:int):
     """Erase every nth line in a rectangular region
@@ -8135,7 +8135,7 @@ def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,
         x1, y1, x2, y2, eraseeverynthhorilineinregion, n)
 
 
-@functimer
+@_fntimer
 def rectangle2file(
     ExistingBMPfile: str,
     NewBMPfile: str,
@@ -8159,7 +8159,7 @@ def rectangle2file(
         x1, y1, x2, y2, rectangle, color)
 
 
-@functimer
+@_fntimer
 def fern2file(ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int, x2: int, y2: int, color: int):
     """Draws a fern fractal in a bounding rectangle
@@ -8179,7 +8179,7 @@ def fern2file(ExistingBMPfile: str, NewBMPfile: str,
         x1, y1, x2, y2, fern, color)
 
 
-@functimer
+@_fntimer
 def eraseeverynthhoriline2file(
         ExistingBMPfile : str,
         NewBMPfile: str,
@@ -8200,7 +8200,7 @@ def eraseeverynthhoriline2file(
         eraseeverynthhorizontalline, n)
 
 
-@functimer
+@_fntimer
 def outlineregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int, x2: int, y2: int): 
@@ -8220,7 +8220,7 @@ def outlineregion2file(
         x1, y1, x2, y2, outlineregion)
 
 
-@functimer
+@_fntimer
 def outline2file(ExistingBMPfile: str, NewBMPfile: str):
     """Applies an outline filter
 
@@ -8235,7 +8235,7 @@ def outline2file(ExistingBMPfile: str, NewBMPfile: str):
     applybyreffuncandsave(ExistingBMPfile, NewBMPfile, outline)
 
 
-@functimer
+@_fntimer
 def imagediff(inputfile1: str, inputfile2: str,diff_file: str):
     """Compares 2 files and saves diff to a bitmap file
 
@@ -8250,7 +8250,7 @@ def imagediff(inputfile1: str, inputfile2: str,diff_file: str):
     imagecomp(inputfile1, inputfile2, diff_file, xorvect)
 
 
-@functimer
+@_fntimer
 def showsimilarparts(inputfile1: str, inputfile2: str, diff_file: str):
     """Compares 2 files and saves similar parts to a bitmap file
 
@@ -8265,7 +8265,7 @@ def showsimilarparts(inputfile1: str, inputfile2: str, diff_file: str):
     imagecomp(inputfile1, inputfile2, diff_file, andvect)
 
 
-@functimer
+@_fntimer
 def monochromecircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8285,7 +8285,7 @@ def monochromecircregion2file(
         monocircle, x, y, r)
 
 
-@functimer
+@_fntimer
 def invertbitsincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8307,7 +8307,7 @@ def invertbitsincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def colorfiltercircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int ,y: int, r: int,
@@ -8331,7 +8331,7 @@ def colorfiltercircregion2file(
         x, y, r, rgbfactors)
 
 
-@functimer
+@_fntimer
 def thresholdadjcircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int, lumrange: list):
@@ -8353,7 +8353,7 @@ def thresholdadjcircregion2file(
         x, y, r, lumrange)
 
 
-@functimer
+@_fntimer
 def gammacorrectcircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int, gamma: float):
@@ -8375,7 +8375,7 @@ def gammacorrectcircregion2file(
         x, y, r, gamma)
 
 
-@functimer
+@_fntimer
 def sphere2file(ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int, rgbfactors: list):
     """Renders a sphere in a circular region in a bitmap file  with color defined by rgbfactors 
@@ -8396,7 +8396,7 @@ def sphere2file(ExistingBMPfile: str, NewBMPfile: str,
         x, y, r, rgbfactors)
 
 
-@functimer
+@_fntimer
 def filledcircle2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int, color: int):
@@ -8418,7 +8418,7 @@ def filledcircle2file(
         x, y, r, color)
 
 
-@functimer
+@_fntimer
 def circle2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int,
@@ -8439,12 +8439,12 @@ def circle2file(
         ExistingBMPfile, NewBMPfile, circle, x, y, r, color)
 
 
-@functimer
+@_fntimer
 def thickencirclearea2file(ExistingBMPfile:str,NewBMPfile:str,x:int,y:int,r:int,rgbfactors:list): 
     apply24bitcoloradjfuncwithparam2circregion(ExistingBMPfile,NewBMPfile,thickencirclearea,x,y,r,rgbfactors)
 
 
-@functimer
+@_fntimer
 def brightnessadjcircregion2file(
     ExistingBMPfile: str, NewBMPfile: str,
     x: int, y: int, r: int,
@@ -8469,7 +8469,7 @@ def brightnessadjcircregion2file(
         percentadj)
 
 
-@functimer
+@_fntimer
 def vertbrightnessgrad2circregion2file(
     ExistingBMPfile: str, NewBMPfile: str,
     x: int, y: int, r: int,
@@ -8493,7 +8493,7 @@ def vertbrightnessgrad2circregion2file(
         lumrange)
 
 
-@functimer
+@_fntimer
 def horibrightnessgrad2circregion2file(
         ExistingBMPfile:str,NewBMPfile:str,
         x:int,y:int,r:int,
@@ -8516,7 +8516,7 @@ def horibrightnessgrad2circregion2file(
         x, y, r,
         lumrange)
 
-@functimer
+@_fntimer
 def flipvertcircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8536,7 +8536,7 @@ def flipvertcircregion2file(
         flipvertcircregion, x, y, r)
 
 
-@functimer
+@_fntimer
 def eraseeverynthhorilineinccircregion2file(
     ExistingBMPfile: str, NewBMPfile: str,
     x: int, y: int, r: int,
@@ -8559,7 +8559,7 @@ def eraseeverynthhorilineinccircregion2file(
         x, y, r, n)
 
 
-@functimer
+@_fntimer
 def mirrortopincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8580,7 +8580,7 @@ def mirrortopincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def mirrorbottomincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8601,7 +8601,7 @@ def mirrorbottomincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def mirrorleftincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8622,7 +8622,7 @@ def mirrorleftincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def mirrorrightincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8643,7 +8643,7 @@ def mirrorrightincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def mirrortopleftincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8664,7 +8664,7 @@ def mirrortopleftincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def mirrorbottomleftincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int ,y: int ,r: int):
@@ -8685,7 +8685,7 @@ def mirrorbottomleftincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def mirrortoprightincircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8706,7 +8706,7 @@ def mirrortoprightincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def mirrorbottomrightincircregion2file(
         ExistingBMPfile: str, NewBMPfile:str,
         x: int, y: int, r: int):
@@ -8727,7 +8727,7 @@ def mirrorbottomrightincircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def fliphoricircregion2file(
         ExistingBMPfile: str, NewBMPfile: str, 
         x: int, y: int, r: int):
@@ -8748,7 +8748,7 @@ def fliphoricircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def outlinecircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8768,7 +8768,7 @@ def outlinecircregion2file(
         outlinecircregion,
         x, y, r)
 
-@functimer
+@_fntimer
 def flipXYcircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int):
@@ -8790,7 +8790,7 @@ def flipXYcircregion2file(
         x, y, r)
 
 
-@functimer
+@_fntimer
 def magnifyNtimescircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int,
@@ -8812,7 +8812,7 @@ def magnifyNtimescircregion2file(
         x, y, r, intmagfactor)
 
 
-@functimer
+@_fntimer
 def pixelizenxncircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int,r: int,
@@ -8836,7 +8836,7 @@ def pixelizenxncircregion2file(
         intpixsize)
 
 
-@functimer
+@_fntimer
 def copycircregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x: int, y: int, r: int,
@@ -8860,7 +8860,7 @@ def copycircregion2file(
         newxycenterpoint)
 
 
-@functimer
+@_fntimer
 def horizontalbrightnessgrad2file(
         ExistingBMPfile: str, NewBMPfile: str, 
         lumrange: list):
@@ -8881,7 +8881,7 @@ def horizontalbrightnessgrad2file(
         lumrange)
 
 
-@functimer
+@_fntimer
 def horizontalbrightnessgradregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int, x2: int, y2: int, 
@@ -8905,7 +8905,7 @@ def horizontalbrightnessgradregion2file(
         lumrange)
 
 
-@functimer
+@_fntimer
 def verticalbrightnessgrad2file(
         ExistingBMPfile: str, NewBMPfile: str, 
         lumrange: list):
@@ -8926,7 +8926,7 @@ def verticalbrightnessgrad2file(
         lumrange)
 
 
-@functimer
+@_fntimer
 def verticalbrightnessgradregion2file(
         ExistingBMPfile: str, NewBMPfile: str,
         x1: int, y1: int, x2: int, y2: int,
