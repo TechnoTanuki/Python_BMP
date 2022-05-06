@@ -151,8 +151,8 @@ from .colors import(
 
 from .paramchecks import(
     entirecircleinboundary as _encircbnd,
-    entirerectinboundary,
-    func24bitonly,
+    entirerectinboundary as _enrectbnd,
+    func24bitonly as _fn24bit,
     func24bitonlyandentirecircleinboundary,
     func24bitonlyandentirerectinboundary,
     func8and24bitonlyandentirecircleinboundary,
@@ -1963,7 +1963,7 @@ def filledgradrect(bmp: array,
             horiline(bmp, y, x1, x2, c)
 
 
-@entirerectinboundary            
+@_enrectbnd            
 def itercopyrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int) -> array:
@@ -3483,7 +3483,7 @@ def rectangle(bmp: array,
     plotpoly(bmp, recvert(x1, y1, x2, y2), color)
 
 
-@entirerectinboundary    
+@_enrectbnd    
 def filledrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -4269,7 +4269,7 @@ def gradvert(bmp: array,
             roundpen(bmp, point, i, c)
 
 
-@entirerectinboundary        
+@_enrectbnd        
 def xygrid(bmp: array,
     x1: int, y1: int,
     x2: int, y2: int,
@@ -4840,7 +4840,7 @@ def iterimagecolor(bmp: array,
         print(finishmsg)
 
 
-@entirerectinboundary
+@_enrectbnd
 def copyrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int) -> array:
@@ -5053,7 +5053,7 @@ def eraseeverynthhorizontallineinccircregion(
     erasealternatehorizontallinesincircregion(
         bmp, x, y, r, n, 0, 0)
 
-@entirerectinboundary
+@_enrectbnd
 def erasealternatehorizontallinesinregion(
         bmp: array,
         x1: int, y1: int, 
@@ -5199,7 +5199,7 @@ def mirrorbottom(bmp: array):
     verttrans(bmp, 'B')
 
 
-@entirerectinboundary
+@_enrectbnd
 def verttransregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -5303,7 +5303,7 @@ def mirrortopinregion(bmp: array,
     verttransregion(
         bmp, x1, y1, x2, y2, 'T')
     
-@entirerectinboundary        
+@_enrectbnd        
 def fliphorzontalpixelbased(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
@@ -5329,7 +5329,7 @@ def fliphorzontalpixelbased(bmp: array,
         x2 -= 1
 
 
-@entirerectinboundary    
+@_enrectbnd    
 def fliphverticalalpixelbased(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
@@ -5355,7 +5355,7 @@ def fliphverticalalpixelbased(bmp: array,
         y2 -= 1
 
 
-@entirerectinboundary    
+@_enrectbnd    
 def horizontalbulkswap(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -5683,7 +5683,7 @@ def flipXY(bmp: array):
             offset += r
     return nbmp
 
-@entirerectinboundary                  
+@_enrectbnd                  
 def itergetcolorfromrectregion(bmp,x1,y1,x2,y2):
     """Yields color info of 
         a rectangular area in a bitmap 
@@ -5706,7 +5706,7 @@ def itergetcolorfromrectregion(bmp,x1,y1,x2,y2):
         y += 1
 
 
-@entirerectinboundary              
+@_enrectbnd              
 def crop(bmp: array,
     x1: int, y1: int,
     x2: int, y2: int):
@@ -5738,7 +5738,7 @@ def crop(bmp: array,
     return nbmp
 
 
-@entirerectinboundary    
+@_enrectbnd    
 def invertregion(bmp: array,
     x1: int, y1: int,
     x2: int, y2: int):
@@ -6465,7 +6465,7 @@ def resizesmaller24bitbuf(buflist):
     return  makeBGRbuf(m(a(s(c[0],n)),f),m(a(s(c[1],n)),f),m(a(s(c[2],n)),f))
 
 
-@func24bitonly
+@_fn24bit
 def resizeNtimessmaller(bmp: array, n:int) -> array:
     """Resize a whole image by n times smaller (in-memory 24-bit bitmap)
 
@@ -6559,7 +6559,7 @@ def gammaadjto24bitimage(bmp: array, gamma: float):
     gammaadjto24bitregion(bmp, 0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1, gamma)
 
 
-@entirerectinboundary
+@_enrectbnd
 def compareimglines(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -6645,7 +6645,7 @@ def thickencirclearea(bmp: array,
         8, [255,0], rgbfactors)
 
 
-@entirerectinboundary
+@_enrectbnd
 def fern(bmp: array,
     x1: int, y1: int,
     x2: int, y2: int,
