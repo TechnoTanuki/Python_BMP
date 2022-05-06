@@ -27,8 +27,8 @@ from .bmpconstants import(
     bmpfilesize,
     bmphdrsize,
     bmpcolorbits as _bmclrbits,
-    bmpx,
-    bmpy,
+    bmpx as _bmx,
+    bmpy as _bmy,
     bmppal,
     bmpheadersize
     )
@@ -240,7 +240,7 @@ def setmaxx(bmp: array, xmax: int):
         byref modified byte array
         
     """
-    _wrint(bmpx, 4, bmp, xmax)
+    _wrint(_bmx, 4, bmp, xmax)
 
 
 def getmaxx(bmp: array) -> int:
@@ -255,7 +255,7 @@ def getmaxx(bmp: array) -> int:
         int value of x bmp dimension
 
     """
-    return _rdint(bmpx, 4, bmp)
+    return _rdint(_bmx, 4, bmp)
 
 
 def setmaxy(bmp: array, ymax: int):
@@ -271,7 +271,7 @@ def setmaxy(bmp: array, ymax: int):
         byref modified byte array
 
     """
-    _wrint(bmpy, 4, bmp, ymax)
+    _wrint(_bmy, 4, bmp, ymax)
 
 
 def getmaxy(bmp: array) -> int:
@@ -286,7 +286,7 @@ def getmaxy(bmp: array) -> int:
         int value of y bmp dimension
 
     """
-    return _rdint(bmpy, 4, bmp)
+    return _rdint(_bmy, 4, bmp)
 
 
 def getmaxxy(bmp: array) -> tuple:
@@ -301,8 +301,8 @@ def getmaxxy(bmp: array) -> tuple:
         tuple (x:int,y:int) 
 
     """
-    return (_rdint(bmpx, 4, bmp),
-            _rdint(bmpy, 4, bmp))
+    return (_rdint(_bmx, 4, bmp),
+            _rdint(_bmy, 4, bmp))
 
 
 def bottomrightcoord(bmp: array) -> tuple:
@@ -316,8 +316,8 @@ def bottomrightcoord(bmp: array) -> tuple:
         tuple (x:int,y:int) 
 
     """
-    return (_rdint(bmpx, 4, bmp) - 1,
-            _rdint(bmpy, 4, bmp) - 1)
+    return (_rdint(_bmx, 4, bmp) - 1,
+            _rdint(_bmy, 4, bmp) - 1)
 
 
 def centercoord(bmp: array) -> tuple:
@@ -332,8 +332,8 @@ def centercoord(bmp: array) -> tuple:
         tuple (x:int,y:int) 
 
     """
-    return ((_rdint(bmpx, 4, bmp) -1) >> 1,
-            (_rdint(bmpy, 4, bmp) - 1) >> 1)
+    return ((_rdint(_bmx, 4, bmp) -1) >> 1,
+            (_rdint(_bmy, 4, bmp) - 1) >> 1)
 
 
 def isinBMPrectbnd(bmp: array,
@@ -351,8 +351,8 @@ def isinBMPrectbnd(bmp: array,
         False if out of bounds 
 
     """
-    return (x < _rdint(bmpx, 4, bmp) and
-            y < _rdint(bmpy, 4, bmp)) and (x > -1 and y > -1)
+    return (x < _rdint(_bmx, 4, bmp) and
+            y < _rdint(_bmy, 4, bmp)) and (x > -1 and y > -1)
 
 
 def listinBMPrecbnd(bmp: array,
@@ -418,7 +418,7 @@ def getxcharcount(bmp: array) -> int:
 
     """
     return computexbytes(
-                _rdint(bmpx, 4, bmp), 
+                _rdint(_bmx, 4, bmp), 
                     bmp[_bmclrbits])
 
 
@@ -498,7 +498,7 @@ def getimageinfo(bmp: array):
         4 int values
 
     """
-    return _rdint(bmpy, 4, bmp), bmp[_bmclrbits], getxcharcount(bmp), _rdint(bmphdrsize, 4, bmp)
+    return _rdint(_bmy, 4, bmp), bmp[_bmclrbits], getxcharcount(bmp), _rdint(bmphdrsize, 4, bmp)
 
 
 def getmaxcolors(bmp: array) -> int:
@@ -534,7 +534,7 @@ def compute24bitBMPoffset(bmp: array,
         that data in byte array
 
     """
-    return (x * 3) + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 24))
+    return (x * 3) + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 24))
 
 
 def compute24bitBMPoffsetwithheader(bmp: array,
@@ -556,7 +556,7 @@ def compute24bitBMPoffsetwithheader(bmp: array,
         that data in byte array
 
     """
-    return (x * 3) + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 24 )) + 54
+    return (x * 3) + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 24 )) + 54
 
 
 def compute8bitBMPoffset(bmp: array,
@@ -577,7 +577,7 @@ def compute8bitBMPoffset(bmp: array,
         that data in byte array
 
     """
-    return x + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 8))
+    return x + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 8))
 
 
 def compute8bitBMPoffsetwithheader(
@@ -600,7 +600,7 @@ def compute8bitBMPoffsetwithheader(
         that data in byte array
 
     """
-    return x + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 8)) + 1078
+    return x + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 8)) + 1078
 
 
 def compute4bitBMPoffset(
@@ -621,7 +621,7 @@ def compute4bitBMPoffset(
         that data in byte array
 
     """
-    return (x >> 1) + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 4))
+    return (x >> 1) + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 4))
 
 
 def compute1bitBMPoffset(
@@ -642,7 +642,7 @@ def compute1bitBMPoffset(
         that data in byte array
 
     """
-    return (x >> 3) + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 1))
+    return (x >> 3) + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 1))
 
 
 def compute4bitBMPoffsetwithheader(
@@ -665,7 +665,7 @@ def compute4bitBMPoffsetwithheader(
         that data in byte array
 
     """
-    return (x >> 1) + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 4)) + 118
+    return (x >> 1) + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 4)) + 118
 
 
 def compute1bitBMPoffsetwithheader(
@@ -687,7 +687,7 @@ def compute1bitBMPoffsetwithheader(
         that data in byte array
 
     """
-    return (x >> 3) + ((_rdint(bmpy, 4, bmp) - y - 1) * computexbytes(_rdint(bmpx, 4, bmp), 1)) + 62
+    return (x >> 3) + ((_rdint(_bmy, 4, bmp) - y - 1) * computexbytes(_rdint(_bmx, 4, bmp), 1)) + 62
 
 
 def getcomputeBMPoffsetwithheaderfunc(bmp: array):
@@ -779,7 +779,7 @@ def getmaxxyandbits(
         (x dimension,y dimension, bit depth)
 
     """
-    return (((_rdint(bmpx, 4, bmp), _rdint(bmpy, 4, bmp)), bmp[_bmclrbits]))
+    return (((_rdint(_bmx, 4, bmp), _rdint(_bmy, 4, bmp)), bmp[_bmclrbits]))
 
 
 def computeuncompressedbmpfilesize(
