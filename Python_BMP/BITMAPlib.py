@@ -26,7 +26,7 @@ from .bmpconstants import(
     bmpheaderid,
     bmpfilesize,
     bmphdrsize,
-    bmpcolorbits,
+    bmpcolorbits as _bmclrbits,
     bmpx,
     bmpy,
     bmppal,
@@ -390,7 +390,7 @@ def setcolorbits(bmp: array, bits: int):
         byref modified byte array with new file size
 
     """
-    bmp[bmpcolorbits] = bits
+    bmp[_bmclrbits] = bits
 
 def getcolorbits(bmp: array) -> int:
     """Get the bit depth of a windows bmp
@@ -403,7 +403,7 @@ def getcolorbits(bmp: array) -> int:
         int value of bit depth (1,4,8,24)
 
     """
-    return bmp[bmpcolorbits]
+    return bmp[_bmclrbits]
 
 def getxcharcount(bmp: array) -> int:
     """Get the chars or bytes in row of a bmp
@@ -419,7 +419,7 @@ def getxcharcount(bmp: array) -> int:
     """
     return computexbytes(
                 _rdint(bmpx, 4, bmp), 
-                    bmp[bmpcolorbits])
+                    bmp[_bmclrbits])
 
 
 def setfilesize(bmp: array, size: int):
@@ -498,7 +498,7 @@ def getimageinfo(bmp: array):
         4 int values
 
     """
-    return _rdint(bmpy, 4, bmp), bmp[bmpcolorbits], getxcharcount(bmp), _rdint(bmphdrsize, 4, bmp)
+    return _rdint(bmpy, 4, bmp), bmp[_bmclrbits], getxcharcount(bmp), _rdint(bmphdrsize, 4, bmp)
 
 
 def getmaxcolors(bmp: array) -> int:
@@ -514,7 +514,7 @@ def getmaxcolors(bmp: array) -> int:
         int value
 
     """
-    return 1 << bmp[bmpcolorbits]
+    return 1 << bmp[_bmclrbits]
 
 
 def compute24bitBMPoffset(bmp: array,
@@ -707,7 +707,7 @@ def getcomputeBMPoffsetwithheaderfunc(bmp: array):
     return {24: compute24bitBMPoffsetwithheader,
             8: compute8bitBMPoffsetwithheader,
             4: compute4bitBMPoffsetwithheader,
-            1: compute1bitBMPoffsetwithheader}[bmp[bmpcolorbits]]
+            1: compute1bitBMPoffsetwithheader}[bmp[_bmclrbits]]
 
 
 def getcomputeBMPoffsetfunc(bmp: array):
@@ -725,7 +725,7 @@ def getcomputeBMPoffsetfunc(bmp: array):
     return {24: compute24bitBMPoffset,
             8: compute8bitBMPoffset,
             4: compute4bitBMPoffset,
-            1: compute1bitBMPoffset}[bmp[bmpcolorbits]]
+            1: compute1bitBMPoffset}[bmp[_bmclrbits]]
 
 
 def computeBMPoffset(bmp: array,
@@ -779,7 +779,7 @@ def getmaxxyandbits(
         (x dimension,y dimension, bit depth)
 
     """
-    return (((_rdint(bmpx, 4, bmp), _rdint(bmpy, 4, bmp)), bmp[bmpcolorbits]))
+    return (((_rdint(bmpx, 4, bmp), _rdint(bmpy, 4, bmp)), bmp[_bmclrbits]))
 
 
 def computeuncompressedbmpfilesize(
@@ -798,7 +798,7 @@ def computeuncompressedbmpfilesize(
     return computeBMPfilesize(
                 getmaxx(bmp),
                 getmaxy(bmp),
-                bmp[bmpcolorbits])
+                bmp[_bmclrbits])
 
 
 def isbmpcompressed(bmp:array) -> bool:
@@ -1167,7 +1167,7 @@ def setbmp_properties(
     sethdrsize(bmp, hdrsize)
     setmaxx(bmp, x)
     setmaxy(bmp ,y)
-    bmp[bmpcolorbits] = bits
+    bmp[_bmclrbits] = bits
     bmp[14] = 40 #required
     if bits < 24: 
         setbmppal(bmp, getdefaultbitpal(bits))
@@ -1382,7 +1382,7 @@ def vertBMPbitBLTget(bmp: array,
         unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     r = getxcharcount(bmp)
     m = getmaxxy(bmp)
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
@@ -1421,7 +1421,7 @@ def applyfuncwithparam2vertBMPbitBLTget(
         byref modified unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     r = getxcharcount(bmp)
     m = getmaxxy(bmp)
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
@@ -1463,7 +1463,7 @@ def plotRGBxybit(bmp: array,
 
     """
     if isinBMPrectbnd(bmp,x,y):
-        if bmp[bmpcolorbits] == 24:
+        if bmp[_bmclrbits] == 24:
             offset = compute24bitBMPoffsetwithheader(bmp, x, y)
             endoffset = offset + 3
             bmp[offset:endoffset] = array('B', [rgb[2], rgb[1], rgb[0]])
@@ -1489,7 +1489,7 @@ def plotxybit(bmp: array,
     """
     if isinBMPrectbnd(bmp, x, y):
         offset = computeBMPoffsetwithheader(bmp,x,y)
-        bits = bmp[bmpcolorbits]
+        bits = bmp[_bmclrbits]
         if bits == 24:
             bmp[offset:offset + 3] = int2BGRarr(c)
         elif bits == 8:
@@ -1529,7 +1529,7 @@ def getxybit(bmp: array,
     retval=0
     if isinBMPrectbnd(bmp, x, y):
         offset = computeBMPoffsetwithheader(bmp,x,y)
-        bits = bmp[bmpcolorbits]
+        bits = bmp[_bmclrbits]
         if bits == 1:
             mask = 7 - (x % 8)
             retval = (bmp[offset] & (1 << mask)) >> mask
@@ -1751,7 +1751,7 @@ def line(bmp: array,
     elif y1 == y2: 
         horiline(bmp, y1, x1, x2, color)
     else:
-        bits = bmp[bmpcolorbits]
+        bits = bmp[_bmclrbits]
         p1 = (x1,y1)
         p2 = (x2,y2)
         c = getcomputeBMPoffsetwithheaderfunc(bmp)
@@ -1804,7 +1804,7 @@ def horiline(bmp: array,
         byref modified unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     m = getmaxxy(bmp)
     if isinrange(y, m[1], -1):
         x1, x2 = swapif(x1, x2, x1 > x2)
@@ -1859,7 +1859,7 @@ def vertline(bmp: array,
         byref modified unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     if bits not in [24, 8]:
         y1 , y2 =swapif(y1, y2, y1 > y2)
         y2 += 1
@@ -1949,7 +1949,7 @@ def filledgradrect(bmp: array,
             c=RGB2int(round(base[0] + lrange[0] * f),
                       round(base[1] + lrange[1] * f),
                       round(base[2] + lrange[2] * f))
-            if bmp[bmpcolorbits] != 24:
+            if bmp[_bmclrbits] != 24:
                 c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
             if c < 0: 
                 c = 0
@@ -1961,7 +1961,7 @@ def filledgradrect(bmp: array,
             c = RGB2int(round(base[0] + lrange[0] * f),
                         round(base[1] + lrange[1] * f),
                         round(base[2] + lrange[2] * f))
-            if bmp[bmpcolorbits] != 24:
+            if bmp[_bmclrbits] != 24:
                 c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
             if c < 0: 
                 c = 0
@@ -2145,7 +2145,7 @@ def gradthickroundline(bmp: array,
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c=colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         thickroundline(bmp, p1, p2, i, c)
 
@@ -2410,7 +2410,7 @@ def flipXYcircregion(bmp: array,
         byref modified unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     if bits not in [24,8]:
         n = flipXY(bmp)
@@ -2494,7 +2494,7 @@ def horitransformincircregion(bmp: array,
     def mirror8L(): 
         bmp[s2:e2:k] = bmp[s1:e1:k]
     
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     if trans == 'L':
         if bits == 24: 
@@ -2806,7 +2806,7 @@ def outlinecircregion(bmp: array,
         byref modified byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(
             x, y, -1, getmaxx(bmp), -1, getmaxy(bmp), r):
@@ -3003,7 +3003,7 @@ def filledcircle(bmp: array,
         byref modified unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     if bits < 8:
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x, v[0])
@@ -3073,7 +3073,7 @@ def circle(bmp: array,
         filledcircle(bmp, x, y, r, color)
     else:
         m = getmaxxy(bmp)
-        bits = bmp[bmpcolorbits]
+        bits = bmp[_bmclrbits]
         c = getcomputeBMPoffsetwithheaderfunc(bmp)
         dobndcheck = not entirecircleisinboundary(
                             x, y, -1, m[0], -1, m[1], r)
@@ -3171,7 +3171,7 @@ def gradthickcircle(bmp: array,
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         thickcircle(bmp, x, y, radius, i, c)
 
@@ -3199,7 +3199,7 @@ def gradcircle(bmp: array,
     lum1, lumrang=range2baseanddelta(lumrange)
     for r in range(radius - 1, 0, -1):
         c = colormix(int(lum1 + (lumrang * r / radius)), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         thickcircle(bmp, x, y, r, 2, c)
 
@@ -3272,7 +3272,7 @@ def gradthickellipserot(bmp:array,
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         thickellipserot(bmp, x, y, b, a, degrot, i, c)
 
@@ -3296,7 +3296,7 @@ def filledellipse(bmp: array,
         byref modified byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     if bits < 8:
         for v in iterellipsepart(b,a):
             x1, x2 = mirror(x,v[0])
@@ -3366,7 +3366,7 @@ def ellipse(bmp: array,
         filledellipse(bmp, x, y, b, a, color)
     else:
         m = getmaxxy(bmp)
-        bits = bmp[bmpcolorbits]
+        bits = bmp[_bmclrbits]
         c = getcomputeBMPoffsetwithheaderfunc(bmp)
         dobndcheck = not entireellipseisinboundary(
                             x, y, -1, m[0], -1, m[1], b, a)
@@ -3427,7 +3427,7 @@ def gradellipse(bmp: array,
     b -= r
     for i in range(r,0,-1):
         c = colormix(int(lum1 + (lumrang * i / r)), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         ellipse(bmp, x, y, b + i, a + i, c, True)
 
@@ -3506,7 +3506,7 @@ def filledrect(bmp: array,
         byref modified unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     x1, y1, x2, y2 = sortrecpoints(x1,y1,x2,y2)
     if bits not in [8, 24]:
         y2 +=1
@@ -4094,7 +4094,7 @@ def gradthickplotpoly(bmp: array,
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         thickplotpoly(bmp, vertlist, i, c)
 
@@ -4183,7 +4183,7 @@ def plotpolyfillist(bmp: array,
     i = 0
     for poly in polylist:
         c = colormix(int(cosaffin(normlist[i], [0, 0, 1]) * 128) + 127, RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         plotpolyfill(bmp, poly, c)
         i += 1
@@ -4268,7 +4268,7 @@ def gradvert(bmp: array,
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
         for point in vertlist: 
             roundpen(bmp, point, i, c)
@@ -4685,7 +4685,7 @@ def upgradeto24bitimage(bmp:array):
         byref modified unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     if bits == 24:
         print(sysmsg['is24bit'])
         nbmp = bmp
@@ -4733,7 +4733,7 @@ def iterimageRGB(bmp: array,
     maxoffset = len(b)
     x = 0
     mx = getmaxx(bmp)
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     if bits < 24: 
         p = getallRGBpal(bmp)
         doff = 1
@@ -4804,7 +4804,7 @@ def iterimagecolor(bmp: array,
     maxoffset = len(b)
     x = 0
     mx = getmaxx(bmp)
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     if bits == 24:
         doff=3
     else:
@@ -4859,11 +4859,11 @@ def copyrect(bmp: array,
         custom unsigned byte array
         
     """
-    retval = array('B', [bmp[bmpcolorbits]])
+    retval = array('B', [bmp[_bmclrbits]])
     x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
     retval += int2buf(2, x2 - x1 + 2)
     retval += int2buf(2, y2 - y1 + 1)
-    retval += int2buf(2, adjustbufsize(x2 - x1 + 1, bmp[bmpcolorbits]))
+    retval += int2buf(2, adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits]))
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         retval += buf
     return retval
@@ -4885,7 +4885,7 @@ def pasterect(bmp: array, buf: array,
         byref modified unsigned byte array
 
     """
-    if bmp[bmpcolorbits] != buf[0]:
+    if bmp[_bmclrbits] != buf[0]:
         print(sysmsg['bitsnotequal'])
     else:
         x2 = x1 + buf2int(buf[1: 3])
@@ -5086,7 +5086,7 @@ def erasealternatehorizontallinesinregion(
     """    
     bytepat &= 0xff
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    bufsize = adjustbufsize(x2 - x1 + 1, bmp[bmpcolorbits])
+    bufsize = adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits])
     r = getxcharcount(bmp)
     f = getcomputeBMPoffsetwithheaderfunc(bmp)
     s1 = f(bmp, x1, y2)
@@ -5239,7 +5239,7 @@ def verttransregion(bmp: array,
     elif trans == 'B': 
         f = mirrorbottom
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    bufsize = adjustbufsize(x2 - x1 + 1, bmp[bmpcolorbits])
+    bufsize = adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits])
     r = getxcharcount(bmp)
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     s1 = c(bmp, x1, y2)
@@ -5377,7 +5377,7 @@ def horizontalbulkswap(bmp: array,
         byref modified unsigned byte array
 
     """
-    dx = {24: 1, 8: 1, 4: 2, 1: 8}[bmp[bmpcolorbits]]
+    dx = {24: 1, 8: 1, 4: 2, 1: 8}[bmp[_bmclrbits]]
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     r = getxcharcount(bmp)
     y1, y2 = swapif(y1, y2, y1 > y2)
@@ -5411,13 +5411,16 @@ def fliphorizontalregion(bmp: array,
         bmp[s1:e1:r],bmp[s2:e2:r]=bmp[s2:e2:r],bmp[s1:e1:r]
 
     def swap4bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r],bmp[s2:e2:r]=flipnibbleinbuf(bmp[s2:e2:r]),flipnibbleinbuf(bmp[s1:e1:r])
+        bmp[s1:e1:r],bmp[s2:e2:r] = flipnibbleinbuf(bmp[s2:e2:r]),flipnibbleinbuf(bmp[s1:e1:r])
 
     def swap1bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r],bmp[s2:e2:r]=rotatebitsinbuf(bmp[s2:e2:r]),rotatebitsinbuf(bmp[s1:e1:r])
+        bmp[s1:e1:r],bmp[s2:e2:r] = rotatebitsinbuf(bmp[s2:e2:r]),rotatebitsinbuf(bmp[s1:e1:r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24:swap24bit,8:swap8bit,4:swap4bit,1:swap1bit}[bmp[bmpcolorbits]])
+        {24:swap24bit,
+          8:swap8bit,
+          4:swap4bit,
+          1:swap1bit}[bmp[_bmclrbits]])
 
 
 def mirrorleftinregion(bmp: array,
@@ -5452,7 +5455,7 @@ def mirrorleftinregion(bmp: array,
         {24: swap24bit,
           8: swap8bit,
           4: swap4bit,
-          1: swap1bit}[bmp[bmpcolorbits]])
+          1: swap1bit}[bmp[_bmclrbits]])
 
 
 def mirrorrightinregion(bmp: array,
@@ -5482,7 +5485,10 @@ def mirrorrightinregion(bmp: array,
         bmp[s1:e1:r]=rotatebitsinbuf(bmp[s2:e2:r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24:swap24bit,8:swap8bit,4:swap4bit,1:swap1bit}[bmp[bmpcolorbits]])
+        {24:swap24bit,
+          8:swap8bit,
+          4:swap4bit,
+          1:swap1bit}[bmp[_bmclrbits]])
 
 
 def mirrorleft(bmp:array):
@@ -5670,7 +5676,7 @@ def flipXY(bmp: array):
     """
     mx = getmaxy(bmp)
     my = getmaxx(bmp)
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     nbmp = newBMP(mx, my, bits)
     if bits not in [8, 24]:
         copyRGBpal(bmp, nbmp)
@@ -5728,7 +5734,7 @@ def crop(bmp: array,
 
     """
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     nbmp = newBMP(x2 - x1 + 1,y2 - y1 + 1, bits)
     if bits < 8:
         copyRGBpal(bmp, nbmp)
@@ -5758,7 +5764,7 @@ def invertregion(bmp: array,
 
     """
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     if bits < 8:
         c = getmaxcolors(bmp) - 1
         for v in itergetcolorfromrectregion(bmp, x1, y1, x2, y2):
@@ -5914,7 +5920,7 @@ def resizeNtimesbigger(bmp:array,n:int):
         unsigned byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     m = getmaxxy(bmp)
     nx = m[0] * n
     ny = m[1] * n
@@ -6126,7 +6132,7 @@ def mandelbrot(bmp: array,
                  c += 1
                  if c>maxiter:
                      break
-            if bmp[bmpcolorbits] == 24:
+            if bmp[_bmclrbits] == 24:
                 c = colormix(((255 - c) * 20) % 256, RGBfactors)
             else:
                 c = mcolor - c % maxcolors
@@ -6202,7 +6208,7 @@ def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
         x = int(cx - r * sin(rang) *f) 
         y = int(cy - r * cos(rang) *f)
         c = colormix(setmax(abs(int(lum1 + dlum * (distance([x, y], [cx, cy]) / r))),255), RGBfactors)
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             c = mcolor - c % maxcolors
         plotxybit(bmp, x, y, c)
 
@@ -6482,7 +6488,7 @@ def resizeNtimessmaller(bmp: array, n:int) -> array:
         byref modified byte array
 
     """
-    bits = bmp[bmpcolorbits]
+    bits = bmp[_bmclrbits]
     nbmp = -1
     m = getmaxxy(bmp)
     nx = m[0] // n
@@ -6722,7 +6728,7 @@ def applybyref24bitcolorfunctoregionandsave(
     """
     bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] != 24: 
+        if bmp[_bmclrbits] != 24: 
             print(sysmsg['not24bit'])
         else:
             func(bmp, x1, y1, x2, y2, funcparam)
@@ -6751,7 +6757,7 @@ def applybyref24bitfunctoregionandsave(
     """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] != 24: 
+        if bmp[_bmclrbits] != 24: 
             print(sysmsg['not24bit'])
         else:
             func(bmp, x1, y1, x2, y2)
@@ -6893,7 +6899,7 @@ def apply24bitfuncandsave(
     """
     bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] != 24: 
+        if bmp[_bmclrbits] != 24: 
             print(sysmsg['not24bit'])
         else:
             saveBMP(NewBMPfile, func(bmp))
@@ -6920,7 +6926,7 @@ def apply24bitfuncwithparamandsave(
     """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] != 24: 
+        if bmp[_bmclrbits] != 24: 
             print(sysmsg['not24bit'])
         else:
             saveBMP(NewBMPfile,func(bmp,funcparam))
@@ -6945,7 +6951,7 @@ def apply8bitabovefuncandsave(
     """
     bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] not in [8, 24]: 
+        if bmp[_bmclrbits] not in [8, 24]: 
             print(sysmsg['not24or8bit'])
         else:
             saveBMP(NewBMPfile,func(bmp))
@@ -7024,7 +7030,7 @@ def apply24bitcoloradjfunctocircregion(
     """
     bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
         else:
             func(bmp, x, y, r)
@@ -7054,7 +7060,7 @@ def apply24bitcoloradjfuncwithparam2circregion(
     """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits] != 24:
+        if bmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
         else: 
             func(bmp,x,y,r,funcparam)
@@ -7082,7 +7088,7 @@ def applycoloradjfunc(
     """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] != 24: 
+        if bmp[_bmclrbits] != 24: 
             setbmppal(bmp,[func(c,funcparam) for c in getallRGBpal(bmp)])
         else:
             if func.__name__=='colorfilter': 
@@ -7119,7 +7125,7 @@ def apply24bitcoloradjfunc(
     """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        if bmp[bmpcolorbits] != 24: 
+        if bmp[_bmclrbits] != 24: 
             print(sysmsg['not24bit'])
         else:
             func(bmp, funcparam)
@@ -7150,7 +7156,7 @@ def applynoparamcoloradjfunc(
     """
     bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
-        if bmp[bmpcolorbits] != 24: 
+        if bmp[_bmclrbits] != 24: 
             setbmppal(bmp,[func(c) for c in getallRGBpal(bmp)])
         else:
             if func.__name__ == 'monochrome': 
@@ -7301,7 +7307,7 @@ def reduce24bitimagebits(
     """                        
     sbmp = loadBMP(Existing24BMPfile)
     if len(sbmp)>54:
-        if sbmp[bmpcolorbits] != 24:
+        if sbmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
         else:
             bmp=CopyBMPxydim2newBMP(sbmp, newbits)
