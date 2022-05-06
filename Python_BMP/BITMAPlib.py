@@ -161,7 +161,11 @@ from .paramchecks import(
     intcircleparam24bitonly as _fn24bitintcircpar 
     )
 
-from .bittools import packbitlisttobuf
+from .bittools import(
+    packbitlisttobuf,
+    resizebitpattenNtimesbigger
+)
+
 from .bufferflip import flipnibbleinbuf, rotatebitsinbuf
 from .buffersplit import altsplitbuf3way, altsplitbufnway
 from .chartools import(
@@ -5851,7 +5855,8 @@ def crop(bmp: array,
         defined by (x1,y1) and (x2,y2)
     
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5878,10 +5883,14 @@ def crop(bmp: array,
 def invertregion(bmp: array,
     x1: int, y1: int,
     x2: int, y2: int):
-    """Inverts the bits in a rectangular region defined by (x1,y1) and (x2,y2)
+    """Inverts the bits in a
+        rectangular region
+        defined by (x1,y1)
+               and (x2,y2)
         
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5905,41 +5914,54 @@ def invertregion(bmp: array,
 def monofilterto24bitregion(bmp: array,
     x1: int, y1: int,
     x2: int, y2: int):
-    """Applies a monochrome filter to a rectangular area defined by (x1,y1) and (x2,y2) in a 24 bit bitmap
+    """Applies a monochrome filter to
+        a rectangular area defined 
+        by (x1,y1) and (x2,y2) 
+        in a 24 bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
         byref modified byte array
 
     """
-    applybyrefnoparamfuncto24bitregion(bmp,
-        x1, y1, x2, y2, applymonochromefiltertoBGRbuf)
+    applybyrefnoparamfuncto24bitregion(
+        bmp, x1, y1, x2, y2, 
+        applymonochromefiltertoBGRbuf)
 
 
 def monofilterto24bitimage(bmp:array):
-    """Applies a mono filter to a 24 bit in-memory bitmap
+    """Applies a mono filter
+        to a 24 bit in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     monofilterto24bitregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
+        0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1)
 
 
 def horizontalbrightnessgradto24bitimage(
         bmp: array, lumrange: list):
-    """Applies a horizontal brightness gradient to a 24-bit in-memory bitmap
+    """Applies a horizontal brightness 
+        gradient to a 24-bit bitmap
 
     Args:
-        bmp     : An unsigned byte array with bmp format
-        lumrange: [byte,byte] range of luminosity for gradient
+        bmp     : unsigned byte array 
+                  with bmp format
+        lumrange: [byte,byte] range of
+               luminosity for gradient
         
     Returns:
         byref modified unsigned byte array
@@ -5950,8 +5972,10 @@ def horizontalbrightnessgradto24bitimage(
         lumrange)
 
 
-def resize8bitbufNtimesbigger(buf:array,n:int):
-    """Resize a 8-bit buffer n times bigger
+def resize8bitbufNtimesbigger(
+        buf: array, n: int):
+    """Resize a 8-bit buffer
+        n times bigger
     
     Args:
         buf: unsigned byte array
@@ -5963,11 +5987,14 @@ def resize8bitbufNtimesbigger(buf:array,n:int):
     """
     retval=[]
     for b in buf:
-        retval+=[b]*n
-    return array('B',retval)
+        retval += [b] * n
+    return array('B', retval)
 
-def resize24bitbufNtimesbigger(buf:array,n:int):
-    """Resize a 24-bit buffer n times bigger
+
+def resize24bitbufNtimesbigger(
+        buf:array,n:int):
+    """Resize a 24-bit buffer
+        n times bigger
     
     Args:
         buf: unsigned byte array
@@ -5977,11 +6004,14 @@ def resize24bitbufNtimesbigger(buf:array,n:int):
         unsigned byte array
 
     """
-    c,r=altsplitbuf3way(buf),resize8bitbufNtimesbigger
+    c, r = altsplitbuf3way(buf), resize8bitbufNtimesbigger
     return makeBGRbuf(r(c[0],n),r(c[1],n),r(c[2],n))
 
-def resize1bitbufNtimesbigger(buf,n):
-    """Resize a 1-bit buffer n times bigger
+
+def resize1bitbufNtimesbigger(
+        buf: array ,n: int):
+    """Resize a 1-bit buffer
+        n times bigger
     
     Args:
         buf: unsigned byte array
@@ -5992,23 +6022,9 @@ def resize1bitbufNtimesbigger(buf,n):
 
     """
     retval=[]
-    for b in buf: retval+=packbitlisttobuf(resizebitpattenNtimesbigger(b,n))
-    return array('B',retval)
-
-def resizebitpattenNtimesbigger(byteval:int,n:int):
-    """Resize byte n times bigger bit wise
-    
-    Args:
-        buf: unsigned byte
-        n  : buffer multiplier 
-        
-    Returns:
-        list of ones and zeroes
-
-    """
-    retval=[]
-    for bit in enumbits(byteval): retval+=[bit]*n
-    return retval
+    for b in buf:
+        retval+=packbitlisttobuf(resizebitpattenNtimesbigger(b, n))
+    return array('B', retval)
 
 
 def resizebufNtimesbigger(buf:array,

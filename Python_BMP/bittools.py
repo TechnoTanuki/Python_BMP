@@ -3,6 +3,8 @@
 #|    We make absolutely no warranty of any kind, expressed or implied.     |
 #\--------------------------------------------------------------------------/
 
+from .mathlib import enumbits
+
 def packbitlisttobuf(blist: list[int]) -> list[int] :
     """Packs literal list of ones and zeros 
             to a list of bytes
@@ -25,4 +27,22 @@ def packbitlisttobuf(blist: list[int]) -> list[int] :
             retval += [b]
             b = 0
         i += 1
+    return retval
+
+def resizebitpattenNtimesbigger(
+        byteval: int, n: int):
+    """Resize byte n times bigger
+        bit wise
+    
+    Args:
+        buf: unsigned byte
+        n  : buffer multiplier 
+        
+    Returns:
+        list of ones and zeroes
+
+    """
+    retval=[]
+    for bit in enumbits(byteval):
+        retval += [bit] * n
     return retval
