@@ -6542,15 +6542,20 @@ def horizontalbrightnessgradto24bitregion(
 @_fn24bitencircbnd 
 def magnifyNtimescircregion(bmp: array,
         x: int, y: int, r: int, n: int):
-    """Magnify a circular region in a bitmap file by n
+    """Magnify a circular region
+        in a bitmap file by n
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r
-        n    : int magnification factor
+        bmp    : unsigned byte array 
+                 with bmp format
+        x, y, r: center (x,y) 
+                 and radius r
+        n      : int magnification 
+                 factor
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     nx = x * n
@@ -6566,14 +6571,20 @@ def magnifyNtimescircregion(bmp: array,
 
 
 @_fn24bitencircbnd 
-def pixelizenxncircregion(bmp: array,
-        x: int, y: int, r: int, n: int):
-    """Pixelizze a circular region in a bitmap file by n
+def pixelizenxncircregion(
+        bmp: array,
+        x: int, y: int, r: int,
+        n: int):
+    """Pixelizze a circular region 
+        in a bitmap file by n
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        x,y,r: center (x,y) and radius r
-        n    : integer pixellation dimension
+        bmp    : unsigned byte array 
+                 with bmp format
+        x, y, r: center (x,y)
+                 and radius r
+        n      : integer pixellation 
+                 dimension n x n
         
     Returns:
         byref modified unsigned byte array
@@ -7081,12 +7092,16 @@ def applyfunctocircregion(
         NewBMPfile: str,
         func: Callable,
         x: int, y: int, r: int):
-    """Apply a user provided function (no parameters) to a circular area
+    """Apply a user provided function 
+        (no parameters) to a circular area
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x,y,r          : center (x,y) and radius r
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x, y, r        : center (x,y)
+                         and radius r
         func           : user defined function
         
     Returns:
@@ -7097,7 +7112,7 @@ def applyfunctocircregion(
     if len(bmp) > 54:
         func(bmp, x, y, r)
         saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savecircfunc']%(func.__name__ ,x,y,r,ExistingBMPfile,NewBMPfile))
+        print(sysmsg['savecircfunc']%(func.__name__ , x, y, r, ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7107,14 +7122,20 @@ def applyfunctocircregionwithparam(
         func: Callable,
         x: int, y: int, r: int,
         funcparam):
-    """Apply a user provided function with parameters to a circular area
+    """Apply a user provided function
+        with parameters to a circular area
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x,y,r          : center (x,y) and radius r
-        func           : user defined function
-        funcparam      : parameters  of the function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x, y, r        : center (x,y)
+                         and radius r
+        func           : user defined
+                         function
+        funcparam      : parameters of
+                         the function
         
     Returns:
         new bitmap file
@@ -7124,7 +7145,8 @@ def applyfunctocircregionwithparam(
     if len(bmp) > 54:
         func(bmp, x, y, r, funcparam)
         saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savecircfuncwithparam']%(func.__name__ ,x,y,r,funcparam,ExistingBMPfile,NewBMPfile))
+        print(sysmsg['savecircfuncwithparam'] % (func.__name__ ,
+            x, y, r, funcparam, ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7133,13 +7155,19 @@ def apply24bitcoloradjfunctocircregion(
         NewBMPfile: str,
         func: Callable,
         x: int, y: int, r: int):
-    """Apply a no parameter color adjustment function to a circular area (24 bit only)
+    """Apply a no parameter color
+        adjustment function
+        to a circular area (24 bit only)
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x,y,r          : center (x,y) and radius r
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x, y, r        : center (x,y)
+                         and radius r
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -7151,8 +7179,9 @@ def apply24bitcoloradjfunctocircregion(
             print(sysmsg['not24bit'])
         else:
             func(bmp, x, y, r)
-            saveBMP(NewBMPfile,bmp)
-            print(sysmsg['savecircfunc']%(func.__name__ ,x,y,r,ExistingBMPfile,NewBMPfile))
+            saveBMP(NewBMPfile, bmp)
+            print(sysmsg['savecircfunc'] % (func.__name__,
+                x, y, r, ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7162,14 +7191,21 @@ def apply24bitcoloradjfuncwithparam2circregion(
     func: Callable,
     x: int, y: int, r: int,
     funcparam):
-    """Apply a user provided color adjustment function to a circular area (24 bit only)
+    """Apply a user provided
+        color adjustment function
+        to a circular area (24 bit only)
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x,y,r          : center (x,y) and radius r
-        func           : user defined function
-        funcparam      : parameters  of the function
+        ExistingBMPfile: Whole path to 
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x, y, r        : center (x,y)
+                         and radius r
+        func           : user defined
+                         function
+        funcparam      : parameters of
+                         the function
         
     Returns:
         new bitmap file
@@ -7180,9 +7216,10 @@ def apply24bitcoloradjfuncwithparam2circregion(
         if bmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
         else: 
-            func(bmp,x,y,r,funcparam)
-            saveBMP(NewBMPfile,bmp)
-            print(sysmsg['savecircfuncwithparam']%(func.__name__ ,x,y,r,funcparam,ExistingBMPfile,NewBMPfile))
+            func(bmp, x, y, r, funcparam)
+            saveBMP(NewBMPfile, bmp)
+            print(sysmsg['savecircfuncwithparam'] % (func.__name__,
+            x, y, r, funcparam, ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
