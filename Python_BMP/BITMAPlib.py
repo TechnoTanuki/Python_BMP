@@ -8494,7 +8494,8 @@ def filledcircle2file(
                          save changes to
         x,y,r          : center (x,y)
                          and radius r
-        color          : color of circular region
+        color          : color of the
+                         circular region
         
     Returns:
         new bitmap file
@@ -8997,7 +8998,8 @@ def magnifyNtimescircregion2file(
 
     """
     applyfunctocircregionwithparam(
-        ExistingBMPfile, NewBMPfile, magnifyNtimescircregion,
+        ExistingBMPfile, NewBMPfile,
+        magnifyNtimescircregion,
         x, y, r, intmagfactor)
 
 
