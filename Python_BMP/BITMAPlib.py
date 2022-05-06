@@ -8480,7 +8480,7 @@ def monochromecircregion2file(
                          to existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y) 
+        x, y, r        : center (x,y) 
                          and radius r
         
     Returns:
@@ -8504,7 +8504,7 @@ def invertbitsincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
         
@@ -8533,7 +8533,7 @@ def colorfiltercircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y) 
+        x, y, r        : center (x,y) 
                          and radius r
         rgbfactors     : (r,g,b) r,g,b values 
                          range from 0 to 1
@@ -8563,7 +8563,7 @@ def thresholdadjcircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         lumrange       : (byte:byte) 
                          threshold range
@@ -8593,7 +8593,7 @@ def gammacorrectcircregion2file(
                          to existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         gamma          : gamma adjustment
         
@@ -8624,7 +8624,7 @@ def sphere2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         rgbfactors     : (r,g,b) r,g,b values 
                          range from 0 to 1
@@ -8652,7 +8652,7 @@ def filledcircle2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         color          : color of the
                          circular region
@@ -8681,7 +8681,7 @@ def circle2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         color          : color of circle
         
@@ -8720,11 +8720,10 @@ def brightnessadjcircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r          : center (x,y)
                          and radius r
-        percentadj     : brightness adjustment
-                         can be 
-                         positive or negative
+        percentadj     : brightness adjustment can 
+                         be positive or negative
         
     Returns:
         new bitmap file
@@ -8750,7 +8749,7 @@ def vertbrightnessgrad2circregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         lumrange       : (byte:byte) defines
                      the brightness gradient
@@ -8780,7 +8779,7 @@ def horibrightnessgrad2circregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         lumrange       : (byte:byte)
                   the brightness gradient
@@ -8808,7 +8807,7 @@ def flipvertcircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
 
     Returns:
@@ -8833,7 +8832,7 @@ def eraseeverynthhorilineinccircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         n              : omit every nth line
 
@@ -8860,7 +8859,7 @@ def mirrortopincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
 
     Returns:
@@ -8886,7 +8885,7 @@ def mirrorbottomincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -8912,7 +8911,7 @@ def mirrorleftincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -8938,7 +8937,7 @@ def mirrorrightincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -8964,7 +8963,7 @@ def mirrortopleftincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -8990,7 +8989,7 @@ def mirrorbottomleftincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -9016,7 +9015,7 @@ def mirrortoprightincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -9042,7 +9041,7 @@ def mirrorbottomrightincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
 
     Returns:
@@ -9068,7 +9067,7 @@ def fliphoricircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -9095,7 +9094,7 @@ def outlinecircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         
     Returns:
@@ -9121,7 +9120,7 @@ def flipXYcircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
 
     Returns:
@@ -9148,7 +9147,7 @@ def magnifyNtimescircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         intmagfactor   : int magnification
                          factor
@@ -9178,7 +9177,7 @@ def pixelizenxncircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x,y,r          : center (x,y)
+        x, y, r        : center (x,y)
                          and radius r
         intpixsize     : n x n 
                          pixel blur size
