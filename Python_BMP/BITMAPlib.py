@@ -1817,8 +1817,10 @@ def horiline(bmp: array,
     Args:
         bmp  : unsigned byte array
                with bmp format
-        y    : constant y value of the line
-        x1,x2: line starts at x1 and ends at x2
+        y    : constant y value
+               of the line
+        x1,x2: line starts at x1
+               and ends at x2
         color: color of the line
         
     Returns:
@@ -1993,10 +1995,12 @@ def filledgradrect(bmp: array,
 def itercopyrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int) -> array:
-    """Creates a filled rectangle with a linear gradient in a bitmap 
+    """Creates a filled rectangle
+        with a linear gradient in a bitmap 
 
     Args:
-        bmp         : unsigned byte array with bmp format
+        bmp         : unsigned byte array
+                      with bmp format
         x1,y1,x2,y2 : defines the rectangle
          
     Yields:
@@ -2197,10 +2201,10 @@ def applynoparam24bitfunctocircregion(bmp: array,
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x, v[0])
             y1, y2 = mirror(y, v[1])
-            s1 = c(bmp,x1,y1)
-            e1 = c(bmp,x2,y1)
-            s2 = c(bmp,x1,y2)
-            e2 = c(bmp,x2,y2)
+            s1 = c(bmp, x1, y1)
+            e1 = c(bmp, x2, y1)
+            s2 = c(bmp, x1, y2)
+            e2 = c(bmp, x2, y2)
             bmp[s1: e1] = func(bmp[s1: e1])
             if y1 != y2: 
                 bmp[s2: e2] = func(bmp[s2: e2])
@@ -2217,8 +2221,8 @@ def applynoparam24bitfunctocircregion(bmp: array,
                 e2 = c(bmp, x2, y2)
                 bmp[s2: e2] = func(bmp[s2: e2])
             if isinrange(y1, ymax, -1) and y2 != y1:
-                s1 = c(bmp,x1,y1)
-                e1 = c(bmp,x2,y1)
+                s1 = c(bmp, x1, y1)
+                e1 = c(bmp, x2, y1)
                 bmp[s1: e1]=func(bmp[s1: e1])
 
 
@@ -2249,10 +2253,10 @@ def apply24bitfunctocircregion(bmp: array,
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x,v[0])
             y1, y2 = mirror(y,v[1])
-            s1 = c(bmp,x1,y1)
-            e1 = c(bmp,x2,y1)
-            s2 = c(bmp,x1,y2)
-            e2 = c(bmp,x2,y2)
+            s1 = c(bmp, x1, y1)
+            e1 = c(bmp, x2, y1)
+            s2 = c(bmp, x1, y2)
+            e2 = c(bmp, x2, y2)
             bmp[s1: e1] = func(bmp[s1: e1], funcparam)
             if y2 != y1: 
                 bmp[s2: e2] = func(bmp[s2: e2], funcparam)
@@ -2387,10 +2391,10 @@ def applynoparamfunctocircregion(bmp: array,
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x, v[0])
             y1, y2 = mirror(y, v[1])
-            s1 = c(bmp,x1,y1)
-            e1 = c(bmp,x2,y1)
-            s2 = c(bmp,x1,y2)
-            e2 = c(bmp,x2,y2)
+            s1 = c(bmp, x1, y1)
+            e1 = c(bmp, x2, y1)
+            s2 = c(bmp, x1, y2)
+            e2 = c(bmp, x2, y2)
             bmp[s1: e1] = func(bmp[s1: e1])
             if y1 != y2: 
                 bmp[s2: e2] = func(bmp[s2: e2])
@@ -2407,8 +2411,8 @@ def applynoparamfunctocircregion(bmp: array,
                 e2 = c(bmp, x2, y2)
                 bmp[s2: e2] = func(bmp[s2: e2])
             if isinrange(y1, ymax, -1) and y2 != y1:
-                s1 = c(bmp,x1,y1)
-                e1 = c(bmp,x2,y1)
+                s1 = c(bmp, x1, y1)
+                e1 = c(bmp, x2, y1)
                 bmp[s1: e1] = func(bmp[s1: e1])
 
 
@@ -2540,10 +2544,10 @@ def horitransformincircregion(bmp: array,
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
         k = getxcharcount(bmp)
-        s1 = c(bmp,x1,y2)
-        e1 = c(bmp,x1,y1) + k
-        s2 = c(bmp,x2,y2)
-        e2 = c(bmp,x2,y1) + k
+        s1 = c(bmp, x1, y2)
+        e1 = c(bmp, x1, y1) + k
+        s2 = c(bmp, x2, y2)
+        e2 = c(bmp, x2, y1) + k
         f()
 
 
@@ -2822,10 +2826,10 @@ def vertbrightnessgrad2circregion(bmp: array,
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
         l1, l2 = l + (y1 - b) * dl, l + (y2 - b) * dl
-        s1 = c(bmp,x1,y1)
-        e1 = c(bmp,x2,y1)
-        s2 = c(bmp,x1,y2)
-        e2 = c(bmp,x2,y2)
+        s1 = c(bmp, x1, y1)
+        e1 = c(bmp, x2, y1)
+        s2 = c(bmp, x1, y2)
+        e2 = c(bmp, x2, y2)
         bmp[s1: e1], bmp[s2: e2] = f(bmp[s1: e1], l1), f(bmp[s2: e2], l2)
 
 
@@ -2918,8 +2922,8 @@ def outlinecircregion(bmp: array,
                 else: 
                     bmp[s2: e2] = array('B', xorvect(bmp[s2: e2], bmp[s2 + 1: e2 + 1]))
             if isinrange(y1, ymax, -1) and y2 != y1:
-                s1 = c(bmp,x1,y1)
-                e1 = c(bmp,x2,y1)
+                s1 = c(bmp, x1, y1)
+                e1 = c(bmp, x2, y1)
                 if bits == 24: 
                     bmp[s1: e1] = array('B', xorvect(bmp[s1: e1], bmp[s1 + 3: e1 + 3]))
                 else: 
@@ -3180,18 +3184,18 @@ def circle(bmp: array,
                         bmp[s: s + 3] = color
             else:
                 for p in itercirclepart(r):
-                    x1, x2 = mirror(x,p[0])
-                    y1, y2 = mirror(y,p[1])
-                    x3, x4 = mirror(x,p[1])
-                    y3, y4 = mirror(y,p[0])
-                    s1 = c(bmp,x1,y1)
-                    s2 = c(bmp,x2,y2)
-                    s3 = c(bmp,x1,y2)
-                    s4 = c(bmp,x2,y1)
-                    s5 = c(bmp,x3,y3)
-                    s6 = c(bmp,x4,y4)
-                    s7 = c(bmp,x3,y4)
-                    s8 = c(bmp,x4,y3)
+                    x1, x2 = mirror(x, p[0])
+                    y1, y2 = mirror(y, p[1])
+                    x3, x4 = mirror(x, p[1])
+                    y3, y4 = mirror(y, p[0])
+                    s1 = c(bmp, x1, y1)
+                    s2 = c(bmp, x2, y2)
+                    s3 = c(bmp, x1, y2)
+                    s4 = c(bmp, x2, y1)
+                    s5 = c(bmp, x3, y3)
+                    s6 = c(bmp, x4, y4)
+                    s7 = c(bmp, x3, y4)
+                    s8 = c(bmp, x4, y3)
                     bmp[s1:s1+3]=bmp[s2:s2+3]=bmp[s3:s3+3]=bmp[s4:s4+3]=bmp[s5:s5+3]=bmp[s6:s6+3]=bmp[s7:s7+3]=bmp[s8:s8+3]=color
         elif bits == 8:
             if dobndcheck:
@@ -3605,7 +3609,7 @@ def filledrect(bmp: array,
 
     """
     bits = bmp[_bmclrbits]
-    x1, y1, x2, y2 = sortrecpoints(x1,y1,x2,y2)
+    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
     if bits not in [8, 24]:
         y2 +=1
         for y in range(y1, y2): 
@@ -4381,16 +4385,19 @@ def xygrid(bmp: array,
     """Draws a grid
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: sets limits of grid
-        xysteps    : [x,y] -> sets the increment in x and y
-        color      : sets the color of the grid
+        xysteps    : [x,y] -> sets the 
+                     increment in x and y
+        color      : sets the color 
+                     of the grid
         
     Returns:
         byref modified unsigned byte array
 
     """
-    x1, y1, x2, y2 = sortrecpoints(x1,y1,x2,y2)
+    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
     xstep = xysteps[0]
     ystep = xysteps[1]
     for x in range(x1, x2, xstep): 
@@ -5170,7 +5177,7 @@ def erasealternatehorizontallinesinregion(
     Args:
         bmp                : unsigned byte array
                              with bmp format
-        x1,y1,x2,y2        : ints that defines the 
+        x1, y1, x2, y2     : ints that defines the 
                              rectangular region
         int_eraseeverynline: erase every nth line
                              in the region
@@ -5208,12 +5215,12 @@ def eraseeverynthhorilineinregion(
         a rectangular region
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: ints that defines the 
-                     rectangular region
-        n          : erase every nth line
-                     in the rectangular region
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: ints that defines the 
+                        rectangular region
+        n             : erase every nth line
+                        in the rectangular area
         
     Returns:
         byref modified unsigned byte array
@@ -5560,10 +5567,12 @@ def mirrorleftinregion(bmp: array,
 def mirrorrightinregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the right half of a rectangular area in a bitmap 
+    """Mirrors the right half of
+        a rectangular area in a bitmap 
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5621,10 +5630,13 @@ def mirrorright(bmp:array):
 def mirrortopleftinregion(bmp:array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the top left of a rectangular region defined by (x1,y1) and (x2,y2)
+    """Mirrors the top left of
+        a rectangular region
+        defined by (x1,y1) and (x2,y2)
 
     Args:
-        bmp         : unsigned byte array with bmp format
+        bmp         : unsigned byte array
+                      with bmp format
         x1,y1,x2,y2 : defines the rectangle
         
     Returns:
@@ -5638,10 +5650,13 @@ def mirrortopleftinregion(bmp:array,
 def mirrortoprightinregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the top right of a rectangular region defined by (x1,y1) and (x2,y2)
+    """Mirrors the top right of
+        a rectangular region
+        defined by (x1,y1) and (x2,y2)
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5655,10 +5670,13 @@ def mirrortoprightinregion(bmp: array,
 def mirrorbottomleftinregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the bottom left of a rectangular region defined by (x1,y1) and (x2,y2)
+    """Mirrors the bottom left of
+        a rectangular region
+        defined by (x1,y1) and (x2,y2)
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5672,10 +5690,13 @@ def mirrorbottomleftinregion(bmp: array,
 def mirrorbottomrightinregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the bottom right of a rectangular region defined by (x1,y1) and (x2,y2)
+    """Mirrors the bottom right of
+        a rectangular region
+        defined by (x1,y1) and (x2,y2)
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
@@ -5794,16 +5815,21 @@ def flipXY(bmp: array):
     return nbmp
 
 @_enrectbnd                  
-def itergetcolorfromrectregion(bmp,x1,y1,x2,y2):
+def itergetcolorfromrectregion(
+        bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Yields color info of 
-        a rectangular area in a bitmap 
+        a rectangular area
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         
     Yields:
-        ((x:int,y:int),color:int) -> for all points in area
+        ((x:int,y:int),color:int) -> for all 
+                              points in area
 
     """
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
