@@ -155,10 +155,10 @@ from .paramchecks import(
     func24bitonly as _fn24bit,
     func24bitonlyandentirecircleinboundary as _fn24bitencircbnd,
     func24bitonlyandentirerectinboundary as _fn24bitenrectbnd,
-    func8and24bitonlyandentirecircleinboundary,
-    func8and24bitonlyandentirerectinboundary,
-    intcircleparam,
-    intcircleparam24bitonly
+    func8and24bitonlyandentirecircleinboundary as _fn8_24bitencircbnd,
+    func8and24bitonlyandentirerectinboundary as _fn8_24bitenrectbnd,
+    intcircleparam as _intcircpar,
+    intcircleparam24bitonly as _fn24bitintcircpar 
     )
 
 from .bittools import packbitlisttobuf
@@ -1468,7 +1468,8 @@ def plotRGBxybit(bmp: array,
                 x, y, matchRGBtopal(rgb, getallRGBpal(bmp)))
 
 
-def plotxybit(bmp: array, x: int, y: int, c: int):
+def plotxybit(bmp: array,
+        x: int, y: int, c: int):
     """Sets pixel at x,y in a bitmap to color c
 
     Args:
@@ -1908,7 +1909,7 @@ def fillbackgroundwithgrad(bmp: array,
         direction)
 
 
-@func8and24bitonlyandentirerectinboundary
+@_fn8_24bitenrectbnd
 def filledgradrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -2145,7 +2146,7 @@ def gradthickroundline(bmp: array,
         thickroundline(bmp, p1, p2, i, c)
 
 
-@intcircleparam24bitonly        
+@_fn24bitintcircpar        
 def applynoparam24bitfunctocircregion(bmp: array,
         x: int, y: int, r: int,
         func: Callable):
@@ -2196,7 +2197,7 @@ def applynoparam24bitfunctocircregion(bmp: array,
                 bmp[s1: e1]=func(bmp[s1: e1])
 
 
-@intcircleparam24bitonly       
+@_fn24bitintcircpar       
 def apply24bitfunctocircregion(bmp: array,
         x: int, y: int, r: int,
         func: Callable, funcparam):
@@ -2336,7 +2337,7 @@ def copycircregion(bmp: array,
         copycircregion2buf(bmp, x, y, r))
 
 
-@intcircleparam
+@_intcircpar
 def applynoparamfunctocircregion(bmp: array,
         x: int, y: int, r: int, 
         func: Callable):
@@ -2451,7 +2452,7 @@ def fliphoricircregion(bmp: array,
     horitransformincircregion(bmp, x, y, r, 'F')
 
 
-@func8and24bitonlyandentirecircleinboundary
+@_fn8_24bitencircbnd
 def horitransformincircregion(bmp: array,
         x: int, y: int, r: int,
         trans: str):
@@ -2783,7 +2784,7 @@ def horibrightnessgrad2circregion(bmp: array,
             applyfuncwithparam2vertBMPbitBLTget(bmp,
                 x2, y1, y2, f, l + (x2 - b) * dl)
 
-@intcircleparam    
+@_intcircpar    
 def outlinecircregion(bmp: array,
         x: int, y: int, r: int):
     """Outlines the area within
@@ -3427,7 +3428,7 @@ def gradellipse(bmp: array,
         ellipse(bmp, x, y, b + i, a + i, c, True)
 
 
-@intcircleparam
+@_intcircpar
 def drawarc(bmp: array,
         x: int, y: int, r: int,
         startdegangle: float,
@@ -6604,7 +6605,7 @@ def outline(bmp:array):
     outlineregion(bmp, 0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
 
 
-@intcircleparam
+@_intcircpar
 def sphere(bmp: array,
         x: int, y: int, r: int,
         rgbfactors: list[float, float, float]):
@@ -6624,7 +6625,7 @@ def sphere(bmp: array,
     gradcircle(bmp, x, y, r, [255, 0], rgbfactors)
 
 
-@intcircleparam
+@_intcircpar
 def thickencirclearea(bmp: array,
         x: int, y: int, r: int,
         rgbfactors: list[float, float, float]): 
