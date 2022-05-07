@@ -2808,7 +2808,8 @@ def fliphoricircregion(
         unsigned byte array
 
     """
-    horitransformincircregion(bmp, x, y, r, 'F')
+    horitransformincircregion(
+        bmp, x, y, r, 'F')
 
 
 @_fn8_24bitencircbnd
@@ -2926,7 +2927,7 @@ def mirrorrightincircregion(
 
     Returns:
         byref modified 
-        unsigned byte unsigned array
+        unsigned byte array
 
     """
     horitransformincircregion(
@@ -2939,7 +2940,8 @@ def flipvertcircregion(
         r: int):
     """Does a vertical flip
         of a circular region
-        defined by centerpoint (x,y)
+        defined by 
+        centerpoint (x,y)
         and radius r
 
     Args:
@@ -3109,8 +3111,10 @@ def mirrortoprightincircregion(
         unsigned byte array
 
     """
-    mirrorrightincircregion(bmp, x, y, r)
-    mirrortopincircregion(bmp, x, y, r)
+    mirrorrightincircregion(
+        bmp, x, y, r)
+    mirrortopincircregion(
+        bmp, x, y, r)
 
 
 def mirrorbottomleftincircregion(
@@ -3129,11 +3133,14 @@ def mirrorbottomleftincircregion(
                  radius r of region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    mirrorleftincircregion(bmp, x, y, r)
-    mirrorbottomincircregion(bmp, x, y, r)
+    mirrorleftincircregion(
+        bmp, x, y, r)
+    mirrorbottomincircregion(
+        bmp, x, y, r)
 
 
 def mirrorbottomrightincircregion(
@@ -3156,8 +3163,10 @@ def mirrorbottomrightincircregion(
         unsigned byte array
 
     """
-    mirrorrightincircregion(bmp, x, y, r)
-    mirrorbottomincircregion(bmp, x, y, r)
+    mirrorrightincircregion(
+        bmp, x, y, r)
+    mirrorbottomincircregion(
+        bmp, x, y, r)
 
 @_fn24bitencircbnd  
 def vertbrightnessgrad2circregion(
@@ -3216,13 +3225,16 @@ def horibrightnessgrad2circregion(
     Args:
         bmp     : unsigned byte array
                   with bmp format
-        x, y, r : center (x,y) and radius r 
-                  of a circular region
-        lumrange: [byte,byte] that defines 
-                  the range of luminosity
+        x, y, r : center (x,y) 
+                  and radius r 
+                  of a circular area
+        lumrange: [byte,byte] that 
+                  defines the range 
+                  of luminosity
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     f = applybrightnessadjtoBGRbuf
@@ -3245,7 +3257,8 @@ def outlinecircregion(bmp: array,
         x: int, y: int, r: int):
     """Outlines the area within
         a circular region 
-        defined by centerpoint (x,y) 
+        defined by 
+        centerpoint (x,y) 
         and radius r
 
     Args:
@@ -3263,7 +3276,9 @@ def outlinecircregion(bmp: array,
     bits = bmp[_bmclrbits]
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(
-            x, y, -1, getmaxx(bmp), -1, getmaxy(bmp), r):
+            x, y,
+            -1, getmaxx(bmp),
+            -1, getmaxy(bmp), r):
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x, v[0])
             y1, y2 = mirror(y, v[1])
@@ -3344,7 +3359,8 @@ def colorfiltercircregion(
     """Applies a color filter 
         defined by rgbfactors
         to a circular region
-        defined by centerpoint (x,y) 
+        defined by
+        centerpoint (x,y) 
         and radius r
 
     Args:
@@ -3354,11 +3370,12 @@ def colorfiltercircregion(
                     and radius r 
                     of the region
         rgbfactors: [r,g,b] 
-                    range of r,g and b are
+                    range of r,g & b are
                     from 0 min to 1 max
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     apply24bitfunctocircregion(
@@ -3386,7 +3403,8 @@ def gammacorrectcircregion(
                gamma adjustment
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     apply24bitfunctocircregion(
@@ -3398,9 +3416,12 @@ def brightnessadjcircregion(
         x: int, y: int,
         r: int,
         percentadj: float):
-    """Applies a brightness adjustment
-        to a circular region defined 
-        by centerpoint (x,y) and radius r 
+    """Applies a
+        brightness adjustment
+        to a circular region 
+        defined by 
+        centerpoint (x,y)
+        and radius r 
 
     Args:
         bmp       : unsigned byte array
@@ -3412,7 +3433,8 @@ def brightnessadjcircregion(
                     brightness adjustment
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     apply24bitfunctocircregion(
@@ -3427,7 +3449,8 @@ def invertbitsincircregion(
         r: int):
     """Inverts the bits
         in a circular region 
-        defined by centerpoint (x,y) 
+        defined by
+        centerpoint (x,y) 
         and radius r 
 
     Args:
@@ -3451,19 +3474,22 @@ def circlevec(bmp: array,
     v: list, r: int,
     color: int,
     isfilled: bool = None):
-    """Draws a circle defined by
-        centerpoint v and radius r
+    """Draws a circle
+        defined by
+        centerpoint v 
+        and radius r
         with a given color
 
     Args:
         bmp     : unsigned byte array
                   with bmp format
-        v       : (x,y) central coordinates
-                  of the circular region
-        r       : radius of circular region
+        v       : (x,y) center of
+                  the circular region
+        r       : radius of the
+                  circular region
         color   : color of the circle
-        isfilled: toggles if circle
-                  is filled
+        isfilled: toggles if the
+                  circle is filled
         
     Returns:
         byref modified
@@ -3478,8 +3504,10 @@ def circlevec(bmp: array,
 def filledcircle(bmp: array,
         x: int, y: int, r: int,
         color: int):
-    """Draws a filled circle defined by 
-        centerpoint (x,y) and radius r
+    """Draws a filled circle
+        defined by 
+        centerpoint (x,y)
+        and radius r
         with a given color
 
     Args:
@@ -3488,7 +3516,8 @@ def filledcircle(bmp: array,
         x, y, r: center (x,y) 
                  and radius r
                  of filled circle
-        color: color of filled circle
+        color  : color of the
+                 filled circle
         
     Returns:
         byref modified
@@ -3509,7 +3538,7 @@ def filledcircle(bmp: array,
                 x1, x2 = mirror(x, v[0])
                 y1, y2 = mirror(y, v[1])
                 x1 = setmin(x1, 0)
-                x2 = setmax(x2,m[0]-1)
+                x2 = setmax(x2, m[0] - 1)
                 dx = x2 - x1 + 1
                 ymax = m[1]
                 rgb = int2RGBlist(color)
@@ -3518,10 +3547,12 @@ def filledcircle(bmp: array,
                                        rgb[0]] * dx)
                 lbuf = dx * 3
                 if isinrange(y2, ymax, -1):
-                    s = compute24bitBMPoffsetwithheader(bmp, x1, y2)
+                    s = compute24bitBMPoffsetwithheader(
+                            bmp, x1, y2)
                     bmp[s: s + lbuf] = colorbuf
                 if isinrange(y1, ymax, -1):
-                    s = compute24bitBMPoffsetwithheader(bmp, x1, y1)
+                    s = compute24bitBMPoffsetwithheader(
+                            bmp, x1, y1)
                     bmp[s: s+ lbuf] = colorbuf
         elif bits == 8:
             for v in itercirclepartlineedge(r):
@@ -3543,7 +3574,8 @@ def filledcircle(bmp: array,
 
 
 def circle(bmp: array,
-        x: int, y: int, r: int,
+        x: int, y: int,
+        r: int,
         color: int,
         isfilled: bool = None):
     """Draws a circle defined 
@@ -3558,12 +3590,14 @@ def circle(bmp: array,
                   and radius r
                   of the circle
         color   : color of the circle
-        isfilled: toggles if circle is filled
+        isfilled: toggles if the 
+                  circle is filled
                   True -> filled circle
-                  False -> draw circle outline
+                  False -> circle outline
         
     Returns:
-        byref modified unsigned byte array
+        byref modified 
+        unsigned byte array
 
     """
     if isfilled: 
@@ -3581,7 +3615,8 @@ def circle(bmp: array,
                 for p in itercircle(x, y, r):
                     px = p[0]
                     py = p[1]
-                    if isinBMPrectbnd(bmp, px, py):
+                    if isinBMPrectbnd(
+                            bmp, px, py):
                         s = c(bmp, px, py)
                         bmp[s: s + 3] = color
             else:
@@ -3598,7 +3633,14 @@ def circle(bmp: array,
                     s6 = c(bmp, x4, y4)
                     s7 = c(bmp, x3, y4)
                     s8 = c(bmp, x4, y3)
-                    bmp[s1: s1 + 3] = bmp[s2: s2 + 3] = bmp[s3: s3 + 3] = bmp[s4: s4 + 3] = bmp[s5: s5 + 3] = bmp[s6: s6 + 3] = bmp[s7: s7 + 3] = bmp[s8: s8 + 3] = color
+                    bmp[s1: s1 + 3] = \
+                    bmp[s2: s2 + 3] = \
+                    bmp[s3: s3 + 3] = \
+                    bmp[s4: s4 + 3] = \
+                    bmp[s5: s5 + 3] = \
+                    bmp[s6: s6 + 3] = \
+                    bmp[s7: s7 + 3] = \
+                    bmp[s8: s8 + 3] = color
         elif bits == 8:
             if dobndcheck:
                 for p in itercircle(x, y, r):
