@@ -4135,7 +4135,8 @@ def filledrect(
                               rgb[1],
                               rgb[0]] * dx)
         elif bits == 8: 
-            buf = array('B', [matchRGBtopal(rgb, getallRGBpal(bmp))] * dx)
+            buf = array('B', [matchRGBtopal(rgb,
+                              getallRGBpal(bmp))] * dx)
         offset = c(bmp, x1, y2)
         lim = c(bmp, x2, y1)
         bufsize = len(buf)
@@ -4335,7 +4336,8 @@ def plot8bitpatternupsidedown(
         while mask > 0:
             if (mask & bits)>0:
                 if scale == 1 or inc <= 0: 
-                    plotxybit(bmp, x, y, color)
+                    plotxybit(
+                        bmp, x, y, color)
                 else: 
                     filledrect(bmp,
                         x, y, x + inc,
@@ -4791,7 +4793,8 @@ def gradthickplotpoly(
         unsigned byte array
 
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    lum1, lumrang = range2baseanddelta(
+                        lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)),
@@ -4940,15 +4943,21 @@ def plot3d(
 
 def plot3Dsolid(bmp: array,
         vertandsides: list,
-        issolid: bool, RGBfactors: list,
-        showoutline: bool, outlinecolor: int,
-        rotvect: list, transvect3D: list,
-        d: int, transvect: list):
+        issolid: bool,
+        RGBfactors: list,
+        showoutline: bool,
+        outlinecolor: int,
+        rotvect: list,
+        transvect3D: list,
+        d: int,
+        transvect: list):
     """3D solid rendering function
 
     Args:
-        bmp         : unsigned byte array with bmp format
-        sides       : list of polygons and normals
+        bmp         : unsigned byte array
+                      with bmp format
+        sides       : list of polygons 
+                      and normals
         isolid      : toggles solid render
         RGBfactors  : [r:float,g:float,b:float] 
         r,g,b all range in value from 0 to 1
@@ -4956,19 +4965,28 @@ def plot3Dsolid(bmp: array,
         outlinecolor: color of polygon outline
         rotvect     : rotation vector
         transvect3D : 3D translation vector
-        d           : distance of observer from screen
-        transvect   : translation vector for screen positioning
+        d           : distance of observer
+                      from screen
+        transvect   : 2D translation vector
+                      for screen positioning
         
     Returns:
-        byref modified unsigned byte array
+        byref modified 
+        unsigned byte array
 
     """
     plot3d(bmp,
         gensides(
             perspective(
-                vertandsides[0], rotvect, transvect3D, d),
-            transvect, vertandsides[1]),
-        issolid, RGBfactors, showoutline, outlinecolor)
+                vertandsides[0],
+                rotvect, 
+                transvect3D, d),
+            transvect,
+            vertandsides[1]),
+        issolid,
+        RGBfactors,
+        showoutline,
+        outlinecolor)
 
 
 def gradvert(bmp: array,
@@ -4976,25 +4994,34 @@ def gradvert(bmp: array,
         penradius: int,
         lumrange: list, 
         RGBfactors: list):
-    """Draws a list of 2d vertices as spheres of a given color
+    """Draws a list of 2d vertices
+        as spheres of a given color
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        vertlist  : [(x,y),...] list of verticea
+        bmp       : unsigned byte array
+                    with bmp format
+        vertlist  : [(x,y),...] 
+                    list of vertices
         penradius : radius of the spheres
-        lumrange  : [byte,byte] controls the gradient
-        RGBfactors: (r:float,b:float,g:float) 
-                     values of r,g and b -> min 0 to 1 max 
+        lumrange  : [byte,byte] controls 
+                    the luminosity gradient
+        RGBfactors: (r,b,g:) values of 
+                     r,g and range from 
+                     min 0 to 1 max 
         
     Returns:
-        byref modified unsigned byte array
+        byref modified 
+        unsigned byte array
 
     """
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
-        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        c = colormix(int(lum1 + (lumrang * i / penradius)),
+                RGBfactors)
         if bmp[_bmclrbits] != 24:
-            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+            c = matchRGBtopal(
+                    int2RGBarr(c),
+                    getallRGBpal(bmp))
         for point in vertlist: 
             roundpen(bmp, point, i, c)
 
@@ -5033,27 +5060,43 @@ def xygridvec(bmp: array,
         u: list, v: list,
         steps: list,
         gridcolor: int):
-    """Draws a grid using (x,y) pairs u and v
+    """Draws a grid using (x,y) 
+        2D point pairs u and v
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        u,v  : (x,y) sets limits of grid
-        steps: (x,y) -> sets the increment for x and y
-        color: sets the color of the grid
+        bmp  : unsigned byte array
+               with bmp format
+        u,v  : (x,y) sets limits
+                of the  grid
+        steps: (x,y) -> sets the 
+               increments for x and y
+        color: sets the color 
+               of the grid
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
-    xygrid(bmp, u[0], u[1], v[0], v[1], steps, gridcolor)
+    xygrid(bmp, u[0], u[1],
+                v[0], v[1],
+                steps, gridcolor)
 
 
-def numbervert(bmp: array, vlist: list,
-        xadj: int,yadj:int, scale: int,
-        valstart: int, valstep: int,
-        pixspace: int, spacebetweenchar: int,
-        color: int, fontbuf: list,
-        suppresszero: bool, suppresslastnum: bool,
+def numbervert(
+        bmp: array,
+        vlist: list,
+        xadj: int,
+        yadj: int,
+        scale: int,
+        valstart: int,
+        valstep: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list,
+        suppresszero: bool,
+        suppresslastnum: bool,
         rightjustify: bool):
     plot = False
     maxv = len(vlist) - 1
@@ -5070,48 +5113,75 @@ def numbervert(bmp: array, vlist: list,
         if rightjustify:
             rjust = (len(stval) - 1) << 3
         if plot: 
-            plotstring(bmp, v[0] + xadj - rjust,
-                v[1] + yadj, stval, scale, pixspace,
-                spacebetweenchar, color, fontbuf)
+            plotstring(bmp, 
+                v[0] + xadj - rjust,
+                v[1] + yadj, stval,
+                scale, pixspace,
+                spacebetweenchar,
+                color, fontbuf)
 
 
-def vertlinevert(bmp: array, vlist: list,
-        linelen: int, yadj: int, color: int):
-    """Draws vertical line marks at vertices in vlist
+def vertlinevert(
+        bmp: array,
+        vlist: list,
+        linelen: int,
+        yadj: int,
+        color: int):
+    """Draws vertical line marks
+        at vertices set in vlist
 
     Args:
-        bmp    : unsigned byte array with bmp format
-        vlist  : [(x,y),...] list of vertices
-        linelen: lenght of vertical lines
-        yadj   : sets an adjustment of y coordinates
+        bmp    : unsigned byte array 
+                 with bmp format
+        vlist  : [(x,y),...] the
+                 list of vertices
+        linelen: lenght of the
+                 vertical lines
+        yadj   : sets an adjustment
+                 for y coordinates
         color  : color of the line
-        
+
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for v in vlist: 
-        vertline(bmp, v[0], v[1], v[1] + linelen + yadj, color)
+        vertline(bmp, v[0],
+                      v[1],
+                      v[1] + linelen + yadj,
+                      color)
 
 
-def horilinevert(bmp: array,
-        vlist: list, linelen: int,
-        xadj: int, color: int):
-    """Draws horizontal line marks at vertices in vlist
+def horilinevert(
+        bmp: array,
+        vlist: list,
+        linelen: int,
+        xadj: int,
+        color: int):
+    """Draws horizontal line marks
+        at the vertices set in vlist
 
     Args:
-        bmp    : unsigned byte array with bmp format
-        vlist  : [(x,y),...] list of vertices
+        bmp    : unsigned byte array
+                 with bmp format
+        vlist  : [(x,y),...] the
+                 list of 2D vertices
         linelen: lenght of vertical lines
-        xadj   : sets an adjustment of x coordinates
+        xadj   : sets an adjustment
+                 for x coordinates
         color  : color of the line
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for v in vlist: 
-        horiline(bmp, v[1], v[0], v[0] + linelen + xadj, color)
+        horiline(bmp, v[1],
+                      v[0],
+                      v[0] + linelen + xadj,
+                      color)
 
 
 def XYaxis(bmp: array,
@@ -5124,38 +5194,69 @@ def XYaxis(bmp: array,
         textcolor: int,
         showgrid: bool,
         gridcolor: int):
-    """Draws XY axis with tick marks and numbers
+    """Draws XY axis with
+        tick marks and numbers
 
     Args:
-        bmp      : unsigned byte array with bmp format
-        origin   : (x,y) on screen origin point of the axis
-        steps    : (x,y) steps between tick marks onscreen
-        xylimits : (x,y) sets where the graph ends onscreen
+        bmp      : unsigned byte array
+                   with bmp format
+        origin   : (x,y) on screen 
+                    origin point 
+                    of the axis
+        steps    : (x,y) steps between
+                   tick marks onscreen
+        xylimits : (x,y) sets where the
+                   graph ends onscreen
         color    : color of the lines
-        textcolor: color of the numberline text
-        showgird : True -> display gridline | False -> no grid
+        textcolor: color of the 
+                 numberline text
+        showgird : True -> display gridline
+                   False -> no grid
         gridcolor: color of the grid
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    hvert = horizontalvert(origin[1], origin[0], xylimits[0], steps[0])
-    vvert = verticalvert(origin[0], origin[1], xylimits[1], -steps[1])
+    hvert = horizontalvert(origin[1],
+                           origin[0],
+                           xylimits[0],
+                           steps[0])
+    vvert = verticalvert(origin[0],
+                         origin[1],
+                         xylimits[1],
+                         -steps[1])
     if showgrid:
-        xygridvec(bmp, origin, xylimits, steps, gridcolor)
-    drawvec(bmp, origin, [origin[0], xylimits[1]], 10, color)
-    drawvec(bmp, origin, [xylimits[0], origin[1]], 10, color)
+        xygridvec(bmp, origin, xylimits,
+            steps, gridcolor)
+    drawvec(bmp, origin, [origin[0], xylimits[1]],
+            10, color)
+    drawvec(bmp, origin, [xylimits[0], origin[1]],
+            10, color)
     vertlinevert(bmp, hvert, 5, -2, color)
     horilinevert(bmp, vvert, -3, 0, color)
     font = font8x14
     numbervert(bmp, vvert, -15, -4, 1,
-        xyvalstarts[1], xysteps[1], 0, 0, textcolor, font, False, False, True)
+        xyvalstarts[1],
+        xysteps[1],
+        0, 0, textcolor, font,
+        False, False, True)
     numbervert(bmp, hvert, -4, 7, 1,
-        xyvalstarts[0], xysteps[0], 0, 0, textcolor, font, False, False, False)
-    xvalmax = xyvalstarts[0] + (len(hvert) - 1) * xysteps[0] 
-    yvalmax = xyvalstarts[1] + (len(vvert) - 1) * xysteps[1]
-    return (origin, steps, xylimits, xyvalstarts, xysteps, (xvalmax, yvalmax))
+        xyvalstarts[0],
+        xysteps[0],
+        0, 0, textcolor, font,
+        False, False, False)
+    xvalmax = xyvalstarts[0] + \
+                (len(hvert) - 1) * xysteps[0] 
+    yvalmax = xyvalstarts[1] + \
+                (len(vvert) - 1) * xysteps[1]
+    return (origin,
+            steps,
+            xylimits,
+            xyvalstarts,
+            xysteps,
+            (xvalmax, yvalmax))
 
 
 def userdef2Dcooordsys2screenxy(
