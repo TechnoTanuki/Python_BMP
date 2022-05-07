@@ -217,9 +217,14 @@ from .inttools import(
     )
 
 from .messages import sysmsg
+
 from .nibbletools import(
     resize4bitbufNtimesbigger
     )
+
+from .rgbtools import(
+    resizesmaller24bitbuf
+    ) 
 
 from .textgraphics import(
     plotbitsastext,
@@ -7440,12 +7445,15 @@ def verticalbrightnessgradto24bitregion(
         x1: int, y1: int,
         x2: int, y2: int,
         lumrange: list[int, int]):
-    """Apply a vertical brightness gradient to a rectangular area in a 24-bit bitmap
+    """Apply a vertical brightness gradient 
+        to a rectangular area in a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array 
+                     with bmp format
         x1,y1,x2,y2: defines rectangular area
-        lumrange   : (byte:byte) defines the gradient
+        lumrange   : (byte:byte) defines 
+                     the brightness gradient
         
     Returns:
         byref modified unsigned byte array
@@ -7457,7 +7465,8 @@ def verticalbrightnessgradto24bitregion(
     lum = lumrange[1]
     dlum = (lumrange[0] - lumrange[1]) / (y2 - y1)
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
-        BMPbitBLTput(bmp, offset, applybrightnessadjtoBGRbuf(buf, lum))
+        BMPbitBLTput(bmp, offset,
+            applybrightnessadjtoBGRbuf(buf, lum))
         offset += r
         lum += dlum
 
@@ -7472,9 +7481,11 @@ def horizontalbrightnessgradto24bitregion(
         to a rectangular area in a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines rectangular area
-        lumrange   : (byte:byte) defines the gradient
+        lumrange   : (byte:byte) defines 
+                     the brightness gradient
         
     Returns:
         byref modified unsigned byte array
@@ -7490,13 +7501,16 @@ def horizontalbrightnessgradto24bitregion(
     for x in range(x1, xlim):
         s = c(bmp,x,y2)
         e = c(bmp,x,y1)
-        bmp[s:e-2:r],bmp[s+1:e-1:r],bmp[s+2:e:r]=f(bmp[s:e-2:r],l),f(bmp[s+1:e-1:r],l),f(bmp[s+2:e:r],l)
+        bmp[s: e - 2: r], bmp[s + 1: e - 1: r], bmp[s + 2: e: r] = \
+        f(bmp[s: e - 2: r], l), f(bmp[s + 1: e -1 : r], l), f(bmp[s + 2: e: r], l)
         l += dl
 
 
 @_fn24bitencircbnd 
-def magnifyNtimescircregion(bmp: array,
-        x: int, y: int, r: int, n: int):
+def magnifyNtimescircregion(
+        bmp: array,
+        x: int, y: int,
+        r: int, n: int):
     """Magnify a circular region
         in a bitmap file by n
 
@@ -7522,7 +7536,8 @@ def magnifyNtimescircregion(bmp: array,
         y1, y2 = mirror(y, v[1])
         x3, x4 = mirror(nx, v[0])
         y3, y4 = mirror(ny, v[1])
-        bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[c(b,x3,y3):c(b,x4,y3)],b[c(b,x3,y4):c(b,x4,y4)]
+        bmp[c(bmp, x1, y1): c(bmp, x2, y1)], bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = \
+        b[c(b, x3, y3): c(b, x4, y3)], b[c(b, x3, y4): c(b, x4, y4)]
 
 
 @_fn24bitencircbnd 
@@ -7542,7 +7557,8 @@ def pixelizenxncircregion(
                  dimension n x n
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     b = pixelizenxn(bmp, n)
@@ -7550,13 +7566,8 @@ def pixelizenxncircregion(
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
-        bmp[c(bmp,x1,y1):c(bmp,x2,y1)],bmp[c(bmp,x1,y2):c(bmp,x2,y2)]=b[c(b,x1,y1):c(b,x2,y1)],b[c(b,x1,y2):c(b,x2,y2)]
-
-
-def resizesmaller24bitbuf(buflist):
-    n,a,m,s=len(buflist),addvectinlist,intscalarmulvect,altsplitbufnway
-    c,f=altsplitbuf3way(a(buflist)),1/(n*n)
-    return  makeBGRbuf(m(a(s(c[0],n)),f),m(a(s(c[1],n)),f),m(a(s(c[2],n)),f))
+        bmp[c(bmp, x1, y1): c(bmp, x2, y1)], bmp[c(bmp, x1, y2): c(bmp,x2,y2)]= \
+        b[c(b, x1, y1): c(b, x2, y1)], b[c(b, x1, y2): c(b, x2, y2)]
 
 
 @_fn24bit
