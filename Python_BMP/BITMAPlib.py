@@ -6135,9 +6135,11 @@ def verttransregion(bmp: array,
         f = mirrortop
     elif trans == 'B': 
         f = mirrorbottom
-    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    bufsize = adjustbufsize(x2 - x1 + 1,
-                        bmp[_bmclrbits])
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1, y1, x2, y2)
+    bufsize = adjustbufsize(
+                x2 - x1 + 1,
+                bmp[_bmclrbits])
     r = getxcharcount(bmp)
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     s1 = c(bmp, x1, y2)
@@ -6158,9 +6160,9 @@ def flipverticalregion(
         a rectangular region
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6168,7 +6170,8 @@ def flipverticalregion(
 
     """
     verttransregion(
-        bmp, x1, y1, x2, y2, 'F')
+        bmp, x1, y1,
+             x2, y2, 'F')
 
 
 def mirrorbottominregion(
@@ -6179,9 +6182,9 @@ def mirrorbottominregion(
         of a rectangular region
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6189,20 +6192,22 @@ def mirrorbottominregion(
 
     """
     verttransregion(
-        bmp, x1, y1, x2, y2, 'B')
+        bmp, x1, y1,
+             x2, y2, 'B')
 
 
-def mirrortopinregion(bmp: array,
+def mirrortopinregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirror the top half of
         a rectangular region
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: ints that defines
-                     the rectangular region
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: ints that defines
+                        the rectangular region
 
     Returns:
         byref modified
@@ -6210,10 +6215,12 @@ def mirrortopinregion(bmp: array,
 
     """
     verttransregion(
-        bmp, x1, y1, x2, y2, 'T')
+        bmp, x1, y1,
+             x2, y2, 'T')
     
 @_enrectbnd        
-def fliphorzontalpixelbased(bmp: array,
+def fliphorzontalpixelbased(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Flips horizontal
@@ -6222,9 +6229,9 @@ def fliphorzontalpixelbased(bmp: array,
         (slightly slow)
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6253,9 +6260,9 @@ def fliphverticalalpixelbased(
         (slightly slow)
 
     Args:
-        bmp        : unsigned byte array 
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array 
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6274,7 +6281,8 @@ def fliphverticalalpixelbased(
 
 
 @_enrectbnd    
-def horizontalbulkswap(bmp: array,
+def horizontalbulkswap(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         swapfunc: Callable):
@@ -6282,9 +6290,9 @@ def horizontalbulkswap(bmp: array,
         to a rectangular area
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
         
     Returns:
         byref modified
@@ -6303,42 +6311,44 @@ def horizontalbulkswap(bmp: array,
         x1 += dx
         x2 -= dx
 
-def fliphorizontalregion(bmp: array,
+def fliphorizontalregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Does a horizontal flip
         of a rectangular area
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
         
     Returns:
-        byref modified unsigned byte array 
+        byref modified
+        unsigned byte array 
 
     """
-    def swap24bit(bmp, s1, e1, s2, e2, r): 
+    def _sw24bt(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1 - 2: r], bmp[s2: e2 - 2: r], bmp[s1 + 1: e1 - 1 :r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 2: e1: r], bmp[s2 + 2: e2: r] = \
         bmp[s2: e2 - 2: r], bmp[s1: e1 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 1: e1 - 1: r], bmp[s2 + 2: e2: r], bmp[s1 + 2: e1: r]
 
-    def swap8bit(bmp, s1, e1, s2, e2, r): 
+    def _sw8bt(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r]= \
         bmp[s2: e2: r], bmp[s1: e1: r]
 
-    def swap4bit(bmp, s1, e1, s2, e2, r): 
+    def _sw4bt(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r] = \
         flipnibbleinbuf(bmp[s2: e2: r]), flipnibbleinbuf(bmp[s1: e1 :r])
 
-    def swap1bit(bmp, s1, e1, s2, e2, r): 
+    def _sw1bt(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r] = \
         rotatebitsinbuf(bmp[s2: e2: r]), rotatebitsinbuf(bmp[s1: e1 :r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24:swap24bit,
-          8:swap8bit,
-          4:swap4bit,
-          1:swap1bit}[bmp[_bmclrbits]])
+        {24: _sw24bt,
+          8: _sw8bt,
+          4: _sw4bt,
+          1: _sw1bt}[bmp[_bmclrbits]])
 
 
 def mirrorleftinregion(bmp: array,
@@ -6357,36 +6367,40 @@ def mirrorleftinregion(bmp: array,
 
     """
 
-    def swap24bit(bmp, s1, e1, s2, e2, r): 
+    def _sw24bt(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s2 + 2: e2: r]= \
         bmp[s1: e1 - 2: r], bmp[s1 + 1: e1 - 1: r], bmp[s1 + 2: e1: r]
 
-    def swap8bit(bmp, s1, e1, s2, e2, r): 
+    def _sw8bt(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2: r] = bmp[s1: e1: r]
 
-    def swap4bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s2: e2: r] = flipnibbleinbuf(bmp[s1: e1: r])
+    def _sw4bt(bmp, s1, e1, s2, e2, r): 
+        bmp[s2: e2: r] = \
+            flipnibbleinbuf(bmp[s1: e1: r])
 
-    def swap1bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s2: e2: r] = rotatebitsinbuf(bmp[s1: e1: r])
+    def _sw1bt(bmp, s1, e1, s2, e2, r): 
+        bmp[s2: e2: r] = \
+            rotatebitsinbuf(bmp[s1: e1: r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24: swap24bit,
-          8: swap8bit,
-          4: swap4bit,
-          1: swap1bit}[bmp[_bmclrbits]])
+        {24: _sw24bt,
+          8: _sw8bt,
+          4: _sw4bt,
+          1: _sw1bt}[bmp[_bmclrbits]])
 
 
-def mirrorrightinregion(bmp: array,
+def mirrorrightinregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirrors the right half of
-        a rectangular area in a bitmap 
+        a rectangular area
+        in a bitmap 
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
         
     Returns:
         byref modified
@@ -6394,27 +6408,30 @@ def mirrorrightinregion(bmp: array,
 
     """
 
-    def swap24bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1: e1 - 2: r],bmp[s1 + 1: e1 - 1: r],bmp[s1 + 2: e1: r]=\
-        bmp[s2: e2 - 2: r],bmp[s2 + 1: e2 - 1: r],bmp[s2 + 2: e2: r]
+    def _sw24bt(bmp, s1, e1, s2, e2, r): 
+        bmp[s1: e1 - 2: r], bmp[s1 + 1: e1 - 1: r], bmp[s1 + 2: e1: r]=\
+        bmp[s2: e2 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s2 + 2: e2: r]
 
-    def swap8bit(bmp, s1, e1, s2, e2, r): 
+    def _sw8bt(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r] = bmp[s2: e2: r]
 
-    def swap4bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1: e1: r] = flipnibbleinbuf(bmp[s2: e2: r])
+    def _sw4bt(bmp, s1, e1, s2, e2, r): 
+        bmp[s1: e1: r] = \
+            flipnibbleinbuf(bmp[s2: e2: r])
 
-    def swap1bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1: e1: r] = rotatebitsinbuf(bmp[s2: e2: r])
+    def _sw1bt(bmp, s1, e1, s2, e2, r): 
+        bmp[s1: e1: r] = \
+            rotatebitsinbuf(bmp[s2: e2: r])
 
-    horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24:swap24bit,
-          8:swap8bit,
-          4:swap4bit,
-          1:swap1bit}[bmp[_bmclrbits]])
+    horizontalbulkswap(
+        bmp, x1, y1, x2, y2,
+        {24: _sw24bt,
+          8: _sw8bt,
+          4: _sw4bt,
+          1: _sw1bt}[bmp[_bmclrbits]])
 
 
-def mirrorleft(bmp:array):
+def mirrorleft(bmp: array):
     """Mirrors the left half
         of an in-memory bitmap
 
@@ -6427,9 +6444,10 @@ def mirrorleft(bmp:array):
         unsigned byte array
 
     """
-    mirrorleftinregion(bmp,
-        0, 0, getmaxx(bmp) - 1, 
-              getmaxy(bmp) - 1)
+    mirrorleftinregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1, 
+        getmaxy(bmp) - 1)
 
 
 def mirrorright(bmp: array):
@@ -6445,9 +6463,10 @@ def mirrorright(bmp: array):
         unsigned byte array
 
     """
-    mirrorrightinregion(bmp,
-        0, 0, getmaxx(bmp) - 1,
-              getmaxy(bmp) - 1)
+    mirrorrightinregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1)
 
 
 def mirrortopleftinregion(
@@ -6460,16 +6479,19 @@ def mirrortopleftinregion(
                and (x2,y2)
 
     Args:
-        bmp         : unsigned byte array
-                      with bmp format
-        x1,y1,x2,y2 : defines the rectangle
+        bmp            : unsigned byte array
+                         with bmp format
+        x1, y1, x2, y2 : defines the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    mirrorleftinregion(bmp, x1, y1, x2, y2)
-    mirrortopinregion(bmp, x1, y1, x2, y2)
+    mirrorleftinregion(
+        bmp, x1, y1, x2, y2)
+    mirrortopinregion(
+        bmp, x1, y1, x2, y2)
 
 
 def mirrortoprightinregion(
@@ -6478,22 +6500,27 @@ def mirrortoprightinregion(
         x2: int, y2: int):
     """Mirrors the top right of
         a rectangular region
-        defined by (x1,y1) and (x2,y2)
+        defined by (x1,y1)
+               and (x2,y2)
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    mirrorrightinregion(bmp, x1, y1, x2, y2)
-    mirrortopinregion(bmp, x1, y1, x2, y2)
+    mirrorrightinregion(
+        bmp, x1, y1, x2, y2)
+    mirrortopinregion(
+        bmp, x1, y1, x2, y2)
 
 
-def mirrorbottomleftinregion(bmp: array,
+def mirrorbottomleftinregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirrors the bottom left of
@@ -6507,11 +6534,14 @@ def mirrorbottomleftinregion(bmp: array,
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    mirrorleftinregion(bmp, x1, y1, x2, y2)
-    mirrorbottominregion(bmp, x1, y1, x2, y2)
+    mirrorleftinregion(
+        bmp, x1, y1, x2, y2)
+    mirrorbottominregion(
+        bmp, x1, y1, x2, y2)
 
 
 def mirrorbottomrightinregion(
@@ -6520,19 +6550,23 @@ def mirrorbottomrightinregion(
         x2: int, y2: int):
     """Mirrors the bottom right of
         a rectangular region
-        defined by (x1,y1) and (x2,y2)
+        defined by (x1,y1)
+               and (x2,y2)
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    mirrorrightinregion(bmp, x1, y1, x2, y2)
-    mirrorbottominregion(bmp, x1, y1, x2, y2)
+    mirrorrightinregion(
+        bmp, x1, y1, x2, y2)
+    mirrorbottominregion(
+        bmp, x1, y1, x2, y2)
 
 
 def mirrortopleft(bmp):
@@ -6544,11 +6578,14 @@ def mirrortopleft(bmp):
              with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    mirrorleftinregion(bmp, 0, 0, getmaxx(bmp) - 1,
-                                 (getmaxy(bmp) - 1)//2)
+    mirrorleftinregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        (getmaxy(bmp) - 1)//2)
     mirrortop(bmp)
 
 
@@ -6632,7 +6669,8 @@ def fliphorizontal(bmp: array):
 
 
 def flipXY(bmp: array):
-    """Flips the x and y coordinates of 
+    """Flips the x and y
+        coordinates of 
         an in-memory bitmap 
         for a 90 degree rotation
 
@@ -6665,8 +6703,8 @@ def flipXY(bmp: array):
             copyRGBpal(bmp, nbmp)
         for y in range(0, my):
             BMPbitBLTput(nbmp,
-                offset, array('B', vertBMPbitBLTget(
-                                        bmp, y, 0, mx)))
+                offset,
+                array('B', vertBMPbitBLTget(bmp, y, 0, mx)))
             offset += r
     return nbmp
 
@@ -6688,7 +6726,8 @@ def itergetcolorfromrectregion(
                               points in area
 
     """
-    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1, y1, x2, y2)
     x, y = x1, y1
     while y <= y2:
         x = x1
@@ -6755,7 +6794,8 @@ def invertregion(
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     x1, y1, x2, y2 = sortrecpoints(
