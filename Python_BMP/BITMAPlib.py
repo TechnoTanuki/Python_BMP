@@ -6325,27 +6325,24 @@ def fliphorizontalregion(
         unsigned byte array 
 
     """
-    def _sw24bt(bmp, s1, e1, s2, e2, r): 
+    def _24(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1 - 2: r], bmp[s2: e2 - 2: r], bmp[s1 + 1: e1 - 1 :r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 2: e1: r], bmp[s2 + 2: e2: r] = \
         bmp[s2: e2 - 2: r], bmp[s1: e1 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 1: e1 - 1: r], bmp[s2 + 2: e2: r], bmp[s1 + 2: e1: r]
 
-    def _sw8bt(bmp, s1, e1, s2, e2, r): 
+    def _8(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r]= \
         bmp[s2: e2: r], bmp[s1: e1: r]
 
-    def _sw4bt(bmp, s1, e1, s2, e2, r): 
+    def _4(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r] = \
         flipnibbleinbuf(bmp[s2: e2: r]), flipnibbleinbuf(bmp[s1: e1 :r])
 
-    def _sw1bt(bmp, s1, e1, s2, e2, r): 
+    def _1(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r] = \
         rotatebitsinbuf(bmp[s2: e2: r]), rotatebitsinbuf(bmp[s1: e1 :r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24: _sw24bt,
-          8: _sw8bt,
-          4: _sw4bt,
-          1: _sw1bt}[bmp[_bmclrbits]])
+        {24: _24, 8: _8, 4: _4, 1: _1}[bmp[_bmclrbits]])
 
 
 def mirrorleftinregion(bmp: array,
@@ -6364,26 +6361,23 @@ def mirrorleftinregion(bmp: array,
 
     """
 
-    def _sw24bt(bmp, s1, e1, s2, e2, r): 
+    def _24(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s2 + 2: e2: r]= \
         bmp[s1: e1 - 2: r], bmp[s1 + 1: e1 - 1: r], bmp[s1 + 2: e1: r]
 
-    def _sw8bt(bmp, s1, e1, s2, e2, r): 
+    def _8(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2: r] = bmp[s1: e1: r]
 
-    def _sw4bt(bmp, s1, e1, s2, e2, r): 
+    def _4(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2: r] = \
             flipnibbleinbuf(bmp[s1: e1: r])
 
-    def _sw1bt(bmp, s1, e1, s2, e2, r): 
+    def _1(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2: r] = \
             rotatebitsinbuf(bmp[s1: e1: r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
-        {24: _sw24bt,
-          8: _sw8bt,
-          4: _sw4bt,
-          1: _sw1bt}[bmp[_bmclrbits]])
+        {24: _24, 8: _8, 4: _4, 1: _1}[bmp[_bmclrbits]])
 
 
 def mirrorrightinregion(
@@ -6405,27 +6399,24 @@ def mirrorrightinregion(
 
     """
 
-    def _sw24bt(bmp, s1, e1, s2, e2, r): 
+    def _24(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1 - 2: r], bmp[s1 + 1: e1 - 1: r], bmp[s1 + 2: e1: r]=\
         bmp[s2: e2 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s2 + 2: e2: r]
 
-    def _sw8bt(bmp, s1, e1, s2, e2, r): 
+    def _8(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r] = bmp[s2: e2: r]
 
-    def _sw4bt(bmp, s1, e1, s2, e2, r): 
+    def _4(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r] = \
             flipnibbleinbuf(bmp[s2: e2: r])
 
-    def _sw1bt(bmp, s1, e1, s2, e2, r): 
+    def _1(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r] = \
             rotatebitsinbuf(bmp[s2: e2: r])
 
     horizontalbulkswap(
         bmp, x1, y1, x2, y2,
-        {24: _sw24bt,
-          8: _sw8bt,
-          4: _sw4bt,
-          1: _sw1bt}[bmp[_bmclrbits]])
+        {24: _24, 8: _8, 4: _4, 1: _1}[bmp[_bmclrbits]])
 
 
 def mirrorleft(bmp: array):
