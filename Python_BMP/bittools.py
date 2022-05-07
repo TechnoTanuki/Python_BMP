@@ -3,6 +3,7 @@
 #|    We make absolutely no warranty of any kind, expressed or implied.     |
 #\--------------------------------------------------------------------------/
 
+from array import array
 from .mathlib import enumbits
 
 def packbitlisttobuf(blist: list[int]) -> list[int] :
@@ -46,3 +47,23 @@ def resizebitpattenNtimesbigger(
     for bit in enumbits(byteval):
         retval += [bit] * n
     return retval
+
+
+def resize1bitbufNtimesbigger(
+        buf: array ,n: int):
+    """Resize a 1-bit buffer
+        n times bigger
+    
+    Args:
+        buf: unsigned byte array
+        n  : buffer multiplier 
+        
+    Returns:
+        unsigned byte array
+
+    """
+    retval=[]
+    for b in buf:
+        retval += packbitlisttobuf(
+                    resizebitpattenNtimesbigger(b, n))
+    return array('B', retval)
