@@ -3651,14 +3651,18 @@ def circle(bmp: array,
                 for p in itercirclepart(r):
                     x1, x2 = mirror(x, p[0])
                     y1, y2 = mirror(y, p[1])
-                    bmp[c(bmp, x1, y1)] = bmp[c(bmp, x2, y2)] = bmp[c(bmp, x1, y2)] = bmp[c(bmp, x2, y1)] = color
+                    bmp[c(bmp, x1, y1)] = \
+                    bmp[c(bmp, x2, y2)] = \
+                    bmp[c(bmp, x1, y2)] = \
+                    bmp[c(bmp, x2, y1)] = color
         else:
             for p in itercircle(x, y, r): 
                 plotxybit(bmp, p[0], p[1], color)
 
 
 def thickcircle(bmp: array,
-        x: int, y: int, r: int,
+        x: int, y: int,
+        r: int,
         penradius: int,
         color: int):
     """Draws a thick circle defined
@@ -3684,29 +3688,37 @@ def thickcircle(bmp: array,
         penradius, color, True)
 
 
-def gradthickcircle(bmp: array,
-        x: int, y: int, radius: int,
+def gradthickcircle(
+        bmp: array,
+        x: int, y: int,
+        radius: int,
         penradius: int,
-        lumrange: list, RGBfactors: list):
+        lumrange: list,
+        RGBfactors: list):
     """Draws a thick circle 
         with gradient lumrange 
-        defined by centerpoint (x,y) 
+        defined by
+        centerpoint (x,y) 
         and radius r 
-        using a pen with radius penradius 
-        and color defined by RGBfactors
+        using a pen with
+        radius penradius 
+        and color defined
+        by RGBfactors
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x, y, r   : center (x,y) and radius r
+        x, y, r   : center (x,y) 
+                    and radius r
         penradius : radius of round pen 
-        lumrange  : [byte,byte] range of the 
-                    luminosity gradient
+        lumrange  : [byte,byte] the range 
+                    of the luminosity gradient
         rgbfactors: [r,g,b] range of r, g and b 
                     are from 0 min to 1 max
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     lum1, lumrang = range2baseanddelta(lumrange)
@@ -3714,18 +3726,22 @@ def gradthickcircle(bmp: array,
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)), RGBfactors)
         if bmp[_bmclrbits] != 24:
-            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+            c = matchRGBtopal(
+                    int2RGBarr(c), getallRGBpal(bmp))
         thickcircle(bmp, x, y, radius, i, c)
 
 
 def gradcircle(bmp: array,
-        x: int, y: int, radius: int,
-        lumrange: list, RGBfactors: list):
+        x: int, y: int,
+        radius: int,
+        lumrange: list,
+        RGBfactors: list):
     """Draws a filled circle 
         with gradient lumrange 
         defined by centerpoint (x,y) 
         and radius r 
-        and color defined by RGBfactors
+        and color defined
+        by RGBfactors
 
     Args:
         bmp       : unsigned byte array
@@ -3739,14 +3755,18 @@ def gradcircle(bmp: array,
                     from 0 min to 1 max
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     lum1, lumrang=range2baseanddelta(lumrange)
     for r in range(radius - 1, 0, -1):
-        c = colormix(int(lum1 + (lumrang * r / radius)), RGBfactors)
+        c = colormix(
+                int(lum1 + (lumrang * r / radius)),
+                RGBfactors)
         if bmp[_bmclrbits] != 24:
-            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+            c = matchRGBtopal(int2RGBarr(c),
+                    getallRGBpal(bmp))
         thickcircle(bmp, x, y, r, 2, c)
 
 
@@ -3774,15 +3794,19 @@ def thickellipserot(bmp: array,
         color     : color of the ellipse
 
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
-    for p in iterellipserot(x, y, b, a, degrot): 
+    for p in iterellipserot(
+                x, y, b, a, degrot): 
         circle(bmp,
-            p[0], p[1], penradius, color, True)
+            p[0], p[1],
+            penradius, color, True)
 
 
-def gradthickellipserot(bmp:array,
+def gradthickellipserot(
+        bmp:array,
         x: int, y: int,
         b: int, a: int,
         degrot: float,
@@ -3805,25 +3829,32 @@ def gradthickellipserot(bmp:array,
                     in degrees
         penradius : defines the thickness
                     of the pen
-        lumrange  : [byte:byte] controls the range
-                    of the luminosity gradient
+        lumrange  : [byte:byte] controls 
+                    the range of the 
+                    luminosity gradient
         rgbfactors: [r,g,b] range of r, g and b 
                     are from 0 min to 1 max
 
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """                        
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
-                lum1 + (lumrang * i / penradius)), RGBfactors)
+                lum1 + (lumrang * i / penradius)),
+                RGBfactors)
         if bmp[_bmclrbits] != 24:
-            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
-        thickellipserot(bmp, x, y, b, a, degrot, i, c)
+            c = matchRGBtopal(
+                    int2RGBarr(c),
+                    getallRGBpal(bmp))
+        thickellipserot(
+            bmp, x, y, b, a, degrot, i, c)
 
 
-def filledellipse(bmp: array,
+def filledellipse(
+        bmp: array,
         x: int, y: int,
         b: int, a: int,
         color: int):
@@ -3847,8 +3878,10 @@ def filledellipse(bmp: array,
         for v in iterellipsepart(b,a):
             x1, x2 = mirror(x,v[0])
             y1, y2 = mirror(y,v[1])
-            horiline(bmp, y1, x1, x2, color)
-            horiline(bmp, y2, x1, x2, color)
+            horiline(
+                bmp, y1, x1, x2, color)
+            horiline(
+                bmp, y2, x1, x2, color)
     else:
         m = getmaxxy(bmp)
         if bits == 24:
@@ -3878,10 +3911,12 @@ def filledellipse(bmp: array,
                 ymax = m[1]
                 colorbuf = array('B', [color & 0xff] * dx)
                 if isinrange(y2, ymax, -1):
-                    s = compute8bitBMPoffsetwithheader(bmp, x1, y2)
+                    s = compute8bitBMPoffsetwithheader(
+                            bmp, x1, y2)
                     bmp[s: s + dx] = colorbuf
                 if isinrange(y1, ymax, -1):
-                    s = compute8bitBMPoffsetwithheader(bmp, x1, y1)
+                    s = compute8bitBMPoffsetwithheader(
+                            bmp, x1, y1)
                     bmp[s: s + dx] = colorbuf
 
 
@@ -3905,17 +3940,20 @@ def ellipse(bmp: array,
                            ellipse
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     if isfilled: 
-        filledellipse(bmp, x, y, b, a, color)
+        filledellipse(
+            bmp, x, y, b, a, color)
     else:
         m = getmaxxy(bmp)
         bits = bmp[_bmclrbits]
         c = getcomputeBMPoffsetwithheaderfunc(bmp)
         dobndcheck = not entireellipseisinboundary(
-                            x, y, -1, m[0], -1, m[1], b, a)
+                            x, y, -1, m[0],
+                                  -1, m[1], b, a)
         if bits==24:
             color=int2BGRarr(color)
             if dobndcheck:
@@ -3928,7 +3966,7 @@ def ellipse(bmp: array,
             else:
                 for p in iterellipse(x, y, b, a):
                     s = c(bmp, p[0], p[1])
-                    bmp[s:s+3]=color
+                    bmp[s:s + 3] = color
         elif bits==8:
             if dobndcheck:
                 for p in iterellipse(x, y, b, a):
@@ -3937,34 +3975,39 @@ def ellipse(bmp: array,
                     if isinBMPrectbnd(bmp,px,py): 
                         bmp[c(bmp, px, py)] = color
             else:
-                for p in iterellipse(x,y,b,a):
+                for p in iterellipse(x, y, b, a):
                     bmp[c(bmp, p[0], p[1])] = color
         else:
-            for p in iterellipse(x,y,b,a): 
+            for p in iterellipse(x, y, b, a): 
                 plotxybit(bmp, p[0], p[1], color)
 
 
-def gradellipse(bmp: array,
+def gradellipse(
+        bmp: array,
         x: int, y: int,
         b: int, a: int,
         lumrange: list,
         RGBfactors: list):
-    """Draws an ellipical gradient defined
+    """Draws an ellipical 
+        gradient defined
         by centerpoint (x,y) 
-        and major and minor axis (b,a) 
+        and major/minor 
+        axis (b,a) 
         
     Args:
-        bmp       : An unsigned byte array
+        bmp       : unsigned byte array
                     with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
-        lumrange  : [byte:byte] controls the range
-                    of the luminosity gradient
-        rgbfactors: [r,g,b] range of r, g and b 
+        lumrange  : [byte:byte] controls 
+                    the range of the 
+                    luminosity gradient
+        rgbfactors: [r,g,b] range of r, g & b 
                     are from 0 min to 1 max
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """     
     lum1, lumrang = range2baseanddelta(lumrange)
@@ -3972,19 +4015,28 @@ def gradellipse(bmp: array,
     a -= r
     b -= r
     for i in range(r,0,-1):
-        c = colormix(int(lum1 + (lumrang * i / r)), RGBfactors)
+        c = colormix(
+                int(lum1 + (lumrang * i / r)),
+                RGBfactors)
         if bmp[_bmclrbits] != 24:
-            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
-        ellipse(bmp, x, y, b + i, a + i, c, True)
+            c = matchRGBtopal(
+                    int2RGBarr(c),
+                    getallRGBpal(bmp))
+        ellipse(
+            bmp, x, y, b + i,
+                       a + i, c, True)
 
 
 @_intcircpar
 def drawarc(bmp: array,
-        x: int, y: int, r: int,
+        x: int, y: int,
+        r: int,
         startdegangle: float,
         enddegangle: float,
-        color: int, showoutline: bool,
-        fillcolor: int, isfilled: bool):
+        color: int,
+        showoutline: bool,
+        fillcolor: int,
+        isfilled: bool):
     """Draws an arc centered 
         at point (x,y) with radius r 
         and specified start 
@@ -3993,7 +4045,7 @@ def drawarc(bmp: array,
     Args:
         bmp        : unsigned byte array
                      with bmp format
-        x, y, r     : defines a circle
+        x, y, r    : defines a circle
                      that contain the arc
         color      : color of arc
         showoutline: True -> draw arc outline
@@ -4002,24 +4054,32 @@ def drawarc(bmp: array,
                              arc to fillcolor
 
     Returns:
-        byref modified unsigned byte array
+        byref modified 
+        unsigned byte array
 
     """
     av = arcvert(x, y, r,
-            startdegangle, enddegangle, showoutline)
+            startdegangle,
+            enddegangle,
+            showoutline)
     for p in av: 
-        plotxybit(bmp, p[0], p[1], color)
+        plotxybit(bmp,
+            p[0], p[1],
+            color)
     if isfilled: 
         fillboundary(bmp,
             fillpolydata(av,
-                getmaxx(bmp), getmaxy(bmp)), fillcolor)
+                getmaxx(bmp),
+                getmaxy(bmp)),
+                fillcolor)
 
 
 def rectangle(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         color: int):
-    """Draws a rectangle of a given color
+    """Draws a rectangle
+        of a given color
 
     Args:
         bmp        : unsigned byte array
@@ -4028,14 +4088,18 @@ def rectangle(bmp: array,
         color      : color of the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    plotpoly(bmp, recvert(x1, y1, x2, y2), color)
+    plotpoly(bmp,
+        recvert(x1, y1, x2, y2),
+        color)
 
 
 @_enrectbnd    
-def filledrect(bmp: array,
+def filledrect(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         color: int):
@@ -4049,22 +4113,27 @@ def filledrect(bmp: array,
         color      : color of the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     bits = bmp[_bmclrbits]
-    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1, y1, x2, y2)
     if bits not in [8, 24]:
         y2 +=1
         for y in range(y1, y2): 
-            horiline(bmp, y, x1, x2, color)
+            horiline(bmp,
+                y, x1, x2, color)
     else:
         dx = x2 - x1 + 1
         r = getxcharcount(bmp)
         rgb = int2RGB(color)
         c = getcomputeBMPoffsetwithheaderfunc(bmp)
         if bits == 24: 
-            buf = array('B', [rgb[2], rgb[1], rgb[0]] * dx)
+            buf = array('B', [rgb[2],
+                              rgb[1],
+                              rgb[0]] * dx)
         elif bits == 8: 
             buf = array('B', [matchRGBtopal(rgb, getallRGBpal(bmp))] * dx)
         offset = c(bmp, x1, y2)
@@ -4076,7 +4145,8 @@ def filledrect(bmp: array,
             offset += r
 
 
-def beziercurve(bmp: array,
+def beziercurve(
+        bmp: array,
         pntlist: list,
         penradius: int,
         color: int):
@@ -4087,12 +4157,15 @@ def beziercurve(bmp: array,
         bmp      : unsigned byte array
                    with bmp format
         pntlist  : [(x,y)...] list of
-                   control points
-        penradius: radius of pen in pixels
-        color    : color of bezier curve
+                   the control points
+        penradius: radius of pen
+                   in pixels
+        color    : color of the
+                   bezier curve
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for v in iterbeziercurve(pntlist): 
@@ -4106,33 +4179,41 @@ def bspline(bmp: array,
         isclosed: bool,
         curveback: bool):
     """Draws a bspline of
-        a given color and thickness
+        a given color
+        and thickness
 
     Args:
-        bmp      : An unsigned byte array
+        bmp      : unsigned byte array
                    with bmp format
         pntlist  : [(x,y)...] list of
-                   control points
+                   the control points
         penradius: radius of pen in pixels
         color    : color of bezier curve
-        isclosed : True means the curve is closed 
-        curveback: True means extra computation
-                   for curve to loop back on itself                 
+        isclosed : True means the 
+                   curve is closed 
+        curveback: True means 
+                   extra computation
+                   for curve to loop
+                   back on itself                 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    for v in iterbspline(pntlist, isclosed, curveback): 
+    for v in iterbspline(
+                pntlist, isclosed, curveback): 
         roundpen(bmp, v, penradius, color)
 
 
-def plotrotated8bitpattern(bmp: array,
+def plotrotated8bitpattern(
+        bmp: array,
         x: int, y: int,
         bitpattern: list,
         scale: int,
         pixspace: int,
         color: int):
-    """Draws a 8-bit pattern with the bits rotated
+    """Draws a 8-bit pattern
+        with the bits rotated
 
     Args:
         bmp       : unsigned byte array
@@ -4147,7 +4228,8 @@ def plotrotated8bitpattern(bmp: array,
         color     : color of the pattern
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     inc= scale - 1 - pixspace
@@ -4158,9 +4240,13 @@ def plotrotated8bitpattern(bmp: array,
         while mask > 0:
             if (mask & bits) > 0:
                 if scale == 1 or inc <= 0: 
-                    plotxybit(bmp, x, y, color)
+                    plotxybit(
+                        bmp, x, y, color)
                 else: 
-                    filledrect(bmp, x, y, x + inc, y + inc, color)
+                    filledrect(
+                        bmp, x, y, x + inc,
+                                   y + inc,
+                                     color)
             mask >>= 1
             x += scale
         y += scale
@@ -4199,22 +4285,28 @@ def plot8bitpattern(bmp: array,
         while mask > 0:
             if (mask & bits) > 0:
                 if scale == 1 or inc <= 0: 
-                    plotxybit(bmp, x, y, color)
+                    plotxybit(
+                        bmp, x, y, color)
                 else: 
-                    filledrect(bmp, x, y, x + inc, y + inc, color)
+                    filledrect(
+                        bmp, x, y, x + inc,
+                                   y + inc,
+                                   color)
             mask >>= 1
             x += scale
         y+=scale
         x=ox
 
 
-def plot8bitpatternupsidedown(bmp: array,
+def plot8bitpatternupsidedown(
+        bmp: array,
         x: int, y: int,
         bitpattern: list,
         scale: int,
         pixspace: int,
         color: int):
-    """Draws a 8-bit pattern upsidedown
+    """Draws a 8-bit pattern
+        upsidedown
 
     Args:
         bmp       : unsigned byte array
@@ -4230,7 +4322,8 @@ def plot8bitpatternupsidedown(bmp: array,
         color     : color of the pattern
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     inc = scale - 1 - pixspace
@@ -4245,7 +4338,9 @@ def plot8bitpatternupsidedown(bmp: array,
                     plotxybit(bmp, x, y, color)
                 else: 
                     filledrect(bmp,
-                        x, y, x + inc, y + inc, color)
+                        x, y, x + inc,
+                              y + inc,
+                              color)
             mask >>= 1
             x += scale
         y += scale
@@ -4253,7 +4348,8 @@ def plot8bitpatternupsidedown(bmp: array,
         i -= 1
 
 
-def plot8bitpatternsideway(bmp: array,
+def plot8bitpatternsideway(
+        bmp: array,
         x: int, y: int,
         bitpattern: list,
         scale: int,
@@ -4275,7 +4371,8 @@ def plot8bitpatternsideway(bmp: array,
         color     : color of the pattern
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     inc = scale - 1 - pixspace
@@ -4285,17 +4382,21 @@ def plot8bitpatternsideway(bmp: array,
         while mask > 0:
             if (mask & bits) > 0:
                 if scale == 1 or inc <= 0: 
-                    plotxybit(bmp, x, y, color)
+                    plotxybit(
+                        bmp, x, y, color)
                 else: 
                     filledrect(bmp,
-                        x, y, x + inc, y + inc, color)
+                        x, y, x + inc,
+                              y + inc,
+                              color)
             mask >>= 1
             y -= scale
         x += scale
         y = oy
 
 
-def plotstringfunc(bmp: array,
+def plotstringfunc(
+        bmp: array,
         x: int, y: int,
         str2plot: str,
         scale: int,
@@ -4328,15 +4429,18 @@ def plotstringfunc(bmp: array,
                           renders the font
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """        
     if spacebetweenchar == 0:
         spacebetweenchar = 1
     ox = x
-    xstep = (scale << 3) + spacebetweenchar
+    xstep = (scale << 3) + \
+                spacebetweenchar
     ypixels = fontbuf[0] 
-    ystep = ypixels * scale + spacebetweenchar
+    ystep = ypixels * scale + \
+                spacebetweenchar
     for c in orderfunc(str2plot):
         if c == '\n':
             y += ystep
@@ -4376,20 +4480,27 @@ def plotstring(bmp: array,
         fontbuf         : the font ...see fonts.py
         
     Returns:
-        byref modified unsigned byte array
+        byref modified 
+        unsigned byte array
 
     """
     plotstringfunc(bmp, x, y,
         str2plot,scale,pixspace,
         spacebetweenchar,color,
-        fontbuf,_enchr,plot8bitpattern)
+        fontbuf,
+        _enchr,
+        plot8bitpattern)
 
 
-def plotstringupsidedown(bmp: array,
-        x: int, y: int, str2plot: str,
-        scale: int, pixspace: int,
+def plotstringupsidedown(
+        bmp: array,
+        x: int, y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
         spacebetweenchar: int,
-        color: int, fontbuf: list):
+        color: int,
+        fontbuf: list):
     """Draws a string upsidedown
 
     Args:
@@ -4408,21 +4519,28 @@ def plotstringupsidedown(bmp: array,
         fontbuf         : the font ...see fonts.py
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    plotstringfunc(bmp, x, y, str2plot,
-        scale, pixspace, spacebetweenchar,
+    plotstringfunc(bmp,
+        x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
         color, fontbuf,
         _enchr,
         plot8bitpatternupsidedown)
 
 
-def plotreversestring(bmp: array,
-        x: int, y: int, str2plot: str,
-        scale: int, pixspace: int,
+def plotreversestring(
+        bmp: array,
+        x: int, y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
         spacebetweenchar: int,
-        color: int, fontbuf: list):
+        color: int,
+        fontbuf: list):
     """Draws a string reversed
 
     Args:
@@ -4441,21 +4559,28 @@ def plotreversestring(bmp: array,
         fontbuf         : the font ...see fonts.py
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    plotstringfunc(bmp, x, y, str2plot,
-        scale, pixspace, spacebetweenchar,
+    plotstringfunc(bmp,
+        x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
         color, fontbuf,
         _enchrev,
         plotrotated8bitpattern)
 
 
-def plotstringsideway(bmp: array,
-        x: int, y: int, str2plot: str,
-        scale: int, pixspace: int,
+def plotstringsideway(
+        bmp: array,
+        x: int, y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
         spacebetweenchar: int,
-        color: int, fontbuf: list):
+        color: int,
+        fontbuf: list):
     """Draws a string sideways
 
     Args:
@@ -4474,7 +4599,8 @@ def plotstringsideway(bmp: array,
         fontbuf         : the font ...see fonts.py
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     if spacebetweenchar == 0:
@@ -4490,16 +4616,22 @@ def plotstringsideway(bmp: array,
         elif c=='\t':
             y -= xstep << 2 #we swap x and y since sideways
         else:
-            plot8bitpatternsideway(bmp, x, y, 
-                getcharfont(fontbuf, c), scale, pixspace, color)
+            plot8bitpatternsideway(
+                bmp, x, y, 
+                getcharfont(fontbuf, c),
+                scale, pixspace, color)
             y -= xstep
 
 
-def plotstringvertical(bmp: array,
-        x: int, y: int, str2plot: str,
-        scale: int, pixspace: int,
+def plotstringvertical(
+        bmp: array,
+        x: int, y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
         spacebetweenchar: int,
-        color: int, fontbuf: list):
+        color: int,
+        fontbuf: list):
     """Draws a string vertically
 
     Args:
@@ -4518,15 +4650,18 @@ def plotstringvertical(bmp: array,
         fontbuf         : the font ...see fonts.py
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     if spacebetweenchar == 0:
         spacebetweenchar=1
     oy =y
     ypixels = fontbuf[0]
-    xstep = (scale << 3) + spacebetweenchar
-    ystep = ypixels * scale + spacebetweenchar
+    xstep = (scale << 3) + \
+                spacebetweenchar
+    ystep = ypixels * scale + \
+                spacebetweenchar
     for c in _enchr(str2plot):
         if c == '\n':
             x += xstep
@@ -4540,33 +4675,40 @@ def plotstringvertical(bmp: array,
             y += ystep
 
 
-def fillboundary(bmp: array,
+def fillboundary(
+        bmp: array,
         bndfilldic: dict,
         color: int):
-    """Draws lines in a boundary to fill it
+    """Draws lines in a
+        boundary to fill it
 
     Args:
         bmp        : unsigned byte array
                      with bmp format
         bndfilldic : boundary dictionary
-        color      : color of bezier curve
+        color      : color of fill
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for y in bndfilldic:
         yint = len(bndfilldic[y])
         if yint == 1: 
-            plotxybit(bmp, bndfilldic[y][0], y, color)
+            plotxybit(
+                bmp, bndfilldic[y][0], y,
+                color)
         else:
             for j in range(1, yint):
                 x1 = bndfilldic[y][j - 1]
                 x2 = bndfilldic[y][j]
-                horiline(bmp, y, x1, x2, color)
+                horiline(
+                    bmp, y, x1, x2, color)
 
 
-def plotpolyfill(bmp: array,
+def plotpolyfill(
+        bmp: array,
         vertlist: list,
         color: int):
     """Draws a filled polygon
@@ -4579,7 +4721,8 @@ def plotpolyfill(bmp: array,
         color   : color of bezier curve
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     fillboundary(bmp,
@@ -4592,7 +4735,8 @@ def thickplotpoly(bmp: array,
         penradius: int,
         color: int):
     """Draws a polygon of 
-        a given color and thickness
+        a given color
+        and thickness
 
     Args:
         bmp      : unsigned byte array
@@ -4602,50 +4746,65 @@ def thickplotpoly(bmp: array,
         color    : color of bezier curve
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     vertcount = len(vertlist)
     for i in range(0, vertcount):
         if i > 0: 
             thickroundline(bmp,
-                vertlist[i - 1], vertlist[i],
+                vertlist[i - 1],
+                vertlist[i],
                 penradius, color)
     thickroundline(bmp,
-        vertlist[0], vertlist[vertcount - 1],
+        vertlist[0],
+        vertlist[vertcount - 1],
         penradius, color)
 
 
-def gradthickplotpoly(bmp: array,
+def gradthickplotpoly(
+        bmp: array,
         vertlist: list,
         penradius: int,
         lumrange: list,
         RGBfactors: list):
     """Draws a polygon of
-        a given gradient and thickness
+        a given gradient
+        and thickness
 
     Args:
         bmp       : unsigned byte array 
                     with bmp format
-        vertlist  : [(x,y)...] list of vertices
-        penradius : radius of pen in pixels
-        lumrange  : [byte,byte] range of the gradient
-        RGBfactors: [r:float,g:float,b:float]
-                     r,g,b range in value from 0 to 1 
+        vertlist  : [(x,y)...] the
+                    list of vertices
+        penradius : radius of pen
+                    in pixels
+        lumrange  : [byte,byte] range 
+                    of the gradient
+        RGBfactors: [r,g,b] r,g,b range
+                    in value from 0 to 1
+                    all unsigned floats
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
-        c = colormix(int(lum1 + (lumrang * i / penradius)), RGBfactors)
+        c = colormix(int(
+                lum1 + (lumrang * i / penradius)),
+                RGBfactors)
         if bmp[_bmclrbits] != 24:
-            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+            c = matchRGBtopal(
+                int2RGBarr(c),
+                getallRGBpal(bmp))
         thickplotpoly(bmp, vertlist, i, c)
 
 
-def plotlines(bmp: array,
+def plotlines(
+        bmp: array,
         vertlist: list,
         color: int):
     """Draws connected lines defined 
@@ -4659,13 +4818,15 @@ def plotlines(bmp: array,
         color   : color of the lines
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     vertcount = len(vertlist)
     for i in range(0,vertcount):
         if i > 0:
-            linevec(bmp, vertlist[i - 1], vertlist[i], color)
+            linevec(bmp, vertlist[i - 1],
+                         vertlist[i], color)
 
 
 def plotpoly(bmp: array,
@@ -4682,16 +4843,20 @@ def plotpoly(bmp: array,
         color   : color of the lines
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     plotlines(bmp, vertlist, color)
     linevec(bmp, vertlist[0],
         vertlist[len(vertlist) - 1], color)
 
-def plotpolylist(bmp: array,
-        polylist: list, color: int):
-    """Draws a list of polygons of a given color
+def plotpolylist(
+        bmp: array,
+        polylist: list,
+        color: int):
+    """Draws a list of polygons
+        of a given color
 
     Args:
         bmp      : unsigned byte array
@@ -4701,14 +4866,16 @@ def plotpolylist(bmp: array,
         color    : color of the lines
         
     Returns:
-        byref modified uNsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for poly in polylist: 
         plotpoly(bmp, poly, color)
 
 
-def plotpolyfillist(bmp: array,
+def plotpolyfillist(
+    bmp: array,
         sides: list,
         RGBfactors: list):
     """3D polygon rendering function
@@ -4718,34 +4885,46 @@ def plotpolyfillist(bmp: array,
                     with bmp format
         sides     : list of polygons
                     and normals
-        RGBfactors: [r:float,g:float,b:float]
-                    r,g,b range in value from 0 to 1 
+        RGBfactors: [r,g,b]
+                    r,g,b are 
+                    float values 
+                    from 0 to 1 
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     [polylist, normlist] = sides
     i = 0
     for poly in polylist:
-        c = colormix(int(cosaffin(normlist[i], [0, 0, 1]) * 128) + 127, RGBfactors)
+        c = colormix(
+                int(cosaffin(normlist[i], [0, 0, 1]) * 128) + 127,
+                    RGBfactors)
         if bmp[_bmclrbits] != 24:
-            c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+            c = matchRGBtopal(
+                    int2RGBarr(c),
+                    getallRGBpal(bmp))
         plotpolyfill(bmp, poly, c)
         i += 1
 
 
-def plot3d(bmp: array,
+def plot3d(
+        bmp: array,
         sides: list,
-        issolid: bool, RGBfactors: list,
-        showoutline: bool, outlinecolor: int):
+        issolid: bool,
+        RGBfactors: list,
+        showoutline: bool,
+        outlinecolor: int):
     """3D rendering function
 
     Args:
-        bmp         : unsigned byte array with bmp format
+        bmp         : unsigned byte array 
+                      with bmp format
         sides       : list of polygons and normals
         isolid      : toggles solid render
-        RGBfactors  : [r:float,g:float,b:float] r,g,b all range in value from 0 to 1
+        RGBfactors  : [r:float,g:float,b:float] 
+        r,g,b all range in value from 0 to 1
         showoutine  : toggles  polygon outline
         outlinecolor: color of polygon outline
         
