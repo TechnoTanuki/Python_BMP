@@ -6927,7 +6927,8 @@ def colorfilterto24bitregion(
                      r,g and b range from 0 to 1
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     applybyreffuncto24bitregion(
@@ -6955,9 +6956,11 @@ def colorfilterto24bitimage(
         unsigned byte array
 
     """
-    colorfilterto24bitregion(bmp,
-        0, 0, getmaxx(bmp) - 1,
-        getmaxy(bmp) - 1, rgbfactors)
+    colorfilterto24bitregion(
+        bmp, 0, 0, 
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1,
+        rgbfactors)
 
 
 def brightnesseadjto24bitregion(
@@ -6970,11 +6973,11 @@ def brightnesseadjto24bitregion(
         in an in-memory 24 bit bitmap
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
-        percentadj : float percentage adjustment
-                     can be positive or negative
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
+        percentadj    : float percentage adjustment
+                        can be positive or negative
         
     Returns:
         byref modified unsigned byte array
@@ -7003,7 +7006,8 @@ def thresholdadjto24bitregion(
                      threshold adjustment
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     applyfuncto24bitregion(
@@ -7029,7 +7033,8 @@ def thresholdadjcircregion(
                    threshold adjustment
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     apply24bitfunctocircregion(
@@ -7041,18 +7046,23 @@ def thresholdadjcircregion(
 def brightnesseadjto24bitimage(
         bmp: array, 
         percentadj: float):
-    """Applies a brightness adjustment 
+    """Applies a brightness
+        adjustment 
         to a whole image 
-        in an in-memory 24-bit bitmap
+        in an 
+        in-memory 24-bit bitmap
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        percentadj: float percentage adjustment
-                    can be positive or negative
+        percentadj: float percentage 
+                    adjustment
+                    can be 
+                    positive or negative
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     brightnesseadjto24bitregion(
@@ -7088,7 +7098,8 @@ def thresholdadjto24bitimage(
 
 def verticalbrightnessgradto24bitimage(
         bmp, lumrange):
-    """Applies a vertical brightness gradient 
+    """Applies a vertical
+        brightness gradient 
 
     Args:
         bmp     : unsigned byte array
@@ -7118,20 +7129,29 @@ def mandelbrot(bmp: array,
     """Draw a Mandelbrot set 
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        x1,y1,x2,y2: rectangular area to draw in
-        mandelparam: see fractals.py [float,float,float,float]
-        rgbfactors : [r:float,b:float,g:float] ...r,g,b values 0 min -> 1 max
-        maxiter    : when to break computing for color
+        bmp           :  unsigned byte array
+                         with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        mandelparam   : see fractals.py
+                        [float,float,float,float]
+        rgbfactors    : [r:float,b:float,g:float] 
+                        r,g,b values range
+                        from 0 min to 1 max
+        maxiter       : when to break
+                        color compute
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
-    [Pmax, Pmin, Qmax, Qmin] =  mandelparam
-    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    [Pmax, Pmin, Qmax, Qmin] =  \
+                 mandelparam
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1, y1, x2, y2)
     maxx = x2 - x1
     maxy = y2 - y1
     dp = (Pmax - Pmin) / maxx
@@ -7143,14 +7163,16 @@ def mandelbrot(bmp: array,
             P = Pmin + (x - x1) * dp
             xp = yp = c= Xsq = Ysq = 0
             while (Xsq + Ysq) < max_size:
-                 xp, yp =Xsq - Ysq + P, 2 * xp * yp + Q
+                 xp, yp =Xsq - Ysq + P, \
+                       2 * xp * yp + Q
                  Xsq = xp * xp
                  Ysq = yp * yp
                  c += 1
                  if c>maxiter:
                      break
             if bmp[_bmclrbits] == 24:
-                c = colormix(((255 - c) * 20) % 256, RGBfactors)
+                c = colormix(((255 - c) * 20) % 256,
+                        RGBfactors)
             else:
                 c = mcolor - c % maxcolors
             plotxybit(bmp, x, y, c)
@@ -7163,22 +7185,29 @@ def IFS(bmp:array,
         xscale: int, yscale: int,
         xoffset: int, yoffset: int,
         color: int, maxiter: int):
-    """Draw a Interated Function System  (IFS) fractal
+    """Draw an Interated Function System 
+        (IFS) fractal
 
     Args:
-        bmp            : unsigned byte array with bmp format
+        bmp            : unsigned byte array
+                         with bmp format
         IFStransparam  : see fractals.py 
-        x1,y1,x2,y2    : rectangular area to draw in
+        x1, y1, x2, y2 : rectangular area
+                         to draw in
         xscale,yscale  : scaling factors
-        xoffset,yoffset: used to move the fractal
+        xoffset,yoffset: used to move
+                         the fractal
         color          : color of fractal
-        maxiter        : when to break computing for color
+        maxiter        : when to break
+                         color compute
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """        
-    x1, y1, x2, y2=sortrecpoints(x1,y1,x2,y2)
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1,y1,x2,y2)
     af = IFStransparam[0]
     p = IFStransparam[1]
     x = x1
@@ -7187,7 +7216,9 @@ def IFS(bmp:array,
     i = 0
     while i < maxiter:
         j = random()
-        t = af[iif(j < p[0], 0, iif(j < p[1], 1, iif(j < p[2], 2, 3)))]
+        t = af[iif(j < p[0], 0,
+               iif(j < p[1], 1,
+               iif(j < p[2], 2, 3)))]
         nx = t[0] * x +t[1] * y + t[4]
         x, y = nx, t[2] * x + t[3] * y + t[5]
         px = int(x * xscale + xoffset + x1)
@@ -7252,7 +7283,8 @@ def plotfilledflower(bmp: array,
     """Draw a filled flower
 
     Args:
-        bmp       : unsigned byte array with bmp format
+        bmp       : unsigned byte array
+                    with bmp format
         cx,cy,r   : center (cx,cy) and radius r
         petals    : number of petals
         angrot    : angle of rotation
@@ -7261,11 +7293,13 @@ def plotfilledflower(bmp: array,
                     r,g,b values 0 min -> 1 max
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for nr in range (r, 2, -1):
-        plotflower(bmp, cx, cy, nr, petals,
+        plotflower(
+            bmp, cx, cy, nr, petals,
             angrot, lumrange, RGBfactors)
 
 
@@ -7292,10 +7326,10 @@ def plotbmpastext(bmp: array):
             if bits == 1:
                 plotbitsastext(bmp[i])
             if bits == 4:
-                c0, c1= divmod(bmp[i],16)
-                print(chr(97+c0)+chr(97+c1),end='')
+                c0, c1 = divmod(bmp[i], 16)
+                print(chr(97 + c0) + chr(97 + c1),end='')
             if bits==8: 
-                print(chr(bmp[i]),end='')
+                print(chr(bmp[i]), end='')
         print()
 
 
@@ -7319,11 +7353,15 @@ def piechart(bmp: array,
     """
     alist, big = genpiechartdata(dataandcolorlist)
     if big > -1:#for speed more computions in drawarc
-            circle(bmp, x, y, r, alist[big][2], True)
+            circle(
+                bmp, x, y, r,
+                alist[big][2], True)
     for a in alist:
         if a[4]<50: 
-            drawarc(bmp, x, y, r,
-                a[0], a[1], a[2], True, a[2], True)
+            drawarc(
+                bmp, x, y, r,
+                a[0], a[1], a[2],
+                True, a[2], True)
     return [alist, big]
 
 
@@ -7333,12 +7371,14 @@ def applybyrefnoparamfuncto24bitregion(
         x1: int, y1: int,
         x2: int, y2: int,
         func: Callable):
-    """Apply func to a rectangular area in a 24-bit bitmap
+    """Apply func to a rectangular area
+        in a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        x1,y1,x2,y2: defines rectangular area
-        func       : user defined function
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines rectangular area
+        func          : user defined function
         
     Returns:
         byref modified unsigned byte array
@@ -7347,14 +7387,16 @@ def applybyrefnoparamfuncto24bitregion(
     x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
     offset = compute24bitBMPoffset(bmp, x1, y2)
     r = getxcharcount(bmp)
-    for buf in itercopyrect(bmp, x1, y1, x2, y2):
+    for buf in itercopyrect(
+                    bmp, x1, y1, x2, y2):
         func(buf)
         BMPbitBLTput(bmp, offset, buf)
         offset += r
 
 
 @_fn24bitenrectbnd
-def applybyreffuncto24bitregion(bmp: array,
+def applybyreffuncto24bitregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         func: Callable,
@@ -7364,7 +7406,8 @@ def applybyreffuncto24bitregion(bmp: array,
         a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines rectangular area
         func       : user defined function
         funcparam  : parameters of the function
@@ -7542,15 +7585,20 @@ def pixelizenxncircregion(
 
 
 @_fn24bit
-def resizeNtimessmaller(bmp: array, n:int) -> array:
-    """Resize a whole image by n times smaller (in-memory 24-bit bitmap)
+def resizeNtimessmaller(
+        bmp: array, n:int) -> array:
+    """Resize a whole image 
+        n times smaller 
+        (in-memory 24-bit bitmap)
 
     Args:
-        bmp: unsigned byte array with bmp format
-        n  : size of pixel blur
+        bmp: unsigned byte array
+             with bmp format
+        n  : int resize factor
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     bits = bmp[_bmclrbits]
@@ -7571,7 +7619,8 @@ def resizeNtimessmaller(bmp: array, n:int) -> array:
         j = i % n
         bufl += [buf]
         if j == 0:
-            BMPbitBLTput(nbmp, offset, resizesmaller24bitbuf(bufl))
+            BMPbitBLTput(nbmp, offset,
+                resizesmaller24bitbuf(bufl))
             offset += r
             bufl = []
             y += 1
@@ -7581,58 +7630,75 @@ def resizeNtimessmaller(bmp: array, n:int) -> array:
     return nbmp
 
 
-def pixelizenxn(bmp: array, n: int) -> array:
-    """Pixelize a whole image with n by n areas in which colors are averaged
+def pixelizenxn(
+        bmp: array, n: int) -> array:
+    """Pixelize a whole image
+        with n by n areas 
+        in which colors are averaged
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         n  : size of pixel blur
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
-    return resizeNtimesbigger( resizeNtimessmaller(bmp, n), n)
+    return resizeNtimesbigger(resizeNtimessmaller(bmp, n), n)
 
 
-def adjustcolordicttopal(bmp:array,colordict:dict):
-    if getcolorbits(bmp)<24:
+def adjustcolordicttopal(bmp:array, colordict:dict):
+    if getcolorbits(bmp) < 24:
         for color in colordict:
-            colordict[color]=matchRGBtopal(int2RGBarr(colordict[color]),getallRGBpal(bmp))
+            colordict[color] = matchRGBtopal(int2RGBarr(colordict[color]), getallRGBpal(bmp))
 
 
-def gammaadjto24bitregion(bmp: array,
+def gammaadjto24bitregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         gamma: float):
-    """Applies a gamma correction to a rectangular region in a 24-bit bitmap
+    """Applies a gamma correction
+        to a rectangular region 
+        in a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        x1,y1,x2,y2: defines rectangular area 
-        gamma      : gamma correction
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines rectangular area 
+        gamma         : gamma correction
         
     Returns:
-        byref modified byte array
+        byref modified 
+        unsigned byte array
 
     """
-    applybyreffuncto24bitregion(bmp,
-        x1, y1, x2, y2,
+    applybyreffuncto24bitregion(
+        bmp, x1, y1, x2, y2,
         applygammaBGRbuf, gamma)
 
 
-def gammaadjto24bitimage(bmp: array, gamma: float):
-    """Applies a gamma correction to an in-memory 24-bit bitmap
+def gammaadjto24bitimage(
+        bmp: array, gamma: float):
+    """Applies a gamma correction
+        to an in-memory 24-bit bitmap
 
     Args:
-        bmp  : unsigned byte array with bmp format
+        bmp  : unsigned byte array
+               with bmp format
         gamma: gamma correction
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    gammaadjto24bitregion(bmp, 0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1, gamma)
+    gammaadjto24bitregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1, gamma)
 
 
 @_enrectbnd
@@ -7645,73 +7711,97 @@ def compareimglines(bmp: array,
     oldbuf = []
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         if oldbuf != []:
-            BMPbitBLTput(bmp, offset, array('B', func(buf, oldbuf)))
+            BMPbitBLTput(bmp,
+                offset, array('B', func(buf, oldbuf)))
             offset += r
         oldbuf = buf
-    BMPbitBLTput(bmp, offset, array('B', func(buf, oldbuf)))
+    BMPbitBLTput(bmp, offset,
+        array('B', func(buf, oldbuf)))
 
 
-def outlineregion(bmp: array,
+def outlineregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Outines area in rectangular region in a bitmap file
+    """Outines area in rectangular region
+        in a bitmap file
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        x1,y1,x2,y2: defines rectangular area
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines rectangular area
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    compareimglines(bmp, x1, y1, x2, y2, xorvect)
+    compareimglines(
+        bmp, x1, y1, x2, y2, xorvect)
 
 
-def outline(bmp:array):
-    """Applies an outline filter to an in-memory 24 bit bitmap
+def outline(bmp: array):
+    """Applies an outline filter
+        to an in-memory 24 bit bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    outlineregion(bmp, 0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
+    outlineregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1)
 
 
 @_intcircpar
 def sphere(bmp: array,
-        x: int, y: int, r: int,
+        x: int, y: int,
+        r: int,
         rgbfactors: list[float, float, float]):
     """Draws a rendered sphere
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        x,y       : center of sphere in the image
-        r         : radius of sphere in pixels
-        rgbfactors: (r:float,g:float,b:float) 
-                   r,g and b values are 0 to 1 
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : center of sphere
+                    in the image
+        r         : radius of sphere
+                    in pixels
+        rgbfactors: (r,g,b) r,g and b 
+                    values are from 0 to 1 
+                    unsigned floats
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    gradcircle(bmp, x, y, r, [255, 0], rgbfactors)
+    gradcircle(bmp, x, y, r,
+        [255, 0], rgbfactors)
 
 
 @_intcircpar
-def thickencirclearea(bmp: array,
-        x: int, y: int, r: int,
+def thickencirclearea(
+        bmp: array,
+        x: int, y: int,
+        r: int,
         rgbfactors: list[float, float, float]): 
     """Encircle area with a gradient
 
     Args:
-        bmp       : unsigned byte array with bmp format
+        bmp       : unsigned byte array
+                    with bmp format
         x,y       : center of circle
         r         : radius of circle
-        rgbfactors: (r:float,g:float,b:float) 
-                   r,g and b values are 0 to 1 
+        rgbfactors: (r,g,b) r, g and b 
+                    values are 0 to 1
+                    unsigned floats
         
     Returns:
         byref modified unsigned byte array
