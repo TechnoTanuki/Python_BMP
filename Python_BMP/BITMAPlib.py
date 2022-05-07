@@ -166,17 +166,10 @@ from .paramchecks import(
     intcircleparam24bitonly as _fn24bitintcircpar 
     )
 
-from .bittools import(
-    resize1bitbufNtimesbigger
-)
 
 from .bufferflip import(
     flipnibbleinbuf, 
     rotatebitsinbuf
-    )
-
-from .buffersplit import(
-    altsplitbuf3way,
     )
 
 from .chartools import(
@@ -216,12 +209,12 @@ from .inttools import(
 
 from .messages import sysmsg
 
-from .nibbletools import(
-    resize4bitbufNtimesbigger
-    )
-
-from .rgbtools import(
-    resizesmaller24bitbuf
+from .bufresize import(
+    resize1bitbufNtimesbigger,
+    resize4bitbufNtimesbigger,
+    resize8bitbufNtimesbigger,
+    resizesmaller24bitbuf,
+    resize24bitbufNtimesbigger
     ) 
 
 from .textgraphics import(
@@ -6329,16 +6322,20 @@ def fliphorizontalregion(bmp: array,
 
     """
     def swap24bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1-2:r], bmp[s2:e2-2:r], bmp[s1+1:e1-1:r], bmp[s2+1:e2-1:r],bmp[s1+2:e1:r],bmp[s2+2:e2:r]=bmp[s2:e2-2:r],bmp[s1:e1-2:r],bmp[s2+1:e2-1:r],bmp[s1+1:e1-1:r],bmp[s2+2:e2:r],bmp[s1+2:e1:r]
+        bmp[s1: e1 - 2: r], bmp[s2: e2 - 2: r], bmp[s1 + 1: e1 - 1 :r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 2: e1: r], bmp[s2 + 2: e2: r] = \
+        bmp[s2: e2 - 2: r], bmp[s1: e1 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 1: e1 - 1: r], bmp[s2 + 2: e2: r], bmp[s1 + 2: e1: r]
 
     def swap8bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r],bmp[s2:e2:r]=bmp[s2:e2:r],bmp[s1:e1:r]
+        bmp[s1: e1: r], bmp[s2: e2: r]= \
+        bmp[s2: e2: r], bmp[s1: e1: r]
 
     def swap4bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r],bmp[s2:e2:r] = flipnibbleinbuf(bmp[s2:e2:r]),flipnibbleinbuf(bmp[s1:e1:r])
+        bmp[s1: e1: r], bmp[s2: e2: r] = \
+        flipnibbleinbuf(bmp[s2: e2: r]), flipnibbleinbuf(bmp[s1: e1 :r])
 
     def swap1bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r],bmp[s2:e2:r] = rotatebitsinbuf(bmp[s2:e2:r]),rotatebitsinbuf(bmp[s1:e1:r])
+        bmp[s1: e1: r], bmp[s2: e2: r] = \
+        rotatebitsinbuf(bmp[s2: e2: r]), rotatebitsinbuf(bmp[s1: e1 :r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
         {24:swap24bit,
@@ -6764,7 +6761,8 @@ def invertregion(
         byref modified unsigned byte array
 
     """
-    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1, y1, x2, y2)
     bits = bmp[_bmclrbits]
     if bits < 8:
         c = getmaxcolors(bmp) - 1
@@ -6846,45 +6844,6 @@ def horizontalbrightnessgradto24bitimage(
         getmaxx(bmp) - 1,
         getmaxy(bmp) - 1,
         lumrange)
-
-
-def resize8bitbufNtimesbigger(
-        buf: array, n: int):
-    """Resize a 8-bit buffer
-        n times bigger
-    
-    Args:
-        buf: unsigned byte array
-        n  : buffer multiplier 
-        
-    Returns:
-        unsigned byte array
-
-    """
-    retval=[]
-    for b in buf:
-        retval += [b] * n
-    return array('B', retval)
-
-
-def resize24bitbufNtimesbigger(
-        buf: array,
-        n: int):
-    """Resize a 24-bit buffer
-        n times bigger
-    
-    Args:
-        buf: unsigned byte array
-        n  : buffer multiplier 
-        
-    Returns:
-        unsigned byte array
-
-    """
-    c, r = altsplitbuf3way(buf), resize8bitbufNtimesbigger
-    return makeBGRbuf(r(c[0], n),
-                      r(c[1], n),
-                      r(c[2], n))
 
 
 def resizebufNtimesbigger(
@@ -9254,14 +9213,22 @@ def gammaadjtoregion2file(
 
 
 @_fntimer
-def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,
-                                        x1:int,y1:int,x2:int,y2:int,n:int):
-    """Erase every nth line in a rectangular region
+def eraseeverynthhorilineinregion2file(
+    ExistingBMPfile: str,
+    NewBMPfile: str,
+    x1: int, y1: int,
+    x2: int, y2: int,
+    n: int):
+    """Erase every nth line
+        in a rectangular region
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes to
-        x1,y1,x2,y2    : defines the rectangular region
+        ExistingBMPfile: Whole path 
+                         to existing file
+        NewBMPfile     : New file to
+                         save changes to
+        x1,y1,x2,y2    : defines the
+                         rectangular region
         n              : erase every nth line
         
     Returns:
@@ -9270,7 +9237,8 @@ def eraseeverynthhorilineinregion2file(ExistingBMPfile:str,NewBMPfile:str,
     """
     applybyreffuncwithparamtoregionandsave(
         ExistingBMPfile, NewBMPfile,
-        x1, y1, x2, y2, eraseeverynthhorilineinregion, n)
+        x1, y1, x2, y2,
+        eraseeverynthhorilineinregion, n)
 
 
 @_fntimer
