@@ -5262,8 +5262,10 @@ def XYaxis(bmp: array,
 def userdef2Dcooordsys2screenxy(
         x: int, y: int,
         lstcooordinfo: list):
-    """Does a 2D coordinate transformation
-        from user to screen coordinate system
+    """Does a 2D screen
+        coordinate transformation
+        from user to
+        screen coordinate system
 
     Args:
         x,y          : user coordinates
@@ -5282,8 +5284,10 @@ def userdef2Dcooordsys2screenxy(
     xylimits = lstcooordinfo[2]
     xyvalstarts = lstcooordinfo[3]
     xysteps = lstcooordinfo[4]
-    x = origin[0] + ((x - xyvalstarts[0]) / xysteps[0]) * steps[0]
-    y = origin[1] - ((y - xyvalstarts[1]) / xysteps[1]) * steps[1]
+    x = origin[0] + \
+        ((x - xyvalstarts[0]) / xysteps[0]) * steps[0]
+    y = origin[1] - \
+        ((y - xyvalstarts[1]) / xysteps[1]) * steps[1]
     if x > xylimits[0] or y < xylimits[1]:
         x = -1
         y = -1
@@ -5291,7 +5295,8 @@ def userdef2Dcooordsys2screenxy(
     return [x, y]
 
 
-def XYscatterplot(bmp: array, 
+def XYscatterplot(
+        bmp: array, 
         XYdata: list,
         XYcoordinfo: list,
         showLinearRegLine: bool,
@@ -5300,10 +5305,10 @@ def XYscatterplot(bmp: array,
 
     Args:
         bmp             : unsigned byte array 
-                         with bmp format
+                          with bmp format
         XYData          : [[x,y,
-                            radius (max radius is 5),
-                            isfilled],...]
+                          radius (max radius is 5),
+                          isfilled],...]
         lstcooordinfo   : info on how to 
                           tranform the coordinate system
                           [origin, -> origin point on screen  
@@ -5321,9 +5326,11 @@ def XYscatterplot(bmp: array,
     """
     for v in XYdata:
         r = v[2]
-        w = userdef2Dcooordsys2screenxy(v[0], v[1], XYcoordinfo)
+        w = userdef2Dcooordsys2screenxy(
+                v[0], v[1], XYcoordinfo)
         if r>1: 
-            circlevec(bmp, w, setmax(r, 5), v[3], v[4])
+            circlevec(bmp, w,
+                setmax(r, 5), v[3], v[4])
         else: plotvecxypoint(bmp,w,v[3])
     if showLinearRegLine:
         m = LSMslope(XYdata)
@@ -5332,20 +5339,24 @@ def XYscatterplot(bmp: array,
         xmax = XYcoordinfo[5][0]
         ymin = xmin * m + b
         ymax = xmax * m + b
-        u = userdef2Dcooordsys2screenxy(xmin, ymin, XYcoordinfo)
-        w = userdef2Dcooordsys2screenxy(xmax, ymax, XYcoordinfo)
+        u = userdef2Dcooordsys2screenxy(
+                xmin, ymin, XYcoordinfo)
+        w = userdef2Dcooordsys2screenxy(
+                xmax, ymax, XYcoordinfo)
         if w == [-1, -1]:
             ymax = XYcoordinfo[5][1]
             xmax = (ymax - b) / m
-            w = userdef2Dcooordsys2screenxy(xmax, ymax, XYcoordinfo)
+            w = userdef2Dcooordsys2screenxy(
+                    xmax, ymax, XYcoordinfo)
         linevec(bmp, u, w, reglinecolor)
 
 
-def getneighborcolorlist(bmp,v): 
-    return [getRGBxybitvec(bmp,u) for u in itergetneighbors(v,getmaxx(bmp),getmaxy(bmp),True)]
+def getneighborcolorlist(bmp, v): 
+    return [getRGBxybitvec(bmp, u) for u in itergetneighbors(v, getmaxx(bmp), getmaxy(bmp), True)]
 
 
-def isimgedge(bmp: array,
+def isimgedge(
+        bmp: array,
         v: list,
         mx: int, my: int,
         similaritythreshold: float):
@@ -5390,25 +5401,33 @@ def iterimageregionvertbyRGB(bmp: array,
     """RGB Color selection by similarity
 
     Args:
-        bmp                : unsigned byte array with bmp format
+        bmp                : unsigned byte array
+                             with bmp format
         rgb                : (r:byte,g:byte,b:byte) 
-        similaritythreshold: how close to the color before we yield it
+        similaritythreshold: how close to the color
+                             before we yield it
         
     Yeilds:
         ((x:int,y:int),(r:byte,g:byte,b:byte))
 
     """  
-    for v in iterimageRGB(bmp,sysmsg['edgedetect'],'*',sysmsg['done']):
-        if distance(rgb,v[1])<similaritythreshold: yield v[0]
+    for v in iterimageRGB(bmp,
+                sysmsg['edgedetect'], '*',
+                sysmsg['done']):
+        if distance(rgb, v[1]) < similaritythreshold:
+            yield v[0]
 
 def getimageregionbyRGB(bmp: array, 
-        rgb: list, similaritythreshold: int):
+        rgb: list,
+        similaritythreshold: int):
     """Select a region by color
 
     Args:
-        bmp                 : unsigned byte array with bmp format
+        bmp                 : unsigned byte array
+                              with bmp format
         rgb                 : (r:byte,g:byte,b:byte)
-        similaritythreshold : controls edge detection sensitivity
+        similaritythreshold : controls edge detection
+                              sensitivity
         
     Returns:
         list of vertices
@@ -5459,10 +5478,12 @@ def plotimgedges(bmp: array,
 
 
 def getBGRpalbuf(bmp: array):
-    """Gets bitmap palette info as stored 
+    """Gets bitmap palette info
+        as stored in the bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         unsigned byte array (BGR)
@@ -5495,7 +5516,8 @@ def convertbufto24bit(buf: array,
             s1, s2 = divmod(b,16)
             s1 <<= 2
             s2 <<= 2
-            retval += bgrpalbuf[s1: s1 + 3] + bgrpalbuf[s2: s2 + 3]
+            retval += bgrpalbuf[s1: s1 + 3] + \
+                      bgrpalbuf[s2: s2 + 3]
         elif bits == 1:
             for i in enumbits(b):
                 s = i << 2
@@ -5511,7 +5533,8 @@ def upgradeto24bitimage(bmp:array):
              with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     bits = bmp[_bmclrbits]
@@ -5535,7 +5558,8 @@ def iterimageRGB(bmp: array,
         waitmsg: str,
         rowprocind: str,
         finishmsg: str):
-    """Yields (r,g,b) information for entire bitmap
+    """Yields (r,g,b) information
+        for the entire bitmap
 
     Args:
         bmp       : unsigned byte array
@@ -5591,7 +5615,9 @@ def iterimageRGB(bmp: array,
             x += 1
         elif bits == 24:
             if x < mx:
-                yield ((x, y), (b[offset + 2], b[offset + 1], b[offset]))
+                yield ((x, y), (b[offset + 2],
+                                b[offset + 1],
+                                b[offset]))
             x += 1
         if offset % r == 0:
             x = 0
@@ -5608,17 +5634,18 @@ def iterimagecolor(bmp: array,
         waitmsg: str,
         rowprocind: str,
         finishmsg: str):
-    """Yields color information for entire bitmap
+    """Yields color information
+        for the entire bitmap
 
     Args:
         bmp       : unsigned byte array 
                     with bmp format
         waitmsg   : what to display in terminal
-                    at process start
-        rowprocind: char to display
+                    when process starts
+        rowprocind: char to print
                     as a row is processed
         finishmsg : what to display in terminal
-                    at process end
+                    when process ends
 
     Yields:
         ((x:int,y:int),color:int)
@@ -5667,7 +5694,7 @@ def iterimagecolor(bmp: array,
             x = 0
             y -= 1
             if rowprocind != '': 
-                print(rowprocind,end='')
+                print(rowprocind, end='')
         offset += doff
     print('\n')
     if finishmsg != '':
@@ -5678,7 +5705,8 @@ def iterimagecolor(bmp: array,
 def copyrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int) -> array:
-    """Copy a rectangular region to a buffer
+    """Copy a rectangular region
+        to a buffer
 
     Args:
         bmp: unsigned byte array
@@ -5692,13 +5720,15 @@ def copyrect(bmp: array,
     x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
     retval += _in2bf(2, x2 - x1 + 2)
     retval += _in2bf(2, y2 - y1 + 1)
-    retval += _in2bf(2, adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits]))
+    retval += _in2bf(2,
+                adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits]))
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         retval += buf
     return retval
 
 
-def pasterect(bmp: array, buf: array,
+def pasterect(
+        bmp: array, buf: array,
         x1: int, y1: int):
     """Paste a rectangular area
         defined in a buffer
@@ -5711,7 +5741,8 @@ def pasterect(bmp: array, buf: array,
         x1,y1: point to paste the buffer
     
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     if bmp[_bmclrbits] != buf[0]:
@@ -5720,14 +5751,16 @@ def pasterect(bmp: array, buf: array,
         x2 = x1 + _bf2in(buf[1: 3])
         y2 = y1 + _bf2in(buf[3: 5])
         r = getxcharcount(bmp)
-        if listinBMPrecbnd(bmp, ((x1, y1), (x2, y2))):
+        if listinBMPrecbnd(bmp, ((x1, y1),
+                                (x2, y2))):
             offset = computeBMPoffset(bmp, x1, y2)
             br = _bf2in(buf[5: 7])
             startoff = 7
             endoff = br + 7
             bufsize = len(buf)
             while startoff < bufsize:
-                BMPbitBLTput(bmp, offset, buf[startoff: endoff])
+                BMPbitBLTput(bmp,
+                    offset, buf[startoff: endoff])
                 offset += r
                 startoff = endoff
                 endoff += br
@@ -5736,7 +5769,8 @@ def pasterect(bmp: array, buf: array,
 
 
 def convertselection2BMP(buf: array):
-    """ converts a custom unsigned byte array 
+    """ converts a custom 
+            unsigned byte array 
             to the windows bitmap format
 
     Args:
@@ -5752,7 +5786,8 @@ def convertselection2BMP(buf: array):
     if not isvalidcolorbit(bits): 
         print (sysmsg['invalidbuf'])
     else:
-        bmp = newBMP(_bf2in(buf[1: 3]) + 1, _bf2in(buf[3: 5]) + 1, bits)
+        bmp = newBMP(_bf2in(buf[1: 3]) + 1,
+                     _bf2in(buf[3: 5]) + 1, bits)
         pasterect(bmp, buf, 0, 0)
     return bmp
 
@@ -6000,7 +6035,8 @@ def flipvertical(bmp: array):
         with bmp format
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     verttrans(bmp, 'F')
@@ -6014,7 +6050,8 @@ def mirrortop(bmp: array):
              with bmp format
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     verttrans(bmp, 'T')
@@ -6028,7 +6065,8 @@ def mirrorbottom(bmp: array):
              with bmp format
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     verttrans(bmp, 'B')
@@ -6047,13 +6085,15 @@ def verttransregion(bmp: array,
                       with bmp format
         x1,y1,x2,y2 : ints that defines the 
                       rectangular region
-        trans       : single letter transform code
+        trans       : single letter
+                      transform code
                       'T' - mirror top half
                       'B' - mirror bottom half
                       'F' - flip
     
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     def flip(): 
@@ -6069,7 +6109,8 @@ def verttransregion(bmp: array,
     elif trans == 'B': 
         f = mirrorbottom
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    bufsize = adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits])
+    bufsize = adjustbufsize(x2 - x1 + 1,
+                        bmp[_bmclrbits])
     r = getxcharcount(bmp)
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     s1 = c(bmp, x1, y2)
@@ -6082,10 +6123,12 @@ def verttransregion(bmp: array,
         s2 -= r
 
 
-def flipverticalregion(bmp: array,
+def flipverticalregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips vertical a rectangular region
+    """Flips vertical
+        a rectangular region
 
     Args:
         bmp        : unsigned byte array
@@ -6093,14 +6136,16 @@ def flipverticalregion(bmp: array,
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     verttransregion(
         bmp, x1, y1, x2, y2, 'F')
 
 
-def mirrorbottominregion(bmp: array,
+def mirrorbottominregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirror the bottom half
@@ -6112,7 +6157,8 @@ def mirrorbottominregion(bmp: array,
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     verttransregion(
@@ -6132,7 +6178,8 @@ def mirrortopinregion(bmp: array,
                      the rectangular region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     verttransregion(
@@ -6142,8 +6189,10 @@ def mirrortopinregion(bmp: array,
 def fliphorzontalpixelbased(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips horizontal a rectangular region
-        using pixel addressing (slightly slow)
+    """Flips horizontal
+        a rectangular region
+        using pixel addressing
+        (slightly slow)
 
     Args:
         bmp        : unsigned byte array
@@ -6151,25 +6200,30 @@ def fliphorzontalpixelbased(bmp: array,
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     m = x1 + ((x2 - x1) >> 1)
     while x1 <= m:
         y = y1
         while y <= y2:
-            swapcolors(bmp, (x1, y), (x2, y))
+            swapcolors(bmp, (x1, y),
+                            (x2, y))
             y += 1
         x1 += 1
         x2 -= 1
 
 
 @_enrectbnd    
-def fliphverticalalpixelbased(bmp: array,
+def fliphverticalalpixelbased(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips vertical a rectangular region
-        using pixel addressing (slightly slow)
+    """Flips vertical
+        a rectangular region
+        using pixel addressing
+        (slightly slow)
 
     Args:
         bmp        : unsigned byte array 
@@ -6177,14 +6231,16 @@ def fliphverticalalpixelbased(bmp: array,
         x1,y1,x2,y2: defines the rectangle
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     m = y1 + ((y2 - y1) >> 1)
     while y1 <= m:
         x = x1
         while x <= x2:
-            swapcolors(bmp, (x, y1), (x, y2))
+            swapcolors(bmp, (x, y1),
+                            (x, y2))
             x += 1
         y1 += 1
         y2 -= 1
@@ -6204,7 +6260,8 @@ def horizontalbulkswap(bmp: array,
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     dx = {24: 1, 8: 1, 4: 2, 1: 8}[bmp[_bmclrbits]]
@@ -6270,7 +6327,8 @@ def mirrorleftinregion(bmp: array,
     """
 
     def swap24bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s2:e2-2:r],bmp[s2+1:e2-1:r],bmp[s2+2:e2:r]=bmp[s1:e1-2:r],bmp[s1+1:e1-1:r],bmp[s1+2:e1:r]
+        bmp[s2: e2 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s2 + 2: e2: r]= \
+        bmp[s1: e1 - 2: r], bmp[s1 + 1: e1 - 1: r], bmp[s1 + 2: e1: r]
 
     def swap8bit(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2: r] = bmp[s1: e1: r]
