@@ -6358,21 +6358,23 @@ def mirrorrightinregion(bmp: array,
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
 
     def swap24bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1-2:r],bmp[s1+1:e1-1:r],bmp[s1+2:e1:r]=bmp[s2:e2-2:r],bmp[s2+1:e2-1:r],bmp[s2+2:e2:r]
+        bmp[s1: e1 - 2: r],bmp[s1 + 1: e1 - 1: r],bmp[s1 + 2: e1: r]=\
+        bmp[s2: e2 - 2: r],bmp[s2 + 1: e2 - 1: r],bmp[s2 + 2: e2: r]
 
     def swap8bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r]=bmp[s2:e2:r]
+        bmp[s1: e1: r] = bmp[s2: e2: r]
 
     def swap4bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r]=flipnibbleinbuf(bmp[s2:e2:r])
+        bmp[s1: e1: r] = flipnibbleinbuf(bmp[s2: e2: r])
 
     def swap1bit(bmp, s1, e1, s2, e2, r): 
-        bmp[s1:e1:r]=rotatebitsinbuf(bmp[s2:e2:r])
+        bmp[s1: e1: r] = rotatebitsinbuf(bmp[s2: e2: r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
         {24:swap24bit,
@@ -6382,39 +6384,49 @@ def mirrorrightinregion(bmp: array,
 
 
 def mirrorleft(bmp:array):
-    """Mirrors the left half of an in-memory bitmap
+    """Mirrors the left half
+        of an in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified 
+        unsigned byte array
 
     """
     mirrorleftinregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
+        0, 0, getmaxx(bmp) - 1, 
+              getmaxy(bmp) - 1)
 
 
-def mirrorright(bmp:array):
-    """Mirrors the right half of an in-memory bitmap
+def mirrorright(bmp: array):
+    """Mirrors the right half
+        of an in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     mirrorrightinregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
+        0, 0, getmaxx(bmp) - 1,
+              getmaxy(bmp) - 1)
 
 
-def mirrortopleftinregion(bmp:array,
+def mirrortopleftinregion(
+        bmp:array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirrors the top left of
         a rectangular region
-        defined by (x1,y1) and (x2,y2)
+        defined by (x1,y1)
+               and (x2,y2)
 
     Args:
         bmp         : unsigned byte array
@@ -6429,7 +6441,8 @@ def mirrortopleftinregion(bmp:array,
     mirrortopinregion(bmp, x1, y1, x2, y2)
 
 
-def mirrortoprightinregion(bmp: array,
+def mirrortoprightinregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirrors the top right of
@@ -6454,7 +6467,8 @@ def mirrorbottomleftinregion(bmp: array,
         x2: int, y2: int):
     """Mirrors the bottom left of
         a rectangular region
-        defined by (x1,y1) and (x2,y2)
+        defined by (x1,y1)
+               and (x2,y2)
 
     Args:
         bmp        : unsigned byte array
@@ -6469,7 +6483,8 @@ def mirrorbottomleftinregion(bmp: array,
     mirrorbottominregion(bmp, x1, y1, x2, y2)
 
 
-def mirrorbottomrightinregion(bmp: array,
+def mirrorbottomrightinregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirrors the bottom right of
@@ -6490,78 +6505,99 @@ def mirrorbottomrightinregion(bmp: array,
 
 
 def mirrortopleft(bmp):
-    """Mirrors the top left part of an in-memory bitmap
+    """Mirrors the top left part
+        of an in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
         byref modified unsigned byte array
 
     """
-    mirrorleftinregion(bmp,0,0,getmaxx(bmp)-1,(getmaxy(bmp)-1)//2)
+    mirrorleftinregion(bmp, 0, 0, getmaxx(bmp) - 1,
+                                 (getmaxy(bmp) - 1)//2)
     mirrortop(bmp)
 
 
 def mirrortopright(bmp: array):
-    """Mirrors the top right part of an in-memory bitmap
+    """Mirrors the top right part
+        of an in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     mirrorrightinregion(bmp,
-        0, 0, getmaxx(bmp) - 1, (getmaxy(bmp) - 1) // 2)
+        0, 0, getmaxx(bmp) - 1,
+             (getmaxy(bmp) - 1) // 2)
     mirrortop(bmp)
 
 
 def mirrorbottomleft(bmp: array):
-    """Mirrors the bottom left part of an in-memory bitmap
+    """Mirrors the bottom left part
+        of an in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     ymax= getmaxy(bmp) - 1
     mirrorleftinregion(bmp,
-        0, ymax // 2, getmaxx(bmp) - 1, ymax)
+        0, ymax // 2,
+        getmaxx(bmp) - 1,
+        ymax)
     mirrorbottom(bmp)
 
 
 def mirrorbottomright(bmp: array):
-    """Mirrors the bottom right part of an in-memory bitmap
+    """Mirrors the bottom right
+        part of an in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     ymax = getmaxy(bmp) - 1
     mirrorrightinregion(bmp,
-        0, ymax // 2, getmaxx(bmp) - 1, ymax)
+        0, ymax // 2,
+        getmaxx(bmp) - 1,
+        ymax)
     mirrorbottom(bmp)
 
 
 def fliphorizontal(bmp: array):
-    """Does a horizontal flip of an in-memory bitmap
+    """Does a horizontal flip
+        of an in-memory bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     fliphorizontalregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1)
+        0, 0, getmaxx(bmp) - 1,
+              getmaxy(bmp) - 1)
 
 
 def flipXY(bmp: array):
@@ -6570,10 +6606,12 @@ def flipXY(bmp: array):
         for a 90 degree rotation
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     mx = getmaxy(bmp)
@@ -6582,8 +6620,12 @@ def flipXY(bmp: array):
     nbmp = newBMP(mx, my, bits)
     if bits not in [8, 24]:
         copyRGBpal(bmp, nbmp)
-        for v in iterimagecolor(bmp, sysmsg['flipXY'], '*', sysmsg['done']):
-            plotxybit(nbmp, v[0][1], v[0][0], v[1])
+        for v in iterimagecolor(bmp,
+                    sysmsg['flipXY'], '*',
+                    sysmsg['done']):
+            plotxybit(nbmp, v[0][1],
+                            v[0][0],
+                            v[1])
     else:
         r = getxcharcount(nbmp)
         offset = 0
@@ -6592,7 +6634,8 @@ def flipXY(bmp: array):
             copyRGBpal(bmp, nbmp)
         for y in range(0, my):
             BMPbitBLTput(nbmp,
-                offset, array('B', vertBMPbitBLTget(bmp, y, 0, mx)))
+                offset, array('B', vertBMPbitBLTget(
+                                        bmp, y, 0, mx)))
             offset += r
     return nbmp
 
@@ -6619,7 +6662,8 @@ def itergetcolorfromrectregion(
     while y <= y2:
         x = x1
         while x <= x2:
-            yield ((x, y), getxybit(bmp, x, y))
+            yield ((x, y), getxybit(
+                            bmp, x, y))
             x += 1
         y += 1
 
@@ -6630,7 +6674,8 @@ def crop(bmp: array,
     x2: int, y2: int):
     """Crops the image 
         to a rectangular region 
-        defined by (x1,y1) and (x2,y2)
+        defined by (x1,y1) 
+               and (x2,y2)
     
     Args:
         bmp        : unsigned byte array
@@ -6638,27 +6683,34 @@ def crop(bmp: array,
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
-        unsigned byte array with bitmap layout
+        unsigned byte array
+        with bitmap layout
 
     """
-    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1, y1, x2, y2)
     bits = bmp[_bmclrbits]
-    nbmp = newBMP(x2 - x1 + 1,y2 - y1 + 1, bits)
+    nbmp = newBMP(x2 - x1 + 1,
+                  y2 - y1 + 1, bits)
     if bits < 8:
         copyRGBpal(bmp, nbmp)
-        for v in itergetcolorfromrectregion(bmp, x1, y1, x2, y2):
-            intplotvecxypoint(nbmp, subvect(v[0], (x1, y1)), v[1])
+        for v in itergetcolorfromrectregion(
+                    bmp, x1, y1, x2, y2):
+            intplotvecxypoint(nbmp,
+                subvect(v[0], (x1, y1)), v[1])
     else:
         offset = 0
         r = getxcharcount(nbmp)
-        for buf in itercopyrect(bmp, x1, y1, x2, y2):
+        for buf in itercopyrect(
+                        bmp, x1, y1, x2, y2):
             BMPbitBLTput(nbmp, offset, buf)
             offset += r
     return nbmp
 
 
 @_enrectbnd    
-def invertregion(bmp: array,
+def invertregion(
+    bmp: array,
     x1: int, y1: int,
     x2: int, y2: int):
     """Inverts the bits in a
@@ -6679,17 +6731,23 @@ def invertregion(bmp: array,
     bits = bmp[_bmclrbits]
     if bits < 8:
         c = getmaxcolors(bmp) - 1
-        for v in itergetcolorfromrectregion(bmp, x1, y1, x2, y2):
-            intplotvecxypoint(bmp, v[0], getxybitvec(bmp, v[0]) ^ c)
+        for v in itergetcolorfromrectregion(
+                    bmp, x1, y1, x2, y2):
+            intplotvecxypoint(bmp,
+                v[0], getxybitvec(bmp, v[0]) ^ c)
     else:
-        offset = iif(bits == 24, compute24bitBMPoffset(bmp, x1, y2), compute8bitBMPoffset(bmp, x1, y2))
+        offset = iif(bits == 24,
+                    compute24bitBMPoffset(bmp, x1, y2),
+                    compute8bitBMPoffset(bmp, x1, y2))
         r = getxcharcount(bmp)
         for buf in itercopyrect(bmp, x1, y1, x2, y2):
-            BMPbitBLTput(bmp, offset, invertbitsinbuffer(buf))
+            BMPbitBLTput(bmp, offset,
+                invertbitsinbuffer(buf))
             offset += r
 
 
-def monofilterto24bitregion(bmp: array,
+def monofilterto24bitregion(
+    bmp: array,
     x1: int, y1: int,
     x2: int, y2: int):
     """Applies a monochrome filter to
@@ -6703,7 +6761,8 @@ def monofilterto24bitregion(bmp: array,
         x1,y1,x2,y2: defines the rectangle
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     applybyrefnoparamfuncto24bitregion(
@@ -6711,7 +6770,7 @@ def monofilterto24bitregion(bmp: array,
         applymonochromefiltertoBGRbuf)
 
 
-def monofilterto24bitimage(bmp:array):
+def monofilterto24bitimage(bmp: array):
     """Applies a mono filter
         to a 24 bit in-memory bitmap
 
@@ -6724,8 +6783,8 @@ def monofilterto24bitimage(bmp:array):
         unsigned byte array
 
     """
-    monofilterto24bitregion(bmp,
-        0, 0,
+    monofilterto24bitregion(
+        bmp, 0, 0,
         getmaxx(bmp) - 1,
         getmaxy(bmp) - 1)
 
@@ -6746,7 +6805,9 @@ def horizontalbrightnessgradto24bitimage(
 
     """
     horizontalbrightnessgradto24bitregion(
-        bmp, 0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1,
+        bmp, 0, 0, 
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1,
         lumrange)
 
 
@@ -6770,7 +6831,8 @@ def resize8bitbufNtimesbigger(
 
 
 def resize24bitbufNtimesbigger(
-        buf:array,n:int):
+        buf: array,
+        n: int):
     """Resize a 24-bit buffer
         n times bigger
     
@@ -6783,7 +6845,9 @@ def resize24bitbufNtimesbigger(
 
     """
     c, r = altsplitbuf3way(buf), resize8bitbufNtimesbigger
-    return makeBGRbuf(r(c[0],n),r(c[1],n),r(c[2],n))
+    return makeBGRbuf(r(c[0], n),
+                      r(c[1], n),
+                      r(c[2], n))
 
 
 def resize1bitbufNtimesbigger(
@@ -6801,18 +6865,25 @@ def resize1bitbufNtimesbigger(
     """
     retval=[]
     for b in buf:
-        retval+=packbitlisttobuf(resizebitpattenNtimesbigger(b, n))
+        retval += packbitlisttobuf(
+                    resizebitpattenNtimesbigger(b, n))
     return array('B', retval)
 
 
-def resizebufNtimesbigger(buf:array,
+def resizebufNtimesbigger(
+        buf:array,
         n: int, bits: int):
-    """Resize a buffer  n times bigger given a particular bit depth n
+    """Resize a buffer 
+        n times bigger 
+        given a particular 
+        bit depth n
     
     Args:
         buf : array to resize
         n   : resize factor
-        bits: bit depth of color info (1,4,8,24)
+        bits: bit depth of 
+              color info
+              (1,4,8,24)
         
     Returns:
         list 
@@ -6825,7 +6896,7 @@ def resizebufNtimesbigger(buf:array,
     return f(buf, n)
 
 
-def resizeNtimesbigger(bmp:array,n:int):
+def resizeNtimesbigger(bmp: array, n: int):
     """Resize an in-memory bmp n times bigger 
             given a particular bit depth n
     
@@ -6861,34 +6932,51 @@ def resizeNtimesbigger(bmp:array,n:int):
     return nbmp
 
 
-def colorfilterto24bitregion(bmp,x1,y1,x2,y2,rgbfactors):
-    """Applies a color filter to a rectangular area defined by (x1,y1) and (x2,y2) in a 24-bit bitmap
+def colorfilterto24bitregion(
+    bmp: array,
+    x1: int, y1: int,
+    x2: int, y2: int,
+    rgbfactors: list):
+    """Applies a color filter to 
+        a rectangular area defined 
+        by (x1,y1) and (x2,y2) 
+        in a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
-        rgbfactors : color filter (r:float,g:float,b:float) r,g and b values are 0 to 1
+        rgbfactors : color filter 
+                     (r:float,g:float,b:float)
+                     r,g and b range from 0 to 1
         
     Returns:
         byref modified unsigned byte array
 
     """
-    applybyreffuncto24bitregion(bmp,
-        x1, y1, x2, y2,
-        applycolorfiltertoBGRbuf, rgbfactors)
+    applybyreffuncto24bitregion(
+        bmp, x1, y1, x2, y2,
+        applycolorfiltertoBGRbuf,
+        rgbfactors)
 
 
-def colorfilterto24bitimage(bmp: array,
-        rgbfactors: list[float, float, float]):
-    """Applies a color filter to a whole image in an in-memory 24 bit bitmap
+def colorfilterto24bitimage(
+        bmp: array,
+        rgbfactors: list):
+    """Applies a color filter 
+        to a whole image in
+        an in-memory 24 bit bitmap
 
     Args:
-        bmp       : An unsigned byte array with bmp format
-        rgbfactors: color filter (r:float,g:float,b:float) 
-                    r,g and b values are 0 to 1
+        bmp       : unsigned byte array
+                    with bmp format
+        rgbfactors: color filter
+                    r,g and b values 
+                    are from 0 to 1
         
     Returns:
-        byref modified byte array
+        byref modified
+        unsigned byte array
 
     """
     colorfilterto24bitregion(bmp,
@@ -6896,7 +6984,8 @@ def colorfilterto24bitimage(bmp: array,
         getmaxy(bmp) - 1, rgbfactors)
 
 
-def brightnesseadjto24bitregion(bmp: array,
+def brightnesseadjto24bitregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         percentadj: float):
@@ -6905,7 +6994,8 @@ def brightnesseadjto24bitregion(bmp: array,
         in an in-memory 24 bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
         percentadj : float percentage adjustment
                      can be positive or negative
@@ -6914,32 +7004,40 @@ def brightnesseadjto24bitregion(bmp: array,
         byref modified unsigned byte array
 
     """
-    applyfuncto24bitregion(bmp,
-        x1, y1, x2, y2,
-        applybrightnessadjtoBGRbuf, percentadj)
+    applyfuncto24bitregion(
+        bmp, x1, y1, x2, y2,
+        applybrightnessadjtoBGRbuf,
+        percentadj)
 
 
-def thresholdadjto24bitregion(bmp: array,
+def thresholdadjto24bitregion(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         lumrange: list[int: int]):
-    """Applies a threshold adjustment to a rectangular region in an in-memory 24-bit bitmap
+    """Applies a threshold adjustment
+        to a rectangular region in
+        an in-memory 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines the rectangle
-        lumrange   : (byte:byte) threshold adjustment
+        lumrange   : (byte:byte) the
+                     threshold adjustment
         
     Returns:
         byref modified unsigned byte array
 
     """
-    applyfuncto24bitregion(bmp,
-        x1, y1, x2, y2,
-        applythresholdadjtoBGRbuf, lumrange)
+    applyfuncto24bitregion(
+        bmp, x1, y1, x2, y2,
+        applythresholdadjtoBGRbuf,
+        lumrange)
 
 
-def thresholdadjcircregion(bmp: array,
+def thresholdadjcircregion(
+        bmp: array,
         x: int,y: int, r: int,
         lumrange: list[int: int]):
     """Applies a threshold adjustment
@@ -6958,61 +7056,80 @@ def thresholdadjcircregion(bmp: array,
         byref modified byte array
 
     """
-    apply24bitfunctocircregion(bmp,
-        x, y, r,
-        applythresholdadjtoBGRbuf, lumrange)
+    apply24bitfunctocircregion(
+        bmp, x, y, r,
+        applythresholdadjtoBGRbuf,
+        lumrange)
 
 
-def brightnesseadjto24bitimage(bmp: array, 
+def brightnesseadjto24bitimage(
+        bmp: array, 
         percentadj: float):
     """Applies a brightness adjustment 
         to a whole image 
         in an in-memory 24-bit bitmap
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        percentadj: float percentange adjustment can be positive or negative
+        bmp       : unsigned byte array
+                    with bmp format
+        percentadj: float percentage adjustment
+                    can be positive or negative
         
     Returns:
         byref modified unsigned byte array
 
     """
-    brightnesseadjto24bitregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1,
+    brightnesseadjto24bitregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1,
         percentadj)
 
 
-def thresholdadjto24bitimage(bmp: array,
-        lumrange: list[int :int]):
+def thresholdadjto24bitimage(
+        bmp: array,
+        lumrange: list):
     """Applies a threshold adjustment 
         in an in-memory 24-bit bitmap
 
     Args:
-        bmp     : unsigned byte array with bmp format
-        lumrange: (byte:byte) threshold adjustment
+        bmp     : unsigned byte array
+                  with bmp format
+        lumrange: (byte:byte) the
+                  threshold adjustment
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    thresholdadjto24bitregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1,
+    thresholdadjto24bitregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1,
         lumrange)
 
 
-def verticalbrightnessgradto24bitimage(bmp, lumrange):
+def verticalbrightnessgradto24bitimage(
+        bmp, lumrange):
     """Applies a vertical brightness gradient 
 
     Args:
-        bmp     : unsigned byte array with bmp format
-        lumrange: (byte:byte) the brightness gradient to apply
+        bmp     : unsigned byte array
+                  with bmp format
+        lumrange: (byte:byte) the
+                  brightness gradient
+                  to apply
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    verticalbrightnessgradto24bitregion(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) - 1,
+    verticalbrightnessgradto24bitregion(
+        bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1,
         lumrange)
 
 
@@ -7104,19 +7221,32 @@ def IFS(bmp:array,
         i += 1
 
 
-def plotflower(bmp,cx,cy,r,petals,angrot,lumrange,RGBfactors):
+def plotflower(
+    bmp: array,
+    cx: int, cy: int,
+    r: int,
+    petals: float,
+    angrot: float,
+    lumrange: list,
+    RGBfactors: list):
     """Draw a flower
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        cx,cy,r   : center (cx,cy) and radius r
+        bmp       : unsigned byte array
+                    with bmp format
+        cx,cy,r   : center (cx,cy)
+                    and radius r
         petals    : number of petals
         angrot    : angle of rotation
-        lumrange  : (byte:byte) range of brightness for gradient
-        rgbfactors: [r:float,b:float,g:float] ...r,g,b values 0 min -> 1 max
+        lumrange  : (byte:byte) range of 
+                    brightness for gradient
+        rgbfactors: [r:float,b:float,g:float]
+                    r,g,b values range from 
+                    0 min to 1 max
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     maxcolors = getmaxcolors(bmp)
@@ -7216,7 +7346,8 @@ def piechart(bmp: array,
             circle(bmp, x, y, r, alist[big][2], True)
     for a in alist:
         if a[4]<50: 
-            drawarc(bmp, x, y, r, a[0], a[1], a[2], True, a[2], True)
+            drawarc(bmp, x, y, r,
+                a[0], a[1], a[2], True, a[2], True)
     return [alist, big]
 
 
@@ -7281,10 +7412,13 @@ def applyfuncto24bitregion(bmp: array,
         x2: int, y2: int,
         func: Callable,
         funcparam):
-    """Apply func(funcparam) to a rectangular area in a 24-bit bitmap
+    """Apply func(funcparam) 
+        to a rectangular area
+        in a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array with bmp format
+        bmp        : unsigned byte array
+                     with bmp format
         x1,y1,x2,y2: defines rectangular area
         func       : user defined function
         funcparam  : parameters of the function
@@ -7293,8 +7427,9 @@ def applyfuncto24bitregion(bmp: array,
         byref modified unsigned byte array
 
     """
-    x1,y1,x2,y2=sortrecpoints(x1,y1,x2,y2)
-    offset,r=compute24bitBMPoffset(bmp,x1,y2),getxcharcount(bmp)
+    x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
+    offset = compute24bitBMPoffset(bmp, x1, y2)
+    r = getxcharcount(bmp)
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         BMPbitBLTput(bmp, offset, func(buf, funcparam))
         offset += r
