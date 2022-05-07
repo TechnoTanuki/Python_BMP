@@ -210,11 +210,8 @@ from .inttools import(
 from .messages import sysmsg
 
 from .bufresize import(
-    resize1bitbufNtimesbigger,
-    resize4bitbufNtimesbigger,
-    resize8bitbufNtimesbigger,
-    resizesmaller24bitbuf,
-    resize24bitbufNtimesbigger
+    resizebufNtimesbigger,
+    resizesmaller24bitbuf
     ) 
 
 from .textgraphics import(
@@ -6846,41 +6843,19 @@ def horizontalbrightnessgradto24bitimage(
         lumrange)
 
 
-def resizebufNtimesbigger(
-        buf:array,
-        n: int, bits: int):
-    """Resize a buffer 
+def resizeNtimesbigger(
+        bmp: array, n: int):
+    """Resize an in-memory bmp
         n times bigger 
-        given a particular 
+        given a particular
         bit depth n
     
     Args:
         buf : array to resize
         n   : resize factor
-        bits: bit depth of 
-              color info
+        bits: bit depth
+              of color info 
               (1,4,8,24)
-        
-    Returns:
-        list 
-
-    """
-    f={24: resize24bitbufNtimesbigger,
-        8: resize8bitbufNtimesbigger,
-        4: resize4bitbufNtimesbigger,
-        1: resize1bitbufNtimesbigger}[bits]
-    return f(buf, n)
-
-
-def resizeNtimesbigger(bmp: array, n: int):
-    """Resize an in-memory bmp n times bigger 
-            given a particular bit depth n
-    
-    Args:
-        buf : array to resize
-        n   : resize factor
-        bits: bit depth of color info 
-             (1,4,8,24)
         
     Returns:
         unsigned byte array
@@ -6896,10 +6871,14 @@ def resizeNtimesbigger(bmp: array, n: int):
     ny -= 1
     if bits < 24:
         copyRGBpal(bmp, nbmp)
-    offset = computeBMPoffset(nbmp, 0, ny)
+    offset = computeBMPoffset(
+                  nbmp, 0, ny)
     r = getxcharcount(nbmp)
-    for buf in itercopyrect(bmp, 0, 0, mx, my):
-        nbuf = resizebufNtimesbigger(buf, n, bits)
+    for buf in itercopyrect(
+                    bmp, 0, 0,
+                        mx, my):
+        nbuf = resizebufNtimesbigger(
+                        buf, n, bits)
         i = 0
         while i < n:
             BMPbitBLTput(nbmp, offset, nbuf)
@@ -7652,7 +7631,8 @@ def pixelizenxn(
 def adjustcolordicttopal(bmp:array, colordict:dict):
     if getcolorbits(bmp) < 24:
         for color in colordict:
-            colordict[color] = matchRGBtopal(int2RGBarr(colordict[color]), getallRGBpal(bmp))
+            colordict[color] = matchRGBtopal(
+                                    int2RGBarr(colordict[color]), getallRGBpal(bmp))
 
 
 def gammaadjto24bitregion(

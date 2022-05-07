@@ -184,3 +184,29 @@ def resize24bitbufNtimesbigger(
     return makeBGRbuf(r(c[0], n),
                       r(c[1], n),
                       r(c[2], n))
+
+def resizebufNtimesbigger(
+        buf:array,
+        n: int, bits: int):
+    """Resize a buffer 
+        n times bigger 
+        given a particular 
+        bit depth n
+    
+    Args:
+        buf : array to resize
+        n   : resize factor
+        bits: bit depth of 
+              color info
+              (1,4,8,24)
+        
+    Returns:
+        list 
+
+    """
+    f={24: resize24bitbufNtimesbigger,
+        8: resize8bitbufNtimesbigger,
+        4: resize4bitbufNtimesbigger,
+        1: resize1bitbufNtimesbigger}[bits]
+    return f(buf, n)
+
