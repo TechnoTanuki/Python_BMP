@@ -7729,8 +7729,10 @@ def fern(bmp: array,
     """Draws a fern
 
     Args:
-        bmp        : unsigned byte array with bmp format
-        x1,y1,x2,y2: rectangular area to draw fern in
+        bmp        : unsigned byte array
+                     with bmp format
+        x1,y1,x2,y2: rectangular area
+                     to draw fern in
         color      : color of the fern
         
     Returns:
@@ -7738,8 +7740,11 @@ def fern(bmp: array,
 
     """
     y = abs(y2 - y1) // 10
-    IFS(bmp, getIFSparams()['fern'], x1, y1, x2, y2,
-        y, y, abs(x2 - x1) // 2, 0, color, 100000)
+    IFS(bmp,
+        getIFSparams()['fern'],
+        x1, y1, x2, y2,
+        y, y, abs(x2 - x1) // 2, 0,
+        color, 100000)
 
 
 @_filechk
@@ -7750,12 +7755,16 @@ def applybyreffuncwithparamtoregionandsave(
         x2: int, y2: int,
         func: Callable,
         funcparam):
-    """Apply a 24-bit by-ref function to a rectangular area and save
+    """Apply a 24-bit by-ref function
+        to a rectangular area and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x1,y1,x2,y2    : defines the rectangular region
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular area
         func           : user defined function
         funcparam      : function parameters
         
@@ -7767,7 +7776,9 @@ def applybyreffuncwithparamtoregionandsave(
     if len(bmp) > 54:
         func(bmp, x1, y1, x2, y2, funcparam)
         saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
+        print(sysmsg['savedareafunc'] %
+            (func.__name__,x1, y1, x2, y2,
+            ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7778,13 +7789,18 @@ def applybyref24bitcolorfunctoregionandsave(
         x2: int, y2: int,
         func: Callable,
         funcparam):
-    """Apply a 24-bit by-ref color function to a rectangular area and save
+    """Apply a 24-bit by-ref color function
+        to a rectangular area and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x1,y1,x2,y2    : defines the rectangular region
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to 
+                         save changes in
+        x1,y1,x2,y2    : defines the 
+                         rectangular area
+        func           : user defined 
+                         function
         funcparam      : function parameters
         
     Returns:
@@ -7797,8 +7813,10 @@ def applybyref24bitcolorfunctoregionandsave(
             print(sysmsg['not24bit'])
         else:
             func(bmp, x1, y1, x2, y2, funcparam)
-            saveBMP(NewBMPfile,bmp)
-            print(sysmsg['savedareafunc']%(func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
+            saveBMP(NewBMPfile, bmp)
+            print(sysmsg['savedareafunc'] %
+                (func.__name__, x1, y1, x2, y2,
+                ExistingBMPfile, NewBMPfile))
 
 
 @_filechk        
@@ -7808,13 +7826,19 @@ def applybyref24bitfunctoregionandsave(
         x1: int, y1: int,
         x2: int, y2: int,
         func: Callable):
-    """Apply a 24-bit by-ref function with no parameters to a rectangular area and save
+    """Apply a 24-bit by-ref function
+        with no parameters 
+        to a rectangular area and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x1,y1,x2,y2    : defines the rectangular region
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the 
+                         rectangular area
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -7827,7 +7851,9 @@ def applybyref24bitfunctoregionandsave(
         else:
             func(bmp, x1, y1, x2, y2)
             saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
+            print(sysmsg['savedareafunc'] %
+            (func.__name__, x1, y1, x2, y2,
+            ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7843,10 +7869,14 @@ def applybyreffunctoregionandsave(
         and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x1,y1,x2,y2    : defines the rectangular region
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular area
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -7854,9 +7884,11 @@ def applybyreffunctoregionandsave(
     """
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp)>54:
-        func(bmp,x1,y1,x2,y2)
-        saveBMP(NewBMPfile,bmp)
-        print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
+        func(bmp, x1, y1, x2, y2)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savedareafunc'] % 
+        (func.__name__, x1, y1, x2, y2,
+        ExistingBMPfile,NewBMPfile))
 
 @_filechk    
 def applyfunctoregionandsave(
@@ -7865,13 +7897,20 @@ def applyfunctoregionandsave(
         x1: int, y1: int,
         x2: int, y2: int,
         func: Callable):
-    """Apply a function with no parameters to a rectangular region and save
+    """Apply a function with 
+        no parameters to
+        a rectangular region
+        and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        x1,y1,x2,y2    : defines the rectangular region
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular area
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -7882,7 +7921,9 @@ def applyfunctoregionandsave(
         bmp = func(bmp, x1, y1, x2, y2)
         if bmp != None:
             saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savedareafunc']%( func.__name__,x1,y1,x2,y2,ExistingBMPfile,NewBMPfile))
+            print(sysmsg['savedareafunc'] %
+                (func.__name__, x1, y1, x2, y2,
+                ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7890,12 +7931,16 @@ def applybyreffuncandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
-    """Apply a by-ref function with no parameters and save
+    """Apply a by-ref function with
+        no parameters and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -7905,7 +7950,9 @@ def applybyreffuncandsave(
     if len(bmp) > 54:
         func(bmp)
         saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
+        print(sysmsg['savefunc'] %
+        (func.__name__ ,
+        ExistingBMPfile, NewBMPfile))
 
 
 @_filechk    
@@ -7918,7 +7965,9 @@ def applybyreffuncwithparamandsave(
     if len(bmp) > 54:    
         func(bmp, funcparam)
         saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
+        print(sysmsg['savesingleparamfunc'] %
+            (func.__name__, str(funcparam),
+            ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7934,7 +7983,8 @@ def applyfuncandsave(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        func           : user defined function
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -7943,7 +7993,9 @@ def applyfuncandsave(
     bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         saveBMP(NewBMPfile, func(bmp))
-        print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
+        print(sysmsg['savefunc'] %
+            (func.__name__ ,
+            ExistingBMPfile,NewBMPfile))
 
 
 @_filechk
@@ -7951,12 +8003,16 @@ def apply24bitfuncandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
-    """Apply a 24-bit only function with no parameters and save
+    """Apply a 24-bit only function
+        with no parameters and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -7968,7 +8024,9 @@ def apply24bitfuncandsave(
             print(sysmsg['not24bit'])
         else:
             saveBMP(NewBMPfile, func(bmp))
-            print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
+            print(sysmsg['savefunc'] %
+            (func.__name__ ,
+            ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -7977,13 +8035,18 @@ def apply24bitfuncwithparamandsave(
         NewBMPfile: str,
         func: Callable,
         funcparam):
-    """Apply a 24-bit only function with parameters and save
+    """Apply a 24-bit only function
+        with parameters and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        func           : user defined function
-        funcparam      : parameters  of the function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
+        funcparam      : parameters of
+                         the function
         
     Returns:
         new bitmap file
@@ -7994,8 +8057,11 @@ def apply24bitfuncwithparamandsave(
         if bmp[_bmclrbits] != 24: 
             print(sysmsg['not24bit'])
         else:
-            saveBMP(NewBMPfile,func(bmp,funcparam))
-            print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
+            saveBMP(NewBMPfile,
+                func(bmp, funcparam))
+            print(sysmsg['savesingleparamfunc'] %
+                (func.__name__, str(funcparam),
+                ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8003,12 +8069,18 @@ def apply8bitabovefuncandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
-    """Apply a function for 8 and 24-bit bmp with no parameters and save
+    """Apply a function 
+        for 8 and 24-bit bmp 
+        with no parameters
+        and save
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        func           : user defined function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -8019,8 +8091,11 @@ def apply8bitabovefuncandsave(
         if bmp[_bmclrbits] not in [8, 24]: 
             print(sysmsg['not24or8bit'])
         else:
-            saveBMP(NewBMPfile,func(bmp))
-            print(sysmsg['savefunc']%(func.__name__ ,ExistingBMPfile,NewBMPfile))
+            saveBMP(NewBMPfile, func(bmp))
+            print(sysmsg['savefunc'] %
+                (func.__name__ ,
+                ExistingBMPfile,
+                NewBMPfile))
 
 
 @_filechk
@@ -8030,7 +8105,8 @@ def applyfunctocircregion(
         func: Callable,
         x: int, y: int, r: int):
     """Apply a user provided function 
-        (no parameters) to a circular area
+        (no parameters) 
+        to a circular area
 
     Args:
         ExistingBMPfile: Whole path to
@@ -8039,7 +8115,8 @@ def applyfunctocircregion(
                          save changes in
         x, y, r        : center (x,y)
                          and radius r
-        func           : user defined function
+        func           : user defined
+                         function
         
     Returns:
         new bitmap file
@@ -8049,7 +8126,9 @@ def applyfunctocircregion(
     if len(bmp) > 54:
         func(bmp, x, y, r)
         saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savecircfunc']%(func.__name__ , x, y, r, ExistingBMPfile, NewBMPfile))
+        print(sysmsg['savecircfunc'] %
+            (func.__name__ , x, y, r,
+            ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8082,8 +8161,9 @@ def applyfunctocircregionwithparam(
     if len(bmp) > 54:
         func(bmp, x, y, r, funcparam)
         saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savecircfuncwithparam'] % (func.__name__ ,
-            x, y, r, funcparam, ExistingBMPfile, NewBMPfile))
+        print(sysmsg['savecircfuncwithparam'] %
+            (func.__name__ , x, y, r,
+            funcparam, ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8117,8 +8197,9 @@ def apply24bitcoloradjfunctocircregion(
         else:
             func(bmp, x, y, r)
             saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savecircfunc'] % (func.__name__,
-                x, y, r, ExistingBMPfile, NewBMPfile))
+            print(sysmsg['savecircfunc'] %
+                (func.__name__, x, y, r,
+                ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8186,7 +8267,9 @@ def applycoloradjfunc(
     bmp=loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         if bmp[_bmclrbits] != 24: 
-            setbmppal(bmp,[func(c,funcparam) for c in getallRGBpal(bmp)])
+            setbmppal(bmp,
+                [func(c,funcparam)
+                    for c in getallRGBpal(bmp)])
         else:
             if func.__name__=='colorfilter': 
                 colorfilterto24bitimage(bmp,funcparam)
@@ -8197,10 +8280,12 @@ def applycoloradjfunc(
             elif func.__name__=='thresholdadjust': 
                 thresholdadjto24bitimage(bmp,funcparam)
             else:
-                for v in iterimageRGB(bmp, sysmsg['coloradj'], '*',
-                                           sysmsg['done']):  
+                for v in iterimageRGB(bmp,
+                            sysmsg['coloradj'], '*',
+                            sysmsg['done']):  
                     plotRGBxybitvec(
-                        bmp,v[0], func(v[1],funcparam))
+                        bmp, v[0],
+                        func(v[1],funcparam))
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savesingleparamfunc'] %
             (func.__name__, str(funcparam),
