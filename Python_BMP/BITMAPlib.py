@@ -8155,8 +8155,9 @@ def apply24bitcoloradjfuncwithparam2circregion(
         else: 
             func(bmp, x, y, r, funcparam)
             saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savecircfuncwithparam'] % (func.__name__,
-            x, y, r, funcparam, ExistingBMPfile, NewBMPfile))
+            print(sysmsg['savecircfuncwithparam'] %
+            (func.__name__, x, y, r, funcparam,
+            ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8165,13 +8166,18 @@ def applycoloradjfunc(
         NewBMPfile: str,
         func: Callable,
         funcparam):
-    """Apply a user provided color adjustment function to an existing bitmap
+    """Apply a user provided color adjustment
+        function to an existing bitmap
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes in
-        func           : user defined function
-        funcparam      : parameters  of the function
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
+        funcparam      : parameters of
+                         the function
         
     Returns:
         new bitmap file
@@ -8191,10 +8197,14 @@ def applycoloradjfunc(
             elif func.__name__=='thresholdadjust': 
                 thresholdadjto24bitimage(bmp,funcparam)
             else:
-                for v in iterimageRGB(bmp,sysmsg['coloradj'],'*',sysmsg['done']):  
-                    plotRGBxybitvec(bmp,v[0], func(v[1],funcparam))
+                for v in iterimageRGB(bmp, sysmsg['coloradj'], '*',
+                                           sysmsg['done']):  
+                    plotRGBxybitvec(
+                        bmp,v[0], func(v[1],funcparam))
         saveBMP(NewBMPfile,bmp)
-        print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
+        print(sysmsg['savesingleparamfunc'] %
+            (func.__name__, str(funcparam),
+            ExistingBMPfile, NewBMPfile))
 
 @_filechk
 def apply24bitcoloradjfunc(
@@ -8202,13 +8212,18 @@ def apply24bitcoloradjfunc(
         NewBMPfile: str,
         func: Callable,
         funcparam):
-    """Apply a user provided color adjustment function to a 24-bit bitmap
+    """Apply a user provided color adjustment
+        function to a 24-bit bitmap
 
     Args:
-        ExistingBMPfile: Whole path to existing file
-        NewBMPfile     : New file to save changes to
-        func           : user defined function
-        funcparam      : parameters  of the function
+        ExistingBMPfile: Whole path to 
+                         existing file
+        NewBMPfile     : New file to save
+                         changes in
+        func           : user defined
+                         function
+        funcparam      : parameters of 
+                         the function
         
     Returns:
         new bitmap file
@@ -8221,7 +8236,9 @@ def apply24bitcoloradjfunc(
         else:
             func(bmp, funcparam)
             saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savesingleparamfunc']%(func.__name__,str(funcparam),ExistingBMPfile,NewBMPfile))
+            print(sysmsg['savesingleparamfunc'] % 
+                (func.__name__, str(funcparam),
+                ExistingBMPfile, NewBMPfile))
 
 
 @_filechk        
@@ -8253,10 +8270,12 @@ def applynoparamcoloradjfunc(
             if func.__name__ == 'monochrome': 
                 monofilterto24bitimage(bmp)
             else:
-                for v in iterimageRGB(bmp,sysmsg['coloradj'],'*',sysmsg['done']):  
-                    plotRGBxybitvec(bmp,v[0], func(v[1]))
-        saveBMP(NewBMPfile,bmp)
-        print(sysmsg['savenoparamfunc']%(func.__name__,ExistingBMPfile,NewBMPfile))
+                for v in iterimageRGB(bmp, sysmsg['coloradj'], '*',
+                                           sysmsg['done']):  
+                    plotRGBxybitvec(bmp, v[0], func(v[1]))
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savenoparamfunc'] %
+            (func.__name__, ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8359,7 +8378,8 @@ def imagecomp(
                 if pal1 != pal2:
                     print(sysmsg['diffpal'])
                 copyRGBpal(bmp1, nbmp)
-            setBMPimgbytes(nbmp, array('B', func(getBMPimgbytes(bmp1), getBMPimgbytes(bmp2))))
+            setBMPimgbytes(nbmp, array('B', func(getBMPimgbytes(bmp1),
+                                                 getBMPimgbytes(bmp2))))
             saveBMP(diff_file, nbmp)
             print(sysmsg['savdifffile']%diff_file)
 
@@ -8397,24 +8417,29 @@ def reduce24bitimagebits(
 
     """                        
     sbmp = loadBMP(Existing24BMPfile)
-    if len(sbmp)>54:
+    if len(sbmp) > 54:
         if sbmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
         else:
-            bmp=CopyBMPxydim2newBMP(sbmp, newbits)
+            bmp=CopyBMPxydim2newBMP(
+                    sbmp, newbits)
             if newbits>1:
                 if usemonopal: 
-                    newpal = setBMP2monochrome(bmp, RGBfactors)
+                    newpal = setBMP2monochrome(
+                                bmp, RGBfactors)
                 else: 
-                    newpal = setnewpalfromsourcebmp(sbmp, bmp, similaritythreshold)
-            for v in iterimageRGB(sbmp,sysmsg['colorquant'],'*',sysmsg['done']):
+                    newpal = setnewpalfromsourcebmp(
+                                sbmp, bmp, similaritythreshold)
+            for v in iterimageRGB(sbmp,
+                        sysmsg['colorquant'],'*',
+                        sysmsg['done']):
                     if newbits == 1: 
                         c = probplotRGBto1bit(v[1], 2)
                     else: 
                         c = matchRGBtopal(v[1], newpal)
                     intplotvecxypoint(bmp, v[0], c)
             saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savemod']%(Existing24BMPfile, NewBMPfile))
+            print(sysmsg['savemod'] % (Existing24BMPfile, NewBMPfile))
 
 
 @_filechk
