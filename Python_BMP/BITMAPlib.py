@@ -6123,18 +6123,16 @@ def verttransregion(bmp: array,
         unsigned byte array
 
     """
-    def flip(): 
-        bmp[s1: e1], bmp[s2: e2] = bmp[s2: e2], bmp[s1:e1]
-    def mirrortop(): 
-        bmp[s1: s1 + bufsize] = bmp[s2: s2 + bufsize]
-    def mirrorbottom(): 
-        bmp[s2: s2 + bufsize] = bmp[s1: s1 + bufsize]
-    if trans == 'F': 
-        f = flip
-    elif trans == 'T': 
-        f = mirrortop
-    elif trans == 'B': 
-        f = mirrorbottom
+    def _F(): 
+        bmp[s1: e1], bmp[s2: e2] = \
+        bmp[s2: e2], bmp[s1:e1]
+    def _T(): 
+        bmp[s1: s1 + bufsize] = \
+        bmp[s2: s2 + bufsize]
+    def _B(): 
+        bmp[s2: s2 + bufsize] = \
+        bmp[s1: s1 + bufsize]
+    f = {'F': _F, 'T': _T, 'B': _B}[trans]    
     x1, y1, x2, y2 = sortrecpoints(
                         x1, y1, x2, y2)
     bufsize = adjustbufsize(
