@@ -2649,28 +2649,38 @@ def pastecirularbuf(bmp: array,
 def copycircregion(bmp: array,
         x: int, y: int, r: int,
         newxy: list):
-    """Copy a circular buffer at x,y
+    """Copy a circular buffer
+        at x,y
         with a radius r
-        to a centerpoint at newxy [x,y]
+        to a centerpoint
+        at newxy [x,y]
 
     Args:
         bmp   : unsigned byte array
                 with bmp format
-        x, y, r: center (x,y) and radius r
-                of the circular region
-        newxy : center of circular area
-                to paste the buffer into
+        x, y, r: center (x,y)
+                 and radius r
+                 of the 
+                 circular region
+        newxy :  center of 
+                 circular area
+                 to paste 
+                 the buffer into
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    pastecirularbuf(bmp, newxy[0], newxy[1],
-        copycircregion2buf(bmp, x, y, r))
+    pastecirularbuf(
+        bmp, newxy[0], newxy[1],
+        copycircregion2buf(
+            bmp, x, y, r))
 
 
 @_intcircpar
-def applynoparamfunctocircregion(bmp: array,
+def applynoparamfunctocircregion(
+        bmp: array,
         x: int, y: int, r: int, 
         func: Callable):
     """Apply a no parameter function 
@@ -2680,17 +2690,20 @@ def applynoparamfunctocircregion(bmp: array,
     Args:
         bmp    : unsigned byte array 
                  with bmp format
-        x, y, r: center (x,y) and radius r
-                 of the circular region
+        x, y, r: center (x,y)
+                 and radius r
+                 of the circular area
         func   : function to apply
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(
-            x, y, -1, getmaxx(bmp), -1, getmaxy(bmp), r):
+            x, y, -1, getmaxx(bmp),
+                  -1, getmaxy(bmp), r):
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x, v[0])
             y1, y2 = mirror(y, v[1])
@@ -2735,7 +2748,8 @@ def flipXYcircregion(bmp: array,
                   radius r of region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     bits = bmp[_bmclrbits]
@@ -2758,7 +2772,12 @@ def flipXYcircregion(bmp: array,
             x2 += 1
             x3, x4 = mirror(x, v[1])
             y3, y4 = mirror(y, v[0])
-            buf += [[x1, y1, x2, y2, vertBMPbitBLTget(bmp, x3, y3, y4), vertBMPbitBLTget(bmp, x4, y3, y4)]]
+            buf += [[x1,
+                     y1,
+                     x2,
+                     y2,
+                     vertBMPbitBLTget(bmp, x3, y3, y4),
+                     vertBMPbitBLTget(bmp, x4, y3, y4)]]
         for b in buf:
             x1 = b[0]
             y1 = b[1]
@@ -2768,19 +2787,25 @@ def flipXYcircregion(bmp: array,
             bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = b[5]
 
 
-def fliphoricircregion(bmp: array,
-        x: int, y: int, r: int):
-    """Flips horizontally a circular region
-       with a center x,y with a radius r
+def fliphoricircregion(
+        bmp: array,
+        x: int, y: int,
+        r: int):
+    """Flips horizontally
+       a circular region
+       with a center x,y
+       with a radius r
         
     Args:
         bmp    : unsigned byte array 
                  with bmp format
         x, y, r: center (x,y) 
-                 and radius r of region
+                 and radius r
+                 of circular region
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     horitransformincircregion(bmp, x, y, r, 'F')
