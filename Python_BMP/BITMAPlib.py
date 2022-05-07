@@ -1124,7 +1124,8 @@ def setRGBpal(bmp: array, c: int,
         c     : unsigned int color 
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     start = _bmpal + (c << 2)
@@ -1274,22 +1275,27 @@ def setnewpalfromsourcebmp(
 
     """
     newpal=makenewpalfromcolorhist(
-        colorhistorgram(sourcebmp), getmaxcolors(newbmp),
+        colorhistorgram(sourcebmp),
+        getmaxcolors(newbmp),
         similaritythreshold)
     setbmppal(newbmp, newpal)
     return newpal
 
 
-def RGBpalbrightnessadjust(bmp: array,
+def RGBpalbrightnessadjust(
+        bmp: array,
         percentadj: float)-> list:
     """Copies the RGB palette info from 
         a source unsigned byte array  
-        to a destination unsigned byte array
+        to a destination 
+        unsigned byte array
 
     Args:
-        bmp       : unsigned byte array with bmp format
-        percentadj: signed float brightness adj in %
-        
+        bmp       : unsigned byte array 
+                    with bmp format
+        percentadj: signed float 
+                    brightness adj
+
     Returns:
         list of modified RGB values
 
@@ -1298,9 +1304,11 @@ def RGBpalbrightnessadjust(bmp: array,
                 for c in getallRGBpal(bmp)]
 
 
-def setBMP2monochrome(bmp: array,
+def setBMP2monochrome(
+        bmp: array,
         RGBfactors: list) -> list:
-    """Sets a bitmap to use a monochrome palette
+    """Sets a bitmap to use
+        a monochrome palette
 
     Args:
         bmp       : unsigned byte array
@@ -1318,7 +1326,8 @@ def setBMP2monochrome(bmp: array,
     return newpal
 
 
-def newBMP(x: int, y: int, colorbits: int) -> array:
+def newBMP(x: int, y: int,
+        colorbits: int) -> array:
     """Creates a new in memory bitmap
 
     Args:
@@ -1346,19 +1355,23 @@ def CopyBMPxydim2newBMP(bmp: array,
         newbits: bit depth (1, 4, 8, 24)
 
     Returns:
-        unsigned byte array with bitmap layout
+        unsigned byte array
+        with bitmap layout
 
     """
-    return newBMP(getmaxx(bmp) ,getmaxy(bmp) , newbits)
+    return newBMP(getmaxx(bmp),
+                getmaxy(bmp), newbits)
 
 
 @_filechk
 def loadBMP(filename: str) -> array:
     """Load bitmap to a byte array
+        uncompressed bitmap only
 
     Args:
         filename: full path to 
-                  the file to be loaded
+                  the file
+                  to be loaded
         
     Returns:
         byte array with
@@ -1366,7 +1379,7 @@ def loadBMP(filename: str) -> array:
 
     """
     a = array('B')
-    with open(filename, 'rb') as f: #ucompressed BMP only
+    with open(filename, 'rb') as f: 
         hd = f.read(2)
         if hd != b'BM': 
             print(sysmsg['notBMP'])
@@ -1385,7 +1398,8 @@ def saveBMP(filename: str, bmp: array):
         filename: full path to 
                   the file to be saved
         bmp     : unsigned byte array 
-                  with the layout of bmp file 
+                  with the layout
+                  of bmp file 
 
     """
     with open(filename, 'wb') as f:
@@ -1394,7 +1408,8 @@ def saveBMP(filename: str, bmp: array):
 
 
 def BMPbitBLTput(bmp: array,
-        offset: int, arraybuf: array):
+        offset: int,
+        arraybuf: array):
     """Sets offset in array to arraybuf
 
     Args:
@@ -1405,7 +1420,8 @@ def BMPbitBLTput(bmp: array,
         arraybuf: unsigned byte array
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     hdrsize = gethdrsize(bmp)
@@ -1439,7 +1455,8 @@ def BMPbitBLTget(bmp: array,
     retval = array('B', [])
     startoff = hdrsize + offset
     endoff = startoff + bufsize
-    if (offset >= 0 and bufsize > 0 ) and endoff <= getfilesize(bmp): 
+    if (offset >= 0 and bufsize > 0 ) and \
+        endoff <= getfilesize(bmp): 
         retval = bmp[startoff: endoff]
     else: 
         print(sysmsg['invalidoffset'])
@@ -1471,7 +1488,9 @@ def vertBMPbitBLTget(bmp: array,
         s = c(bmp, x, y2)
         e = c(bmp, x, y1) + r
         if bits == 24: 
-            return makeBGRbuf(bmp[s: e - 2: r], bmp[s + 1: e - 1: r], bmp[s + 2: e: r])
+            return makeBGRbuf(bmp[s: e - 2: r],
+                              bmp[s + 1: e - 1: r],
+                              bmp[s + 2: e: r])
         else: 
             return bmp[s: e: r]
     else: 
@@ -1491,12 +1510,15 @@ def applyfuncwithparam2vertBMPbitBLTget(
                     with bmp format
         x,y1,y2   : unsigned int 
                     x and y coordinates 
-        func      : user defined function func
+        func      : user defined
+                    function func
         funcparam : parameters of
-                    the user defined function
+                    the user defined
+                    function
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     bits = bmp[_bmclrbits]
@@ -1511,14 +1533,18 @@ def applyfuncwithparam2vertBMPbitBLTget(
         e = c(bmp, x, y1) + r
         if bits == 24:
             e2 = e - 2 
-            bmp[s: e2: r] = func(bmp[s: e2: r], funcparam)
+            bmp[s: e2: r] = func(bmp[s: e2: r],
+                                funcparam)
             s1 = s + 1
             e1 = e - 1
-            bmp[s1: e1: r] = func(bmp[s1: e1: r], funcparam)
+            bmp[s1: e1: r] = func(bmp[s1: e1: r],
+                                 funcparam)
             s2 = s + 2
-            bmp[s2: e : r] = func(bmp[s2: e: r], funcparam)
+            bmp[s2: e : r] = func(bmp[s2: e: r],
+                                 funcparam)
         else: 
-            bmp[s: e: r] = func(bmp[s: e: r],funcparam)
+            bmp[s: e: r] = func(bmp[s: e: r],
+                               funcparam)
     else: 
         print(sysmsg['lineoutofbnd'])
 
@@ -1537,21 +1563,26 @@ def plotRGBxybit(bmp: array,
              [R:byte,G:byte,B:byte] 
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     if isinBMPrectbnd(bmp,x,y):
         if bmp[_bmclrbits] == 24:
             offset = compute24bitBMPoffsetwithheader(bmp, x, y)
             endoffset = offset + 3
-            bmp[offset:endoffset] = array('B', [rgb[2], rgb[1], rgb[0]])
+            bmp[offset:endoffset] = array('B', [rgb[2],
+                                                rgb[1],
+                                                rgb[0]])
         else: 
             plotxybit(bmp,
-                x, y, matchRGBtopal(rgb, getallRGBpal(bmp)))
+                x, y,
+                matchRGBtopal(rgb, getallRGBpal(bmp)))
 
 
 def plotxybit(bmp: array,
-        x: int, y: int, c: int):
+        x: int, y: int,
+        c: int):
     """Sets pixel at x,y in a bitmap to color c
 
     Args:
@@ -1562,7 +1593,8 @@ def plotxybit(bmp: array,
         c  : unsigned int color
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     if isinBMPrectbnd(bmp, x, y):
@@ -1594,11 +1626,14 @@ def plotxybit(bmp: array,
 
 def getxybit(bmp: array,
         x: int, y: int) -> int:
-    """Gets color of pixel at x,y in a bitmap
+    """Gets color of pixel
+        at x,y in a bitmap
 
     Args:
-        bmp: unsigned byte array with bmp format
-        x,y: unsigned int locations in x and y
+        bmp: unsigned byte array
+             with bmp format
+        x,y: unsigned int
+             locations in x and y
 
     Returns:
         unsigned int color value
@@ -1619,7 +1654,9 @@ def getxybit(bmp: array,
         elif bits == 8: 
             retval = bmp[offset]
         elif bits == 24:
-            retval = RGB2int(bmp[offset+2], bmp[offset+1], bmp[offset])
+            retval = RGB2int(bmp[offset+2],
+                             bmp[offset+1],
+                             bmp[offset])
     else: 
         retval = -1
     return retval
@@ -1705,7 +1742,8 @@ def plotvecxypoint(bmp: array,
     """Sets color of pixel at (x,y)
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         v  : (x:float,y:float)
         c  : unsigned int color value
         
@@ -1722,12 +1760,14 @@ def plotRGBxybitvec(bmp: array,
     """Sets [R,G,B] of pixel at (x,y)
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array
+             with bmp format
         v  : (x:float,y:float)
         rgb: [R:byte,G:byte,B:byte]
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     plotRGBxybit(bmp, v[0], v[1], rgb)
@@ -1752,7 +1792,8 @@ def plotxypointlist(bmp: array,
         color    : color of the pen
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for v in vlist: 
@@ -1782,22 +1823,29 @@ def roundpen(bmp: array,
     if penradius <= 1: 
         plotxybit(bmp, x, y, color)
     else: 
-        circle(bmp, x, y, penradius, color, True)
+        circle(bmp, x, y,
+            penradius, color, True)
 
 
-def swapcolors(bmp: array, p1: list, p2: list):
-    """Swaps the colors of two points in a bitmap 
+def swapcolors(bmp: array,
+        p1: list, p2: list):
+    """Swaps the colors of two points
+        in a bitmap 
 
     Args:
-        bmp  : unsigned byte array with bmp format
-        p1,p2: endpoints of the line(x:uint,y:uint)
+        bmp   : unsigned byte array
+                with bmp format
+        p1, p2: endpoints of the 
+                line(x:uint,y:uint)
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     c = getxybitvec(bmp, p1)
-    intplotvecxypoint(bmp, p1, getxybitvec(bmp, p2))
+    intplotvecxypoint(bmp, p1,
+        getxybitvec(bmp, p2))
     intplotvecxypoint(bmp, p2, c)
 
 
@@ -1814,13 +1862,14 @@ def line(bmp: array,
         color          : color of the line
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     m = getmaxxy(bmp)
     mx = m[0] - 1
     my = m[1] - 1
-    x1 = setminmax(x1 ,0, mx)
+    x1 = setminmax(x1, 0, mx)
     x2 = setminmax(x2, 0, mx)
     y1 = setminmax(y1, 0, my)
     y2 = setminmax(y2, 0, my)
@@ -1848,9 +1897,11 @@ def line(bmp: array,
             for p in iterline(p1, p2):
                 s = c(bmp, p[0], p[1])
                 if p[0] & 1 == 1: 
-                    bmp[s] = (bmp[s] & 0xf0) + color
+                    bmp[s] = (bmp[s] & 0xf0) + \
+                             color
                 else: 
-                    bmp[s] = (color << 4) + (bmp[s] & 0xf)
+                    bmp[s] = (color << 4) + \
+                             (bmp[s] & 0xf)
         elif bits == 1:
             if color > 1: 
                 color &= 0x1
@@ -1895,7 +1946,9 @@ def horiline(bmp: array,
         if bits == 24:
             e = s + (dx * 3)
             rgb=int2RGBlist(color)
-            bmp[s:e] = array('B', [rgb[2], rgb[1], rgb[0]] * dx)
+            bmp[s:e] = array('B', [rgb[2],
+                                   rgb[1],
+                                   rgb[0]] * dx)
         elif bits == 8:
             e = s + dx
             color &= 0xff
@@ -1922,7 +1975,8 @@ def horiline(bmp: array,
 
 
 def vertline(bmp: array,
-        x: int, y1: int, y2: int,
+        x: int,
+        y1: int, y2: int,
         color: int):
     """Creates a vertical line
 
@@ -1988,8 +2042,11 @@ def fillbackgroundwithgrad(bmp: array,
 
     """
     filledgradrect(bmp,
-        0, 0, getmaxx(bmp) - 1, getmaxy(bmp) -1,
-        lumrange, RGBfactors,
+        0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1,
+        lumrange,
+        RGBfactors,
         direction)
 
 
@@ -2042,7 +2099,8 @@ def filledgradrect(bmp: array,
                         round(base[1] + lrange[1] * f),
                         round(base[2] + lrange[2] * f))
             if bmp[_bmclrbits] != 24:
-                c = matchRGBtopal(int2RGBarr(c), getallRGBpal(bmp))
+                c = matchRGBtopal(int2RGBarr(c),
+                        getallRGBpal(bmp))
             if c < 0: 
                 c = 0
             horiline(bmp, y, x1, x2, c)
@@ -2080,15 +2138,19 @@ def intlinevec(bmp: array,
     """Creates a line in a bitmap 
 
     Args:
-        bmp   : unsigned byte array with bmp format
-        u,v   : (x:int,y:int) endpoints that defines the line 
+        bmp   : unsigned byte array
+                with bmp format
+        u,v   : (x:int,y:int) endpoints 
+                that defines the line 
         color : color of the line
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    line(bmp, u[0], u[1], v[0], v[1], color)
+    line(bmp, u[0], u[1],
+              v[0], v[1], color)
 
 
 def linevec(bmp: array,
@@ -2098,19 +2160,25 @@ def linevec(bmp: array,
     """Creates a line in a bitmap 
 
     Args:
-        bmp   : unsigned byte array with bmp format
-        u,v   : (x:float,y:float) endpoints of the line 
+        bmp   : unsigned byte array
+                with bmp format
+        u,v   : (x:float,y:float)
+                endpoints of the line 
         color : color of the line
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    intlinevec(bmp, roundvect(u), roundvect(v), color)
+    intlinevec(bmp, roundvect(u),
+        roundvect(v), color)
 
 
 def filledparallelogram(bmp: array,
-        p1: list, p2: list, p3: list,
+        p1: list,
+        p2: list,
+        p3: list,
         color: int):
     """Creates a filled parallelogram 
         defined by 3 points
@@ -2161,11 +2229,15 @@ def drawvec(bmp: array,
     a2 = a + anginc
     linevec(bmp, u, v, color)
     def hdaddvect(bmp, v, hm, a1, a2):
-        linevec(bmp, v, addvect(v, polar2rectcoord2D([hm, a1])), color)
-        linevec(bmp, v, addvect(v, polar2rectcoord2D([hm, a2])), color)
+        linevec(bmp, v,
+            addvect(v, polar2rectcoord2D([hm, a1])), color)
+        linevec(bmp, v,
+            addvect(v, polar2rectcoord2D([hm, a2])), color)
     def hdsubvect(bmp, v, hm, a1, a2):
-        linevec(bmp, v, subvect(v, polar2rectcoord2D([hm, a1])), color)
-        linevec(bmp, v, subvect(v, polar2rectcoord2D([hm, a2])), color)
+        linevec(bmp, v,
+            subvect(v, polar2rectcoord2D([hm, a1])), color)
+        linevec(bmp, v,
+            subvect(v, polar2rectcoord2D([hm, a2])), color)
     if u[0] < v[0] and u[1] < v[1]: 
         hdsubvect(bmp, v, hm, a1, a2)
     elif u[0] > v[0] and u[1] > v[1]: 
@@ -2201,13 +2273,15 @@ def thickroundline(bmp: array,
 
     """
     for p in iterline(p1,p2): 
-        circle(bmp, p[0], p[1], penradius, color, True)
+        circle(bmp, p[0], p[1],
+            penradius, color, True)
 
 
 def gradthickroundline(bmp: array,
         p1: list, p2: list,
         penradius: int,
-        lumrange: list, RGBfactors: list):
+        lumrange: list,
+        RGBfactors: list):
     """Creates a thick rounded line
 
     Args:
@@ -2233,8 +2307,10 @@ def gradthickroundline(bmp: array,
 
 
 @_fn24bitintcircpar        
-def applynoparam24bitfunctocircregion(bmp: array,
-        x: int, y: int, r: int,
+def applynoparam24bitfunctocircregion(
+        bmp: array,
+        x: int, y: int,
+        r: int,
         func: Callable):
     """Apply a no parameter function func
         to a circular region 
@@ -2284,10 +2360,14 @@ def applynoparam24bitfunctocircregion(bmp: array,
 
 
 @_fn24bitintcircpar       
-def apply24bitfunctocircregion(bmp: array,
-        x: int, y: int, r: int,
-        func: Callable, funcparam):
-    """Apply function func to a circular region 
+def apply24bitfunctocircregion(
+        bmp: array,
+        x: int, y: int,
+        r: int,
+        func: Callable,
+        funcparam):
+    """Apply function func to
+        a circular region 
         with center defined by 
         x,y with a radius r 
         that is within a 24-bit bitmap
@@ -2295,13 +2375,16 @@ def apply24bitfunctocircregion(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x, y, r   : center (x,y) and radius r
-                    of the circular region
+        x, y, r   : center (x,y)
+                    and radius r of 
+                    the circular region
         func      : function to apply
-        funcparam : parameters of the function
+        funcparam : parameters of the
+                    function
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
@@ -2314,9 +2397,11 @@ def apply24bitfunctocircregion(bmp: array,
             e1 = c(bmp, x2, y1)
             s2 = c(bmp, x1, y2)
             e2 = c(bmp, x2, y2)
-            bmp[s1: e1] = func(bmp[s1: e1], funcparam)
+            bmp[s1: e1] = func(bmp[s1: e1],
+                            funcparam)
             if y2 != y1: 
-                bmp[s2: e2] = func(bmp[s2: e2], funcparam)
+                bmp[s2: e2] = func(bmp[s2: e2],
+                                funcparam)
     else:
         xmax = getmaxx(bmp)
         ymax = getmaxy(bmp)
@@ -2328,11 +2413,13 @@ def apply24bitfunctocircregion(bmp: array,
             if isinrange(y2, ymax, -1):
                 s2 = c(bmp,x1,y2)
                 e2 = c(bmp,x2,y2)
-                bmp[s2: e2] = func(bmp[s2: e2], funcparam)
+                bmp[s2: e2] = func(bmp[s2: e2],
+                                funcparam)
             if isinrange(y1, ymax, -1) and y2 != y1:
                 s1 = c(bmp, x1, y1)
                 e1 = c(bmp, x2, y1)
-                bmp[s1: e1] = func(bmp[s1: e1], funcparam)
+                bmp[s1: e1] = func(bmp[s1: e1],
+                                funcparam)
 
 
 @_encircbnd
@@ -2358,7 +2445,8 @@ def copycircregion2buf(bmp: array,
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
-        copybuf += [[bmp[c(bmp, x1, y1): c(bmp, x2, y1)], bmp[c(bmp, x1, y2): c(bmp, x2, y2)]]]
+        copybuf += [[bmp[c(bmp, x1, y1): c(bmp, x2, y1)],
+                     bmp[c(bmp, x1, y2): c(bmp, x2, y2)]]]
     return copybuf
 
 def pastecirularbuf(bmp: array,
@@ -2383,7 +2471,10 @@ def pastecirularbuf(bmp: array,
         r = circbuf[1]
         c = getcomputeBMPoffsetwithheaderfunc(bmp)
         if entirecircleisinboundary(
-                x, y, -1, getmaxx(bmp), -1, getmaxy(bmp), r):
+                x, y,
+                -1, getmaxx(bmp),
+                -1, getmaxy(bmp),
+                r):
             if getcolorbits(bmp) != circbuf[0]: 
                 raise(sysmsg['bitsnotequal'])
             else:
@@ -2411,9 +2502,9 @@ def copycircregion(bmp: array,
         bmp   : unsigned byte array
                 with bmp format
         x, y, r: center (x,y) and radius r
-                of the circular region
-        newxy : center of circular area
-                to paste the buffer into
+                 of the circular region
+        newxy  : center of circular area
+                 to paste the buffer into
         
     Returns:
         byref modified unsigned byte array
@@ -2444,7 +2535,10 @@ def applynoparamfunctocircregion(bmp: array,
     """
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     if entirecircleisinboundary(
-            x, y, -1, getmaxx(bmp), -1, getmaxy(bmp), r):
+            x, y,
+            -1, getmaxx(bmp),
+            -1, getmaxy(bmp),
+            r):
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x, v[0])
             y1, y2 = mirror(y, v[1])
@@ -2512,7 +2606,9 @@ def flipXYcircregion(bmp: array,
             x2 += 1
             x3, x4 = mirror(x, v[1])
             y3, y4 = mirror(y, v[0])
-            buf += [[x1, y1, x2, y2, vertBMPbitBLTget(bmp, x3, y3, y4), vertBMPbitBLTget(bmp, x4, y3, y4)]]
+            buf += [[x1, y1, x2, y2,
+                    vertBMPbitBLTget(bmp, x3, y3, y4),
+                    vertBMPbitBLTget(bmp, x4, y3, y4)]]
         for b in buf:
             x1 = b[0]
             y1 = b[1]
