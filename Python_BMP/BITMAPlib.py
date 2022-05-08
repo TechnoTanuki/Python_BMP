@@ -1375,7 +1375,7 @@ def RGBpalbrightnessadjust(
 
 def setBMP2monochrome(
         bmp: array,
-        RGBfactors: list) -> list:
+        RGBfactors: list[float, float, float]) -> list:
     """Sets a bitmap to 
         use a monochrome palette
 
@@ -2150,8 +2150,8 @@ def vertline(bmp: array,
 
 def fillbackgroundwithgrad(
         bmp: array, 
-        lumrange: list,
-        RGBfactors: list,
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float],
         direction: int):
     """Fills entire bitmap
         with a linear gradient
@@ -2187,8 +2187,8 @@ def filledgradrect(
         bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
-        lumrange: list, 
-        RGBfactors: list,
+        lumrange: list[int, int], 
+        RGBfactors: list[float, float, float],
         direction: int):
     """Creates a filled rectangle
         with a linear gradient
@@ -2452,8 +2452,8 @@ def gradthickroundline(
         p1: list,
         p2: list,
         penradius: int,
-        lumrange: list,
-        RGBfactors: list):
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float]):
     """Creates a
         thick rounded line
 
@@ -3223,7 +3223,7 @@ def vertbrightnessgrad2circregion(
         bmp: array,
         x: int, y: int,
         r: int,
-        lumrange: list):
+        lumrange: list[int, int]):
     """Applies a vertical brightness 
         gradient adjustment 
         to a circular region with 
@@ -3267,7 +3267,7 @@ def horibrightnessgrad2circregion(
         bmp: array,
         x: int, y: int,
         r: int,
-        lumrange: list):
+        lumrange: list[int, int]):
     """Applies a horizontal brightness 
         gradient adjustment
         to a circular region with 
@@ -3413,7 +3413,7 @@ def colorfiltercircregion(
         bmp: array,
         x: int, y: int,
         r: int,
-        rgbfactors: list):
+        rgbfactors: list[float, float, float]):
     """Applies a color filter 
         defined by rgbfactors
         to a circular region
@@ -3760,8 +3760,8 @@ def gradthickcircle(
         x: int, y: int,
         radius: int,
         penradius: int,
-        lumrange: list,
-        RGBfactors: list):
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float]):
     """Draws a thick circle 
         with gradient lumrange 
         defined by
@@ -3801,8 +3801,8 @@ def gradthickcircle(
 def gradcircle(bmp: array,
         x: int, y: int,
         radius: int,
-        lumrange: list,
-        RGBfactors: list):
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float]):
     """Draws a filled circle 
         with gradient lumrange 
         defined by centerpoint (x,y) 
@@ -3879,8 +3879,8 @@ def gradthickellipserot(
         b: int, a: int,
         degrot: float,
         penradius: int,
-        lumrange: list,
-        RGBfactors: list):
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float]):
     """Draws an thick ellipse with 
         a defined pen radius
         defined by centerpoint (x,y) 
@@ -4060,8 +4060,8 @@ def gradellipse(
         bmp: array,
         x: int, y: int,
         b: int, a: int,
-        lumrange: list,
-        RGBfactors: list):
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float]):
     """Draws an ellipical 
         gradient defined
         by centerpoint (x,y) 
@@ -4854,8 +4854,8 @@ def gradthickplotpoly(
         bmp: array,
         vertlist: list,
         penradius: int,
-        lumrange: list,
-        RGBfactors: list):
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float]):
     """Draws a polygon of
         a given gradient
         and thickness
@@ -4966,7 +4966,7 @@ def plotpolylist(
 def plotpolyfillist(
     bmp: array,
         sides: list,
-        RGBfactors: list):
+        RGBfactors: list[float, float]):
     """3D polygon rendering function
 
     Args:
@@ -5002,7 +5002,7 @@ def plot3d(
         bmp: array,
         sides: list,
         issolid: bool,
-        RGBfactors: list,
+        RGBfactors: list[float, float],
         showoutline: bool,
         outlinecolor: int):
     """3D rendering function
@@ -5032,13 +5032,13 @@ def plot3d(
 def plot3Dsolid(bmp: array,
         vertandsides: list,
         issolid: bool,
-        RGBfactors: list,
+        RGBfactors: list[float, float, float],
         showoutline: bool,
         outlinecolor: int,
-        rotvect: list,
-        transvect3D: list,
+        rotvect: list[float, float, float],
+        transvect3D: list[float, float, float],
         d: int,
-        transvect: list):
+        transvect: list[int, int]):
     """3D solid rendering function
 
     Args:
@@ -5047,8 +5047,8 @@ def plot3Dsolid(bmp: array,
         sides       : list of polygons 
                       and normals
         isolid      : toggles solid render
-        RGBfactors  : [r:float,g:float,b:float] 
-        r,g,b all range in value from 0 to 1
+        RGBfactors  : [r,g,b] r,g,b all range 
+                      in value from 0.0 to 1.0
         showoutine  : toggles  polygon outline
         outlinecolor: color of polygon outline
         rotvect     : rotation vector
@@ -5080,8 +5080,8 @@ def plot3Dsolid(bmp: array,
 def gradvert(bmp: array,
         vertlist: list,
         penradius: int,
-        lumrange: list, 
-        RGBfactors: list):
+        lumrange: list[int, int], 
+        RGBfactors: list[float, float, float]):
     """Draws a list of 2d vertices
         as spheres of a given color
 
@@ -7010,7 +7010,7 @@ def colorfilterto24bitregion(
 
 def colorfilterto24bitimage(
         bmp: array,
-        rgbfactors: list):
+        rgbfactors: list[float, float, float]):
     """Applies a color filter 
         to a whole image in
         an in-memory 24 bit bitmap
@@ -7064,7 +7064,7 @@ def thresholdadjto24bitregion(
         bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
-        lumrange: list[int: int]):
+        lumrange: list[int, int]):
     """Applies a threshold adjustment
         to a rectangular region in
         an in-memory 24-bit bitmap
@@ -7090,7 +7090,7 @@ def thresholdadjto24bitregion(
 def thresholdadjcircregion(
         bmp: array,
         x: int,y: int, r: int,
-        lumrange: list[int: int]):
+        lumrange: list[int, int]):
     """Applies a threshold adjustment
         to a circular region
         in an in-memory 24-bit bitmap
@@ -7145,7 +7145,7 @@ def brightnesseadjto24bitimage(
 
 def thresholdadjto24bitimage(
         bmp: array,
-        lumrange: list):
+        lumrange: list[int, int]):
     """Applies a threshold adjustment 
         in an in-memory 24-bit bitmap
 
@@ -7353,7 +7353,7 @@ def plotfilledflower(
     petals: float, 
     angrot: float,
     lumrange: list[int, int],
-    RGBfactors: list[float, float,  float]):
+    RGBfactors: list[float, float, float]):
     """Draw a filled flower
 
     Args:
@@ -8683,7 +8683,7 @@ def reduce24bitimagebits(
         newbits: int,
         similaritythreshold: float,
         usemonopal: bool,
-        RGBfactors: list):
+        RGBfactors: list[float, float, float]):
 
     """Reduce the bits used
         to encode color in
@@ -9409,7 +9409,7 @@ def adjustbrightness2file(
 def thresholdadjust2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        lumrange: list): 
+        lumrange: list[int, int]): 
     """Apply a threshold adjustment 
         
     Args:
@@ -9495,9 +9495,12 @@ def adjustthresholdinregion2file(
 
 
 @_fntimer
-def colorfilter2file(ExistingBMPfile: str, NewBMPfile: str,
-        rgbfactors: list):
-    """Applies color filter rgbfactors to a bitmap file
+def colorfilter2file(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        rgbfactors: list[float, float, float]):
+    """Applies color filter 
+        rgbfactors to a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9544,7 +9547,7 @@ def colorfilterinregion2file(
     NewBMPfile: str,
     x1: int, y1: int,
     x2: int, y2: int,
-    rgbfactors: list):
+    rgbfactors: list[float, float, float]):
     """Apply a color filter 
         to rectangular region
         in a 24-bit bitmap
@@ -10001,8 +10004,9 @@ def invertbitsincircregion2file(
 def colorfiltercircregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x: int ,y: int, r: int,
-        rgbfactors: list):
+        x: int ,y: int,
+        r: int,
+        rgbfactors: list[float, float, float]):
     """Applies color filter rgbfactors
         to a circular region
         in a bitmap file
@@ -10031,8 +10035,9 @@ def colorfiltercircregion2file(
 def thresholdadjcircregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x: int, y: int, r: int,
-        lumrange: list):
+        x: int, y: int,
+        r: int,
+        lumrange: list[int, int]):
     """Applies threshold adjustment
         to a circular region
         in a 24-bit bitmap file
@@ -10091,7 +10096,7 @@ def sphere2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
         x: int, y: int, r: int,
-        rgbfactors: list):
+        rgbfactors: list[float, float, float]):
     """Renders a sphere
         in a circular region
         in a bitmap file
@@ -10177,8 +10182,9 @@ def circle2file(
 def thickencirclearea2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x: int, y: int, r: int,
-        rgbfactors: list): 
+        x: int, y: int,
+        r: int,
+        rgbfactors: list[float, float, float]): 
     apply24bitcoloradjfuncwithparam2circregion(
         ExistingBMPfile, NewBMPfile,
         thickencirclearea, x, y, r,
@@ -10217,9 +10223,11 @@ def brightnessadjcircregion2file(
 
 @_fntimer
 def vertbrightnessgrad2circregion2file(
-    ExistingBMPfile: str, NewBMPfile: str,
-    x: int, y: int, r: int,
-    lumrange: list):
+    ExistingBMPfile: str,
+    NewBMPfile: str,
+    x: int, y: int,
+    r: int,
+    lumrange: list[int, int]):
     """Applies a vertical brightness gradient
         to a circular region
 
@@ -10707,7 +10715,7 @@ def copycircregion2file(
 def horizontalbrightnessgrad2file(
         ExistingBMPfile: str,
         NewBMPfile: str, 
-        lumrange: list):
+        lumrange: list[int, int]):
     """Applies a horizontal brightness
         gradient to a bitmap file
 
@@ -10735,7 +10743,7 @@ def horizontalbrightnessgradregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int, 
-        lumrange: list):
+        lumrange: list[int, int]):
     """Applies a horizontal
         brightness gradient
         to a rectangular area
@@ -10764,7 +10772,7 @@ def horizontalbrightnessgradregion2file(
 def verticalbrightnessgrad2file(
         ExistingBMPfile: str,
         NewBMPfile: str, 
-        lumrange: list):
+        lumrange: list[int, int]):
     """Applies a vertical 
         brightness gradient
 
@@ -10792,7 +10800,7 @@ def verticalbrightnessgradregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int,
-        lumrange: list):
+        lumrange: list[int, int]):
     """Applies a vertical 
         brightness gradient
         to a rectangular area
