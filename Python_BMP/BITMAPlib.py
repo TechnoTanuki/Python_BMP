@@ -26,7 +26,11 @@ from math import(
 
 from random import random
 from typing import Callable
-from .proctimer import functimer as _fntimer
+
+from .proctimer import(
+    functimer as _fntimer
+)
+
 from .bmpconstants import(
     bmpheaderid as _bmhdid,
     bmpfilesize as _bmflsz,
@@ -184,7 +188,10 @@ from .conditionaltools import(
     swapif
 )
 
-from .dicttools import dict2descorderlist
+from .dicttools import(
+    dict2descorderlist
+    )
+
 from .fileutils import(
     checklink as _filechk,
     checklinks as _filechks
@@ -211,6 +218,7 @@ from .inttools import(
 from .messages import sysmsg
 
 from .bufresize import(
+    adjustxbufsize as _adjxbufsz,
     resizebufNtimesbigger,
     resizesmaller24bitbuf
     ) 
@@ -219,33 +227,11 @@ from .textgraphics import(
     plotbitsastext,
     plot8bitpatternastext
     )
-        
-def adjustbufsize(bufsize: int,
-        bits: int) -> int:
-    """Adjust buffer size 
-        to account for bit depth
-
-    Args:
-        bufsize: initial estimate
-                 of buffer size
-        bits   : bit depth of bitmap
-                 (1,4,8,24)
-        
-    Returns:
-        An adjusted int value
-        of the buffer size
-
-    """
-    if bits == 24: 
-        bufsize *= 3
-    elif bits == 4: 
-        bufsize = bufsize >> 1
-    elif bits == 1: 
-        bufsize = bufsize >> 3
-    return bufsize
 
 
-def setmaxx(bmp: array, xmax: int):
+def setmaxx(
+        bmp: array,
+        xmax: int):
     """Sets the x value stored
         in the windows bmp header
 
@@ -276,7 +262,9 @@ def getmaxx(bmp: array) -> int:
     return _rdint(_bmx, 4, bmp)
 
 
-def setmaxy(bmp: array, ymax: int):
+def setmaxy(
+    bmp: array,
+    ymax: int):
     """Sets the y value stored
         in the windows bmp header
 
@@ -385,7 +373,8 @@ def isinBMPrectbnd(bmp: array,
            (x > -1 and y > -1)
 
 
-def listinBMPrecbnd(bmp: array,
+def listinBMPrecbnd(
+        bmp: array,
         xylist: list) -> bool:
     """Checks if a list of 
         (x,y) coordinates 
@@ -408,9 +397,11 @@ def listinBMPrecbnd(bmp: array,
     retval=True
     for v in xylist:
         if isinBMPrectbnd(bmp,
-                v[0], v[1]) == False: 
+                v[0],
+                v[1]) == False: 
             break
     return retval
+
 
 def setcolorbits(
         bmp: array, bits: int):
@@ -439,10 +430,12 @@ def getcolorbits(bmp: array) -> int:
              with bmp format
         
     Returns:
-        int value of bit depth (1,4,8,24)
+        int value of bit depth
+        (1,4,8,24)
 
     """
     return bmp[_bmclrbits]
+
 
 def getxcharcount(bmp: array) -> int:
     """Get the chars or bytes
@@ -462,7 +455,9 @@ def getxcharcount(bmp: array) -> int:
                     bmp[_bmclrbits])
 
 
-def setfilesize(bmp: array, size: int):
+def setfilesize(
+    bmp: array,
+    size: int):
     """Set the header size
         of a windows bitmap
 
@@ -496,7 +491,9 @@ def getfilesize(bmp: array) -> int:
     return _rdint(_bmflsz, 8, bmp)
 
 
-def sethdrsize(bmp: array, hdsize: int):
+def sethdrsize(
+    bmp: array,
+    hdsize: int):
     """Set the header size
         of a windows bitmap
 
@@ -561,7 +558,8 @@ def getmaxcolors(bmp: array) -> int:
     return 1 << bmp[_bmclrbits]
 
 
-def compute24bitBMPoffset(bmp: array,
+def compute24bitBMPoffset(
+        bmp: array,
         x: int, y: int) -> int:
     """Get the offset in a byte array 
         with RGB data given x and y
@@ -580,7 +578,8 @@ def compute24bitBMPoffset(bmp: array,
     """
     return (x * 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-            computexbytes(_rdint(_bmx, 4, bmp), 24))
+        computexbytes(
+            _rdint(_bmx, 4, bmp), 24))
 
 
 def compute24bitBMPoffsetwithheader(bmp: array,
@@ -604,7 +603,8 @@ def compute24bitBMPoffsetwithheader(bmp: array,
     """
     return (x * 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-            computexbytes(_rdint(_bmx, 4, bmp), 24 )) + 54
+        computexbytes(
+            _rdint(_bmx, 4, bmp), 24 )) + 54
 
 
 def compute8bitBMPoffset(
@@ -874,7 +874,8 @@ def computeuncompressedbmpfilesize(
              with bmp format
 
     Returns:
-        unsigned int file size in bytes
+        unsigned int file size
+        in bytes
 
     """
     return computeBMPfilesize(
@@ -2253,9 +2254,9 @@ def itercopyrect(bmp: array,
         in a bitmap 
 
     Args:
-        bmp         : unsigned byte array
-                      with bmp format
-        x1,y1,x2,y2 : defines the rectangle
+        bmp            : unsigned byte array
+                         with bmp format
+        x1, y1, x2, y2 : defines the rectangle
          
     Yields:
         unsigned byte array
@@ -2264,8 +2265,7 @@ def itercopyrect(bmp: array,
     """
     x1, y1, x2, y2=sortrecpoints(
                     x1, y1, x2, y2)
-    bufsize = adjustbufsize(
-                    x2 - x1 +1, bmp[28])
+    bufsize = _adjxbufsz(bmp, x1, x2)
     r = getxcharcount(bmp)
     offset = computeBMPoffset(
                 bmp, x1, y2)
@@ -5811,8 +5811,7 @@ def copyrect(bmp: array,
     x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
     retval += _in2bf(2, x2 - x1 + 2)
     retval += _in2bf(2, y2 - y1 + 1)
-    retval += _in2bf(2,
-                adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits]))
+    retval += _in2bf(2, _adjxbufsz(bmp, x1, x2))
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         retval += buf
     return retval
@@ -6042,7 +6041,7 @@ def erasealternatehorizontallinesinregion(
     """    
     bytepat &= 0xff
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    bufsize = adjustbufsize(x2 - x1 + 1, bmp[_bmclrbits])
+    bufsize = _adjxbufsz(bmp, x1, x2)
     r = getxcharcount(bmp)
     f = getcomputeBMPoffsetwithheaderfunc(bmp)
     s1 = f(bmp, x1, y2)
@@ -6198,9 +6197,7 @@ def verttransregion(bmp: array,
     f = {'F': _F, 'T': _T, 'B': _B}[trans]    
     x1, y1, x2, y2 = sortrecpoints(
                         x1, y1, x2, y2)
-    bufsize = adjustbufsize(
-                x2 - x1 + 1,
-                bmp[_bmclrbits])
+    bufsize = _adjxbufsz(bmp, x1, x2)
     r = getxcharcount(bmp)
     c = getcomputeBMPoffsetwithheaderfunc(bmp)
     s1 = c(bmp, x1, y2)

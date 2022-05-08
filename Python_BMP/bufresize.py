@@ -13,6 +13,38 @@ from .buffersplit import(
 from .colors import makeBGRbuf
 
 
+def adjustbufsize(
+        bufsize: int,
+        bits: int) -> int:
+    """Adjust buffer size 
+        to account for bit depth
+
+    Args:
+        bufsize: initial estimate
+                 of buffer size
+        bits   : bit depth of bitmap
+                 (1,4,8,24)
+        
+    Returns:
+        An adjusted int value
+        of the buffer size
+
+    """
+    if bits == 24: 
+        bufsize *= 3
+    elif bits == 4: 
+        bufsize = bufsize >> 1
+    elif bits == 1: 
+        bufsize = bufsize >> 3
+    return bufsize
+
+def adjustxbufsize(
+    bmp: array,
+    x1: int,
+    x2: int
+    ):
+    return adjustbufsize(x2 - x1 +1, bmp[28])
+
 def packbitlisttobuf(blist: list[int]) -> list[int] :
     """Packs literal list of ones and zeros 
             to a list of bytes
