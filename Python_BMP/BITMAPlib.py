@@ -7292,7 +7292,7 @@ def IFS(bmp:array,
         px = int(x * xscale + xoffset + x1)
         py = int((dy - y * yscale + yoffset) + y1)
         if isinrectbnd(px, py, x1, y1, x2, y2):
-            plotxybit(bmp,px,py,color)
+                plotxybit(bmp,px,py,color)
         i += 1
 
 
@@ -7342,8 +7342,10 @@ def plotflower(
         plotxybit(bmp, x, y, c)
 
 
-def plotfilledflower(bmp: array,
-    cx: int, cy: int, r: int,
+def plotfilledflower(
+    bmp: array,
+    cx: int, cy: int,
+    r: int,
     petals: float, 
     angrot: float,
     lumrange: list[int, int],
@@ -7368,7 +7370,8 @@ def plotfilledflower(bmp: array,
     for nr in range (r, 2, -1):
         plotflower(
             bmp, cx, cy, nr, petals,
-            angrot, lumrange, RGBfactors)
+            angrot, 
+            lumrange, RGBfactors)
 
 
 def plotbmpastext(bmp: array):
@@ -7413,10 +7416,12 @@ def piechart(bmp: array,
                            with bmp format
         x, y, r          : center (x,y) 
                            and radius r
-        dataandcolorlist : stuff to plot + color
+        dataandcolorlist : stuff to plot
+                           + color
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     alist, big = genpiechartdata(dataandcolorlist)
@@ -7445,15 +7450,20 @@ def applybyrefnoparamfuncto24bitregion(
     Args:
         bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: defines rectangular area
-        func          : user defined function
+        x1, y1, x2, y2: defines the
+                        rectangular area
+        func          : user defined
+                        function
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
-    offset = compute24bitBMPoffset(bmp, x1, y2)
+    x1, y1, x2, y2 = sortrecpoints(
+                        x1, y1, x2, y2)
+    offset = compute24bitBMPoffset(
+                bmp, x1, y2)
     r = getxcharcount(bmp)
     for buf in itercopyrect(
                     bmp, x1, y1, x2, y2):
@@ -7474,14 +7484,18 @@ def applybyreffuncto24bitregion(
         a 24-bit bitmap
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines rectangular area
-        func       : user defined function
-        funcparam  : parameters of the function
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the
+                        rectangular area
+        func          : user defined
+                        function
+        funcparam     : parameters of
+                        the function
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
@@ -7511,7 +7525,8 @@ def applyfuncto24bitregion(bmp: array,
         funcparam  : parameters of the function
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
@@ -7527,8 +7542,10 @@ def verticalbrightnessgradto24bitregion(
         x1: int, y1: int,
         x2: int, y2: int,
         lumrange: list[int, int]):
-    """Apply a vertical brightness gradient 
-        to a rectangular area in a 24-bit bitmap
+    """Apply a
+        vertical brightness gradient 
+        to a rectangular area
+        in a 24-bit bitmap
 
     Args:
         bmp        : unsigned byte array 
@@ -7559,8 +7576,10 @@ def horizontalbrightnessgradto24bitregion(
         x1: int, y1: int,
         x2: int, y2: int,
         lumrange: list[int, int]):
-    """Apply a horizontal brightness gradient 
-        to a rectangular area in a 24-bit bitmap
+    """Apply a
+        horizontal brightness gradient 
+        to a rectangular area
+        in a 24-bit bitmap
 
     Args:
         bmp        : unsigned byte array
@@ -7570,7 +7589,8 @@ def horizontalbrightnessgradto24bitregion(
                      the brightness gradient
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     r = getxcharcount(bmp)
@@ -7698,10 +7718,12 @@ def resizeNtimessmaller(
 
 
 def pixelizenxn(
-        bmp: array, n: int) -> array:
+        bmp: array,
+        n: int) -> array:
     """Pixelize a whole image
         with n by n areas 
-        in which colors are averaged
+        in which colors
+        are averaged
 
     Args:
         bmp: unsigned byte array
@@ -7716,7 +7738,9 @@ def pixelizenxn(
     return resizeNtimesbigger(resizeNtimessmaller(bmp, n), n)
 
 
-def adjustcolordicttopal(bmp:array, colordict:dict):
+def adjustcolordicttopal(
+        bmp:array,
+        colordict:dict):
     if getcolorbits(bmp) < 24:
         for color in colordict:
             colordict[color] = matchRGBtopal(
@@ -7777,7 +7801,8 @@ def compareimglines(bmp: array,
     offset = computeBMPoffset(bmp,x1,y2)
     r = getxcharcount(bmp)
     oldbuf = []
-    for buf in itercopyrect(bmp, x1, y1, x2, y2):
+    for buf in itercopyrect(
+                    bmp, x1, y1, x2, y2):
         if oldbuf != []:
             BMPbitBLTput(bmp,
                 offset, array('B', func(buf, oldbuf)))
@@ -7805,12 +7830,13 @@ def outlineregion(
 
     """
     compareimglines(
-        bmp, x1, y1, x2, y2, xorvect)
+        bmp, x1, y1,
+             x2, y2, xorvect)
 
 
 def outline(bmp: array):
     """Applies an outline filter
-        to an in-memory 24 bit bitmap
+        to an in-memory 24-bit bitmap
 
     Args:
         bmp: unsigned byte array
@@ -7850,8 +7876,10 @@ def sphere(bmp: array,
         unsigned byte array
 
     """
-    gradcircle(bmp, x, y, r,
-        [255, 0], rgbfactors)
+    gradcircle(
+        bmp, x, y, r,
+        [255, 0],
+        rgbfactors)
 
 
 @_intcircpar
@@ -7872,11 +7900,14 @@ def thickencirclearea(
                     unsigned floats
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
-    gradthickcircle(bmp, x, y, r,
-        8, [255,0], rgbfactors)
+    gradthickcircle(
+        bmp, x, y, r,
+        8, [255,0],
+        rgbfactors)
 
 
 @_enrectbnd
@@ -8405,8 +8436,9 @@ def applycoloradjfunc(
         NewBMPfile: str,
         func: Callable,
         funcparam):
-    """Apply a user provided color adjustment
-        function to an existing bitmap
+    """Apply a user provided
+        color adjustmen function
+        to an existing bitmap
 
     Args:
         ExistingBMPfile: Whole path to
@@ -8429,14 +8461,18 @@ def applycoloradjfunc(
                 [func(c,funcparam)
                     for c in getallRGBpal(bmp)])
         else:
-            if func.__name__=='colorfilter': 
-                colorfilterto24bitimage(bmp,funcparam)
-            elif func.__name__=='brightnessadjust':  
-                brightnesseadjto24bitimage(bmp,funcparam)
-            elif func.__name__=='gammacorrect': 
-                gammaadjto24bitimage(bmp,funcparam)
-            elif func.__name__=='thresholdadjust': 
-                thresholdadjto24bitimage(bmp,funcparam)
+            if func.__name__ == 'colorfilter': 
+                colorfilterto24bitimage(
+                    bmp,funcparam)
+            elif func.__name__ == 'brightnessadjust':  
+                brightnesseadjto24bitimage(
+                    bmp,funcparam)
+            elif func.__name__ == 'gammacorrect': 
+                gammaadjto24bitimage(
+                    bmp,funcparam)
+            elif func.__name__ == 'thresholdadjust': 
+                thresholdadjto24bitimage(
+                    bmp,funcparam)
             else:
                 for v in iterimageRGB(bmp,
                             sysmsg['coloradj'], '*',
@@ -8455,8 +8491,10 @@ def apply24bitcoloradjfunc(
         NewBMPfile: str,
         func: Callable,
         funcparam):
-    """Apply a user provided color adjustment
-        function to a 24-bit bitmap
+    """Apply a user provided
+        color adjustment
+        function to
+        a 24-bit bitmap
 
     Args:
         ExistingBMPfile: Whole path to 
@@ -8499,7 +8537,8 @@ def applynoparamcoloradjfunc(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        func           : user defined function
+        func           : user defined 
+                         function
         
     Returns:
         new bitmap file
