@@ -6878,9 +6878,9 @@ def monofilterto24bitregion(
         in a 24 bit bitmap
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the rectangle
         
     Returns:
         byref modified
@@ -6912,18 +6912,21 @@ def monofilterto24bitimage(bmp: array):
 
 
 def horizontalbrightnessgradto24bitimage(
-        bmp: array, lumrange: list):
+        bmp: array,
+        lumrange: list[int, int]):
     """Applies a horizontal brightness 
         gradient to a 24-bit bitmap
 
     Args:
         bmp     : unsigned byte array 
                   with bmp format
-        lumrange: [byte,byte] range of
-               luminosity for gradient
+        lumrange: [byte,byte] 
+                  range of the
+                  luminosity gradient
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     horizontalbrightnessgradto24bitregion(
@@ -6980,7 +6983,7 @@ def colorfilterto24bitregion(
     bmp: array,
     x1: int, y1: int,
     x2: int, y2: int,
-    rgbfactors: list):
+    rgbfactors: list[float, float, float]):
     """Applies a color filter to 
         a rectangular area defined 
         by (x1,y1) and (x2,y2) 
@@ -7165,7 +7168,8 @@ def thresholdadjto24bitimage(
 
 
 def verticalbrightnessgradto24bitimage(
-        bmp, lumrange):
+        bmp: array, 
+        lumrange: list[int, int]):
     """Applies a vertical
         brightness gradient 
 
@@ -7302,8 +7306,8 @@ def plotflower(
     r: int,
     petals: float,
     angrot: float,
-    lumrange: list,
-    RGBfactors: list):
+    lumrange: list[int, int],
+    RGBfactors: list[float, float, float]):
     """Draw a flower
 
     Args:
