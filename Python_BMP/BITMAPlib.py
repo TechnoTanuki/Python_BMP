@@ -559,7 +559,7 @@ def getmaxcolors(bmp: array) -> int:
     return 1 << bmp[_bmclrbits]
 
 
-def compute24bitBMPoffset(
+def _cm24bmof(
         bmp: array,
         x: int, y: int) -> int:
     """Get the offset in a byte array 
@@ -583,7 +583,7 @@ def compute24bitBMPoffset(
             _rdint(_bmx, 4, bmp), 24))
 
 
-def compute24bitBMPoffsetwithheader(
+def _cm24bmofhd(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -610,7 +610,7 @@ def compute24bitBMPoffsetwithheader(
             _rdint(_bmx, 4, bmp), 24 )) + 54
 
 
-def compute8bitBMPoffset(
+def _cm8bmof(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -636,7 +636,7 @@ def compute8bitBMPoffset(
             computexbytes(_rdint(_bmx, 4, bmp), 8))
 
 
-def compute8bitBMPoffsetwithheader(
+def _cm8bmofhd(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -664,7 +664,7 @@ def compute8bitBMPoffsetwithheader(
                  1078
 
 
-def compute4bitBMPoffset(
+def _cm4bmof(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -689,7 +689,7 @@ def compute4bitBMPoffset(
              computexbytes(_rdint(_bmx, 4, bmp), 4))
 
 
-def compute1bitBMPoffset(
+def _cm1bmof(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -715,7 +715,7 @@ def compute1bitBMPoffset(
             computexbytes(_rdint(_bmx, 4, bmp), 1))
 
 
-def compute4bitBMPoffsetwithheader(
+def _cm4bmofhd(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -744,7 +744,7 @@ def compute4bitBMPoffsetwithheader(
                 118
 
 
-def compute1bitBMPoffsetwithheader(
+def _cm1bmofhd(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -771,7 +771,7 @@ def compute1bitBMPoffsetwithheader(
                 62
 
 
-def getcomputeBMPoffsetwithheaderfunc(
+def getcomputeBMPoffsethdfunc(
         bmp: array):
     """Returns the correct function to use
         in computing offsets with headers
@@ -786,10 +786,10 @@ def getcomputeBMPoffsetwithheaderfunc(
         with headers
 
     """
-    return {24: compute24bitBMPoffsetwithheader,
-            8: compute8bitBMPoffsetwithheader,
-            4: compute4bitBMPoffsetwithheader,
-            1: compute1bitBMPoffsetwithheader}[bmp[_bmclrbits]]
+    return {24: _cm24bmofhd,
+            8: _cm8bmofhd,
+            4: _cm4bmofhd,
+            1: _cm1bmofhd}[bmp[_bmclrbits]]
 
 
 def getcomputeBMPoffsetfunc(bmp: array):
@@ -804,10 +804,10 @@ def getcomputeBMPoffsetfunc(bmp: array):
         function to compute offsets
 
     """
-    return {24: compute24bitBMPoffset,
-            8: compute8bitBMPoffset,
-            4: compute4bitBMPoffset,
-            1: compute1bitBMPoffset}[bmp[_bmclrbits]]
+    return {24: _cm24bmof,
+            8: _cm8bmof,
+            4: _cm4bmof,
+            1: _cm1bmof}[bmp[_bmclrbits]]
 
 
 def computeBMPoffset(bmp: array,
@@ -830,7 +830,7 @@ def computeBMPoffset(bmp: array,
     return f(bmp, x, y)
 
 
-def computeBMPoffsetwithheader(
+def computeBMPoffsethd(
         bmp: array,
         x: int,
         y: int) -> int:
@@ -849,7 +849,7 @@ def computeBMPoffsetwithheader(
         to data in buffer
 
     """
-    f = getcomputeBMPoffsetwithheaderfunc(bmp)
+    f = getcomputeBMPoffsethdfunc(bmp)
     return f(bmp, x, y)
 
 
@@ -1581,7 +1581,7 @@ def vertBMPbitBLTget(
     bits = bmp[_bmclrbits]
     r = getxcharcount(bmp)
     m = getmaxxy(bmp)
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if isinrange(x, m[0], -1):
         y1, y2 = swapif(y1 ,y2, y1 > y2)
         y1 = setmin(y1, 0)
@@ -1624,7 +1624,7 @@ def applyfuncwithparam2vertBMPbitBLTget(
     bits = bmp[_bmclrbits]
     r = getxcharcount(bmp)
     m = getmaxxy(bmp)
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if isinrange(x, m[0], -1):
         y1, y2 = swapif(y1, y2, y1 > y2)
         y1 = setmin(y1, 0)
@@ -1674,7 +1674,7 @@ def plotRGBxybit(
     """
     if isinBMPrectbnd(bmp, x, y):
         if bmp[_bmclrbits] == 24:
-            offset = compute24bitBMPoffsetwithheader(
+            offset = _cm24bmofhd(
                         bmp, x, y)
             endoffset = offset + 3
             bmp[offset:endoffset] = array('B', [rgb[2],
@@ -1706,7 +1706,7 @@ def plotxybit(
 
     """
     if isinBMPrectbnd(bmp, x, y):
-        offset = computeBMPoffsetwithheader(
+        offset = computeBMPoffsethd(
                     bmp, x, y)
         bits = bmp[_bmclrbits]
         if bits == 24:
@@ -1752,7 +1752,7 @@ def getxybit(
     """
     retval=0
     if isinBMPrectbnd(bmp, x, y):
-        offset = computeBMPoffsetwithheader(
+        offset = computeBMPoffsethd(
                     bmp,x,y)
         bits = bmp[_bmclrbits]
         if bits == 1:
@@ -1811,7 +1811,7 @@ def getRGBxybit(
     retval=[]
     if isinBMPrectbnd(bmp, x, y):
         if getcolorbits(bmp) == 24:
-            i = compute24bitBMPoffsetwithheader(
+            i = _cm24bmofhd(
                     bmp, x, y)
             retval = [bmp[i + 2],
                       bmp[i + 1], 
@@ -2022,7 +2022,7 @@ def line(bmp: array,
         bits = bmp[_bmclrbits]
         p1 = (x1,y1)
         p2 = (x2,y2)
-        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        c = getcomputeBMPoffsethdfunc(bmp)
         if bits == 24:
             buf = int2BGRarr(color)
             for p in iterline(p1, p2):
@@ -2083,7 +2083,7 @@ def horiline(bmp: array,
         x1 = setmin(x1, 0)
         x2 = setmax(x2, m[0] - 1)
         dx = x2 - x1 + 1
-        s = computeBMPoffsetwithheader(
+        s = computeBMPoffsethd(
                 bmp, x1, y)
         if bits == 24:
             e = s + (dx * 3)
@@ -2145,7 +2145,7 @@ def vertline(bmp: array,
     else:
         r = getxcharcount(bmp)
         m = getmaxxy(bmp)
-        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        c = getcomputeBMPoffsethdfunc(bmp)
         if isinrange(x, m[0], -1):
             y1, y2 = swapif(y1, y2, y1 > y2)
             y1 = setmin(y1,0)
@@ -2536,7 +2536,7 @@ def applynoparam24bitfunctocircregion(
         unsigned byte array
 
     """
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if entirecircleisinboundary(
             x, y, - 1,
             getmaxx(bmp), -1,
@@ -2598,7 +2598,7 @@ def apply24bitfunctocircregion(
         unsigned byte array
 
     """
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if entirecircleisinboundary(
             x, y, -1,
             getmaxx(bmp), -1,
@@ -2662,7 +2662,7 @@ def copycircregion2buf(
 
     """
     copybuf = [getcolorbits(bmp),r]
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
@@ -2690,7 +2690,7 @@ def pastecirularbuf(bmp: array,
     """
     if circbuf != None:
         r = circbuf[1]
-        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        c = getcomputeBMPoffsethdfunc(bmp)
         if entirecircleisinboundary(
                 x, y, -1,
                 getmaxx(bmp), -1,
@@ -2766,7 +2766,7 @@ def applynoparamfunctocircregion(
         unsigned byte array
 
     """
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if entirecircleisinboundary(
             x, y, -1, getmaxx(bmp),
                   -1, getmaxy(bmp), r):
@@ -2819,7 +2819,7 @@ def flipXYcircregion(bmp: array,
 
     """
     bits = bmp[_bmclrbits]
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if bits not in [24,8]:
         n = flipXY(bmp)
         for v in itercirclepartlineedge(r):
@@ -2928,7 +2928,7 @@ def horitransformincircregion(
         bmp[s2: e2: k] = bmp[s1: e1: k]
     
     bits = bmp[_bmclrbits]
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if trans == 'L':
         if bits == 24: 
             f = mirror24L
@@ -3070,7 +3070,7 @@ def verttransformincircregion(
         bmp[s2: e2], bmp[s1: e1]
 
     f = {'T': _T, 'B': _B, 'F' : _F}[trans]
-    c=getcomputeBMPoffsetwithheaderfunc(bmp)
+    c=getcomputeBMPoffsethdfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
@@ -3260,7 +3260,7 @@ def vertbrightnessgrad2circregion(
         unsigned byte array
 
     """
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     f = applybrightnessadjtoBGRbuf
     l = lumrange[0]
     dl = (lumrange[1] - l) / (2 * r)
@@ -3341,7 +3341,7 @@ def outlinecircregion(bmp: array,
 
     """
     bits = bmp[_bmclrbits]
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     if entirecircleisinboundary(
             x, y,
             -1, getmaxx(bmp),
@@ -3625,11 +3625,11 @@ def filledcircle(
                                        rgb[0]] * dx)
                 lbuf = dx * 3
                 if isinrange(y2, ymax, -1):
-                    s = compute24bitBMPoffsetwithheader(
+                    s = _cm24bmofhd(
                             bmp, x1, y2)
                     bmp[s: s + lbuf] = colorbuf
                 if isinrange(y1, ymax, -1):
-                    s = compute24bitBMPoffsetwithheader(
+                    s = _cm24bmofhd(
                             bmp, x1, y1)
                     bmp[s: s+ lbuf] = colorbuf
         elif bits == 8:
@@ -3642,11 +3642,11 @@ def filledcircle(
                 ymax = m[1]
                 colorbuf = array('B', [color & 0xff] * dx)
                 if isinrange(y2, ymax, -1):
-                    s = compute8bitBMPoffsetwithheader(
+                    s = _cm8bmofhd(
                             bmp, x1, y2)
                     bmp[s: s + dx] = colorbuf
                 if isinrange(y1, ymax, -1):
-                    s = compute8bitBMPoffsetwithheader(
+                    s = _cm8bmofhd(
                             bmp, x1, y1)
                     bmp[s: s + dx] = colorbuf
 
@@ -3685,7 +3685,7 @@ def circle(
     else:
         m = getmaxxy(bmp)
         bits = bmp[_bmclrbits]
-        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        c = getcomputeBMPoffsethdfunc(bmp)
         dobndcheck = not entirecircleisinboundary(
                             x, y, -1, m[0],
                                   -1, m[1], r)
@@ -3982,11 +3982,11 @@ def filledellipse(
                                        rgb[0]] * dx)
                 lbuf = dx * 3
                 if isinrange(y2, ymax, -1):
-                    s = compute24bitBMPoffsetwithheader(
+                    s = _cm24bmofhd(
                             bmp, x1, y2)
                     bmp[s: s + lbuf] = colorbuf
                 if isinrange(y1, ymax, -1):
-                    s = compute24bitBMPoffsetwithheader(
+                    s = _cm24bmofhd(
                             bmp, x1, y1)
                     bmp[s: s + lbuf] = colorbuf
         elif bits == 8:
@@ -3999,11 +3999,11 @@ def filledellipse(
                 ymax = m[1]
                 colorbuf = array('B', [color & 0xff] * dx)
                 if isinrange(y2, ymax, -1):
-                    s = compute8bitBMPoffsetwithheader(
+                    s = _cm8bmofhd(
                             bmp, x1, y2)
                     bmp[s: s + dx] = colorbuf
                 if isinrange(y1, ymax, -1):
-                    s = compute8bitBMPoffsetwithheader(
+                    s = _cm8bmofhd(
                             bmp, x1, y1)
                     bmp[s: s + dx] = colorbuf
 
@@ -4039,7 +4039,7 @@ def ellipse(
     else:
         m = getmaxxy(bmp)
         bits = bmp[_bmclrbits]
-        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        c = getcomputeBMPoffsethdfunc(bmp)
         dobndcheck = not entireellipseisinboundary(
                             x, y, -1, m[0],
                                   -1, m[1], b, a)
@@ -4221,7 +4221,7 @@ def filledrect(
         dx = x2 - x1 + 1
         r = getxcharcount(bmp)
         rgb = int2RGB(color)
-        c = getcomputeBMPoffsetwithheaderfunc(bmp)
+        c = getcomputeBMPoffsethdfunc(bmp)
         if bits == 24: 
             buf = array('B', [rgb[2],
                               rgb[1],
@@ -5994,7 +5994,7 @@ def erasealternatehorizontallinesincircregion(
         byref modified unsigned byte array
 
     """   
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     bytepat &= 0xff
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
@@ -6060,7 +6060,7 @@ def erasealternatehorizontallinesinregion(
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
     bufsize = _adjxbufsz(bmp, x1, x2)
     r = getxcharcount(bmp)
-    f = getcomputeBMPoffsetwithheaderfunc(bmp)
+    f = getcomputeBMPoffsethdfunc(bmp)
     s1 = f(bmp, x1, y2)
     s2 = f(bmp, x1, y1)
     blank = array('B', [bytepat] * bufsize)
@@ -6216,7 +6216,7 @@ def verttransregion(bmp: array,
                         x1, y1, x2, y2)
     bufsize = _adjxbufsz(bmp, x1, x2)
     r = getxcharcount(bmp)
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     s1 = c(bmp, x1, y2)
     s2 = c(bmp, x1, y1)
     while s1 < s2:
@@ -6375,7 +6375,7 @@ def horizontalbulkswap(
 
     """
     dx = {24: 1, 8: 1, 4: 2, 1: 8}[bmp[_bmclrbits]]
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     r = getxcharcount(bmp)
     y1, y2 = swapif(y1, y2, y1 > y2)
     x1, x2 = swapif(x1, x2, x1 > x2)
@@ -6875,8 +6875,8 @@ def invertregion(
                 v[0], getxybitvec(bmp, v[0]) ^ c)
     else:
         offset = iif(bits == 24,
-                    compute24bitBMPoffset(bmp, x1, y2),
-                    compute8bitBMPoffset(bmp, x1, y2))
+                    _cm24bmof(bmp, x1, y2),
+                    _cm8bmof(bmp, x1, y2))
         r = getxcharcount(bmp)
         for buf in itercopyrect(bmp, x1, y1, x2, y2):
             BMPbitBLTput(bmp, offset,
@@ -7482,7 +7482,7 @@ def applybyrefnoparamfuncto24bitregion(
     """
     x1, y1, x2, y2 = sortrecpoints(
                         x1, y1, x2, y2)
-    offset = compute24bitBMPoffset(
+    offset = _cm24bmof(
                 bmp, x1, y2)
     r = getxcharcount(bmp)
     for buf in itercopyrect(
@@ -7519,7 +7519,7 @@ def applybyreffuncto24bitregion(
 
     """
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    offset = compute24bitBMPoffset(bmp, x1, y2)
+    offset = _cm24bmof(bmp, x1, y2)
     r = getxcharcount(bmp)
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         func(buf, funcparam)
@@ -7550,7 +7550,7 @@ def applyfuncto24bitregion(bmp: array,
 
     """
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
-    offset = compute24bitBMPoffset(bmp, x1, y2)
+    offset = _cm24bmof(bmp, x1, y2)
     r = getxcharcount(bmp)
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         BMPbitBLTput(bmp, offset, func(buf, funcparam))
@@ -7579,7 +7579,7 @@ def verticalbrightnessgradto24bitregion(
 
     """
     x1, y1, x2, y2=sortrecpoints(x1, y1, x2, y2)
-    offset = compute24bitBMPoffset(bmp, x1, y2)
+    offset = _cm24bmof(bmp, x1, y2)
     r = getxcharcount(bmp)
     lum = lumrange[1]
     dlum = (lumrange[0] - lumrange[1]) / (y2 - y1)
@@ -7614,7 +7614,7 @@ def horizontalbrightnessgradto24bitregion(
 
     """
     r = getxcharcount(bmp)
-    c = getcomputeBMPoffsetwithheaderfunc(bmp)
+    c = getcomputeBMPoffsethdfunc(bmp)
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
     xlim = x2 + 1
     f = applybrightnessadjtoBGRbuf
@@ -7652,7 +7652,7 @@ def magnifyNtimescircregion(
     nx = x * n
     ny = y * n
     b = resizeNtimesbigger(bmp, n)
-    c = computeBMPoffsetwithheader
+    c = computeBMPoffsethd
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
@@ -7684,7 +7684,7 @@ def pixelizenxncircregion(
 
     """
     b = pixelizenxn(bmp, n)
-    c = computeBMPoffsetwithheader
+    c = computeBMPoffsethd
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
@@ -7718,7 +7718,7 @@ def resizeNtimessmaller(
     mx = m[0]-1
     my = m[1]-1
     ny -= 1
-    offset = compute24bitBMPoffset(nbmp, 0, ny)
+    offset = _cm24bmof(nbmp, 0, ny)
     r = getxcharcount(nbmp)
     i = 1
     bufl = []
