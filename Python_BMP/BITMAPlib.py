@@ -219,8 +219,8 @@ from .messages import sysmsg
 
 from .bufresize import(
     adjustxbufsize as _adjxbufsz,
-    resizebufNtimesbigger,
-    resizesmaller24bitbuf
+    resizebufNtimesbigger as _rsbfNtmbig,
+    resizesmaller24bitbuf as _rssm25btbf
     ) 
 
 from .textgraphics import(
@@ -582,7 +582,8 @@ def compute24bitBMPoffset(
             _rdint(_bmx, 4, bmp), 24))
 
 
-def compute24bitBMPoffsetwithheader(bmp: array,
+def compute24bitBMPoffsetwithheader(
+        bmp: array,
         x: int, y: int) -> int:
     """Get the offset in a byte array
         with RGB data given x and y
@@ -6966,8 +6967,7 @@ def resizeNtimesbigger(
     for buf in itercopyrect(
                     bmp, 0, 0,
                         mx, my):
-        nbuf = resizebufNtimesbigger(
-                        buf, n, bits)
+        nbuf = _rsbfNtmbig(buf, n, bits)
         i = 0
         while i < n:
             BMPbitBLTput(nbmp, offset, nbuf)
@@ -7687,8 +7687,7 @@ def resizeNtimessmaller(
         j = i % n
         bufl += [buf]
         if j == 0:
-            BMPbitBLTput(nbmp, offset,
-                resizesmaller24bitbuf(bufl))
+            BMPbitBLTput(nbmp, offset, _rssm25btbf(bufl))
             offset += r
             bufl = []
             y += 1
