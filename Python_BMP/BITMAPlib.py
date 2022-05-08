@@ -895,7 +895,8 @@ def isbmpcompressed(bmp:array) -> bool:
         False if uncompressed
 
     """
-    return computeuncompressedbmpfilesize(bmp) > getfilesize(bmp)
+    return computeuncompressedbmpfilesize(bmp) > \
+                getfilesize(bmp)
 
 
 def compute24bitoffset(
@@ -919,7 +920,8 @@ def compute24bitoffset(
 
     """
     return (x * 3) + \
-        ((my - y - 1) * computexbytes(mx, 24))
+        ((my - y - 1) * \
+            computexbytes(mx, 24))
 
 
 def computexbytes(
@@ -982,14 +984,17 @@ def computepadbytes(
     return iif(rem > 0, 4 - rem, 0)
 
 
-def getdefaultBMPhdrsize(bits: int) -> int:
-    """Gets default bitmap header size
+def getdefaultBMPhdrsize(
+        bits: int) -> int:
+    """Gets default
+        bitmap header size
 
     Args:
         bits: bit depth (1,4,8,24)
 
     Returns:
-        unsigned int value of header size
+        unsigned int value
+        of header size
 
     """
     return bmpheadersize[bits]
@@ -1034,16 +1039,20 @@ def compute_bmpmetadata(
 
 def isdefaultpal(bmp: array) -> bool:
     """Checks if bitmap has
-        a default RGB color palette
+        a default
+        RGB color palette
 
     Args:
-        bmp: unsigned byte array with bmp format
+        bmp: unsigned byte array 
+             with bmp format
 
     Returns:
-        True if default, False if not default
+        True if default
+        False if not default
 
     """
-    return getdefaultbitpal(getcolorbits(bmp)) == getallRGBpal(bmp)
+    return getdefaultbitpal(getcolorbits(bmp)) == \
+                getallRGBpal(bmp)
 
 
 def getBMPimgbytes(bmp: array) -> list:
@@ -1099,7 +1108,9 @@ def setbmppal(
     c=0
     if len(pallist) == getmaxcolors(bmp):
         for p in pallist:
-            setRGBpal(bmp, c, p[0], p[1], p[2])
+            setRGBpal(bmp, c, p[0],
+                              p[1],
+                              p[2])
             c += 1
 
 
@@ -1138,7 +1149,9 @@ def getRGBpal(
 
     """
     i= _bmpal + (c << 2)
-    return [bmp[i + 2], bmp[i + 1], bmp[i]]
+    return [bmp[i + 2],
+            bmp[i + 1],
+            bmp[i]]
 
 
 def setRGBpal(
@@ -1377,8 +1390,9 @@ def setBMP2monochrome(
         byref modified byte array
 
     """    
-    newpal = monochromepal(getcolorbits(bmp),
-                            RGBfactors)
+    newpal = monochromepal(
+                getcolorbits(bmp),
+                RGBfactors)
     setbmppal(bmp, newpal)
     return newpal
 
