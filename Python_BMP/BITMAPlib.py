@@ -173,8 +173,8 @@ from .paramchecks import(
 
 
 from .bufferflip import(
-    flipnibbleinbuf, 
-    rotatebitsinbuf
+    flipnibbleinbuf as _flnbbf, 
+    rotatebitsinbuf as _rtbtbf
     )
 
 from .chartools import(
@@ -6397,11 +6397,11 @@ def fliphorizontalregion(
 
     def _4(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r] = \
-        flipnibbleinbuf(bmp[s2: e2: r]), flipnibbleinbuf(bmp[s1: e1 :r])
+        _flnbbf(bmp[s2: e2: r]), _flnbbf(bmp[s1: e1 :r])
 
     def _1(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r], bmp[s2: e2: r] = \
-        rotatebitsinbuf(bmp[s2: e2: r]), rotatebitsinbuf(bmp[s1: e1 :r])
+        _rtbtbf(bmp[s2: e2: r]), _rtbtbf(bmp[s1: e1 :r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
         {24: _24, 8: _8, 4: _4, 1: _1}[bmp[_bmclrbits]])
@@ -6432,11 +6432,11 @@ def mirrorleftinregion(bmp: array,
 
     def _4(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2: r] = \
-            flipnibbleinbuf(bmp[s1: e1: r])
+            _flnbbf(bmp[s1: e1: r])
 
     def _1(bmp, s1, e1, s2, e2, r): 
         bmp[s2: e2: r] = \
-            rotatebitsinbuf(bmp[s1: e1: r])
+            _rtbtbf(bmp[s1: e1: r])
 
     horizontalbulkswap(bmp, x1, y1, x2, y2,
         {24: _24, 8: _8, 4: _4, 1: _1}[bmp[_bmclrbits]])
@@ -6470,11 +6470,11 @@ def mirrorrightinregion(
 
     def _4(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r] = \
-            flipnibbleinbuf(bmp[s2: e2: r])
+            _flnbbf(bmp[s2: e2: r])
 
     def _1(bmp, s1, e1, s2, e2, r): 
         bmp[s1: e1: r] = \
-            rotatebitsinbuf(bmp[s2: e2: r])
+            _rtbtbf(bmp[s2: e2: r])
 
     horizontalbulkswap(
         bmp, x1, y1, x2, y2,
