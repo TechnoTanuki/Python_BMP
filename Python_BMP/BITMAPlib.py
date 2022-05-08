@@ -8508,17 +8508,22 @@ def applynoparamcoloradjfunc(
     bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         if bmp[_bmclrbits] != 24: 
-            setbmppal(bmp,[func(c) for c in getallRGBpal(bmp)])
+            setbmppal(bmp,
+                [func(c) for c in getallRGBpal(bmp)])
         else:
             if func.__name__ == 'monochrome': 
                 monofilterto24bitimage(bmp)
             else:
-                for v in iterimageRGB(bmp, sysmsg['coloradj'], '*',
-                                           sysmsg['done']):  
-                    plotRGBxybitvec(bmp, v[0], func(v[1]))
+                for v in iterimageRGB(
+                            bmp,
+                            sysmsg['coloradj'], '*',
+                            sysmsg['done']):  
+                    plotRGBxybitvec(bmp, v[0],
+                                    func(v[1]))
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savenoparamfunc'] %
-            (func.__name__, ExistingBMPfile, NewBMPfile))
+             (func.__name__, ExistingBMPfile,
+                             NewBMPfile))
 
 
 @_filechk
@@ -8611,7 +8616,7 @@ def imagecomp(
         s1 = getmaxxyandbits(bmp1)
         s2 = getmaxxyandbits(bmp2)
         if s1 != s2: 
-            print(sysmsg['cantcomparefiles']%(s1,s2))
+            print(sysmsg['cantcomparefiles'] % (s1,s2))
         else:
             bits=s1[1]
             nbmp=CopyBMPxydim2newBMP(bmp1, bits)
@@ -8624,7 +8629,7 @@ def imagecomp(
             setBMPimgbytes(nbmp, array('B', func(getBMPimgbytes(bmp1),
                                                  getBMPimgbytes(bmp2))))
             saveBMP(diff_file, nbmp)
-            print(sysmsg['savdifffile']%diff_file)
+            print(sysmsg['savdifffile'] % diff_file)
 
 
 @_filechk
