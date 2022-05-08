@@ -353,4 +353,7 @@ def enumbits(byteval):
         yield  ((byteval & (1<<bit))>>bit)
         bit-=1
 
+def delta(v:list):
+    return (v[1] - v[0])
+
 

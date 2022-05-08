@@ -45,6 +45,7 @@ from .mathlib import(
     anglebetween2Dlines,
     centerpoint,
     cosaffin,
+    delta,
     distance,
     enumbits,
     genpiechartdata,
@@ -2587,7 +2588,8 @@ def apply24bitfunctocircregion(
 
 
 @_encircbnd
-def copycircregion2buf(bmp: array,
+def copycircregion2buf(
+        bmp: array,
         x: int, y: int, 
         r: int) -> list:
     """Copies a circular region 
@@ -2657,7 +2659,8 @@ def pastecirularbuf(bmp: array,
         print(sysmsg['invalidbuf'])
 
 
-def copycircregion(bmp: array,
+def copycircregion(
+        bmp: array,
         x: int, y: int, r: int,
         newxy: list):
     """Copy a circular buffer
@@ -3004,22 +3007,17 @@ def verttransformincircregion(
         unsigned byte array
 
     """
-    def mirrorT(): 
+    def _T(): 
         bmp[s2: e2] = bmp[s1: e1]
 
-    def mirrorB(): 
+    def _B(): 
         bmp[s1: e1] = bmp[s2: e2]
 
-    def flip(): 
-        bmp[s1: e1], bmp[s2: e2] = bmp[s2: e2], bmp[s1: e1]
+    def _F(): 
+        bmp[s1: e1], bmp[s2: e2] = \
+        bmp[s2: e2], bmp[s1: e1]
 
-    if trans == 'T': 
-        f = mirrorT
-    elif trans == 'B': 
-        f = mirrorB
-    elif trans == 'F': 
-        f = flip
-
+    f = {'T': _T, 'B': _B, 'F' : _F}[trans]
     c=getcomputeBMPoffsetwithheaderfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
@@ -3304,17 +3302,21 @@ def outlinecircregion(bmp: array,
             s2 = c(bmp, x1, y2)
             e2 = c(bmp, x2, y2)
             if bits == 24:
-                bmp[s1: e1] = array('B', xorvect(bmp[s1: e1],
-                                                 bmp[s1 + 3: e1 + 3]))
+                bmp[s1: e1] = \
+                array('B', xorvect(bmp[s1: e1],
+                                   bmp[s1 + 3: e1 + 3]))
                 if y1 != y2: 
-                    bmp[s2: e2] = array('B', xorvect(bmp[s2: e2],
-                                                     bmp[s2 + 3: e2 + 3]))
+                    bmp[s2: e2] = \
+                    array('B', xorvect(bmp[s2: e2],
+                                       bmp[s2 + 3: e2 + 3]))
             else:
-                bmp[s1: e1] = array('B', xorvect(bmp[s1: e1],
-                                                 bmp[s1 + 1: e1 + 1]))
+                bmp[s1: e1] = \
+                array('B', xorvect(bmp[s1: e1],
+                                   bmp[s1 + 1: e1 + 1]))
                 if y1 != y2: 
-                    bmp[s2: e2] = array('B', xorvect(bmp[s2: e2],
-                                                     bmp[s2 + 1: e2 + 1]))
+                    bmp[s2: e2] = \
+                    array('B', xorvect(bmp[s2: e2],
+                                       bmp[s2 + 1: e2 + 1]))
     else:
         xmax = getmaxx(bmp)
         ymax = getmaxy(bmp)
@@ -3327,11 +3329,13 @@ def outlinecircregion(bmp: array,
                 s2 = c(bmp, x1, y2)
                 e2 = c(bmp, x2, y2)
                 if bits == 24:  
-                    bmp[s2: e2] = array('B', xorvect(bmp[s2: e2],
-                                                     bmp[s2 + 3: e2 + 3]))
+                    bmp[s2: e2] = \
+                    array('B', xorvect(bmp[s2: e2],
+                                       bmp[s2 + 3: e2 + 3]))
                 else: 
-                    bmp[s2: e2] = array('B', xorvect(bmp[s2: e2],
-                                                     bmp[s2 + 1: e2 + 1]))
+                    bmp[s2: e2] = \
+                    array('B', xorvect(bmp[s2: e2],
+                                       bmp[s2 + 1: e2 + 1]))
             if isinrange(y1, ymax, -1) and y2 != y1:
                 s1 = c(bmp, x1, y1)
                 e1 = c(bmp, x2, y1)
@@ -3343,7 +3347,8 @@ def outlinecircregion(bmp: array,
                                                      bmp[s1 + 1: e1 + 1]))
 
 
-def monocircle(bmp: array,
+def monocircle(
+        bmp: array,
         x: int, y: int,
         r: int):
     """Applies a monochrome filter 
@@ -3487,8 +3492,10 @@ def invertbitsincircregion(
         invertbitsinbuffer)
 
 
-def circlevec(bmp: array,
-    v: list, r: int,
+def circlevec(
+    bmp: array,
+    v: list,
+    r: int,
     color: int,
     isfilled: bool = None):
     """Draws a circle
@@ -3518,8 +3525,10 @@ def circlevec(bmp: array,
         r, color, isfilled)
 
 
-def filledcircle(bmp: array,
-        x: int, y: int, r: int,
+def filledcircle(
+        bmp: array,
+        x: int, y: int,
+        r: int,
         color: int):
     """Draws a filled circle
         defined by 
@@ -3590,7 +3599,8 @@ def filledcircle(bmp: array,
                     bmp[s: s + dx] = colorbuf
 
 
-def circle(bmp: array,
+def circle(
+        bmp: array,
         x: int, y: int,
         r: int,
         color: int,
@@ -3618,7 +3628,8 @@ def circle(bmp: array,
 
     """
     if isfilled: 
-        filledcircle(bmp, x, y, r, color)
+        filledcircle(
+            bmp, x, y, r, color)
     else:
         m = getmaxxy(bmp)
         bits = bmp[_bmclrbits]
@@ -3661,7 +3672,7 @@ def circle(bmp: array,
         elif bits == 8:
             if dobndcheck:
                 for p in itercircle(x, y, r):
-                    px, py =p[0], p[1]
+                    px, py = p[0], p[1]
                     if isinBMPrectbnd(bmp, px, py): 
                         bmp[c(bmp, px, py)] = color
             else:
@@ -3674,10 +3685,12 @@ def circle(bmp: array,
                     bmp[c(bmp, x2, y1)] = color
         else:
             for p in itercircle(x, y, r): 
-                plotxybit(bmp, p[0], p[1], color)
+                plotxybit(bmp, p[0],
+                               p[1], color)
 
 
-def thickcircle(bmp: array,
+def thickcircle(
+        bmp: array,
         x: int, y: int,
         r: int,
         penradius: int,
@@ -3697,7 +3710,8 @@ def thickcircle(bmp: array,
         color    : color of the circle
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     for p in itercircle(x, y, r): 
@@ -3787,7 +3801,8 @@ def gradcircle(bmp: array,
         thickcircle(bmp, x, y, r, 2, c)
 
 
-def thickellipserot(bmp: array,
+def thickellipserot(
+        bmp: array,
         x: int, y: int,
         b: int, a: int,
         degrot: float,
@@ -3941,7 +3956,8 @@ def filledellipse(
                     bmp[s: s + dx] = colorbuf
 
 
-def ellipse(bmp: array,
+def ellipse(
+        bmp: array,
         x: int, y: int,
         b: int, a: int,
         color: int,
@@ -4050,7 +4066,8 @@ def gradellipse(
 
 
 @_intcircpar
-def drawarc(bmp: array,
+def drawarc(
+        bmp: array,
         x: int, y: int,
         r: int,
         startdegangle: float,
@@ -4096,7 +4113,8 @@ def drawarc(bmp: array,
                 fillcolor)
 
 
-def rectangle(bmp: array,
+def rectangle(
+        bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         color: int):
@@ -4196,7 +4214,8 @@ def beziercurve(
             bmp, v, penradius, color)
 
 
-def bspline(bmp: array,
+def bspline(
+        bmp: array,
         pntlist: list,
         penradius: int,
         color: int,
@@ -4244,7 +4263,8 @@ def plotrotated8bitpattern(
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : where to draw the pattern
+        x, y      : where to draw
+                    the pattern
         bitpattern: list of bytes
                     that make a pattern
         scale     : control how big
@@ -4279,7 +4299,8 @@ def plotrotated8bitpattern(
         x = ox
 
 
-def plot8bitpattern(bmp: array,
+def plot8bitpattern(
+        bmp: array,
         x: int, y: int,
         bitpattern: list,
         scale: int,
@@ -4301,7 +4322,8 @@ def plot8bitpattern(bmp: array,
         color     : color of the pattern
 
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """    
     inc= scale - 1 - pixspace
@@ -4481,7 +4503,8 @@ def plotstringfunc(
             x += xstep
 
 
-def plotstring(bmp: array,
+def plotstring(
+        bmp: array,
         x: int, y: int,
         str2plot: str,
         scale: int,
@@ -4757,7 +4780,8 @@ def plotpolyfill(
             getmaxx(bmp), getmaxy(bmp)), color)
 
 
-def thickplotpoly(bmp: array,
+def thickplotpoly(
+        bmp: array,
         vertlist: list,
         penradius: int,
         color: int):
@@ -4857,7 +4881,8 @@ def plotlines(
                          vertlist[i], color)
 
 
-def plotpoly(bmp: array,
+def plotpoly(
+        bmp: array,
         vertlist: list,
         color: int):
     """Draws a polygon defined by
@@ -4961,9 +4986,11 @@ def plot3d(
 
     """
     if issolid: 
-        plotpolyfillist(bmp, sides, RGBfactors)
+        plotpolyfillist(
+            bmp, sides, RGBfactors)
     if showoutline: 
-        plotpolylist(bmp, sides[0], outlinecolor)
+        plotpolylist(
+            bmp, sides[0], outlinecolor)
 
 
 def plot3Dsolid(bmp: array,
@@ -5256,9 +5283,11 @@ def XYaxis(bmp: array,
     if showgrid:
         xygridvec(bmp, origin, xylimits,
             steps, gridcolor)
-    drawvec(bmp, origin, [origin[0], xylimits[1]],
+    drawvec(bmp, origin,
+            [origin[0], xylimits[1]],
             10, color)
-    drawvec(bmp, origin, [xylimits[0], origin[1]],
+    drawvec(bmp, origin,
+            [xylimits[0], origin[1]],
             10, color)
     vertlinevert(bmp, hvert, 5, -2, color)
     horilinevert(bmp, vvert, -3, 0, color)
