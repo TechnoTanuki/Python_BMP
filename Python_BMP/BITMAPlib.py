@@ -404,7 +404,8 @@ def listinBMPrecbnd(
 
 
 def setcolorbits(
-        bmp: array, bits: int):
+        bmp: array,
+        bits: int):
     """Set the bit depth
         of a windows bitmap
 
@@ -584,7 +585,8 @@ def compute24bitBMPoffset(
 
 def compute24bitBMPoffsetwithheader(
         bmp: array,
-        x: int, y: int) -> int:
+        x: int,
+        y: int) -> int:
     """Get the offset in a byte array
         with RGB data given x and y
         with bitmap header size 
@@ -610,7 +612,8 @@ def compute24bitBMPoffsetwithheader(
 
 def compute8bitBMPoffset(
         bmp: array,
-        x: int, y: int) -> int:
+        x: int,
+        y: int) -> int:
     """Get the offset
         in a byte array
         with 8 bit color data 
@@ -634,7 +637,9 @@ def compute8bitBMPoffset(
 
 
 def compute8bitBMPoffsetwithheader(
-        bmp: array, x: int, y: int) -> int:
+        bmp: array,
+        x: int,
+        y: int) -> int:
     """Get the offset in a byte array 
         with 8 bit color data 
         given x and y 
@@ -660,7 +665,9 @@ def compute8bitBMPoffsetwithheader(
 
 
 def compute4bitBMPoffset(
-        bmp: array, x: int, y: int) -> int:
+        bmp: array,
+        x: int,
+        y: int) -> int:
     """Get the offset in a byte array 
         with 4 bit color data 
         given x and y data
@@ -684,7 +691,8 @@ def compute4bitBMPoffset(
 
 def compute1bitBMPoffset(
         bmp: array,
-        x: int, y: int) -> int:
+        x: int,
+        y: int) -> int:
     """Get the offset
         in a byte array
         with 1 bit color data
@@ -709,7 +717,8 @@ def compute1bitBMPoffset(
 
 def compute4bitBMPoffsetwithheader(
         bmp: array,
-        x: int,y: int) -> int:
+        x: int,
+        y: int) -> int:
     """Get the offset
         in a byte array
         with 4 bit color data 
@@ -737,7 +746,8 @@ def compute4bitBMPoffsetwithheader(
 
 def compute1bitBMPoffsetwithheader(
         bmp: array,
-        x: int, y: int) -> int:
+        x: int,
+        y: int) -> int:
     """Get the offset in a byte array
         with 1 bit color data 
         given x and y with adjustments
@@ -822,7 +832,8 @@ def computeBMPoffset(bmp: array,
 
 def computeBMPoffsetwithheader(
         bmp: array,
-        x: int, y: int) -> int:
+        x: int,
+        y: int) -> int:
     """Returns the offset
         given a bitmap
         with header considered
@@ -902,8 +913,10 @@ def isbmpcompressed(bmp:array) -> bool:
 
 
 def compute24bitoffset(
-        x: int, y: int,
-        mx: int, my: int) -> int:
+        x: int,
+        y: int,
+        mx: int,
+        my: int) -> int:
     """Get the offset in a byte array
         with 24-bit color data 
 
@@ -927,7 +940,8 @@ def compute24bitoffset(
 
 
 def computexbytes(
-        x: int, bits: int) -> int:
+        x: int,
+        bits: int) -> int:
     """Get the number of 
         bytes in a bmp row
         given x dimension
@@ -958,7 +972,8 @@ def computexbytes(
 
 
 def computepadbytes(
-    x: int, bits: int) -> int:
+    x: int,
+    bits: int) -> int:
     """Get the number of bytes
         used to pad for 
         32-bit alignment
@@ -1022,7 +1037,8 @@ def computeBMPfilesize(
 
 
 def compute_bmpmetadata(
-        x: int, y: int,
+        x: int,
+        y: int,
         bits: int) -> tuple:
     """computes bitmap meta data
 
