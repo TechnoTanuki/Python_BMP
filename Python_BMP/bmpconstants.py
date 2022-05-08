@@ -13,5 +13,5 @@ bmpcolorbits = 28
 bmpx = 18
 bmpy = 22
 bmppal = 54
-bmpheadersize = {1: 62, 4: 118, 8: 1078, 24: 54}
+bmpheadersizedict = {1: 62, 4: 118, 8: 1078, 24: 54}
 # End Dont Edit!!!! 

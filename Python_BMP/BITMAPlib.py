@@ -39,7 +39,7 @@ from .bmpconstants import(
     bmpx as _bmx,
     bmpy as _bmy,
     bmppal as _bmpal,
-    bmpheadersize
+    bmpheadersizedict as _getbmhdsz
     )
     
 from .mathlib import(
@@ -999,7 +999,7 @@ def getdefaultBMPhdrsize(
         of header size
 
     """
-    return bmpheadersize[bits]
+    return _getbmhdsz[bits]
 
 
 def computeBMPfilesize(
@@ -1018,7 +1018,7 @@ def computeBMPfilesize(
 
     """
     return computexbytes(x, bits) * y + \
-           bmpheadersize[bits]
+           _getbmhdsz[bits]
 
 
 def compute_bmpmetadata(
@@ -1037,7 +1037,7 @@ def compute_bmpmetadata(
 
     """
     return (computeBMPfilesize(x, y, bits),
-            bmpheadersize[bits], x, y, bits)
+            _getbmhdsz[bits], x, y, bits)
 
 def isdefaultpal(bmp: array) -> bool:
     """Checks if bitmap has
@@ -10683,8 +10683,10 @@ def horizontalbrightnessgrad2file(
 
 @_fntimer
 def horizontalbrightnessgradregion2file(
-        ExistingBMPfile: str, NewBMPfile: str,
-        x1: int, y1: int, x2: int, y2: int, 
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int, 
         lumrange: list):
     """Applies a horizontal
         brightness gradient
