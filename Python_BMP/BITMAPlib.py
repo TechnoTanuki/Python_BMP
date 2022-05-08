@@ -1080,7 +1080,8 @@ def setBMPimgbytes(
     bmp[gethdrsize(bmp): getfilesize(bmp)] = buf
 
 
-def setbmppal(bmp: array,
+def setbmppal(
+        bmp: array,
         pallist: list):
     """Sets the RGB palette of a bitmap
 
@@ -1103,7 +1104,7 @@ def setbmppal(bmp: array,
 
 
 def getallRGBpal(
-        bmp: array) -> list:
+        bmp: array) -> list[list[int, int, int]]:
     """Gets the RGB palette
         of a bitmap
 
@@ -1121,7 +1122,8 @@ def getallRGBpal(
             for c in range(0, colors)]
 
 
-def getRGBpal(bmp: array,
+def getRGBpal(
+        bmp: array,
         c: int) -> list[int, int, int]:
     """Gets the [R,G,B] values of color c 
         in a bitmap
@@ -1139,7 +1141,9 @@ def getRGBpal(bmp: array,
     return [bmp[i + 2], bmp[i + 1], bmp[i]]
 
 
-def setRGBpal(bmp: array, c: int,
+def setRGBpal(
+        bmp: array,
+        c: int,
         r: int, g: int, b: int):
     """Sets the r,g,b values
         of color c in a bitmap
@@ -1257,8 +1261,9 @@ def copyRGBpal(
         unsigned byte array
 
     Args:
-        sourceBMP,destBMP : unsigned byte arrays
-                            with bmp format
+        sourceBMP: unsigned byte arrays  
+        destBMP    with bmp format     
+                            
         
     Returns:
         byref modified destBMP 
@@ -1378,7 +1383,8 @@ def setBMP2monochrome(
     return newpal
 
 
-def newBMP(x: int, y: int,
+def newBMP(
+        x: int, y: int,
         colorbits: int) -> array:
     """Creates a new in memory bitmap
 
@@ -1397,7 +1403,8 @@ def newBMP(x: int, y: int,
                     x, y, colorbits))
 
 
-def CopyBMPxydim2newBMP(bmp: array,
+def CopyBMPxydim2newBMP(
+        bmp: array,
         newbits: int) -> array:
     """Creates a new bitmap with
         the same dimensions as bmp
@@ -1444,7 +1451,8 @@ def loadBMP(filename: str) -> array:
     return a
 
 
-def saveBMP(filename: str,
+def saveBMP(
+        filename: str,
         bmp: array):
     """Saves bitmap to file
 
@@ -1490,7 +1498,8 @@ def BMPbitBLTput(
         print (sysmsg['invalidoffset'])
 
 
-def BMPbitBLTget(bmp: array,
+def BMPbitBLTget(
+        bmp: array,
         offset: int,
         bufsize: int) -> array:
     """Gets [offset:offset+bufsize]
@@ -1520,7 +1529,8 @@ def BMPbitBLTget(bmp: array,
     return retval
 
 
-def vertBMPbitBLTget(bmp: array,
+def vertBMPbitBLTget(
+        bmp: array,
         x: int,
         y1: int, y2: int) -> array:
     """Gets vertical slice
@@ -1607,7 +1617,8 @@ def applyfuncwithparam2vertBMPbitBLTget(
         print(sysmsg['lineoutofbnd'])
 
 
-def plotRGBxybit(bmp: array,
+def plotRGBxybit(
+        bmp: array,
         x: int, y: int,
         rgb: list):
     """Sets pixel at
@@ -1643,7 +1654,8 @@ def plotRGBxybit(bmp: array,
                         getallRGBpal(bmp)))
 
 
-def plotxybit(bmp: array,
+def plotxybit(
+        bmp: array,
         x: int, y: int,
         c: int):
     """Sets pixel at x,y
@@ -1690,7 +1702,8 @@ def plotxybit(bmp: array,
             bmp[offset] = b
 
 
-def getxybit(bmp: array,
+def getxybit(
+        bmp: array,
         x: int, y: int) -> int:
     """Gets color of pixel 
         at x,y in a bitmap
@@ -1730,7 +1743,8 @@ def getxybit(bmp: array,
 
 
 def getRGBxybitvec(
-        bmp: array, v:list) -> list:
+        bmp: array,
+        v:list) -> list:
     """Gets [R:byte,G:byte,B:byte] 
         of pixel at (x,y) in a bitmap
 
@@ -1746,7 +1760,8 @@ def getRGBxybitvec(
     return getRGBxybit(bmp, v[0], v[1])
 
 
-def getRGBxybit(bmp: array,
+def getRGBxybit(
+        bmp: array,
         x: int, y: int) -> list:
     """Gets [R:byte,G:byte,B:byte] 
         of pixel at x,y in a bitmap
@@ -1775,7 +1790,8 @@ def getRGBxybit(bmp: array,
     return retval
 
 
-def getxybitvec(bmp: array,
+def getxybitvec(
+        bmp: array,
         v: list) -> int:
     """Gets color of pixel at (x,y)
 
@@ -1811,8 +1827,10 @@ def intplotvecxypoint(
     plotxybit(bmp, v[0], v[1], c)
 
 
-def plotvecxypoint(bmp: array,
-        v: list, c: int):
+def plotvecxypoint(
+        bmp: array,
+        v: list,
+        c: int):
     """Sets color of pixel at (x,y)
 
     Args:
@@ -1851,7 +1869,8 @@ def plotRGBxybitvec(
                       v[1], rgb)
 
 
-def plotxypointlist(bmp: array, 
+def plotxypointlist(
+        bmp: array, 
         vlist: list,
         penradius: int,
         color: int):
@@ -1879,7 +1898,8 @@ def plotxypointlist(bmp: array,
             penradius, color)
 
 
-def roundpen(bmp: array,
+def roundpen(
+        bmp: array,
         point: list,
         penradius: int,
         color: int):
@@ -1911,7 +1931,8 @@ def roundpen(bmp: array,
             penradius, color, True)
 
 
-def swapcolors(bmp: array,
+def swapcolors(
+        bmp: array,
         p1: list,
         p2: list):
     """Swaps the colors of 
