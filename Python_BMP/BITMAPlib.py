@@ -189,7 +189,7 @@ from .conditionaltools import(
 )
 
 from .dicttools import(
-    dict2descorderlist
+    dict2descorderlist as _dsordlst
     )
 
 from .fileutils import(
@@ -1200,7 +1200,7 @@ def colorhistorgram(bmp: array) -> list:
             d.setdefault(c,1)
         else: 
             d[c] += 1
-    return  dict2descorderlist(d)
+    return  _dsordlst(d)
 
 
 def makenewpalfromcolorhist(
