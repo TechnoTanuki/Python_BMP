@@ -136,7 +136,8 @@ from .colors import(
         as _gammaBGRbuf,
     applymonochromefiltertoBGRbuf
         as _monofltr2BGRbuf,
-    applythresholdadjtoBGRbuf,
+    applythresholdadjtoBGRbuf
+        as _thresadj2BGRbuf,
     bmpstdpal,
     bmpvalidcolorbits,
     brightnessadjust,
@@ -7467,7 +7468,7 @@ def thresholdadjto24bitregion(
     """
     applyfuncto24bitregion(
         bmp, x1, y1, x2, y2,
-        applythresholdadjtoBGRbuf,
+        _thresadj2BGRbuf,
         lumrange)
 
 
@@ -7497,7 +7498,7 @@ def thresholdadjcircregion(
     """
     apply24bitfunctocircregion(
         bmp, x, y, r,
-        applythresholdadjtoBGRbuf,
+        _thresadj2BGRbuf,
         lumrange)
 
 
