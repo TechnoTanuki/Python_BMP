@@ -353,7 +353,8 @@ def centercoord(
             (_rdint(_bmy, 4, bmp) - 1) >> 1)
 
 
-def isinBMPrectbnd(bmp: array,
+def isinBMPrectbnd(
+        bmp: array,
         x: int, y: int) -> bool:
     """Checks if (x,y) coordinates 
         are within 
@@ -461,8 +462,8 @@ def getxcharcount(bmp: array) -> int:
 
 
 def setfilesize(
-    bmp: array,
-    size: int):
+        bmp: array,
+        size: int):
     """Set the header size
         of a windows bitmap
 
@@ -470,10 +471,12 @@ def setfilesize(
         bmp  : unsigned byte array 
                with bmp format
         size : unsigned int value 
-               of size of the bmp file
+               of size of
+               the bmp file
         
     Returns:
-        byref modified byte array 
+        byref modified
+        unsigned byte array 
         with new file size
 
     """
@@ -497,8 +500,8 @@ def getfilesize(bmp: array) -> int:
 
 
 def sethdrsize(
-    bmp: array,
-    hdsize: int):
+        bmp: array,
+        hdsize: int):
     """Set the header size
         of a windows bitmap
 
@@ -1317,7 +1320,7 @@ def copyRGBpal(
 
 
 def setbmp_properties(
-    bmpmeta: list) -> array:
+        bmpmeta: list) -> array:
     """Creates a new bitmap
         with the properties set 
         by bmpmeta to 
@@ -2063,7 +2066,8 @@ def line(
                 if p[0] & 1 == 1: 
                     bmp[s] = (bmp[s] & 0xf0) + color
                 else: 
-                    bmp[s] = (color << 4) + (bmp[s] & 0xf)
+                    bmp[s] = (color << 4) + \
+                             (bmp[s] & 0xf)
         elif bits == 1:
             if color > 1: 
                 color &= 0x1
@@ -2119,7 +2123,8 @@ def horiline(
         elif bits == 8:
             e = s + dx
             color &= 0xff
-            bmp[s:e] = array('B', [color] * dx)
+            bmp[s:e] = \
+                array('B', [color] * dx)
         elif bits == 4:
             dx >>= 1
             e = s + dx
@@ -2132,11 +2137,13 @@ def horiline(
             if c1 != -1: 
                 bmp[s] = c1 + (bmp[s] & 0xf)
             if x2 & 1 == 1: 
-                plotxybit(bmp, x2 - 1, y, color)
+                plotxybit(bmp,
+                    x2 - 1, y, color)
         elif bits == 1:
             x2 += 1
             for x in range(x1, x2): 
-                plotxybit(bmp, x, y, color)
+                plotxybit(bmp,
+                    x, y, color)
     else: 
         print(sysmsg['lineoutofbnd'])
 
@@ -2165,7 +2172,8 @@ def vertline(
     """
     bits = bmp[_bmclrbits]
     if bits not in [24, 8]:
-        y1 , y2 =swapif(y1, y2, y1 > y2)
+        y1 , y2 = \
+            swapif(y1, y2, y1 > y2)
         y2 += 1
         for y in range(y1, y2): 
             plotxybit(bmp, x, y, color)
@@ -2174,7 +2182,8 @@ def vertline(
         m = getmaxxy(bmp)
         c = getcomputeBMPoffsethdfunc(bmp)
         if isinrange(x, m[0], -1):
-            y1, y2 = swapif(y1, y2, y1 > y2)
+            y1, y2 = \
+                swapif(y1, y2, y1 > y2)
             y1 = setmin(y1,0)
             y2 = setmax(y2,m[1]-1)
             dy = y2 - y1 + 1
@@ -2182,11 +2191,15 @@ def vertline(
             s = c(bmp, x, y2)
             e = c(bmp, x, y1) + r
             if bits == 24: 
-                bmp[s: e - 2: r] = array('B', [rgb[2]] * dy)
-                bmp[s + 1: e - 1: r] = array('B', [rgb[1]] * dy)
-                bmp[s + 2: e: r] = array('B', [rgb[0]] * dy)
+                bmp[s: e - 2: r] = \
+                    array('B', [rgb[2]] * dy)
+                bmp[s + 1: e - 1: r] = \
+                    array('B', [rgb[1]] * dy)
+                bmp[s + 2: e: r] = \
+                    array('B', [rgb[0]] * dy)
             elif bits==8: 
-                bmp[s: e: r] = array('B', [color % 256] * dy)
+                bmp[s: e: r] = \
+                    array('B', [color % 256] * dy)
         else: 
             print(sysmsg['lineoutofbnd'])
 
@@ -2256,12 +2269,12 @@ def filledgradrect(
         unsigned byte array
 
     """
-    x1, y1, x2, y2 = sortrecpoints(
-                        x1, y1, x2, y2)   
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)   
     dx = x2 - x1 + 1
     dy = y2 - y1 + 1
-    base, lrange = RGBfactorstoBaseandRange(
-                        lumrange, RGBfactors)
+    base, lrange = \
+        RGBfactorstoBaseandRange(lumrange, RGBfactors)
     if direction == 0:
         xlim = x2 + 1
         for x in range(x1, xlim):
@@ -2312,8 +2325,8 @@ def itercopyrect(
         scanlines of the area
 
     """
-    x1, y1, x2, y2=sortrecpoints(
-                    x1, y1, x2, y2)
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
     bufsize = _adjxbufsz(bmp, x1, x2)
     r = getxcharcount(bmp)
     offset = computeBMPoffset(
@@ -2854,9 +2867,10 @@ def flipXYcircregion(
         r: int):
     """Flip the X and Y coordinates 
         of a circular region with 
-        center defined by x,y 
+        center defined by x, y 
         and a radius r
-        to rotate itby 90 degrees
+        to rotate it
+        by 90 degrees
         
     Args:
         bmp     : unsigned byte array 
@@ -2938,9 +2952,11 @@ def horitransformincircregion(
         y: int,
         r: int,
         trans: str):
-    """Applies a horizontal transform 
-        to circular region with 
-        a center x,y with a radius r
+    """Applies a 
+        horizontal transform 
+        to circular region
+        with a center at x,y
+        and a radius r
         
     Args:
         bmp  :   unsigned byte array 
@@ -2949,54 +2965,49 @@ def horitransformincircregion(
                  and radius r of region
         trans:   single letter
                  transform code
-                'L' mirror left 
-                'R' mirror right 
-                'F' flip
+                 'L' -> mirror left 
+                 'R' -> mirror right 
+                ' F' -> flip
         
     Returns:
         byref modified
         unsigned byte array
 
     """
-    def flip24():  
+    def _24F():  
         bmp[s1: e1 - 2 : k], bmp[s2: e2 -2 : k], bmp[s1 + 1: e1-1: k], bmp[s2 + 1: e2-1: k], bmp[s1 + 2: e1: k], bmp[s2 + 2: e2: k] = \
         bmp[s2: e2 - 2: k], bmp[s1: e1 - 2: k], bmp[s2 + 1: e2 - 1: k], bmp[s1 + 1: e1 - 1: k], bmp[s2 + 2: e2: k], bmp[s1 + 2: e1: k]
     
-    def flip8(): 
+    def _8F(): 
         bmp[s1: e1: k], bmp[s2: e2: k] = \
         bmp[s2: e2: k], bmp[s1: e1: k]
     
-    def mirror24R(): 
+    def _24R(): 
         bmp[s1: e1 - 2: k], bmp[s1 + 1: e1 -1: k], bmp[s1 + 2: e1: k] = \
         bmp[s2: e2 - 2: k], bmp[s2 + 1: e2 - 1: k], bmp[s2 + 2: e2: k]
     
-    def mirror8R(): 
+    def _8R(): 
         bmp[s1: e1: k] = bmp[s2: e2: k]
     
-    def mirror24L(): 
+    def _24L(): 
         bmp[s2: e2 - 2: k], bmp[s2 + 1: e2 - 1: k], bmp[s2 + 2: e2: k] = \
         bmp[s1: e1 - 2: k], bmp[s1 + 1: e1 - 1: k], bmp[s1 + 2: e1: k]
     
-    def mirror8L(): 
+    def _8L(): 
         bmp[s2: e2: k] = bmp[s1: e1: k]
     
-    bits = bmp[_bmclrbits]
     c = getcomputeBMPoffsethdfunc(bmp)
-    if trans == 'L':
-        if bits == 24: 
-            f = mirror24L
-        elif bits == 8: 
-            f = mirror8L
-    elif trans == 'R':
-        if bits == 24: 
-            f = mirror24R
-        elif bits == 8: 
-            f = mirror8R
-    elif trans == 'F':
-        if bits == 24: 
-            f = flip24
-        elif bits == 8: 
-            f = flip8
+    
+    f ={8: {'F': _8F,
+            'R': _8R,
+            'L': _8L
+             },
+        24: {'F': _24F,
+             'R': _24R,
+             'L': _24L
+             }
+        }[bmp[_bmclrbits]][trans]
+
     for v in itercirclepartvertlineedge(r):
         x1, x2 = mirror(x, v[0])
         y1, y2 = mirror(y, v[1])
