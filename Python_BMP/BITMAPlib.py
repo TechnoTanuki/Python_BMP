@@ -155,9 +155,11 @@ from .colors import(
     int2RGB,
     int2RGBarr,
     int2RGBlist,
-    invertbitsinbuffer,
+    invertbitsinbuffer
+        as _invbtbf,
     isvalidcolorbit,
-    makeBGRbuf,
+    makeBGRbuf
+        as _mkBGRbf,
     matchRGBtopal,
     monochrome,
     monochromefiltertoBGRbuf,
@@ -1663,9 +1665,9 @@ def vertBMPbitBLTget(
         s = c(bmp, x, y2)
         e = c(bmp, x, y1) + r
         if bits == 24:
-            return makeBGRbuf(bmp[s: e - 2: r],
-                              bmp[s + 1: e - 1: r],
-                              bmp[s + 2: e: r])
+            return _mkBGRbf(bmp[s: e - 2: r],
+                            bmp[s + 1: e - 1: r],
+                            bmp[s + 2: e: r])
         else: 
             return bmp[s: e: r]
     else: 
@@ -3730,8 +3732,7 @@ def invertbitsincircregion(
 
     """
     applynoparamfunctocircregion(
-        bmp, x, y, r,
-        invertbitsinbuffer)
+        bmp, x, y, r, _invbtbf)
 
 
 def circlevec(
@@ -7279,8 +7280,7 @@ def invertregion(
         r = _xchrcnt(bmp)
         for buf in itercopyrect(
                         bmp, x1, y1, x2, y2):
-            BMPbitBLTput(bmp, offset,
-                invertbitsinbuffer(buf))
+            BMPbitBLTput(bmp, offset, _invbtbf(buf))
             offset += r
 
 
