@@ -216,7 +216,8 @@ from .conditionaltools import(
 )
 
 from .dicttools import(
-    dict2descorderlist as _dsordlst
+    dict2descorderlist 
+        as _dsordlst
     )
 
 from .fileutils import(
@@ -1313,7 +1314,7 @@ def makenewpalfromcolorhist(
         for palentry in newpal:
             if distance(palentry, rgb) < \
                 similaritythreshold:
-                addcl=False
+                addcl = False
         if addcl:
             print(palcnt, '=' ,rgb)
             newpal.append(rgb)
@@ -1868,13 +1869,13 @@ def getRGBxybitvec(
         in a bitmap
 
     Args:
-        bmp: unsigned byte array with
-             bmp format
+        bmp: unsigned byte array
+             with bmp format
         v  : pixel location
-             (x:int,y:int)
+             (x:int, y:int)
 
     Returns:
-        [R:byte,G:byte,B:byte]
+        [R:byte, G:byte, B:byte]
 
     """
     return getRGBxybit(bmp, v[0], v[1])
@@ -1884,17 +1885,17 @@ def getRGBxybit(
         bmp: array,
         x: int,
         y: int) -> list:
-    """Gets [R:byte,G:byte,B:byte]
-        of pixel at x,y in a bitmap
+    """Gets [R:byte, G:byte, B:byte]
+        of pixel at (x, y) in a bitmap
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int
-             locations in x and y
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int
+              locations in x and y
 
     Returns:
-        [R:byte,G:byte,B:byte]
+        [R:byte, G:byte, B:byte]
 
     """
     retval=[]
@@ -2099,8 +2100,8 @@ def line(
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        x1,y1    : endpoints of the line
-        x2,y2
+        x1, y1   : endpoints of the line
+        x2, y2
         color    : color of the line
         
     Returns:
@@ -2171,13 +2172,13 @@ def horiline(
     """Creates a horizontal line
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        y    : constant y value
-               of the line
-        x1,x2: line starts at x1
-               and ends at x2
-        color: color of the line
+        bmp   : unsigned byte array
+                with bmp format
+        y     : constant y value
+                of the line
+        x1, x2: line starts at x1
+                and ends at x2
+        color : color of the line
         
     Returns:
         byref modified
@@ -2195,9 +2196,10 @@ def horiline(
         if bits == 24:
             e = s + (dx * 3)
             rgb=int2RGBlist(color)
-            bmp[s:e] = array('B', [rgb[2],
-                                   rgb[1],
-                                   rgb[0]] * dx)
+            bmp[s:e] = \
+                array('B', [rgb[2],
+                            rgb[1],
+                            rgb[0]] * dx)
         elif bits == 8:
             e = s + dx
             color &= 0xff
@@ -5174,7 +5176,8 @@ def plotpolylist(
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        polytlist: [[(x:uint,y:uint),...],...]
+        polytlist: [[(x:uint,y:uint),
+                    ...],...]
                    list of polygons  
         color    : color of the lines
 
