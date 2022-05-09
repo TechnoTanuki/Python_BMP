@@ -441,7 +441,7 @@ def listinBMPrecbnd(
     return retval
 
 
-def setcolorbits(
+def _setclrbits(
         bmp: array,
         bits: int):
     """Set the bit depth
@@ -460,7 +460,7 @@ def setcolorbits(
     """
     bmp[_bmclrbits] = bits
 
-def getcolorbits(bmp: array) -> int:
+def _getclrbits(bmp: array) -> int:
     """Get the bit depth
         of a windows bmp
 
@@ -1129,7 +1129,7 @@ def isdefaultpal(bmp: array) -> bool:
         False if not default
 
     """
-    return getdefaultbitpal(getcolorbits(bmp)) == \
+    return getdefaultbitpal(_getclrbits(bmp)) == \
                 getallRGBpal(bmp)
 
 
@@ -1483,7 +1483,7 @@ def setBMP2monochrome(
 
     """
     newpal = monochromepal(
-                getcolorbits(bmp),
+                _getclrbits(bmp),
                 RGBfactors)
     setbmppal(bmp, newpal)
     return newpal
@@ -1905,7 +1905,7 @@ def getRGBxybit(
     """
     retval=[]
     if isinBMPrectbnd(bmp, x, y):
-        if getcolorbits(bmp) == 24:
+        if _getclrbits(bmp) == 24:
             i = _24bmofhd(bmp, x, y)
             retval = [bmp[i + 2],
                       bmp[i + 1],
@@ -2800,7 +2800,7 @@ def copycircregion2buf(
         of circular region
 
     """
-    copybuf = [getcolorbits(bmp),r]
+    copybuf = [_getclrbits(bmp),r]
     c = _getBMoffhdfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
@@ -2838,7 +2838,7 @@ def pastecirularbuf(
                 x, y, -1,
                 getmaxx(bmp), -1,
                 getmaxy(bmp), r):
-            if getcolorbits(bmp) != circbuf[0]: 
+            if _getclrbits(bmp) != circbuf[0]: 
                 raise(sysmsg['bitsnotequal'])
             else:
                 i = 2
@@ -7844,7 +7844,7 @@ def plotbmpastext(bmp: array):
         for debug and ascii art
 
     """
-    bits = getcolorbits(bmp)
+    bits = _getclrbits(bmp)
     my = getmaxy(bmp) - 1
     r = _xchrcnt(bmp)
     offset = gethdrsize(bmp)
@@ -8229,7 +8229,7 @@ def pixelizenxn(
 def adjustcolordicttopal(
         bmp:array,
         colordict:dict):
-    if getcolorbits(bmp) < 24:
+    if _getclrbits(bmp) < 24:
         for color in colordict:
             colordict[color] = \
                 matchRGBtopal(
