@@ -307,7 +307,7 @@ def setmaxy(
         int: value of y dimension
 
     Returns:
-        byref modified 
+        byref modified
         unsigned byte array
 
     """
@@ -402,7 +402,7 @@ def isinBMPrectbnd(
 
     Returns:
         True if within bounds
-        False if out of bounds 
+        False if out of bounds
 
     """
     return (x < _rdint(_bmx, 4, bmp) and
@@ -413,22 +413,22 @@ def isinBMPrectbnd(
 def listinBMPrecbnd(
         bmp: array,
         xylist: list) -> bool:
-    """Checks if a list of 
-        (x,y) coordinates 
-        are within 
-        the rectangular bounds 
+    """Checks if a list of
+        (x,y) coordinates
+        are within
+        the rectangular bounds
         of a bitmap
 
     Args:
         bmp   : unsigned byte array 
                 with bmp format
         xylist: list of (x,y)
-                coordinates 
+                coordinates
                 to be checked
 
     Returns:
         True if within bounds
-        False if out of bounds 
+        False if out of bounds
 
     """
     retval=True
@@ -507,7 +507,7 @@ def setfilesize(
 
     Returns:
         byref modified
-        unsigned byte array 
+        unsigned byte array
         with new file size
 
     """
@@ -602,14 +602,14 @@ def _24bmof(
         x: int,
         y: int) -> int:
     """Get the offset
-        in a byte array 
+        in a byte array
         with RGB data
         given x and y
 
     Args:
         bmp: unsigned byte array
              with bmp format
-        x,y: unsigned int value 
+        x,y: unsigned int value
              of location in
              x-axis and y-axis
 
@@ -662,9 +662,9 @@ def _8bmof(
         given x and y data
 
     Args:
-        bmp: unsigned byte array 
+        bmp: unsigned byte array
              with bmp format
-        x,y: unsigned int value 
+        x,y: unsigned int value
              of location in
              x-axis and y-axis
 
@@ -692,7 +692,7 @@ def _8bmofhd(
     Args:
         bmp: unsigned byte array
              with bmp format
-        x,y: unsigned int value 
+        x,y: unsigned int value
              of location in
              x-axis and y-axis
 
@@ -712,8 +712,8 @@ def _4bmof(
         x: int,
         y: int) -> int:
     """Get the offset
-        in a byte array 
-        with 4 bit color data 
+        in a byte array
+        with 4 bit color data
         given x and y data
 
     Args:
@@ -745,7 +745,7 @@ def _1bmof(
     Args:
         bmp: unsigned byte array
              with bmp format
-        x,y: unsigned int value 
+        x,y: unsigned int value
              of location in
              x-axis and y-axis
 
@@ -765,7 +765,7 @@ def _4bmofhd(
         y: int) -> int:
     """Get the offset
         in a byte array
-        with 4 bit color data 
+        with 4 bit color data
         given x and y
         with adjustments
         made due to a header
@@ -995,7 +995,7 @@ def compute24bitoffset(
 def _xbytes(
         x: int,
         bits: int) -> int:
-    """Get the number of 
+    """Get the number of
         bytes in a bmp row
         given x dimension
         and bit depth
@@ -1028,7 +1028,7 @@ def computepadbytes(
         x: int,
         bits: int) -> int:
     """Get the number of bytes
-        used to pad for 
+        used to pad for
         32-bit alignment
         given x dimension
         and bit depth
@@ -1047,7 +1047,7 @@ def computepadbytes(
     if bits <= 8:
         xperbyte = 8 // bits
         xbytes, rem = divmod(x, xperbyte)
-        if rem > 0: 
+        if rem > 0:
             xbytes += 1
     if bits == 24:
         xbytes = x * 3
@@ -1277,16 +1277,16 @@ def colorhistorgram(bmp: array) -> list:
                 sysmsg['colorhist'],
                 '*', sysmsg['done']):
         c=v[1]
-        if c not in d: 
+        if c not in d:
             d.setdefault(c,1)
-        else: 
+        else:
             d[c] += 1
     return  _dsordlst(d)
 
 
 def makenewpalfromcolorhist(
-        chist: list, 
-        colors: int, 
+        chist: list,
+        colors: int,
         similaritythreshold: float) -> list:
     """Creates a new palatte
         based on
@@ -1303,7 +1303,8 @@ def makenewpalfromcolorhist(
                              entries can be
 
     Returns:
-        unsigned byte array with bmp format
+        unsigned byte array
+        with bmp format
 
     """
     newpal = [[0, 0, 0]]
@@ -1421,7 +1422,7 @@ def setnewpalfromsourcebmp(
         similaritythreshold: how close can a color
                              in a palette entry
                              be to another color
-        
+
     Returns:
         byRef modified newBMP 
         (unsigned byte array)
@@ -1536,7 +1537,7 @@ def loadBMP(filename: str) -> array:
     Args:
         filename: full path to
                   the file to be loaded
-        
+
     Returns:
         byte array with
         bmp file contents
@@ -1921,7 +1922,7 @@ def getxybitvec(
         bmp: unsigned byte array
              with bmp format
         v  : (x:int,y:int)
-        
+
     Returns:
         unsigned int color value
 
@@ -1943,7 +1944,7 @@ def intplotvecxypoint(
         v  : (x:int, y:int)
         c  : unsigned int
         color value
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -2021,7 +2022,7 @@ def plotxypointlist(
         penradius: radius of the pen
                    (in pixels)
         color    : color of the pen
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -2050,7 +2051,7 @@ def roundpen(
         penradius: radius of the
                    pen in pixels
         color    : color of the pen
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -2304,7 +2305,7 @@ def fillbackgroundwithgrad(
                     floats from 0 to 1
         direction : 0 - vertical
                     1 - horizontal
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -2344,7 +2345,7 @@ def filledgradrect(
                       floats from 0 to 1
         direction   : 0 - vertical
                       1 - horizontal
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -2400,7 +2401,7 @@ def itercopyrect(
         bmp            : unsigned byte array
                          with bmp format
         x1, y1, x2, y2 : defines the rectangle
-         
+
     Yields:
         unsigned byte array
         scanlines of the area
@@ -3360,7 +3361,7 @@ def mirrorbottomleftincircregion(
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) and 
+        x, y, r: center (x,y) and
                  radius r of region
 
     Returns:
@@ -3461,7 +3462,7 @@ def horibrightnessgrad2circregion(
         to a circular region
         with a center at (x,y)
         and a radius r
-        
+
     Args:
         bmp     : unsigned byte array
                   with bmp format
