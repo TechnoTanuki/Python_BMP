@@ -66,7 +66,8 @@ from .mathlib import(
     LSMYint,
     mirror,
     polar2rectcoord2D,
-    range2baseanddelta,
+    range2baseanddelta
+        as _rng2bsndel,
     rotatebits,
     roundvect,
     setmax,
@@ -244,9 +245,12 @@ from .inttools import(
 from .messages import sysmsg
 
 from .bufresize import(
-    adjustxbufsize as _adjxbufsz,
-    resizebufNtimesbigger as _rsbfNtmbig,
-    resizesmaller24bitbuf as _rssm25btbf
+    adjustxbufsize 
+        as _adjxbufsz,
+    resizebufNtimesbigger
+        as _rsbfNtmbig,
+    resizesmaller24bitbuf
+        as _rssm25btbf
     ) 
 
 from .textgraphics import(
@@ -1020,8 +1024,8 @@ def _xbytes(
 
 
 def computepadbytes(
-    x: int,
-    bits: int) -> int:
+        x: int,
+        bits: int) -> int:
     """Get the number of bytes
         used to pad for 
         32-bit alignment
@@ -1231,7 +1235,9 @@ def getRGBpal(
 def setRGBpal(
         bmp: array,
         c: int,
-        r: int, g: int, b: int):
+        r: int,
+        g: int,
+        b: int):
     """Sets the r,g,b values
         of color c in a bitmap
 
@@ -1317,8 +1323,7 @@ def makenewpalfromcolorhist(
     return newpal
 
 
-def copyBMPhdr(
-        bmp: array) -> array:
+def copyBMPhdr(bmp: array) -> array:
     """Copies the 
         bitmap header of
         an in-memory bmp
@@ -1412,7 +1417,8 @@ def setnewpalfromsourcebmp(
         sourceBMP,newBMP   : unsigned byte arrays 
                              with bmp format
         similaritythreshold: how close can a color 
-                  in a palette entry be to another
+                             in a palette entry 
+                             be to another color
         
     Returns:
         byRef modified newBMP 
@@ -1700,18 +1706,22 @@ def applyfuncwithparam2vertBMPbitBLTget(
         e = c(bmp, x, y1) + r
         if bits == 24:
             e2 = e - 2
-            bmp[s: e2: r] = func(bmp[s: e2: r],
-                                funcparam)
+            bmp[s: e2: r] = \
+                func(bmp[s: e2: r],
+                        funcparam)
             s1 = s + 1
             e1 = e - 1
-            bmp[s1: e1: r] = func(bmp[s1: e1: r],
-                                 funcparam)
+            bmp[s1: e1: r] = \
+                func(bmp[s1: e1: r],
+                         funcparam)
             s2 = s + 2
-            bmp[s2: e : r] = func(bmp[s2: e: r],
-                                 funcparam)
+            bmp[s2: e : r] = \
+                func(bmp[s2: e: r],
+                        funcparam)
         else: 
-            bmp[s: e: r] = func(bmp[s: e: r],
-                               funcparam)
+            bmp[s: e: r] = \
+                func(bmp[s: e: r],
+                        funcparam)
     else: 
         print(sysmsg['lineoutofbnd'])
 
@@ -1779,7 +1789,8 @@ def plotxybit(
         offset = _BMoffsethd(bmp, x, y)
         bits = bmp[_bmclrbits]
         if bits == 24:
-            bmp[offset:offset + 3] = int2BGRarr(c)
+            bmp[offset:offset + 3] = \
+                int2BGRarr(c)
         elif bits == 8:
             bmp[offset] = c & 0xff
         elif bits == 4:
@@ -1859,7 +1870,8 @@ def getRGBxybitvec(
     Args:
         bmp: unsigned byte array with
              bmp format
-        v  : pixel location (x:int,y:int)
+        v  : pixel location
+             (x:int,y:int)
 
     Returns:
         [R:byte,G:byte,B:byte]
@@ -2122,14 +2134,16 @@ def line(
         elif bits ==  8:
             color &= 0xff
             for p in iterline(p1, p2):
-                bmp[c(bmp, p[0], p[1])] = color
+                bmp[c(bmp, p[0], p[1])] = \
+                    color
         elif bits == 4:
             if color > 15:
                 color &= 0xf
             for p in iterline(p1, p2):
                 s = c(bmp, p[0], p[1])
                 if p[0] & 1 == 1: 
-                    bmp[s] = (bmp[s] & 0xf0) + color
+                    bmp[s] = \
+                        (bmp[s] & 0xf0) + color
                 else: 
                     bmp[s] = (color << 4) + \
                              (bmp[s] & 0xf)
@@ -2613,8 +2627,7 @@ def gradthickroundline(
         unsigned byte array
 
     """
-    lum1, lumrang = range2baseanddelta(
-                        lumrange)
+    lum1, lumrang = _rng2bsndel(lumrange)
     for i in range(penradius, 0, -1):
         c=colormix(int(lum1 +
             (lumrang * i / penradius)),
@@ -3969,7 +3982,7 @@ def gradthickcircle(
         unsigned byte array
 
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    lum1, lumrang = _rng2bsndel(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)), RGBfactors)
@@ -4009,7 +4022,7 @@ def gradcircle(
         unsigned byte array
 
     """
-    lum1, lumrang=range2baseanddelta(lumrange)
+    lum1, lumrang = _rng2bsndel(lumrange)
     for r in range(radius - 1, 0, -1):
         c = colormix(
                 int(lum1 + (lumrang * r / radius)),
@@ -4095,7 +4108,7 @@ def gradthickellipserot(
         unsigned byte array
 
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    lum1, lumrang = _rng2bsndel(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)),
@@ -4271,7 +4284,7 @@ def gradellipse(
         unsigned byte array
 
     """     
-    lum1, lumrang = range2baseanddelta(lumrange)
+    lum1, lumrang = _rng2bsndel(lumrange)
     r = iif(a > b, a, b)
     a -= r
     b -= r
@@ -5089,8 +5102,7 @@ def gradthickplotpoly(
         unsigned byte array
 
     """
-    lum1, lumrang = range2baseanddelta(
-                        lumrange)
+    lum1, lumrang = _rng2bsndel(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)),
@@ -5320,7 +5332,7 @@ def gradvert(
         unsigned byte array
 
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    lum1, lumrang = _rng2bsndel(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(
                 int(lum1 + (lumrang * i / penradius)),
@@ -7726,7 +7738,7 @@ def plotflower(
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
-    lum1, dlum = range2baseanddelta(lumrange)
+    lum1, dlum = _rng2bsndel(lumrange)
     p = petals / 2
     angmax = 360 * petals
     angrot = radians(angrot)
