@@ -2665,7 +2665,7 @@ def applynoparam24bitfunctocircregion(
                 bmp[s1: e1] = func(bmp[s1: e1])
 
 
-@_fn24bitintcircpar       
+@_fn24bitintcircpar
 def apply24bitfunctocircregion(
         bmp: array,
         x: int,
@@ -2679,7 +2679,7 @@ def apply24bitfunctocircregion(
         x,y with a radius r 
         that is within 
         a 24-bit bitmap
-        
+
     Args:
         bmp       : unsigned byte array
                     with bmp format
@@ -2707,13 +2707,11 @@ def apply24bitfunctocircregion(
             e1 = c(bmp, x2, y1)
             s2 = c(bmp, x1, y2)
             e2 = c(bmp, x2, y2)
-            bmp[s1: e1] = func(
-                            bmp[s1: e1],
-                            funcparam)
+            bmp[s1: e1] = \
+                func(bmp[s1: e1], funcparam)
             if y2 != y1: 
-                bmp[s2: e2] = func(
-                                bmp[s2: e2],
-                                funcparam)
+                bmp[s2: e2] = \
+                    func(bmp[s2: e2], funcparam)
     else:
         xmax = getmaxx(bmp)
         ymax = getmaxy(bmp)
@@ -2725,15 +2723,13 @@ def apply24bitfunctocircregion(
             if isinrange(y2, ymax, -1):
                 s2 = c(bmp, x1, y2)
                 e2 = c(bmp, x2, y2)
-                bmp[s2: e2] = func(
-                                bmp[s2: e2],
-                                funcparam)
+                bmp[s2: e2] = \
+                    func(bmp[s2: e2], funcparam)
             if isinrange(y1, ymax, -1) and y2 != y1:
                 s1 = c(bmp, x1, y1)
                 e1 = c(bmp, x2, y1)
-                bmp[s1: e1] = func(
-                                bmp[s1: e1],
-                                funcparam)
+                bmp[s1: e1] = \
+                    func(bmp[s1: e1], funcparam)
 
 
 @_encircbnd
@@ -2742,7 +2738,7 @@ def copycircregion2buf(
         x: int,
         y: int, 
         r: int) -> list:
-    """Copies a circular region 
+    """Copies a circular region
         to a buffer which is
         defined by centerpoint (x,y) 
         and radius r
@@ -2804,8 +2800,10 @@ def pastecirularbuf(
                 for v in itercirclepartlineedge(r):
                     x1, x2 = mirror(x, v[0])
                     y1, y2 = mirror(y, v[1])
-                    bmp[c(bmp, x1, y1): c(bmp, x2, y1)] = circbuf[i][0]
-                    bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = circbuf[i][1]
+                    bmp[c(bmp, x1, y1): c(bmp, x2, y1)] = \
+                        circbuf[i][0]
+                    bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = \
+                        circbuf[i][1]
                     i += 1
         else: 
             print(sysmsg['regionoutofbounds'])
@@ -2820,14 +2818,15 @@ def copycircregion(
         r: int,
         newxy: list):
     """Copy a circular buffer
-        at x,y
-        with a radius r
-        to a centerpoint
+        with center at (x,y)
+        and a radius r
+        to a new area
+        with centerpoint
         at newxy [x,y]
 
     Args:
-        bmp   : unsigned byte array
-                with bmp format
+        bmp    : unsigned byte array
+                 with bmp format
         x, y, r: center (x,y)
                  and radius r
                  of the 
@@ -2855,18 +2854,23 @@ def applynoparamfunctocircregion(
         y: int,
         r: int, 
         func: Callable):
-    """Apply a no parameter function 
-        to a circular region with center 
-        defined by x,y with a radius r
+    """Apply a 
+        no parameter function
+        to a circular region
+        with a center at (x,y)
+        and a radius r
         
     Args:
-        bmp    : unsigned byte array 
+        bmp    : unsigned byte array
                  with bmp format
         x, y, r: center (x,y)
                  and radius r
-                 of the circular area
-        func   : function to apply
-        
+                 of the
+                 circular area
+        func   : function
+                 to apply
+                 to the area
+
     Returns:
         byref modified
         unsigned byte array
@@ -2904,18 +2908,17 @@ def applynoparamfunctocircregion(
                 bmp[s1: e1] = func(bmp[s1: e1])
 
 
-@_encircbnd        
+@_encircbnd
 def flipXYcircregion(
         bmp: array,
         x: int,
         y: int,
         r: int):
-    """Flip the X and Y coordinates 
-        of a circular region with 
-        center defined by x, y 
+    """Flip the X and Y coordinates
+        of a circular region with
+        center defined by (x, y)
         and a radius r
-        to rotate it
-        by 90 degrees
+        to rotate it by 90 degrees
         
     Args:
         bmp     : unsigned byte array 
@@ -2973,11 +2976,11 @@ def fliphoricircregion(
        a circular region
        with a center x,y
        with a radius r
-        
+
     Args:
-        bmp    : unsigned byte array 
+        bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) 
+        x, y, r: center (x,y)
                  and radius r
                  of circular region
 
@@ -2997,23 +3000,23 @@ def horitransformincircregion(
         y: int,
         r: int,
         trans: str):
-    """Applies a 
-        horizontal transform 
+    """Applies a
+        horizontal transform
         to circular region
         with a center at x,y
         and a radius r
-        
+
     Args:
-        bmp  :   unsigned byte array 
+        bmp  :   unsigned byte array
                  with bmp format
         x, y, r: center (x,y) 
                  and radius r of region
         trans:   single letter
                  transform code
-                 'L' -> mirror left 
-                 'R' -> mirror right 
+                 'L' -> mirror left
+                 'R' -> mirror right
                 ' F' -> flip
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -3069,20 +3072,20 @@ def mirrorleftincircregion(
         x: int,
         y: int,
         r: int):
-    """Mirrors the top left of
-        a circular region 
-        defined by 
-        centerpoint (x,y) 
+    """Mirrors the top-left
+        of a circular region
+        defined by
+        centerpoint (x,y)
         and radius r
 
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) and 
+        x, y, r: center (x,y) and
                  radius r of region
 
     Returns:
-        byref modified 
+        byref modified
         unsigned byte array
 
     """
@@ -3097,14 +3100,15 @@ def mirrorrightincircregion(
         r: int):
     """Mirrors the right half
         of a circular region
-        defined by centerpoint (x,y)
+        defined by
+        centerpoint (x,y)
         and radius r
 
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) 
-                 and radius r 
+        x, y, r: center (x,y)
+                 and radius r
                  of region
 
     Returns:
@@ -3123,15 +3127,15 @@ def flipvertcircregion(
         r: int):
     """Does a vertical flip
         of a circular region
-        defined by 
+        defined by
         centerpoint (x,y)
         and radius r
 
     Args:
-        bmp    : unsigned byte array 
+        bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) 
-                 and radius r 
+        x, y, r: center (x,y)
+                 and radius r
                  of region
 
     Returns:
@@ -3172,17 +3176,19 @@ def verttransformincircregion(
         unsigned byte array
 
     """
-    def _T(): 
+    def _T():
         bmp[s2: e2] = bmp[s1: e1]
 
-    def _B(): 
+    def _B():
         bmp[s1: e1] = bmp[s2: e2]
 
-    def _F(): 
+    def _F():
         bmp[s1: e1], bmp[s2: e2] = \
         bmp[s2: e2], bmp[s1: e1]
 
-    f = {'T': _T, 'B': _B, 'F' : _F}[trans]
+    f = {'T': _T,
+         'B': _B,
+         'F' : _F}[trans]
     c=_getBMoffhdfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
@@ -3207,7 +3213,7 @@ def mirrortopincircregion(
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) 
+        x, y, r: center (x,y)
                  and radius r
                  of region
 
@@ -3251,9 +3257,9 @@ def mirrortopleftincircregion(
         x: int,
         y: int,
         r: int):
-    """Mirrors the top left
+    """Mirrors the top-left
         of a circular region
-        defined by 
+        defined by
         centerpoint (x,y)
         and radius r
         
@@ -3269,8 +3275,10 @@ def mirrortopleftincircregion(
         unsigned byte array
 
     """
-    mirrorleftincircregion(bmp, x, y, r)
-    mirrortopincircregion(bmp, x, y, r)
+    mirrorleftincircregion(
+        bmp, x, y, r)
+    mirrortopincircregion(
+        bmp, x, y, r)
 
 
 def mirrortoprightincircregion(
@@ -3278,11 +3286,12 @@ def mirrortoprightincircregion(
         x: int,
         y: int,
         r: int):
-    """Mirrors the top right of 
-        a circular region defined
-        by centerpoint (x,y)
+    """Mirrors the top-right
+        of a circular region
+        defined by
+        centerpoint (x,y)
         and radius r
-        
+
     Args:
         bmp    : unsigned byte array
                  with bmp format
@@ -3305,9 +3314,10 @@ def mirrorbottomleftincircregion(
         x: int,
         y: int,
         r: int):
-    """Mirrors the bottom left of 
-        a circular region defined
-        by centerpoint (x,y) 
+    """Mirrors the bottom-left
+        of a circular region
+        defined by
+        centerpoint (x,y)
         and radius r
 
     Args:
@@ -3332,15 +3342,16 @@ def mirrorbottomrightincircregion(
         x: int,
         y: int,
         r: int):
-    """Mirrors the bottom right of 
-        a circular region defined
-        by centerpoint (x,y)
+    """Mirrors the bottom-right
+        of a circular region
+        defined by
+        centerpoint (x,y)
         and radius r
 
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) and 
+        x, y, r: center (x,y) and
                  radius r of region
 
     Returns:
@@ -3360,21 +3371,23 @@ def vertbrightnessgrad2circregion(
         y: int,
         r: int,
         lumrange: list[int, int]):
-    """Applies a vertical brightness 
-        gradient adjustment 
-        to a circular region with 
-        a center x,y with a radius r
+    """Applies a
+        vertical brightness
+        gradient adjustment
+        to a circular region
+        with a center at (x,y)
+        and a radius r
         
     Args:
         bmp     : unsigned byte array
                   with bmp format
         x, y, r : center (x,y)
-                  and radius r 
-        lumrange: [byte,byte] 
-                  that defines 
+                  and radius r
+        lumrange: [byte,byte]
+                  that define 
                   the range of
                   luminosity
-        
+
     Returns:
         byref modified 
         unsigned byte array
@@ -3398,17 +3411,19 @@ def vertbrightnessgrad2circregion(
         f(bmp[s1: e1], l1), f(bmp[s2: e2], l2)
 
 
-@_fn24bitencircbnd     
+@_fn24bitencircbnd
 def horibrightnessgrad2circregion(
         bmp: array,
         x: int,
         y: int,
         r: int,
         lumrange: list[int, int]):
-    """Applies a horizontal brightness 
+    """Applies a
+        horizontal brightness
         gradient adjustment
-        to a circular region with 
-        a center x,y with a radius r
+        to a circular region
+        with a center at (x,y)
+        and a radius r
         
     Args:
         bmp     : unsigned byte array
@@ -3416,10 +3431,10 @@ def horibrightnessgrad2circregion(
         x, y, r : center (x,y) 
                   and radius r 
                   of a circular area
-        lumrange: [byte,byte] that 
-                  defines the range 
+        lumrange: [byte,byte] that
+                  defines the range
                   of luminosity
-        
+
     Returns:
         byref modified
         unsigned byte array
