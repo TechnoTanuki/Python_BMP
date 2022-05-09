@@ -3867,9 +3867,10 @@ def circle(
         m = getmaxxy(bmp)
         bits = bmp[_bmclrbits]
         c = _getBMoffhdfunc(bmp)
-        dobndcheck = not entirecircleisinboundary(
-                            x, y, -1, m[0],
-                                  -1, m[1], r)
+        dobndcheck = \
+            not entirecircleisinboundary(
+                    x, y, -1, m[0],
+                          -1, m[1], r)
         if bits == 24:
             color = int2BGRarr(color)
             if dobndcheck:
@@ -4269,7 +4270,7 @@ def gradellipse(
         by centerpoint (x,y)
         and major/minor
         axis (b,a)
-        
+
     Args:
         bmp       : unsigned byte array
                     with bmp format
@@ -5798,7 +5799,7 @@ def getimageregionbyRGB(
         rgb                 : (r:byte,g:byte,b:byte)
         similaritythreshold : controls edge detection
                               sensitivity
-        
+
     Returns:
         list of vertices
 
@@ -6458,7 +6459,7 @@ def flipvertical(bmp: array):
     Args:
         bmp: unsigned byte array
         with bmp format
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -6474,7 +6475,7 @@ def mirrortop(bmp: array):
     Args:
         bmp: unsigned byte array
              with bmp format
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -6489,7 +6490,7 @@ def mirrorbottom(bmp: array):
     Args:
         bmp: unsigned byte array
              with bmp format
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -6709,7 +6710,7 @@ def horizontalbulkswap(
         bmp           : unsigned byte array
                         with bmp format
         x1, y1, x2, y2: defines the rectangle
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -6745,7 +6746,7 @@ def fliphorizontalregion(
         x1, y1, x2, y2: ints that defines
                         the rectangular
                         region
-        
+
     Returns:
         byref modified
         unsigned byte array 
@@ -6869,7 +6870,7 @@ def mirrorleft(bmp: array):
     Args:
         bmp: unsigned byte array
              with bmp format
-        
+
     Returns:
         byref modified 
         unsigned byte array
@@ -7017,7 +7018,7 @@ def mirrortopleft(bmp):
     Args:
         bmp: unsigned byte array
              with bmp format
-        
+
     Returns:
         byref modified
         unsigned byte array
@@ -7684,8 +7685,8 @@ def IFS(bmp:array,
         yoffset: int,
         color: int,
         maxiter: int):
-    """Draw an 
-        Interated Function System 
+    """Draw an
+        Interated Function System
         (IFS) fractal
 
     Args:
@@ -7856,7 +7857,7 @@ def piechart(
     Args:
         bmp              : unsigned byte array
                            with bmp format
-        x, y, r          : center (x,y) 
+        x, y, r          : center (x,y)
                            and radius r
         dataandcolorlist : stuff to plot
                            + color
