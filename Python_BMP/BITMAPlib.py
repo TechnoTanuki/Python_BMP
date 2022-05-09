@@ -457,7 +457,7 @@ def _xchrcnt(bmp: array) -> int:
         chars in a row (x dim)
 
     """
-    return computexbytes(
+    return _xbytes(
                 _rdint(_bmx, 4, bmp), 
                     bmp[_bmclrbits])
 
@@ -588,7 +588,7 @@ def _cm24bmof(
     """
     return (x * 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-        computexbytes(
+        _xbytes(
             _rdint(_bmx, 4, bmp), 24))
 
 
@@ -615,7 +615,7 @@ def _cm24bmofhd(
     """
     return (x * 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-        computexbytes(
+        _xbytes(
             _rdint(_bmx, 4, bmp), 24 )) + 54
 
 
@@ -642,7 +642,7 @@ def _cm8bmof(
     """
     return x + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-            computexbytes(_rdint(_bmx, 4, bmp), 8))
+            _xbytes(_rdint(_bmx, 4, bmp), 8))
 
 
 def _cm8bmofhd(
@@ -669,7 +669,7 @@ def _cm8bmofhd(
     """
     return x + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-             computexbytes(_rdint(_bmx, 4, bmp), 8)) + \
+             _xbytes(_rdint(_bmx, 4, bmp), 8)) + \
                  1078
 
 
@@ -695,7 +695,7 @@ def _cm4bmof(
     """
     return (x >> 1) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-             computexbytes(_rdint(_bmx, 4, bmp), 4))
+             _xbytes(_rdint(_bmx, 4, bmp), 4))
 
 
 def _cm1bmof(
@@ -721,7 +721,7 @@ def _cm1bmof(
     """
     return (x >> 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-            computexbytes(_rdint(_bmx, 4, bmp), 1))
+            _xbytes(_rdint(_bmx, 4, bmp), 1))
 
 
 def _cm4bmofhd(
@@ -749,7 +749,7 @@ def _cm4bmofhd(
     """
     return (x >> 1) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-            computexbytes(_rdint(_bmx, 4, bmp), 4)) + \
+            _xbytes(_rdint(_bmx, 4, bmp), 4)) + \
                 118
 
 
@@ -776,7 +776,7 @@ def _cm1bmofhd(
     """
     return (x >> 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-            computexbytes(_rdint(_bmx, 4, bmp), 1)) + \
+            _xbytes(_rdint(_bmx, 4, bmp), 1)) + \
                 62
 
 
@@ -947,10 +947,10 @@ def compute24bitoffset(
     """
     return (x * 3) + \
         ((my - y - 1) * \
-            computexbytes(mx, 24))
+            _xbytes(mx, 24))
 
 
-def computexbytes(
+def _xbytes(
         x: int,
         bits: int) -> int:
     """Get the number of 
@@ -1043,11 +1043,11 @@ def computeBMPfilesize(
         int value of file size
 
     """
-    return computexbytes(x, bits) * y + \
+    return _xbytes(x, bits) * y + \
            _getbmhdsz[bits]
 
 
-def compute_bmpmetadata(
+def _bmmeta(
         x: int,
         y: int,
         bits: int) -> tuple:
@@ -1447,9 +1447,7 @@ def newBMP(
         with bitmap layout
 
     """
-    return setbmp_properties(
-                compute_bmpmetadata(
-                    x, y, colorbits))
+    return setbmp_properties(_bmmeta(x, y, colorbits))
 
 
 def CopyBMPxydim2newBMP(
