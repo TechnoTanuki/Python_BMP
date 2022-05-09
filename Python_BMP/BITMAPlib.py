@@ -7675,7 +7675,7 @@ def mandelbrot(
 
 
 def IFS(bmp:array,
-        IFStransparam: list,
+        IFStransparam: tuple,
         x1: int,
         y1: int,
         x2: int,
