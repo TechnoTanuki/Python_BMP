@@ -4586,7 +4586,8 @@ def plot8bitpatternsideway(
 
 def plotstringfunc(
         bmp: array,
-        x: int, y: int,
+        x: int,
+        y: int,
         str2plot: str,
         scale: int,
         pixspace: int,
@@ -4645,7 +4646,8 @@ def plotstringfunc(
 
 def plotstring(
         bmp: array,
-        x: int, y: int,
+        x: int,
+        y: int,
         str2plot: str,
         scale: int,
         pixspace: int,
@@ -4674,9 +4676,14 @@ def plotstring(
         unsigned byte array
 
     """
-    plotstringfunc(bmp, x, y,
-        str2plot,scale,pixspace,
-        spacebetweenchar,color,
+    plotstringfunc(
+        bmp,
+        x, y,
+        str2plot,
+        scale,
+        pixspace,
+        spacebetweenchar,
+        color,
         fontbuf,
         _enchr,
         plot8bitpattern)
@@ -4684,7 +4691,8 @@ def plotstring(
 
 def plotstringupsidedown(
         bmp: array,
-        x: int, y: int,
+        x: int,
+        y: int,
         str2plot: str,
         scale: int,
         pixspace: int,
@@ -4713,18 +4721,23 @@ def plotstringupsidedown(
         unsigned byte array
 
     """
-    plotstringfunc(bmp,
-        x, y, str2plot,
-        scale, pixspace,
+    plotstringfunc(
+        bmp,
+        x, y,
+        str2plot,
+        scale,
+        pixspace,
         spacebetweenchar,
-        color, fontbuf,
+        color,
+        fontbuf,
         _enchr,
         plot8bitpatternupsidedown)
 
 
 def plotreversestring(
         bmp: array,
-        x: int, y: int,
+        x: int,
+        y: int,
         str2plot: str,
         scale: int,
         pixspace: int,
@@ -4753,11 +4766,15 @@ def plotreversestring(
         unsigned byte array
 
     """
-    plotstringfunc(bmp,
-        x, y, str2plot,
-        scale, pixspace,
+    plotstringfunc(
+        bmp,
+        x, y,
+        str2plot,
+        scale,
+        pixspace,
         spacebetweenchar,
-        color, fontbuf,
+        color,
+        fontbuf,
         _enchrev,
         plotrotated8bitpattern)
 
@@ -4909,8 +4926,10 @@ def plotpolyfill(
     Args:
         bmp     : unsigned byte array
                   with bmp format
-        vertlist: [(x,y)...] list of vertices
-        color   : color of bezier curve
+        vertlist: [(x,y)...] 
+                  list of vertices
+        color   : color of the
+                  filled polygon
 
     Returns:
         byref modified
@@ -4934,9 +4953,12 @@ def thickplotpoly(
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        vertlist : [(x,y)...] list of vertices
-        penradius: radius of pen in pixels
-        color    : color of bezier curve
+        vertlist : [(x,y)...]
+                   list of vertices
+        penradius: radius of pen
+                   in pixels
+        color    : color of the
+                   polygon
 
     Returns:
         byref modified
@@ -5116,15 +5138,20 @@ def plot3d(
     Args:
         bmp         : unsigned byte array 
                       with bmp format
-        sides       : list of polygons and normals
+        sides       : list of polygons
+                      and normals
         isolid      : toggles solid render
-        RGBfactors  : [r:float,g:float,b:float] 
-        r,g,b all range in value from 0 to 1
-        showoutine  : toggles  polygon outline
-        outlinecolor: color of polygon outline
+        RGBfactors  : [r,g,b] r,g,b all 
+                      range in value 
+                      from 0.0 to 1.0
+        showoutine  : toggles the
+                      polygon outline
+        outlinecolor: color of the
+                      polygon outline
         
     Returns:
-        byref modified unsigned byte array
+        byref modified
+        unsigned byte array
 
     """
     if issolid: 
@@ -5183,7 +5210,8 @@ def plot3Dsolid(bmp: array,
         outlinecolor)
 
 
-def gradvert(bmp: array,
+def gradvert(
+        bmp: array,
         vertlist: list,
         penradius: int,
         lumrange: list[int, int], 
