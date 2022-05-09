@@ -7674,7 +7674,7 @@ def mandelbrot(
             plotxybit(bmp, x, y, c)
 
 
-def IFS(bmp:array, 
+def IFS(bmp:array,
         IFStransparam: list,
         x1: int,
         y1: int,
@@ -7693,7 +7693,7 @@ def IFS(bmp:array,
     Args:
         bmp            : unsigned byte array
                          with bmp format
-        IFStransparam  : see fractals.py 
+        IFStransparam  : see fractals.py
         x1, y1, x2, y2 : rectangular area
                          to draw in
         xscale,yscale  : scaling factors
@@ -7702,12 +7702,12 @@ def IFS(bmp:array,
         color          : color of fractal
         maxiter        : when to break
                          color compute
-        
+
     Returns:
         byref modified
         unsigned byte array
 
-    """        
+    """
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
     af = IFStransparam[0]
@@ -7748,10 +7748,10 @@ def plotflower(
                     and radius r
         petals    : number of petals
         angrot    : angle of rotation
-        lumrange  : (byte:byte) range of 
+        lumrange  : (byte:byte) range of
                     brightness for gradient
-        rgbfactors: [r,b,g] r,g,b values 
-                    all range from 
+        rgbfactors: [r,b,g] r,g,b values
+                    all range from
                     0.0 min to 1.0 max
 
     Returns:
@@ -7769,7 +7769,7 @@ def plotflower(
         ang=radians(a/petals)
         f = cos(p * ang) ** 2
         rang = ang + angrot
-        x = int(cx - r * sin(rang) *f) 
+        x = int(cx - r * sin(rang) *f)
         y = int(cy - r * cos(rang) *f)
         c = colormix(setmax(abs(int(lum1 + dlum * (distance([x, y], [cx, cy]) / r))),255), RGBfactors)
         if bmp[_bmclrbits] != 24:
@@ -7809,8 +7809,9 @@ def plotfilledflower(
     """
     for nr in range (r, 2, -1):
         plotflower(
-            bmp, cx, cy, nr, petals,
-            angrot, 
+            bmp, cx, cy, nr,
+            petals,
+            angrot,
             lumrange, RGBfactors)
 
 
@@ -7840,7 +7841,7 @@ def plotbmpastext(bmp: array):
                 c0, c1 = divmod(bmp[i], 16)
                 print(chr(97 + c0) +
                       chr(97 + c1), end='')
-            if bits==8: 
+            if bits == 8:
                 print(chr(bmp[i]), end='')
         print()
 
@@ -7852,7 +7853,7 @@ def piechart(
     r: int,
     dataandcolorlist: list):
     """Apply func to a
-        rectangular area in 
+        rectangular area in
         a 24-bit bitmap
 
     Args:
@@ -7976,7 +7977,7 @@ def applyfuncto24bitregion(
                         rectangular area
         func          : user defined
                         function
-        funcparam     : parameters of 
+        funcparam     : parameters of
                         the function
 
     Returns:
@@ -8003,12 +8004,12 @@ def verticalbrightnessgradto24bitregion(
         y2: int,
         lumrange: list[int, int]):
     """Apply a
-        vertical brightness gradient 
+        vertical brightness gradient
         to a rectangular area
         in a 24-bit bitmap
 
     Args:
-        bmp          :  unsigned byte array 
+        bmp          :  unsigned byte array
                         with bmp format
         x1, y1, x2, y2: defines rectangular area
         lumrange      : (byte:byte) defines
@@ -8041,7 +8042,7 @@ def horizontalbrightnessgradto24bitregion(
         y2: int,
         lumrange: list[int, int]):
     """Apply a
-        horizontal brightness gradient 
+        horizontal brightness gradient
         to a rectangular area
         in a 24-bit bitmap
 
@@ -8080,7 +8081,8 @@ def magnifyNtimescircregion(
         r: int,
         n: int):
     """Magnify a circular region
-        in a bitmap file by n
+        in a bitmap file 
+        by int n
 
     Args:
         bmp    : unsigned byte array
@@ -8113,7 +8115,7 @@ def pixelizenxncircregion(
         bmp: array,
         x: int, y: int, r: int,
         n: int):
-    """Pixelizze a circular region
+    """Pixelize a circular region
         in a bitmap file by n
 
     Args:
@@ -8142,8 +8144,8 @@ def pixelizenxncircregion(
 def resizeNtimessmaller(
         bmp: array,
         n:int) -> array:
-    """Resize a whole image 
-        n times smaller 
+    """Resize a whole image
+        int n times smaller
         (in-memory 24-bit bitmap)
 
     Args:
@@ -8170,11 +8172,13 @@ def resizeNtimessmaller(
     i = 1
     bufl = []
     y = 0
-    for buf in itercopyrect(bmp, 0, 0, mx, my):
+    for buf in itercopyrect(
+                    bmp, 0, 0, mx, my):
         j = i % n
         bufl += [buf]
         if j == 0:
-            BMPbitBLTput(nbmp, offset, _rssm25btbf(bufl))
+            BMPbitBLTput(nbmp,
+                offset, _rssm25btbf(bufl))
             offset += r
             bufl = []
             y += 1
@@ -8231,7 +8235,7 @@ def gammaadjto24bitregion(
     Args:
         bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: defines rectangular area 
+        x1, y1, x2, y2: defines rectangular area
         gamma         : gamma correction
 
     Returns:
@@ -9092,7 +9096,7 @@ def cropBMPandsave(
                          to existing file
         NewBMPfile     : New file to
                          save changes to
-        x1, y1, x2, y2 : defines the 
+        x1, y1, x2, y2 : defines the
                          rectagular region
 
     Returns:
@@ -9463,7 +9467,8 @@ def mirrorbottom2file(
     """
     applybyreffuncandsave(
         ExistingBMPfile,
-        NewBMPfile, mirrorbottom)
+        NewBMPfile,
+        mirrorbottom)
 
 
 @_fntimer
@@ -9485,7 +9490,8 @@ def mirrorleft2file(
     """
     applybyreffuncandsave(
         ExistingBMPfile,
-        NewBMPfile, mirrorleft)
+        NewBMPfile,
+        mirrorleft)
 
 
 @_fntimer
@@ -9507,7 +9513,8 @@ def mirrorright2file(
     """
     applybyreffuncandsave(
         ExistingBMPfile,
-        NewBMPfile, mirrorright)
+        NewBMPfile,
+        mirrorright)
 
 
 @_fntimer
@@ -9582,7 +9589,8 @@ def flipverticalregion2file(
 
     """
     applybyreffunctoregionandsave(
-        ExistingBMPfile, NewBMPfile,
+        ExistingBMPfile,
+        NewBMPfile,
         x1, y1, x2, y2,
         flipverticalregion)
 
@@ -9643,7 +9651,8 @@ def mirrorleftinregion2file(
 
     """
     applybyreffunctoregionandsave(
-        ExistingBMPfile, NewBMPfile,
+        ExistingBMPfile,
+        NewBMPfile,
         x1, y1, x2, y2,
         mirrorleftinregion)
 
@@ -9840,7 +9849,7 @@ def mirrorbottomleftinregion2file(
 
 @_fntimer
 def mirrorbottomrightinregion2file(
-        ExistingBMPfile: str, 
+        ExistingBMPfile: str,
         NewBMPfile: str,
         x1: int,
         y1: int,
@@ -9903,9 +9912,9 @@ def invertregion2file(
 
 @_fntimer
 def autocropimg2file(
-    ExistingBMPfile: str,
-    NewBMPfile: str,
-    similaritythreshold: float):
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        similaritythreshold: float):
     """Perform an auto crop
         to the image
         in a bitmap file
@@ -9923,7 +9932,7 @@ def autocropimg2file(
 
     """
     bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54: 
+    if len(bmp)>54:
         cropBMPandsaveusingrectbnd(
             ExistingBMPfile, NewBMPfile,
             rectboundarycoords(
@@ -9986,13 +9995,13 @@ def thresholdadjust2file(
 
 @_fntimer
 def adjustbrightnessinregion2file(
-    ExistingBMPfile: str, 
-    NewBMPfile: str,
-    x1: int,
-    y1: int,
-    x2: int,
-    y2: int,
-    percentadj: float):
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int,
+        y1: int,
+        x2: int,
+        y2: int,
+        percentadj: float):
     """Applies
         a brightness adjustment
         to rectangular area
@@ -10106,13 +10115,13 @@ def monochrome2file(
 
 @_fntimer
 def colorfilterinregion2file(
-    ExistingBMPfile: str,
-    NewBMPfile: str,
-    x1: int,
-    y1: int,
-    x2: int,
-    y2: int,
-    rgbfactors: list[float, float, float]):
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int,
+        y1: int,
+        x2: int,
+        y2: int,
+        rgbfactors: list[float, float, float]):
     """Apply a color filter
         to rectangular region
         in a 24-bit bitmap
@@ -10242,7 +10251,8 @@ def resizeNtimesbigger2file(
     """
     apply24bitfuncwithparamandsave(
         ExistingBMPfile, NewBMPfile,
-        resizeNtimesbigger, n)
+        resizeNtimesbigger,
+        n)
 
 
 @_fntimer
@@ -10470,7 +10480,7 @@ def outlineregion2file(
                          save changes to
         x1,y1,x2,y2    : defines the
                          rectangular region
-        
+
     Returns:
         new bitmap file
 
