@@ -165,7 +165,8 @@ from .colors import(
     RGB2BGRbuf,
     RGB2int,
     RGBfactors2RGB,
-    RGBfactorstoBaseandRange,
+    RGBfactorstoBaseandRange 
+    as _RGBf2BasenRng,
     RGBtoBGRarr,
     thresholdadjust
     )
@@ -2337,8 +2338,7 @@ def filledgradrect(
     dx = x2 - x1 + 1
     dy = y2 - y1 + 1
     base, lrange = \
-        RGBfactorstoBaseandRange(
-            lumrange, RGBfactors)
+        _RGBf2BasenRng(lumrange, RGBfactors)
     if direction == 0:
         xlim = x2 + 1
         for x in range(x1, xlim):
