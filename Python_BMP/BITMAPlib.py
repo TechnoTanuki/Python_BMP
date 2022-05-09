@@ -260,7 +260,7 @@ from .textgraphics import(
     )
 
 
-def setmaxx(
+def _setx(
         bmp: array,
         xmax: int):
     """Sets the x value stored
@@ -295,7 +295,7 @@ def getmaxx(bmp: array) -> int:
     return _rdint(_bmx, 4, bmp)
 
 
-def setmaxy(
+def _sety(
         bmp: array,
         ymax: int):
     """Sets the y value stored
@@ -492,10 +492,10 @@ def _xchrcnt(bmp: array) -> int:
                     bmp[_bmclrbits])
 
 
-def setfilesize(
+def _setfilsz(
         bmp: array,
         size: int):
-    """Set the header size
+    """Set the file size
         of a windows bitmap
 
     Args:
@@ -530,7 +530,7 @@ def getfilesize(bmp: array) -> int:
     return _rdint(_bmflsz, 8, bmp)
 
 
-def sethdrsize(
+def _sethdsz(
         bmp: array,
         hdsize: int):
     """Set the header size
@@ -1395,10 +1395,10 @@ def setbmp_properties(
         bmpmeta
     bmp.frombytes(b'\x00' * (filesize))
     bmp[0:2] = _bmhdid
-    setfilesize(bmp, filesize)
-    sethdrsize(bmp, hdrsize)
-    setmaxx(bmp, x)
-    setmaxy(bmp ,y)
+    _setfilsz(bmp, filesize)
+    _sethdsz(bmp, hdrsize)
+    _setx(bmp, x)
+    _sety(bmp ,y)
     bmp[_bmclrbits] = bits
     bmp[14] = 40 #required
     if bits < 24: 
@@ -3504,10 +3504,10 @@ def outlinecircregion(
         x: int,
         y: int,
         r: int):
-    """Outlines the area 
+    """Outlines the area
         within
         a circular region
-        defined by 
+        defined by
         centerpoint (x,y)
         and radius r
 
