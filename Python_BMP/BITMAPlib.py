@@ -128,10 +128,14 @@ from .solids3D import(
     )
 
 from .colors import(
-    applybrightnessadjtoBGRbuf,
-    applycolorfiltertoBGRbuf,
-    applygammaBGRbuf,
-    applymonochromefiltertoBGRbuf,
+    applybrightnessadjtoBGRbuf
+        as _bradj2BGRbuf,
+    applycolorfiltertoBGRbuf
+        as _clrfltr2BGRbuf,
+    applygammaBGRbuf
+        as _gammaBGRbuf,
+    applymonochromefiltertoBGRbuf
+        as _monofltr2BGRbuf,
     applythresholdadjtoBGRbuf,
     bmpstdpal,
     bmpvalidcolorbits,
@@ -896,7 +900,7 @@ def _BMoffsethd(
 
 def getmaxxyandbits(
         bmp: array) -> tuple:
-    """Returns bitmap metadata 
+    """Returns bitmap metadat
        (x dimension,
         y dimension,
           bit depth)
@@ -3410,7 +3414,7 @@ def vertbrightnessgrad2circregion(
 
     """
     c = _getBMoffhdfunc(bmp)
-    f = applybrightnessadjtoBGRbuf
+    f = _bradj2BGRbuf
     l = lumrange[0]
     dl = (lumrange[1] - l) / (2 * r)
     b = y - r
@@ -3456,7 +3460,7 @@ def horibrightnessgrad2circregion(
         unsigned byte array
 
     """
-    f = applybrightnessadjtoBGRbuf
+    f = _bradj2BGRbuf
     l = lumrange[0]
     dl = (lumrange[1] - lumrange[0]) / (2 * r)
     b = x - r
@@ -3674,7 +3678,7 @@ def brightnessadjcircregion(
     """
     apply24bitfunctocircregion(
         bmp, x, y, r,
-        applybrightnessadjtoBGRbuf,
+        _bradj2BGRbuf,
         percentadj)
 
 
@@ -7254,7 +7258,7 @@ def monofilterto24bitregion(
     """
     applybyrefnoparamfuncto24bitregion(
         bmp, x1, y1, x2, y2, 
-        applymonochromefiltertoBGRbuf)
+        _monofltr2BGRbuf)
 
 
 def monofilterto24bitimage(bmp: array):
@@ -7373,7 +7377,7 @@ def colorfilterto24bitregion(
     """
     applybyreffuncto24bitregion(
         bmp, x1, y1, x2, y2,
-        applycolorfiltertoBGRbuf,
+        _clrfltr2BGRbuf,
         rgbfactors)
 
 
@@ -7431,7 +7435,7 @@ def brightnesseadjto24bitregion(
     """
     applyfuncto24bitregion(
         bmp, x1, y1, x2, y2,
-        applybrightnessadjtoBGRbuf,
+        _bradj2BGRbuf,
         percentadj)
 
 
@@ -7985,7 +7989,7 @@ def verticalbrightnessgradto24bitregion(
     dlum = (lumrange[0] - lumrange[1]) / (y2 - y1)
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         BMPbitBLTput(bmp, offset,
-            applybrightnessadjtoBGRbuf(buf, lum))
+            _bradj2BGRbuf(buf, lum))
         offset += r
         lum += dlum
 
@@ -8019,7 +8023,7 @@ def horizontalbrightnessgradto24bitregion(
     c = _getBMoffhdfunc(bmp)
     x1, y1, x2, y2 = sortrecpoints(x1, y1, x2, y2)
     xlim = x2 + 1
-    f = applybrightnessadjtoBGRbuf
+    f = _bradj2BGRbuf
     l = lumrange[0]
     dl = (lumrange[1] - lumrange[0]) / (x2 - x1)
     for x in range(x1, xlim):
@@ -8199,7 +8203,7 @@ def gammaadjto24bitregion(
     """
     applybyreffuncto24bitregion(
         bmp, x1, y1, x2, y2,
-        applygammaBGRbuf, gamma)
+        _gammaBGRbuf, gamma)
 
 
 def gammaadjto24bitimage(
