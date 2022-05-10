@@ -925,7 +925,7 @@ def _BMfilesize(bmp: array) -> int:
         in bytes
 
     """
-    return computeBMPfilesize(
+    return _getbmflsz(
                 getmaxx(bmp),
                 getmaxy(bmp),
                 bmp[_bmclrbits])
@@ -990,9 +990,7 @@ def _xbytes(
     return xbytes
 
 
-def computepadbytes(
-        x: int,
-        bits: int) -> int:
+def _pdbytes(x: int, bits: int) -> int:
     """Get the number of bytes
         used to pad for
         32-bit alignment
@@ -1021,23 +1019,7 @@ def computepadbytes(
     return iif(rem > 0, 4 - rem, 0)
 
 
-def getdefaultBMPhdrsize(
-        bits: int) -> int:
-    """Gets default
-        bitmap header size
-
-    Args:
-        bits: bit depth (1,4,8,24)
-
-    Returns:
-        unsigned int value
-        of header size
-
-    """
-    return _getbmhdsz[bits]
-
-
-def computeBMPfilesize(
+def _getbmflsz(
         x: int,
         y: int,
         bits: int) -> int:
@@ -1076,7 +1058,7 @@ def _bmmeta(
         xdim, ydim, bitdepth) 
 
     """
-    return (computeBMPfilesize(x, y, bits),
+    return (_getbmflsz(x, y, bits),
             _getbmhdsz[bits], x, y, bits)
 
 def isdefaultpal(bmp: array) -> bool:
