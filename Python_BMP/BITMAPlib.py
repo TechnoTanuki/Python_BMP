@@ -441,25 +441,6 @@ def listinBMPrecbnd(
     return retval
 
 
-def _setclrbits(
-        bmp: array,
-        bits: int):
-    """Set the bit depth
-        of a windows bitmap
-
-    Args:
-        bmp: An unsigned byte array
-             with bmp format
-        int: value of bit depth
-             (1,4,8,24)
-
-    Returns:
-        byref modified byte array
-        with new file size
-
-    """
-    bmp[_bmclrbits] = bits
-
 def _getclrbits(bmp: array) -> int:
     """Get the bit depth
         of a windows bmp
@@ -494,7 +475,7 @@ def _xchrcnt(bmp: array) -> int:
                     bmp[_bmclrbits])
 
 
-def _setfilsz(
+def _setflsz(
         bmp: array,
         size: int):
     """Set the file size
@@ -516,9 +497,10 @@ def _setfilsz(
     _wrint(_bmflsz, 8, bmp, size)
 
 
-def getfilesize(bmp: array) -> int:
-    """Get the header size
+def _flsz(bmp: array) -> int:
+    """Get the file size
         of a windows bmp
+        from bmp header
 
     Args:
         bmp: unsigned byte array
@@ -553,7 +535,7 @@ def _sethdsz(
     _wrint(_bmhdsz, 4, bmp, hdsize)
 
 
-def gethdrsize(bmp: array) -> int:
+def _hdsz(bmp: array) -> int:
     """Get the header size
         of a windows bmp
 
@@ -929,8 +911,7 @@ def getmaxxyandbits(
               bmp[_bmclrbits]))
 
 
-def computeuncompressedbmpfilesize(
-        bmp: array) -> int:
+def _BMfilesize(bmp: array) -> int:
     """Returns the uncompressed
         file size
         of a bitmap
@@ -948,23 +929,6 @@ def computeuncompressedbmpfilesize(
                 getmaxx(bmp),
                 getmaxy(bmp),
                 bmp[_bmclrbits])
-
-
-def isbmpcompressed(bmp:array) -> bool:
-    """Test if bitmap is compressed
-
-    Args:
-        bmp: unsigned byte array
-             with bmp format
-
-    Returns:
-        True if compressed
-        False if uncompressed
-
-    """
-    return computeuncompressedbmpfilesize(bmp) > \
-                getfilesize(bmp)
-
 
 def compute24bitoffset(
         x: int,
@@ -1146,7 +1110,7 @@ def getBMPimgbytes(bmp: array) -> list:
         list of unsigned bytes
 
     """
-    return bmp[gethdrsize(bmp): getfilesize(bmp)]
+    return bmp[_hdsz(bmp): _flsz(bmp)]
 
 
 def setBMPimgbytes(
@@ -1166,7 +1130,7 @@ def setBMPimgbytes(
         unsigned byte array
 
     """
-    bmp[gethdrsize(bmp): getfilesize(bmp)] = buf
+    bmp[_hdsz(bmp): _flsz(bmp)] = buf
 
 
 def setbmppal(
@@ -1344,8 +1308,8 @@ def copyBMPhdr(bmp: array) -> array:
         with bmp format
 
     """
-    hdrsize = gethdrsize(bmp)
-    newbmp = array('B', [0] * getfilesize(bmp))
+    hdrsize = _hdsz(bmp)
+    newbmp = array('B', [0] * _flsz(bmp))
     newbmp[0: hdrsize] = bmp[0: hdrsize]
     return newbmp
 
@@ -1371,13 +1335,12 @@ def copyRGBpal(
         (unsigned byte array)
 
     """
-    hdl = gethdrsize(sourceBMP)
+    hdl = _hdsz(sourceBMP)
     destBMP[_bmpal: hdl] = \
     sourceBMP[_bmpal: hdl]
 
 
-def setbmp_properties(
-        bmpmeta: list) -> array:
+def _setmeta(bmpmeta: list) -> array:
     """Creates a new bitmap
         with the properties set
         by bmpmeta to 
@@ -1397,7 +1360,7 @@ def setbmp_properties(
         bmpmeta
     bmp.frombytes(b'\x00' * (filesize))
     bmp[0:2] = _bmhdid
-    _setfilsz(bmp, filesize)
+    _setflsz(bmp, filesize)
     _sethdsz(bmp, hdrsize)
     _setx(bmp, x)
     _sety(bmp ,y)
@@ -1506,7 +1469,7 @@ def newBMP(
         with bitmap layout
 
     """
-    return setbmp_properties(_bmmeta(x, y, colorbits))
+    return _setmeta(_bmmeta(x, y, colorbits))
 
 
 def CopyBMPxydim2newBMP(
@@ -1595,11 +1558,11 @@ def BMPbitBLTput(
         unsigned byte array
 
     """
-    hdrsize = gethdrsize(bmp)
+    hdrsize = _hdsz(bmp)
     bufsize = len(arraybuf)
     startoff = hdrsize + offset
     endoff = startoff + bufsize
-    if offset >= 0 and endoff <= getfilesize(bmp): 
+    if offset >= 0 and endoff <= _flsz(bmp): 
         bmp[startoff: endoff] = arraybuf
     else: 
         print (sysmsg['invalidoffset'])
@@ -1624,12 +1587,12 @@ def BMPbitBLTget(
         unsigned byte array
 
     """
-    hdrsize = gethdrsize(bmp)
+    hdrsize = _hdsz(bmp)
     retval = array('B', [])
     startoff = hdrsize + offset
     endoff = startoff + bufsize
     if (offset >= 0 and bufsize > 0 ) and \
-            endoff <= getfilesize(bmp): 
+            endoff <= _flsz(bmp): 
         retval = bmp[startoff: endoff]
     else: 
         print(sysmsg['invalidoffset'])
@@ -4445,7 +4408,7 @@ def filledrect(
         offset = c(bmp, x1, y2)
         lim = c(bmp, x2, y1)
         bufsize = len(buf)
-        fsize = getfilesize(bmp)
+        fsize = _flsz(bmp)
         while (offset <= lim) and ((offset + bufsize) <= fsize):
             bmp[offset: offset + bufsize] = buf
             offset += r
@@ -5881,7 +5844,7 @@ def getBGRpalbuf(bmp: array):
         unsigned byte array (BGR)
 
     """
-    return bmp[_bmpal: gethdrsize(bmp)]
+    return bmp[_bmpal: _hdsz(bmp)]
 
 
 def convertbufto24bit(
@@ -6210,8 +6173,8 @@ def invertimagebits(bmp: array):
         unsigned byte array
 
     """
-    offset = gethdrsize(bmp)
-    maxoffset = getfilesize(bmp)
+    offset = _hdsz(bmp)
+    maxoffset = _flsz(bmp)
     while offset < maxoffset:
         bmp[offset] = ~bmp[offset]
         offset += 1
@@ -6243,8 +6206,8 @@ def erasealternatehorizontallines(
 
     """
     bufsize = _xchrcnt(bmp)
-    s1 = gethdrsize(bmp)
-    s2 = getfilesize(bmp) - bufsize
+    s1 = _hdsz(bmp)
+    s2 = _flsz(bmp) - bufsize
     bytepat &= 0xff
     blank = array('B', [bytepat] * bufsize)
     i = 1
@@ -6460,8 +6423,8 @@ def verttrans(
          'T': _T,
          'B': _B}[trans]
     bufsize = _xchrcnt(bmp)
-    s1 = gethdrsize(bmp)
-    s2 = getfilesize(bmp)-bufsize
+    s1 = _hdsz(bmp)
+    s2 = _flsz(bmp)-bufsize
     while s1 < s2:
         e1 = s1 + bufsize
         e2 = s2 + bufsize
@@ -7847,7 +7810,7 @@ def plotbmpastext(bmp: array):
     bits = _getclrbits(bmp)
     my = getmaxy(bmp) - 1
     r = _xchrcnt(bmp)
-    offset = gethdrsize(bmp)
+    offset = _hdsz(bmp)
     for y in range(my, 0, -1):
         for x in range(0, r):
             i = offset + r * y + x
