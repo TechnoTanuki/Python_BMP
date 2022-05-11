@@ -135,20 +135,30 @@ def fillpolydata(
         filld = []
     return filld
 
-def polyboundary(vertlist:list) -> list:
-    px,vertcount=[],len(vertlist)
-    for i in range(0,vertcount):
+def polyboundary(vertlist: list) -> list:
+    px = []
+    vertcount = len(vertlist)
+    for i in range(0, vertcount):
         if i>0:
-            v1,v2=roundvect(vertlist[i-1]),roundvect(vertlist[i])
-            for p in iterline(v1,v2):
-                if p not in px: px.append(p)
-    v2,v1=roundvect(vertlist[0]),roundvect(vertlist[vertcount-1])
-    for p in iterline(v1,v2):
-        if p not in px: px.append(p)
+            v1 = roundvect(vertlist[i-1])
+            v2 = roundvect(vertlist[i])
+            for p in iterline(v1, v2):
+                if p not in px:
+                    px.append(p)
+    v2 = roundvect(vertlist[0])
+    v1 = roundvect(vertlist[vertcount-1])
+    for p in iterline(v1, v2):
+        if p not in px:
+            px.append(p)
     return px
 
-def gensides(pointlists:list,transvect:list,sides:list) -> tuple:
-    plist,slist,polylist,normlist=pointlists[0],pointlists[1],[],[]
+def gensides(
+        pointlists: list,
+        transvect: list,
+        sides: list) -> tuple:
+    [plist, slist] = pointlists
+    polylist = []
+    normlist = []
     for sidepts in sides:
         u,v,w=plist[sidepts[0]],plist[sidepts[1]],plist[sidepts[2]]
         if surfacetest(u,v,w)<=0:
