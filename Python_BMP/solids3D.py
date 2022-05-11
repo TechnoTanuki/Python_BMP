@@ -44,6 +44,7 @@ from .mathlib import(
     subvect,
     trans
     )
+
 from .primitives2D import(
     floatregpolygonvert,
     iterline,
@@ -127,14 +128,47 @@ def decahedvertandsurface(
     pts = regpolygonvert(0, 0, x, 5, 0)
     z = sqrt(distance(pts[0],
                       pts[1]) ** 2 - x * x)
-    return [[[0, 0, -z]] + adddimz(pts, 0) + [[0, 0, z]] ,((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,6),(4,3,6),(3,2,6),(5,4,6))]
+    return [[[0, 0, -z]] + adddimz(pts, 0) + [[0, 0, z]],
+            ((1, 2, 0),
+             (5, 1, 0),
+             (3, 4, 0),
+             (2, 3, 0),
+             (4, 5, 0),
+             (2, 1, 6),
+             (1, 5, 6),
+             (4, 3, 6),
+             (3, 2, 6),
+             (5, 4, 6))]
 
 
-def icosahedvertandsurface(x: float) -> list:#don't edit this it took much computation to make
-    pts,pts1=floatregpolygonvert(0,0,x,5,0),floatregpolygonvert(0,0,x,5,36)
-    z=sqrt(distance(pts[0],pts[1])**2-x*x)
+def icosahedvertandsurface(
+    x: float) -> list:#don't edit this it took much computation to make
+    pts = floatregpolygonvert(0, 0, x, 5, 0)
+    pts1 = floatregpolygonvert(0, 0, x, 5, 36)
+    z = sqrt(distance(pts[0],
+                      pts[1]) ** 2 - x * x)
     z1 = 2 * x - z
-    return [[[0,0,-z]]+adddimz(pts,0)+adddimz(pts1,z1-z)+[[0,0,z1]],((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,10),(4,3,8),(3,2,7),(5,4,9),(6,7,2),(7,8,3),(8,9,4),(9,10,5),(10,6,1),(7,6,11),(9,8,11),(8,7,11),(10,9,11),(6,10,11))]
+    return [[[0, 0, -z]] + adddimz(pts, 0) + adddimz(pts1, z1 - z) + [[0, 0, z1]],
+           ((1, 2, 0),
+            (5, 1, 0),
+            (3, 4, 0),
+            (2, 3, 0),
+            (4, 5, 0),
+            (2, 1, 6),
+            (1, 5, 10),
+            (4, 3, 8),
+            (3, 2, 7),
+            (5, 4, 9),
+            (6, 7, 2),
+            (7, 8, 3),
+            (8, 9, 4),
+            (9, 10, 5),
+            (10, 6, 1),
+            (7, 6, 11),
+            (9, 8, 11),
+            (8, 7, 11),
+            (10, 9, 11),
+            (6, 10, 11))]
 
 def rotvec3D(
         roll: float,
