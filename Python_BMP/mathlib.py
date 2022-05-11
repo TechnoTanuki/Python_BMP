@@ -1,22 +1,31 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|--------------------------------------------------------------------------|
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#|--------------------------------------------------------------------------|
-#|    The primary author and any subsequent code contributors shall not     |
-#|    be liable  in any event  for  incidental or consquential  damages     |
-#|    in connection with,  or arising out  from  the  use of  this code     |
-#|    in current form or with any modifications.                            |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Contact primary author if you plan to use this        |        |
-#|        |  in a commercial product at joelalcarez1975@gmail.com  |        |
-#|--------#--------------------------------------------------------#--------|
-#|    Educational or hobby use highly encouraged... have fun coding !       |
-#|    ps:created out of extreme boredom during the COVID-19 pandemic.       |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Note: This graphics library outputs to a bitmap file. |        |
-#\--------#--------------------------------------------------------#--------/
-
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|       The primary author and any  |
+#| any subsequent code contributors  |
+#| shall not be liable in any event  |
+#| for  incidental or consequential  |
+#| damages  in connection with,  or  |
+#| arising out from the use of this  |
+#| code in current form or with any  |
+#| modifications.                    |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+#|-----------------------------------|
+#|   Educational or hobby use is     |
+#|   highly encouraged...            |
+#|   have fun coding !               |
+#|-----------------------------------|
+#|   This graphics library outputs   |
+#|   to a bitmap file.               |
+# -----------------------------------
 from math import(
     acos,
     atan,
@@ -122,7 +131,7 @@ def variance(v: list) -> list:
 
 def isinrange(value: float,
           highlimit: float,
-           lowlimit: float) -> bool: 
+           lowlimit: float) -> bool:
     return (value>lowlimit) and \
            (value<highlimit)
 
@@ -163,7 +172,8 @@ def sign(intval: int) -> int:
 
 def LSMslope(XYdata: list) -> float:#first twovalues inlist must be [[x and y...]...]
     XY , N = pivotlist(XYdata), len(XYdata)
-    X, Y = XY[0], XY[1]
+    X =  XY[0]
+    Y =  XY[1]
     EX = sum(X)
     EY = sum(Y)
     EXY = sum(mulvect(X,Y))
@@ -172,35 +182,43 @@ def LSMslope(XYdata: list) -> float:#first twovalues inlist must be [[x and y...
 
 def LSMYint(XYdata:list) -> float:
     XY = pivotlist(XYdata)
-    meanX, meanY = mean(XY[0]), mean(XY[1])
+    meanX = mean(XY[0])
+    meanY = mean(XY[1])
     return meanY - LSMslope(XYdata) * meanX
 
 def PearsonsR(XYdata: list) -> float:#first twovalues inlist must be [[x and y...]...]
     XY, N = pivotlist(XYdata), len(XYdata)
-    X, Y = XY[0], XY[1]
-    EX,EY,EXY=sum(X),sum(Y),sum(mulvect(X,Y))
-    EsqX,EsqY=sum(mulvect(X,X)),sum(mulvect(Y,Y))
-    return ((N*EXY)-(EX*EY))/sqrt(abs(((N*EsqX)-(EX**2)))*abs(((N*EsqY)-(EY**2))))
+    X = XY[0]
+    Y = XY[1]
+    EX = sum(X)
+    EY = sum(Y)
+    EXY = sum(mulvect(X,Y))
+    EsqX = sum(mulvect(X,X))
+    EsqY = sum(mulvect(Y,Y))
+    return ((N * EXY) - (EX * EY)) / \
+        sqrt(abs(((N * EsqX) - (EX ** 2))) * \
+            abs(((N * EsqY)-(EY ** 2))))
 
 def Rsquare(XYdata: list) -> float:
-    return PearsonsR(XYdata)**2
+    return PearsonsR(XYdata) ** 2
 
-def TTest(XYdata:list) -> float:
-    r=PearsonsR(XYdata)
-    return r*sqrt((len(XYdata)-2)/(1-r**2))
+def TTest(XYdata: list) -> float:
+    r = PearsonsR(XYdata)
+    return r * sqrt((len(XYdata) - 2)/(1 - r ** 2))
 
 def StdDev(v:list) -> float:
     vr=variance(v)
-    return sqrt(sum(mulvect(vr,vr))/len(v))
+    return sqrt(sum(mulvect(vr, vr)) / len(v))
 
 def slope(u:list,v:list) -> float:
-    return (v[1]-u[1])/(v[0]-u[0])
+    return (v[1] - u[1]) / \
+           (v[0] - u[0])
 
-def coefvar(v:list) -> float:
-    return StdDev(v)/mean(v)
+def coefvar(v: list) -> float:
+    return StdDev(v) /mean(v)
 
-def vectiszero(v:list) -> bool:
-    b=True
+def vectiszero(v: list) -> bool:
+    b = True
     for i in v:
         if i>0:
             b=False
@@ -258,11 +276,18 @@ def countdist(distlist:list) -> dict:
         else: d[dist]+=1
     return d
 
-def det3D(a1:list,a2:list,a3:list) -> float: 
-    return a1[0]*a2[1]*a3[2]+a1[1]*a2[2]*a3[0]+a1[2]*a2[0]*a3[1]-a1[0]*a2[2]*a3[1]-a1[1]*a2[0]*a3[2]-a1[2]*a2[1]*a2[0]
+def det3D(a1: list,
+          a2: list,
+          a3: list) -> float:
+    return a1[0] * a2[1] * a3[2] + \
+           a1[1] * a2[2] * a3[0] + \
+           a1[2] * a2[0] * a3[1] - \
+           a1[0] * a2[2] * a3[1] - \
+           a1[1] * a2[0] * a3[2] - \
+           a1[2] * a2[1] * a2[0]
 
 def cosaffin(u: list,
-             v: list) -> float: 
+             v: list) -> float:
     return dotprod(u, v) / \
            (vmag(u) * vmag(v))
 
@@ -270,47 +295,56 @@ def dircos(v: list) -> list:
     mag=vmag(v)
     return [i/mag for i in v]
 
-def diracos(dcos: list) -> list: 
-    return [acos(d) for d in dcos]
+def diracos(dcos: list) -> list:
+    return [acos(d)
+            for d in dcos]
 
-def dirdeg(raddir: list) -> list: 
-    return [degrees(d) for d in raddir]
+def dirdeg(raddir: list) -> list:
+    return [degrees(d)
+            for d in raddir]
 
-def rect2sphericalcoord3D(v: list) -> list:
+def rect2sphericalcoord3D(
+        v: list) -> list:
     p = vmag(v)
     azimuth = atan(v[1] / v[0])
     colatitude = acos(v[2] / p)
     return [p, azimuth, colatitude]
 
-def spherical2rectcoord3D(vspherecoord3D: list) -> list:
+def spherical2rectcoord3D(
+        vspherecoord3D: list) -> list:
     [p, theta, phi] = vspherecoord3D
     sinphi = sin(phi)
     return [p * sinphi * cos(theta),
             p * sinphi * sin(theta),
             p * cos(phi)]
 
-def rect2cylindricalcoord3D(v: list) -> list:
+def rect2cylindricalcoord3D(
+        v: list) -> list:
     return [vmag(v),
             atan(v[1]/v[0]),
             v[2]]
 
-def cylindrical2rectcoord3D(vcylindcoord3D: list) -> list:
+def cylindrical2rectcoord3D(
+        vcylindcoord3D: list) -> list:
     r = vcylindcoord3D[0]
     theta = vcylindcoord3D[1]
     return [r * cos(theta),
             r * sin(theta),vcylindcoord3D[2]]
 
-def polar2rectcoord2D(vpolarcoord2D: list) -> list:
+def polar2rectcoord2D(
+        vpolarcoord2D: list) -> list:
     r = vpolarcoord2D[0]
     theta = vpolarcoord2D[1]
     return [r * cos(theta),
             r * sin(theta)]
 
-def rect2polarcoord2D(v: list) -> list:
+def rect2polarcoord2D(
+        v: list) -> list:
     return [vmag(v),
             atan(v[1] / v[0])]
 
-def polarcoordangle2D(v:list) -> float:
+def polarcoordangle2D(
+        v:list) -> float:
     a = acos(cosaffin(v, [0,-1]))
     if v[0] < 0:
         a = 2 * pi - a
@@ -344,7 +378,8 @@ def mirrorvec(vcen: list,
     return [subvect(vcen, v),
             addvect(vcen, v)]
 
-def mirror(pt: float, delta: float):
+def mirror(pt: float,
+        delta: float):
     return pt - delta, pt + delta
 
 def randomvect(minrnd: int,
