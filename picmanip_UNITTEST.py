@@ -1,5 +1,5 @@
 notice = """
- Feature and speed test
+ Unit tests
  for a Pure Python graphics library
  that saves to a bitmap
 
