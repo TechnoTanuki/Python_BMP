@@ -99,29 +99,40 @@ def perspective(vlist: list, rotvec: list, dispvec: list, d: float) -> tuple:#tr
     [syaw, cyaw] = rotvec[2]
     for p in vlist:
         [px, py, pz] = p
-        x1=-cyaw*px-syaw*pz
-        y1=croll*py-sroll*x1
-        z1=-syaw*px+cyaw*pz
-        x,y,z=croll*x1+sroll*py,spitch*z1+cpitch*y1,cpitch*z1-spitch*y1
-        x+=dispvec[0]
-        y+=dispvec[1]
-        z+=dispvec[2]
-        rotvlist.append([x,y,z])
-        projvlist.append([-d*x/z,-d*y/z])
-    return (rotvlist,projvlist)
+        x1 = -cyaw * px - syaw * pz
+        y1 = croll * py - sroll * x1
+        z1 = -syaw * px + cyaw * pz
+        x = croll * x1 + sroll * py
+        y = spitch * z1 + cpitch * y1
+        z= cpitch * z1 - spitch * y1
+        x += dispvec[0]
+        y += dispvec[1]
+        z += dispvec[2]
+        rotvlist.append([x, y, z])
+        projvlist.append([-d * x / z,-d * y / z])
+    return (rotvlist, projvlist)
 
-def fillpolydata(polybnd: list, xlim: int, ylim: int) -> list:#may be slow if polygon goes offscreen
-    filld,bnd={},rectboundarycoords(polybnd)
-    minx,miny,maxx,maxy=bnd[0][0],bnd[0][1],bnd[1][0]+1,bnd[1][1]+1
-    if (minx>=0 and miny>=0) and (maxx<=xlim and maxy<=ylim):
-        for y in range(miny,maxy):
-            filld.setdefault(y,[])
-            for x in range(minx,maxx):
-                if [x,y] in polybnd: filld[y]+=[x]
+def fillpolydata(
+        polybnd: list,
+        xlim: int,
+        ylim: int) -> list:#may be slow if polygon goes offscreen
+    filld = {}
+    bnd= rectboundarycoords(polybnd)
+    [minx, miny] = bnd[0]
+    [maxx, maxy] = bnd[1]
+    maxx += 1
+    maxy += 1
+    if (minx >= 0 and miny >= 0) and \
+       (maxx <= xlim and maxy <= ylim):
+        for y in range(miny, maxy):
+            filld.setdefault(y, [])
+            for x in range(minx, maxx):
+                if [x, y] in polybnd:
+                    filld[y]+=[x]
     else:
         print(bnd)
         print(sysmsg['regionoutofbounds'])
-        filld=[]
+        filld = []
     return filld
 
 def polyboundary(vertlist:list) -> list:
