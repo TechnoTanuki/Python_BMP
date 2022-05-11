@@ -124,21 +124,62 @@ def main():
 
         sd=b.getshapesidedict()
         pts=b.tetrahedravert(80)
-        shapes=[[[b.trans(b.cubevert(30),pts[3]),sd["cube"]],cf["darkblue"],True,c['black']],[[b.trans(b.tetrahedravert(30),pts[2]),sd["tetrahedra"]],cf["darkred"],True,c['white']],[[b.trans(b.octahedravert(20),pts[1]),sd["octahedra"]],cf["yellow"],True,c['darkgray']],[[b.trans(b.hexahedravert(30),pts[0]),sd["hexahedra"]],cf["darkgreen"],True,c['darkgreen']]]
+        shapes=[[[b.trans(b.cubevert(30), pts[3]),
+                  sd["cube"]],
+                  cf["darkblue"], True, c['black']],
+                [[b.trans(b.tetrahedravert(30), pts[2]),
+                  sd["tetrahedra"]],
+                  cf["darkred"], True, c['white']],
+                [[b.trans(b.octahedravert(20), pts[1]),
+                  sd["octahedra"]],
+                  cf["yellow"], True, c['darkgray']],
+                [[b.trans(b.hexahedravert(30), pts[0]),
+                  sd["hexahedra"]],
+                  cf["darkgreen"], True, c['darkgreen']]]
         for s in shapes:
-                b.plot3Dsolid(bmp,s[0],True,s[1],s[2],s[3],b.rotvec3D(10,5,5),tvect,d,b.addvect(cenpt,[-160,-10]))
-        b.plot3Dsolid(bmp,b.decahedvertandsurface(25),True,cf['brightred'],False,0,b.rotvec3D(7,77,20),tvect,d,b.addvect(cenpt,[280,-250]))
-        b.plot3Dsolid(bmp,b.icosahedvertandsurface(25),True,cf['brightwhite'],False,0,b.rotvec3D(70,7,20),tvect,d,b.addvect(cenpt,[+60,-130]))
-        b.plot3Dsolid(bmp,b.spherevertandsurface([5,0,0],60,10),True,cf['brightwhite'],False,0,b.rotvec3D(190,145,70),tvect,d,b.addvect(cenpt,[300,-50]))
-        b.plot3Dsolid(bmp,b.cylindervertandsurface([1,0,0],20,10,5),True,cf['brightyellow'],True,b.RGB2int(20,20,0),b.rotvec3D(60,74,72),tvect,d,b.addvect(cenpt,[-200,-50]))
-        b.plot3Dsolid(bmp,b.conevertandsurface([1,0,0],20,15,5),True,cf['brightorange'],False,b.RGB2int(20,20,0),b.rotvec3D(6,67,2),tvect,d,b.addvect(cenpt,[-300,-150]))
-        b.plot3Dsolid(bmp,b.surfplot3Dvertandsurface (-35,-35,35,35,15,5),True,cf['brightcyan'],True,0,b.rotvec3D(20,67,30),tvect,d,b.addvect(cenpt,[-420,-25]))
+                b.plot3Dsolid(bmp,
+                        s[0], True, s[1], s[2], s[3],
+                        b.rotvec3D(10,5,5), tvect, d,
+                        b.addvect(cenpt,[-160, -10]))
+        b.plot3Dsolid(bmp,
+                b.decahedvertandsurface(25),
+                   True, cf['brightred'], False,
+                   0, b.rotvec3D(7, 77, 20),
+                   tvect, d, b.addvect(cenpt, [280, -250]))
+        b.plot3Dsolid(bmp,
+                b.icosahedvertandsurface(25),
+                   True, cf['brightwhite'], False,
+                   0, b.rotvec3D(70, 7, 20),
+                   tvect, d, b.addvect(cenpt, [+60, -130]))
+        b.plot3Dsolid(bmp,
+                b.spherevertandsurface([5, 0, 0], 60, 10),
+                True, cf['brightwhite'], False,
+                0, b.rotvec3D(190, 145, 70),
+                tvect, d, b.addvect(cenpt, [300, -50]))
+        b.plot3Dsolid(bmp,
+                b.cylindervertandsurface([1,0,0], 20, 10, 5),
+                True, cf['brightyellow'], True,
+                b.RGB2int(20,20,0), b.rotvec3D(60, 74, 72),
+                tvect, d, b.addvect(cenpt,[-200, -50]))
+        b.plot3Dsolid(bmp,
+                b.conevertandsurface([1, 0, 0], 20, 15, 5),
+                True, cf['brightorange'],
+                False, b.RGB2int(20,20,0),
+                b.rotvec3D(6,67,2),
+                tvect, d, b.addvect(cenpt, [-300, -150]))
+        b.plot3Dsolid(bmp,
+                b.surfplot3Dvertandsurface (-35, -35, 35, 35, 15, 5),
+                  True, cf['brightcyan'],
+                  True, 0, b.rotvec3D(20, 67, 30),
+                  tvect, d, b.addvect(cenpt, [-420, -25]))
         print('3D tests done in ',
                 hhmmsselaspedtime(starttime))
 
-        starttime=t.process_time_ns()
-        mandelpar=b.mandelparamdict()#seems preferable to store common params
-        b.mandelbrot(bmp, 10, 600, 130, 735, mandelpar['maxeqdim'], cf['brightgreen'], 255)
+        starttime = t.process_time_ns()
+        mandelpar = b.mandelparamdict()#seems preferable to store common params
+        b.mandelbrot(bmp, 10, 600, 130, 735,
+                mandelpar['maxeqdim'],
+                    cf['brightgreen'], 255)
         p=b.getIFSparams()#same here add more to this dict
         b.IFS(bmp, p['fern'],
                 170, 600, 270, 730, 12, 12, 30, 30,
@@ -149,15 +190,15 @@ def main():
         b.IFS(bmp,p['cantortree'],
                 370, 600, 450, 730, 100, 100, 0, 0,
                 c['lightcyan'], 10000)
-        b.IFS(bmp, p['sierpinskitriamgle'],
+        b.IFS(bmp, p['sierpinskitriangle'],
                 450, 600, 670, 730, 100, 100, 0, 0,
                 c['cyan'], 10000)
         print('Fractal tests done in ',
         hhmmsselaspedtime(starttime))
         p = b.regpolygonvert(250, 80, 40, 6, 0)
         starttime = t.process_time_ns()
-        b.beziercurve(bmp,p,3,c['brightorange'])
-        b.beziercurve(bmp,hc,0,c['lightred'])
+        b.beziercurve(bmp, p, 3, c['brightorange'])
+        b.beziercurve(bmp, hc, 0, c['lightred'])
         print('Bezier curve tests done in ',
         hhmmsselaspedtime(starttime) )
 

@@ -1,9 +1,34 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#\--------------------------------------------------------------------------/
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|       The primary author and any  |
+#| any subsequent code contributors  |
+#| shall not be liable in any event  |
+#| for  incidental or consequential  |
+#| damages  in connection with,  or  |
+#| arising out from the use of this  |
+#| code in current form or with any  |
+#| modifications.                    |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+#|-----------------------------------|
+#|   Educational or hobby use is     |
+#|   highly encouraged...            |
+#|   have fun coding !               |
+#|-----------------------------------|
+#|   This graphics library outputs   |
+#|   to a bitmap file.               |
+# -----------------------------------
 
-def getIFSparams() -> dict: 
+
+def getIFSparams() -> dict:
     return {'fern':(((0,0,0,.16,0,0),
                     (.2,-.26,.23,.22,0,1.6),
                     (-.15,.28,.26,.24,0,.44),
@@ -19,13 +44,14 @@ def getIFSparams() -> dict:
                      (2/3,0,0,2/3,0.5,0.5),
                      (0,0,0,0,0,0)),
                      (1/3,2/3,1,1)),
-'sierpinskitriamgle':(((.5,0,0,.5,0,0),
+'sierpinskitriangle':(((.5,0,0,.5,0,0),
                        (.5,0,0,.5,1,0),
                        (.5,0,0,.5,.5,.5),
                        (0,0,0,0,0,0)),
                        (1/3,2/3,1,1))}
 
-def mandelparamdict() -> dict: 
+
+def mandelparamdict() -> dict:
     return {'maxdefault':(1.75,-1.75,1.5,-1.5),
               'maxeqdim':(1.75,-1.75,1.75,-1.75),
             'middefault':(.75,-1.25,1.25,-1.25),
