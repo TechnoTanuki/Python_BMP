@@ -17,106 +17,145 @@
 #|        |  Note: This graphics library outputs to a bitmap file. |        |
 #\--------#--------------------------------------------------------#--------/
 
-from math import sqrt, sin, cos, acos, atan, pi, degrees, radians
-from random import randint,random
+from math import(
+    acos,
+    atan,
+    cos,
+    degrees,
+    pi,
+    radians,
+    sin,
+    sqrt
+    )
+
+from random import(
+    randint,
+    random
+    )
+
 from functools import reduce
 from .conditionaltools import iif
 
-def setmaxvec(vlist: list, maxval: float) -> list: 
-    return [setmax(v, maxval) for v in vlist]
+def setmaxvec(
+        vlist: list,
+        maxval: float) -> list:
+    return [setmax(v, maxval)
+                for v in vlist]
 
-def setminmaxvec(vlist: list, minval: float, maxval: float) -> list: 
-    return [setminmax(v, minval, maxval) for v in vlist]
+def setminmaxvec(
+        vlist: list,
+        minval: float,
+        maxval: float) -> list:
+    return [setminmax(v, minval, maxval)
+                for v in vlist]
 
-def intsetminmaxvec(vlist: list, minval: int, maxval: int) -> list:  
-    return [intsetminmax(v, minval, maxval) for v in vlist]
+def intsetminmaxvec(
+        vlist: list,
+        minval: int,
+        maxval: int) -> list:
+    return [intsetminmax(v, minval, maxval)
+                for v in vlist]
 
-def range2baseanddelta(lst_range: list): 
+def range2baseanddelta(lst_range: list):
     return lst_range[0], lst_range[1] - lst_range[0]
 
-def roundvect(v: list) -> list: 
-    return [round(n) for n in v]
+def roundvect(
+        v: list) -> list:
+    return [round(n)
+            for n in v]
 
-def roundvectlist(vlist: list) -> list: 
-    return [roundvect(v) for v in vlist]
+def roundvectlist(
+        vlist: list) -> list:
+    return [roundvect(v)
+            for v in vlist]
 
-def addvect(u: list, v: list) -> list: 
-    return [i + j for i, j in zip(u,v)]
+def addvect(u: list,
+            v: list) -> list:
+    return [i + j
+            for i, j in zip(u,v)]
 
-def trans(vlist:list,u:list) -> list: 
-    return [addvect(v,u) for v in vlist]
+def trans(vlist: list,
+              u: list) -> list:
+    return [addvect(v, u)
+            for v in vlist]
 
-def subvect(u:list,v:list) -> list: 
-    return [i-j for i,j in zip(u,v)]
+def subvect(u: list,
+            v: list) -> list:
+    return [i - j
+            for i, j in zip(u,v)]
 
-def mulvect(u:list,v:list) -> list: 
-    return [i*j for i,j in zip(u,v)]
+def mulvect(u: list,
+            v: list) -> list:
+    return [i * j
+            for i, j in zip(u,v)]
 
-def divvect(u:list,v:list) -> list:  
-    return [i/j for i,j in zip(u,v)]
+def divvect(u: list,
+            v: list) -> list:
+    return [i / j
+            for i, j in zip(u,v)]
 
-def scalarmulvect(vec:list,scalarval:float) -> list: 
+def scalarmulvect(vec: list,
+            scalarval: float) -> list:
     return [s*scalarval for s in vec]
 
-def intscalarmulvect(vec:list,scalarval:float) -> list: 
-    return [round(s*scalarval) for s in vec]
+def intscalarmulvect(vec: list,
+               scalarval: float) -> list:
+    return [round(s * scalarval)
+            for s in vec]
 
-def mean(v:list) -> float: 
-    return sum(v)/len(v)
+def mean(v: list) -> float:
+    return sum(v) / len(v)
 
-def meanlist(vlist:list) -> list: 
-    return [mean(v) for v in vlist]
+def meanlist(vlist: list) -> list:
+    return [mean(v)
+            for v in vlist]
 
 def pivotlist(vlist:list) -> list:
-    j=len(vlist[0])
-    return [[v[i] for v in vlist] for i in range(0,j)]
+    j = len(vlist[0])
+    return [[v[i] for v in vlist]
+            for i in range(0,j)]
 
-def variance(v:list) -> list:
+def variance(v: list) -> list:
     ave=mean(v)
     return [n-ave for n in v]
 
-def permutation(n:int) -> int:
-    p=1
-    while n>1:
-        p*=n
-        n-=1
-    return p
+def isinrange(value: float,
+          highlimit: float,
+           lowlimit: float) -> bool: 
+    return (value>lowlimit) and \
+           (value<highlimit)
 
-def combination(n:int,i:int) -> int:
-    nm,dm,=1,1
-    while i>0:
-        nm*=n
-        dm*=i
-        i-=1
-        n-=1
-    return nm//dm
-
-def isinrange(value:float,highlimit:float,lowlimit:float) -> bool: 
-    return (value>lowlimit) and (value<highlimit)
-
-def setmax(val:float,maxval:float) -> float:
+def setmax(val: float,
+        maxval: float) -> float:
     return maxval if val>maxval else val
 
-def setmin(val:float,minval:float) -> float:
-    if val<minval: val=minval
+def setmin(val: float,
+        minval: float) -> float:
+    return minval if val<minval else val
+
+def setminmax(val: float,
+           minval: float,
+           maxval: float) -> float:
+    if val > maxval: val = maxval
+    if val < minval: val = minval
     return val
 
-def setminmax(val:float,minval:float,maxval:float) -> float:
-    if val>maxval: val=maxval
-    if val<minval: val=minval
-    return val
-
-def intsetminmax(val:float,minval:int,maxval:int) -> int:
+def intsetminmax(val: float,
+              minval: int,
+              maxval: int) -> int:
     val=round(val)
     if val>maxval: val=maxval
     if val<minval: val=minval
     return val
 
-def sign(intval:int) -> int:
+def sign(intval: int) -> int:
     retval=0
-    if intval>0: retval=1
-    elif intval==0: retval=0
-    else: retval=-1
+    if intval>0:
+        retval=1
+    elif intval == 0:
+        retval=0
+    else:
+        retval=-1
     return retval
 
 def LSMslope(XYdata:list) -> float:#first twovalues inlist must be [[x and y...]...]
@@ -137,7 +176,7 @@ def PearsonsR(XYdata: list) -> float:#first twovalues inlist must be [[x and y..
     EsqX,EsqY=sum(mulvect(X,X)),sum(mulvect(Y,Y))
     return ((N*EXY)-(EX*EY))/sqrt(abs(((N*EsqX)-(EX**2)))*abs(((N*EsqY)-(EY**2))))
 
-def Rsquare(XYdata: list) -> float: 
+def Rsquare(XYdata: list) -> float:
     return PearsonsR(XYdata)**2
 
 def TTest(XYdata:list) -> float:
@@ -148,10 +187,10 @@ def StdDev(v:list) -> float:
     vr=variance(v)
     return sqrt(sum(mulvect(vr,vr))/len(v))
 
-def slope(u:list,v:list) -> float: 
+def slope(u:list,v:list) -> float:
     return (v[1]-u[1])/(v[0]-u[0])
 
-def coefvar(v:list) -> float: 
+def coefvar(v:list) -> float:
     return StdDev(v)/mean(v)
 
 def vectiszero(v:list) -> bool:
@@ -162,7 +201,7 @@ def vectiszero(v:list) -> bool:
             break
     return b
 
-def isorthogonal(u:list,v:list) -> bool: 
+def isorthogonal(u:list,v:list) -> bool:
     return vectiszero(mulvect(u,v))
 
 def crossprod3d(u:list,v:list) -> list:
@@ -173,10 +212,10 @@ def crossprod3d(u:list,v:list) -> list:
         z=u[0]*v[1]-u[1]*v[0]
     return [x,y,z]
 
-def getnormvec(p1:list,p2:list,p3:list) -> list: 
+def getnormvec(p1:list,p2:list,p3:list) -> list:
     return crossprod3d(subvect(p2,p1),subvect(p3,p1))
 
-def dotprod(u:list,v:list) -> float: 
+def dotprod(u:list,v:list) -> float:
     return sum(mulvect(u,v))
 
 def vmag(v:list) -> float:
