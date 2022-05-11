@@ -644,6 +644,11 @@ class Test2filefunc(unittest.TestCase):
                 self.filecmp(reffile,
                              newfile)
 
+        def testbrightnessgradregion2file(self):
+                self.dotestrectregionwithparam(
+                        'raccoon-verticalbrightnessgradregion.bmp',
+                        verticalbrightnessgradregion2file,
+                        250, 60, 860, 666, [-100, 200])
 
 if __name__ == "__main__":
         print(notice)
