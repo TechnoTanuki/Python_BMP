@@ -271,9 +271,11 @@ def distancetable(vertlist: list) -> list:
 def countdist(distlist:list) -> dict:
     d={}
     for i in distlist:
-        dist=i[2]
-        if dist not in d: d.setdefault(dist,1)
-        else: d[dist]+=1
+        dist = i[2]
+        if dist not in d:
+            d.setdefault(dist,1)
+        else:
+            d[dist] += 1
     return d
 
 def det3D(a1: list,
@@ -329,7 +331,8 @@ def cylindrical2rectcoord3D(
     r = vcylindcoord3D[0]
     theta = vcylindcoord3D[1]
     return [r * cos(theta),
-            r * sin(theta),vcylindcoord3D[2]]
+            r * sin(theta),
+            vcylindcoord3D[2]]
 
 def polar2rectcoord2D(
         vpolarcoord2D: list) -> list:
@@ -404,7 +407,7 @@ def anglebetween2Dlines(
         v: list) -> float:
     if u[0] != v[0]:
         a=atan(slope(u,v))
-    else: 
+    else:
         a = iif(u[0] < v[0],
                     1.5707963267948966,
                     4.71238898038469)
