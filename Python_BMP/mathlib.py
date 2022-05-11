@@ -144,8 +144,10 @@ def intsetminmax(val: float,
               minval: int,
               maxval: int) -> int:
     val=round(val)
-    if val>maxval: val=maxval
-    if val<minval: val=minval
+    if val > maxval:
+        val=maxval
+    if val < minval:
+        val=minval
     return val
 
 def sign(intval: int) -> int:
@@ -158,20 +160,23 @@ def sign(intval: int) -> int:
         retval=-1
     return retval
 
-def LSMslope(XYdata:list) -> float:#first twovalues inlist must be [[x and y...]...]
-    XY,N=pivotlist(XYdata),len(XYdata)
-    X,Y=XY[0],XY[1]
-    EX,EY,EXY,EsqX=sum(X),sum(Y),sum(mulvect(X,Y)),sum(mulvect(X,X))
+def LSMslope(XYdata: list) -> float:#first twovalues inlist must be [[x and y...]...]
+    XY , N = pivotlist(XYdata), len(XYdata)
+    X, Y = XY[0], XY[1]
+    EX = sum(X)
+    EY = sum(Y)
+    EXY = sum(mulvect(X,Y))
+    EsqX =sum(mulvect(X,X))
     return ((N*EXY)-(EX*EY))/((N*EsqX)-(EX**2))
 
 def LSMYint(XYdata:list) -> float:
-    XY=pivotlist(XYdata)
-    meanX,meanY=mean(XY[0]),mean(XY[1])
-    return meanY-LSMslope(XYdata)*meanX
+    XY = pivotlist(XYdata)
+    meanX, meanY = mean(XY[0]), mean(XY[1])
+    return meanY - LSMslope(XYdata) * meanX
 
 def PearsonsR(XYdata: list) -> float:#first twovalues inlist must be [[x and y...]...]
-    XY,N=pivotlist(XYdata),len(XYdata)
-    X,Y=XY[0],XY[1]
+    XY, N = pivotlist(XYdata), len(XYdata)
+    X, Y = XY[0], XY[1]
     EX,EY,EXY=sum(X),sum(Y),sum(mulvect(X,Y))
     EsqX,EsqY=sum(mulvect(X,X)),sum(mulvect(Y,Y))
     return ((N*EXY)-(EX*EY))/sqrt(abs(((N*EsqX)-(EX**2)))*abs(((N*EsqY)-(EY**2))))
@@ -201,36 +206,47 @@ def vectiszero(v:list) -> bool:
             break
     return b
 
-def isorthogonal(u:list,v:list) -> bool:
+def isorthogonal(u: list,
+                 v: list) -> bool:
     return vectiszero(mulvect(u,v))
 
-def crossprod3d(u:list,v:list) -> list:
-    x,y,z=0,0,0
-    if len(u)==3 and len(v)==3:
-        x=u[1]*v[2]-u[2]*v[1]
-        y=u[2]*v[0]-u[0]*v[2]
-        z=u[0]*v[1]-u[1]*v[0]
-    return [x,y,z]
+def crossprod3d(u: list,
+                v: list) -> list:
+    x = y = z= 0
+    if len(u) == 3 and len(v) == 3:
+        x = u[1] * v[2] - u[2] * v[1]
+        y = u[2] * v[0] - u[0] * v[2]
+        z = u[0] * v[1] - u[1] * v[0]
+    return [x, y, z]
 
-def getnormvec(p1:list,p2:list,p3:list) -> list:
-    return crossprod3d(subvect(p2,p1),subvect(p3,p1))
+def getnormvec(p1: list,
+               p2: list,
+               p3: list) -> list:
+    return crossprod3d(subvect(p2, p1),
+                       subvect(p3, p1))
 
-def dotprod(u:list,v:list) -> float:
-    return sum(mulvect(u,v))
+def dotprod(u: list,
+            v: list) -> float:
+    return sum(mulvect(u, v))
 
 def vmag(v:list) -> float:
     s=0
-    for i in v: s+=i*i
+    for i in v:
+        s += i*i
     return sqrt(s)
 
-def distance(u:list,v:list) -> float:
+def distance(u: list,
+             v: list) -> float:
     return vmag(subvect(u,v))
 
-def distancetable(vertlist:list) -> list:
+def distancetable(vertlist: list) -> list:
     dlist=[]
     for v in vertlist:
         for u in vertlist:
-            if u!=v: dlist.append([vertlist.index(v),vertlist.index(u),distance(u,v)])
+            if u != v:
+                dlist.append([vertlist.index(v),
+                              vertlist.index(u),
+                              distance(u,v)])
     return dlist
 
 def countdist(distlist:list) -> dict:
