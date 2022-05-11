@@ -507,54 +507,106 @@ class Test2filefunc(unittest.TestCase):
                         500, 300, 290, 80)
 
         def testmagnifyNtimescircregion2file(self):
-                self.dotestcircregionwithparam('raccoon-magnify2timescircregion.bmp',magnifyNtimescircregion2file,500,300,300,2)
+                self.dotestcircregionwithparam(
+                        'raccoon-magnify2timescircregion.bmp',
+                        magnifyNtimescircregion2file,
+                        500, 300, 300, 2)
 
         def testcopycircregion2file(self):
-                self.dotestcircregionwithparam('raccoon-copycircregion.bmp',copycircregion2file,500,300,200,[240,400])
+                self.dotestcircregionwithparam(
+                        'raccoon-copycircregion.bmp',
+                        copycircregion2file,
+                        500, 300, 200, [240, 400])
 
-        def testvertbrightnessgrad2circregion2file(self):  self.dotestcircregionwithparam('raccoon-vertbrightnessgrad2circregion.bmp',vertbrightnessgrad2circregion2file,500,350,250,[200,-100])
+        def testvertbrightnessgrad2circregion2file(self):
+                self.dotestcircregionwithparam(
+                        'raccoon-vertbrightnessgrad2circregion.bmp',
+                        vertbrightnessgrad2circregion2file,
+                        500, 350, 250,[200, -100])
 
         def testhoribrightnessgrad2circregion2file(self):
-                self.dotestcircregionwithparam('raccoon-horibrightnessgrad2circregion.bmp',horibrightnessgrad2circregion2file,500,300,300,[200,-100])
+                self.dotestcircregionwithparam(
+                        'raccoon-horibrightnessgrad2circregion.bmp',
+                        horibrightnessgrad2circregion2file,
+                        500, 300, 300, [200, -100])
 
         def testeraseeverynthhorilineinccircregion2file(self):
-                self.dotestcircregionwithparam('raccoon-eraseeverynthhorilineinccircregion.bmp',eraseeverynthhorilineinccircregion2file,500,300,300,3)
+                self.dotestcircregionwithparam(
+                        'raccoon-eraseeverynthhorilineinccircregion.bmp',
+                        eraseeverynthhorilineinccircregion2file,
+                        500, 300, 300, 3)
 
         def testpixelizenxncircregion2file(self):
-                self.dotestcircregionwithparam('raccoon-pixelizenxncircregion.bmp',pixelizenxncircregion2file,500,300,300,9)
+                self.dotestcircregionwithparam(
+                        'raccoon-pixelizenxncircregion.bmp',
+                        pixelizenxncircregion2file,
+                        500, 300, 300, 9)
 
         def testsphere2file(self):
-                self.dotestcircregionwithparam('raccoon-sphere.bmp',sphere2file,120,170,100,cf['cyan'])
+                self.dotestcircregionwithparam(
+                        'raccoon-sphere.bmp',
+                        sphere2file,
+                        120, 170, 100, cf['cyan'])
 
         def testthickencirclearea2file(self):
-                self.dotestcircregionwithparam('raccoon-thickencirclearea.bmp',thickencirclearea2file,500,300,280,cf['yellow'])
+                self.dotestcircregionwithparam(
+                        'raccoon-thickencirclearea.bmp',
+                        thickencirclearea2file,
+                        500, 300, 280, cf['yellow'])
 
         def testfilledcircle2file(self):
-                self.dotestcircregionwithparam('raccoon-filledcircle.bmp',filledcircle2file,120,170,100,c['yellow'])
+                self.dotestcircregionwithparam(
+                        'raccoon-filledcircle.bmp',
+                        filledcircle2file,
+                        120, 170, 100, c['yellow'])
 
         def testmirrortopincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrortopincircregion.bmp',mirrortopincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrortopincircregion.bmp',
+                        mirrortopincircregion2file,
+                        500, 300, 300)
 
         def testmirrorbottomincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrorbottomincircregion.bmp',mirrorbottomincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrorbottomincircregion.bmp',
+                        mirrorbottomincircregion2file,
+                        500, 300, 300)
 
         def testmirrorleftincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrorleftincircregion.bmp',mirrorleftincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrorleftincircregion.bmp',
+                        mirrorleftincircregion2file,
+                        500, 300, 300)
 
         def testmirrorrightincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrorrightincircregion.bmp',mirrorrightincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrorrightincircregion.bmp',
+                        mirrorrightincircregion2file,
+                        500, 300, 300)
 
         def testmirrortopleftincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrortopleftincircregion.bmp',mirrortopleftincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrortopleftincircregion.bmp',
+                        mirrortopleftincircregion2file,
+                        500, 300, 300)
 
         def testmirrorbottomleftincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrorbottomleftincircregion.bmp',mirrorbottomleftincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrorbottomleftincircregion.bmp',
+                        mirrorbottomleftincircregion2file,
+                        500, 300, 300)
 
         def testmirrortoprightincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrortoprightincircregion.bmp',mirrortoprightincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrortoprightincircregion.bmp',
+                        mirrortoprightincircregion2file,
+                        500, 300, 300)
 
         def testmirrorbottomrightincircregion2file(self):
-                self.dotestcircregion('raccoon-mirrorbottomrightincircregion.bmp',mirrorbottomrightincircregion2file,500,300,300)
+                self.dotestcircregion(
+                        'raccoon-mirrorbottomrightincircregion.bmp',
+                        mirrorbottomrightincircregion2file,
+                        500, 300, 300)
 
         def testimgregionbyRGB2file(self):
                 filename='raccoon-edgebycolorbrown.bmp'
