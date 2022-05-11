@@ -1,21 +1,31 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|--------------------------------------------------------------------------|
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#|--------------------------------------------------------------------------|
-#|    The primary author and any subsequent code contributors shall not     |
-#|    be liable  in any event for  incidental or consequential  damages     |
-#|    in connection with,  or arising out  from  the  use of  this code     |
-#|    in current form or with any modifications.                            |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Contact primary author if you plan to use this        |        |
-#|        |  in a commercial product at joelalcarez1975@gmail.com  |        |
-#|--------#--------------------------------------------------------#--------|
-#|    Educational or hobby use highly encouraged... have fun coding !       |
-#|    ps:created out of extreme boredom during the COVID-19 pandemic.       |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Note: This graphics library outputs to a bitmap file. |        |
-#\--------#--------------------------------------------------------#--------/
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|       The primary author and any  |
+#| any subsequent code contributors  |
+#| shall not be liable in any event  |
+#| for  incidental or consequential  |
+#| damages  in connection with,  or  |
+#| arising out from the use of this  |
+#| code in current form or with any  |
+#| modifications.                    |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+#|-----------------------------------|
+#|   Educational or hobby use is     |
+#|   highly encouraged...            |
+#|   have fun coding !               |
+#|-----------------------------------|
+#|   This graphics library outputs   |
+#|   to a bitmap file. |             |
+# -----------------------------------
 
 from array import array
 from math import(
@@ -8646,7 +8656,7 @@ def applybyreffuncwithparamandsave(
 
 
 @_filechk
-def applyfuncandsave(
+def _usefnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
@@ -8930,7 +8940,7 @@ def _use24btclrfnwithpar2circreg(
 
 
 @_filechk
-def applycoloradjfunc(
+def _useclradjfn(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -9548,7 +9558,7 @@ def flipXY2file(
         new bitmap file
 
     """
-    applyfuncandsave(
+    _usefnsv(
         ExistingBMPfile,
         NewBMPfile, flipXY)
 
@@ -9950,7 +9960,7 @@ def adjustbrightness2file(
         new bitmap file
 
     """
-    applycoloradjfunc(
+    _useclradjfn(
         ExistingBMPfile,
         NewBMPfile,
         brightnessadjust,
@@ -9976,7 +9986,7 @@ def thresholdadjust2file(
         new bitmap file
 
     """
-    applycoloradjfunc(
+    _useclradjfn(
         ExistingBMPfile,
         NewBMPfile,
         thresholdadjust,
@@ -10072,7 +10082,7 @@ def colorfilter2file(
         new bitmap file
 
     """
-    applycoloradjfunc(
+    _useclradjfn(
         ExistingBMPfile,
         NewBMPfile,
         colorfilter,
@@ -10260,7 +10270,7 @@ def upgradeto24bitimage2file(
         new bitmap file
 
     """
-    applyfuncandsave(
+    _usefnsv(
         ExistingBMPfile,
         NewBMPfile,
         upgradeto24bitimage)
@@ -10284,7 +10294,7 @@ def gammaadj2file(
         new bitmap file
 
     """
-    applycoloradjfunc(
+    _useclradjfn(
         ExistingBMPfile,
         NewBMPfile,
         gammacorrect,
