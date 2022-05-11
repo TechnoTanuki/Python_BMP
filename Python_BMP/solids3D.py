@@ -94,11 +94,11 @@ def rotvec3D(
 def perspective(vlist: list, rotvec: list, dispvec: list, d: float) -> tuple:#translated from C code by Roger Stevens
     rotvlist = []
     projvlist = []
-    sroll,croll=rotvec[0][0],rotvec[0][1]
-    spitch,cpitch=rotvec[1][0],rotvec[1][1]
-    syaw,cyaw=rotvec[2][0],rotvec[2][1]
+    [sroll, croll] = rotvec[0]
+    [spitch, cpitch] = rotvec[1]
+    [syaw, cyaw] = rotvec[2]
     for p in vlist:
-        px,py,pz=p[0],p[1],p[2]
+        [px, py, pz] = p
         x1=-cyaw*px-syaw*pz
         y1=croll*py-sroll*x1
         z1=-syaw*px+cyaw*pz
