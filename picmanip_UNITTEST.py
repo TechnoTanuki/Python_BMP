@@ -118,7 +118,7 @@ from Python_BMP.BITMAPlib import(
         )
 
 
-rootdir = os.path.abspath(os.sys.path[0])
+rootdir = os.path.dirname(__file__)
 testimgdir ='/assets/test_images/'
 sdir = rootdir + testimgdir
 odir = rootdir +'/test_output/'
@@ -647,5 +647,6 @@ class Test2filefunc(unittest.TestCase):
 
 if __name__ == "__main__":
         print(notice)
+        print('Root directory is: ',rootdir)
         unittest.main()
 
