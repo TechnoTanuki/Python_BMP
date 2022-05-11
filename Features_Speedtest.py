@@ -50,8 +50,8 @@ def hhmmsselaspedtime(inittime):
              + str(secs).zfill(2) + '.' + str(ns)
 
 def main():
-        rootdir = path.abspath(sys.path[0])
-        b.plotbmpastext(b.loadBMP(rootdir+'/assets/pp.bmp')) #load logo
+        rootdir = path.dirname(__file__)
+        b.plotbmpastext(b.loadBMP(rootdir + '/assets/pp.bmp')) #load logo
         print(notice)
 
         demostart = t.process_time_ns()
@@ -60,20 +60,29 @@ def main():
         my = 768
         bmp=b.newBMP(mx, my, 24)
         print('New bitmap in '+ hhmmsselaspedtime(starttime))
-        maxpt, cenpt = b.bottomrightcoord(bmp), b.centercoord(bmp) #bitmap dependent coords
-        c, cf ,lum = b.getcolorname2RGBdict(), b.getRGBfactors(), b.getdefaultlumrange() #color info
+        maxpt = b.bottomrightcoord(bmp)
+        cenpt = b.centercoord(bmp) #bitmap dependent coords
+        c = b.getcolorname2RGBdict()
+        cf = b.getRGBfactors()
+        lum = b.getdefaultlumrange() #color info
         b.adjustcolordicttopal(bmp, c)
         starttime=t.process_time_ns()
-        b.fillbackgroundwithgrad(bmp, lum['maxasc'], cf['blue'], 0)
-        print('Background gradient test done in ',hhmmsselaspedtime(starttime))
+        b.fillbackgroundwithgrad(bmp,
+                lum['maxasc'], cf['blue'], 0)
+        print('Background gradient test done in ',
+                hhmmsselaspedtime(starttime))
         starttime = t.process_time_ns()
-        b.rectangle(bmp, 1, 1, maxpt[0] - 1, maxpt[1] - 1, c['white'])
-        b.filledgradrect(bmp, 395, 5, 955, 41, lum['upperdesc'], cf['orange'], 1)
+        b.rectangle(bmp, 1, 1, maxpt[0] - 1,
+                               maxpt[1] - 1, c['white'])
+        b.filledgradrect(bmp, 395, 5, 955, 41,
+                lum['upperdesc'], cf['orange'], 1)
         b.filledrect(bmp, 395, 44, 955, 55, c['darkblue'])
-        print('Rectangle tests done in ',hhmmsselaspedtime(starttime))
+        print('Rectangle tests done in ',
+                hhmmsselaspedtime(starttime))
         starttime = t.process_time_ns()
         hc=b.spiralcontrolpointsvert(350, 180, 5, 1.1, 5)#we will use this later to make smooth spiral
-        b.gradthickroundline(bmp, [800, 620], [800, 600], 7, lum['upperdesc'], cf['darkred'])
+        b.gradthickroundline(bmp, [800, 620], [800, 600], 7,
+                lum['upperdesc'], cf['darkred'])
         b.plotlines(bmp, hc, c['yellow'])
         cp = [50, 150]#all arrows must point outward from cp or bug report please
 
@@ -85,18 +94,26 @@ def main():
         b.drawvec(bmp, cp, [25, 125], 0, c['magenta'])
         b.drawvec(bmp, cp, [25, 175], 0, c['orange'])
         b.drawvec(bmp, cp, [75, 125], 0, c['gray'])
-        print('Line tests done in ',hhmmsselaspedtime(starttime))
+        print('Line tests done in ',
+                hhmmsselaspedtime(starttime))
         starttime = t.process_time_ns()
         fnt = b.font8x8
         strtest = 'abcdefghijklmnopqrstuvwxyz\n0123456789\'":;.,?!~`@#$%^&()[]{}_*+-/=<>\nABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        b.plotstring(bmp, 400, 10, 'My Python GL test', 4, 1, 0, c['lightgray'], fnt)
-        b.plotstring(bmp, 400, 45, 'Copyright 2021 by Joel C. Alcarez (joelalcarez1975@gmail.com)',1,1,0,c['brightwhite'],fnt)
-        b.plotstring(bmp, 300, 64, strtest, 1, 0, 0, c['brightgreen'], fnt)
-        b.plotstringupsidedown(bmp, 10, 737, strtest, 1, 0, 0, c['brightgreen'], fnt)
-        b.plotreversestring(bmp, 300, 100, strtest, 1, 0, 0, c['brightgreen'], fnt)
+        b.plotstring(bmp, 400, 10,
+                'My Python GL test', 4, 1, 0, c['lightgray'], fnt)
+        b.plotstring(bmp, 400, 45,
+                'Copyright 2021 by Joel C. Alcarez (joelalcarez1975@gmail.com)',1,1,0,c['brightwhite'],fnt)
+        b.plotstring(bmp, 300, 64,
+                strtest, 1, 0, 0, c['brightgreen'], fnt)
+        b.plotstringupsidedown(bmp, 10, 737,
+                strtest, 1, 0, 0, c['brightgreen'], fnt)
+        b.plotreversestring(bmp, 300, 100,
+                strtest, 1, 0, 0, c['brightgreen'], fnt)
         fnt = b.font8x14
-        b.plotstringvertical(bmp, 970, 30, 'Matrix text', 2, 0, 0, c['green'], fnt)
-        b.plotstringsideway(bmp, 970, 730, strtest, 1, 0, 0, c['white'], fnt)
+        b.plotstringvertical(bmp, 970, 30,
+                'Matrix text', 2, 0, 0, c['green'], fnt)
+        b.plotstringsideway(bmp, 970, 730,
+                strtest, 1, 0, 0, c['white'], fnt)
         print('Text tests done in ',hhmmsselaspedtime(starttime))
 
         starttime = t.process_time_ns()
@@ -116,7 +133,8 @@ def main():
         b.plot3Dsolid(bmp,b.cylindervertandsurface([1,0,0],20,10,5),True,cf['brightyellow'],True,b.RGB2int(20,20,0),b.rotvec3D(60,74,72),tvect,d,b.addvect(cenpt,[-200,-50]))
         b.plot3Dsolid(bmp,b.conevertandsurface([1,0,0],20,15,5),True,cf['brightorange'],False,b.RGB2int(20,20,0),b.rotvec3D(6,67,2),tvect,d,b.addvect(cenpt,[-300,-150]))
         b.plot3Dsolid(bmp,b.surfplot3Dvertandsurface (-35,-35,35,35,15,5),True,cf['brightcyan'],True,0,b.rotvec3D(20,67,30),tvect,d,b.addvect(cenpt,[-420,-25]))
-        print('3D tests done in ',hhmmsselaspedtime(starttime))
+        print('3D tests done in ',
+                hhmmsselaspedtime(starttime))
 
         starttime=t.process_time_ns()
         mandelpar=b.mandelparamdict()#seems preferable to store common params
