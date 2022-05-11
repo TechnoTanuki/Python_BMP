@@ -1,25 +1,36 @@
 notice = """
-Feature and speed test
-for a Pure Python graphics library
-that saves to a bitmap
+ Feature and speed test
+ for a Pure Python graphics library
+ that saves to a bitmap
 
- -------------------------------------------------------------------
-| Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]  |
-| We make absolutely no warranty of any kind, expressed or implied. |
-|-------------------------------------------------------------------|
-| The primary author and any subsequent code contributors shall not |
-| be liable  in any event  for  incidental or consequential damages |
-| in connection with,  or arising out  from  the  use of  this code |
-| in current form or with any modifications.                        |
-|-------------------------------------------------------------------|
-|      Contact primary author if you plan to use this               |
-|      in a commercial product at joelalcarez1975@gmail.com         |
-|-------------------------------------------------------------------|
-|  Educational or hobby use highly encouraged... have fun coding!   |
-|  ps:created out of extreme boredom during the COVID-19 pandemic.  |
-|-----#--------------------------------------------------------#----|
-|     |  Note: This graphics library outputs to a bitmap file.      |
- -----#--------------------------------------------------------#----
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|       The primary author and any  |
+| any subsequent code contributors  |
+| shall not be liable in any event  |
+| for  incidental or consequential  |
+| damages  in connection with,  or  |
+| arising out from the use of this  |
+| code in current form or with any  |
+| modifications.                    |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+|-----------------------------------|
+|   Educational or hobby use is     |
+|   highly encouraged...            |
+|   have fun coding !               |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
 """
 import Python_BMP.BITMAPlib as b, subprocess as proc
 import time as t
@@ -30,10 +41,13 @@ def elaspedtimeinseconds(inittime):
         return (t.process_time_ns() - inittime) / 1000000000
 
 def hhmmsselaspedtime(inittime):
-        secs, ns = divmod((t.process_time_ns() - inittime), 1000000000)
+        secs, ns = \
+                divmod((t.process_time_ns() - inittime), 1000000000)
         mins, secs = divmod(secs, 60)
         hrs, mins = divmod(mins, 60)
-        return str(hrs).zfill(2) + ':' + str(mins).zfill(2) + ':' + str(secs).zfill(2) + '.' + str(ns)
+        return str(hrs).zfill(2) + ':' \
+             + str(mins).zfill(2) + ':' \
+             + str(secs).zfill(2) + '.' + str(ns)
 
 def main():
         rootdir = path.abspath(sys.path[0])

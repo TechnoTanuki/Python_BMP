@@ -24,7 +24,7 @@
 #|   have fun coding !               |
 #|-----------------------------------|
 #|   This graphics library outputs   |
-#|   to a bitmap file. |             |
+#|   to a bitmap file.               |
 # -----------------------------------
 
 from array import array

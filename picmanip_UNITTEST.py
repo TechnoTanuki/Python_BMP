@@ -1,22 +1,37 @@
-#/--------------------------------------------------------------------\
-#|  Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]  |
-#|--------------------------------------------------------------------|
-#|  We make absolutely no warranty of any kind, expressed or implied. |
-#|--------------------------------------------------------------------|
-#|  The primary author and any subsequent code contributors shall not |
-#|  be liable  in any event  for  incidental or consequential damages |
-#|  in connection with,  or arising out  from  the  use of  this code |
-#|  in current form or with any modifications.                        |
-#|-----#--------------------------------------------------------#-----|
-#      |  Contact primary author if you plan to use this        |     |
-#|     |  in a commercial product at joelalcarez1975@gmail.com  |     |
-#|-----#--------------------------------------------------------#-----|
-#|  Educational or hobby use highly encouraged... have fun coding !   |
-#|  ps:created out of extreme boredom during the COVID-19 pandemic.   |
-#|-----#--------------------------------------------------------#-----|
-#|     |  Note: This graphics library outputs to a bitmap file. |     |
-#\-----#--------------------------------------------------------------/
+notice = """
+ Feature and speed test
+ for a Pure Python graphics library
+ that saves to a bitmap
 
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|       The primary author and any  |
+| any subsequent code contributors  |
+| shall not be liable in any event  |
+| for  incidental or consequential  |
+| damages  in connection with,  or  |
+| arising out from the use of this  |
+| code in current form or with any  |
+| modifications.                    |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+|-----------------------------------|
+|   Educational or hobby use is     |
+|   highly encouraged...            |
+|   have fun coding !               |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 import unittest,os
 from Python_BMP.BITMAPlib import loadBMP,getRGBfactors,int2RGB,getcolorname2RGBdict,invertregion2file,flipXY2file,fliphorizontal2file,flipverticalregion2file,fliphorizontalregion2file,cropBMPandsave,imgregionbyRGB2file,adjustbrightness2file,gammaadj2file,adjustbrightnessinregion2file,monochrome2file,monofilterinregion2file,colorfilter2file,colorfilterinregion2file,adjustthresholdinregion2file,gammaadjtoregion2file,resizeNtimessmaller2file,resizeNtimesbigger2file,outline2file,outlineregion2file,monochromecircregion2file,colorfiltercircregion2file,circle2file,thresholdadjcircregion2file,gammacorrectcircregion2file,brightnessadjcircregion2file,invertbitsincircregion2file,flipvertcircregion2file,fliphoricircregion2file,outlinecircregion2file,flipXYcircregion2file,magnifyNtimescircregion2file,copycircregion2file,verticalbrightnessgradregion2file,horizontalbrightnessgradregion2file,mirrortop2file,mirrorbottom2file,mirrortopleft2file,mirrortopright2file,mirrorbottomleft2file,mirrorbottomright2file,mirrorleft2file,mirrorright2file,verticalbrightnessgrad2file,horizontalbrightnessgrad2file,vertbrightnessgrad2circregion2file,horibrightnessgrad2circregion2file,mirrorrightinregion2file,mirrorleftinregion2file,mirrortopinregion2file,mirrorbottominregion2file,mirrortopleftinregion2file,mirrortoprightinregion2file,mirrorbottomleftinregion2file,mirrorbottomrightinregion2file,rectangle2file,fern2file,thresholdadjust2file,eraseeverynthhoriline2file,eraseeverynthhorilineinregion2file,eraseeverynthhorilineinccircregion2file,pixelizenxncircregion2file,pixelizenxntofile,sphere2file,thickencirclearea2file,filledcircle2file,mirrortopincircregion2file,mirrorbottomincircregion2file,mirrorleftincircregion2file,mirrorrightincircregion2file,mirrortopleftincircregion2file,mirrorbottomleftincircregion2file,mirrortoprightincircregion2file,mirrorbottomrightincircregion2file,upgradeto24bitimage2file,reduce24bitimagebits,autocropimg2file
 
@@ -31,40 +46,59 @@ c=getcolorname2RGBdict()
 
 class Test2filefunc(unittest.TestCase):
 
-        def filecmp(self,filename1,filename2):
-                bmp1,bmp2=loadBMP(filename1),loadBMP(filename2)
+        def filecmp(
+                self,
+                filename1:str,
+                filename2:str):
+                bmp1 = loadBMP(filename1)
+                bmp2 = loadBMP(filename2)
                 self.assertIsNotNone(bmp1)
                 self.assertIsNotNone(bmp2)
-                self.assertEqual(bmp1,bmp2)
+                self.assertEqual(bmp1, bmp2)
 
-        def dotestfullimg(self,filename,func):
-                newfile,reffile=odir+filename,sdir+filename
-                func(ofile,newfile)
-                self.filecmp(reffile,newfile)
+        def dotestfullimg(self, filename, func):
+                newfile = odir + filename
+                reffile = sdir + filename
+                func(ofile, newfile)
+                self.filecmp(reffile, newfile)
 
-        def dotestfullimgwithparam(self,filename,func,funcparam):
-                newfile,reffile=odir+filename,sdir+filename
-                func(ofile,newfile,funcparam)
-                self.filecmp(reffile,newfile)
+        def dotestfullimgwithparam(
+                self,
+                filename,
+                func,
+                funcparam):
+                newfile, reffile = odir + filename, sdir + filename
+                func(ofile, newfile, funcparam)
+                self.filecmp(reffile, newfile)
 
-        def dotestrectregion(self,filename,func,x1,y1,x2,y2):
-                newfile,reffile=odir+filename,sdir+filename
-                func(ofile,newfile,x1,y1,x2,y2)
-                self.filecmp(reffile,newfile)
+        def dotestrectregion(
+                self,
+                filename,
+                func,
+                x1, y1, x2, y2):
+                newfile, reffile = odir + filename, sdir + filename
+                func(ofile, newfile, x1, y1, x2, y2)
+                self.filecmp(reffile, newfile)
 
-        def dotestrectregionwithparam(self,filename,func,x1,y1,x2,y2,funcparam):
-                newfile,reffile=odir+filename,sdir+filename
-                func(ofile,newfile,x1,y1,x2,y2,funcparam)
-                self.filecmp(reffile,newfile)
+        def dotestrectregionwithparam(
+                self,
+                filename,
+                func,
+                x1, y1, x2, y2,
+                funcparam):
+                newfile, reffile = odir + filename, sdir + filename
+                func(ofile, newfile,
+                        x1, y1, x2, y2, funcparam)
+                self.filecmp(reffile, newfile)
 
         def dotestcircregion(
                 self,
                 filename,
                 func,
                 x, y, r):
-                newfile,reffile=odir+filename,sdir+filename
-                func(ofile,newfile,x,y,r)
-                self.filecmp(reffile,newfile)
+                newfile, reffile = odir + filename, sdir + filename
+                func(ofile, newfile, x, y, r)
+                self.filecmp(reffile, newfile)
 
         def dotestcircregionwithparam(
                 self,
@@ -269,7 +303,8 @@ class Test2filefunc(unittest.TestCase):
         def testthickencirclearea2file(self):
                 self.dotestcircregionwithparam('raccoon-thickencirclearea.bmp',thickencirclearea2file,500,300,280,cf['yellow'])
 
-        def testfilledcircle2file(self):  self.dotestcircregionwithparam('raccoon-filledcircle.bmp',filledcircle2file,120,170,100,c['yellow'])
+        def testfilledcircle2file(self):
+                self.dotestcircregionwithparam('raccoon-filledcircle.bmp',filledcircle2file,120,170,100,c['yellow'])
 
         def testmirrortopincircregion2file(self):
                 self.dotestcircregion('raccoon-mirrortopincircregion.bmp',mirrortopincircregion2file,500,300,300)
@@ -333,5 +368,6 @@ class Test2filefunc(unittest.TestCase):
 
 
 if __name__ == "__main__":
+        print(notice)
         unittest.main()
 
