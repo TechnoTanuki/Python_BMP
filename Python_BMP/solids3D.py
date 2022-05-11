@@ -53,31 +53,82 @@ from .primitives2D import(
 
 from .messages import sysmsg
 
+
 def getshapesidedict() -> dict:
-    return {"tetrahedra":((2,1,0),(2,3,1),(0,3,2),(3,0,1)),"cube":((1,2,3,0),(5,6,7,4),(0,3,6,5),(4,7,2,1),(4,1,0,5),(2,7,6,3)),"hexahedra":((2,3,1),(0,3,2),(3,0,1),(1,4,2),(2,4,0),(1,0,4)),"octahedra":((1,2,0),(4,1,0),(3,4,0),(2,3,0),(2,1,5),(1,4,5),(4,3,5),(3,2,5))}
+    return {"tetrahedra":((2, 1, 0),
+                          (2, 3, 1),
+                          (0, 3, 2),
+                          (3, 0, 1)),
+                  "cube":((1, 2, 3, 0),
+                          (5, 6, 7, 4),
+                          (0, 3, 6, 5),
+                          (4, 7, 2, 1),
+                          (4, 1, 0, 5),
+                          (2, 7, 6, 3)),
+             "hexahedra":((2, 3, 1),
+                          (0, 3, 2),
+                          (3, 0, 1),
+                          (1, 4, 2),
+                          (2, 4, 0),
+                          (1, 0, 4)),
+             "octahedra":((1, 2, 0),
+                          (4, 1, 0),
+                          (3, 4, 0),
+                          (2, 3, 0),
+                          (2, 1, 5),
+                          (1, 4, 5),
+                          (4, 3, 5),
+                          (3, 2, 5))}
+
 
 def tetrahedravert(x: float) -> list:
     x_sqr = x * x
     halfx= x / 2
-    return [[0,0,0],[halfx,sqrt(x_sqr/2),0],[x,0,0],[halfx,halfx,sqrt(3/8*x_sqr)]]
+    return [[0, 0, 0],
+            [halfx, sqrt(x_sqr / 2), 0],
+            [x, 0, 0],
+            [halfx, halfx, sqrt(3 / 8 * x_sqr)]]
+
 
 def cubevert(x: float) -> list:
-    return [[0,0,0],[0,x,0],[x,x,0],[x,0,0],[0,x,x],[0,0,x],[x,0,x],[x,x,x]]
+    return [[0, 0, 0],
+            [0, x, 0],
+            [x, x, 0],
+            [x, 0, 0],
+            [0, x, x],
+            [0, 0, x],
+            [x, 0, x],
+            [x, x, x]]
+
 
 def hexahedravert(x: float) -> list:
     x_sqr = x * x
     halfx= x / 2
     z = sqrt(3 / 8 * x_sqr)
-    return [[0,0,0],[halfx,sqrt(x_sqr/2),0],[x,0,0],[halfx,halfx,z],[halfx,halfx,-z]]
+    return [[0, 0, 0],
+            [halfx, sqrt(x_sqr / 2), 0],
+            [x, 0, 0],
+            [halfx, halfx, z],
+            [halfx, halfx, -z]]
+
 
 def octahedravert(x:float) -> list:
     halfx = x / 2
-    return [[halfx,halfx,halfx],[0,0,0],[x,0,0],[x,x,0],[0,x,0],[halfx,halfx,-halfx]]
+    return [[halfx, halfx, halfx],
+            [0, 0, 0],
+            [x, 0, 0],
+            [x, x, 0],
+            [0, x, 0],
+            [halfx, halfx, -halfx]]
 
-def decahedvertandsurface(x: float) -> list:
-    pts=regpolygonvert(0,0,x,5,0)
-    z=sqrt(distance(pts[0],pts[1])**2-x*x)
-    return [[[0,0,-z]]+adddimz(pts,0)+[[0,0,z]],((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,6),(4,3,6),(3,2,6),(5,4,6))]
+
+def decahedvertandsurface(
+        x: float) -> list:
+    pts = regpolygonvert(0, 0, x, 5, 0)
+    z = sqrt(distance(pts[0],
+                      pts[1]) ** 2 - x * x)
+    return [[[0, 0, -z]] + adddimz(pts, 0) + [[0, 0, z]] ,((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,6),(4,3,6),(3,2,6),(5,4,6))]
+
 
 def icosahedvertandsurface(x: float) -> list:#don't edit this it took much computation to make
     pts,pts1=floatregpolygonvert(0,0,x,5,0),floatregpolygonvert(0,0,x,5,36)
@@ -89,9 +140,16 @@ def rotvec3D(
         roll: float,
         pitch: float,
         yaw: float)-> tuple:
-    return (computerotvec(roll),computerotvec(pitch),computerotvec(yaw))
+    return (computerotvec(roll),
+            computerotvec(pitch),
+            computerotvec(yaw))
 
-def perspective(vlist: list, rotvec: list, dispvec: list, d: float) -> tuple:#translated from C code by Roger Stevens
+
+def perspective(
+        vlist: list,
+        rotvec: list,
+        dispvec: list,
+        d: float) -> tuple:#translated from C code by Roger Stevens
     rotvlist = []
     projvlist = []
     [sroll, croll] = rotvec[0]
@@ -111,6 +169,7 @@ def perspective(vlist: list, rotvec: list, dispvec: list, d: float) -> tuple:#tr
         rotvlist.append([x, y, z])
         projvlist.append([-d * x / z,-d * y / z])
     return (rotvlist, projvlist)
+
 
 def fillpolydata(
         polybnd: list,
@@ -135,7 +194,9 @@ def fillpolydata(
         filld = []
     return filld
 
-def polyboundary(vertlist: list) -> list:
+
+def polyboundary(
+        vertlist: list) -> list:
     px = []
     vertcount = len(vertlist)
     for i in range(0, vertcount):
@@ -151,6 +212,7 @@ def polyboundary(vertlist: list) -> list:
         if p not in px:
             px.append(p)
     return px
+
 
 def gensides(
         pointlists: list,
@@ -171,10 +233,11 @@ def gensides(
             normlist.append(getnormvec(u, v, w))
     return (polylist, normlist)
 
+
 def spherevert(
-    vcen: list,
-    r: float,
-    deganglestep: float) -> list:
+        vcen: list,
+        r: float,
+        deganglestep: float) -> list:
     plist = []
     for theta in range(0, 360, deganglestep):
         for phi in range(0, 180, deganglestep):
@@ -189,6 +252,7 @@ def spherevert(
         plist.append(p)
     return plist
 
+
 def zlevelcoords(verlist: list) -> tuple:#we have a 3D object and we take z slices
     zlist = []
     zord = {}
@@ -201,6 +265,7 @@ def zlevelcoords(verlist: list) -> tuple:#we have a 3D object and we take z slic
         else:
             zord[z] += pind
     return (zlist, zord)
+
 
 def genspheresurfaces(
         zlevelcoord:list) -> list:
@@ -235,9 +300,14 @@ def genspheresurfaces(
                           pts[j]]]
     return surf
 
-def spherevertandsurface(vcen:list,r:float,deganglestep:float)-> tuple:
-    s=spherevert(vcen,r,deganglestep)
-    return (s,genspheresurfaces(zlevelcoords(s)))
+
+def spherevertandsurface(
+        vcen: list,
+        r: float,
+        deganglestep: float)-> tuple:
+    s = spherevert(vcen, r, deganglestep)
+    return (s, genspheresurfaces(zlevelcoords(s)))
+
 
 def cylindervertandsurface(vcen:list,r:float,zlen:float,deganglestep:float) -> tuple:
     z,i,plist,top,bottom,side=zlen/2,0,[],[],[],[]
