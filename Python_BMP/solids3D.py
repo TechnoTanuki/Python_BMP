@@ -128,7 +128,8 @@ def decahedvertandsurface(
     pts = regpolygonvert(0, 0, x, 5, 0)
     z = sqrt(distance(pts[0],
                       pts[1]) ** 2 - x * x)
-    return [[[0, 0, -z]] + adddimz(pts, 0) + [[0, 0, z]],
+    return [[[0, 0, -z]] + \
+            adddimz(pts, 0) + [[0, 0, z]],
             ((1, 2, 0),
              (5, 1, 0),
              (3, 4, 0),
@@ -148,7 +149,8 @@ def icosahedvertandsurface(
     z = sqrt(distance(pts[0],
                       pts[1]) ** 2 - x * x)
     z1 = 2 * x - z
-    return [[[0, 0, -z]] + adddimz(pts, 0) + adddimz(pts1, z1 - z) + [[0, 0, z1]],
+    return [[[0, 0, -z]] + adddimz(pts, 0) + \
+           adddimz(pts1, z1 - z) + [[0, 0, z1]],
            ((1, 2, 0),
             (5, 1, 0),
             (3, 4, 0),
@@ -350,7 +352,7 @@ def cylindervertandsurface(
         zlen: float,
         deganglestep: float) -> tuple:
     z = zlen / 2
-    i =0 
+    i =0
     plist = []
     top = []
     bottom = []
@@ -396,18 +398,20 @@ def surfplot3Dvertandsurface(
         y2: int,
         zscale: float,
         step: int) -> tuple:
-    vlist,surf=[],[]
-    for y in range(y1,y2,step):
+    vlist = []
+    surf = []
+    for y in range(y1, y2, step):
         for x in range(x1, x2, step):
             z = x & y
             vlist.append([x, y ,z])
     dx = abs(x2 - x1) // step
-    dx1,vl=dx-1,len(vlist)
+    dx1 = dx - 1
+    vl = len(vlist)
     for v in vlist:
         i=vlist.index(v)
         idx = i + dx
         idx1 = idx + 1
-        if (vl-idx1) >= 0 and (i % dx)<dx1:
+        if (vl - idx1) >= 0 and (i % dx) < dx1:
              surf.append([idx, idx1, i + 1, i])
     return (vlist, surf)
 
