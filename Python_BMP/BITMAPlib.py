@@ -179,7 +179,7 @@ from .colors import(
     RGB2int,
     RGBfactors2RGB,
     RGBfactorstoBaseandRange
-    as _RGBf2BasenRng,
+        as _RGBf2BasenRng,
     RGBtoBGRarr,
     thresholdadjust
     )
@@ -443,7 +443,7 @@ def listinBMPrecbnd(
         False if out of bounds
 
     """
-    retval=True
+    retval = True
     for v in xylist:
         if isinBMPrectbnd(
             bmp, v[0],v[1]) == False:
@@ -614,8 +614,7 @@ def _24bmof(
     """
     return (x * 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-        _xbytes(
-            _rdint(_bmx, 4, bmp), 24))
+        _xbytes(_rdint(_bmx, 4, bmp), 24))
 
 
 def _24bmofhd(
@@ -642,8 +641,7 @@ def _24bmofhd(
     """
     return (x * 3) + \
         ((_rdint(_bmy, 4, bmp) - y - 1) * \
-        _xbytes(
-            _rdint(_bmx, 4, bmp), 24 )) + 54
+        _xbytes(_rdint(_bmx, 4, bmp), 24 )) + 54
 
 
 def _8bmof(
@@ -8641,7 +8639,7 @@ def _usebyreffnsv(
 
 
 @_filechk
-def applybyreffuncwithparamandsave(
+def _usebyreffnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -10451,7 +10449,7 @@ def eraseeverynthhoriline2file(
         new bitmap file
 
     """
-    applybyreffuncwithparamandsave(
+    _usebyreffnwithparnsv(
         ExistingBMPfile,
         NewBMPfile,
         eraseeverynthhorizontalline,

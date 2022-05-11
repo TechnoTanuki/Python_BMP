@@ -380,7 +380,9 @@ def conevertandsurface(
     maxang = 360 + (deganglestep << 1)
     plist = [subvect(vcen, [0, 0, z])]
     for theta in range(0, maxang, deganglestep):
-        plist.append(addvect(vcen, cylindrical2rectcoord3D([r, radians(theta), z])))
+        plist.append(addvect(vcen,
+                cylindrical2rectcoord3D(
+                    [r, radians(theta), z])))
         bottom.append(i)
         if i > 2:
             side.append([0, i, i - 1])
@@ -396,17 +398,18 @@ def surfplot3Dvertandsurface(
         step: int) -> tuple:
     vlist,surf=[],[]
     for y in range(y1,y2,step):
-        for x in range(x1,x2,step):
-            z=x&y
-            vlist.append([x,y,z])
-    dx=abs(x2-x1)//step
+        for x in range(x1, x2, step):
+            z = x & y
+            vlist.append([x, y ,z])
+    dx = abs(x2 - x1) // step
     dx1,vl=dx-1,len(vlist)
     for v in vlist:
         i=vlist.index(v)
-        idx=i+dx
-        idx1=idx+1
-        if (vl-idx1)>=0 and (i % dx)<dx1: surf.append([idx,idx1,i+1,i])
-    return (vlist,surf)
+        idx = i + dx
+        idx1 = idx + 1
+        if (vl-idx1) >= 0 and (i % dx)<dx1:
+             surf.append([idx, idx1, i + 1, i])
+    return (vlist, surf)
 
 
 def surfacetest(
