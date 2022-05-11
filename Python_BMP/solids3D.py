@@ -202,25 +202,37 @@ def zlevelcoords(verlist: list) -> tuple:#we have a 3D object and we take z slic
             zord[z] += pind
     return (zlist, zord)
 
-def genspheresurfaces(zlevelcoord:list) -> list:
-    zl,vl=zlevelcoord[0],zlevelcoord[1]
-    surf,levels=[],len(zl)-1
-    northpole,southpole=vl[zl[0]][0],vl[zl[levels]][0]
-    npts,spts=vl[zl[1]],vl[zl[levels-1]]
-    lpts=len(npts)
-    maxp,i=lpts-1,0
-    for i in range(0,lpts):
-        j=0 if i==maxp else i+1
-        surf+=[[northpole,npts[j],npts[i]],[southpole,spts[i],spts[j]]]
-    if levels>2:
-        mxlv=levels-1
-        for k in range(1,mxlv):
-            pts,adjpts=vl[zl[k]],vl[zl[k+1]]
-            lpts,maxadjpts=len(pts),len(adjpts)
-            maxp,i=lpts-1,0
-            for i in range(0,lpts):
-                j=0 if i==maxp else i+1
-                surf+=[[adjpts[j%maxadjpts],adjpts[i%maxadjpts],pts[i],pts[j]]]
+def genspheresurfaces(
+        zlevelcoord:list) -> list:
+    [zl, vl] = zlevelcoord
+    surf = []
+    levels = len(zl) - 1
+    northpole = vl[zl[0]][0]
+    southpole = vl[zl[levels]][0]
+    npts = vl[zl[1]]
+    spts = vl[zl[levels - 1]]
+    lpts = len(npts)
+    maxp = lpts-1
+    i = 0
+    for i in range(0, lpts):
+        j = 0 if i == maxp else i + 1
+        surf += [[northpole, npts[j], npts[i]],
+                 [southpole, spts[i], spts[j]]]
+    if levels > 2:
+        mxlv = levels - 1
+        for k in range(1, mxlv):
+            pts = vl[zl[k]]
+            adjpts = vl[zl[k + 1]]
+            lpts = len(pts)
+            maxadjpts = len(adjpts)
+            maxp = lpts - 1
+            i = 0
+            for i in range(0, lpts):
+                j = 0 if i == maxp else i + 1
+                surf += [[adjpts[j % maxadjpts],
+                          adjpts[i % maxadjpts],
+                          pts[i],
+                          pts[j]]]
     return surf
 
 def spherevertandsurface(vcen:list,r:float,deganglestep:float)-> tuple:
