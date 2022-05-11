@@ -34,6 +34,7 @@ from random import(
     )
 
 from functools import reduce
+from typing import Callable
 from .conditionaltools import iif
 
 def setmaxvec(
@@ -260,134 +261,202 @@ def countdist(distlist:list) -> dict:
 def det3D(a1:list,a2:list,a3:list) -> float: 
     return a1[0]*a2[1]*a3[2]+a1[1]*a2[2]*a3[0]+a1[2]*a2[0]*a3[1]-a1[0]*a2[2]*a3[1]-a1[1]*a2[0]*a3[2]-a1[2]*a2[1]*a2[0]
 
-def cosaffin(u:list,v:list) -> float: 
-    return dotprod(u,v)/(vmag(u)*vmag(v))
+def cosaffin(u: list,
+             v: list) -> float: 
+    return dotprod(u, v) / \
+           (vmag(u) * vmag(v))
 
-def dircos(v:list) -> list:
+def dircos(v: list) -> list:
     mag=vmag(v)
     return [i/mag for i in v]
 
-def diracos(dcos:list) -> list: 
+def diracos(dcos: list) -> list: 
     return [acos(d) for d in dcos]
 
-def dirdeg(raddir:list) -> list: 
+def dirdeg(raddir: list) -> list: 
     return [degrees(d) for d in raddir]
 
-def rect2sphericalcoord3D(v:list) -> list:
-    p=vmag(v)
-    azimuth,colatitude=atan(v[1]/v[0]),acos(v[2]/p)
-    return [p,azimuth,colatitude]
+def rect2sphericalcoord3D(v: list) -> list:
+    p = vmag(v)
+    azimuth = atan(v[1] / v[0])
+    colatitude = acos(v[2] / p)
+    return [p, azimuth, colatitude]
 
-def spherical2rectcoord3D(vspherecoord3D:list) -> list:
-    p,theta,phi=vspherecoord3D[0],vspherecoord3D[1],vspherecoord3D[2]
-    sinphi=sin(phi)
-    return [p*sinphi*cos(theta),p*sinphi*sin(theta),p*cos(phi)]
+def spherical2rectcoord3D(vspherecoord3D: list) -> list:
+    [p, theta, phi] = vspherecoord3D
+    sinphi = sin(phi)
+    return [p * sinphi * cos(theta),
+            p * sinphi * sin(theta),
+            p * cos(phi)]
 
-def rect2cylindricalcoord3D(v:list) -> list: 
-    return [vmag(v),atan(v[1]/v[0]),v[2]]
+def rect2cylindricalcoord3D(v: list) -> list:
+    return [vmag(v),
+            atan(v[1]/v[0]),
+            v[2]]
 
 def cylindrical2rectcoord3D(vcylindcoord3D: list) -> list:
-    r,theta=vcylindcoord3D[0],vcylindcoord3D[1]
-    return [r*cos(theta),r*sin(theta),vcylindcoord3D[2]]
+    r = vcylindcoord3D[0]
+    theta = vcylindcoord3D[1]
+    return [r * cos(theta),
+            r * sin(theta),vcylindcoord3D[2]]
 
-def polar2rectcoord2D(vpolarcoord2D:list) -> list:
-    r,theta=vpolarcoord2D[0],vpolarcoord2D[1]
-    return [r*cos(theta),r*sin(theta)]
+def polar2rectcoord2D(vpolarcoord2D: list) -> list:
+    r = vpolarcoord2D[0]
+    theta = vpolarcoord2D[1]
+    return [r * cos(theta),
+            r * sin(theta)]
 
-def rect2polarcoord2D(v:list) -> list:
-    p=vmag(v)
-    a=atan(v[1]/v[0])
-    return [p,a]
+def rect2polarcoord2D(v: list) -> list:
+    return [vmag(v),
+            atan(v[1] / v[0])]
 
 def polarcoordangle2D(v:list) -> float:
-    a=acos(cosaffin(v,[0,-1]))
-    if v[0]<0:a=2*pi-a
+    a = acos(cosaffin(v, [0,-1]))
+    if v[0] < 0:
+        a = 2 * pi - a
     return a
 
-def rect2polarcoord2Dwithcenter(vcen:list,vpnt:list) -> list:
-    v=subvect(vpnt,vcen)
-    return [vmag(v),polarcoordangle2D(v)]
+def rect2polarcoord2Dwithcenter(
+        vcen: list,
+        vpnt: list) -> list:
+    v=subvect(vpnt, vcen)
+    return [vmag(v),
+            polarcoordangle2D(v)]
 
 def computerotvec(degrot:float) -> list:
-    a=radians(degrot)
-    return (sin(a),cos(a))
+    a = radians(degrot)
+    return (sin(a), cos(a))
 
-def rotvec2D(v:list,rotvec:list) -> list: 
-    return [v[0]*rotvec[1]-v[1]*rotvec[0],v[0]*rotvec[0]+v[1]*rotvec[1]]
+def rotvec2D(v: list,
+        rotvec: list) -> list:
+    return [v[0] * rotvec[1] - v[1] * rotvec[0],
+            v[0] * rotvec[0] + v[1] * rotvec[1]]
 
-def mirrorx(p:list,x:float) -> list: 
-    return [p[0]-x,p[1]],[p[0]+x,p[1]]
+def mirrorx(p: list,
+            x: float) -> list:
+    return [p[0] - x, p[1]], [p[0] + x, p[1]]
 
-def mirrory(p:list,y:float) -> list: 
-    return [p[0],p[1]-y],[p[0],p[1]+y]
+def mirrory(p:list, y:float) -> list:
+    return [p[0], p[1] - y], [p[0], p[1] + y]
 
-def mirrorvec(vcen:list,v:list) -> list: 
-    return [subvect(vcen,v),addvect(vcen,v)]
+def mirrorvec(vcen: list,
+                 v: list) -> list:
+    return [subvect(vcen, v),
+            addvect(vcen, v)]
 
-def mirror(pt:list,delta:float): return pt-delta,pt+delta
+def mirror(pt: float, delta: float):
+    return pt - delta, pt + delta
 
-def randomvect(minrnd:int,maxrnd:int) -> list: 
-    return [randint(minrnd,maxrnd),randint(minrnd,maxrnd),randint(minrnd,maxrnd)]
+def randomvect(minrnd: int,
+               maxrnd: int) -> list:
+    return [randint(minrnd, maxrnd),
+            randint(minrnd, maxrnd),
+            randint(minrnd, maxrnd)]
 
-def addrndtovert(vertlist:list,minrnd:int,maxrnd:int) -> list: 
-    return [addvect(pt,randomvect(minrnd,maxrnd)) for pt in vertlist]
+def addrndtovert(vertlist: list,
+                   minrnd: int,
+                   maxrnd: int) -> list:
+    return [addvect(pt, randomvect(minrnd, maxrnd))
+                for pt in vertlist]
 
-def adddimz(vlist2D:list,value:float) -> list: 
-    return [[v[0],v[1],value] for v in vlist2D]
+def adddimz(vlist2D: list,
+              value: float) -> list:
+    return [[v[0],v[1],value]
+            for v in vlist2D]
 
-def anglebetween2Dlines(u:list,v:list) -> float:
-    if u[0]!=v[0]: a=atan(slope(u,v))
-    else: a=iif(u[0]<v[0],1.5707963267948966,4.71238898038469)
+def anglebetween2Dlines(
+        u: list,
+        v: list) -> float:
+    if u[0] != v[0]:
+        a=atan(slope(u,v))
+    else: 
+        a = iif(u[0] < v[0],
+                    1.5707963267948966,
+                    4.71238898038469)
     return a
 
 def rotatebits(bits:int) -> int:
-    bit,retval=7,0
+    bit = 7
+    retval = 0
     while bit>0:
-        retval+=((bits & (1<<bit))>>bit)<<(7-bit)
-        bit-=1
+        retval += \
+            ((bits & (1 << bit)) >> bit) << (7 - bit)
+        bit -= 1
     return retval
 
-def mirror1stquad(x:int,y:int,v:list) -> list:
-    xmin,xmax=mirror(x,v[0])
-    ymin,ymax=mirror(y,v[1])
-    return [[xmin,ymax],[xmax,ymax],[xmin,ymin],[xmax,ymin]]
+def mirror1stquad(
+        x: int,
+        y: int,
+        v: list) -> list:
+    xmin, xmax = mirror(x, v[0])
+    ymin, ymax = mirror(y, v[1])
+    return [[xmin, ymax],
+            [xmax, ymax],
+            [xmin, ymin],
+            [xmax, ymin]]
 
-def xorvect(u:list,v:list) -> list: 
-    return [i^j for i,j in zip(u,v)]
+def xorvect(u: list,
+            v: list) -> list:
+    return [i ^ j
+            for i, j in zip(u, v)]
 
-def andvect(u:list,v:list) -> list: 
-    return [i&j for i,j in zip(u,v)]
+def andvect(u: list,
+            v: list) -> list:
+    return [i & j
+            for i, j in zip(u,v)]
 
-def bitmaskvect(v:list,bitmask:int) -> list: 
-    return [b & bitmask for b in v ]
+def bitmaskvect(
+              v: list,
+        bitmask: int) -> list:
+    return [b & bitmask
+            for b in v ]
 
-def orvect(u:list,v:list) -> list: 
-    return [i|j for i,j in zip(u,v)]
+def orvect(u: list,
+           v: list) -> list:
+    return [i | j
+            for i, j in zip(u, v)]
 
-def gammacorrectbyte(lumbyte:list,gamma: float) -> int: 
-    return int(((lumbyte/255)**gamma)*255)
+def gammacorrectbyte(
+        lumbyte: list,
+        gamma: float) -> int:
+    return int(((lumbyte / 255) ** gamma) * 255)
 
-def addvectinlist(vlist:list): return reduce(addvect,vlist)
+def addvectinlist(vlist: list):
+    return reduce(addvect,vlist)
 
-def addvectpairlist(vpair:list): return addvect(vpair[0],vpair[1])
+def addvectpairlist(vpair: list):
+    return addvect(vpair[0],vpair[1])
 
-def addvecttripletlist(vtriplet:list): return addvect(addvect(vtriplet[0],vtriplet[1]),vtriplet[2])
+def addvecttripletlist(vtriplet: list):
+    return addvect(
+           addvect(vtriplet[0],
+                   vtriplet[1]),
+                   vtriplet[2])
 
-def addvectlist(vlist1:list,vlist2:list) -> list: 
-    return [addvect(u,v) for u,v in zip(vlist1,vlist2)]
+def addvectlist(vlist1: list,
+                vlist2: list) -> list:
+    return [addvect(u, v)
+            for u,v in zip(vlist1,vlist2)]
 
-def mapfunctolist(func,vlist:list) -> list: 
-    return [func(v) for v in vlist]
+def mapfunctolist(
+        func: Callable,
+        vlist: list) -> list:
+    return [func(v)
+            for v in vlist]
 
-def swapxy(v:list) -> list: 
-    return [v[1],v[0]]
+def swapxy(v:list) -> list:
+    return [v[1], v[0]]
 
-def centerpoint(x1:int,y1:int,x2:int,y2:int): 
-    return ((x2-x1)>>1)+x1,((y2-y1)>>1)+y1
+def centerpoint(x1: int,
+                y1: int,
+                x2: int,
+                y2: int):
+    return ((x2 - x1) >> 1) + x1, ((y2 - y1) >> 1) + y1
 
-def getdatalisttotal(dlist:list) -> float:
+def getdatalisttotal(dlist: list) -> float:
     total=0
-    for d in dlist: total+=d[0]
+    for d in dlist:
+        total += d[0]
     return total
 
 def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]

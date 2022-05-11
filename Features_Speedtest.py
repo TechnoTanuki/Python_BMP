@@ -1,29 +1,32 @@
 notice = """
-Feature and speed test for a Pure Python graphics lib that saves to a bitmap
- --------------------------------------------------------------------------
-|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-|    We make absolutely no warranty of any kind, expressed or implied.     |
-|--------------------------------------------------------------------------|
-|    The primary author and any subsequent code contributors shall not     |
-|    be liable  in any event  for  incidental or consequential damages     |
-|    in connection with,  or arising out  from  the  use of  this code     |
-|    in current form or with any modifications.                            |
-|--------#--------------------------------------------------------#--------|
-|        |  Contact primary author if you plan to use this        |        |
-|        |  in a commercial product at joelalcarez1975@gmail.com  |        |
-|--------#--------------------------------------------------------#--------|
-|    Educational or hobby use highly encouraged... have fun coding !       |
-|    ps:created out of extreme boredom during the COVID-19 pandemic.       |
-|--------#--------------------------------------------------------#--------|
-|        |  Note: This graphics library outputs to a bitmap file. |        |
- --------#--------------------------------------------------------#--------
+Feature and speed test
+for a Pure Python graphics library
+that saves to a bitmap
+
+ -------------------------------------------------------------------
+| Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]  |
+| We make absolutely no warranty of any kind, expressed or implied. |
+|-------------------------------------------------------------------|
+| The primary author and any subsequent code contributors shall not |
+| be liable  in any event  for  incidental or consequential damages |
+| in connection with,  or arising out  from  the  use of  this code |
+| in current form or with any modifications.                        |
+|-------------------------------------------------------------------|
+|      Contact primary author if you plan to use this               |
+|      in a commercial product at joelalcarez1975@gmail.com         |
+|-------------------------------------------------------------------|
+|  Educational or hobby use highly encouraged... have fun coding!   |
+|  ps:created out of extreme boredom during the COVID-19 pandemic.  |
+|-----#--------------------------------------------------------#----|
+|     |  Note: This graphics library outputs to a bitmap file.      |
+ -----#--------------------------------------------------------#----
 """
-import Python_BMP.BITMAPlib as b,subprocess as proc
+import Python_BMP.BITMAPlib as b, subprocess as proc
 import time as t
 from random import randint
 from os import path,sys
-        
-def elaspedtimeinseconds(inittime): 
+
+def elaspedtimeinseconds(inittime):
         return (t.process_time_ns() - inittime) / 1000000000
 
 def hhmmsselaspedtime(inittime):
@@ -33,7 +36,7 @@ def hhmmsselaspedtime(inittime):
         return str(hrs).zfill(2) + ':' + str(mins).zfill(2) + ':' + str(secs).zfill(2) + '.' + str(ns)
 
 def main():
-        rootdir=path.abspath(sys.path[0])
+        rootdir = path.abspath(sys.path[0])
         b.plotbmpastext(b.loadBMP(rootdir+'/assets/pp.bmp')) #load logo
         print(notice)
 
@@ -105,74 +108,112 @@ def main():
         mandelpar=b.mandelparamdict()#seems preferable to store common params
         b.mandelbrot(bmp, 10, 600, 130, 735, mandelpar['maxeqdim'], cf['brightgreen'], 255)
         p=b.getIFSparams()#same here add more to this dict
-        b.IFS(bmp,p['fern'],170,600,270,730,12,12,30,30,c['lightgreen'],10000)
-        b.IFS(bmp,p['tree'],270,600,370,730,100,100,0,0,c['brown'],10000)
-        b.IFS(bmp,p['cantortree'],370,600,450,730,100,100,0,0,c['lightcyan'],10000)
-        b.IFS(bmp,p['sierpinskitriamgle'],450,600,670,730,100,100,0,0,c['cyan'],10000)
-        print('Fractal tests done in ',hhmmsselaspedtime(starttime))
-        p=b.regpolygonvert(250,80,40,6,0)
-        starttime=t.process_time_ns()
+        b.IFS(bmp, p['fern'],
+                170, 600, 270, 730, 12, 12, 30, 30,
+                c['lightgreen'], 10000)
+        b.IFS(bmp, p['tree'],
+                270, 600, 370, 730, 100, 100, 0, 0,
+                c['brown'], 10000)
+        b.IFS(bmp,p['cantortree'],
+                370, 600, 450, 730, 100, 100, 0, 0,
+                c['lightcyan'], 10000)
+        b.IFS(bmp, p['sierpinskitriamgle'],
+                450, 600, 670, 730, 100, 100, 0, 0,
+                c['cyan'], 10000)
+        print('Fractal tests done in ',
+        hhmmsselaspedtime(starttime))
+        p = b.regpolygonvert(250, 80, 40, 6, 0)
+        starttime = t.process_time_ns()
         b.beziercurve(bmp,p,3,c['brightorange'])
         b.beziercurve(bmp,hc,0,c['lightred'])
-        print('Bezier curve tests done in ',hhmmsselaspedtime(starttime) )
+        print('Bezier curve tests done in ',
+        hhmmsselaspedtime(starttime) )
 
         starttime = t.process_time_ns() #bspline follow control points better than bezier
         b.bspline(bmp, p, 0, c['red'], True, True)
         b.bspline(bmp, hc, 0, c['brightwhite'], True, True)
         b.gradvert(bmp,
-                b.bsplinevert(b.spiralcontrolpointsvert(165, 135, 7, 1.2, 3), False,
+                b.bsplinevert(
+                  b.spiralcontrolpointsvert(165, 135, 7, 1.2, 3),
+                  False,
                  False), 5, lum['upperdesc'], cf['brightwhite'])
-        print('Bspline tests done in ',hhmmsselaspedtime(starttime) )
+        print('Bspline tests done in ',
+         hhmmsselaspedtime(starttime) )
 
         starttime = t.process_time_ns()
-        b.gradcircle(bmp, 900, 140, 30, lum['maxdesc'], cf['brightyellow'])
-        b.gradthickcircle(bmp, 900, 550, 40, 8, lum['upperdesc'], cf['lightred'])
-        print('Circle tests done in ',hhmmsselaspedtime(starttime))
+        b.gradcircle(bmp, 900, 140, 30,
+                lum['maxdesc'], cf['brightyellow'])
+        b.gradthickcircle(bmp, 900, 550, 40, 8,
+                lum['upperdesc'], cf['lightred'])
+        print('Circle tests done in ',
+         hhmmsselaspedtime(starttime))
 
-        starttime=t.process_time_ns()
-        b.gradellipse(bmp, 750, 550, 20, 40, lum['upperdesc'], cf['brightorange'])
-        b.gradthickellipserot(bmp, 790, 700, 50, 30, 45, 5, lum['upperdesc'], cf['yellow'])
-        print('Ellipse tests done in ',hhmmsselaspedtime(starttime))
+        starttime = t.process_time_ns()
+        b.gradellipse(bmp, 750, 550, 20, 40,
+                lum['upperdesc'], cf['brightorange'])
+        b.gradthickellipserot(bmp, 790, 700, 50, 30, 45, 5,
+                lum['upperdesc'], cf['yellow'])
+        print('Ellipse tests done in ',
+          hhmmsselaspedtime(starttime))
 
-        starttime=t.process_time_ns()#works but no live db conn yet plot as code below
+        starttime = t.process_time_ns()#works but no live db conn yet plot as code below
         pdata=[]#[[20,c['red']],[30,c['brightyellow']],...]
-        for color in c: 
+        for color in c:
                 pdata.append([1,c[color]])
-        piedata = b.piechart(bmp,75,540,45,pdata)
-        print('Arc and pie chart tests done in ',hhmmsselaspedtime(starttime))
+        piedata = b.piechart(bmp, 75, 540, 45, pdata)
+        print('Arc and pie chart tests done in ',
+                    hhmmsselaspedtime(starttime))
 
         starttime = t.process_time_ns()
-        b.plotpoly(bmp,p,c['brightcyan'])
-        print('Polygon tests done in ',hhmmsselaspedtime(starttime))
+        b.plotpoly(bmp, p, c['brightcyan'])
+        print('Polygon tests done in ',
+          hhmmsselaspedtime(starttime))
 
         starttime = t.process_time_ns()
-        b.plotfilledflower(bmp, 40, 40, 30, 5, 45, lum['maxasc'], cf['brightyellow'])
-        print('Filled flower test done in ',hhmmsselaspedtime(starttime))
+        b.plotfilledflower(bmp, 40, 40, 30, 5, 45,
+                lum['maxasc'], cf['brightyellow'])
+        print('Filled flower test done in ',
+              hhmmsselaspedtime(starttime))
 
         starttime=t.process_time_ns() #[x,y,rad=constant for sample can be variable,isfilled]
         XYdata=[]#[[45,45,5,c['brightcyan'],True],[100,60,5,c['brightgreen'],True],..]
         for color in  c:
                 XYdata.append([randint(20,140), randint(30,70), 5, c[color], True])
                 XYdata.append([randint(20,140), randint(30,70), 5, c[color], False])
-                XYcoordinfo = b.XYaxis(bmp,[172,598],[40,40],[666,398],[20,30],[10,10],c['brightwhite'],c['gray'],True,c['darkgreen'])
-        b.XYscatterplot(bmp, XYdata, XYcoordinfo, True, c['green'])
-        print('XY scatterplot test done in ',hhmmsselaspedtime(starttime))
+                XYcoordinfo = b.XYaxis(bmp, [172, 598],
+                                              [40, 40],
+                                            [666, 398],
+                                              [20, 30],
+                                              [10, 10],
+                                      c['brightwhite'],
+                                             c['gray'],
+                                                  True,
+                                        c['darkgreen'])
+        b.XYscatterplot(bmp, XYdata, XYcoordinfo,
+                        True, c['green'])
+        print('XY scatterplot test done in ',
+                hhmmsselaspedtime(starttime))
 
         starttime = t.process_time_ns()
         buff = b.copyrect(bmp, 3, 3, 80, 80)
         b.pasterect(bmp, buff, 858, 611)
-        print('Copy paste done in ',hhmmsselaspedtime(starttime))
+        print('Copy paste done in ',
+         hhmmsselaspedtime(starttime))
         starttime = t.process_time_ns()
         nbmp = b.convertselection2BMP(buff)
         nfile = rootdir +'/assets/flower.bmp'
         b.saveBMP(nfile, nbmp)
-        print('Save selection to ',nfile,' done in ',hhmmsselaspedtime(starttime))
+        print('Save selection to ',
+                nfile,' done in ',
+                hhmmsselaspedtime(starttime))
 
         starttime = t.process_time_ns()
-        file='test.bmp'
-        b.saveBMP(file,bmp)
-        print('Saved '+ file + ' in ',hhmmsselaspedtime(starttime))
-        print('Demo done in ',hhmmsselaspedtime(demostart))
+        file='test.bmp' # some random filename
+        b.saveBMP(file, bmp) # dump byte array to file
+        print('Saved '+ file + ' in ',
+        hhmmsselaspedtime(starttime))
+        print('Demo done in ',
+        hhmmsselaspedtime(demostart))
 
         print('\nAll done close mspaint to finish')
         ret = proc.call('mspaint '+ file) # replace with another editor if Unix
@@ -180,5 +221,5 @@ def main():
         print(b.plot8bitpatternastext([0x00,0x00,0x38,0x6C,0x6C,0x38,0x76,0xDC,0xCC,0xCC,0x76,0x00,0x00,0x00],'&',' '))
 
 
-if __name__=="__main__": 
+if __name__ == "__main__":
         main()
