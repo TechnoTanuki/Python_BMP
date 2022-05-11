@@ -1,24 +1,38 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|--------------------------------------------------------------------------|
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#|--------------------------------------------------------------------------|
-#|    The primary author and any subsequent code contributors shall not     |
-#|    be liable  in any event  for  incidental or consquential  damages     |
-#|    in connection with,  or arising out  from  the  use of  this code     |
-#|    in current form or with any modifications.                            |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Contact primary author if you plan to use this        |        |
-#|        |  in a commercial product at joelalcarez1975@gmail.com  |        |
-#|--------#--------------------------------------------------------#--------|
-#|    Educational or hobby use highly encouraged... have fun coding !       |
-#|    ps:created out of extreme boredom during the COVID-19 pandemic.       |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Note: This graphics library outputs to a bitmap file. |        |
-#\--------#--------------------------------------------------------#--------/
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|       The primary author and any  |
+#| any subsequent code contributors  |
+#| shall not be liable in any event  |
+#| for  incidental or consequential  |
+#| damages  in connection with,  or  |
+#| arising out from the use of this  |
+#| code in current form or with any  |
+#| modifications.                    |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+#|-----------------------------------|
+#|   Educational or hobby use is     |
+#|   highly encouraged...            |
+#|   have fun coding !               |
+#|-----------------------------------|
+#|   This graphics library outputs   |
+#|   to a bitmap file.               |
+# -----------------------------------
 
-from math import sqrt, sin, cos, atan, radians
-from .mathlib import (
+from math import(
+    sqrt,
+    radians
+    )
+
+from .mathlib import(
     adddimz,
     addvect,
     computerotvec,
@@ -30,26 +44,34 @@ from .mathlib import (
     subvect,
     trans
     )
-from .primitives2D import floatregpolygonvert, regpolygonvert, iterline, rectboundarycoords
+from .primitives2D import(
+    floatregpolygonvert,
+    iterline,
+    rectboundarycoords,
+    regpolygonvert
+    )
+
 from .messages import sysmsg
 
-def getshapesidedict() -> dict: 
+def getshapesidedict() -> dict:
     return {"tetrahedra":((2,1,0),(2,3,1),(0,3,2),(3,0,1)),"cube":((1,2,3,0),(5,6,7,4),(0,3,6,5),(4,7,2,1),(4,1,0,5),(2,7,6,3)),"hexahedra":((2,3,1),(0,3,2),(3,0,1),(1,4,2),(2,4,0),(1,0,4)),"octahedra":((1,2,0),(4,1,0),(3,4,0),(2,3,0),(2,1,5),(1,4,5),(4,3,5),(3,2,5))}
 
 def tetrahedravert(x: float) -> list:
-    x_sqr,halfx=x*x,x/2
+    x_sqr = x * x
+    halfx= x / 2
     return [[0,0,0],[halfx,sqrt(x_sqr/2),0],[x,0,0],[halfx,halfx,sqrt(3/8*x_sqr)]]
 
-def cubevert(x: float) -> list: 
+def cubevert(x: float) -> list:
     return [[0,0,0],[0,x,0],[x,x,0],[x,0,0],[0,x,x],[0,0,x],[x,0,x],[x,x,x]]
 
 def hexahedravert(x: float) -> list:
-    x_sqr,halfx=x*x,x/2,
-    z=sqrt(3/8*x_sqr)
+    x_sqr = x * x
+    halfx= x / 2
+    z = sqrt(3 / 8 * x_sqr)
     return [[0,0,0],[halfx,sqrt(x_sqr/2),0],[x,0,0],[halfx,halfx,z],[halfx,halfx,-z]]
 
 def octahedravert(x:float) -> list:
-    halfx=x/2
+    halfx = x / 2
     return [[halfx,halfx,halfx],[0,0,0],[x,0,0],[x,x,0],[0,x,0],[halfx,halfx,-halfx]]
 
 def decahedvertandsurface(x: float) -> list:
@@ -60,14 +82,18 @@ def decahedvertandsurface(x: float) -> list:
 def icosahedvertandsurface(x: float) -> list:#don't edit this it took much computation to make
     pts,pts1=floatregpolygonvert(0,0,x,5,0),floatregpolygonvert(0,0,x,5,36)
     z=sqrt(distance(pts[0],pts[1])**2-x*x)
-    z1=2*x-z
+    z1 = 2 * x - z
     return [[[0,0,-z]]+adddimz(pts,0)+adddimz(pts1,z1-z)+[[0,0,z1]],((1,2,0),(5,1,0),(3,4,0),(2,3,0),(4,5,0),(2,1,6),(1,5,10),(4,3,8),(3,2,7),(5,4,9),(6,7,2),(7,8,3),(8,9,4),(9,10,5),(10,6,1),(7,6,11),(9,8,11),(8,7,11),(10,9,11),(6,10,11))]
 
-def rotvec3D(roll:float,pitch:float,yaw:float)-> tuple: 
+def rotvec3D(
+        roll: float,
+        pitch: float,
+        yaw: float)-> tuple:
     return (computerotvec(roll),computerotvec(pitch),computerotvec(yaw))
 
 def perspective(vlist: list, rotvec: list, dispvec: list, d: float) -> tuple:#translated from C code by Roger Stevens
-    rotvlist,projvlist=[],[]
+    rotvlist = []
+    projvlist = []
     sroll,croll=rotvec[0][0],rotvec[0][1]
     spitch,cpitch=rotvec[1][0],rotvec[1][1]
     syaw,cyaw=rotvec[2][0],rotvec[2][1]
