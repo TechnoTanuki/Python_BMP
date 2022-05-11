@@ -160,31 +160,47 @@ def gensides(
     polylist = []
     normlist = []
     for sidepts in sides:
-        u,v,w=plist[sidepts[0]],plist[sidepts[1]],plist[sidepts[2]]
-        if surfacetest(u,v,w)<=0:
-            polylist.append(trans([slist[i] for i in sidepts],transvect))
-            normlist.append(getnormvec(u,v,w))
-    return (polylist,normlist)
+        u = plist[sidepts[0]]
+        v = plist[sidepts[1]]
+        w = plist[sidepts[2]]
+        if surfacetest(u, v, w) <= 0:
+            polylist.append(
+                trans(
+                    [slist[i]
+                     for i in sidepts],transvect))
+            normlist.append(getnormvec(u, v, w))
+    return (polylist, normlist)
 
-def spherevert(vcen:list,r:float,deganglestep:float) -> list:
-    plist=[]
-    for theta in range(0,360,deganglestep):
-        for phi in range(0,180,deganglestep):
-            p=addvect(vcen,spherical2rectcoord3D([r,radians(theta),radians(phi)]))
-            if p not in plist: plist.append(p)
-    p=[0,0,-r]
-    if p not in plist: plist.append(p)
+def spherevert(
+    vcen: list,
+    r: float,
+    deganglestep: float) -> list:
+    plist = []
+    for theta in range(0, 360, deganglestep):
+        for phi in range(0, 180, deganglestep):
+            p = addvect(vcen,
+                   spherical2rectcoord3D(
+                       [r, radians(theta),
+                           radians(phi)]))
+            if p not in plist:
+                plist.append(p)
+    p = [0, 0, -r]
+    if p not in plist:
+        plist.append(p)
     return plist
 
-def zlevelcoords(verlist:list) -> tuple:#we have a 3D object and we take z slices
-    zlist,zord=[],{}
+def zlevelcoords(verlist: list) -> tuple:#we have a 3D object and we take z slices
+    zlist = []
+    zord = {}
     for p in verlist:
-        pind,z=[verlist.index(p)],p[2]
+        pind = [verlist.index(p)]
+        z = p[2]
         if z not in zord:
-            zord.setdefault(z,pind)
+            zord.setdefault(z, pind)
             zlist.append(z)
-        else: zord[z]+=pind
-    return (zlist,zord)
+        else:
+            zord[z] += pind
+    return (zlist, zord)
 
 def genspheresurfaces(zlevelcoord:list) -> list:
     zl,vl=zlevelcoord[0],zlevelcoord[1]
