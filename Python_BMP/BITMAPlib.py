@@ -8402,7 +8402,7 @@ def fern(
 
 
 @_filechk
-def applybyreffuncwithparamtoregionandsave(
+def _usebyreffnwithpar2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         x1: int,
@@ -8438,7 +8438,7 @@ def applybyreffuncwithparamtoregionandsave(
 
 
 @_filechk
-def applybyref24bitcolorfunctoregionandsave(
+def _use24btbyrefclrfn2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         x1: int,
@@ -8600,7 +8600,7 @@ def applyfunctoregionandsave(
 
 
 @_filechk
-def applybyreffuncandsave(
+def _usebyreffnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
@@ -8707,7 +8707,7 @@ def apply24bitfuncandsave(
 
 
 @_filechk
-def apply24bitfuncwithparamandsave(
+def _use24btfnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -8776,7 +8776,7 @@ def apply8bitabovefuncandsave(
 
 
 @_filechk
-def applyfunctocircregion(
+def _usefn2circreg(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -8811,7 +8811,7 @@ def applyfunctocircregion(
 
 
 @_filechk
-def applyfunctocircregionwithparam(
+def _usefn2circregwithparam(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -8849,7 +8849,7 @@ def applyfunctocircregionwithparam(
 
 
 @_filechk
-def apply24bitcoloradjfunctocircregion(
+def _use24btclrfntocircregion(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -8888,7 +8888,7 @@ def apply24bitcoloradjfunctocircregion(
 
 
 @_filechk
-def apply24bitcoloradjfuncwithparam2circregion(
+def _use24btclrfnwithparam2circregion(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -8985,7 +8985,7 @@ def applycoloradjfunc(
             ExistingBMPfile, NewBMPfile))
 
 @_filechk
-def apply24bitcoloradjfunc(
+def _use24btclrfn(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
@@ -9295,7 +9295,7 @@ def invertbits2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         invertimagebits)
@@ -9318,7 +9318,7 @@ def flipvertical2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         flipvertical)
@@ -9341,7 +9341,7 @@ def mirrortop2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile, mirrortop)
 
@@ -9363,7 +9363,7 @@ def mirrortopleft2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         mirrortopleft)
@@ -9385,7 +9385,7 @@ def mirrortopright2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         mirrortopright)
@@ -9408,7 +9408,7 @@ def mirrorbottomleft2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         mirrorbottomleft)
@@ -9431,7 +9431,7 @@ def mirrorbottomright2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         mirrorbottomright)
@@ -9454,7 +9454,7 @@ def mirrorbottom2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         mirrorbottom)
@@ -9477,7 +9477,7 @@ def mirrorleft2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         mirrorleft)
@@ -9500,7 +9500,7 @@ def mirrorright2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         mirrorright)
@@ -9524,7 +9524,7 @@ def fliphorizontal2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         fliphorizontal)
@@ -10012,7 +10012,7 @@ def adjustbrightnessinregion2file(
         new bitmap file
 
     """
-    applybyref24bitcolorfunctoregionandsave(
+    _use24btbyrefclrfn2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         brightnesseadjto24bitregion, percentadj)
@@ -10045,7 +10045,7 @@ def adjustthresholdinregion2file(
         new bitmap file
 
     """
-    applybyref24bitcolorfunctoregionandsave(
+    _use24btbyrefclrfn2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         thresholdadjto24bitregion, lumrange)
@@ -10131,7 +10131,7 @@ def colorfilterinregion2file(
         new bitmap file
 
     """
-    applybyref24bitcolorfunctoregionandsave(
+    _use24btbyrefclrfn2regnsv(
         ExistingBMPfile,
         NewBMPfile,
         x1, y1, x2, y2,
@@ -10189,7 +10189,7 @@ def pixelizenxntofile(
         new bitmap file
 
     """
-    apply24bitfuncwithparamandsave(
+    _use24btfnwithparnsv(
         ExistingBMPfile,
         NewBMPfile,
         pixelizenxn, n)
@@ -10213,7 +10213,7 @@ def resizeNtimessmaller2file(
         new bitmap file
 
     """
-    apply24bitfuncwithparamandsave(
+    _use24btfnwithparnsv(
         ExistingBMPfile,
         NewBMPfile,
         resizeNtimessmaller, n)
@@ -10237,7 +10237,7 @@ def resizeNtimesbigger2file(
         new bitmap file
 
     """
-    apply24bitfuncwithparamandsave(
+    _use24btfnwithparnsv(
         ExistingBMPfile, NewBMPfile,
         resizeNtimesbigger, n)
 
@@ -10317,7 +10317,7 @@ def gammaadjtoregion2file(
         new bitmap file
 
     """
-    applybyref24bitcolorfunctoregionandsave(
+    _use24btbyrefclrfn2regnsv(
         ExistingBMPfile,
         NewBMPfile,
         x1, y1, x2, y2,
@@ -10349,7 +10349,7 @@ def eraseeverynthhorilineinregion2file(
         new bitmap file
 
     """
-    applybyreffuncwithparamtoregionandsave(
+    _usebyreffnwithpar2regnsv(
         ExistingBMPfile,
         NewBMPfile,
         x1, y1, x2, y2,
@@ -10381,7 +10381,7 @@ def rectangle2file(
         new bitmap file
 
     """
-    applybyreffuncwithparamtoregionandsave(
+    _usebyreffnwithpar2regnsv(
         ExistingBMPfile,
         NewBMPfile,
         x1, y1, x2, y2,
@@ -10415,7 +10415,7 @@ def fern2file(
         new bitmap file
 
     """
-    applybyreffuncwithparamtoregionandsave(
+    _usebyreffnwithpar2regnsv(
         ExistingBMPfile,
         NewBMPfile,
         x1, y1, x2, y2,
@@ -10495,7 +10495,7 @@ def outline2file(
         new bitmap file
 
     """
-    applybyreffuncandsave(
+    _usebyreffnsv(
         ExistingBMPfile,
         NewBMPfile,
         outline)
@@ -10578,7 +10578,7 @@ def monochromecircregion2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfunctocircregion(
+    _use24btclrfntocircregion(
         ExistingBMPfile,
         NewBMPfile,
         monocircle,
@@ -10607,7 +10607,7 @@ def invertbitsincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         invertbitsincircregion,
@@ -10640,7 +10640,7 @@ def colorfiltercircregion2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile,
         NewBMPfile,
         colorfiltercircregion,
@@ -10674,7 +10674,7 @@ def thresholdadjcircregion2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile,
         NewBMPfile,
         thresholdadjcircregion,
@@ -10709,7 +10709,7 @@ def gammacorrectcircregion2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile,
         NewBMPfile,
         gammacorrectcircregion,
@@ -10744,7 +10744,7 @@ def sphere2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile,
         NewBMPfile,
         sphere,
@@ -10777,7 +10777,7 @@ def filledcircle2file(
         new bitmap file
 
     """
-    applyfunctocircregionwithparam(
+    _usefn2circregwithparam(
         ExistingBMPfile,
         NewBMPfile,
         filledcircle,
@@ -10808,7 +10808,7 @@ def circle2file(
         new bitmap file
 
     """
-    applyfunctocircregionwithparam(
+    _usefn2circregwithparam(
         ExistingBMPfile,
         NewBMPfile,
         circle,
@@ -10840,7 +10840,7 @@ def thickencirclearea2file(
     Returns:
         new bitmap file
 """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile, NewBMPfile,
         thickencirclearea, x, y, r,
         rgbfactors)
@@ -10875,7 +10875,7 @@ def brightnessadjcircregion2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile,
         NewBMPfile,
         brightnessadjcircregion,
@@ -10911,7 +10911,7 @@ def vertbrightnessgrad2circregion2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile, NewBMPfile,
         vertbrightnessgrad2circregion,
         x, y, r,
@@ -10947,7 +10947,7 @@ def horibrightnessgrad2circregion2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfuncwithparam2circregion(
+    _use24btclrfnwithparam2circregion(
         ExistingBMPfile,
         NewBMPfile,
         horibrightnessgrad2circregion,
@@ -10976,7 +10976,7 @@ def flipvertcircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         flipvertcircregion,
@@ -11010,7 +11010,7 @@ def eraseeverynthhorilineinccircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregionwithparam(
+    _usefn2circregwithparam(
         ExistingBMPfile, NewBMPfile,
         eraseeverynthhorizontallineinccircregion,
         x, y, r, n)
@@ -11038,7 +11038,7 @@ def mirrortopincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         mirrortopincircregion,
@@ -11067,7 +11067,7 @@ def mirrorbottomincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile, NewBMPfile,
         mirrorbottomincircregion,
         x, y, r)
@@ -11095,7 +11095,7 @@ def mirrorleftincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         mirrorleftincircregion,
@@ -11124,7 +11124,7 @@ def mirrorrightincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         mirrorrightincircregion,
@@ -11153,7 +11153,7 @@ def mirrortopleftincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         mirrortopleftincircregion,
@@ -11182,7 +11182,7 @@ def mirrorbottomleftincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         mirrorbottomleftincircregion,
@@ -11211,7 +11211,7 @@ def mirrortoprightincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         mirrortoprightincircregion,
@@ -11240,7 +11240,7 @@ def mirrorbottomrightincircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         mirrorbottomrightincircregion,
@@ -11269,7 +11269,7 @@ def fliphoricircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         fliphoricircregion,
@@ -11298,7 +11298,7 @@ def outlinecircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         outlinecircregion,
@@ -11329,7 +11329,7 @@ def flipXYcircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregion(
+    _usefn2circreg(
         ExistingBMPfile,
         NewBMPfile,
         flipXYcircregion,
@@ -11362,7 +11362,7 @@ def magnifyNtimescircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregionwithparam(
+    _usefn2circregwithparam(
         ExistingBMPfile,
         NewBMPfile,
         magnifyNtimescircregion,
@@ -11396,7 +11396,7 @@ def pixelizenxncircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregionwithparam(
+    _usefn2circregwithparam(
         ExistingBMPfile,
         NewBMPfile,
         pixelizenxncircregion,
@@ -11430,7 +11430,7 @@ def copycircregion2file(
         new bitmap file
 
     """
-    applyfunctocircregionwithparam(
+    _usefn2circregwithparam(
         ExistingBMPfile,
         NewBMPfile,
         copycircregion,
@@ -11461,7 +11461,7 @@ def horizontalbrightnessgrad2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfunc(
+    _use24btclrfn(
         ExistingBMPfile,
         NewBMPfile,
         horizontalbrightnessgradto24bitimage,
@@ -11496,7 +11496,7 @@ def horizontalbrightnessgradregion2file(
         new bitmap file
 
     """
-    applybyref24bitcolorfunctoregionandsave(
+    _use24btbyrefclrfn2regnsv(
         ExistingBMPfile,
         NewBMPfile,
         x1, y1, x2, y2,
@@ -11525,7 +11525,7 @@ def verticalbrightnessgrad2file(
         new bitmap file
 
     """
-    apply24bitcoloradjfunc(
+    _use24btclrfn(
         ExistingBMPfile,
         NewBMPfile,
         verticalbrightnessgradto24bitimage,
@@ -11560,7 +11560,7 @@ def verticalbrightnessgradregion2file(
         new bitmap file
 
     """
-    applybyref24bitcolorfunctoregionandsave(
+    _use24btbyrefclrfn2regnsv(
         ExistingBMPfile,
         NewBMPfile,
         x1, y1, x2, y2,
