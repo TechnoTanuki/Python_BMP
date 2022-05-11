@@ -170,6 +170,7 @@ def icosahedvertandsurface(
             (10, 9, 11),
             (6, 10, 11))]
 
+
 def rotvec3D(
         roll: float,
         pitch: float,
@@ -343,33 +344,56 @@ def spherevertandsurface(
     return (s, genspheresurfaces(zlevelcoords(s)))
 
 
-def cylindervertandsurface(vcen:list,r:float,zlen:float,deganglestep:float) -> tuple:
-    z,i,plist,top,bottom,side=zlen/2,0,[],[],[],[]
-    maxang=360+(deganglestep<<1)
-    for theta in range(0,maxang,deganglestep):
-        plist.append(addvect(vcen,cylindrical2rectcoord3D([r,radians(theta),-z])))
-        plist.append(addvect(vcen,cylindrical2rectcoord3D([r,radians(theta),z])))
+def cylindervertandsurface(
+        vcen: list,
+        r: float,
+        zlen: float,
+        deganglestep: float) -> tuple:
+    z = zlen / 2
+    i =0 
+    plist = []
+    top = []
+    bottom = []
+    side = []
+    maxang = 360 + (deganglestep << 1)
+    for theta in range(0, maxang, deganglestep):
+        plist.append(addvect(vcen, cylindrical2rectcoord3D([r, radians(theta), -z])))
+        plist.append(addvect(vcen, cylindrical2rectcoord3D([r, radians(theta), z])))
         top.append(i)
-        bottom.append(i+1)
-        if i>2:
-            j=i-2
-            side.append([i,i+1,j+1,j])
-        i+=2
+        bottom.append(i + 1)
+        if i > 2:
+            j = i - 2
+            side.append([i, i + 1, j + 1, j])
+        i += 2
     top.reverse()
-    return (plist,[top]+side+[bottom])
+    return (plist, [top] + side + [bottom])
 
-def conevertandsurface(vcen:list,r:float,zlen:float,deganglestep:float) -> tuple:
-    z,i,bottom,side=zlen/2,1,[],[]
-    maxang=360+(deganglestep<<1)
-    plist=[subvect(vcen,[0,0,z])]
-    for theta in range(0,maxang,deganglestep):
-        plist.append(addvect(vcen,cylindrical2rectcoord3D([r,radians(theta),z])))
+def conevertandsurface(
+        vcen: list,
+        r: float,
+        zlen: float,
+        deganglestep: float) -> tuple:
+    z = zlen / 2
+    i = 1
+    bottom = []
+    side = []
+    maxang = 360 + (deganglestep << 1)
+    plist = [subvect(vcen, [0, 0, z])]
+    for theta in range(0, maxang, deganglestep):
+        plist.append(addvect(vcen, cylindrical2rectcoord3D([r, radians(theta), z])))
         bottom.append(i)
-        if i>2: side.append([0,i,i-1])
-        i+=1
-    return (plist,side+[bottom])
+        if i > 2:
+            side.append([0, i, i - 1])
+        i += 1
+    return (plist, side + [bottom])
 
-def surfplot3Dvertandsurface(x1:int,y1:int,x2:int,y2:int,zscale:float,step:int) -> tuple:
+def surfplot3Dvertandsurface(
+        x1: int,
+        y1: int,
+        x2: int,
+        y2: int,
+        zscale: float,
+        step: int) -> tuple:
     vlist,surf=[],[]
     for y in range(y1,y2,step):
         for x in range(x1,x2,step):
@@ -384,5 +408,11 @@ def surfplot3Dvertandsurface(x1:int,y1:int,x2:int,y2:int,zscale:float,step:int) 
         if (vl-idx1)>=0 and (i % dx)<dx1: surf.append([idx,idx1,i+1,i])
     return (vlist,surf)
 
-def surfacetest(p1:list,p2:list,p3:list) -> float: 
-    return p1[0]*(p3[1]*p2[2]-p2[1]*p3[2])-p2[0]*(p3[1]*p1[2]-p1[1]*p3[2])-p3[0]*(p1[1]*p2[2]-p2[1]*p1[2])
+
+def surfacetest(
+        p1: list,
+        p2: list,
+        p3: list) -> float:
+    return p1[0] * (p3[1] * p2[2] - p2[1] * p3[2]) - \
+           p2[0] * (p3[1] * p1[2] - p1[1] * p3[2]) - \
+           p3[0] * (p1[1] * p2[2] - p2[1] * p1[2])
