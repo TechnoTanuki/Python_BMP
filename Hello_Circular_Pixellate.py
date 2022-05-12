@@ -1,25 +1,44 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+   Circular region pixel blur demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        loadBMP,
+        centercoord,
+        pixelizenxncircregion,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
 def main():
-        rootdir=path.abspath(sys.path[0])  # get path of running script
-        bmp=b.loadBMP(rootdir+'/assets/earth.bmp') #load earth to memory
-        (x,y)=b.centercoord(bmp) # How to get center of the bitmap
-        r=x-30 # radius set to x - 30
-        n=5 # blursize n = 5x5 pix
-        b.pixelizenxncircregion(bmp,x,y,r,n)
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) #get path of running script
+        bmp = loadBMP(rootdir + '/assets/earth.bmp') #load earth to memory
+        (x, y) = centercoord(bmp) # How to get center of the bitmap
+        r = x - 30 # radius set to x - 30
+        n = 5 # blursize n = 5x5 pix
+        pixelizenxncircregion(bmp, x, y, r, n)
         # Python_BMP.BITMAPlib.pixelizenxncircregion(bmp bytarray,x int ,y int ,r int ,n int)
         file='HelloCircularPixellate.bmp' #file name
-        b.saveBMP(file,bmp) # save the image
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        saveBMP(file, bmp) # save the image
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt))
+        ret = proc.call(imgedt + ' ' + file) # load the image
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
 
 
