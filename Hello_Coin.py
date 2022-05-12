@@ -27,6 +27,8 @@ from os import path
 
 def main():
         print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
         mx = my =250 # x=y square bmp
         file = 'HelloCoin.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
@@ -50,9 +52,9 @@ def main():
                 rotation, translationvector,
                 d, cenpt)
         saveBMP(file, bmp) # save file
-        print('Saved '+ file )
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+ file) # replace with another editor if Unix
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt))
+        ret =proc.call(imgedt + ' ' + file) # replace with another editor if Unix
 
 if __name__=="__main__":
         main()
