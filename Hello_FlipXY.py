@@ -1,5 +1,5 @@
 notice = """
-     Flip XY or 90 degree demo
+  Flip XY or 90 degree rotation demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -16,13 +16,15 @@ from os import path
 
 def main():
         print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = b.loadBMP(rootdir + '/assets/somebody.bmp') # load bitmap to byte array-> bmp
+        bmp = b.loadBMP(rootdir + '/assets/tanuki.bmp') # load bitmap to byte array-> bmp
         bmp = b.flipXY(bmp) # need to return new XY flipped image
         file = 'HelloFlipXY.bmp' # file name
         b.saveBMP(file, bmp) # save XY flipped image
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint ' + file) # replace with another editor if Unix
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt))
+        ret = proc.call(imgedt + ' ' + file) # load the image
 
 if __name__=="__main__":
         main()
