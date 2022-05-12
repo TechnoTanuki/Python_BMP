@@ -169,49 +169,84 @@ def iterline(
             py += sdy
     yield p2
 
-def iterparallelogram(p1:list,p2:list,p3:list)->list:
-    p,q=lineseg(p1,p3),lineseg(p2,addvect(p3,subvect(p2,p1)))
-    for u,v in zip(p,q):
+def iterparallelogram(
+        p1: list,
+        p2: list,
+        p3: list)->list:
+    p = lineseg(p1, p3)
+    q = lineseg(p2, addvect(p3,
+                    subvect(p2, p1)))
+    for u, v in zip(p, q):
         yield [u,v]
 
-def lineseg(p1,p2): return [p for p in iterline(p1,p2)]
+def lineseg(p1: list,
+            p2: list):
+    return [p for p in \
+            iterline(p1, p2)]
 
-def iterellipsepart(b:int,a:int):
-    row,col,a_sqr,b_sqr=b,0,a*a,b*b
-    two_a_sqr,four_a_sqr=a_sqr<<1,a_sqr<<2
-    two_b_sqr,four_b_sqr=b_sqr<<1,b_sqr<<2
-    d=two_a_sqr*((row-1)*row)+a_sqr+two_b_sqr*(1-a_sqr)
-    while row*a_sqr>=col*b_sqr:
-        yield [col,row]
-        if d>=0:
-            row-=1
-            d-=four_a_sqr*row
-        d+=two_b_sqr*(3+(col<<1))
-        col+=1
-    d=two_b_sqr*((col-1)*(col))+two_a_sqr*(row*(row-2)+1)+(1-two_a_sqr)*b_sqr
-    while (row+1)>0:
-        yield [col,row]
-        if d>=0:
-            col+=1
-            d-=four_b_sqr*col
-        d+=two_a_sqr*(3+(row<<1))
-        row-=1
+def iterellipsepart(
+        b: int,
+        a: int):
+    row = b
+    col = 0
+    a_sqr = a*a
+    b_sqr = b*b
+    _2a_sqr = a_sqr << 1
+    _4a_sqr = a_sqr << 2
+    _2b_sqr = b_sqr << 1
+    _4b_sqr = b_sqr << 2
+    d= _2a_sqr *((row - 1) * row) + \
+        a_sqr + _2b_sqr * (1 - a_sqr)
+    while row * a_sqr >= col * b_sqr:
+        yield [col, row]
+        if d >= 0:
+            row -= 1
+            d -= _4a_sqr * row
+        d += _2b_sqr * (3 + (col << 1))
+        col += 1
+    d = _2b_sqr * ((col - 1) * col) + \
+        _2a_sqr * (row * (row - 2) + 1) + \
+        (1 - _2a_sqr) * b_sqr
+    while (row + 1) > 0:
+        yield [col, row]
+        if d >= 0:
+            col += 1
+            d -= _4b_sqr * col
+        d += _2a_sqr * (3 + (row << 1))
+        row -= 1
 
-def iterellipse(x,y,b,a):
+def iterellipse(x: int,
+                y: int,
+                b: int,
+                a: int):
     for p in iterellipsepart(b,a):
          for v in mirror1stquad(x,y,p):
              yield v
 
-def iterellipserot(x:int,y:int,b:int,a:int,degrot:float):
-    rotvec,c=computerotvec(degrot),[x,y]
-    for p in iterellipsepart(b,a):
-         for v in mirror1stquad(x,y,p): yield roundvect(addvect(rotvec2D(subvect(v,c),rotvec),c))
+def iterellipserot(
+        x: int,
+        y: int,
+        b: int,
+        a: int,
+        degrot: float):
+    rotvec = computerotvec(degrot)
+    c = [x, y]
+    for p in iterellipsepart(b, a):
+         for v in mirror1stquad(x, y, p):
+             yield roundvect(
+                    addvect(
+                        rotvec2D(
+                            subvect(v, c), rotvec), c))
 
-def itercircle(x:int,y:int,r:int)->list:
+def itercircle(
+        x: int,
+        y: int,
+        r: int)->list:
     for p in itercirclepart(r):
-         for v in mirror1stquad(x,y,p): yield v
+         for v in mirror1stquad(x, y, p):
+             yield v
 
-def bezierblend(i,n,u): 
+def bezierblend(i,n,u):
     return comb(n,i)*(u**i)*((1-u)**(n-i))
 
 def iterbeziercurve(pntlist:list)->list:
