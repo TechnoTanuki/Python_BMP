@@ -246,31 +246,54 @@ def itercircle(
          for v in mirror1stquad(x, y, p):
              yield v
 
-def bezierblend(i,n,u):
-    return comb(n,i)*(u**i)*((1-u)**(n-i))
+def bezierblend(
+    i: int,
+    n: int,
+    u: int):
+    return comb(n, i) * (u ** i) * ((1 - u) ** (n - i))
 
-def iterbeziercurve(pntlist:list)->list:
-    i,cnt,v=0,len(pntlist),pntlist[0]
-    w,klim=v,cnt<<2
-    while i<cnt:
-        if i>cnt-2:
-            last=i-1
-            for k in range(0,klim):
-                u,v=k/klim,[0,0]
-                for j in range(0,i):
-                    v=addvect(v,scalarmulvect(pntlist[j],bezierblend(j,last,u)))
-                for pnt in iterline(roundvect(v),roundvect(w)): yield pnt
+def iterbeziercurve(
+        pntlist: list)->list:
+    i =len(pntlist)
+    cnt = 0
+    v = pntlist[0]
+    w = v
+    klim = cnt << 2
+    while i < cnt:
+        if i > cnt-2:
+            last = i - 1
+            for k in range(0, klim):
+                u = k / klim
+                v = [0, 0]
+                for j in range(0, i):
+                    v = addvect(v,
+                            scalarmulvect(pntlist[j],
+                            bezierblend(j, last, u)))
+                for pnt in iterline(roundvect(v),
+                                    roundvect(w)):
+                    yield pnt
                 w=v
         i+=1
 
-def beziercurvevert(pntlist:list,isclosed:bool,curveback:bool)->list: 
+def beziercurvevert(
+        pntlist: list,
+        isclosed: bool,
+        curveback: bool)->list:
     return [v for v in iterbeziercurve(pntlist)]
 
-def iterbspline(pntlist:list,isclosed:bool,curveback:bool)->list:
-    i,cnt,v=0,len(pntlist),pntlist[0]
-    w,klim,ilim,mx=v,cnt<<2,cnt+ iif(isclosed,2,0),cnt-1
-    while i<ilim:
-        for k in range(0,klim):
+def iterbspline(
+        pntlist: list,
+        isclosed: bool,
+        curveback: bool)->list:
+    i = 0
+    cnt = len(pntlist)
+    v = pntlist[0]
+    w = v
+    klim = cnt << 2
+    ilim = cnt + iif(isclosed, 2, 0)
+    mx = cnt-1
+    while i < ilim:
+        for k in range(0, klim):
             u,v=k/klim,[0,0]
             nc=bsplineblend(u)
             for j in range(0,4):
