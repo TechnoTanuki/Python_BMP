@@ -1,24 +1,44 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|--------------------------------------------------------------------------|
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#|--------------------------------------------------------------------------|
-#|    The primary author and any subsequent code contributors shall not     |
-#|    be liable  in any event  for  incidental or consquential  damages     |
-#|    in connection with,  or arising out  from  the  use of  this code     |
-#|    in current form or with any modifications.                            |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Contact primary author if you plan to use this        |        |
-#|        |  in a commercial product at joelalcarez1975@gmail.com  |        |
-#|--------#--------------------------------------------------------#--------|
-#|    Educational or hobby use highly encouraged... have fun coding !       |
-#|    ps:created out of extreme boredom during the COVID-19 pandemic.       |
-#|--------#--------------------------------------------------------#--------|
-#|        |  Note: This graphics library outputs to a bitmap file. |        |
-#\--------#--------------------------------------------------------#--------/
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|       The primary author and any  |
+#| any subsequent code contributors  |
+#| shall not be liable in any event  |
+#| for  incidental or consequential  |
+#| damages  in connection with,  or  |
+#| arising out from the use of this  |
+#| code in current form or with any  |
+#| modifications.                    |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+#|-----------------------------------|
+#|   Educational or hobby use is     |
+#|   highly encouraged...            |
+#|   have fun coding !               |
+#|-----------------------------------|
+#|   This graphics library outputs   |
+#|   to a bitmap file.               |
+# -----------------------------------
 
-from math import sin, cos, radians, comb
-from .conditionaltools import iif, swapif
+from math import(
+    sin,
+    cos,
+    radians,
+    comb
+    )
+
+from .conditionaltools import(
+    iif,
+    swapif
+    )
+
 from .mathlib import (
     addvect,
     computerotvec,
@@ -35,69 +55,88 @@ from .mathlib import (
     subvect,
     )
 
+
 def itercirclepart(r: int) -> list:
     row = r
     col = 0
     r_sqr = r * r
     two_r_sqr = r_sqr << 1
     four_r_sqr = r_sqr << 2
-    d=two_r_sqr*((row-1)*(row))+r_sqr+two_r_sqr*(1-r_sqr)
-    while row>=col:
-        yield([col,row])
-        if row!=col: yield([row,col])
-        if d>=0:
-            row-=1
-            d-=four_r_sqr*(row)
-        d+=two_r_sqr*(3+(col<<1))
-        col+=1
-
-def itercirclepart1(r:int)->list:
-    row,col,r_sqr=r,0,r*r
-    two_r_sqr,four_r_sqr=r_sqr<<1,r_sqr<<2
-    d=two_r_sqr*((row-1)*(row))+r_sqr+two_r_sqr*(1-r_sqr)
-    while row>=col:
-        yield([col,row])
-        if d>=0:
-            row-=1
-            d-=four_r_sqr*(row)
-            d+=two_r_sqr*(3+(col<<1))
-            col+=1
-
-def itercirclepartlineedge(r:int)->list:
-    row,col,r_sqr=r,0,r*r
-    two_r_sqr,four_r_sqr=r_sqr<<1,r_sqr<<2
-    d=two_r_sqr*((row-1)*(row))+r_sqr+two_r_sqr*(1-r_sqr)
-    y=[]
-    while row>=col:
-        if col not in y:
+    d = two_r_sqr * ((row -1 ) * (row)) + \
+        r_sqr+two_r_sqr * (1 - r_sqr)
+    while row >= col:
+        yield([col, row])
+        if row != col:
             yield([row,col])
-            y+=[col]
-        if d>=0:
-            if row not in y:
-                yield([col,row])
-                y+=[row]
-            row-=1
-            d-=four_r_sqr*(row)
-        d+=two_r_sqr*(3+(col<<1))
-        col+=1
+        if d >= 0:
+            row -= 1
+            d -= four_r_sqr * row
+        d += two_r_sqr * (3 + (col << 1))
+        col += 1
 
-def itercirclepartvertlineedge(r:int)->list:
-    row,col,r_sqr=r,0,r*r
-    two_r_sqr,four_r_sqr=r_sqr<<1,r_sqr<<2
-    d=two_r_sqr*((row-1)*(row))+r_sqr+two_r_sqr*(1-r_sqr)
+
+def itercirclepart1(r: int)->list:
+    row = r
+    col = 0
+    r_sqr = r * r
+    two_r_sqr = r_sqr<<1
+    four_r_sqr = r_sqr<<2
+    d = two_r_sqr * ((row - 1) * (row)) + \
+        r_sqr+two_r_sqr * (1 - r_sqr)
+    while row >= col:
+        yield([col, row])
+        if d>=0:
+            row -= 1
+            d -= four_r_sqr * row
+            d += two_r_sqr * (3 + (col << 1))
+            col += 1
+
+
+def itercirclepartlineedge(r: int) -> list:
+    row = r
+    col = 0
+    r_sqr = r * r
+    two_r_sqr = r_sqr << 1
+    four_r_sqr = r_sqr << 2
+    d = two_r_sqr * ((row - 1) *(row)) + \
+        r_sqr+ two_r_sqr * (1 - r_sqr)
+    y = []
+    while row >= col:
+        if col not in y:
+            yield([row, col])
+            y += [col]
+        if d >= 0:
+            if row not in y:
+                yield([col, row])
+                y += [row]
+            row -= 1
+            d -= four_r_sqr * row
+        d += two_r_sqr * (3 + (col << 1))
+        col += 1
+
+
+def itercirclepartvertlineedge(
+        r: int) -> list:
+    row = r
+    col =0
+    r_sqr = r*r
+    two_r_sqr = r_sqr << 1
+    four_r_sqr = r_sqr <<  2
+    d = two_r_sqr * ((row - 1) * (row)) + \
+        r_sqr + two_r_sqr * (1 - r_sqr)
     x=[]
     while row>=col:
         if col not in x:
-            yield([col,row])
-            x+=[col]
+            yield([col, row])
+            x += [col]
         if row not in x:
-            yield([row,col])
-            x+=[row]
-        if d>=0:
-            row-=1
-            d-=four_r_sqr*(row)
-        d+=two_r_sqr*(3+(col<<1))
-        col+=1
+            yield([row, col])
+            x += [row]
+        if d >= 0:
+            row -= 1
+            d -= four_r_sqr * row
+        d += two_r_sqr *(3 + (col << 1))
+        col += 1
 
 def iterline(p1:list,p2:list)->list:
     p3=subvect(p2,p1)
