@@ -28,8 +28,8 @@ def main():
         gammaadjto24bitimage(bmp, .5)  # 2nd param for gamma adj unsigned float
         file='HelloGammaAdj.bmp' # file name
         saveBMP(file, bmp) # save file
-        print('Saved to %s in %s' % (file,rootdir) )
-        print('\nAll done close mspaint to finish')
+        print('Saved to %s in %s\nAll done close mspaint to finish' % \
+                (file,rootdir))
         ret = proc.call('mspaint ' + file) # replace with another editor if Unix
 
 if __name__=="__main__":
