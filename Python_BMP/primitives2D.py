@@ -125,7 +125,7 @@ def itercirclepartvertlineedge(
     _4r_sqr = r_sqr <<  2
     d = _2r_sqr * ((row - 1) * (row)) + \
         r_sqr + _2r_sqr * (1 - r_sqr)
-    x=[]
+    x = []
     while row>=col:
         if col not in x:
             yield([col, row])
@@ -139,29 +139,34 @@ def itercirclepartvertlineedge(
         d += _2r_sqr *(3 + (col << 1))
         col += 1
 
-def iterline(p1:list,p2:list)->list:
-    p3=subvect(p2,p1)
-    dx,dy=p3[0],p3[1]
-    sdx,sdy,dxabs,dyabs=sign(dx),sign(dy),abs(dx),abs(dy)
-    x,y,px,py=0,0,p1[0],p1[1]
-    if dxabs>=dyabs:
-        ilim=dxabs+1
-        for i in range(0,ilim):
-            y+=dyabs
-            if y>=dxabs:
-                y-=dxabs
-                py+=sdy
-            yield([px,py])
-            px+=sdx
+def iterline(
+        p1: list,
+        p2: list) -> list:
+    [dx, dy] = subvect(p2, p1)
+    sdx = sign(dx)
+    sdy = sign(dy)
+    dxabs = abs(dx)
+    dyabs = abs(dy)
+    x = y = 0
+    [px, py] = p1
+    if dxabs >= dyabs:
+        ilim = dxabs + 1
+        for i in range(0, ilim):
+            y += dyabs
+            if y >= dxabs:
+                y -= dxabs
+                py += sdy
+            yield([px, py])
+            px += sdx
     else:
-        ilim=dyabs+1
-        for i in range(0,ilim):
-            x+=dxabs
-            if x>=dyabs:
-                x-=dyabs
-                px+=sdx
-            yield([px,py])
-            py+=sdy
+        ilim = dyabs + 1
+        for i in range(0, ilim):
+            x += dxabs
+            if x >= dyabs:
+                x -= dyabs
+                px += sdx
+            yield([px, py])
+            py += sdy
     yield p2
 
 def iterparallelogram(p1:list,p2:list,p3:list)->list:
