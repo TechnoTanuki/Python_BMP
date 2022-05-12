@@ -20,7 +20,7 @@ def main():
         bmp = b.newBMP(x, y, 4) # 16 color bitmap
         file = 'HelloXYScatterplot.bmp' # random file name
         XYdata = [[20, 80, 5, 15, True], #[[x,y,radius,color,filled]
-                  [40, 110, 5, 15,True],
+                  [40, 110, 5, 15, True],
                   [50, 10, 5, 15,True]]
         origin = (80, 570) # uint x,y tuple origin point of the graph (bottom left)
         xylimits = (570, 18) # uint x,y tuple end poimt of graph (top right)
