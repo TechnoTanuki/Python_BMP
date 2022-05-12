@@ -5,17 +5,20 @@
 
 import Python_BMP.BITMAPlib as b,subprocess as proc
 from os import path,sys
-        
+
 def main():
-        mx=1024
-        my=768
-        file='Hello_3D.bmp'
-        bmp=b.newBMP(mx,my,24)
-        maxpt,cenpt=b.bottomrightcoord(bmp),b.centercoord(bmp) # bitmap dependent coords
-        c,cf=b.getcolorname2RGBdict(),b.getRGBfactors() # color info
-        d,tvect=200,[0,0,100] # be careful with these variables or object goes offscreen
-        sd=b.getshapesidedict() # shape dictonary 
-        pts=b.tetrahedravert(80) # get points in 3D space that forms a tetrahedron
+        mx = 1024
+        my = 768
+        file = 'Hello_3D.bmp'
+        bmp = b.newBMP(mx, my, 24)
+        maxpt = b.bottomrightcoord(bmp)
+        cenpt = b.centercoord(bmp) # bitmap dependent coords
+        c = b.getcolorname2RGBdict()
+        cf = b.getRGBfactors() # color info
+        d = 200 #
+        tvect = [0,0,100] # be careful with these variables or object goes offscreen
+        sd = b.getshapesidedict() # shape dictonary
+        pts = b.tetrahedravert(80) # get points in 3D space that forms a tetrahedron
         # make list of objects to render
         shapes=[[[b.trans(b.cubevert(30),pts[3]),sd["cube"]],cf["darkblue"],True,c['black']],[[b.trans(b.tetrahedravert(30),pts[2]),sd["tetrahedra"]],cf["darkred"],True,c['white']],[[b.trans(b.octahedravert(20),pts[1]),sd["octahedra"]],cf["yellow"],True,c['darkgray']],[[b.trans(b.hexahedravert(30),pts[0]),sd["hexahedra"]],cf["darkgreen"],True,c['darkgreen']]]
         # Most of these shapes hab own examples check em for details...
@@ -32,7 +35,7 @@ def main():
         print('\nAll done close mspaint to finish')
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
 
 
