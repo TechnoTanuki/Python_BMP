@@ -1,17 +1,21 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   This graphics library outputs   |
-#|   to a bitmap file.               |
-# -----------------------------------
+notice = """
+         3D disco ball demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 import Python_BMP.BITMAPlib as b,subprocess as proc
 from os import path,sys
 
 def main():
+        print(notice)
         mx = my = 250 # x=y square bmp
         file = 'HelloDiscoBall.bmp' # some random file name as string
         bmp = b.newBMP(mx,my,24) # RGB bmp
