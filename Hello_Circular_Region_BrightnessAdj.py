@@ -24,6 +24,8 @@ import subprocess as proc
 from os import path
 
 def main():
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         bmp = loadBMP(rootdir + '/assets/earth.bmp') #load earth to memory
         (x,y) = centercoord(bmp) # How to get center of the bitmap
@@ -36,8 +38,9 @@ def main():
         # Python_BMP.BITMAPlib.brightnessadjcircregion(bmp bytearray,x int,y int, r int ,br signed float)
         file='HelloCircularRegionBrightnessAdj.bmp' #file name
         saveBMP(file, bmp)
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint ' + file) # replace with another editor if Unix
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt))
+        ret = proc.call(imgedt + ' ' + file)
 
 if __name__=="__main__":
         main()
