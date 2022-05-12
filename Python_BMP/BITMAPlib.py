@@ -560,21 +560,6 @@ def _hdsz(bmp: array) -> int:
     return _rdint(_bmhdsz, 4, bmp)
 
 
-def getimageinfo(bmp: array):
-    """Gets metadata
-        in a windows bitmap
-
-    Args:
-        bmp: unsigned byte array
-             with bmp format
-
-    Returns:
-        4 int values
-
-    """
-    return _rdint(_bmy, 4, bmp), bmp[_bmclrbits], _xchrcnt(bmp), _rdint(_bmhdsz, 4, bmp)
-
-
 def getmaxcolors(bmp: array) -> int:
     """Get the maximum number
         of colors supported
@@ -827,9 +812,9 @@ def _getBMoffhdfunc(
 
     """
     return {24: _24bmofhd,
-            8: _8bmofhd,
-            4: _4bmofhd,
-            1: _1bmofhd}[bmp[_bmclrbits]]
+             8: _8bmofhd,
+             4: _4bmofhd,
+             1: _1bmofhd}[bmp[_bmclrbits]]
 
 
 def _getBMofffunc(bmp: array):
@@ -847,9 +832,9 @@ def _getBMofffunc(bmp: array):
 
     """
     return {24: _24bmof,
-            8: _8bmof,
-            4: _4bmof,
-            1: _1bmof}[bmp[_bmclrbits]]
+             8: _8bmof,
+             4: _4bmof,
+             1: _1bmof}[bmp[_bmclrbits]]
 
 
 def _BMoffset(
