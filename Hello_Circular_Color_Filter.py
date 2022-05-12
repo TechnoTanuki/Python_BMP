@@ -35,7 +35,7 @@ def main():
         colorfiltercircregion(bmp, x, y, r, cf)
         # Python_BMP.BITMAPlib.colorfiltercircregion(bmp bytearray,x int ,y int ,r int,cf <tuple of RGB 0..1> )
         file='HelloCircularColorFilter.bmp' #file name
-        saveBMP(file,bmp) # save file
+        saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
         ret = proc.call(imgedt + ' ' + file)
