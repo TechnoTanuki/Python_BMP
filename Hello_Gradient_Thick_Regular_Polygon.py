@@ -16,7 +16,7 @@ from Python_BMP.BITMAPlib import(
         centercoord,
         regpolygonvert,
         gradthickplotpoly,
-        saveBMP,
+        saveBMP
         )
 
 import subprocess as proc
