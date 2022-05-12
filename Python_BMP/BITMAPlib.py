@@ -918,33 +918,6 @@ def getmaxxyandbits(
               _rdint(_bmy, 4, bmp)),
               bmp[_bmclrbits]))
 
-def compute24bitoffset(
-        x: int,
-        y: int,
-        mx: int,
-        my: int) -> int:
-    """Get the offset
-        in a byte array
-        with 24-bit color data
-
-    Args:
-        bmp  : unsigned byte array
-               with bmp format
-        x,y  : unsigned int
-               pixel location
-        mx,my: unsigned int size
-               in x-dimension
-               and y-dimension
-
-    Returns:
-        int value of offset to
-        that data in byte array
-
-    """
-    return (x * 3) + \
-        ((my - y - 1) * \
-            _xbytes(mx, 24))
-
 
 def _xbytes(
         x: int,
