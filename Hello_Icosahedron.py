@@ -20,6 +20,7 @@ from Python_BMP.BITMAPlib import(
         icosahedvertandsurface,
         saveBMP
         )
+
 import subprocess as proc
 
 def main():
