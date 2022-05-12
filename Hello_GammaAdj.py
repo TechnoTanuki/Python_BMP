@@ -23,14 +23,15 @@ from os import path,sys
 
 def main():
         print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(rootdir + '/assets/tanuki.bmp') # load to memory
         gammaadjto24bitimage(bmp, .5)  # 2nd param for gamma adj unsigned float
         file='HelloGammaAdj.bmp' # file name
         saveBMP(file, bmp) # save file
-        print('Saved to %s in %s\nAll done close mspaint to finish' % \
-                (file,rootdir))
-        ret = proc.call('mspaint ' + file) # replace with another editor if Unix
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt))
+        ret = proc.call(imgedt + " " + file) # call the image editor
 
 if __name__=="__main__":
         main()
