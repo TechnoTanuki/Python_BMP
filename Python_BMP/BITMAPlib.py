@@ -918,26 +918,6 @@ def getmaxxyandbits(
               _rdint(_bmy, 4, bmp)),
               bmp[_bmclrbits]))
 
-
-def _BMfilesize(bmp: array) -> int:
-    """Returns the uncompressed
-        file size
-        of a bitmap
-
-    Args:
-        bmp: unsigned byte array
-             with bmp format
-
-    Returns:
-        unsigned int file size
-        in bytes
-
-    """
-    return _getbmflsz(
-                getmaxx(bmp),
-                getmaxy(bmp),
-                bmp[_bmclrbits])
-
 def compute24bitoffset(
         x: int,
         y: int,
