@@ -252,34 +252,34 @@ def bezierblend(
     u: int):
     return comb(n, i) * (u ** i) * ((1 - u) ** (n - i))
 
-def iterbeziercurve(
-        pntlist: list)->list:
-    i =len(pntlist)
-    cnt = 0
-    v = pntlist[0]
-    w = v
+def iterbeziercurve(pntlist:list)->list:
+    i = 0
+    cnt = len(pntlist)
+    w = v = pntlist[0]
     klim = cnt << 2
     while i < cnt:
-        if i > cnt-2:
+        if i > cnt - 2:
             last = i - 1
             for k in range(0, klim):
                 u = k / klim
                 v = [0, 0]
-                for j in range(0, i):
-                    v = addvect(v,
-                            scalarmulvect(pntlist[j],
-                            bezierblend(j, last, u)))
-                for pnt in iterline(roundvect(v),
-                                    roundvect(w)):
+                for j in range(0,i):
+                    v = addvect(v, scalarmulvect(pntlist[j],
+                                                 bezierblend(j,
+                                                          last,
+                                                             u)))
+                for pnt in iterline(roundvect(v), roundvect(w)):
                     yield pnt
-                w=v
-        i+=1
+                w = v
+        i += 1
+
 
 def beziercurvevert(
         pntlist: list,
         isclosed: bool,
         curveback: bool)->list:
     return [v for v in iterbeziercurve(pntlist)]
+
 
 def iterbspline(
         pntlist: list,
@@ -294,18 +294,25 @@ def iterbspline(
     mx = cnt-1
     while i < ilim:
         for k in range(0, klim):
-            u,v=k/klim,[0,0]
-            nc=bsplineblend(u)
-            for j in range(0,4):
-                k=i+j
-                v=addvect(v,scalarmulvect(pntlist[ k%cnt if curveback else setmax(k,mx)],nc[j]))
-            if i>1:
-                for pnt in iterline(roundvect(v),roundvect(w)): yield pnt
-            w=v
-        i+=1
+            u = k / klim
+            v = [0, 0]
+            nc = bsplineblend(u)
+            for j in range(0, 4):
+                k = i + j
+                v = addvect(v, scalarmulvect(pntlist[k % cnt if curveback else setmax(k, mx)], nc[j]))
+            if i > 1:
+                for pnt in iterline(roundvect(v), roundvect(w)):
+                    yield pnt
+            w = v
+        i += 1
 
-def bsplinevert(pntlist:list,isclosed:bool,curveback:bool)->list: 
-    return [v for v in iterbspline(pntlist,isclosed,curveback)]
+def bsplinevert(
+    pntlist: list,
+    isclosed: bool,
+    curveback: bool)->list:
+    return [v for v in iterbspline(pntlist,
+                                  isclosed,
+                                 curveback)]
 
 def bsplineblend(u:float)->list:#dont edit this square shaped code
     u2,u3= u*u,u*u*u
