@@ -306,6 +306,7 @@ def iterbspline(
             w = v
         i += 1
 
+
 def bsplinevert(
     pntlist: list,
     isclosed: bool,
@@ -313,6 +314,7 @@ def bsplinevert(
     return [v for v in iterbspline(pntlist,
                                   isclosed,
                                  curveback)]
+
 
 def bsplineblend(u:float)->list:#dont edit this square shaped code
     u2,u3= u*u,u*u*u
@@ -322,51 +324,114 @@ def bsplineblend(u:float)->list:#dont edit this square shaped code
     c=(-u3+u2+u)/2+f
     return (a,b,c,d)
 
-def recvert(x1:int,y1:int,x2:int,y2:int)->list: 
-    return [(x1,y1),(x2,y1),(x2,y2),(x1,y2)]
 
-def floatregpolygonvert(cx:int,cy:int,r:int,sides:int,angle:int)->list:
-    v,angle,anginc,maxang=[],radians(angle),360//sides,360
-    for a in range(0,maxang,anginc):
-        ang=angle+radians(a)
-        v.append([int(cx-r*sin(ang)),int(cy-r*cos(ang))])
+def recvert(
+        x1: int,
+        y1: int,
+        x2: int,
+        y2: int)->list:
+    return [(x1,y1),
+            (x2,y1),
+            (x2,y2),
+            (x1,y2)]
+
+
+def floatregpolygonvert(
+        cx: int,
+        cy: int,
+        r: int,
+        sides: int,
+        angle: float)->list:
+    v = []
+    angle = radians(angle)
+    anginc = 360 // sides
+    maxang = 360
+    for a in range(0, maxang, anginc):
+        ang = angle + radians(a)
+        v.append([int(cx -r * sin(ang)),
+                  int(cy -r * cos(ang))])
     return v
 
-def regpolygonvert(cx:int,cy:int,r:int,sides:int,angle:float)->list: return roundvectlist(floatregpolygonvert(cx,cy,r,sides,angle))
+def regpolygonvert(
+        cx: int,
+        cy: int,
+        r: int,
+        sides: int,
+        angle: float) -> list:
+    return roundvectlist(
+                floatregpolygonvert(
+                    cx,cy,r,sides,angle))
 
-def horizontalvert(y:int,x1:int,x2:int,dx:int)->list: return [[x,y] for x in range(x1,x2,dx)]
+def horizontalvert(
+        y: int,
+        x1: int,
+        x2: int,
+        dx: int) -> list:
+    return [[x,y]
+            for x in range(x1, x2, dx)]
 
-def verticalvert(x:int,y1:int,y2:int,dy:int)->list: return [[x,y] for y in range(y1,y2,dy)]
+def verticalvert(
+        x: int,
+        y1: int,
+        y2: int,
+        dy: int) -> list:
+    return [[x,y]
+            for y in range(y1, y2, dy)]
 
-def circlevert(x:int,y:int,r:int)->list: return [v for v in itercircle(x,y,r)]
+def circlevert(
+        x: int,
+        y: int,
+        r: int) -> list:
+    return [v for v in itercircle(x, y, r)]
 
-def arcvert(x:int,y:int,r:int,startdegangle:float,enddegangle:float,showoutline:bool):
-    v,tol,c,sa,ea=[],0.03,(x,y),radians(startdegangle),radians(enddegangle)
-    for p in itercircle(x,y,r):
-        pc=rect2polarcoord2Dwithcenter(c,p)
-        a=pc[1]
-        if a>=sa and a<=ea:
+def arcvert(
+        x: int,
+        y: int,
+        r: int,
+        startdegangle: float,
+        enddegangle: float,
+        showoutline: bool):
+    v = []
+    tol = 0.03
+    c = (x, y)
+    sa = radians(startdegangle)
+    ea = radians(enddegangle)
+    for p in itercircle(x, y, r):
+        pc = rect2polarcoord2Dwithcenter(c, p)
+        a = pc[1]
+        if a >= sa and a <= ea:
             v.append(p)
-            if abs(a-sa)<tol or abs(a-ea)<tol: #for larger arcs tol may be >0.03
-                for np in iterline(c,p): v.append(np)
+            if abs(a - sa) < tol or abs(a - ea) < tol: #for larger arcs tol may be >0.03
+                for np in iterline(c, p):
+                    v.append(np)
     return v
 
-def rectboundarycoords(vlist:list)->list:
-    u=pivotlist(vlist)
-    x,y=u[0],u[1]
-    return ((min(x),min(y)),(max(x),max(y)))
+def rectboundarycoords(
+    vlist: list) -> list:
+    u = pivotlist(vlist)
+    (x, y) = u
+    return ((min(x), min(y)),
+            (max(x), max(y)))
 
-def itergetneighbors(v:list,mx:int,my:int,includecenter:bool)->list:
-    x,y=v[0],v[1]
+def itergetneighbors(
+        v: list,
+        mx: int,
+        my: int,
+        includecenter: bool)->list:
+    (x, y) = v
     if x>-1 and y>-1:
         lx,ty,rx,by=x-1,y-1,x+1,y+1
-        if ty>0: yield [x,ty]
+        if ty>0:
+            yield [x,ty]
         if includecenter: yield(v)
-        if by<my: yield [x,by]
+        if by<my:
+            yield [x,by]
         if lx>0:
-            if ty>0: yield [lx,ty]
+            if ty>0:
+                yield [lx,ty]
             yield [lx,y]
-            if by<my: yield [lx,by]
+            if by<my:
+                yield [lx,by]
         if rx<mx:
             if ty>0: yield [rx,ty]
             yield [rx,y]
