@@ -23,8 +23,8 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        bmp= newBMP(640, 480, 24) # (x,y,bit depth) -> 500 x 80 x 24 bit BMP
-        file='HelloDarkness.bmp' #file name
+        bmp = newBMP(640, 480, 24) # (x,y,bit depth) -> 500 x 80 x 24 bit BMP
+        file = 'HelloDarkness.bmp' #file name
         #insert something here
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
