@@ -37,8 +37,8 @@ def main():
         file='HelloCircles.bmp' # file name
         saveBMP(file,bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
-                (file, rootdir, imgedt))
-        ret = proc.call(imgedt + ' ' + file)
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
 if __name__=="__main__":
         main()
