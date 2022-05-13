@@ -21,6 +21,7 @@ from Python_BMP.BITMAPlib import(
 import subprocess as proc
 from os import path
 
+
 def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
