@@ -163,37 +163,60 @@ def colorfiltertoBGRbuf(buf:array,rgbfactors:list) -> array:
        applycolorfiltertoBGRbuf(buf,rgbfactors)
        return buf
 
-def applygammaBGRbuf(buf:array,gamma:float):
-       j,i=len(buf),0
-       while i<j:
-           b=buf[i:i+3]
-           lum=max(b)
-           if lum==0:lum=1
-           f,i1,i2=int(((lum/255)**gamma)*255)/lum,i+1,i+2
-           buf[i],buf[i1],buf[i2]=int(buf[i]*f)&0xff,int(buf[i1]*f)&0xff,int(buf[i2]*f)&0xff
-           i+=3
-   
-def gammaBGRbuf(buf:array,gamma:float) -> array:
-       applygammaBGRbuf(buf,gamma)
-       return buf
-   
-def gammacorrectbyte(lumbyte:int,gamma:float) -> int: 
-    return int(((lumbyte/255)**gamma)*255)
+def applygammaBGRbuf(
+        buf: array,
+        gamma: float):
+    j = len(buf)
+    i = 0
+    while i < j:
+        b = buf[i: i + 3]
+        lum = max(b)
+        if lum == 0:
+            lum = 1
+        f = int(((lum / 255) ** gamma) *255) / lum
+        i1 = i + 1
+        i2 = i + 2
+        buf[i] = int(buf[i] * f) & 0xff
+        buf[i1] = int(buf[i1] * f) & 0xff
+        buf[i2] = int(buf[i2 ]* f) & 0xff
+        i += 3
 
-def RGBfactorstoBaseandRange(lumrange:list,RGBfactors:list):
-       baselum=scalarmulvect(RGBfactors,lumrange[0])
-       lumrange=subvect(scalarmulvect(RGBfactors,lumrange[1]),baselum)
-       return baselum,lumrange
+def gammaBGRbuf(
+        buf: array,
+        gamma: float) -> array:
+    applygammaBGRbuf(buf,gamma)
+    return buf
 
-def invertbitsinbuffer(buf:array) -> array: 
-    return array('B',[b^0xFF for b in buf])
 
-def applybrightnessadjtoBGRbuf(buf:array,percentadj:float) -> array: 
+def gammacorrectbyte(
+        lumbyte: int,
+        gamma: float) -> int:
+    return int(((lumbyte / 255) ** gamma) * 255)
+
+
+def RGBfactorstoBaseandRange(
+        lumrange: list,
+        RGBfactors: list):
+    baselum=scalarmulvect(RGBfactors,lumrange[0])
+    lumrange=subvect(scalarmulvect(RGBfactors,lumrange[1]),baselum)
+    return baselum,lumrange
+
+
+def invertbitsinbuffer(buf:array) -> array:
+    return array('B', [b ^ 0xFF for b in buf])
+
+
+def applybrightnessadjtoBGRbuf(
+        buf: array,
+        percentadj: float) -> array:
     return array('B',setminmaxvec(addvect(buf,intscalarmulvect(buf,percentadj/100)),0,255))
 
-def applythresholdadjtoBGRbuf(buf:array,lumrange:list) -> array: 
+
+def applythresholdadjtoBGRbuf(
+        buf: array,
+        lumrange: list) -> array:
     lummin,lummax,m,i=lumrange[0]&0xff,lumrange[1]&0xff,len(buf),0
-    while i<m:
+    while i < m:
         lum,f=max(buf[i:i+3]),1
         if lummin>lummax: lummin,lummax=lummax,lummin
         if lum>0:
