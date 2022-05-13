@@ -299,7 +299,8 @@ def iterbspline(
             nc = bsplineblend(u)
             for j in range(0, 4):
                 k = i + j
-                v = addvect(v, scalarmulvect(pntlist[k % cnt if curveback else setmax(k, mx)], nc[j]))
+                v = addvect(v, scalarmulvect(
+                     pntlist[k % cnt if curveback else setmax(k, mx)], nc[j]))
             if i > 1:
                 for pnt in iterline(roundvect(v), roundvect(w)):
                     yield pnt
@@ -401,7 +402,8 @@ def arcvert(
         a = pc[1]
         if a >= sa and a <= ea:
             v.append(p)
-            if abs(a - sa) < tol or abs(a - ea) < tol: #for larger arcs tol may be >0.03
+            if abs(a - sa) < tol or \
+               abs(a - ea) < tol: #for larger arcs tol may be >0.03
                 for np in iterline(c, p):
                     v.append(np)
     return v
@@ -439,7 +441,8 @@ def itergetneighbors(
 
 
 def getneighborlist(v,mx,my,includecenter):
-    return [u for u in itergetneighbors(v, mx, my, includecenter)]
+    return [u for u in itergetneighbors(
+                v, mx, my, includecenter)]
 
 
 def spiralcontrolpointsvert(
@@ -495,7 +498,9 @@ def listinrecbnd(
         ymax: int) -> bool:
     retval = True
     for v in xylist:
-        if isinrectbnd(v[0], v[1], xmin, ymin, xmax, ymax) == \
+        if isinrectbnd(v[0], v[1],
+                       xmin, ymin,
+                       xmax, ymax) == \
             False:
             break
     return retval
@@ -508,10 +513,24 @@ def entirecircleisinboundary(
         miny: int,
         maxy: int,
         r: int):
-    return (isinrange(x-r,maxx,minx) and isinrange(x+r,maxx,minx)) and (isinrange(y-r,maxy,miny) and isinrange(y+r,maxy,miny))
+    return (isinrange(x - r, maxx, minx) and \
+            isinrange(x + r, maxx, minx)) and \
+           (isinrange(y - r, maxy, miny) and \
+            isinrange(y + r, maxy, miny))
 
-def entireellipseisinboundary(x:int,y:int,minx:int,maxx:int,miny:int,maxy:int,b:int,a:int): 
-    return (isinrange(x-b,maxx,minx) and isinrange(x+b,maxx,minx)) and (isinrange(y-a,maxy,miny) and isinrange(y+a,maxy,miny))
+def entireellipseisinboundary(
+        x: int,
+        y: int,
+        minx: int,
+        maxx: int,
+        miny: int,
+        maxy: int,
+        b: int,
+        a: int):
+    return (isinrange(x - b, maxx, minx) and \
+            isinrange(x + b, maxx, minx)) and \
+           (isinrange(y - a, maxy, miny) and \
+            isinrange(y + a, maxy, miny))
 
-def ellipsevert(x:int,y:int,b:int,a:int) -> list: 
+def ellipsevert(x:int,y:int,b:int,a:int) -> list:
     return [v for v in iterellipse(x,y,b,a)]
