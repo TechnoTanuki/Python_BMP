@@ -421,26 +421,36 @@ def itergetneighbors(
         my: int,
         includecenter: bool)->list:
     (x, y) = v
-    if x>-1 and y>-1:
-        lx,ty,rx,by=x-1,y-1,x+1,y+1
-        if ty>0:
-            yield [x,ty]
-        if includecenter: yield(v)
-        if by<my:
-            yield [x,by]
-        if lx>0:
-            if ty>0:
-                yield [lx,ty]
-            yield [lx,y]
-            if by<my:
-                yield [lx,by]
-        if rx<mx:
-            if ty>0: yield [rx,ty]
-            yield [rx,y]
-            if by<my: yield [rx,by]
+    if x > -1 and y > -1:
+        lx = x - 1
+        ty = y - 1
+        rx = x + 1
+        by = y + 1
+        if ty > 0:
+            yield [x, ty]
+        if includecenter:
+            yield(v)
+        if by < my:
+            yield [x, by]
+        if lx > 0:
+            if ty > 0:
+                yield [lx, ty]
+            yield [lx, y]
+            if by < my:
+                yield [lx, by]
+        if rx < mx:
+            if ty > 0:
+                yield [rx, ty]
+            yield [rx, y]
+            if by < my:
+                yield [rx, by]
 
 
-def getneighborlist(v,mx,my,includecenter):
+def getneighborlist(
+        v: list,
+        mx: int,
+        my: int,
+        includecenter: bool):
     return [u for u in itergetneighbors(
                 v, mx, my, includecenter)]
 
@@ -532,5 +542,10 @@ def entireellipseisinboundary(
            (isinrange(y - a, maxy, miny) and \
             isinrange(y + a, maxy, miny))
 
-def ellipsevert(x:int,y:int,b:int,a:int) -> list:
-    return [v for v in iterellipse(x,y,b,a)]
+
+def ellipsevert(
+    x: int,
+    y: int,
+    b: int,
+    a: int) -> list:
+    return [v for v in iterellipse(x, y, b, a)]
