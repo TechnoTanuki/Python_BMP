@@ -247,9 +247,9 @@ def itercircle(
              yield v
 
 def bezierblend(
-    i: int,
-    n: int,
-    u: int):
+        i: int,
+        n: int,
+        u: int):
     return comb(n, i) * (u ** i) * ((1 - u) ** (n - i))
 
 def iterbeziercurve(pntlist:list)->list:
@@ -438,45 +438,76 @@ def itergetneighbors(
             if by<my: yield [rx,by]
 
 
-def getneighborlist(v,mx,my,includecenter): 
-    return [u for u in itergetneighbors(v,mx,my,includecenter)]
+def getneighborlist(v,mx,my,includecenter):
+    return [u for u in itergetneighbors(v, mx, my, includecenter)]
 
 
-def spiralcontrolpointsvert(x:int,y:int,step:int,growthfactor:int,turns:int):
+def spiralcontrolpointsvert(
+        x: int,
+        y: int,
+        step: int,
+        growthfactor: int,
+        turns: int):
     v=[[x,y]]
     inc=step
     while turns>0:
-        x+=step
-        v.append([x,y])
-        step+=inc
-        y+=step
-        v.append([x,y])
-        step+=inc
-        x-=step
-        v.append([x,y])
-        step+=inc
-        y-=step
-        v.append([x,y])
-        turns-=1
-        step+=inc
-        inc*=growthfactor
+        x += step
+        v.append([x, y])
+        step += inc
+        y += step
+        v.append([x, y])
+        step += inc
+        x -= step
+        v.append([x, y])
+        step += inc
+        y -= step
+        v.append([x, y])
+        turns -= 1
+        step += inc
+        inc *= growthfactor
     return v
 
-def sortrecpoints(x1:int,y1:int,x2:int,y2:int):
-    x1,x2=swapif(x1,x2,x1>x2)
-    y1,y2=swapif(y1,y2,y1>y2)
-    return x1,y1,x2,y2
+def sortrecpoints(
+        x1: int,
+        y1: int,
+        x2: int,
+        y2: int):
+    x1, x2 = swapif(x1, x2, x1 > x2)
+    y1, y2 = swapif(y1, y2, y1 > y2)
+    return x1, y1, x2, y2
 
-def isinrectbnd(x:int,y:int,xmin:int,ymin:int,xmax:int,ymax:int) -> bool: 
-    return (x<xmax and y<ymax) and (x>xmin and y>ymin)
+def isinrectbnd(
+        x: int,
+        y: int,
+        xmin: int,
+        ymin: int,
+        xmax: int,
+        ymax: int) -> bool:
+    return (x < xmax and y < ymax) and \
+           (x > xmin and y > ymin)
 
-def listinrecbnd(xylist:list,xmin:int,ymin:int,xmax:int,ymax:int) -> bool:
-    retval=True
+
+def listinrecbnd(
+        xylist: list,
+        xmin: int,
+        ymin: int,
+        xmax: int,
+        ymax: int) -> bool:
+    retval = True
     for v in xylist:
-        if isinrectbnd(v[0],v[1],xmin,ymin,xmax,ymax)==False: break
+        if isinrectbnd(v[0], v[1], xmin, ymin, xmax, ymax) == \
+            False:
+            break
     return retval
 
-def entirecircleisinboundary(x:int,y:int,minx:int,maxx:int,miny:int,maxy:int,r:int): 
+def entirecircleisinboundary(
+        x: int,
+        y: int,
+        minx: int,
+        maxx: int,
+        miny: int,
+        maxy: int,
+        r: int):
     return (isinrange(x-r,maxx,minx) and isinrange(x+r,maxx,minx)) and (isinrange(y-r,maxy,miny) and isinrange(y+r,maxy,miny))
 
 def entireellipseisinboundary(x:int,y:int,minx:int,maxx:int,miny:int,maxy:int,b:int,a:int): 
