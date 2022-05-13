@@ -44,7 +44,7 @@ def main():
         sd = getshapesidedict() # common shape dict for surface definitions
         rotation = rotvec3D(60, 60, 30) # rotation vector (x,y,z) in degrees
         vertices = octahedravert(50) # get octahedra vetices
-        surfaces=sd["octahedra"] # get octahedra surfaces
+        surfaces = sd["octahedra"] # get octahedra surfaces
         obj3D = [vertices, surfaces] # A solid is defined by vertices and surfaces
         plot3Dsolid(bmp, obj3D, isSolid, color,
                 showoutline, outlinecolor,
