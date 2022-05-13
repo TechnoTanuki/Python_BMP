@@ -6116,7 +6116,7 @@ def invertimagebits(bmp: array):
     offset = _hdsz(bmp)
     maxoffset = _flsz(bmp)
     while offset < maxoffset:
-        bmp[offset] = ~bmp[offset]
+        bmp[offset] ^= 255
         offset += 1
 
 
