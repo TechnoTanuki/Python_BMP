@@ -1,21 +1,35 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+ Resize image %i times smaller Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
+from Python_BMP.BITMAPlib import(
+        resizeNtimessmaller2file
+)
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+import subprocess as proc
+from os import path
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get path of this script
-        existingfile=rootdir+'/assets/earth.bmp' # existing file
-        newfile='Hello4timessmaller.bmp' # new file
-        n=4 # unsigned int multiplier
-        b.resizeNtimessmaller2file(existingfile,newfile,n) # make earth smol by n times
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+newfile) # replace with another editor if Unix
+        n = 3 # unsigned int multiplier
+        print(notice % (n))
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) #get path of running script
+        existingfile = rootdir+'/assets/tanuki.bmp' # existing file
+        file = 'Hello4timessmaller.bmp' # new file
+        resizeNtimessmaller2file(existingfile, file, n) # make earth smol by n times
+        print('All done close %s to finish' % (imgedt)) # tell user something happened
+        ret = proc.call(imgedt + ' ' + file) # load the image
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
 
 
