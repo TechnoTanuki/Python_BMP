@@ -127,6 +127,7 @@ ofile = sdir + 'raccoon.bmp'
 cf = getRGBfactors()
 c = getcolorname2RGBdict()
 
+_d = lambda od, sd, fl: (od + fl, sd + fl)
 
 class Test2filefunc(unittest.TestCase):
 
@@ -141,8 +142,8 @@ class Test2filefunc(unittest.TestCase):
                 self.assertEqual(bmp1, bmp2)
 
         def dotestfullimg(self, filename, func):
-                newfile = odir + filename
-                reffile = sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir,filename)
                 func(ofile, newfile)
                 self.filecmp(reffile, newfile)
 
@@ -151,7 +152,8 @@ class Test2filefunc(unittest.TestCase):
                 filename,
                 func,
                 funcparam):
-                newfile, reffile = odir + filename, sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir,filename)
                 func(ofile, newfile, funcparam)
                 self.filecmp(reffile, newfile)
 
@@ -160,7 +162,8 @@ class Test2filefunc(unittest.TestCase):
                 filename,
                 func,
                 x1, y1, x2, y2):
-                newfile, reffile = odir + filename, sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir,filename)
                 func(ofile, newfile, x1, y1, x2, y2)
                 self.filecmp(reffile, newfile)
 
@@ -170,7 +173,8 @@ class Test2filefunc(unittest.TestCase):
                 func,
                 x1, y1, x2, y2,
                 funcparam):
-                newfile, reffile = odir + filename, sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir,filename)
                 func(ofile, newfile,
                         x1, y1, x2, y2, funcparam)
                 self.filecmp(reffile, newfile)
@@ -180,7 +184,8 @@ class Test2filefunc(unittest.TestCase):
                 filename,
                 func,
                 x, y, r):
-                newfile, reffile = odir + filename, sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir,filename)
                 func(ofile, newfile, x, y, r)
                 self.filecmp(reffile, newfile)
 
@@ -190,8 +195,8 @@ class Test2filefunc(unittest.TestCase):
                 func,
                 x, y, r,
                 funcparam):
-                newfile = odir + filename
-                reffile = sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir,filename)
                 func(ofile, newfile,
                      x, y, r, funcparam)
                 self.filecmp(reffile, newfile)
@@ -609,9 +614,9 @@ class Test2filefunc(unittest.TestCase):
                         500, 300, 300)
 
         def testimgregionbyRGB2file(self):
-                filename='raccoon-edgebycolorbrown.bmp'
-                newfile = odir + filename
-                reffile = sdir + filename
+                (newfile, reffile) = \
+                        _d(odir, sdir,
+                          'raccoon-edgebycolorbrown.bmp')
                 imgregionbyRGB2file(
                         ofile,
                         newfile,
@@ -623,9 +628,8 @@ class Test2filefunc(unittest.TestCase):
                              newfile)
 
         def testreduce24bitimagebits(self):
-                filename='raccoon-4bit.bmp'
-                newfile = odir + filename
-                reffile = sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir, 'raccoon-4bit.bmp')
                 reduce24bitimagebits(
                         ofile,
                         newfile,
@@ -636,9 +640,8 @@ class Test2filefunc(unittest.TestCase):
                              newfile)
 
         def testautocropimg2file(self):
-                filename = 'flower-autocrop.bmp'
-                newfile = odir + filename
-                reffile = sdir + filename
+                (newfile, reffile) = \
+                _d(odir, sdir, 'flower-autocrop.bmp')
                 autocropimg2file(sdir + 'flower.bmp',
                                  newfile,64)
                 self.filecmp(reffile,
