@@ -155,13 +155,20 @@ def monochromefiltertoBGRbuf(buf:array) -> array:
        applymonochromefiltertoBGRbuf(buf)
        return buf
    
-def applycolorfiltertoBGRbuf(buf:array,rgbfactors:list):
-       m=len(buf)-1
-       buf[0:m-2:3],buf[1:m-1:3],buf[2:m:3]=array('B',intscalarmulvect(buf[0:m-2:3],rgbfactors[2])),array('B',intscalarmulvect(buf[1:m-1:3],rgbfactors[1])),array('B',intscalarmulvect(buf[2:m:3],rgbfactors[0]))    
-   
-def colorfiltertoBGRbuf(buf:array,rgbfactors:list) -> array:
-       applycolorfiltertoBGRbuf(buf,rgbfactors)
-       return buf
+def applycolorfiltertoBGRbuf(
+        buf: array,
+        rgbfactors: list):
+    m = len(buf) - 1
+    buf[0: m - 2: 3], buf[1: m - 1: 3], buf[2: m: 3] = \
+        array('B', intscalarmulvect(buf[0: m - 2: 3], rgbfactors[2])), \
+        array('B', intscalarmulvect(buf[1: m - 1: 3], rgbfactors[1])), \
+        array('B', intscalarmulvect(buf[2: m: 3], rgbfactors[0]))
+
+def colorfiltertoBGRbuf(
+        buf: array,
+        rgbfactors: list) -> array:
+    applycolorfiltertoBGRbuf(buf,rgbfactors)
+    return buf
 
 def applygammaBGRbuf(
         buf: array,
@@ -173,7 +180,7 @@ def applygammaBGRbuf(
         lum = max(b)
         if lum == 0:
             lum = 1
-        f = int(((lum / 255) ** gamma) *255) / lum
+        f = int(((lum / 255) ** gamma) * 255) / lum
         i1 = i + 1
         i2 = i + 2
         buf[i] = int(buf[i] * f) & 0xff
@@ -197,9 +204,10 @@ def gammacorrectbyte(
 def RGBfactorstoBaseandRange(
         lumrange: list,
         RGBfactors: list):
-    baselum=scalarmulvect(RGBfactors,lumrange[0])
-    lumrange=subvect(scalarmulvect(RGBfactors,lumrange[1]),baselum)
-    return baselum,lumrange
+    baselum = scalarmulvect(RGBfactors,lumrange[0])
+    lumrange = subvect(scalarmulvect(
+                    RGBfactors,lumrange[1]),baselum)
+    return baselum, lumrange
 
 
 def invertbitsinbuffer(buf:array) -> array:
@@ -209,32 +217,45 @@ def invertbitsinbuffer(buf:array) -> array:
 def applybrightnessadjtoBGRbuf(
         buf: array,
         percentadj: float) -> array:
-    return array('B',setminmaxvec(addvect(buf,intscalarmulvect(buf,percentadj/100)),0,255))
+    return array('B',setminmaxvec(addvect(buf,
+            intscalarmulvect(buf, percentadj / 100)), 0, 255))
 
 
 def applythresholdadjtoBGRbuf(
         buf: array,
         lumrange: list) -> array:
-    lummin,lummax,m,i=lumrange[0]&0xff,lumrange[1]&0xff,len(buf),0
+    lummin = lumrange[0] & 0xff
+    lummax = lumrange[1] & 0xff
+    m = len(buf)
+    i = 0
     while i < m:
-        lum,f=max(buf[i:i+3]),1
-        if lummin>lummax: lummin,lummax=lummax,lummin
-        if lum>0:
-            if lum<lummin: f=lummin/lum
-            if lum>lummax: f=lummax/lum
+        lum = max(buf[i:i+3])
+        f = 1
+        if lummin > lummax:
+            lummin, lummax = lummax, lummin
+        if lum > 0:
+            if lum < lummin:
+                f = lummin / lum
+            if lum > lummax:
+                f = lummax / lum
         if f!=1:
-            buf[i]=int(f*buf[i])
-            buf[i+1]=int(f*buf[i+1])
-            buf[i+2]=int(f*buf[i+2])
-        i+=3
+            buf[i] = int(f * buf[i])
+            buf[i + 1] = int(f * buf[i + 1])
+            buf[i + 2] = int(f * buf[i + 2])
+        i += 3
     return buf
 
-def RGB2BGRbuf(buf:array):
-    m=len(buf)
-    buf[0:m-2:3],buf[2:m:3]=buf[2:m:3],buf[0:m-2:3]
 
-def makeBGRbuf(bbuf:array,gbuf:array,rbuf:array) -> array:
+def RGB2BGRbuf(buf: array):
+    m = len(buf)
+    buf[0: m - 2: 3], buf[2: m: 3] = \
+    buf[2: m: 3], buf[0: m - 2: 3]
+
+def makeBGRbuf(
+        bbuf: array,
+        gbuf: array,
+        rbuf: array) -> array:
     buf=[]
-    for b,g,r in zip(bbuf,gbuf,rbuf):
-        buf+=[b,g,r]
-    return array('B',buf)
+    for b, g, r in zip(bbuf, gbuf, rbuf):
+        buf += [b, g, r]
+    return array('B', buf)
