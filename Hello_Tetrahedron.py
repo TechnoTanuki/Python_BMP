@@ -43,10 +43,13 @@ def main():
         sd = getshapesidedict() # common shape dict for surface definitions
         rotation = rotvec3D(45,60,15) # rotation vector (x,y,z) in degrees
         vertices = tetrahedravert(60) # get tetrahedra vetices
-        surfaces=sd["tetrahedra"] # get tetrahedra surfaces
-        obj3D=[vertices,surfaces] # A solid is defined by vertices and surfaces
-        plot3Dsolid(bmp,obj3D,isSolid,color,showoutline,outlinecolor,rotation,translationvector,d,cenpt)
-        saveBMP(file,bmp) # save file
+        surfaces = sd["tetrahedra"] # get tetrahedra surfaces
+        obj3D = [vertices, surfaces] # A solid is defined by vertices and surfaces
+        plot3Dsolid(bmp, obj3D, isSolid, color,
+                showoutline, outlinecolor,
+                rotation, translationvector,
+                d, cenpt)
+        saveBMP(file, bmp) # save file
         print('Saved '+ file )
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
