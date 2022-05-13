@@ -1,26 +1,48 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+Hello Filled Gradient Rectangle Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        newBMP,
+        getRGBfactors,
+        filledgradrect,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get the path of this script
-        mx,my=256,256 # bitmap size
-        bmp=b.newBMP(mx,my,24) # 24 bit or (R,G,B) triplet of 8 bits each
-        cf=b.getRGBfactors() # get color info friendly names
-        j=10 # border in pixel
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        mx = my = 512 # bitmap size
+        bmp = newBMP(mx, my, 24) # 24 bit or (R,G,B) triplet of 8 bits each
+        cf = getRGBfactors() # get color info friendly names
+        j = 10 # border in pixel
         #filledgradrect(bmp,x1,y1,x2,y2,lumrange,colorfactorlist,gradientdirection) 
-        b.filledgradrect(bmp,j,j,mx-j,my-j,[0,255],cf['brightblue'],1) # vertical gradient
-        file='HelloFilledGradRec.bmp' # file name
-        b.saveBMP(file,bmp) # save file
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        filledgradrect(bmp, j, j,
+                mx - j, my - j,
+                [0, 255],
+                cf['brightblue'], 1) # vertical gradient
+        file = 'HelloFilledGradRec.bmp' # file name
+        saveBMP(file, bmp) # save file
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
-
 
 

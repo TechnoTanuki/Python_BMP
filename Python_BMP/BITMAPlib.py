@@ -2256,29 +2256,29 @@ def filledgradrect(
         xlim = x2 + 1
         for x in range(x1, xlim):
             f = x / dx
-            c=RGB2int(round(base[0] + lrange[0] * f),
-                      round(base[1] + lrange[1] * f),
-                      round(base[2] + lrange[2] * f))
+            c = RGB2int(
+                    round(setminmax(base[0] + lrange[0] * f, 0, 255)),
+                    round(setminmax(base[1] + lrange[1] * f, 0, 255)),
+                    round(setminmax(base[2] + lrange[2] * f, 0, 255))
+                       )
             if bmp[_bmclrbits] != 24:
                 c = matchRGBtopal(
                         int2RGBarr(c),
                         getallRGBpal(bmp))
-            if c < 0:
-                c = 0
             vertline(bmp, x, y1, y2, c)
     else:
         ylim = y2 + 1
         for y in range(y1, ylim):
             f = y / dy
-            c = RGB2int(round(base[0] + lrange[0] * f),
-                        round(base[1] + lrange[1] * f),
-                        round(base[2] + lrange[2] * f))
+            c = RGB2int(
+                    round(setminmax(base[0] + lrange[0] * f, 0, 255)),
+                    round(setminmax(base[1] + lrange[1] * f, 0, 255)),
+                    round(setminmax(base[2] + lrange[2] * f, 0, 255))
+                       )
             if bmp[_bmclrbits] != 24:
                 c = matchRGBtopal(
                         int2RGBarr(c),
                         getallRGBpal(bmp))
-            if c < 0:
-                c = 0
             horiline(bmp, y, x1, x2, c)
 
 
