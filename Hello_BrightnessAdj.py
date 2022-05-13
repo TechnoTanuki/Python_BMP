@@ -1,19 +1,40 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+ Adjust the brightness of an image
+ by %i percent brighter Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        loadBMP,
+        brightnesseadjto24bitimage,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get the path of this script
-        bmp=b.loadBMP(rootdir+'/assets/somebody.bmp') #load to memory as byte array
-        b.brightnesseadjto24bitimage(bmp,200) # 2nd param brightness adj percent + or -
+        peradj = 75
+        print(notice % (peradj))
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        bmp = loadBMP(rootdir + '/assets/tanuki.bmp') #load to memory
+        brightnesseadjto24bitimage(bmp,peradj) # 2nd param brightness adj percent + or -
         file='HelloBrightnessAdj.bmp' # file name <string>
-        b.saveBMP(file,bmp) # a very simple memory dump of byte array bmp to a file
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        saveBMP(file, bmp) #dump the bytearray to disk
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
