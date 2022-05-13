@@ -1,28 +1,52 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+  Vertical text over an image Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
+from Python_BMP.BITMAPlib import(
+        loadBMP,
+        getcolorname2RGBdict,
+        plotstringvertical,
+        font8x14,
+        font8x8,
+        saveBMP
+)
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+import subprocess as proc
+from os import path
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get path of this script
-        bmp=b.loadBMP(rootdir+'/assets/earth.bmp') #load earth to memory
-        c=b.getcolorname2RGBdict() #friendly color names 2 rgb
-        fontsize=2 # uint font size multiplier
-        pixspace=0 # uint space between bitmap font pixels (0 = default)
-        charspace=0 # unit space bitmap font characters (0 = default)
-        x,y=125,5 # text anchor x,y uint
-        b.plotstringvertical(bmp,x,y,'Hello',fontsize,pixspace,charspace,c['brightred'],b.font8x14)
-        pixspace=1 # uint space between bitmap font pixels (0 = default)
-        charspace=14 # unint space bitmap font characters (0 = default)
-        x,y=150,10 # text anchor x,y uint
-        b.plotstringvertical(bmp,x,y,'Earth',fontsize,pixspace,charspace,c['brightyellow'],b.font8x8)
-        file='HelloEarthVertText.bmp' # file name
-        b.saveBMP(file,bmp) # save bitmap  to file
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) #get path of running script
+        bmp = loadBMP(rootdir + '/assets/earth.bmp') #load earth to memory
+        c = getcolorname2RGBdict() #friendly color names 2 rgb
+        fontsize = 2 # uint font size multiplier
+        pixspace = 0 # uint space between bitmap font pixels (0 = default)
+        charspace = 0 # unit space bitmap font characters (0 = default)
+        x, y = 125, 5 # text anchor x,y uint
+        plotstringvertical(bmp, x, y, 'Hello',
+                fontsize, pixspace, charspace,
+                c['brightwhite'], font8x14)
+        pixspace = 1 # uint space between bitmap font pixels (0 = default)
+        charspace = 14 # unint space bitmap font characters (0 = default)
+        x , y= 150, 10 # text anchor x,y uint
+        plotstringvertical(bmp, x,y, 'Earth',
+                fontsize, pixspace, charspace,
+                c['brightyellow'], font8x8)
+        file = 'HelloEarthVertText.bmp' # file name
+        saveBMP(file, bmp) # save bitmap  to file
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user something happened
+        ret = proc.call(imgedt + ' ' + file) # load the image
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
