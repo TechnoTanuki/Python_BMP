@@ -1,21 +1,35 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+   Resize image n times bigger Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
+from Python_BMP.BITMAPlib import(
+        resizeNtimesbigger2file
+)
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+import subprocess as proc
+from os import path
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get path of this script
-        existingfile=rootdir+'/assets/earth.bmp' # existing file
-        newfile='Hello4timesbigger.bmp' # new file
-        n=4 # unsigned int multiplier
-        b.resizeNtimesbigger2file(existingfile,newfile,n) # make earth bigg by n times
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+newfile) # replace with another editor if Unix
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) #get path of running script
+        existingfile = rootdir + '/assets/earth.bmp' # existing file
+        file = 'Hello4timesbigger.bmp' # new file
+        n = 4 # unsigned int multiplier
+        resizeNtimesbigger2file(existingfile, file, n) # make earth bigg by n times
+        print('All done close %s to finish' % (imgedt)) # tell user something happened
+        ret = proc.call(imgedt + ' ' + file) # load the image
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
 
 
