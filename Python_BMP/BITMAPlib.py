@@ -5898,14 +5898,14 @@ def iterimageRGB(
                 bit -= 1
         elif bits == 4:
             c0, c1 = divmod(b[offset], 16)
-            if x<mx:
+            if x < mx:
                 yield ((x, y), p[c0])
             x += 1
             if x < mx:
                 yield ((x, y), p[c1])
             x += 1
         elif bits == 8:
-            if x<mx:
+            if x < mx:
                 yield ((x, y), p[b[offset]])
             x += 1
         elif bits == 24:
@@ -5918,7 +5918,7 @@ def iterimageRGB(
             x = 0
             y -= 1
             if rowprocind != '':
-                print(rowprocind,end='')
+                print(rowprocind, end = '')
         offset += doff
     print('\n')
     if finishmsg != '':
