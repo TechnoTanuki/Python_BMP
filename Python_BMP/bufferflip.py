@@ -1,36 +1,47 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#\--------------------------------------------------------------------------/
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+# -----------------------------------
 
 from array import array
 from .mathlib import rotatebits
 from .colors import RGB2BGRbuf
 
 
-def rotatebitsinbuf(buf: array) -> array: 
-    return array('B',[ rotatebits(b) for b in buf])
+def rotatebitsinbuf(
+        buf: array) -> array:
+    return array('B', [rotatebits(b) for b in buf])
 
 
-def flipnibbleinbuf(buf: array) -> array:
+def flipnibbleinbuf(
+        buf: array) -> array:
     """Flips a 4 bit image buffer
 
     Args:
         buf : unsigned byte array
-        
+
     Returns:
         unsigned byte array
 
-    """    
+    """
     return array('B', [(b >> 4) + ((b % 16) << 4) for b in buf])
 
 
-def flip24bitbuf(buf):
+def flip24bitbuf(
+        buf: array):
     """Flips a 24 bit buffer
-    
+
     Args:
         buf: unsigned byte array
-        
+
     Returns:
         unsigned byte array
 
@@ -40,23 +51,25 @@ def flip24bitbuf(buf):
     return array('B',buf)
 
 
-def flipbuf(buf: array, bits: int) -> array:
+def flipbuf(
+        buf: array,
+        bits: int) -> array:
     """Flips/rotates bits in buffer
 
     Args:
         buf : unsigned byte array
         bits: (1,4,8,24)
-        
+
     Returns:
         unsigned byte array
 
-    """  
-    if bits == 24: 
+    """
+    if bits == 24:
         buf = flip24bitbuf(buf)
-    else: 
+    else:
         buf.reverse()
-    if bits == 4: 
+    if bits == 4:
         buf = flipnibbleinbuf(buf)
-    if bits == 1: 
+    if bits == 1:
         buf = rotatebitsinbuf(buf)
     return buf
