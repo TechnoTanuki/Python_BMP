@@ -107,29 +107,41 @@ def matchRGBtopal(RGB:list,pal:list) -> int:
                i+=1
        return c
    
-def RGBtoRGBfactorsandlum(RGB:list) -> list:
-       lum=max(RGB)
-       if lum==0: lum=1
-       return [[RGB[0]/lum,RGB[1]/lum,RGB[2]/lum],lum]
+def RGBtoRGBfactorsandlum(
+        RGB: list) -> list:
+    lum = max(RGB)
+    if lum == 0:
+        lum = 1
+    return [[RGB[0] / lum, RGB[1] / lum, RGB[2] / lum], lum]
 
-def probplotRGBto1bit(rgb:list,brightness:int) -> int: 
-    return round(brightness*randint(0,sum(rgb))/768)
+def probplotRGBto1bit(
+        rgb: list,
+        brightness: int) -> int:
+    return round(brightness * randint(0, sum(rgb)) / 768)
 
 def probplotRGBto4bitpal(rgb:list) -> int:
-    color,r,g,b=0,rgb[0],rgb[1],rgb[2]
-    if round(randint(0,r)/256)==1: color+=4
-    if round(randint(0,g)/256)==1: color+=2
-    if round(randint(0,b)/256)==1: color+=1
-    r,g,b=r>>6,g>>6,b>>6
-    if r>1 or g>1 or b>1:color+=8
+    color = 0
+    [r, g, b] = rgb
+    if round(randint(0, r) / 256) == 1:
+        color += 4
+    if round(randint(0, g) / 256) == 1:
+        color += 2
+    if round(randint(0, b) / 256) == 1:
+        color += 1
+    r, g, b = r >> 6, g >> 6, b >> 6
+    if r>1 or g>1 or b>1:
+        color += 8
     return color
 
-def monochromepal(bits:int,RGBfactors:list) -> list:
+def monochromepal(
+        bits: int,
+        RGBfactors: list) -> list:
     inc=(256>>bits)+iif(bits==4,1,iif(bits==1,127,0))
     return [[round(RGBfactors[0]*c),round(RGBfactors[1]*c),round(RGBfactors[2]*c)] for c in range(0,256,inc)]
 
-def monochrome(rgb:list) -> list: 
-    return [round(mean(rgb))]*3
+def monochrome(
+        rgb: list) -> list:
+    return [round(mean(rgb))] * 3
 
 def gammacorrect(rgb:list,gamma:int) -> list:
     c=RGBtoRGBfactorsandlum(rgb)
@@ -144,7 +156,7 @@ def thresholdadjust(rgb:list,lumrange:list) -> list:
     if lumrange[0]>lumrange[1]: lumrange[1],lumrange[0]=lumrange[0],lumrange[1]
     return RGBfactors2RGB(c[0],setminmax(c[1],lumrange[0],lumrange[1]))
 
-def colorfilter(rgb:list,rgbfactors:list) -> list: 
+def colorfilter(rgb:list,rgbfactors:list) -> list:
     return intsetminmaxvec(mulvect(rgb,rgbfactors),0,255)
 
 def applymonochromefiltertoBGRbuf(buf:array):
