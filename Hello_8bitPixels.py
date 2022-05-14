@@ -1,22 +1,39 @@
-#Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com
-#This graphics library outputs to a bitmap file
+notice = """
+     Plot 256 color pixels Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
+from Python_BMP.BITMAPlib import(
+        newBMP,
+        plotxybit,
+        saveBMP
+        )
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+import subprocess as proc
+from os import path
+
 def main():
-        rootdir=path.abspath(sys.path[0])
-        mx,my=256,256 #bitmap size
-        bmp=b.newBMP(mx,my,8) #256 colors 
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        mx = my= 512 #bitmap size
+        bmp = newBMP(mx, my, 8) #256 colors
         for x in range(0,mx):
                 for y in range(0,my):
-                        b.plotxybit(bmp,x,y,x & y)
-        file='Hello8bitPixels.bmp' #file name
-        b.saveBMP(file,bmp)
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+                        plotxybit(bmp, x, y, (x & y) & 0xFF)
+        file = 'Hello8bitPixels.bmp' #file name
+        saveBMP(file, bmp) #dump the bytearray to disk
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
-
-
