@@ -29,7 +29,7 @@ def main():
         print(notice % (sides))
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my =200 # bitmap size
+        mx = my = 200 # bitmap size
         bmp = newBMP(mx, my, 4) # 2^4=16 color bitmap black background
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         r = x - 20 # radius of a circle that contains all the vertices
