@@ -35,7 +35,10 @@ def main():
         step = 5 # pixel interval between spiral turn
         growthfactor = 1 # greater than 1 means exponential spiral
         turns = 13 # number of turns of spiral
-        vertlist = spiralcontrolpointsvert(x,y,step,growthfactor,turns) # list of (x,y) control points
+        vertlist = spiralcontrolpointsvert(
+                        x, y, step,# list of (x,y) control points
+                        growthfactor, turns)
+
         penradius = 2 # radius of pen
         color = 11
         isclosed = True # closed curve
