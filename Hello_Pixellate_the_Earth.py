@@ -1,19 +1,39 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+   Hello Pixellate the world Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        loadBMP,
+        pixelizenxn,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get the path of this script
-        bmp=b.loadBMP(rootdir+'/assets/earth.bmp') # load earth to memory
-        bmp=b.pixelizenxn(bmp,4) # 4x4 pix unit to blend for blur effect
-        file='HelloEarthPixels.bmp' # file name
-        b.saveBMP(file,bmp) # save in-memory bitmap to file
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        bmp = loadBMP(rootdir + '/assets/earth.bmp') # load earth to memory
+        bmp = pixelizenxn(bmp, 4) # 4x4 pix unit to blend for blur effect
+        file = 'HelloEarthPixels.bmp' # file name
+        saveBMP(file, bmp) # save in-memory bitmap to file
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
+
