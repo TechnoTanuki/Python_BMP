@@ -1,28 +1,52 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+          Hello Globe Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        newBMP,
+        spherevertandsurface,
+        centercoord,
+        plot3Dsolid,
+        rotvec3D,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
+
 def main():
-        mx=my=250 # x=y square bmp
-        file='HelloGlobe.bmp' # some random file name as string
-        bmp=b.newBMP(mx,my,4) # 16 color bmp
-        cenpt=b.centercoord(bmp) # helper method to get center of a bitmap
-        cf=b.getRGBfactors() # color info with presets
-        d,translationvector=400,[0,0,200] # be careful with these variables or object goes offscreen
-        isSolid=False # toggle solid or outline
-        showoutline=True # can show outline even if solid
-        color=0 # color of solid
-        outlinecolor=10 # outline color
-        rotation=b.rotvec3D(70,7,20) # rotation vector (x,y,z) in degrees
-        b.plot3Dsolid(bmp,b.spherevertandsurface([0,0,0],50,15),isSolid,color,showoutline,outlinecolor,rotation,translationvector,d,cenpt)
-        b.saveBMP(file,bmp) # save file
-        print('Saved '+ file )
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        mx = my = 320 # x=y square bmp
+        file = 'HelloGlobe.bmp' # some random file name as string
+        bmp = newBMP(mx, my, 4) # 16 color bmp
+        plot3Dsolid(bmp,
+                spherevertandsurface([0, 0, 0], 50, 15),
+                False, # toggle solid
+                0, # color of solid
+                True, # toggle outline
+                10, # outline color
+                rotvec3D(70, 7, 20), # rotation vector (x,y,z) in degrees
+                [0, 0, 200], # 3D translation vector
+                400, # distance of screen from observer
+                centercoord(bmp) # 2D screen positioning
+                )
+        saveBMP(file, bmp) # save file
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
