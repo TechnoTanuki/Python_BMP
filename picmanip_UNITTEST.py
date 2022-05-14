@@ -126,8 +126,8 @@ ofile = sdir + 'raccoon.bmp'
 
 cf = getRGBfactors()
 c = getcolorname2RGBdict()
-
 _d = lambda od, sd, fl: (od + fl, sd + fl)
+
 
 class Test2filefunc(unittest.TestCase):
 
@@ -412,8 +412,6 @@ class Test2filefunc(unittest.TestCase):
                         'raccoon-rectangle.bmp',
                         rectangle2file,
                         250, 60, 860, 666, c['red'])
-
-        #def testfern2file(self): self.dotestrectregionwithparam('raccoon-fern.bmp',fern2file,250,60,860,666,c['green'])
 
         def testcolorfilterinregion2file(self):
                 self.dotestrectregionwithparam(
