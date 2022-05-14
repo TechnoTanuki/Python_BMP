@@ -33,7 +33,7 @@ def main():
         arrowhead = 0 # 0=auto other value will set length
         color = 1
         drawvec(bmp, p1, p2, arrowhead, color)
-        file='HelloVector.bmp' # file name
+        file = 'HelloVector.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
