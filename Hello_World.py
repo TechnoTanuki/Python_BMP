@@ -1,23 +1,48 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+          Hello World Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        newBMP,
+        plotstring,
+        getcolorname2RGBdict,
+        font8x14,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get path of this script
-        mx,my=500,80 # bitmap size
-        bmp=b.newBMP(mx,my,24) # RGB bitmap
-        fontsize=4 # font size multiplier
-        pixspace=1 # space between pixels
-        charspace=0 # default space between char
-        b.plotstring(bmp,50,10,'Hello World!!',fontsize,pixspace,charspace,b.getcolorname2RGBdict()['yellow'],b.font8x14)
-        file='HelloWorld.bmp' #file name
-        b.saveBMP(file,bmp)
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        mx, my = 500, 80 # bitmap size
+        bmp = newBMP(mx,my,24) # RGB bitmap
+        plotstring(bmp,
+                50, 10, # position the text
+                'Hello World!!', # random text
+                4, # uint font size multiplier
+                1, # uint space between pixels
+                0, # uint default space between char
+                getcolorname2RGBdict()['yellow'],
+                font8x14)
+        file = 'HelloWorld.bmp' #file name
+        saveBMP(file,bmp)
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
