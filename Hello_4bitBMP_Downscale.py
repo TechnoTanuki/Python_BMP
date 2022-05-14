@@ -34,8 +34,8 @@ def main():
                 file, newfile,
                 bits, threshold,
                 usemono,RGBfactors) # magic takes time
-        print('Saved to %s in %s\nAll done close %s to finish' % \
-                (newfile, rootdir, imgedt)) # tell user we are done
+        print('All done close %s to finish' % \
+                (imgedt)) # tell user we are done
         ret = proc.call(imgedt + ' ' + newfile) # load image in editor
 
 if __name__=="__main__":

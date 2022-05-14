@@ -1,25 +1,42 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+  Downsample an image to 8 bit Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        reduce24bitimagebits,
+        )
+
+import subprocess as proc
+from os import path
+
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get current dir of script
-        file=rootdir+'/assets/somebody.bmp'
-        newfile='8bitBMP.bmp'
-        print(file)
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        file = rootdir + '/assets/somebody.bmp'
+        newfile = '8bitBMP.bmp'
         bits= 8 # valid values are 8,4,1
-        threshold=4 # in computing new palette how far apart should colors be
-        usemono=False # can apply a mono filter
-        RGBfactors=[0.25,.5,1] # not used unless usemono filter is True
-        b.reduce24bitimagebits(file,newfile,bits,threshold,usemono,RGBfactors) # magic takes time
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+newfile) # replace with another editor if Unix
+        threshold = 4 # in computing new palette how far apart should colors be
+        usemono = False # can apply a mono filter
+        RGBfactors = [0.25, .5, 1] # not used unless usemono filter is True
+        reduce24bitimagebits(
+                file, newfile,
+                bits, threshold,
+                usemono, RGBfactors) # magic takes time
+        print('All done close %s to finish' % \
+                (imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + newfile) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
-
-
