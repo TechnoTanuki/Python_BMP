@@ -1,26 +1,54 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+Hello Earth with upsidedown text Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
-        
+from Python_BMP.BITMAPlib import(
+        loadBMP,
+        plotstring,
+        plotstringupsidedown,
+        font8x14,
+        font8x8,
+        getcolorname2RGBdict,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
+
 def main():
-        rootdir=path.abspath(sys.path[0]) # get path of this script
-        bmp=b.loadBMP(rootdir+'/assets/earth.bmp') #load earth to memory
-        c=b.getcolorname2RGBdict() #friendly color names 2 rgb
-        fontsize=4 # font size
-        pixspace=1 # space between bitmap font pixels (0 = default)
-        charspace=0 # space bitmap font characters (0 = default)
-        b.plotstring(bmp,5,25,'Hello',fontsize,pixspace,charspace,c['brightred'],b.font8x14)
-        b.plotstringupsidedown(bmp,5,85,'World',fontsize,pixspace,charspace,c['brightyellow'],b.font8x8)
-        file='HelloEarthDownUpsidedowntext.bmp' #file name
-        b.saveBMP(file,bmp)
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
+        bmp = loadBMP(rootdir + '/assets/earth.bmp') #load earth to memory
+        c = getcolorname2RGBdict() #friendly color names 2 rgb
+        fontsize = 4 # font size
+        pixspace = 1 # space between bitmap font pixels (0 = default)
+        charspace = 0 # space bitmap font characters (0 = default)
+        plotstring(bmp, 5, 25,
+                'Hello', fontsize, pixspace, charspace,
+                c['brightred'], font8x14)
+        plotstringupsidedown(bmp, 5, 85,
+                'World', fontsize, pixspace, charspace,
+                c['brightyellow'], font8x8)
+        file = 'HelloEarthDownUpsidedowntext.bmp' #file name
+        saveBMP(file,bmp)
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
-if __name__=="__main__": 
+if __name__=="__main__":
         main()
+
 
 
