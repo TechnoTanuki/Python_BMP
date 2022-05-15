@@ -304,32 +304,40 @@ def matchRGBtodefault4bitpal(
 def matchRGBtopal(
         RGB: list,
         pal: list) -> int:
-       c,i,d=0,0,442
+       c = 0
+       i = 0
+       d = 442
        if RGB in pal:
            c = pal.index(RGB)
        else:
            for p in pal:
                if p != [0,0,0] and RGB != [0,0,0]:
-                   newd=distance(RGB,p)
-                   if newd<d:
-                       c=i
-                       d=newd
+                   newd = distance(RGB,p)
+                   if newd < d:
+                       c = i
+                       d = newd
                i+=1
        return c
-   
+
+
 def RGBtoRGBfactorsandlum(
         RGB: list) -> list:
     lum = max(RGB)
     if lum == 0:
         lum = 1
-    return [[RGB[0] / lum, RGB[1] / lum, RGB[2] / lum], lum]
+    return [[RGB[0] / lum,
+             RGB[1] / lum,
+             RGB[2] / lum], lum]
+
 
 def probplotRGBto1bit(
         rgb: list,
         brightness: int) -> int:
     return round(brightness * randint(0, sum(rgb)) / 768)
 
-def probplotRGBto4bitpal(rgb:list) -> int:
+
+def probplotRGBto4bitpal(
+        rgb: list) -> int:
     color = 0
     [r, g, b] = rgb
     if round(randint(0, r) / 256) == 1:
@@ -343,40 +351,78 @@ def probplotRGBto4bitpal(rgb:list) -> int:
         color += 8
     return color
 
+
 def monochromepal(
         bits: int,
         RGBfactors: list) -> list:
-    inc=(256>>bits)+iif(bits==4,1,iif(bits==1,127,0))
-    return [[round(RGBfactors[0]*c),round(RGBfactors[1]*c),round(RGBfactors[2]*c)] for c in range(0,256,inc)]
+    inc = (256 >> bits) + \
+        iif(bits == 4, 1,
+        iif(bits == 1, 127, 0))
+    return [[round(RGBfactors[0] * c),
+             round(RGBfactors[1] * c),
+             round(RGBfactors[2] * c)]
+             for c in range(0, 256, inc)]
+
 
 def monochrome(
         rgb: list) -> list:
     return [round(mean(rgb))] * 3
 
-def gammacorrect(rgb:list,gamma:int) -> list:
+
+def gammacorrect(rgb: list,
+               gamma: int) -> list:
+    c = RGBtoRGBfactorsandlum(rgb)
+    return setminmaxvec(RGBfactors2RGB(c[0],
+            gammacorrectbyte(c[1], gamma)),
+            0, 255)
+
+def brightnessadjust(
+        rgb: list,
+        percentadj: float) -> list:
     c=RGBtoRGBfactorsandlum(rgb)
-    return setminmaxvec(RGBfactors2RGB(c[0],gammacorrectbyte(c[1],gamma)),0,255)
+    return setminmaxvec(RGBfactors2RGB(c[0],
+     c[1] + c[1] * (percentadj / 100)),
+     0, 255)
 
-def brightnessadjust(rgb:list,percentadj:float) -> list:
-    c=RGBtoRGBfactorsandlum(rgb)
-    return setminmaxvec(RGBfactors2RGB(c[0],c[1]+c[1]*(percentadj/100)),0,255)
 
-def thresholdadjust(rgb:list,lumrange:list) -> list:
-    c,lumrange=RGBtoRGBfactorsandlum(rgb),intsetminmaxvec(lumrange,0,255)
-    if lumrange[0]>lumrange[1]: lumrange[1],lumrange[0]=lumrange[0],lumrange[1]
-    return RGBfactors2RGB(c[0],setminmax(c[1],lumrange[0],lumrange[1]))
+def thresholdadjust(
+        rgb: list,
+        lumrange: list) -> list:
+    c = RGBtoRGBfactorsandlum(rgb)
+    lumrange = intsetminmaxvec(lumrange, 0, 255)
+    if  lumrange[0] > lumrange[1]:
+        lumrange[1],  lumrange[0] = \
+        lumrange[0],  lumrange[1]
+    return RGBfactors2RGB(c[0],
+                setminmax(c[1],lumrange[0],
+                               lumrange[1]))
 
-def colorfilter(rgb:list,rgbfactors:list) -> list:
-    return intsetminmaxvec(mulvect(rgb,rgbfactors),0,255)
 
-def applymonochromefiltertoBGRbuf(buf:array):
-       m=len(buf)
-       buf[0:m-2:3]=buf[1:m-1:3]=buf[2:m:3]=array('B',[int((b+g+r)/3) for b,g,r in zip(buf[0:m-2:3],buf[1:m-1:3],buf[2:m:3])])
-   
-def monochromefiltertoBGRbuf(buf:array) -> array:
+def colorfilter(
+        rgb: list,
+        rgbfactors: list) -> list:
+    return intsetminmaxvec(mulvect(
+            rgb,rgbfactors),0,255)
+
+
+def applymonochromefiltertoBGRbuf(
+        buf: array):
+       m = len(buf)
+       buf[0: m - 2: 3]= \
+       buf[1: m - 1: 3]= \
+       buf[2: m: 3] = \
+       array('B',[int((b + g + r)/3)
+       for b,g,r in zip(buf[0: m - 2: 3],
+                        buf[1: m - 1: 3],
+                        buf[2: m: 3])])
+
+
+def monochromefiltertoBGRbuf(
+        buf:array) -> array:
        applymonochromefiltertoBGRbuf(buf)
        return buf
-   
+
+
 def applycolorfiltertoBGRbuf(
         buf: array,
         rgbfactors: list):
@@ -386,11 +432,13 @@ def applycolorfiltertoBGRbuf(
         array('B', intscalarmulvect(buf[1: m - 1: 3], rgbfactors[1])), \
         array('B', intscalarmulvect(buf[2: m: 3], rgbfactors[0]))
 
+
 def colorfiltertoBGRbuf(
         buf: array,
         rgbfactors: list) -> array:
     applycolorfiltertoBGRbuf(buf,rgbfactors)
     return buf
+
 
 def applygammaBGRbuf(
         buf: array,
@@ -410,6 +458,7 @@ def applygammaBGRbuf(
         buf[i2] = int(buf[i2 ]* f) & 0xff
         i += 3
 
+
 def gammaBGRbuf(
         buf: array,
         gamma: float) -> array:
@@ -428,7 +477,8 @@ def RGBfactorstoBaseandRange(
         RGBfactors: list):
     baselum = scalarmulvect(RGBfactors,lumrange[0])
     lumrange = subvect(scalarmulvect(
-                    RGBfactors,lumrange[1]),baselum)
+                    RGBfactors,lumrange[1]),
+                    baselum)
     return baselum, lumrange
 
 
