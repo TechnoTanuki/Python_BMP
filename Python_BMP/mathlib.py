@@ -32,11 +32,13 @@ from functools import reduce
 from typing import Callable
 from .conditionaltools import iif
 
+
 def setmaxvec(
         vlist: list,
         maxval: float) -> list:
     return [setmax(v, maxval)
                 for v in vlist]
+
 
 def setminmaxvec(
         vlist: list,
@@ -45,6 +47,7 @@ def setminmaxvec(
     return [setminmax(v, minval, maxval)
                 for v in vlist]
 
+
 def intsetminmaxvec(
         vlist: list,
         minval: int,
@@ -52,82 +55,100 @@ def intsetminmaxvec(
     return [intsetminmax(v, minval, maxval)
                 for v in vlist]
 
+
 def range2baseanddelta(lst_range: list):
     return lst_range[0], lst_range[1] - lst_range[0]
+
 
 def roundvect(
         v: list) -> list:
     return [round(n)
             for n in v]
 
+
 def roundvectlist(
         vlist: list) -> list:
     return [roundvect(v)
             for v in vlist]
 
+
 def addvect(u: list,
             v: list) -> list:
     return [i + j
-            for i, j in zip(u,v)]
+            for i, j in zip(u, v)]
+
 
 def trans(vlist: list,
               u: list) -> list:
     return [addvect(v, u)
             for v in vlist]
 
+
 def subvect(u: list,
             v: list) -> list:
     return [i - j
-            for i, j in zip(u,v)]
+            for i, j in zip(u, v)]
+
 
 def mulvect(u: list,
             v: list) -> list:
     return [i * j
             for i, j in zip(u,v)]
 
+
 def divvect(u: list,
             v: list) -> list:
     return [i / j
-            for i, j in zip(u,v)]
+            for i, j in zip(u, v)]
+
 
 def scalarmulvect(vec: list,
             scalarval: float) -> list:
     return [s*scalarval for s in vec]
+
 
 def intscalarmulvect(vec: list,
                scalarval: float) -> list:
     return [round(s * scalarval)
             for s in vec]
 
+
 def mean(v: list) -> float:
     return sum(v) / len(v)
+
 
 def meanlist(vlist: list) -> list:
     return [mean(v)
             for v in vlist]
+
 
 def pivotlist(vlist:list) -> list:
     j = len(vlist[0])
     return [[v[i] for v in vlist]
             for i in range(0,j)]
 
+
 def variance(v: list) -> list:
     ave=mean(v)
-    return [n-ave for n in v]
+    return [n - ave for n in v]
+
 
 def isinrange(value: float,
           highlimit: float,
            lowlimit: float) -> bool:
-    return (value>lowlimit) and \
-           (value<highlimit)
+    return (value > lowlimit) and \
+           (value < highlimit)
+
 
 def setmax(val: float,
         maxval: float) -> float:
     return maxval if val>maxval else val
 
+
 def setmin(val: float,
         minval: float) -> float:
     return minval if val<minval else val
+
 
 def setminmax(val: float,
            minval: float,
@@ -135,6 +156,7 @@ def setminmax(val: float,
     if val > maxval: val = maxval
     if val < minval: val = minval
     return val
+
 
 def intsetminmax(val: float,
               minval: int,
@@ -146,15 +168,17 @@ def intsetminmax(val: float,
         val=minval
     return val
 
+
 def sign(intval: int) -> int:
-    retval=0
-    if intval>0:
-        retval=1
+    retval = 0
+    if intval > 0:
+        retval = 1
     elif intval == 0:
-        retval=0
+        retval = 0
     else:
-        retval=-1
+        retval = -1
     return retval
+
 
 def LSMslope(XYdata: list) -> float:#first two values inlist must be [[x and y...]...]
     XY , N = pivotlist(XYdata), len(XYdata)
@@ -163,14 +187,17 @@ def LSMslope(XYdata: list) -> float:#first two values inlist must be [[x and y..
     EX = sum(X)
     EY = sum(Y)
     EXY = sum(mulvect(X,Y))
-    EsqX =sum(mulvect(X,X))
-    return ((N*EXY)-(EX*EY))/((N*EsqX)-(EX**2))
+    EsqX = sum(mulvect(X,X))
+    return ((N * EXY) - (EX * EY)) / \
+           ((N * EsqX) - (EX ** 2))
+
 
 def LSMYint(XYdata:list) -> float:
     XY = pivotlist(XYdata)
     meanX = mean(XY[0])
     meanY = mean(XY[1])
     return meanY - LSMslope(XYdata) * meanX
+
 
 def PearsonsR(XYdata: list) -> float:#first two values inlist must be [[x and y...]...]
     XY, N = pivotlist(XYdata), len(XYdata)
@@ -185,23 +212,29 @@ def PearsonsR(XYdata: list) -> float:#first two values inlist must be [[x and y.
         sqrt(abs(((N * EsqX) - (EX ** 2))) * \
             abs(((N * EsqY) - (EY ** 2))))
 
+
 def Rsquare(XYdata: list) -> float:
     return PearsonsR(XYdata) ** 2
+
 
 def TTest(XYdata: list) -> float:
     r = PearsonsR(XYdata)
     return r * sqrt((len(XYdata) - 2) / (1 - r ** 2))
 
+
 def StdDev(v:list) -> float:
     vr=variance(v)
     return sqrt(sum(mulvect(vr, vr)) / len(v))
+
 
 def slope(u:list,v:list) -> float:
     return (v[1] - u[1]) / \
            (v[0] - u[0])
 
+
 def coefvar(v: list) -> float:
     return StdDev(v) /mean(v)
+
 
 def vectiszero(v: list) -> bool:
     b = True
@@ -211,9 +244,11 @@ def vectiszero(v: list) -> bool:
             break
     return b
 
+
 def isorthogonal(u: list,
                  v: list) -> bool:
     return vectiszero(mulvect(u,v))
+
 
 def crossprod3d(u: list,
                 v: list) -> list:
@@ -224,15 +259,18 @@ def crossprod3d(u: list,
         z = u[0] * v[1] - u[1] * v[0]
     return [x, y, z]
 
+
 def getnormvec(p1: list,
                p2: list,
                p3: list) -> list:
     return crossprod3d(subvect(p2, p1),
                        subvect(p3, p1))
 
+
 def dotprod(u: list,
             v: list) -> float:
     return sum(mulvect(u, v))
+
 
 def vmag(v:list) -> float:
     s=0
@@ -240,9 +278,11 @@ def vmag(v:list) -> float:
         s += i*i
     return sqrt(s)
 
+
 def distance(u: list,
              v: list) -> float:
     return vmag(subvect(u,v))
+
 
 def distancetable(vertlist: list) -> list:
     dlist=[]
@@ -254,6 +294,7 @@ def distancetable(vertlist: list) -> list:
                               distance(u,v)])
     return dlist
 
+
 def countdist(distlist:list) -> dict:
     d={}
     for i in distlist:
@@ -263,6 +304,7 @@ def countdist(distlist:list) -> dict:
         else:
             d[dist] += 1
     return d
+
 
 def det3D(a1: list,
           a2: list,
@@ -274,22 +316,27 @@ def det3D(a1: list,
            a1[1] * a2[0] * a3[2] - \
            a1[2] * a2[1] * a2[0]
 
+
 def cosaffin(u: list,
              v: list) -> float:
     return dotprod(u, v) / \
            (vmag(u) * vmag(v))
 
+
 def dircos(v: list) -> list:
     mag=vmag(v)
-    return [i/mag for i in v]
+    return [i / mag for i in v]
+
 
 def diracos(dcos: list) -> list:
     return [acos(d)
             for d in dcos]
 
+
 def dirdeg(raddir: list) -> list:
     return [degrees(d)
             for d in raddir]
+
 
 def rect2sphericalcoord3D(
         v: list) -> list:
@@ -297,6 +344,7 @@ def rect2sphericalcoord3D(
     azimuth = atan(v[1] / v[0])
     colatitude = acos(v[2] / p)
     return [p, azimuth, colatitude]
+
 
 def spherical2rectcoord3D(
         vspherecoord3D: list) -> list:
@@ -306,11 +354,13 @@ def spherical2rectcoord3D(
             p * sinphi * sin(theta),
             p * cos(phi)]
 
+
 def rect2cylindricalcoord3D(
         v: list) -> list:
     return [vmag(v),
             atan(v[1]/v[0]),
             v[2]]
+
 
 def cylindrical2rectcoord3D(
         vcylindcoord3D: list) -> list:
@@ -320,6 +370,7 @@ def cylindrical2rectcoord3D(
             r * sin(theta),
             vcylindcoord3D[2]]
 
+
 def polar2rectcoord2D(
         vpolarcoord2D: list) -> list:
     r = vpolarcoord2D[0]
@@ -327,10 +378,12 @@ def polar2rectcoord2D(
     return [r * cos(theta),
             r * sin(theta)]
 
+
 def rect2polarcoord2D(
         v: list) -> list:
     return [vmag(v),
             atan(v[1] / v[0])]
+
 
 def polarcoordangle2D(
         v:list) -> float:
@@ -339,6 +392,7 @@ def polarcoordangle2D(
         a = 2 * pi - a
     return a
 
+
 def rect2polarcoord2Dwithcenter(
         vcen: list,
         vpnt: list) -> list:
@@ -346,30 +400,37 @@ def rect2polarcoord2Dwithcenter(
     return [vmag(v),
             polarcoordangle2D(v)]
 
+
 def computerotvec(degrot:float) -> list:
     a = radians(degrot)
     return (sin(a), cos(a))
+
 
 def rotvec2D(v: list,
         rotvec: list) -> list:
     return [v[0] * rotvec[1] - v[1] * rotvec[0],
             v[0] * rotvec[0] + v[1] * rotvec[1]]
 
+
 def mirrorx(p: list,
             x: float) -> list:
     return [p[0] - x, p[1]], [p[0] + x, p[1]]
 
+
 def mirrory(p:list, y:float) -> list:
     return [p[0], p[1] - y], [p[0], p[1] + y]
+
 
 def mirrorvec(vcen: list,
                  v: list) -> list:
     return [subvect(vcen, v),
             addvect(vcen, v)]
 
+
 def mirror(pt: float,
         delta: float):
     return pt - delta, pt + delta
+
 
 def randomvect(minrnd: int,
                maxrnd: int) -> list:
@@ -377,16 +438,19 @@ def randomvect(minrnd: int,
             randint(minrnd, maxrnd),
             randint(minrnd, maxrnd)]
 
+
 def addrndtovert(vertlist: list,
                    minrnd: int,
                    maxrnd: int) -> list:
     return [addvect(pt, randomvect(minrnd, maxrnd))
                 for pt in vertlist]
 
+
 def adddimz(vlist2D: list,
               value: float) -> list:
     return [[v[0],v[1],value]
             for v in vlist2D]
+
 
 def anglebetween2Dlines(
         u: list,
@@ -399,6 +463,7 @@ def anglebetween2Dlines(
                     4.71238898038469)
     return a
 
+
 def rotatebits(bits:int) -> int:
     bit = 7
     retval = 0
@@ -407,6 +472,7 @@ def rotatebits(bits:int) -> int:
             ((bits & (1 << bit)) >> bit) << (7 - bit)
         bit -= 1
     return retval
+
 
 def mirror1stquad(
         x: int,
@@ -419,21 +485,25 @@ def mirror1stquad(
             [xmin, ymin],
             [xmax, ymin]]
 
+
 def xorvect(u: list,
             v: list) -> list:
     return [i ^ j
             for i, j in zip(u, v)]
+
 
 def andvect(u: list,
             v: list) -> list:
     return [i & j
             for i, j in zip(u,v)]
 
+
 def bitmaskvect(
               v: list,
         bitmask: int) -> list:
     return [b & bitmask
             for b in v ]
+
 
 def orvect(u: list,
            v: list) -> list:
@@ -444,6 +514,7 @@ def gammacorrectbyte(
         lumbyte: list,
         gamma: float) -> int:
     return int(((lumbyte / 255) ** gamma) * 255)
+
 
 def addvectinlist(vlist: list):
     return reduce(addvect,vlist)
@@ -457,10 +528,12 @@ def addvecttripletlist(vtriplet: list):
                    vtriplet[1]),
                    vtriplet[2])
 
+
 def addvectlist(vlist1: list,
                 vlist2: list) -> list:
     return [addvect(u, v)
             for u,v in zip(vlist1, vlist2)]
+
 
 def mapfunctolist(
         func: Callable,
@@ -468,8 +541,10 @@ def mapfunctolist(
     return [func(v)
             for v in vlist]
 
+
 def swapxy(v:list) -> list:
     return [v[1], v[0]]
+
 
 def centerpoint(x1: int,
                 y1: int,
@@ -477,11 +552,13 @@ def centerpoint(x1: int,
                 y2: int):
     return ((x2 - x1) >> 1) + x1, ((y2 - y1) >> 1) + y1
 
+
 def getdatalisttotal(dlist: list) -> float:
     total=0
     for d in dlist:
         total += d[0]
     return total
+
 
 def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
     sa,tot=0,getdatalisttotal(dlist)#more date an be addded tolist
@@ -495,11 +572,13 @@ def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
         sa=ea
     return alist,big
 
+
 def enumbits(byteval):
-    bit=7
-    while bit>-1:
+    bit = 7
+    while bit > -1:
         yield  ((byteval & (1<<bit))>>bit)
-        bit-=1
+        bit -= 1
+
 
 def delta(v:list):
     return (v[1] - v[0])
