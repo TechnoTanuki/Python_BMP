@@ -1,16 +1,18 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
-
+notice ="""
+        Font Generator Program
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
 
 def get8x8charpatterns() -> dict:#add characters as needed some ascii chars not present 
     return {' ':[0,0,0,0,0,0,0,0],
@@ -167,10 +169,20 @@ def makecharbuf(chardict:dict) -> list:
     for i in range(0,charlen):
         blankchar.append(0)
     for i in range(0,256):
-        ch=chr(i)
-        if ch in chardict: c=chardict[chr(i)]
-        else: c=blankchar
-        b+=c
+        ch = chr(i)
+        if ch in chardict:
+            c = chardict[chr(i)]
+        else:
+            c = blankchar
+        b += c
     return b
 
-#charbuf=makecharbuf(get8x8charpatterns())
+
+def main():
+    print(notice)
+    print(makecharbuf(get8x8charpatterns()))
+    print(makecharbuf(get8x14charpatterns()))
+
+
+if __name__ == "__main__":
+    main()
