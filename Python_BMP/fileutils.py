@@ -52,10 +52,10 @@ def checklinks(func: Callable):
         caller function
 
     """
-    def callf(*args,**kwargs):
+    def callf(*args, **kwargs):
         if isfile(args[0]) and \
            isfile(args[1]):
-            return(func(*args,**kwargs))
+            return(func(*args, **kwargs))
         else:
             print(sysmsg['filenotexist'])
     return(callf)
