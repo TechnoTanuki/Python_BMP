@@ -1,13 +1,26 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#\--------------------------------------------------------------------------/
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+# -----------------------------------
 
-def iif(boolcond: bool, trueval: any, falseval: any) -> any:
+
+def iif(boolcond: bool,
+         trueval: any,
+        falseval: any) -> any:
     return trueval if boolcond else falseval
 
 
-def swapif(val1: any, val2: any, boolcond: bool):
+def swapif(val1: any,
+           val2: any,
+       boolcond: bool):
     if boolcond:
         val1, val2 = val2, val1
     return val1, val2
