@@ -5,27 +5,13 @@
 #|    We make absolutely no warranty |
 #| of any kind, expressed or implied |
 #|-----------------------------------|
-#|       The primary author and any  |
-#| any subsequent code contributors  |
-#| shall not be liable in any event  |
-#| for  incidental or consequential  |
-#| damages  in connection with,  or  |
-#| arising out from the use of this  |
-#| code in current form or with any  |
-#| modifications.                    |
-#|-----------------------------------|
 #|   Contact primary author          |
 #|   if you plan to use this         |
 #|   in a commercial product at      |
 #|   joelalcarez1975@gmail.com       |
-#|-----------------------------------|
-#|   Educational or hobby use is     |
-#|   highly encouraged...            |
-#|   have fun coding !               |
-#|-----------------------------------|
-#|   This graphics library outputs   |
-#|   to a bitmap file.               |
 # -----------------------------------
+
+
 from math import(
     acos,
     atan,
@@ -170,7 +156,7 @@ def sign(intval: int) -> int:
         retval=-1
     return retval
 
-def LSMslope(XYdata: list) -> float:#first twovalues inlist must be [[x and y...]...]
+def LSMslope(XYdata: list) -> float:#first two values inlist must be [[x and y...]...]
     XY , N = pivotlist(XYdata), len(XYdata)
     X =  XY[0]
     Y =  XY[1]
@@ -186,7 +172,7 @@ def LSMYint(XYdata:list) -> float:
     meanY = mean(XY[1])
     return meanY - LSMslope(XYdata) * meanX
 
-def PearsonsR(XYdata: list) -> float:#first twovalues inlist must be [[x and y...]...]
+def PearsonsR(XYdata: list) -> float:#first two values inlist must be [[x and y...]...]
     XY, N = pivotlist(XYdata), len(XYdata)
     X = XY[0]
     Y = XY[1]
@@ -197,14 +183,14 @@ def PearsonsR(XYdata: list) -> float:#first twovalues inlist must be [[x and y..
     EsqY = sum(mulvect(Y,Y))
     return ((N * EXY) - (EX * EY)) / \
         sqrt(abs(((N * EsqX) - (EX ** 2))) * \
-            abs(((N * EsqY)-(EY ** 2))))
+            abs(((N * EsqY) - (EY ** 2))))
 
 def Rsquare(XYdata: list) -> float:
     return PearsonsR(XYdata) ** 2
 
 def TTest(XYdata: list) -> float:
     r = PearsonsR(XYdata)
-    return r * sqrt((len(XYdata) - 2)/(1 - r ** 2))
+    return r * sqrt((len(XYdata) - 2) / (1 - r ** 2))
 
 def StdDev(v:list) -> float:
     vr=variance(v)
@@ -220,8 +206,8 @@ def coefvar(v: list) -> float:
 def vectiszero(v: list) -> bool:
     b = True
     for i in v:
-        if i>0:
-            b=False
+        if i > 0:
+            b = False
             break
     return b
 
@@ -474,7 +460,7 @@ def addvecttripletlist(vtriplet: list):
 def addvectlist(vlist1: list,
                 vlist2: list) -> list:
     return [addvect(u, v)
-            for u,v in zip(vlist1,vlist2)]
+            for u,v in zip(vlist1, vlist2)]
 
 def mapfunctolist(
         func: Callable,
