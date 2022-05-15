@@ -172,7 +172,6 @@ bmpstdpal = \
          [0, 0, 255], [255, 0, 255],
          [0, 255, 255], [255, 255, 255]]
     }
-
 # end do not edit
 
 def getcolorname2RGBdict() -> dict:#define colors here
@@ -208,6 +207,18 @@ def getcolorname2RGBdict() -> dict:#define colors here
        'darkmagenta':RGB2int(92,0,92),
        'darkbrown':RGB2int(92,92,0)
        }
+
+
+def getdefaultlumrange() -> dict:
+    return {'maxdesc': [255, 0],
+             'maxasc': [0, 255],
+            'middesc': [192, 64],
+            ' midasc': [64, 192],
+          'upperdesc': [255, 128],
+           'upperasc': [128, 255],
+          'lowerdesc': [128, 0],
+           'lowerasc': [0, 128]}
+
 
 def isvalidcolorbit(bits:int) -> bool:
     return bits in bmpvalidcolorbits
@@ -262,31 +273,43 @@ def RGB2int(r: int,
     return b + (g << 8) + (r << 16)
 
 
-def getdefaultlumrange() -> dict:
-    return {'maxdesc':[255,0],'maxasc':[0,255],'middesc':[192,64],'midasc':[64,192],'upperdesc':[255,128],'upperasc':[128,255],'lowerdesc':[128,0],'lowerasc':[0,128]}
-
 def getRGBfactors() -> dict:#used by functions that generate color gradients
     d={}
-    colordict=getcolorname2RGBdict()
+    colordict = getcolorname2RGBdict()
     for color in colordict:
-        r,g,b=int2RGB(colordict[color])
-        d.setdefault(color,[r/255,g/255,b/255])
+        r, g, b = int2RGB(colordict[color])
+        d.setdefault(color, [r / 255,
+                             g / 255,
+                             b / 255])
     return d
 
-def matchRGBtodefault4bitpal(RGB:list) -> int:
-       r,g,b,color=RGB[0]>>6,RGB[1]>>6,RGB[2]>>6,0
-       if r>1 or g>1 or b>1:color=8
-       if r>=1:color+=4
-       if g>=1:color+=2
-       if b>=1:color+=1
+
+def matchRGBtodefault4bitpal(
+        RGB:list) -> int:
+       r = RGB[0] >> 6
+       g = RGB[1] >> 6
+       b = RGB[2] >> 6
+       color = 0
+       if r > 1 or g > 1 or b > 1:
+           color = 8
+       if r >= 1:
+           color += 4
+       if g >= 1:
+           color += 2
+       if b >= 1:
+           color += 1
        return color
-   
-def matchRGBtopal(RGB:list,pal:list) -> int:
+
+
+def matchRGBtopal(
+        RGB: list,
+        pal: list) -> int:
        c,i,d=0,0,442
-       if RGB in pal: c=pal.index(RGB)
+       if RGB in pal:
+           c = pal.index(RGB)
        else:
            for p in pal:
-               if p!=[0,0,0] and RGB!=[0,0,0]:
+               if p != [0,0,0] and RGB != [0,0,0]:
                    newd=distance(RGB,p)
                    if newd<d:
                        c=i
