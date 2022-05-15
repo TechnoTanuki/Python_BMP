@@ -5,26 +5,10 @@
 #|    We make absolutely no warranty |
 #| of any kind, expressed or implied |
 #|-----------------------------------|
-#|       The primary author and any  |
-#| any subsequent code contributors  |
-#| shall not be liable in any event  |
-#| for  incidental or consequential  |
-#| damages  in connection with,  or  |
-#| arising out from the use of this  |
-#| code in current form or with any  |
-#| modifications.                    |
-#|-----------------------------------|
 #|   Contact primary author          |
 #|   if you plan to use this         |
 #|   in a commercial product at      |
 #|   joelalcarez1975@gmail.com       |
-#|-----------------------------------|
-#|   Educational or hobby use is     |
-#|   highly encouraged...            |
-#|   have fun coding !               |
-#|-----------------------------------|
-#|   This graphics library outputs   |
-#|   to a bitmap file.               |
 # -----------------------------------
 
 
