@@ -1,10 +1,19 @@
-#/--------------------------------------------------------------------------\
-#|    Copyright 2022 by Joel C. Alcarez    [joelalcarez1975@gmail.com]      |
-#|    We make absolutely no warranty of any kind, expressed or implied.     |
-#\--------------------------------------------------------------------------/
+# -----------------------------------
+#| Copyright 2022 by Joel C. Alcarez |
+#| [joelalcarez1975@gmail.com]       |
+#|-----------------------------------|
+#|    We make absolutely no warranty |
+#| of any kind, expressed or implied |
+#|-----------------------------------|
+#|   Contact primary author          |
+#|   if you plan to use this         |
+#|   in a commercial product at      |
+#|   joelalcarez1975@gmail.com       |
+# -----------------------------------
 
 def enumletters(st: str) -> str:
-    """Enumerates the characters in a string
+    """Enumerates the characters
+    in a string
 
     Args:
         st: string
@@ -19,8 +28,10 @@ def enumletters(st: str) -> str:
         i += 1
 
 
-def enumreverseletters(st: str) -> str:
-    """Enumerates the characters in a string in reverse order
+def enumreverseletters(
+        st: str) -> str:
+    """Enumerates the characters
+    in a string in reverse order
 
     Args:
         st: string
@@ -36,8 +47,10 @@ def enumreverseletters(st: str) -> str:
         i -= 1
 
 
-def char2int(charcodestr: str) -> int:
-    """Packs a string into an int using ascii code
+def char2int(
+        charcodestr: str) -> int:
+    """Packs a string into
+    an int using ascii code
 
     Args:
         charcodestr: string
@@ -48,6 +61,7 @@ def char2int(charcodestr: str) -> int:
     """
     place, strhash = 0, 0
     for c in enumletters(charcodestr):
-        strhash = strhash + ord(c) * (256 ** place)
+        strhash += \
+            ord(c) * (256 ** place)
         place += 1
     return strhash
