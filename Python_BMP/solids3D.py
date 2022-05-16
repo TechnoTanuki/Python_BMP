@@ -5,27 +5,12 @@
 #|    We make absolutely no warranty |
 #| of any kind, expressed or implied |
 #|-----------------------------------|
-#|       The primary author and any  |
-#| any subsequent code contributors  |
-#| shall not be liable in any event  |
-#| for  incidental or consequential  |
-#| damages  in connection with,  or  |
-#| arising out from the use of this  |
-#| code in current form or with any  |
-#| modifications.                    |
-#|-----------------------------------|
 #|   Contact primary author          |
 #|   if you plan to use this         |
 #|   in a commercial product at      |
 #|   joelalcarez1975@gmail.com       |
-#|-----------------------------------|
-#|   Educational or hobby use is     |
-#|   highly encouraged...            |
-#|   have fun coding !               |
-#|-----------------------------------|
-#|   This graphics library outputs   |
-#|   to a bitmap file.               |
 # -----------------------------------
+
 
 from math import(
     sqrt,
@@ -83,6 +68,19 @@ def getshapesidedict() -> dict:
 
 
 def tetrahedravert(x: float) -> list:
+    """Returns a list
+        of vertices
+        for a tetraheron
+
+    Args:
+        x: lenght of a side
+
+    Returns:
+        list (x: float,
+              y: float,
+              z: float)
+
+    """
     x_sqr = x * x
     halfx= x / 2
     return [[0, 0, 0],
@@ -92,6 +90,19 @@ def tetrahedravert(x: float) -> list:
 
 
 def cubevert(x: float) -> list:
+    """Returns a list
+        of vertices
+        for a cube
+
+    Args:
+        x: lenght of a side
+
+    Returns:
+        list (x: float,
+              y: float,
+              z: float)
+
+    """
     return [[0, 0, 0],
             [0, x, 0],
             [x, x, 0],
@@ -103,6 +114,19 @@ def cubevert(x: float) -> list:
 
 
 def hexahedravert(x: float) -> list:
+    """Returns a list
+        of vertices
+        for a hexahedron
+
+    Args:
+        x: lenght of a side
+
+    Returns:
+        list (x: float,
+              y: float,
+              z: float)
+
+    """
     x_sqr = x * x
     halfx= x / 2
     z = sqrt(3 / 8 * x_sqr)
@@ -114,6 +138,19 @@ def hexahedravert(x: float) -> list:
 
 
 def octahedravert(x:float) -> list:
+    """Returns a list
+        of vertices
+        for an octrahedron
+
+    Args:
+        x: lenght of a side
+
+    Returns:
+        list (x: float,
+              y: float,
+              z: float)
+
+    """
     halfx = x / 2
     return [[halfx, halfx, halfx],
             [0, 0, 0],
@@ -125,11 +162,28 @@ def octahedravert(x:float) -> list:
 
 def decahedvertandsurface(
         x: float) -> list:
-    pts = regpolygonvert(0, 0, x, 5, 0)
+    """Returns a list
+        of vertices
+        for a icosahedron
+
+    Args:
+        x: min radius of sphere
+           that can hold
+           the decahedron
+
+    Returns:
+        list (x: float,
+              y: float,
+              z: float)
+
+    """
+    pts = regpolygonvert(
+            0, 0, x, 5, 0)
     z = sqrt(distance(pts[0],
-                      pts[1]) ** 2 - x * x)
+             pts[1]) ** 2 - x * x)
     return [[[0, 0, -z]] + \
-            adddimz(pts, 0) + [[0, 0, z]],
+            adddimz(pts, 0) + \
+            [[0, 0, z]],
             ((1, 2, 0),
              (5, 1, 0),
              (3, 4, 0),
@@ -142,15 +196,36 @@ def decahedvertandsurface(
              (5, 4, 6))]
 
 
+#don't edit this it took much
+# computation to make
 def icosahedvertandsurface(
-    x: float) -> list:#don't edit this it took much computation to make
-    pts = floatregpolygonvert(0, 0, x, 5, 0)
-    pts1 = floatregpolygonvert(0, 0, x, 5, 36)
+        x: float) -> list:
+    """Returns a list
+        of vertices
+        for a icosahedron
+
+    Args:
+        x: min radius of sphere
+           that can hold
+           the icosahedron
+
+    Returns:
+        list (x: float,
+              y: float,
+              z: float)
+
+    """
+    pts = floatregpolygonvert(
+                0, 0, x, 5, 0)
+    pts1 = floatregpolygonvert(
+                0, 0, x, 5, 36)
     z = sqrt(distance(pts[0],
-                      pts[1]) ** 2 - x * x)
+               pts[1]) ** 2 - x * x)
     z1 = 2 * x - z
-    return [[[0, 0, -z]] + adddimz(pts, 0) + \
-           adddimz(pts1, z1 - z) + [[0, 0, z1]],
+    return [[[0, 0, -z]] + \
+             adddimz(pts, 0) + \
+             adddimz(pts1, z1 - z) + \
+            [[0, 0, z1]],
            ((1, 2, 0),
             (5, 1, 0),
             (3, 4, 0),
@@ -176,17 +251,32 @@ def icosahedvertandsurface(
 def rotvec3D(
         roll: float,
         pitch: float,
-        yaw: float)-> tuple:
+        yaw: float) -> tuple:
+    """Returns a tuple
+        of rotation vector
+
+    Args:
+        All input arguements
+        are in degrees
+        roll, pitch, yaw
+
+    Returns:
+        tuple ((float,float),
+               (float,float),
+               (float,float))
+
+    """
     return (computerotvec(roll),
             computerotvec(pitch),
             computerotvec(yaw))
 
 
+#translated from C code by Roger Stevens
 def perspective(
         vlist: list,
         rotvec: list,
         dispvec: list,
-        d: float) -> tuple:#translated from C code by Roger Stevens
+        d: float) -> tuple:
     rotvlist = []
     projvlist = []
     [sroll, croll] = rotvec[0]
@@ -204,14 +294,16 @@ def perspective(
         y += dispvec[1]
         z += dispvec[2]
         rotvlist.append([x, y, z])
-        projvlist.append([-d * x / z,-d * y / z])
+        projvlist.append([-d * x / z,
+                          -d * y / z])
     return (rotvlist, projvlist)
 
 
+#may be slow if polygon goes offscreen
 def fillpolydata(
         polybnd: list,
         xlim: int,
-        ylim: int) -> list:#may be slow if polygon goes offscreen
+        ylim: int) -> list:
     filld = {}
     bnd= rectboundarycoords(polybnd)
     [minx, miny] = bnd[0]
@@ -224,7 +316,7 @@ def fillpolydata(
             filld.setdefault(y, [])
             for x in range(minx, maxx):
                 if [x, y] in polybnd:
-                    filld[y]+=[x]
+                    filld[y] += [x]
     else:
         print(bnd)
         print(sysmsg['regionoutofbounds'])
@@ -238,13 +330,15 @@ def polyboundary(
     vertcount = len(vertlist)
     for i in range(0, vertcount):
         if i>0:
-            v1 = roundvect(vertlist[i-1])
+            v1 = roundvect(
+                    vertlist[i - 1])
             v2 = roundvect(vertlist[i])
             for p in iterline(v1, v2):
                 if p not in px:
                     px.append(p)
     v2 = roundvect(vertlist[0])
-    v1 = roundvect(vertlist[vertcount-1])
+    v1 = roundvect(
+            vertlist[vertcount - 1])
     for p in iterline(v1, v2):
         if p not in px:
             px.append(p)
@@ -266,7 +360,7 @@ def gensides(
             polylist.append(
                 trans(
                     [slist[i]
-                     for i in sidepts],transvect))
+                     for i in sidepts], transvect))
             normlist.append(getnormvec(u, v, w))
     return (polylist, normlist)
 
@@ -290,7 +384,8 @@ def spherevert(
     return plist
 
 
-def zlevelcoords(verlist: list) -> tuple:#we have a 3D object and we take z slices
+#we have a 3D object and we take z slices
+def zlevelcoords(verlist: list) -> tuple:
     zlist = []
     zord = {}
     for p in verlist:
@@ -359,8 +454,12 @@ def cylindervertandsurface(
     side = []
     maxang = 360 + (deganglestep << 1)
     for theta in range(0, maxang, deganglestep):
-        plist.append(addvect(vcen, cylindrical2rectcoord3D([r, radians(theta), -z])))
-        plist.append(addvect(vcen, cylindrical2rectcoord3D([r, radians(theta), z])))
+        plist.append(addvect(vcen,
+            cylindrical2rectcoord3D([r,
+                        radians(theta), -z])))
+        plist.append(addvect(vcen,
+            cylindrical2rectcoord3D([r,
+                        radians(theta), z])))
         top.append(i)
         bottom.append(i + 1)
         if i > 2:
