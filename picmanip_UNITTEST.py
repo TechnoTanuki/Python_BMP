@@ -32,7 +32,9 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-import unittest,os
+import unittest
+
+from os import path
 from Python_BMP.BITMAPlib import(
         adjustbrightness2file,
         adjustbrightnessinregion2file,
@@ -118,7 +120,7 @@ from Python_BMP.BITMAPlib import(
         )
 
 
-rootdir = os.path.dirname(__file__)
+rootdir = path.dirname(__file__)
 testimgdir ='/assets/test_images/'
 sdir = rootdir + testimgdir
 odir = rootdir +'/test_output/'
