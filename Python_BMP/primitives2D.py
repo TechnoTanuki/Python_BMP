@@ -5,26 +5,10 @@
 #|    We make absolutely no warranty |
 #| of any kind, expressed or implied |
 #|-----------------------------------|
-#|       The primary author and any  |
-#| any subsequent code contributors  |
-#| shall not be liable in any event  |
-#| for  incidental or consequential  |
-#| damages  in connection with,  or  |
-#| arising out from the use of this  |
-#| code in current form or with any  |
-#| modifications.                    |
-#|-----------------------------------|
 #|   Contact primary author          |
 #|   if you plan to use this         |
 #|   in a commercial product at      |
 #|   joelalcarez1975@gmail.com       |
-#|-----------------------------------|
-#|   Educational or hobby use is     |
-#|   highly encouraged...            |
-#|   have fun coding !               |
-#|-----------------------------------|
-#|   This graphics library outputs   |
-#|   to a bitmap file.               |
 # -----------------------------------
 
 from math import(
@@ -139,6 +123,7 @@ def itercirclepartvertlineedge(
         d += _2r_sqr *(3 + (col << 1))
         col += 1
 
+
 def iterline(
         p1: list,
         p2: list) -> list:
@@ -169,6 +154,7 @@ def iterline(
             py += sdy
     yield p2
 
+
 def iterparallelogram(
         p1: list,
         p2: list,
@@ -179,10 +165,12 @@ def iterparallelogram(
     for u, v in zip(p, q):
         yield [u,v]
 
+
 def lineseg(p1: list,
             p2: list):
     return [p for p in \
             iterline(p1, p2)]
+
 
 def iterellipsepart(
         b: int,
@@ -215,6 +203,7 @@ def iterellipsepart(
         d += _2a_sqr * (3 + (row << 1))
         row -= 1
 
+
 def iterellipse(x: int,
                 y: int,
                 b: int,
@@ -222,6 +211,7 @@ def iterellipse(x: int,
     for p in iterellipsepart(b,a):
          for v in mirror1stquad(x,y,p):
              yield v
+
 
 def iterellipserot(
         x: int,
@@ -238,6 +228,7 @@ def iterellipserot(
                         rotvec2D(
                             subvect(v, c), rotvec), c))
 
+
 def itercircle(
         x: int,
         y: int,
@@ -246,13 +237,15 @@ def itercircle(
          for v in mirror1stquad(x, y, p):
              yield v
 
+
 def bezierblend(
         i: int,
         n: int,
         u: int):
     return comb(n, i) * (u ** i) * ((1 - u) ** (n - i))
 
-def iterbeziercurve(pntlist:list)->list:
+
+def iterbeziercurve(pntlist: list) -> list:
     i = 0
     cnt = len(pntlist)
     w = v = pntlist[0]
@@ -264,11 +257,13 @@ def iterbeziercurve(pntlist:list)->list:
                 u = k / klim
                 v = [0, 0]
                 for j in range(0,i):
-                    v = addvect(v, scalarmulvect(pntlist[j],
-                                                 bezierblend(j,
-                                                          last,
-                                                             u)))
-                for pnt in iterline(roundvect(v), roundvect(w)):
+                    v = addvect(v,
+                         scalarmulvect(
+                                pntlist[j],
+                          bezierblend(
+                                j, last, u)))
+                for pnt in iterline(roundvect(v),
+                                    roundvect(w)):
                     yield pnt
                 w = v
         i += 1
@@ -317,7 +312,8 @@ def bsplinevert(
                                  curveback)]
 
 
-def bsplineblend(u:float)->list:#dont edit this square shaped code
+#dont edit this square shaped code
+def bsplineblend(u:float)->list:
     u2,u3= u*u,u*u*u
     d,f = u3/6 , 1/6
     a=-d +u2/2-u/2+f
@@ -353,6 +349,7 @@ def floatregpolygonvert(
                   int(cy -r * cos(ang))])
     return v
 
+
 def regpolygonvert(
         cx: int,
         cy: int,
@@ -363,6 +360,7 @@ def regpolygonvert(
                 floatregpolygonvert(
                     cx,cy,r,sides,angle))
 
+
 def horizontalvert(
         y: int,
         x1: int,
@@ -370,6 +368,7 @@ def horizontalvert(
         dx: int) -> list:
     return [[x,y]
             for x in range(x1, x2, dx)]
+
 
 def verticalvert(
         x: int,
@@ -379,11 +378,13 @@ def verticalvert(
     return [[x,y]
             for y in range(y1, y2, dy)]
 
+
 def circlevert(
         x: int,
         y: int,
         r: int) -> list:
     return [v for v in itercircle(x, y, r)]
+
 
 def arcvert(
         x: int,
@@ -480,6 +481,7 @@ def spiralcontrolpointsvert(
         inc *= growthfactor
     return v
 
+
 def sortrecpoints(
         x1: int,
         y1: int,
@@ -488,6 +490,7 @@ def sortrecpoints(
     x1, x2 = swapif(x1, x2, x1 > x2)
     y1, y2 = swapif(y1, y2, y1 > y2)
     return x1, y1, x2, y2
+
 
 def isinrectbnd(
         x: int,
