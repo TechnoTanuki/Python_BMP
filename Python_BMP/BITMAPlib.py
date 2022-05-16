@@ -5719,10 +5719,11 @@ def getimageregionbyRGB(
         list of vertices
 
     """
-    return [v for v in iterimageregionvertbyRGB(
-                            bmp,
-                            rgb,
-                            similaritythreshold)]
+    return [v for v in
+                iterimageregionvertbyRGB(
+                    bmp,
+                    rgb,
+                    similaritythreshold)]
 
 
 def getimagedgevert(
@@ -5740,7 +5741,10 @@ def getimagedgevert(
         [(x:int,y:int),...]
 
     """
-    return [v for v in iterimagedgevert(bmp, similaritythreshold)]
+    return [v for v in
+                iterimagedgevert(
+                    bmp,
+                    similaritythreshold)]
 
 
 def plotimgedges(
@@ -5847,6 +5851,7 @@ def upgradeto24bitimage(bmp: array):
                 convertbufto24bit(buf, bgrpal, bits))
             offset += r
     return nbmp
+
 
 def iterimageRGB(
         bmp: array,
@@ -6451,12 +6456,15 @@ def verttransregion(
     def _F():
         bmp[s1: e1], bmp[s2: e2] = \
         bmp[s2: e2], bmp[s1:e1]
+
     def _T():
         bmp[s1: s1 + bufsize] = \
         bmp[s2: s2 + bufsize]
+
     def _B():
         bmp[s2: s2 + bufsize] = \
         bmp[s1: s1 + bufsize]
+
     f = {'F': _F,
          'T': _T,
          'B': _B}[trans]
@@ -7072,6 +7080,7 @@ def flipXY(bmp: array):
             offset += r
     return nbmp
 
+
 @_enrectbnd
 def itergetcolorfromrectregion(
         bmp: array,
@@ -7176,7 +7185,8 @@ def invertregion(
         for v in itergetcolorfromrectregion(
                     bmp, x1, y1, x2, y2):
             intplotvecxypoint(bmp,
-                v[0], getxybitvec(bmp, v[0]) ^ c)
+                v[0], getxybitvec(
+                        bmp, v[0]) ^ c)
     else:
         offset = iif(bits == 24,
                     _24bmof(bmp, x1, y2),
@@ -7184,7 +7194,8 @@ def invertregion(
         r = _xchrcnt(bmp)
         for buf in itercopyrect(
                         bmp, x1, y1, x2, y2):
-            BMPbitBLTput(bmp, offset, _invbtbf(buf))
+            BMPbitBLTput(bmp,
+                offset, _invbtbf(buf))
             offset += r
 
 
@@ -7330,7 +7341,7 @@ def colorfilterto24bitregion(
         unsigned byte array
 
     """
-    applybyreffuncto24bitregion(
+    _usebyref24btfn2reg(
         bmp, x1, y1, x2, y2,
         _clrfltr2BGRbuf,
         rgbfactors)
@@ -7839,7 +7850,7 @@ def applybyrefnoparamfuncto24bitregion(
 
 
 @_fn24bitenrectbnd
-def applybyreffuncto24bitregion(
+def _usebyref24btfn2reg(
         bmp: array,
         x1: int,
         y1: int,
@@ -8163,7 +8174,7 @@ def gammaadjto24bitregion(
         unsigned byte array
 
     """
-    applybyreffuncto24bitregion(
+    _usebyref24btfn2reg(
         bmp, x1, y1, x2, y2,
         _gammaBGRbuf, gamma)
 
@@ -8374,7 +8385,7 @@ def _usebyreffnwithpar2regnsv(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
+    bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         func(bmp, x1, y1, x2, y2, funcparam)
         saveBMP(NewBMPfile, bmp)
@@ -8457,7 +8468,7 @@ def _usebyref24btfn2regnsv(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
+    bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         if bmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
@@ -8498,8 +8509,8 @@ def _usebyreffn2regnsv(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
+    bmp = loadBMP(ExistingBMPfile)
+    if len(bmp) > 54:
         func(bmp, x1, y1, x2, y2)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savedareafunc'] %
@@ -8536,7 +8547,7 @@ def applyfunctoregionandsave(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
+    if len(bmp) > 54:
         bmp = func(bmp, x1, y1, x2, y2)
         if bmp != None:
             saveBMP(NewBMPfile, bmp)
@@ -8582,7 +8593,7 @@ def _usebyreffnwithparnsv(
         NewBMPfile: str,
         func: Callable,
         funcparam):
-    bmp=loadBMP(ExistingBMPfile)
+    bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         func(bmp, funcparam)
         saveBMP(NewBMPfile, bmp)
@@ -8675,7 +8686,7 @@ def _use24btfnwithparnsv(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
+    bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         if bmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
@@ -8863,8 +8874,8 @@ def _use24btclrfnwithpar2circreg(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
+    bmp = loadBMP(ExistingBMPfile)
+    if len(bmp) > 54:
         if bmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
         else:
@@ -8899,7 +8910,7 @@ def _useclradjfn(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
+    bmp = loadBMP(ExistingBMPfile)
     if len(bmp) > 54:
         if bmp[_bmclrbits] != 24:
             setbmppal(bmp,
@@ -8955,8 +8966,8 @@ def _use24btclrfn(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
+    bmp = loadBMP(ExistingBMPfile)
+    if len(bmp) > 54:
         if bmp[_bmclrbits] != 24:
             print(sysmsg['not24bit'])
         else:
@@ -9105,7 +9116,7 @@ def imagecomp(
         if s1 != s2:
             print(sysmsg['cantcomparefiles'] % (s1,s2))
         else:
-            bits=s1[1]
+            bits = s1[1]
             nbmp=CopyBMPxydim2newBMP(bmp1, bits)
             if bits<24:
                 pal1 = getallRGBpal(bmp1)
@@ -9159,7 +9170,7 @@ def reduce24bitimagebits(
         else:
             bmp=CopyBMPxydim2newBMP(
                     sbmp, newbits)
-            if newbits>1:
+            if newbits > 1:
                 if usemonopal:
                     newpal = setBMP2monochrome(
                                 bmp, RGBfactors)
@@ -10900,6 +10911,7 @@ def horibrightnessgrad2circregion2file(
         x, y, r,
         lumrange)
 
+
 @_fntimer
 def flipvertcircregion2file(
         ExistingBMPfile: str,
@@ -11249,6 +11261,7 @@ def outlinecircregion2file(
         NewBMPfile,
         outlinecircregion,
         x, y, r)
+
 
 @_fntimer
 def flipXYcircregion2file(
