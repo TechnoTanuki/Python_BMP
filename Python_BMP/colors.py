@@ -88,9 +88,11 @@ def getdefaultlumrange() -> dict:
 def isvalidcolorbit(bits:int) -> bool:
     return bits in bmpvalidcolorbits
 
+
 def getdefaultbitpal(
         bits:int) -> list:
     return bmpstdpal[bits]
+
 
 def colormix(lum: list,
       RGBfactors: list) -> int:
@@ -98,18 +100,22 @@ def colormix(lum: list,
                    int(RGBfactors[1] * lum),
                    int(RGBfactors[2] * lum))
 
+
 def int2RGB(i: int):
         return i >> 16, (i >> 8) & 0xff, i & 0xff
+
 
 def int2RGBlist(i: int) -> list:
     return [i >> 16,
            (i >> 8) & 0xff,
             i & 0xff]
 
+
 def RGBtoBGRarr(r: int,
                 g: int,
                 b: int) -> array:
     return array('B', [b, g, r])
+
 
 def int2BGRarr(i: int) -> array:
     return array('B', [i & 0xff,
@@ -131,6 +137,7 @@ def RGBfactors2RGB(
         bytelum: list) -> list:
     return roundvect(scalarmulvect(
                 RGBfactors,bytelum))
+
 
 def RGB2int(r: int,
             g: int,
@@ -181,7 +188,7 @@ def matchRGBtopal(
                    if newd < d:
                        c = i
                        d = newd
-               i+=1
+               i += 1
        return c
 
 
@@ -240,6 +247,7 @@ def gammacorrect(rgb: list,
     return setminmaxvec(RGBfactors2RGB(c[0],
             gammacorrectbyte(c[1], gamma)),
             0, 255)
+
 
 def brightnessadjust(
         rgb: list,
@@ -375,7 +383,7 @@ def applythresholdadjtoBGRbuf(
                 f = lummin / lum
             if lum > lummax:
                 f = lummax / lum
-        if f!=1:
+        if f != 1:
             buf[i] = int(f * buf[i])
             buf[i + 1] = int(f * buf[i + 1])
             buf[i + 2] = int(f * buf[i + 2])
@@ -387,6 +395,7 @@ def RGB2BGRbuf(buf: array):
     m = len(buf)
     buf[0: m - 2: 3], buf[2: m: 3] = \
     buf[2: m: 3], buf[0: m - 2: 3]
+
 
 def makeBGRbuf(
         bbuf: array,
