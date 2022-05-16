@@ -11,7 +11,17 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-import Python_BMP.BITMAPlib as b,subprocess as proc
+from Python_BMP.BITMAPlib import(
+        newBMP,
+        centercoord,
+        getRGBfactors,
+        rotvec3D,
+        plot3Dsolid,
+        spherevertandsurface,
+        saveBMP
+        )
+
+import subprocess as proc
 from os import path,sys
 
 def main():
@@ -20,25 +30,24 @@ def main():
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
         file = 'HelloDiscoBall.bmp' # some random file name as string
-        bmp = b.newBMP(mx,my,24) # RGB bmp
-        cenpt = b.centercoord(bmp) # helper method to get center of a bitmap
-        cf = b.getRGBfactors() # color info with presets
+        bmp = newBMP(mx,my,24) # RGB bmp
+        cenpt = centercoord(bmp) # helper method to get center of a bitmap
+        cf = getRGBfactors() # color info with presets
         d, translationvector= 400, [0,0,200] # be careful with these variables or object goes offscreen
         isSolid = True # toggle solid or outline
         showoutline = False # can show outline even if solid
-        cf = b.getRGBfactors() # color list
         color = cf['brightwhite'] # color of solid
         outlinecolor = 10 # outline color
-        rotation = b.rotvec3D(70, 70, 20) # rotation vector (x,y,z) in degrees
-        b.plot3Dsolid(bmp,
-                b.spherevertandsurface([0, 0, 0],
+        rotation = rotvec3D(70, 70, 20) # rotation vector (x,y,z) in degrees
+        plot3Dsolid(bmp,
+                spherevertandsurface([0, 0, 0],
                 50, 15),
                 isSolid, color,
                 showoutline, outlinecolor,
                 rotation,
                 translationvector, d,
                 cenpt)
-        b.saveBMP(file, bmp) # save file
+        saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
         ret =proc.call('mspaint '+file) # replace with another editor if Unix
