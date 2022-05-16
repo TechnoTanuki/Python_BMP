@@ -12,43 +12,46 @@ notice = """
  -----------------------------------
 """
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
+from Python_BMP.BITMAPlib import(
+        newBMP,
+        XYaxis,
+        XYscatterplot,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
 
 def main():
         print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
         x = y = 600 # bitmap size
-        bmp = b.newBMP(x, y, 4) # 16 color bitmap
+        bmp = newBMP(x, y, 4) # 16 color bitmap
         file = 'HelloXYScatterplot.bmp' # random file name
         XYdata = [[20, 80, 5, 15, True], #[[x,y,radius,color,filled]
                   [40, 110, 5, 15, True],
                   [50, 10, 5, 15,True]]
-        origin = (80, 570) # uint x,y tuple origin point of the graph (bottom left)
-        xylimits = (570, 18) # uint x,y tuple end poimt of graph (top right)
-        steps = (40, 40)  # uint x,y tuple x and y step for increment in screen coords
-        xyvalstarts = (0, 0) # int x,y tuple for starting values in graph coords
-        xysteps = (10, 10) # int x,y tuple for increment values in graph coords  
-        color = 14 # color of axis
-        gridcolor = 5 # color of grid
-        showgrid = True # bool value to toggle grid visibility
-        textcolor = 15 # color of text
-        XYcoordinfo = b.XYaxis(bmp,
-                                origin,
-                                steps,
-                                xylimits,
-                                xyvalstarts,
-                                xysteps,
-                                color, textcolor,
-                                showgrid, gridcolor)
-        showLinearRegLine = True # toggle computation and visibility of linear reg line
-        reglinecolor = 8 # color of the linear regression line
-        b.XYscatterplot(bmp,
-                        XYdata,
-                        XYcoordinfo,
-                        showLinearRegLine,
-                        reglinecolor) # do coordinate transform and plot
-        b.saveBMP(file, bmp) # dump the in memory bmp to file
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint ' + file) # replace with another editor if Unix
+
+        XYcoordinfo = \
+            XYaxis(bmp,
+             (80, 570), # uint x,y tuple origin point of the graph (bottom left)
+              (40, 40), # uint x,y tuple x and y step for increment in screen coords
+             (570, 18), # uint x,y tuple end poimt of graph (top right)
+                (0, 0), # int x,y tuple for starting values in graph coords
+              (10, 10), # int x,y tuple for increment values in graph coords
+                    14, # color of axis
+                    15, # color of text
+                  True, # bool value to toggle grid visibility
+                    5) # color of grid
+
+        XYscatterplot(bmp, XYdata, XYcoordinfo, # do coordinate transform and plot
+                     True, # toggle computation and visibility of linear reg line
+                        8) # color of the linear regression line
+        saveBMP(file, bmp) # dump bytearray to file
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt))
+        ret =proc.call(imgedt + ' ' + file) # replace with another editor if Unix
 
 if __name__=="__main__":
         main()
