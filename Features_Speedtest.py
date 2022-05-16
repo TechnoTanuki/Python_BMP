@@ -99,7 +99,10 @@ from Python_BMP.BITMAPlib import(
         )
 
 import subprocess as proc
-from time import process_time_ns
+from time import(
+        process_time_ns
+        )
+
 from random import randint
 from os import path,sys
 
@@ -132,7 +135,7 @@ def main():
         cf = getRGBfactors()
         lum = getdefaultlumrange() #color info
         adjustcolordicttopal(bmp, c)
-        starttime=process_time_ns()
+        starttime = process_time_ns()
         fillbackgroundwithgrad(bmp,
                 lum['maxasc'], cf['blue'], 0)
         print('Background gradient test done in ',
@@ -192,7 +195,7 @@ def main():
 
         sd = getshapesidedict()
         pts = tetrahedravert(80)
-        shapes=[[[trans(cubevert(30), pts[3]),
+        shapes = [[[trans(cubevert(30), pts[3]),
                   sd["cube"]],
                   cf["darkblue"], True, c['black']],
                 [[trans(tetrahedravert(30), pts[2]),
