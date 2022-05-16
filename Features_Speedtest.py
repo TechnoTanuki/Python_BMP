@@ -139,14 +139,16 @@ def main():
                 hhmmsselaspedtime(starttime))
         starttime = t.process_time_ns()
         rectangle(bmp, 1, 1, maxpt[0] - 1,
-                               maxpt[1] - 1, c['white'])
+                             maxpt[1] - 1,
+                               c['white'])
         filledgradrect(bmp, 395, 5, 955, 41,
                 lum['upperdesc'], cf['orange'], 1)
         filledrect(bmp, 395, 44, 955, 55, c['darkblue'])
         print('Rectangle tests done in ',
                 hhmmsselaspedtime(starttime))
         starttime = t.process_time_ns()
-        hc= spiralcontrolpointsvert(350, 180, 5, 1.1, 5)#we will use this later to make smooth spiral
+        hc = spiralcontrolpointsvert(
+                350, 180, 5, 1.1, 5)#we will use this later to make smooth spiral
         gradthickroundline(bmp, [800, 620], [800, 600], 7,
                 lum['upperdesc'], cf['darkred'])
         plotlines(bmp, hc, c['yellow'])
@@ -317,17 +319,18 @@ def main():
         starttime=t.process_time_ns() #[x,y,rad=constant for sample can be variable,isfilled]
         XYdata=[]#[[45,45,5,c['brightcyan'],True],[100,60,5,c['brightgreen'],True],..]
         for color in  c:
-                XYdata.append([randint(20,140), randint(30,70), 5, c[color], True])
-                XYdata.append([randint(20,140), randint(30,70), 5, c[color], False])
-                XYcoordinfo = XYaxis(bmp, [172, 598],
-                                              [40, 40],
-                                            [666, 398],
-                                              [20, 30],
-                                              [10, 10],
-                                      c['brightwhite'],
-                                             c['gray'],
-                                                  True,
-                                        c['darkgreen'])
+                XYdata.append(
+                        [randint(20,140), randint(30,70), 5, c[color], True])
+                XYdata.append(
+                        [randint(20,140), randint(30,70), 5, c[color], False])
+                XYcoordinfo = XYaxis(bmp,
+                        [172, 598],[40, 40],
+                        [666, 398],[20, 30],
+                                   [10, 10],
+                           c['brightwhite'],
+                                  c['gray'],
+                                       True,
+                              c['darkgreen'])
         XYscatterplot(bmp, XYdata, XYcoordinfo,
                         True, c['green'])
         print('XY scatterplot test done in ',
@@ -349,13 +352,13 @@ def main():
         starttime = t.process_time_ns()
         file='test.bmp' # some random filename
         saveBMP(file, bmp) # dump byte array to file
-        print('Saved '+ file + ' in ',
+        print('Saved ' + file + ' in ',
         hhmmsselaspedtime(starttime))
         print('Demo done in ',
         hhmmsselaspedtime(demostart))
 
         print('\nAll done close mspaint to finish')
-        ret = proc.call('mspaint '+ file) # replace with another editor if Unix
+        ret = proc.call('mspaint ' + file) # replace with another editor if Unix
         print('\nThe')
         print(plot8bitpatternastext([0x00,0x00,0x38,0x6C,0x6C,0x38,0x76,0xDC,0xCC,0xCC,0x76,0x00,0x00,0x00],'&',' '))
 
