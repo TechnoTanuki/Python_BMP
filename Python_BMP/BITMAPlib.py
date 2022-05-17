@@ -6007,8 +6007,7 @@ def iterimagecolor(
             offset += pb
             if rowprocind != '':
                 print(rowprocind, end='')
-        else:
-            offset += doff
+        offset += doff
     print('\n')
     if finishmsg != '':
         print(finishmsg)
