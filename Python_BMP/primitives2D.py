@@ -126,8 +126,8 @@ def itercirclepartvertlineedge(
 
 def iterline(
         p1: list[int,int],
-        p2: list[int,int]) -> list[list[int,int]]:
-    """Generates a list of (int, int)
+        p2: list[int,int]) -> list[int,int]:
+    """Yields (int, int)
         2D vertices along
         a line segment defined
         by endpoints p1 and p2
@@ -136,8 +136,8 @@ def iterline(
         p1, p2: line endpoints
                 both [x:int, y:int]
 
-    Returns:
-        [[x:int, y:int],...]
+    Yields:
+        [x:int, y:int]
 
     """
     [dx, dy] = subvect(p2, p1)
@@ -180,7 +180,20 @@ def iterparallelogram(
 
 
 def lineseg(p1: list,
-            p2: list):
+            p2: list) -> list[list[int,int]]:
+    """Generates a list of (int, int)
+        2D vertices along
+        a line segment defined
+        by endpoints p1 and p2
+
+    Args:
+        p1, p2: line endpoints
+                both [x:int, y:int]
+
+    Returns:
+        [[x:int, y:int],..]
+
+    """
     return [p for p in \
             iterline(p1, p2)]
 
