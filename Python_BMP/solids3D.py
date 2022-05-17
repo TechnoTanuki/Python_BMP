@@ -629,7 +629,9 @@ def surfacetest(
                        or square)
 
     Returns:
-        float
+        float -> a positive number
+        if hidden and negative
+        number if not
 
     """
     return p1[0] * (p3[1] * p2[2] - p2[1] * p3[2]) - \
