@@ -24,7 +24,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        file = rootdir + '/assets/somebody.bmp'
+        file = rootdir + '/assets/earth.bmp'
         newfile = '8bitBMP.bmp'
         bits= 8 # valid values are 8,4,1
         threshold = 4 # in computing new palette how far apart should colors be
