@@ -382,7 +382,7 @@ def spherevert(
                       vertices that
                       controls how sparse
                       the list will be
-        
+
     Returns:
         list (x: float,
               y: float,
@@ -458,6 +458,29 @@ def spherevertandsurface(
         vcen: list,
         r: float,
         deganglestep: float)-> tuple:
+    """Returns a list
+        of sparse vertices
+        and tiled surfaces
+        for a sphere
+
+    Args:
+        vcen       : [x: float, center
+                      y: float, of the
+                      z: float] sphere
+        r           : spherical radius
+        deganglestep: angle step between
+                      vertices that
+                      controls how sparse
+                      the list will be
+
+    Returns:
+        list of vertices
+        and surfaces
+        for plot3Dsolid()
+        see Hello_DiscoBall.py
+        and Hello_Globe.py
+
+    """
     s = spherevert(vcen, r, deganglestep)
     return (s, genspheresurfaces(zlevelcoords(s)))
 
@@ -467,6 +490,30 @@ def cylindervertandsurface(
         r: float,
         zlen: float,
         deganglestep: float) -> tuple:
+    """Returns a list
+        of sparse vertices
+        and tiled surfaces
+        for a cylinder
+
+    Args:
+        vcen       : [x: float, center
+                      y: float, of the
+                      z: float] sphere
+        r           : radius
+        zlen        : height of the
+                      cylinder
+        deganglestep: angle step between
+                      vertices that
+                      controls how sparse
+                      the list will be
+
+    Returns:
+        list of vertices
+        and surfaces
+        for plot3Dsolid()
+        see Hello_Coin.py
+
+    """
     z = zlen / 2
     i =0
     plist = []
@@ -495,6 +542,31 @@ def conevertandsurface(
         r: float,
         zlen: float,
         deganglestep: float) -> tuple:
+    """Returns a list
+        of sparse vertices
+        and tiled surfaces
+        for a cone
+
+    Args:
+        vcen       : [x: float, center
+                      y: float, of the
+                      z: float] sphere
+        r           : radius of
+                      conical base
+        zlen        : height of
+                      the cone
+        deganglestep: angle step between
+                      vertices that
+                      controls how sparse
+                      the list will be
+
+    Returns:
+        list of vertices
+        and surfaces
+        for plot3Dsolid()
+        see Hello_Cone.py
+
+    """
     z = zlen / 2
     i = 1
     bottom = []
@@ -510,6 +582,7 @@ def conevertandsurface(
             side.append([0, i, i - 1])
         i += 1
     return (plist, side + [bottom])
+
 
 def surfplot3Dvertandsurface(
         x1: int,
