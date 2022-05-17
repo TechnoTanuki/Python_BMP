@@ -189,8 +189,10 @@ def main():
 
         starttime = process_time_ns()
 
-        #be careful with these variables or object goes offscreen
-        d = 200 #distance of the observer from the screen
+        #be careful with these variables
+        # or  the object goes offscreen
+        d = 200 # distance of the observer
+                # from the screen
         tvect = [0,0,100] #3D translation vector
 
         sd = getshapesidedict()
@@ -247,7 +249,7 @@ def main():
                 hhmmsselaspedtime(starttime))
 
         starttime = process_time_ns()
-        mandelpar = mandelparamdict()#seems preferable to store common params
+        mandelpar = mandelparamdict()
         mandelbrot(bmp, 10, 600, 130, 735,
                 mandelpar['maxeqdim'],
                     cf['brightgreen'], 255)
@@ -278,9 +280,13 @@ def main():
         bspline(bmp, hc, 0, c['brightwhite'], True, True)
         gradvert(bmp,
                  bsplinevert(
-                  spiralcontrolpointsvert(165, 135, 7, 1.2, 3),
+                  spiralcontrolpointsvert(
+                          165, 135, 7, 1.2, 3),
                   False,
-                 False), 5, lum['upperdesc'], cf['brightwhite'])
+                 False),
+                 5,
+                 lum['upperdesc'],
+                 cf['brightwhite'])
         print('Bspline tests done in ',
          hhmmsselaspedtime(starttime) )
 
@@ -300,7 +306,7 @@ def main():
         print('Ellipse tests done in ',
           hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()#works but no live db conn yet plot as code below
+        starttime = process_time_ns()
         pdata=[]#[[20,c['red']],[30,c['brightyellow']],...]
         for color in c:
                 pdata.append([1,c[color]])
@@ -323,9 +329,13 @@ def main():
         XYdata=[]#[[45,45,5,c['brightcyan'],True],[100,60,5,c['brightgreen'],True],..]
         for color in  c:
                 XYdata.append(
-                        [randint(20,140), randint(30,70), 5, c[color], True])
+                        [randint(20,140),
+                          randint(30,70),
+                          5, c[color], True])
                 XYdata.append(
-                        [randint(20,140), randint(30,70), 5, c[color], False])
+                        [randint(20,140),
+                          randint(30,70),
+                          5, c[color], False])
                 XYcoordinfo = XYaxis(bmp,
                         [172, 598],[40, 40],
                         [666, 398],[20, 30],
