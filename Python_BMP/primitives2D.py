@@ -104,9 +104,9 @@ def itercirclepartvertlineedge(
         r: int) -> list:
     row = r
     col =0
-    r_sqr = r*r
+    r_sqr = r * r
     _2r_sqr = r_sqr << 1
-    _4r_sqr = r_sqr <<  2
+    _4r_sqr = r_sqr << 2
     d = _2r_sqr * ((row - 1) * (row)) + \
         r_sqr + _2r_sqr * (1 - r_sqr)
     x = []
@@ -125,8 +125,21 @@ def itercirclepartvertlineedge(
 
 
 def iterline(
-        p1: list,
-        p2: list) -> list:
+        p1: list[int,int],
+        p2: list[int,int]) -> list[list[int,int]]:
+    """Generates a list of (int, int)
+        2D vertices along
+        a line segment defined
+        by endpoints p1 and p2
+
+    Args:
+        p1, p2: line endpoints
+                both [x:int, y:int]
+
+    Returns:
+        [[x:int, y:int],...]
+
+    """
     [dx, dy] = subvect(p2, p1)
     sdx = sign(dx)
     sdy = sign(dy)
