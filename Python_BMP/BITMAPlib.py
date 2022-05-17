@@ -157,10 +157,8 @@ from .colors import(
     colormix,
     gammaBGRbuf,
     gammacorrect,
-    getcolorname2RGBdict,
     getdefaultbitpal,
     getdefaultlumrange,
-    getRGBfactors,
     int2BGRarr,
     int2RGB,
     int2RGBarr,
@@ -271,6 +269,11 @@ from .textgraphics import(
     plot8bitpatternastext
     )
 
+
+from .colordict import(
+    getcolorname2RGBdict,
+    getRGBfactors
+    )
 
 def _setx(
         bmp: array,
