@@ -409,12 +409,14 @@ def arcvert(
                     v.append(np)
     return v
 
+
 def rectboundarycoords(
     vlist: list) -> list:
     u = pivotlist(vlist)
     (x, y) = u
     return ((min(x), min(y)),
             (max(x), max(y)))
+
 
 def itergetneighbors(
         v: list,
@@ -462,9 +464,9 @@ def spiralcontrolpointsvert(
         step: int,
         growthfactor: int,
         turns: int):
-    v=[[x,y]]
-    inc=step
-    while turns>0:
+    v = [[x, y]]
+    inc = step
+    while turns > 0:
         x += step
         v.append([x, y])
         step += inc
