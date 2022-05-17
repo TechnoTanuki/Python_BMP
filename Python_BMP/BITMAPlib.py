@@ -5890,6 +5890,7 @@ def iterimageRGB(
     x = 0
     mx = getmaxx(bmp)
     bits = bmp[_bmclrbits]
+    padbytes = _pdbytes(mx, bits)
     if bits < 24:
         p = getallRGBpal(bmp)
         doff = 1
@@ -5922,9 +5923,10 @@ def iterimageRGB(
                                 b[offset + 1],
                                 b[offset]))
             x += 1
-        if offset % r == 0:
+        if x == mx:
             x = 0
             y -= 1
+            offset += padbytes
             if rowprocind != '':
                 print(rowprocind, end = '')
         offset += doff
@@ -5969,10 +5971,11 @@ def iterimagecolor(
     x = 0
     mx = getmaxx(bmp)
     bits = bmp[_bmclrbits]
+    pb = _pdbytes(mx, bits)
     if bits == 24:
-        doff=3
+        doff = 3
     else:
-        doff=1
+        doff = 1
     while offset < maxoffset:
         if bits == 1:
             c = b[offset]
@@ -5998,12 +6001,15 @@ def iterimagecolor(
             if x < mx:
                 yield ((x, y), (b[offset + 2] << 16) + (b[offset + 1] << 8) + b[offset])
             x += 1
-        if offset % r == 0:
+        if x >= mx:
             x = 0
             y -= 1
+            offset += pb
+            print(pb)
             if rowprocind != '':
                 print(rowprocind, end='')
-        offset += doff
+        else:
+            offset += doff
     print('\n')
     if finishmsg != '':
         print(finishmsg)
