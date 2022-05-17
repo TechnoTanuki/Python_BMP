@@ -95,7 +95,7 @@ def cubevert(x: float) -> list:
         for a cube
 
     Args:
-        x: lenght of a side
+        x: length of a side
 
     Returns:
         list (x: float,
@@ -119,7 +119,7 @@ def hexahedravert(x: float) -> list:
         for a hexahedron
 
     Args:
-        x: lenght of a side
+        x: length of a side
 
     Returns:
         list (x: float,
@@ -143,7 +143,7 @@ def octahedravert(x:float) -> list:
         for an octrahedron
 
     Args:
-        x: lenght of a side
+        x: length of a side
 
     Returns:
         list (x: float,
@@ -202,7 +202,7 @@ def icosahedvertandsurface(
         x: float) -> list:
     """Returns a list
         of vertices
-        for a icosahedron
+        for an icosahedron
 
     Args:
         x: min radius of sphere
@@ -369,6 +369,27 @@ def spherevert(
         vcen: list,
         r: float,
         deganglestep: float) -> list:
+    """Returns a list
+        of sparse vertices
+        for a sphere
+
+    Args:
+        vcen       : [x: float, center
+                      y: float, of the
+                      z: float] sphere
+        r           : spherical radius
+        deganglestep: angle step between
+                      vertices that
+                      controls how sparse
+                      the list will be
+        
+    Returns:
+        list (x: float,
+              y: float,
+              z: float)
+
+    """
+
     plist = []
     for theta in range(0, 360, deganglestep):
         for phi in range(0, 180, deganglestep):
