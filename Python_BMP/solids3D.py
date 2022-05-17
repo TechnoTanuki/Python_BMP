@@ -613,6 +613,25 @@ def surfacetest(
         p1: list,
         p2: list,
         p3: list) -> float:
+    """Hidden surface removal test
+        returns a positive number
+        if hidden and negative
+        number if not
+
+    Args:
+        p1, p2, p3 : [x: float,
+                      y: float,
+                      z: float]
+                      the first
+                      3 vertices
+                      of a surface
+                      (can be triangle
+                       or square)
+
+    Returns:
+        float
+
+    """
     return p1[0] * (p3[1] * p2[2] - p2[1] * p3[2]) - \
            p2[0] * (p3[1] * p1[2] - p1[1] * p3[2]) - \
            p3[0] * (p1[1] * p2[2] - p2[1] * p1[2])
