@@ -6524,12 +6524,9 @@ def mirrorbottominregion(
         of a rectangular region
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangle
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6551,13 +6548,10 @@ def mirrortopinregion(
         a rectangular region
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangular
-                        area
+        x1, y1, x2, y2: ints that defines
+                        the rectangular region
 
     Returns:
         byref modified
@@ -6581,12 +6575,10 @@ def fliphorzontalpixelbased(
         (slightly slow)
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangular
+        x1, y1, x2, y2: ints that defines
+                        the rectangular
                         region
 
     Returns:
@@ -6618,12 +6610,10 @@ def fliphverticalalpixelbased(
         (slightly slow)
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangular
+        x1, y1, x2, y2: ints that defines
+                        the rectangular
                         region
 
     Returns:
@@ -6654,12 +6644,9 @@ def horizontalbulkswap(
         to a rectangular area
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangle
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6691,12 +6678,10 @@ def fliphorizontalregion(
         of a rectangular area
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangular
+        x1, y1, x2, y2: ints that defines
+                        the rectangular
                         region
 
     Returns:
@@ -6739,12 +6724,9 @@ def mirrorleftinregion(
         of a rectangular area
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangle
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6790,8 +6772,7 @@ def mirrorrightinregion(
         bmp           : unsigned
                         byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
+        x1, y1, x2, y2: defines the
                         rectangle
 
     Returns:
@@ -6876,8 +6857,7 @@ def mirrortopleftinregion(
         bmp           : unsigned
                         byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
+        x1, y1, x2, y2: defines the
                         rectangle
 
     Returns:
@@ -6903,12 +6883,9 @@ def mirrortoprightinregion(
                and (x2,y2)
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangle
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6933,12 +6910,9 @@ def mirrorbottomleftinregion(
                and (x2,y2)
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines the
-                        rectangle
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -6963,11 +6937,9 @@ def mirrorbottomrightinregion(
                and (x2,y2)
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines
+        x1, y1, x2, y2: ints that defines
                         the rectangular
                         region
 
@@ -7103,8 +7075,7 @@ def flipXY(bmp: array):
     if bits not in [8, 24]:
         copyRGBpal(bmp, nbmp)
         for v in iterimagecolor(bmp,
-                    sysmsg['flipXY'],
-                     '*',
+                    sysmsg['flipXY'], '*',
                     sysmsg['done']):
             plotxybit(nbmp, v[0][1],
                             v[0][0],
@@ -7134,11 +7105,9 @@ def itergetcolorfromrectregion(
         a rectangular area
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: defines the
-                        rectangle
+        x1, y1, x2, y2: defines the rectangle
 
     Yields:
         ((x:int,y:int),color:int)
@@ -7169,11 +7138,9 @@ def crop(bmp: array,
                and (x2,y2)
 
     Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
-        x1, y1, x2, y2: defines the
-                        rectangle
+        bmp        : unsigned byte array
+                     with bmp format
+        x1,y1,x2,y2: defines the rectangle
 
     Returns:
         unsigned byte array
@@ -7214,10 +7181,9 @@ def invertregion(
                and (x2,y2)
 
     Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
-        x1, y1, x2, y2: defines the rectangle
+        bmp        : unsigned byte array
+                     with bmp format
+        x1,y1,x2,y2: defines the rectangle
 
     Returns:
         byref modified
@@ -7258,11 +7224,9 @@ def monofilterto24bitregion(
         in a 24 bit bitmap
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: defines the
-                        rectangle
+        x1, y1, x2, y2: defines the rectangle
 
     Returns:
         byref modified
@@ -7377,15 +7341,13 @@ def colorfilterto24bitregion(
         in a 24-bit bitmap
 
     Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
-        x1, y1, x2, y2: defines the
-                        rectangle
-        rgbfactors    : color filter
-                        r, g and b
-                        range from
-                        0.0 to 1.0
+        bmp        : unsigned byte array
+                     with bmp format
+        x1,y1,x2,y2: defines the rectangle
+        rgbfactors : color filter
+                     r, g and b
+                     range from
+                     0.0 to 1.0
 
     Returns:
         byref modified
@@ -7436,16 +7398,12 @@ def brightnesseadjto24bitregion(
         in an in-memory 24-bit bitmap
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines
+        x1, y1, x2, y2: ints that defines
                         the rectangle
-        percentadj    : float
-                        percentage
-                        brightness
-                        adjust
+        percentadj    : float percentage
+                        brightness adjust
                         can be positive
                         or negative
 
@@ -7472,18 +7430,14 @@ def thresholdadjto24bitregion(
         an in-memory 24-bit bitmap
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: ints that
-                        defines
+        x1, y1, x2, y2: ints that defines
                         the rectangular
                         region
         lumrange      : (byte:byte)
-                        threshold
-                        adjustment
-                        luminosity
-                        range
+                        threshold adjustment
+                        luminosity range
 
     Returns:
         byref modified
@@ -7538,8 +7492,7 @@ def brightnesseadjto24bitimage(
         bmp       : unsigned byte array
                     with bmp format
         percentadj: float percentage
-                    brightness
-                    adjustment
+                    brightness adjustment
                     can be positive
                     or negative
 
@@ -7617,11 +7570,9 @@ def mandelbrot(
     """Draw a Mandelbrot set
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: rectangular
-                        area
+        x1, y1, x2, y2: rectangular area
                         to draw in
         mandelparam   : see fractals.py
         rgbfactors    : [r,b,g]
@@ -7684,8 +7635,7 @@ def IFS(bmp:array,
         (IFS) fractal
 
     Args:
-        bmp            : unsigned
-                         byte array
+        bmp            : unsigned byte array
                          with bmp format
         IFStransparam  : see fractals.py
         x1, y1, x2, y2 : rectangular area
@@ -7743,8 +7693,7 @@ def plotflower(
         petals    : number of petals
         angrot    : angle of rotation
         lumrange  : (byte:byte) range of
-                    brightness for
-                    the gradient
+                    brightness for gradient
         rgbfactors: [r,b,g] r,g,b values
                     all range from
                     0.0 min to 1.0 max
@@ -7852,13 +7801,12 @@ def piechart(
         a 24-bit bitmap
 
     Args:
-        bmp             : unsigned
-                          byte array
-                          with bmp format
-        x, y, r         : center (x,y)
-                          and radius r
-        dataandcolorlist: stuff to plot
-                          + color
+        bmp              : unsigned byte array
+                           with bmp format
+        x, y, r          : center (x,y)
+                           and radius r
+        dataandcolorlist : stuff to plot
+                           + color
 
     Returns:
         byref modified
@@ -7891,12 +7839,10 @@ def applybyrefnoparamfuncto24bitregion(
         in a 24-bit bitmap
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
         x1, y1, x2, y2: defines the
-                        rectangular
-                        area
+                        rectangular area
         func          : user defined
                         function
 
@@ -7930,12 +7876,10 @@ def _usebyref24btfn2reg(
         a 24-bit bitmap
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
         x1, y1, x2, y2: defines the
-                        rectangular
-                        area
+                        rectangular area
         func          : user defined
                         function
         funcparam     : parameters of
@@ -7971,12 +7915,10 @@ def applyfuncto24bitregion(
         in a 24-bit bitmap
 
     Args:
-        bmp           : unsigned
-                        byte array
+        bmp           : unsigned byte array
                         with bmp format
         x1, y1, x2, y2: defines the
-                        rectangular
-                        area
+                        rectangular area
         func          : user defined
                         function
         funcparam     : parameters of
@@ -8012,16 +7954,11 @@ def verticalbrightnessgradto24bitregion(
         in a 24-bit bitmap
 
     Args:
-        bmp          :  unsigned
-                        byte array
+        bmp          :  unsigned byte array
                         with bmp format
-        x1, y1, x2, y2: defines the
-                        rectangular
-                        area
-        lumrange      : (byte:byte)
-                        defines the
-                        brightness
-                        gradient
+        x1, y1, x2, y2: defines rectangular area
+        lumrange      : (byte:byte) defines
+                        the brightness gradient
 
     Returns:
         byref modified
@@ -8033,11 +7970,8 @@ def verticalbrightnessgradto24bitregion(
     offset = _24bmof(bmp, x1, y2)
     r = _xchrcnt(bmp)
     lum = lumrange[1]
-    dlum = \
-        (lumrange[0] - lumrange[1]) / \
-        (y2 - y1)
-    for buf in itercopyrect(
-                bmp, x1, y1, x2, y2):
+    dlum = (lumrange[0] - lumrange[1]) / (y2 - y1)
+    for buf in itercopyrect(bmp, x1, y1, x2, y2):
         BMPbitBLTput(bmp, offset,
             _bradj2BGRbuf(buf, lum))
         offset += r
