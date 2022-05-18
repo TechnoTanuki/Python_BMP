@@ -1,40 +1,124 @@
-#/--------------------------------------------------------------\
-#| Copyright 2022 by Joel C. Alcarez /joelalcarez1975@gmail.com |
-#| This graphics library outputs to a bitmap file               |
-#\--------------------------------------------------------------/
+notice = """
+          Hello 3D Demo
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   This graphics library outputs   |
+|   to a bitmap file.               |
+ -----------------------------------
+"""
 
-import Python_BMP.BITMAPlib as b,subprocess as proc
-from os import path,sys
+from Python_BMP.BITMAPlib import(
+        newBMP,
+        spherevertandsurface,
+        conevertandsurface,
+        cylindervertandsurface,
+        bottomrightcoord,
+        centercoord,
+        plot3Dsolid,
+        rotvec3D,
+        getcolorname2RGBdict,
+        getRGBfactors,
+        tetrahedravert,
+        octahedravert,
+        hexahedravert,
+        decahedvertandsurface,
+        icosahedvertandsurface,
+        getshapesidedict,
+        trans,
+        RGB2int,
+        addvect,
+        cubevert,
+        surfplot3Dvertandsurface,
+        saveBMP
+        )
+
+import subprocess as proc
+from os import path
+
 
 def main():
+        print(notice)
+        imgedt = 'mspaint'  # replace with another editor if Unix
+        rootdir = path.dirname(__file__) # get path of this script
         mx = 1024
         my = 768
         file = 'Hello_3D.bmp'
-        bmp = b.newBMP(mx, my, 24)
-        maxpt = b.bottomrightcoord(bmp)
-        cenpt = b.centercoord(bmp) # bitmap dependent coords
-        c = b.getcolorname2RGBdict()
-        cf = b.getRGBfactors() # color info
+        bmp = newBMP(mx, my, 24)
+        maxpt = bottomrightcoord(bmp)
+        cenpt = centercoord(bmp) # bitmap dependent coords
+        c = getcolorname2RGBdict()
+        cf = getRGBfactors() # color info
         d = 200 #
         tvect = [0,0,100] # be careful with these variables or object goes offscreen
-        sd = b.getshapesidedict() # shape dictonary
-        pts = b.tetrahedravert(80) # get points in 3D space that forms a tetrahedron
+        sd = getshapesidedict() # shape dictonary
+        pts = tetrahedravert(80) # get points in 3D space that forms a tetrahedron
         # make list of objects to render
-        shapes=[[[b.trans(b.cubevert(30),pts[3]),sd["cube"]],cf["darkblue"],True,c['black']],[[b.trans(b.tetrahedravert(30),pts[2]),sd["tetrahedra"]],cf["darkred"],True,c['white']],[[b.trans(b.octahedravert(20),pts[1]),sd["octahedra"]],cf["yellow"],True,c['darkgray']],[[b.trans(b.hexahedravert(30),pts[0]),sd["hexahedra"]],cf["darkgreen"],True,c['darkgreen']]]
-        # Most of these shapes hab own examples check em for details...
-        for s in shapes: # How to render objects en masse
-                b.plot3Dsolid(bmp,s[0],True,s[1],s[2],s[3],b.rotvec3D(10,5,5),tvect,d,b.addvect(cenpt,[-160,-10]))
-        b.plot3Dsolid(bmp,b.decahedvertandsurface(25),True,cf['brightred'],False,0,b.rotvec3D(7,77,20),tvect,d,b.addvect(cenpt,[280,-250]))
-        b.plot3Dsolid(bmp,b.icosahedvertandsurface(25),True,cf['brightwhite'],False,0,b.rotvec3D(70,7,20),tvect,d,b.addvect(cenpt,[+60,-130]))
-        b.plot3Dsolid(bmp,b.spherevertandsurface([5,0,0],60,10),True,cf['brightwhite'],False,0,b.rotvec3D(190,145,70),tvect,d,b.addvect(cenpt,[300,-50]))
-        b.plot3Dsolid(bmp,b.cylindervertandsurface([1,0,0],20,10,5),True,cf['brightyellow'],True,b.RGB2int(20,20,0),b.rotvec3D(60,74,72),tvect,d,b.addvect(cenpt,[-200,-50]))
-        b.plot3Dsolid(bmp,b.conevertandsurface([1,0,0],20,15,5),True,cf['brightorange'],False,b.RGB2int(20,20,0),b.rotvec3D(6,67,2),tvect,d,b.addvect(cenpt,[-300,-150]))
-        f = lambda x, y: x | y
-        b.plot3Dsolid(bmp,b.surfplot3Dvertandsurface (-35,-35,35,35,15,5,f),True,cf['brightcyan'],True,0,b.rotvec3D(20,67,30),tvect,d,b.addvect(cenpt,[-420,-25]))
-        b.saveBMP(file,bmp) # dump bytes to file
-        print('Saved '+ file )
-        print('\nAll done close mspaint to finish')
-        ret =proc.call('mspaint '+file) # replace with another editor if Unix
+                #be careful with these variables
+        # or  the object goes offscreen
+        d = 200 # distance of the observer
+                # from the screen
+        tvect = [0, 0, 100] #3D translation vector
+
+        shapes = [[[trans(cubevert(30), pts[3]),
+                  sd["cube"]],
+                  cf["darkblue"], True, c['black']],
+                [[trans(tetrahedravert(30), pts[2]),
+                  sd["tetrahedra"]],
+                  cf["darkred"], True, c['white']],
+                [[trans(octahedravert(20), pts[1]),
+                  sd["octahedra"]],
+                  cf["yellow"], True, c['darkgray']],
+                [[trans(hexahedravert(30), pts[0]),
+                  sd["hexahedra"]],
+                  cf["darkgreen"], True, c['darkgreen']]]
+        for s in shapes:
+                plot3Dsolid(bmp,
+                        s[0], True, s[1], s[2], s[3],
+                        rotvec3D(10, 5, 5), tvect, d,
+                        addvect(cenpt, [-160, -10]))
+        plot3Dsolid(bmp,
+                decahedvertandsurface(25),
+                   True, cf['brightred'], False,
+                   0, rotvec3D(7, 77, 20),
+                   tvect, d, addvect(cenpt, [280, -250]))
+        plot3Dsolid(bmp,
+                icosahedvertandsurface(25),
+                   True, cf['brightwhite'], False,
+                   0, rotvec3D(70, 7, 20),
+                   tvect, d, addvect(cenpt, [+60, -130]))
+        plot3Dsolid(bmp,
+                spherevertandsurface([5, 0, 0], 60, 10),
+                True, cf['brightwhite'], False,
+                0, rotvec3D(190, 145, 70),
+                tvect, d, addvect(cenpt, [300, -50]))
+        plot3Dsolid(bmp,
+                cylindervertandsurface([1,0,0], 20, 10, 5),
+                True, cf['brightyellow'], True,
+                RGB2int(20,20,0), rotvec3D(60, 74, 72),
+                tvect, d, addvect(cenpt,[-200, -50]))
+        plot3Dsolid(bmp,
+                conevertandsurface([1, 0, 0], 20, 15, 5),
+                True, cf['brightorange'],
+                False, RGB2int(20,20,0),
+                rotvec3D(6,67,2),
+                tvect, d, addvect(cenpt, [-300, -150]))
+        fnxy = lambda x, y: x | y
+        plot3Dsolid(bmp,
+                surfplot3Dvertandsurface (
+                -35, -35, 35, 35, 15, 5, fnxy),
+                  True, cf['brightcyan'],
+                  True, 0, rotvec3D(20, 67, 30),
+                  tvect, d, addvect(cenpt, [-420, -25]))
+
+        saveBMP(file,bmp) # dump bytes to file
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)) # tell user we are done
+        ret = proc.call(imgedt + ' ' + file) # load image in editor
 
 if __name__=="__main__":
         main()
