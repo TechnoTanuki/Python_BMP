@@ -16,7 +16,6 @@ from Python_BMP.BITMAPlib import(
         getcolorname2RGBdict,
         plotstring,
         font8x14,
-        font8x8,
         saveBMP
         )
 
