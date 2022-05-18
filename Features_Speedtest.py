@@ -100,18 +100,18 @@ from Python_BMP.BITMAPlib import(
 
 import subprocess as proc
 from time import(
-        process_time_ns
+        process_time_ns as _time_ns
         )
 
 from random import randint
 from os import path,sys
 
 def elaspedtimeinseconds(inittime):
-        return (process_time_ns() - inittime) / 1000000000
+        return (_time_ns() - inittime) / 1000000000
 
 def hhmmsselaspedtime(inittime):
         secs, ns = \
-                divmod((process_time_ns() - inittime), 1000000000)
+                divmod((_time_ns() - inittime), 1000000000)
         mins, secs = divmod(secs, 60)
         hrs, mins = divmod(mins, 60)
         return str(hrs).zfill(2) + ':' \
@@ -123,8 +123,8 @@ def main():
         plotbmpastext(loadBMP(rootdir + '/assets/pp.bmp')) #load logo
         print(notice)
 
-        demostart = process_time_ns()
-        starttime = process_time_ns()
+        demostart = _time_ns()
+        starttime = _time_ns()
         mx = 1024
         my = 768
         bmp = newBMP(mx, my, 24)
@@ -135,12 +135,12 @@ def main():
         cf = getRGBfactors()
         lum = getdefaultlumrange() #color info
         adjustcolordicttopal(bmp, c)
-        starttime = process_time_ns()
+        starttime = _time_ns()
         fillbackgroundwithgrad(bmp,
                 lum['maxasc'], cf['blue'], 0)
         print('Background gradient test done in ',
                 hhmmsselaspedtime(starttime))
-        starttime = process_time_ns()
+        starttime = _time_ns()
         rectangle(bmp, 1, 1, maxpt[0] - 1,
                              maxpt[1] - 1,
                                c['white'])
@@ -149,7 +149,7 @@ def main():
         filledrect(bmp, 395, 44, 955, 55, c['darkblue'])
         print('Rectangle tests done in ',
                 hhmmsselaspedtime(starttime))
-        starttime = process_time_ns()
+        starttime = _time_ns()
         hc = spiralcontrolpointsvert(
                 350, 180, 5, 1.1, 5)#we will use this later to make smooth spiral
         gradthickroundline(bmp, [800, 620], [800, 600], 7,
@@ -167,7 +167,7 @@ def main():
         drawvec(bmp, cp, [75, 125], 0, c['gray'])
         print('Line tests done in ',
                 hhmmsselaspedtime(starttime))
-        starttime = process_time_ns()
+        starttime = _time_ns()
         fnt = font8x8
         strtest = 'abcdefghijklmnopqrstuvwxyz\n0123456789\'":;.,?!~`@#$%^&()[]{}_*+-/=<>\nABCDEFGHIJKLMNOPQRSTUVWXYZ'
         plotstring(bmp, 400, 10,
@@ -187,13 +187,13 @@ def main():
                 strtest, 1, 0, 0, c['white'], fnt)
         print('Text tests done in ',hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
 
         #be careful with these variables
         # or  the object goes offscreen
         d = 200 # distance of the observer
                 # from the screen
-        tvect = [0,0,100] #3D translation vector
+        tvect = [0, 0, 100] #3D translation vector
 
         sd = getshapesidedict()
         pts = tetrahedravert(80)
@@ -250,7 +250,7 @@ def main():
         print('3D tests done in ',
                 hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
         mandelpar = mandelparamdict()
         mandelbrot(bmp, 10, 600, 130, 735,
                 mandelpar['maxeqdim'],
@@ -271,13 +271,13 @@ def main():
         print('Fractal tests done in ',
         hhmmsselaspedtime(starttime))
         p = regpolygonvert(250, 80, 40, 6, 0)
-        starttime = process_time_ns()
+        starttime = _time_ns()
         beziercurve(bmp, p, 3, c['brightorange'])
         beziercurve(bmp, hc, 0, c['lightred'])
         print('Bezier curve tests done in ',
         hhmmsselaspedtime(starttime) )
 
-        starttime = process_time_ns() #bspline follow control points better than bezier
+        starttime = _time_ns() #bspline follow control points better than bezier
         bspline(bmp, p, 0, c['red'], True, True)
         bspline(bmp, hc, 0, c['brightwhite'], True, True)
         gradvert(bmp,
@@ -292,7 +292,7 @@ def main():
         print('Bspline tests done in ',
          hhmmsselaspedtime(starttime) )
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
         gradcircle(bmp, 900, 140, 30,
                 lum['maxdesc'], cf['brightyellow'])
         gradthickcircle(bmp, 900, 550, 40, 8,
@@ -300,7 +300,7 @@ def main():
         print('Circle tests done in ',
          hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
         gradellipse(bmp, 750, 550, 20, 40,
                 lum['upperdesc'], cf['brightorange'])
         gradthickellipserot(bmp, 790, 700, 50, 30, 45, 5,
@@ -308,7 +308,7 @@ def main():
         print('Ellipse tests done in ',
           hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
         pdata=[]#[[20,c['red']],[30,c['brightyellow']],...]
         for color in c:
                 pdata.append([1,c[color]])
@@ -316,19 +316,19 @@ def main():
         print('Arc and pie chart tests done in ',
                     hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
         plotpoly(bmp, p, c['brightcyan'])
         print('Polygon tests done in ',
           hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
         plotfilledflower(bmp, 40, 40, 30, 5, 45,
                 lum['maxasc'], cf['brightyellow'])
         print('Filled flower test done in ',
               hhmmsselaspedtime(starttime))
 
-        starttime=process_time_ns() #[x,y,rad=constant for sample can be variable,isfilled]
-        XYdata=[]#[[45,45,5,c['brightcyan'],True],[100,60,5,c['brightgreen'],True],..]
+        starttime = _time_ns() #[x,y,rad=constant for sample can be variable,isfilled]
+        XYdata = []#[[45,45,5,c['brightcyan'],True],[100,60,5,c['brightgreen'],True],..]
         for color in  c:
                 XYdata.append(
                         [randint(20,140),
@@ -351,12 +351,12 @@ def main():
         print('XY scatterplot test done in ',
                 hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
+        starttime = _time_ns()
         buff = copyrect(bmp, 3, 3, 80, 80)
         pasterect(bmp, buff, 858, 611)
         print('Copy paste done in ',
          hhmmsselaspedtime(starttime))
-        starttime = process_time_ns()
+        starttime = _time_ns()
         nbmp = convertselection2BMP(buff)
         nfile = rootdir +'/assets/flower.bmp'
         saveBMP(nfile, nbmp)
@@ -364,8 +364,8 @@ def main():
                 nfile,' done in ',
                 hhmmsselaspedtime(starttime))
 
-        starttime = process_time_ns()
-        file='test.bmp' # some random filename
+        starttime = _time_ns()
+        file = 'test.bmp' # some random filename
         saveBMP(file, bmp) # dump byte array to file
         print('Saved ' + file + ' in ',
         hhmmsselaspedtime(starttime))
