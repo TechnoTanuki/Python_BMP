@@ -43,6 +43,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Named colors**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_X11ColorNames.py
 
 **Full Gradient Background**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Linear_Gradient.py
