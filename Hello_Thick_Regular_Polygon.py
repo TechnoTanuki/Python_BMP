@@ -28,13 +28,13 @@ def main():
         mx = my = 200 # bitmap size
         bmp =  newBMP(mx, my, 4) # 2^4=16 color bitmap black background
         x = y = mx // 2 # centerpoint
-        r = x - 20 # radius of a circle that contains all the vertices 
+        r = x - 20 # radius of a circle that contains all the vertices
         sides = 5 # for a pentagon
         angle = 30 # for rotation in degrees
         polygonvertexlist = \
                 regpolygonvert(x, y, r, sides, angle) # generate vertices
-        color=11 # color in 4 bit mode (min 0 - max 15)
-        penradius=5 # radius of pen
+        color = 11 # color in 4 bit mode (min 0 - max 15)
+        penradius = 5 # radius of pen
         thickplotpoly(bmp, polygonvertexlist, penradius, color)  # plot the polygon
         file = 'HelloThickRegularPolygon.bmp' # file name
         saveBMP(file, bmp) # save the bitmap
