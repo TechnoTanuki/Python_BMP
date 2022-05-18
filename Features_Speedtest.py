@@ -104,7 +104,7 @@ from time import(
         )
 
 from random import randint
-from os import path,sys
+from os import path
 
 def elaspedtimeinseconds(inittime):
         return (_time_ns() - inittime) / 1000000000
