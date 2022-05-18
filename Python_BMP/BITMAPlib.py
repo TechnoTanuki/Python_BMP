@@ -8995,6 +8995,7 @@ def _useclradjfn(
             (func.__name__, str(funcparam),
             ExistingBMPfile, NewBMPfile))
 
+
 @_filechk
 def _use24btclrfn(
         ExistingBMPfile: str,
