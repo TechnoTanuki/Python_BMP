@@ -33,7 +33,7 @@ def main():
         bmp = newBMP(mx,my,24) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
-        d, translationvector= 400, [0,0,200] # be careful with these variables or object goes offscreen
+        d, translationvector = 400, [0,0,200] # be careful with these variables or object goes offscreen
         isSolid = True # toggle solid or outline
         showoutline = False # can show outline even if solid
         color = cf['brightwhite'] # color of solid
