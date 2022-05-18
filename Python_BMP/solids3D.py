@@ -16,6 +16,7 @@ from math import(
     sqrt,
     radians
     )
+from typing import Callable
 
 from .mathlib import(
     adddimz,
@@ -289,7 +290,7 @@ def perspective(
         z1 = -syaw * px + cyaw * pz
         x = croll * x1 + sroll * py
         y = spitch * z1 + cpitch * y1
-        z= cpitch * z1 - spitch * y1
+        z = cpitch * z1 - spitch * y1
         x += dispvec[0]
         y += dispvec[1]
         z += dispvec[2]
@@ -590,12 +591,14 @@ def surfplot3Dvertandsurface(
         x2: int,
         y2: int,
         zscale: float,
-        step: int) -> tuple:
+        step: int,
+        fnxy: Callable
+        ) -> tuple:
     vlist = []
     surf = []
     for y in range(y1, y2, step):
         for x in range(x1, x2, step):
-            z = x & y
+            z = fnxy(x,y)
             vlist.append([x, y ,z])
     dx = abs(x2 - x1) // step
     dx1 = dx - 1

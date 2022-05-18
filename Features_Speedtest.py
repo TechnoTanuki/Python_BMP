@@ -240,8 +240,9 @@ def main():
                 False, RGB2int(20,20,0),
                 rotvec3D(6,67,2),
                 tvect, d, addvect(cenpt, [-300, -150]))
+        fnxy = lambda x, y: x & y
         plot3Dsolid(bmp,
-                surfplot3Dvertandsurface (-35, -35, 35, 35, 15, 5),
+                surfplot3Dvertandsurface (-35, -35, 35, 35, 15, 5, fnxy),
                   True, cf['brightcyan'],
                   True, 0, rotvec3D(20, 67, 30),
                   tvect, d, addvect(cenpt, [-420, -25]))
