@@ -6524,9 +6524,12 @@ def mirrorbottominregion(
         of a rectangular region
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: defines the rectangle
+        x1, y1, x2, y2: ints that
+                        defines the
+                        rectangle
 
     Returns:
         byref modified
@@ -6548,10 +6551,13 @@ def mirrortopinregion(
         a rectangular region
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: ints that defines
-                        the rectangular region
+        x1, y1, x2, y2: ints that
+                        defines the
+                        rectangular
+                        area
 
     Returns:
         byref modified
@@ -6575,10 +6581,12 @@ def fliphorzontalpixelbased(
         (slightly slow)
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: ints that defines
-                        the rectangular
+        x1, y1, x2, y2: ints that
+                        defines the
+                        rectangular
                         region
 
     Returns:
@@ -6610,10 +6618,12 @@ def fliphverticalalpixelbased(
         (slightly slow)
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: ints that defines
-                        the rectangular
+        x1, y1, x2, y2: ints that
+                        defines the
+                        rectangular
                         region
 
     Returns:
@@ -6644,9 +6654,12 @@ def horizontalbulkswap(
         to a rectangular area
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: defines the rectangle
+        x1, y1, x2, y2: ints that
+                        defines the
+                        rectangle
 
     Returns:
         byref modified
@@ -6678,10 +6691,12 @@ def fliphorizontalregion(
         of a rectangular area
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: ints that defines
-                        the rectangular
+        x1, y1, x2, y2: ints that
+                        defines the
+                        rectangular
                         region
 
     Returns:
@@ -6724,9 +6739,12 @@ def mirrorleftinregion(
         of a rectangular area
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: defines the rectangle
+        x1, y1, x2, y2: ints that
+                        defines the
+                        rectangle
 
     Returns:
         byref modified
@@ -6772,7 +6790,8 @@ def mirrorrightinregion(
         bmp           : unsigned
                         byte array
                         with bmp format
-        x1, y1, x2, y2: defines the
+        x1, y1, x2, y2: ints that
+                        defines the
                         rectangle
 
     Returns:
@@ -6857,7 +6876,8 @@ def mirrortopleftinregion(
         bmp           : unsigned
                         byte array
                         with bmp format
-        x1, y1, x2, y2: defines the
+        x1, y1, x2, y2: ints that
+                        defines the
                         rectangle
 
     Returns:
@@ -6886,7 +6906,8 @@ def mirrortoprightinregion(
         bmp           : unsigned
                         byte array
                         with bmp format
-        x1, y1, x2, y2: defines the
+        x1, y1, x2, y2: ints that
+                        defines the
                         rectangle
 
     Returns:
@@ -6915,7 +6936,8 @@ def mirrorbottomleftinregion(
         bmp           : unsigned
                         byte array
                         with bmp format
-        x1, y1, x2, y2: defines the
+        x1, y1, x2, y2: ints that
+                        defines the
                         rectangle
 
     Returns:
