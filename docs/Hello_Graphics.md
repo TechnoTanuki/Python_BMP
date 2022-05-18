@@ -41,6 +41,9 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Vertical_text.py
 
+**Named colors**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
+
 **Full Gradient Background**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Linear_Gradient.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Gradient.py
