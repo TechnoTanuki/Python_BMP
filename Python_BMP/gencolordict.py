@@ -1,5 +1,10 @@
-from .colors import RGB2int, int2RGB
+def RGB2int(r: int,
+            g: int,
+            b: int) -> int:
+    return b + (g << 8) + (r << 16)
 
+def int2RGB(i: int):
+        return i >> 16, (i >> 8) & 0xff, i & 0xff
 
 def _getcolorname2RGBdict() -> dict:#define colors here
     return {
