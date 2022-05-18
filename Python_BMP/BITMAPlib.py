@@ -1015,6 +1015,7 @@ def _bmmeta(
     return (_getbmflsz(x, y, bits),
             _getbmhdsz[bits], x, y, bits)
 
+
 def isdefaultpal(bmp: array) -> bool:
     """Checks if bitmap has
         a default
@@ -1160,6 +1161,7 @@ def setRGBpal(
     start = _bmpal + (c << 2)
     end= start + 3
     bmp[start: end] = RGBtoBGRarr(r, g, b)
+
 
 def colorhistorgram(bmp: array) -> list:
     """Creates a color histogram
@@ -2439,7 +2441,8 @@ def drawvec(
     a1 = a - anginc
     a2 = a + anginc
     linevec(bmp, u, v, color)
-    def hdaddvect(bmp, v, hm, a1, a2):
+
+    def _hdadd(bmp, v, hm, a1, a2):
         linevec(bmp, v,
             addvect(v,
                 polar2rectcoord2D([hm, a1])),
@@ -2448,7 +2451,8 @@ def drawvec(
             addvect(v,
                 polar2rectcoord2D([hm, a2])),
                     color)
-    def hdsubvect(bmp, v, hm, a1, a2):
+
+    def _hdsub(bmp, v, hm, a1, a2):
         linevec(bmp, v,
             subvect(v,
                 polar2rectcoord2D([hm, a1])),
@@ -2457,22 +2461,23 @@ def drawvec(
             subvect(v,
                 polar2rectcoord2D([hm, a2])),
                     color)
+
     if u[0] < v[0] and u[1] < v[1]:
-        hdsubvect(bmp, v, hm, a1, a2)
+        _hdsub(bmp, v, hm, a1, a2)
     elif u[0] > v[0] and u[1] > v[1]:
-        hdaddvect(bmp, v, hm, a1, a2)
+        _hdadd(bmp, v, hm, a1, a2)
     elif v[1] == u[1] and u[0] < v[0]:
-        hdsubvect(bmp, v, hm, a1, a2)
+        _hdsub(bmp, v, hm, a1, a2)
     elif v[1] == u[1] and u[0] > v[0]:
-        hdaddvect(bmp, v, hm, a1, a2)
+        _hdadd(bmp, v, hm, a1, a2)
     elif v[0] == u[0] and u[1] > v[1]:
-        hdsubvect(bmp, v, hm, a1, a2)
+        _hdsub(bmp, v, hm, a1, a2)
     elif v[0] == u[0] and u[1]<v[1]:
-        hdaddvect(bmp, v, hm, a1, a2)
+        _hdadd(bmp, v, hm, a1, a2)
     elif u[0] < v[0] and u[1] > v[1]:
-        hdsubvect(bmp, v, hm, a1, a2)
+        _hdsub(bmp, v, hm, a1, a2)
     else:
-        hdaddvect(bmp, v, hm, a1, a2)
+        _hdadd(bmp, v, hm, a1, a2)
 
 
 def thickroundline(
@@ -2550,7 +2555,7 @@ def gradthickroundline(
 
 
 @_fn24bitintcircpar
-def applynoparam24bitfunctocircregion(
+def _usenopar24btfn2circreg(
         bmp: array,
         x: int,
         y: int,
@@ -2708,6 +2713,7 @@ def copycircregion2buf(
                      bmp[c(bmp, x1, y2): c(bmp, x2, y2)]]]
     return copybuf
 
+
 def pastecirularbuf(
         bmp: array,
         x: int,
@@ -2792,7 +2798,7 @@ def copycircregion(
 
 
 @_intcircpar
-def applynoparamfunctocircregion(
+def _usenoparfn2circreg(
         bmp: array,
         x: int,
         y: int,
@@ -3133,6 +3139,7 @@ def verttransformincircregion(
     f = {'T': _T,
          'B': _B,
          'F' : _F}[trans]
+
     c=_getBMoffhdfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
@@ -3308,6 +3315,7 @@ def mirrorbottomrightincircregion(
     mirrorbottomincircregion(
         bmp, x, y, r)
 
+
 @_fn24bitencircbnd
 def vertbrightnessgrad2circregion(
         bmp: array,
@@ -3439,20 +3447,24 @@ def outlinecircregion(
             e2 = c(bmp, x2, y2)
             if bits == 24:
                 bmp[s1: e1] = \
-                array('B', xorvect(bmp[s1: e1],
-                                   bmp[s1 + 3: e1 + 3]))
+                array('B', xorvect(
+                      bmp[s1: e1],
+                      bmp[s1 + 3: e1 + 3]))
                 if y1 != y2:
                     bmp[s2: e2] = \
-                    array('B', xorvect(bmp[s2: e2],
-                                       bmp[s2 + 3: e2 + 3]))
+                    array('B', xorvect(
+                          bmp[s2: e2],
+                          bmp[s2 + 3: e2 + 3]))
             else:
                 bmp[s1: e1] = \
-                array('B', xorvect(bmp[s1: e1],
-                                   bmp[s1 + 1: e1 + 1]))
+                array('B', xorvect(
+                      bmp[s1: e1],
+                      bmp[s1 + 1: e1 + 1]))
                 if y1 != y2:
                     bmp[s2: e2] = \
-                    array('B', xorvect(bmp[s2: e2],
-                                       bmp[s2 + 1: e2 + 1]))
+                    array('B', xorvect(
+                          bmp[s2: e2],
+                          bmp[s2 + 1: e2 + 1]))
     else:
         xmax = getmaxx(bmp)
         ymax = getmaxy(bmp)
@@ -3510,7 +3522,7 @@ def monocircle(
         unsigned byte array
 
     """
-    applynoparam24bitfunctocircregion(
+    _usenopar24btfn2circreg(
         bmp, x, y, r,
         monochromefiltertoBGRbuf)
 
@@ -3635,7 +3647,7 @@ def invertbitsincircregion(
         unsigned byte array
 
     """
-    applynoparamfunctocircregion(
+    _usenoparfn2circreg(
         bmp, x, y, r, _invbtbf)
 
 
