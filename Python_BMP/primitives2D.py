@@ -69,7 +69,7 @@ def itercirclepart1(r: int)->list:
         r_sqr + _2r_sqr * (1 - r_sqr)
     while row >= col:
         yield([col, row])
-        if d>=0:
+        if d >= 0:
             row -= 1
             d -= _4r_sqr * row
             d += _2r_sqr * (3 + (col << 1))
@@ -103,14 +103,14 @@ def itercirclepartlineedge(
 def itercirclepartvertlineedge(
         r: int) -> list:
     row = r
-    col =0
+    col = 0
     r_sqr = r * r
     _2r_sqr = r_sqr << 1
     _4r_sqr = r_sqr << 2
     d = _2r_sqr * ((row - 1) * (row)) + \
         r_sqr + _2r_sqr * (1 - r_sqr)
     x = []
-    while row>=col:
+    while row >= col:
         if col not in x:
             yield([col, row])
             x += [col]
