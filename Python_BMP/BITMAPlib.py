@@ -1579,12 +1579,12 @@ def vertBMPbitBLTget(
 
 
 def _fnwithpar2vertslice(
-    bmp: array,
-    x: int,
-    y1: int,
-    y2: int,
-    func: Callable,
-    funcparam):
+        bmp: array,
+        x: int,
+        y1: int,
+        y2: int,
+        func: Callable,
+        funcparam):
     """Apply a user defined function
         to vertical slices
 
@@ -1741,7 +1741,7 @@ def getxybit(
         unsigned int color value
 
     """
-    retval=0
+    retval = 0
     if isinBMPrectbnd(bmp, x, y):
         offset = _BMoffsethd(bmp, x, y)
         bits = bmp[_bmclrbits]
@@ -2905,12 +2905,11 @@ def flipXYcircregion(
             x2 += 1
             x3, x4 = mirror(x, v[1])
             y3, y4 = mirror(y, v[0])
-            buf += [[x1,
-                     y1,
-                     x2,
-                     y2,
-                     vertBMPbitBLTget(bmp, x3, y3, y4),
-                     vertBMPbitBLTget(bmp, x4, y3, y4)]]
+            buf += [[x1, y1, x2, y2,
+                     vertBMPbitBLTget(
+                      bmp, x3, y3, y4),
+                     vertBMPbitBLTget(
+                      bmp, x4, y3, y4)]]
         for b in buf:
             x1 = b[0]
             y1 = b[1]
