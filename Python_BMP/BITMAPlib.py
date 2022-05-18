@@ -1327,7 +1327,7 @@ def setnewpalfromsourcebmp(
         based on source bitmap
 
     """
-    newpal=makenewpalfromcolorhist(
+    newpal = makenewpalfromcolorhist(
         colorhistorgram(sourcebmp),
         getmaxcolors(newbmp),
         similaritythreshold)
@@ -2024,8 +2024,8 @@ def line(
             y1, x1, x2, color)
     else:
         bits = bmp[_bmclrbits]
-        p1 = (x1,y1)
-        p2 = (x2,y2)
+        p1 = (x1, y1)
+        p2 = (x2, y2)
         c = _getBMoffhdfunc(bmp)
         if bits == 24:
             buf = int2BGRarr(color)
@@ -6312,7 +6312,7 @@ def erasealternatehorizontallinesinregion(
     while s2 > s1:
         if i % int_eraseeverynline == \
                int_eraseNthline:
-            bmp[s2: s2+ bufsize] = blank
+            bmp[s2: s2 + bufsize] = blank
         s2 -= r
         i += 1
 
@@ -6664,7 +6664,7 @@ def horizontalbulkswap(
     while x1 < x2:
         swapfunc(bmp,
             c(bmp, x1, y2), c(bmp, x1, y1) + r,
-            c(bmp, x2, y2), c(bmp, x2, y1) + r,r)
+            c(bmp, x2, y2), c(bmp, x2, y1) + r, r)
         x1 += dx
         x2 -= dx
 
@@ -6690,7 +6690,7 @@ def fliphorizontalregion(
 
     """
     def _24(bmp, s1, e1, s2, e2, r):
-        bmp[s1: e1 - 2: r], bmp[s2: e2 - 2: r], bmp[s1 + 1: e1 - 1 :r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 2: e1: r], bmp[s2 + 2: e2: r] = \
+        bmp[s1: e1 - 2: r], bmp[s2: e2 - 2: r], bmp[s1 + 1: e1 - 1: r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 2: e1: r], bmp[s2 + 2: e2: r] = \
         bmp[s2: e2 - 2: r], bmp[s1: e1 - 2: r], bmp[s2 + 1: e2 - 1: r], bmp[s1 + 1: e1 - 1: r], bmp[s2 + 2: e2: r], bmp[s1 + 2: e1: r]
 
     def _8(bmp, s1, e1, s2, e2, r):
@@ -6699,11 +6699,11 @@ def fliphorizontalregion(
 
     def _4(bmp, s1, e1, s2, e2, r):
         bmp[s1: e1: r], bmp[s2: e2: r] = \
-        _flnbbf(bmp[s2: e2: r]), _flnbbf(bmp[s1: e1 :r])
+        _flnbbf(bmp[s2: e2: r]), _flnbbf(bmp[s1: e1: r])
 
     def _1(bmp, s1, e1, s2, e2, r):
         bmp[s1: e1: r], bmp[s2: e2: r] = \
-        _rtbtbf(bmp[s2: e2: r]), _rtbtbf(bmp[s1: e1 :r])
+        _rtbtbf(bmp[s2: e2: r]), _rtbtbf(bmp[s1: e1: r])
 
     horizontalbulkswap(
         bmp,
@@ -6749,7 +6749,9 @@ def mirrorleftinregion(
         bmp[s2: e2: r] = \
             _rtbtbf(bmp[s1: e1: r])
 
-    horizontalbulkswap(bmp, x1, y1, x2, y2,
+    horizontalbulkswap(
+        bmp,
+        x1, y1, x2, y2,
         {24: _24,
           8: _8,
           4: _4,
@@ -6767,9 +6769,11 @@ def mirrorrightinregion(
         in a bitmap
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: defines the rectangle
+        x1, y1, x2, y2: defines the
+                        rectangle
 
     Returns:
         byref modified
@@ -6850,9 +6854,11 @@ def mirrortopleftinregion(
                and (x2,y2)
 
     Args:
-        bmp            : unsigned byte array
-                         with bmp format
-        x1, y1, x2, y2 : defines the rectangle
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the
+                        rectangle
 
     Returns:
         byref modified
@@ -7933,6 +7939,7 @@ def applyfuncto24bitregion(
             func(buf, funcparam))
         offset += r
 
+
 @_fn24bitenrectbnd
 def verticalbrightnessgradto24bitregion(
         bmp: array,
@@ -8216,7 +8223,7 @@ def compareimglines(
         x2: int,
         y2: int,
         func: Callable):
-    offset = _BMoffset(bmp,x1,y2)
+    offset = _BMoffset(bmp, x1, y2)
     r = _xchrcnt(bmp)
     oldbuf = []
     for buf in itercopyrect(
@@ -8397,8 +8404,10 @@ def _usebyreffnwithpar2regnsv(
         func(bmp, x1, y1, x2, y2, funcparam)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savedareafunc'] %
-            (func.__name__,x1, y1, x2, y2,
-            ExistingBMPfile, NewBMPfile))
+            (func.__name__,
+            x1, y1, x2, y2,
+            ExistingBMPfile,
+            NewBMPfile))
 
 
 @_filechk
@@ -8442,8 +8451,10 @@ def _use24btbyrefclrfn2regnsv(
                 funcparam)
             saveBMP(NewBMPfile, bmp)
             print(sysmsg['savedareafunc'] %
-                (func.__name__, x1, y1, x2, y2,
-                ExistingBMPfile, NewBMPfile))
+                (func.__name__,
+                x1, y1, x2, y2,
+                ExistingBMPfile,
+                NewBMPfile))
 
 
 @_filechk
@@ -8483,8 +8494,10 @@ def _usebyref24btfn2regnsv(
             func(bmp, x1, y1, x2, y2)
             saveBMP(NewBMPfile, bmp)
             print(sysmsg['savedareafunc'] %
-            (func.__name__, x1, y1, x2, y2,
-            ExistingBMPfile, NewBMPfile))
+            (func.__name__,
+            x1, y1, x2, y2,
+            ExistingBMPfile,
+            NewBMPfile))
 
 
 @_filechk
@@ -8521,8 +8534,10 @@ def _usebyreffn2regnsv(
         func(bmp, x1, y1, x2, y2)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savedareafunc'] %
-        (func.__name__, x1, y1, x2, y2,
-        ExistingBMPfile,NewBMPfile))
+        (func.__name__,
+        x1, y1, x2, y2,
+        ExistingBMPfile,
+        NewBMPfile))
 
 @_filechk
 def applyfunctoregionandsave(
@@ -8559,8 +8574,10 @@ def applyfunctoregionandsave(
         if bmp != None:
             saveBMP(NewBMPfile, bmp)
             print(sysmsg['savedareafunc'] %
-                (func.__name__, x1, y1, x2, y2,
-                ExistingBMPfile, NewBMPfile))
+                (func.__name__,
+                x1, y1, x2, y2,
+                ExistingBMPfile,
+                NewBMPfile))
 
 
 @_filechk
@@ -8605,8 +8622,10 @@ def _usebyreffnwithparnsv(
         func(bmp, funcparam)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savesingleparamfunc'] %
-            (func.__name__, str(funcparam),
-            ExistingBMPfile, NewBMPfile))
+            (func.__name__,
+            str(funcparam),
+            ExistingBMPfile,
+            NewBMPfile))
 
 
 @_filechk
@@ -8634,7 +8653,8 @@ def _usefnsv(
         saveBMP(NewBMPfile, func(bmp))
         print(sysmsg['savefunc'] %
             (func.__name__ ,
-            ExistingBMPfile,NewBMPfile))
+            ExistingBMPfile,
+            NewBMPfile))
 
 
 @_filechk
@@ -8667,7 +8687,8 @@ def apply24bitfuncandsave(
             saveBMP(NewBMPfile, func(bmp))
             print(sysmsg['savefunc'] %
             (func.__name__ ,
-            ExistingBMPfile, NewBMPfile))
+            ExistingBMPfile,
+            NewBMPfile))
 
 
 @_filechk
@@ -8701,8 +8722,10 @@ def _use24btfnwithparnsv(
             saveBMP(NewBMPfile,
                 func(bmp, funcparam))
             print(sysmsg['savesingleparamfunc'] %
-                (func.__name__, str(funcparam),
-                ExistingBMPfile, NewBMPfile))
+                (func.__name__,
+                str(funcparam),
+                ExistingBMPfile,
+                NewBMPfile))
 
 
 @_filechk
@@ -8770,8 +8793,10 @@ def _usefn2circreg(
         func(bmp, x, y, r)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savecircfunc'] %
-            (func.__name__ , x, y, r,
-            ExistingBMPfile, NewBMPfile))
+            (func.__name__ ,
+            x, y, r,
+            ExistingBMPfile,
+            NewBMPfile))
 
 
 @_filechk
@@ -8808,8 +8833,11 @@ def _usefnwithpar2circreg(
         func(bmp, x, y, r, funcparam)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savecircfuncwithparam'] %
-            (func.__name__ , x, y, r,
-            funcparam, ExistingBMPfile, NewBMPfile))
+            (func.__name__ ,
+            x, y, r,
+            funcparam,
+            ExistingBMPfile,
+            NewBMPfile))
 
 
 @_filechk
