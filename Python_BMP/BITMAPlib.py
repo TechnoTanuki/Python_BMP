@@ -3652,11 +3652,11 @@ def invertbitsincircregion(
 
 
 def circlevec(
-    bmp: array,
-    v: list,
-    r: int,
-    color: int,
-    isfilled: bool = None):
+        bmp: array,
+        v: list,
+        r: int,
+        color: int,
+        isfilled: bool = None):
     """Draws a circle
         defined by
         centerpoint v
@@ -4003,7 +4003,7 @@ def thickellipserot(
 
 
 def gradthickellipserot(
-        bmp:array,
+        bmp: array,
         x: int,
         y: int,
         b: int,
@@ -5392,10 +5392,13 @@ def numbervert(
         if plot:
             plotstring(bmp,
                 v[0] + xadj - rjust,
-                v[1] + yadj, stval,
-                scale, pixspace,
+                v[1] + yadj,
+                stval,
+                scale,
+                pixspace,
                 spacebetweenchar,
-                color, fontbuf)
+                color,
+                fontbuf)
 
 
 def vertlinevert(
@@ -5533,9 +5536,9 @@ def XYaxis(bmp: array,
         0, 0, textcolor, font,
         False, False, False)
     xvalmax = xyvalstarts[0] + \
-                (len(hvert) - 1) * xysteps[0]
+            (len(hvert) - 1) * xysteps[0]
     yvalmax = xyvalstarts[1] + \
-                (len(vvert) - 1) * xysteps[1]
+            (len(vvert) - 1) * xysteps[1]
     return (origin,
             steps,
             xylimits,
@@ -5653,7 +5656,9 @@ def XYscatterplot(
         linevec(bmp, u, w, reglinecolor)
 
 
-def getneighborcolorlist(bmp, v):
+def getneighborcolorlist(
+        bmp: array,
+        v: list):
     return [getRGBxybitvec(bmp, u)
             for u in itergetneighbors(
                 v, getmaxx(bmp), getmaxy(bmp), True)]
@@ -6132,9 +6137,10 @@ def convertselection2BMP(buf: array):
     if not isvalidcolorbit(bits):
         print (sysmsg['invalidbuf'])
     else:
-        bmp = newBMP(_bf2in(buf[1: 3]) + 1,
-                     _bf2in(buf[3: 5]) + 1,
-                     bits)
+        bmp = newBMP(
+                _bf2in(buf[1: 3]) + 1,
+                _bf2in(buf[3: 5]) + 1,
+                bits)
         pasterect(bmp, buf, 0, 0)
     return bmp
 
@@ -6167,17 +6173,23 @@ def erasealternatehorizontallines(
     """Erase every nth line
 
     Args:
-        bmp                : unsigned byte array
-                             with bmp format
+        bmp                : unsigned
+                             byte array
+                             with
+                             bmp format
         int_eraseeverynline: erase every
                              nth line
-                             in the region
-        int_eraseNthline   : control which line
-                             every n lines
+                             in the
+                             region
+        int_eraseNthline   : control
+                             which line
+                             every
+                             n lines
                              to erase
         bytepat            : byte pattern
                              to overwrite
-                             the erased lines
+                             the erased
+                             lines
 
     Returns:
         byref modified
@@ -6230,11 +6242,15 @@ def erasealternatehorizontallinesincircregion(
         in a circular region
 
     Args:
-        bmp                : unsigned byte array
-                             with bmp format
-        x, y, r            : (x,y) centerpoint
-                             and radius r of the
-                             circular region
+        bmp                : unsigned
+                             byte array
+                             with bmp
+                             format
+        x, y, r            : (x,y)
+                             centerpoint
+                             and radius r
+                             of the
+                             circular area
         int_eraseeverynline: erase every nth line
                              in the circular region
         int_eraseNthline   : control which line
