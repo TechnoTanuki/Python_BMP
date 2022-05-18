@@ -8452,10 +8452,9 @@ def _usebyreffnwithpar2regnsv(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        func(bmp, x1, y1, x2, y2, funcparam)
-        saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savedareafunc'] %
+    func(bmp, x1, y1, x2, y2, funcparam)
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savedareafunc'] %
             (func.__name__,
             x1, y1, x2, y2,
             ExistingBMPfile,
@@ -8494,15 +8493,13 @@ def _use24btbyrefclrfn2regnsv(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            func(bmp,
-                x1, y1, x2, y2,
-                funcparam)
-            saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savedareafunc'] %
+    if bmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        func(bmp,
+         x1, y1, x2, y2, funcparam)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savedareafunc'] %
                 (func.__name__,
                 x1, y1, x2, y2,
                 ExistingBMPfile,
@@ -8539,13 +8536,12 @@ def _usebyref24btfn2regnsv(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            func(bmp, x1, y1, x2, y2)
-            saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savedareafunc'] %
+    if bmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        func(bmp, x1, y1, x2, y2)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savedareafunc'] %
             (func.__name__,
             x1, y1, x2, y2,
             ExistingBMPfile,
@@ -8582,10 +8578,9 @@ def _usebyreffn2regnsv(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        func(bmp, x1, y1, x2, y2)
-        saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savedareafunc'] %
+    func(bmp, x1, y1, x2, y2)
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savedareafunc'] %
         (func.__name__,
         x1, y1, x2, y2,
         ExistingBMPfile,
@@ -8621,13 +8616,13 @@ def applyfunctoregionandsave(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        bmp = func(bmp, x1, y1, x2, y2)
-        if bmp != None:
-            saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savedareafunc'] %
-                (func.__name__,
-                x1, y1, x2, y2,
+
+    bmp = func(bmp, x1, y1, x2, y2)
+    if bmp != None:
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savedareafunc'] %
+              (func.__name__,
+               x1, y1, x2, y2,
                 ExistingBMPfile,
                 NewBMPfile))
 
@@ -8655,12 +8650,12 @@ def _usebyreffnsv(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        func(bmp)
-        saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savefunc'] %
+    func(bmp)
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savefunc'] %
         (func.__name__ ,
-        ExistingBMPfile, NewBMPfile))
+        ExistingBMPfile,
+        NewBMPfile))
 
 
 @_filechk
@@ -8670,10 +8665,9 @@ def _usebyreffnwithparnsv(
         func: Callable,
         funcparam):
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        func(bmp, funcparam)
-        saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savesingleparamfunc'] %
+    func(bmp, funcparam)
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savesingleparamfunc'] %
             (func.__name__,
             str(funcparam),
             ExistingBMPfile,
@@ -8701,9 +8695,8 @@ def _usefnsv(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        saveBMP(NewBMPfile, func(bmp))
-        print(sysmsg['savefunc'] %
+    saveBMP(NewBMPfile, func(bmp))
+    print(sysmsg['savefunc'] %
             (func.__name__ ,
             ExistingBMPfile,
             NewBMPfile))
@@ -8732,12 +8725,11 @@ def apply24bitfuncandsave(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            saveBMP(NewBMPfile, func(bmp))
-            print(sysmsg['savefunc'] %
+    if bmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        saveBMP(NewBMPfile, func(bmp))
+        print(sysmsg['savefunc'] %
             (func.__name__ ,
             ExistingBMPfile,
             NewBMPfile))
@@ -8767,13 +8759,12 @@ def _use24btfnwithparnsv(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            saveBMP(NewBMPfile,
-                func(bmp, funcparam))
-            print(sysmsg['savesingleparamfunc'] %
+    if bmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        saveBMP(NewBMPfile,
+            func(bmp, funcparam))
+        print(sysmsg['savesingleparamfunc'] %
                 (func.__name__,
                 str(funcparam),
                 ExistingBMPfile,
@@ -8803,12 +8794,11 @@ def apply8bitabovefuncandsave(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] not in [8, 24]:
-            print(sysmsg['not24or8bit'])
-        else:
-            saveBMP(NewBMPfile, func(bmp))
-            print(sysmsg['savefunc'] %
+    if bmp[_bmclrbits] not in [8, 24]:
+        print(sysmsg['not24or8bit'])
+    else:
+        saveBMP(NewBMPfile, func(bmp))
+        print(sysmsg['savefunc'] %
                 (func.__name__ ,
                 ExistingBMPfile,
                 NewBMPfile))
@@ -8841,10 +8831,9 @@ def _usefn2circreg(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        func(bmp, x, y, r)
-        saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savecircfunc'] %
+    func(bmp, x, y, r)
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savecircfunc'] %
             (func.__name__ ,
             x, y, r,
             ExistingBMPfile,
@@ -8881,10 +8870,9 @@ def _usefnwithpar2circreg(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        func(bmp, x, y, r, funcparam)
-        saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savecircfuncwithparam'] %
+    func(bmp, x, y, r, funcparam)
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savecircfuncwithparam'] %
             (func.__name__ ,
             x, y, r,
             funcparam,
@@ -8920,15 +8908,14 @@ def _use24btclrfntocircregion(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            func(bmp, x, y, r)
-            saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savecircfunc'] %
-                (func.__name__, x, y, r,
-                ExistingBMPfile, NewBMPfile))
+    if bmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        func(bmp, x, y, r)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savecircfunc'] %
+            (func.__name__, x, y, r,
+            ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8962,13 +8949,12 @@ def _use24btclrfnwithpar2circreg(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            func(bmp, x, y, r, funcparam)
-            saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savecircfuncwithparam'] %
+    if bmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        func(bmp, x, y, r, funcparam)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savecircfuncwithparam'] %
             (func.__name__, x, y, r, funcparam,
             ExistingBMPfile, NewBMPfile))
 
@@ -8998,31 +8984,29 @@ def _useclradjfn(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            setbmppal(bmp,
-                [func(c,funcparam)
-                    for c in getallRGBpal(bmp)])
-        else:
-            if func.__name__ == 'colorfilter':
-                colorfilterto24bitimage(
-                    bmp, funcparam)
-            elif func.__name__ == 'brightnessadjust':
-                brightnesseadjto24bitimage(
-                    bmp, funcparam)
-            elif func.__name__ == 'gammacorrect':
+    if bmp[_bmclrbits] != 24:
+        setbmppal(bmp,[func(c, funcparam)
+              for c in getallRGBpal(bmp)])
+    else:
+        if func.__name__ == 'colorfilter':
+            colorfilterto24bitimage(
+                bmp, funcparam)
+        elif func.__name__ == 'brightnessadjust':
+            brightnesseadjto24bitimage(
+                bmp, funcparam)
+        elif func.__name__ == 'gammacorrect':
                 gammaadjto24bitimage(
                     bmp, funcparam)
-            elif func.__name__ == 'thresholdadjust':
+        elif func.__name__ == 'thresholdadjust':
                 thresholdadjto24bitimage(
                     bmp, funcparam)
-            else:
-                for v in iterimageRGB(bmp,
-                            sysmsg['coloradj'], '*',
-                            sysmsg['done']):
-                    plotRGBxybitvec(
-                        bmp, v[0],
-                        func(v[1],funcparam))
+        else:
+            for v in iterimageRGB(bmp,
+                        sysmsg['coloradj'], '*',
+                        sysmsg['done']):
+                plotRGBxybitvec(
+                    bmp, v[0],
+                    func(v[1],funcparam))
         saveBMP(NewBMPfile,bmp)
         print(sysmsg['savesingleparamfunc'] %
             (func.__name__, str(funcparam),
@@ -9055,14 +9039,14 @@ def _use24btclrfn(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            func(bmp, funcparam)
-            saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savesingleparamfunc'] %
-                (func.__name__, str(funcparam),
+
+    if bmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        func(bmp, funcparam)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savesingleparamfunc'] %
+             (func.__name__, str(funcparam),
                 ExistingBMPfile, NewBMPfile))
 
 
@@ -9089,20 +9073,20 @@ def _usenoparclradjfn(
 
     """
     bmp = loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        if bmp[_bmclrbits] != 24:
-            setbmppal(bmp,
-                [func(c) for c in getallRGBpal(bmp)])
+    if bmp[_bmclrbits] != 24:
+        setbmppal(bmp,
+            [func(c) for c in getallRGBpal(bmp)])
+    else:
+        if func.__name__ == 'monochrome':
+            monofilterto24bitimage(bmp)
         else:
-            if func.__name__ == 'monochrome':
-                monofilterto24bitimage(bmp)
-            else:
-                for v in iterimageRGB(
-                            bmp,
-                            sysmsg['coloradj'], '*',
-                            sysmsg['done']):
-                    plotRGBxybitvec(bmp, v[0],
-                                    func(v[1]))
+            for v in iterimageRGB(
+                        bmp,
+                        sysmsg['coloradj'],
+                        '*',
+                        sysmsg['done']):
+                plotRGBxybitvec(bmp, v[0],
+                                func(v[1]))
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savenoparamfunc'] %
              (func.__name__, ExistingBMPfile,
@@ -9198,25 +9182,24 @@ def imagecomp(
     """
     bmp1 = loadBMP(inputfile1)
     bmp2 = loadBMP(inputfile2)
-    if len(bmp1) > 54 and len(bmp2) > 54:
-        s1 = getmaxxyandbits(bmp1)
-        s2 = getmaxxyandbits(bmp2)
-        if s1 != s2:
-            print(sysmsg['cantcomparefiles'] % (s1,s2))
-        else:
-            bits = s1[1]
-            nbmp=CopyBMPxydim2newBMP(bmp1, bits)
-            if bits<24:
-                pal1 = getallRGBpal(bmp1)
-                pal2 = getallRGBpal(bmp2)
-                if pal1 != pal2:
-                    print(sysmsg['diffpal'])
-                copyRGBpal(bmp1, nbmp)
-            setBMPimgbytes(nbmp, array('B',
-                                    func(getBMPimgbytes(bmp1),
-                                         getBMPimgbytes(bmp2))))
-            saveBMP(diff_file, nbmp)
-            print(sysmsg['savdifffile'] % diff_file)
+    s1 = getmaxxyandbits(bmp1)
+    s2 = getmaxxyandbits(bmp2)
+    if s1 != s2:
+        print(sysmsg['cantcomparefiles'] % (s1,s2))
+    else:
+        bits = s1[1]
+        nbmp=CopyBMPxydim2newBMP(bmp1, bits)
+        if bits<24:
+            pal1 = getallRGBpal(bmp1)
+            pal2 = getallRGBpal(bmp2)
+            if pal1 != pal2:
+                print(sysmsg['diffpal'])
+            copyRGBpal(bmp1, nbmp)
+        setBMPimgbytes(nbmp, array('B',
+             func(getBMPimgbytes(bmp1),
+                  getBMPimgbytes(bmp2))))
+        saveBMP(diff_file, nbmp)
+        print(sysmsg['savdifffile'] % diff_file)
 
 
 @_filechk
@@ -9252,31 +9235,31 @@ def reduce24bitimagebits(
 
     """
     sbmp = loadBMP(Existing24BMPfile)
-    if len(sbmp) > 54:
-        if sbmp[_bmclrbits] != 24:
-            print(sysmsg['not24bit'])
-        else:
-            bmp=CopyBMPxydim2newBMP(
-                    sbmp, newbits)
-            if newbits > 1:
-                if usemonopal:
-                    newpal = setBMP2monochrome(
-                                bmp, RGBfactors)
+    if sbmp[_bmclrbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        bmp = CopyBMPxydim2newBMP(
+                sbmp, newbits)
+        if newbits > 1:
+            if usemonopal:
+                newpal = setBMP2monochrome(
+                            bmp, RGBfactors)
+            else:
+                newpal = setnewpalfromsourcebmp(
+                            sbmp, bmp,
+                            similaritythreshold)
+        for v in iterimageRGB(sbmp,
+                    sysmsg['colorquant'],'*',
+                    sysmsg['done']):
+                if newbits == 1:
+                    c = probplotRGBto1bit(v[1], 2)
                 else:
-                    newpal = setnewpalfromsourcebmp(
-                                sbmp, bmp,
-                                similaritythreshold)
-            for v in iterimageRGB(sbmp,
-                        sysmsg['colorquant'],'*',
-                        sysmsg['done']):
-                    if newbits == 1:
-                        c = probplotRGBto1bit(v[1], 2)
-                    else:
-                        c = matchRGBtopal(v[1], newpal)
-                    intplotvecxypoint(bmp, v[0], c)
-            saveBMP(NewBMPfile, bmp)
-            print(sysmsg['savemod'] % (Existing24BMPfile,
-                                       NewBMPfile))
+                    c = matchRGBtopal(v[1], newpal)
+                intplotvecxypoint(bmp, v[0], c)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savemod'] % (
+                 Existing24BMPfile,
+                        NewBMPfile))
 
 
 @_filechk
@@ -9310,17 +9293,17 @@ def imgregionbyRGB2file(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
-    if len(bmp) > 54:
-        edge = getimageregionbyRGB(
-                    bmp, rgb, similaritythreshold)
-        if showedgeonly:
-            bmp = copyBMPhdr(bmp)
-        plotxypointlist(bmp,
-            edge, edgeradius, edgecolor)
-        saveBMP(NewBMPfile,bmp)
-        print(sysmsg['savemod'] % (ExistingBMPfile,
-                                   NewBMPfile))
+    bmp = loadBMP(ExistingBMPfile)
+    edge = getimageregionbyRGB(
+            bmp, rgb, similaritythreshold)
+    if showedgeonly:
+        bmp = copyBMPhdr(bmp)
+    plotxypointlist(bmp,
+        edge, edgeradius, edgecolor)
+    saveBMP(NewBMPfile,bmp)
+    print(sysmsg['savemod'] % (
+                ExistingBMPfile,
+                     NewBMPfile))
 
 
 @_fntimer
@@ -9965,13 +9948,12 @@ def autocropimg2file(
         new bitmap file
 
     """
-    bmp=loadBMP(ExistingBMPfile)
-    if len(bmp)>54:
-        cropBMPandsaveusingrectbnd(
-            ExistingBMPfile, NewBMPfile,
-            rectboundarycoords(
-                getimagedgevert(bmp,
-                    similaritythreshold)))
+    bmp = loadBMP(ExistingBMPfile)
+    cropBMPandsaveusingrectbnd(
+        ExistingBMPfile, NewBMPfile,
+        rectboundarycoords(
+            getimagedgevert(bmp,
+                similaritythreshold)))
 
 
 @_fntimer
