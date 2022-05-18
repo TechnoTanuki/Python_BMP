@@ -448,7 +448,7 @@ def addrndtovert(vertlist: list,
 
 def adddimz(vlist2D: list,
               value: float) -> list:
-    return [[v[0],v[1],value]
+    return [[v[0], v[1], value]
             for v in vlist2D]
 
 
@@ -495,7 +495,7 @@ def xorvect(u: list,
 def andvect(u: list,
             v: list) -> list:
     return [i & j
-            for i, j in zip(u,v)]
+            for i, j in zip(u, v)]
 
 
 def bitmaskvect(
@@ -519,8 +519,10 @@ def gammacorrectbyte(
 def addvectinlist(vlist: list):
     return reduce(addvect,vlist)
 
+
 def addvectpairlist(vpair: list):
-    return addvect(vpair[0],vpair[1])
+    return addvect(vpair[0], vpair[1])
+
 
 def addvecttripletlist(vtriplet: list):
     return addvect(
@@ -532,7 +534,7 @@ def addvecttripletlist(vtriplet: list):
 def addvectlist(vlist1: list,
                 vlist2: list) -> list:
     return [addvect(u, v)
-            for u,v in zip(vlist1, vlist2)]
+            for u, v in zip(vlist1, vlist2)]
 
 
 def mapfunctolist(
@@ -561,16 +563,18 @@ def getdatalisttotal(dlist: list) -> float:
 
 
 def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
-    sa,tot=0,getdatalisttotal(dlist)#more date an be addded tolist
-    alist,big=[],-1 #but the value and coler must be present
+    sa,tot=0,getdatalisttotal(dlist)
+    alist = []
+    big = -1
     for d in dlist:
-        p=d[0]/tot
-        ea=sa+p*360
-        p*=100
-        alist.append([sa,ea,d[1],d[0],p])
-        if p>=50: big=dlist.index(d)
-        sa=ea
-    return alist,big
+        p = d[0] / tot
+        ea = sa + p * 360
+        p *= 100
+        alist.append([sa, ea, d[1], d[0], p])
+        if p>=50:
+            big = dlist.index(d)
+        sa = ea
+    return alist, big
 
 
 def enumbits(byteval):
@@ -580,7 +584,7 @@ def enumbits(byteval):
         bit -= 1
 
 
-def delta(v:list):
+def delta(v: list):
     return (v[1] - v[0])
 
 
