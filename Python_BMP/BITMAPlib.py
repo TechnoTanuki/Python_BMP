@@ -1453,8 +1453,11 @@ def loadBMP(filename: str) -> array:
             print(sysmsg['notBMP'])
         else:
             fsize = _ch2in(f.read(8))
-            f.seek(0)
-            a.frombytes(f.read(fsize))
+            if fsize > 54:
+                f.seek(0)
+                a.frombytes(f.read(fsize))
+            else:
+                print(sysmsg['notBMP'])
         f.close()
     return a
 
