@@ -22,7 +22,7 @@ from Python_BMP.BITMAPlib import(
         )
 
 import subprocess as proc
-from os import path,sys
+from os import path
 
 def main():
         print(notice)
