@@ -128,7 +128,7 @@ def main():
         mx = 1024
         my = 768
         bmp = newBMP(mx, my, 24)
-        print('New bitmap in '+ hhmmsselaspedtime(starttime))
+        print('New bitmap in ' + hhmmsselaspedtime(starttime))
         maxpt = bottomrightcoord(bmp)
         cenpt = centercoord(bmp) #bitmap dependent coords
         c = getcolorname2RGBdict()
@@ -141,19 +141,28 @@ def main():
         print('Background gradient test done in ',
                 hhmmsselaspedtime(starttime))
         starttime = _time_ns()
-        rectangle(bmp, 1, 1, maxpt[0] - 1,
-                             maxpt[1] - 1,
-                               c['white'])
-        filledgradrect(bmp, 395, 5, 955, 41,
-                lum['upperdesc'], cf['orange'], 1)
-        filledrect(bmp, 395, 44, 955, 55, c['darkblue'])
+        rectangle(bmp, 1, 1,
+                  maxpt[0] - 1,
+                  maxpt[1] - 1,
+                  c['white'])
+        filledgradrect(bmp,
+                395, 5, 955, 41,
+                lum['upperdesc'],
+                cf['orange'], 1)
+        filledrect(bmp,
+                395, 44, 955, 55,
+                c['darkblue'])
         print('Rectangle tests done in ',
                 hhmmsselaspedtime(starttime))
         starttime = _time_ns()
         hc = spiralcontrolpointsvert(
                 350, 180, 5, 1.1, 5)#we will use this later to make smooth spiral
-        gradthickroundline(bmp, [800, 620], [800, 600], 7,
-                lum['upperdesc'], cf['darkred'])
+        gradthickroundline(bmp,
+                [800, 620], # end point 1
+                [800, 600], # end point 2
+                7, # thickness
+                lum['upperdesc'], # how bright the gradient
+                cf['darkred']) # color of the gradient
         plotlines(bmp, hc, c['yellow'])
         cp = [50, 150]#all arrows must point outward from cp or bug report please
 
@@ -166,26 +175,41 @@ def main():
         drawvec(bmp, cp, [25, 175], 0, c['orange'])
         drawvec(bmp, cp, [75, 125], 0, c['gray'])
         print('Line tests done in ',
-                hhmmsselaspedtime(starttime))
+        hhmmsselaspedtime(starttime))
         starttime = _time_ns()
         fnt = font8x8
         strtest = 'abcdefghijklmnopqrstuvwxyz\n0123456789\'":;.,?!~`@#$%^&()[]{}_*+-/=<>\nABCDEFGHIJKLMNOPQRSTUVWXYZ'
         plotstring(bmp, 400, 10,
-                'My Python GL test', 4, 1, 0, c['lightgray'], fnt)
+                'My Python GL test',
+                 4, 1, 0, c['lightgray'],
+                 fnt)
         plotstring(bmp, 400, 45,
                 'Copyright 2021 by Joel C. Alcarez (joelalcarez1975@gmail.com)',1,1,0,c['brightwhite'],fnt)
         plotstring(bmp, 300, 64,
-                strtest, 1, 0, 0, c['brightgreen'], fnt)
-        plotstringupsidedown(bmp, 10, 737,
-                strtest, 1, 0, 0, c['brightgreen'], fnt)
-        plotreversestring(bmp, 300, 100,
-                strtest, 1, 0, 0, c['brightgreen'], fnt)
+                strtest, 1, 0, 0,
+                c['brightgreen'],
+                fnt)
+        plotstringupsidedown(bmp,
+                10, 737,
+                strtest, 1, 0, 0,
+                c['brightgreen'],
+                fnt)
+        plotreversestring(bmp,
+                300, 100,
+                strtest, 1, 0, 0,
+                c['brightgreen'],
+                fnt)
         fnt = font8x14
-        plotstringvertical(bmp, 970, 30,
-                'Matrix text', 2, 0, 0, c['green'], fnt)
+        plotstringvertical(bmp,
+                970, 30,
+                'Matrix text',
+                2, 0, 0, c['green'],
+                fnt)
         plotstringsideway(bmp, 970, 730,
-                strtest, 1, 0, 0, c['white'], fnt)
-        print('Text tests done in ',hhmmsselaspedtime(starttime))
+                strtest, 1, 0, 0,
+                c['white'], fnt)
+        print('Text tests done in ',
+        hhmmsselaspedtime(starttime))
 
         starttime = _time_ns()
 
@@ -197,22 +221,32 @@ def main():
 
         sd = getshapesidedict()
         pts = tetrahedravert(80)
-        shapes = [[[trans(cubevert(30), pts[3]),
+        shapes = [[[trans(cubevert(30),
+                  pts[3]),
                   sd["cube"]],
-                  cf["darkblue"], True, c['black']],
-                [[trans(tetrahedravert(30), pts[2]),
+                  cf["darkblue"], True,
+                  c['black']],
+                [[trans(tetrahedravert(30),
+                  pts[2]),
                   sd["tetrahedra"]],
-                  cf["darkred"], True, c['white']],
-                [[trans(octahedravert(20), pts[1]),
+                  cf["darkred"], True,
+                  c['white']],
+                [[trans(octahedravert(20),
+                  pts[1]),
                   sd["octahedra"]],
-                  cf["yellow"], True, c['darkgray']],
-                [[trans(hexahedravert(30), pts[0]),
+                  cf["yellow"], True,
+                  c['darkgray']],
+                [[trans(hexahedravert(30),
+                  pts[0]),
                   sd["hexahedra"]],
-                  cf["darkgreen"], True, c['darkgreen']]]
+                  cf["darkgreen"], True,
+                  c['darkgreen']]]
         for s in shapes:
                 plot3Dsolid(bmp,
-                        s[0], True, s[1], s[2], s[3],
-                        rotvec3D(10, 5, 5), tvect, d,
+                        s[0], True,
+                        s[1], s[2], s[3],
+                        rotvec3D(10, 5, 5),
+                        tvect, d,
                         addvect(cenpt, [-160, -10]))
         plot3Dsolid(bmp,
                 decahedvertandsurface(25),
@@ -309,7 +343,7 @@ def main():
           hhmmsselaspedtime(starttime))
 
         starttime = _time_ns()
-        pdata=[]#[[20,c['red']],[30,c['brightyellow']],...]
+        pdata = []#[[20,c['red']],[30,c['brightyellow']],...]
         for color in c:
                 pdata.append([1,c[color]])
         piedata = piechart(bmp, 75, 540, 45, pdata)
