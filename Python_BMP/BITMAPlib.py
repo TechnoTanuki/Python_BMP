@@ -269,11 +269,16 @@ from .textgraphics import(
     plot8bitpatternastext
     )
 
-
 from .colordict import(
     getcolorname2RGBdict,
     getRGBfactors
     )
+
+from .X11colordict import(
+    getX11colorname2RGBdict,
+    getX11RGBfactors
+    )
+
 
 def _setx(
         bmp: array,
