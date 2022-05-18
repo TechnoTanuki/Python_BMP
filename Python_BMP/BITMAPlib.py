@@ -2962,7 +2962,7 @@ def horitransformincircregion(
 
     """
     def _24F():
-        bmp[s1: e1 - 2 : k], bmp[s2: e2 -2 : k], bmp[s1 + 1: e1-1: k], bmp[s2 + 1: e2-1: k], bmp[s1 + 2: e1: k], bmp[s2 + 2: e2: k] = \
+        bmp[s1: e1 - 2: k], bmp[s2: e2 -2: k], bmp[s1 + 1: e1-1: k], bmp[s2 + 1: e2-1: k], bmp[s1 + 2: e1: k], bmp[s2 + 2: e2: k] = \
         bmp[s2: e2 - 2: k], bmp[s1: e1 - 2: k], bmp[s2 + 1: e2 - 1: k], bmp[s1 + 1: e1 - 1: k], bmp[s2 + 2: e2: k], bmp[s1 + 2: e1: k]
 
     def _8F():
@@ -3461,12 +3461,14 @@ def outlinecircregion(
                 e2 = c(bmp, x2, y2)
                 if bits == 24:
                     bmp[s2: e2] = \
-                    array('B', xorvect(bmp[s2: e2],
-                                       bmp[s2 + 3: e2 + 3]))
+                    array('B',
+                     xorvect(bmp[s2: e2],
+                     bmp[s2 + 3: e2 + 3]))
                 else:
                     bmp[s2: e2] = \
-                    array('B', xorvect(bmp[s2: e2],
-                                       bmp[s2 + 1: e2 + 1]))
+                    array('B',
+                      xorvect(bmp[s2: e2],
+                      bmp[s2 + 1: e2 + 1]))
             if isinrange(y1, ymax, -1) and y2 != y1:
                 s1 = c(bmp, x1, y1)
                 e1 = c(bmp, x2, y1)
