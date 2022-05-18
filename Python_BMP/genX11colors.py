@@ -26,6 +26,8 @@ def main():
             code1 += "'%s': [%f, %f, %f],\n" % (n[0], int(n[1]) / 255, int(n[2]) / 255 , int(n[3]) / 255)
         code +="}\n"
         code1 +="}\n"
-        print(code + code1)
+
+        print(code)
+        print(code1)
 if __name__ == "__main__":
         main()
