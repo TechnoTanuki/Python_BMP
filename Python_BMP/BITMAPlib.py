@@ -2605,7 +2605,7 @@ def applynoparam24bitfunctocircregion(
 
 
 @_fn24bitintcircpar
-def apply24bitfunctocircregion(
+def _use24btfn2circreg(
         bmp: array,
         x: int,
         y: int,
@@ -3474,8 +3474,9 @@ def outlinecircregion(
                 e1 = c(bmp, x2, y1)
                 if bits == 24:
                     bmp[s1: e1] = \
-                        array('B', xorvect(bmp[s1: e1],
-                                   bmp[s1 + 3: e1 + 3]))
+                        array('B',
+                          xorvect(bmp[s1: e1],
+                          bmp[s1 + 3: e1 + 3]))
                 else:
                     bmp[s1: e1] = \
                         array('B', xorvect(bmp[s1: e1],
@@ -3537,10 +3538,11 @@ def colorfiltercircregion(
         unsigned byte array
 
     """
-    apply24bitfunctocircregion(
+    _use24btfn2circreg(
         bmp, x, y, r,
         colorfiltertoBGRbuf,
         rgbfactors)
+
 
 def gammacorrectcircregion(
         bmp: array,
@@ -3567,9 +3569,10 @@ def gammacorrectcircregion(
         unsigned byte array
 
     """
-    apply24bitfunctocircregion(
+    _use24btfn2circreg(
         bmp, x, y, r,
         gammaBGRbuf, gamma)
+
 
 def brightnessadjcircregion(
         bmp: array,
@@ -3598,7 +3601,7 @@ def brightnessadjcircregion(
         unsigned byte array
 
     """
-    apply24bitfunctocircregion(
+    _use24btfn2circreg(
         bmp, x, y, r,
         _bradj2BGRbuf,
         percentadj)
@@ -4062,8 +4065,8 @@ def filledellipse(
     bits = bmp[_bmclrbits]
     if bits < 8:
         for v in iterellipsepart(b,a):
-            x1, x2 = mirror(x,v[0])
-            y1, y2 = mirror(y,v[1])
+            x1, x2 = mirror(x, v[0])
+            y1, y2 = mirror(y, v[1])
             horiline(
                 bmp, y1, x1, x2, color)
             horiline(
@@ -4072,16 +4075,17 @@ def filledellipse(
         m = getmaxxy(bmp)
         if bits == 24:
             for v in iterellipsepart(b, a):
-                x1, x2 =mirror(x,v[0])
-                y1, y2 =mirror(y,v[1])
+                x1, x2 =mirror(x, v[0])
+                y1, y2 =mirror(y, v[1])
                 x1 = setmin(x1, 0)
                 x2 = setmax(x2, m[0] - 1)
                 dx = x2 - x1 + 1
                 ymax = m[1]
                 rgb = int2RGBlist(color)
-                colorbuf = array('B', [rgb[2],
-                                       rgb[1],
-                                       rgb[0]] * dx)
+                colorbuf = \
+                 array('B', [rgb[2],
+                             rgb[1],
+                             rgb[0]] * dx)
                 lbuf = dx * 3
                 if isinrange(y2, ymax, -1):
                     s = _24bmofhd(bmp, x1, y2)
@@ -4135,7 +4139,8 @@ def ellipse(
 
     """
     if isfilled:
-        filledellipse(bmp, x, y, b, a, color)
+        filledellipse(
+            bmp, x, y, b, a, color)
     else:
         m = getmaxxy(bmp)
         bits = bmp[_bmclrbits]
@@ -4143,7 +4148,7 @@ def ellipse(
         dobndcheck = not entireellipseisinboundary(
                             x, y, -1, m[0],
                                   -1, m[1], b, a)
-        if bits==24:
+        if bits == 24:
             color=int2BGRarr(color)
             if dobndcheck:
                 for p in iterellipse(x, y, b, a):
@@ -4156,7 +4161,7 @@ def ellipse(
                 for p in iterellipse(x, y, b, a):
                     s = c(bmp, p[0], p[1])
                     bmp[s:s + 3] = color
-        elif bits==8:
+        elif bits == 8:
             if dobndcheck:
                 for p in iterellipse(x, y, b, a):
                     px = p[0]
@@ -4322,7 +4327,7 @@ def filledrect(
     x1, y1, x2, y2 = sortrecpoints(
                         x1, y1, x2, y2)
     if bits not in [8, 24]:
-        y2 +=1
+        y2 += 1
         for y in range(y1, y2):
             horiline(bmp,
                     y,
@@ -4504,8 +4509,8 @@ def plot8bitpattern(
                                    color)
             mask >>= 1
             x += scale
-        y+=scale
-        x=ox
+        y += scale
+        x = ox
 
 
 def plot8bitpatternupsidedown(
@@ -4838,10 +4843,10 @@ def plotstringsideway(
     ypixels = fontbuf[0]
     ystep = ypixels * scale + spacebetweenchar
     for c in _enchr(str2plot):
-        if c=='\n':
+        if c == '\n':
             x += ystep #we swap x and y since sideways
             y = oy
-        elif c=='\t':
+        elif c == '\t':
             y -= xstep << 2 #we swap x and y since sideways
         else:
             plot8bitpatternsideway(
@@ -4884,8 +4889,8 @@ def plotstringvertical(
 
     """
     if spacebetweenchar == 0:
-        spacebetweenchar=1
-    oy =y
+        spacebetweenchar = 1
+    oy = y
     ypixels = fontbuf[0]
     xstep = (scale << 3) + \
                 spacebetweenchar
@@ -5684,6 +5689,7 @@ def iterimagedgevert(
                 yield u
                 break
 
+
 def iterimageregionvertbyRGB(
         bmp: array,
         rgb: list[int, int, int],
@@ -5702,10 +5708,12 @@ def iterimageregionvertbyRGB(
 
     """
     for v in iterimageRGB(bmp,
-                sysmsg['edgedetect'], '*',
+                sysmsg['edgedetect'],
+                '*',
                 sysmsg['done']):
         if distance(rgb, v[1]) < similaritythreshold:
             yield v[0]
+
 
 def getimageregionbyRGB(
         bmp: array,
@@ -6269,6 +6277,7 @@ def eraseeverynthhorizontallineinccircregion(
     erasealternatehorizontallinesincircregion(
         bmp, x, y, r, n, 0, 0)
 
+
 @_enrectbnd
 def erasealternatehorizontallinesinregion(
         bmp: array,
@@ -6365,15 +6374,19 @@ def verttrans(
         unsigned byte array
 
     """
+
     def _F():
         bmp[s1: e1], bmp[s2: e2] = \
         bmp[s2: e2], bmp[s1: e1]
+
     def _T():
         bmp[s1: s1 + bufsize] = \
         bmp[s2: s2 + bufsize]
+
     def _B():
         bmp[s2: s2 + bufsize] = \
         bmp[s1: s1 + bufsize]
+
     f = {'F': _F,
          'T': _T,
          'B': _B}[trans]
@@ -6464,7 +6477,7 @@ def verttransregion(
     """
     def _F():
         bmp[s1: e1], bmp[s2: e2] = \
-        bmp[s2: e2], bmp[s1:e1]
+        bmp[s2: e2], bmp[s1: e1]
 
     def _T():
         bmp[s1: s1 + bufsize] = \
@@ -7183,9 +7196,11 @@ def invertregion(
                and (x2,y2)
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp          :  unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the
+                        rectangle
 
     Returns:
         byref modified
@@ -7226,9 +7241,11 @@ def monofilterto24bitregion(
         in a 24 bit bitmap
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: defines the rectangle
+        x1, y1, x2, y2: defines the
+                        rectangle
 
     Returns:
         byref modified
@@ -7476,7 +7493,7 @@ def thresholdadjcircregion(
         unsigned byte array
 
     """
-    apply24bitfunctocircregion(
+    _use24btfn2circreg(
         bmp, x, y, r,
         _thresadj2BGRbuf,
         lumrange)
