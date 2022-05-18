@@ -16,7 +16,6 @@ from Python_BMP.BITMAPlib import(
         getX11colorname2RGBdict,
         plotstring,
         font8x14,
-        font8x8,
         saveBMP
         )
 
@@ -45,7 +44,7 @@ def main():
                 y = 2
                 x += 200
 
-        file = 'HelloColorNames.bmp' # file name
+        file = 'HelloX11ColorNames.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
