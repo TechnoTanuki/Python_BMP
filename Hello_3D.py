@@ -13,28 +13,28 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        newBMP,
-        spherevertandsurface,
-        conevertandsurface,
-        cylindervertandsurface,
+        addvect,
         bottomrightcoord,
         centercoord,
-        plot3Dsolid,
-        rotvec3D,
+        conevertandsurface,
+        cubevert,
+        cylindervertandsurface,
+        decahedvertandsurface,
         getcolorname2RGBdict,
         getRGBfactors,
-        tetrahedravert,
-        octahedravert,
-        hexahedravert,
-        decahedvertandsurface,
-        icosahedvertandsurface,
         getshapesidedict,
-        trans,
+        hexahedravert,
+        icosahedvertandsurface,
+        newBMP,
+        octahedravert,
+        plot3Dsolid,
         RGB2int,
-        addvect,
-        cubevert,
+        rotvec3D,
+        saveBMP,
+         spherevertandsurface,
         surfplot3Dvertandsurface,
-        saveBMP
+        tetrahedravert,
+        trans
         )
 
 import subprocess as proc
