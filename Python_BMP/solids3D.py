@@ -607,7 +607,7 @@ def cylindervertandsurface(
 
     """
     z = zlen / 2
-    i =0
+    i = 0
     plist = []
     top = []
     bottom = []
@@ -695,7 +695,7 @@ def surfplot3Dvertandsurface(
     dx1 = dx - 1
     vl = len(vlist)
     for v in vlist:
-        i=vlist.index(v)
+        i = vlist.index(v)
         idx = i + dx
         idx1 = idx + 1
         if (vl - idx1) >= 0 and (i % dx) < dx1:
