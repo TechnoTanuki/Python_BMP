@@ -280,6 +280,10 @@ from .X11colordict import(
     getX11RGBfactors
     )
 
+from .XKCDcolordict import(
+    getXKCDcolorname2RGBdict,
+    getXKCDRGBfactors
+    )
 
 def _setx(
         bmp: array,

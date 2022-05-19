@@ -35,9 +35,9 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 320 # x=y square bmp
-        file = 'HelloGlobe.bmp' # some random file name as string
+        file = 'HelloSphereSurfplot.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # 16 color bmp
-        f = lambda lat, lon: sin(lat) + cos(lon)
+        f = lambda lat, lon:  sin(lon)
         x11cf = getX11RGBfactors()
         x11c = getX11colorname2RGBdict()
         plot3Dsolid(bmp,
