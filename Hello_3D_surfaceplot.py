@@ -13,10 +13,7 @@ notice = """
 """
 from math import sin, cos, pi
 from Python_BMP.BITMAPlib import(
-        addvect,
-        bottomrightcoord,
         centercoord,
-        getcolorname2RGBdict,
         getRGBfactors,
         newBMP,
         plot3Dsolid,
