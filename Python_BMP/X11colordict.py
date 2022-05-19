@@ -1,5 +1,5 @@
 def getX11colorname2RGBdict() -> dict:
-    return{
+    return {
 'aliceblue': 15792383,
 'antiquewhite': 15792383,
 'antiquewhite': 16444375,
