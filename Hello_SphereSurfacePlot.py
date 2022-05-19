@@ -1,5 +1,5 @@
 notice = """
-          Hello Globe Demo
+  Hello  Sphere Surface Plot Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -37,7 +37,7 @@ def main():
         mx = my = 320 # x=y square bmp
         file = 'HelloGlobe.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # 16 color bmp
-        f = lambda lat, lon: sin(lat*4)*2+ cos(lon)
+        f = lambda lat, lon: sin(lat) + cos(lon)
         x11cf = getX11RGBfactors()
         x11c = getX11colorname2RGBdict()
         plot3Dsolid(bmp,

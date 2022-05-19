@@ -272,7 +272,7 @@ def main():
                 conevertandsurface([1, 0, 0], 20, 15, 5),
                 True, cf['brightorange'],
                 False, RGB2int(20, 20, 0),
-                rotvec3D(6,67,2),
+                rotvec3D(6, 67 ,2),
                 tvect, d, addvect(cenpt, [-300, -150]))
         fnxy = lambda x, y: x & y
         plot3Dsolid(bmp,
