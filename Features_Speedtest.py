@@ -266,12 +266,12 @@ def main():
         plot3Dsolid(bmp,
                 cylindervertandsurface([1,0,0], 20, 10, 5),
                 True, cf['brightyellow'], True,
-                RGB2int(20,20,0), rotvec3D(60, 74, 72),
+                RGB2int(20, 20, 0), rotvec3D(60, 74, 72),
                 tvect, d, addvect(cenpt,[-200, -50]))
         plot3Dsolid(bmp,
                 conevertandsurface([1, 0, 0], 20, 15, 5),
                 True, cf['brightorange'],
-                False, RGB2int(20,20,0),
+                False, RGB2int(20, 20, 0),
                 rotvec3D(6,67,2),
                 tvect, d, addvect(cenpt, [-300, -150]))
         fnxy = lambda x, y: x & y
