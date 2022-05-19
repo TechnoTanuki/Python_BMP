@@ -571,7 +571,7 @@ def spherevertplot(
                        [fn(_p, _t) + r, _t, _p]))
             if p not in plist:
                 plist.append(p)
-    p = [0, 0, -r + fn(_p, _t)]
+    p = [0, 0, -r]
     if p not in plist:
         plist.append(p)
     return plist

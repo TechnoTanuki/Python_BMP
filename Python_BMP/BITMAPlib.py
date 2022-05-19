@@ -5162,10 +5162,13 @@ def plotpolyfillist(
     [polylist, normlist] = sides
     i = 0
     for poly in polylist:
-        c = colormix(
+        if normlist[i] != [0, 0, 0]:
+            c = colormix(
                 int(cosaffin(normlist[i],
                                [0, 0, 1]) * 128) + 127,
                     RGBfactors)
+        else:
+            c = colormix(127, RGBfactors)
         if bmp[_bmclrbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c),
