@@ -24,6 +24,10 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 **Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
 * mini math lib: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
+
+**Colors**
+* X11 color source: https://cgit.freedesktop.org/xorg/xserver/tree/os/oscolor.c
+* XKCD color source:  https://xkcd.com/color/rgb/
  
 If there is demand for it I could in theory write a book based on this project lmao.
 
@@ -33,6 +37,9 @@ If there is demand for it I could in theory write a book based on this project l
 * Gerald L. Bradley, Karl J. Smith. Multivariable Calculus (1999). 2nd Edition, Prentice Hall
 
 # Fully commented sample code list below
+
+**Github Social Media Image**
+https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 **Hello World Meme**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
