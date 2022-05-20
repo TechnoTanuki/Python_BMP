@@ -365,12 +365,12 @@ def main():
         XYdata = []#[[45,45,5,c['brightcyan'],True],[100,60,5,c['brightgreen'],True],..]
         for color in  c:
                 XYdata.append(
-                        [randint(20,140),
-                          randint(30,70),
+                        [randint(20, 140),
+                          randint(30, 70),
                           5, c[color], True])
                 XYdata.append(
-                        [randint(20,140),
-                          randint(30,70),
+                        [randint(20, 140),
+                          randint(30, 70),
                           5, c[color], False])
                 XYcoordinfo = XYaxis(bmp,
                         [172, 598],[40, 40],
