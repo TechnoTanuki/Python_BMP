@@ -31,20 +31,17 @@ def main():
         mx = my = 250 # x=y square bmp
         file = 'HelloIcosahedron.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
-        cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
-        d, translationvector = 400, [0, 0, 200] # be careful with these variables or object goes offscreen
-        isSolid = True # toggle solid or outline
-        showoutline = False # can show outline even if solid
-        color = cf['brightwhite'] # color of solid
-        outlinecolor = 0 # outline color
-        rotation = rotvec3D(70, 7, 20) # rotation vector (x,y,z) in degrees
         plot3Dsolid(bmp,
-                icosahedvertandsurface(40),
-                isSolid, color,
-                showoutline, outlinecolor,
-                rotation, translationvector,
-                d, cenpt)
+                icosahedvertandsurface(40), # parameter is radius of sphere that holds the solid
+                True, # toggle solid render
+                cf['brightwhite'], # color of solid
+                False, # toggle outline display
+                0, # outline color
+                rotvec3D(70, 7, 20), # rotation vector (x,y,z) in degrees
+                [0, 0, 200], # 3D translation vector
+                400, # distance of the observer the to 2D projection
+                centercoord(bmp))
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
