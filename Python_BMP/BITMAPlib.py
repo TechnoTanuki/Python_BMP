@@ -134,7 +134,6 @@ from .solids3D import(
     polyboundary,
     rotvec3D,
     spherevertandsurface,
-    spherevertandsurfaceplot,
     surfplot3Dvertandsurface,
     tetrahedravert
     )

@@ -277,7 +277,7 @@ def main():
         fnxy = lambda x, y: x & y
         plot3Dsolid(bmp,
                 surfplot3Dvertandsurface (
-                -35, -35, 35, 35, 15, 5, fnxy),
+                -35, -35, 35, 35, 5, fnxy),
                   True, cf['brightcyan'],
                   True, 0, rotvec3D(20, 67, 30),
                   tvect, d, addvect(cenpt, [-420, -25]))
@@ -366,7 +366,7 @@ def main():
         for color in  c:
                 XYdata.append(
                         [randint(20, 140),
-                          randint(30, 70),
+                          randint(30,70),
                           5, c[color], True])
                 XYdata.append(
                         [randint(20, 140),

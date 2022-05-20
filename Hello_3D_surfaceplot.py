@@ -43,7 +43,7 @@ def main():
                             cos(y / 50 * _2pi ) * 4
         plot3Dsolid(bmp,
                 surfplot3Dvertandsurface (
-                -50, -50, 50, 50, 5, 5, fnxy),
+                -50, -50, 50, 50, 5, fnxy),
                   True, cf['brightcyan'],
                   True, 0, rotvec3D(30, 27, 30),
                   tvect, d, cenpt)
