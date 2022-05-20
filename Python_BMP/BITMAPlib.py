@@ -2479,7 +2479,7 @@ def drawvec(
         _hdadd(bmp, v, hm, a1, a2)
     elif v[0] == u[0] and u[1] > v[1]:
         _hdsub(bmp, v, hm, a1, a2)
-    elif v[0] == u[0] and u[1]<v[1]:
+    elif v[0] == u[0] and u[1] < v[1]:
         _hdadd(bmp, v, hm, a1, a2)
     elif u[0] < v[0] and u[1] > v[1]:
         _hdsub(bmp, v, hm, a1, a2)
