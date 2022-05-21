@@ -4482,7 +4482,7 @@ def plotrotated8bitpatternwithfn(
                 if scale == 1 or inc <= 0:
                     plotxybit(bmp, x, y, color)
                 else:
-                    fn(bmp, x, y, inc)
+                    fn(bmp, x, y, inc, color)
             mask >>= 1
             x += scale
         y += scale
@@ -4546,7 +4546,7 @@ def plot8bitpattern(
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : sets where to draw
+        x, y      : sets where to draw
                     the pattern
         bitpattern: list of bytes
                     that makes the pattern
@@ -4569,6 +4569,30 @@ def plot8bitpattern(
             filledrect(bmp, x, y, \
                 x + inc, y + inc, color)
         )
+
+
+def plotcircinsqr(bmp, x, y, d, color):
+    """Draws a circle
+    in an invisible square
+    with side equal to
+    the circle's diameter
+    and positioned by
+    (x, y) at upper left
+    of the bounding square
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : sets where to draw
+                    the pattern
+        d         : diameter of the
+                    circle
+"""
+    d >>= 1
+    filledcircle(bmp, x + d,
+                      y + d,
+                          d, color)
+
 
 def plot8bitpatternasdots(
         bmp: array,
@@ -4598,16 +4622,11 @@ def plot8bitpatternasdots(
         unsigned byte array
 
     """
-    def _f(bmp, x, y, inc, color):
-        inc >>= 1
-        filledcircle(bmp, x + inc,
-                          y + inc,
-                          inc, color)
 
     plot8bitpatternwithfn(
         bmp, x, y, bitpattern,
         scale, pixspace, color,
-        _f
+        plotcircinsqr
         )
 
 
@@ -4680,17 +4699,10 @@ def plotrotated8bitpatternwithdots(
 
     """
 
-    def _f(bmp, x, y, inc):
-        inc >>= 1
-        filledcircle(bmp, x + inc,
-                          y + inc,
-                          inc, color)
-
-
     plotrotated8bitpatternwithfn(
         bmp, x, y, bitpattern,
         scale, pixspace, color,
-        _f
+        plotcircinsqr
         )
 
 
