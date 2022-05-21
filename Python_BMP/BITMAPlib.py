@@ -4536,6 +4536,51 @@ def plot8bitpattern(
         x = ox
 
 
+def plot8bitpatternasdots(
+        bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
+    """Draws a 8-bit pattern
+        as circles
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    inc= scale - 1 - pixspace
+    for bits in bitpattern:
+        ox = x
+        mask = 128
+        while mask > 0:
+            if (mask & bits) > 0:
+                if scale == 1 or inc <= 0:
+                    plotxybit(bmp, x, y, color)
+                else:
+                    r = inc // 2
+                    filledcircle(bmp, x + r, y + r, r, color)
+            mask >>= 1
+            x += scale
+        y += scale
+        x = ox
+
+
 def plot8bitpatternupsidedown(
         bmp: array,
         x: int, y: int,
@@ -4735,6 +4780,51 @@ def plotstring(
         fontbuf,
         _enchr,
         plot8bitpattern)
+
+
+def plotstringasdots(
+        bmp: array,
+        x: int,
+        y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list):
+    """Draws a string
+
+    Args:
+        bmp             : unsigned byte array
+                          with bmp format
+        x,y             : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringfunc(
+        bmp,
+        x, y,
+        str2plot,
+        scale,
+        pixspace,
+        spacebetweenchar,
+        color,
+        fontbuf,
+        _enchr,
+        plot8bitpatternasdots)
 
 
 def plotstringupsidedown(
@@ -5504,7 +5594,7 @@ def XYaxis(bmp: array,
                    graph ends onscreen
         color    : color of the lines
         textcolor: color of the
-                 numberline text
+                   numberline text
         showgird : True -> display gridline
                    False -> no grid
         gridcolor: color of the grid
