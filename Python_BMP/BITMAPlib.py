@@ -4566,7 +4566,9 @@ def plot8bitpattern(
     plot8bitpatternwithfn(
         bmp, x, y, bitpattern,
         scale, pixspace, color,
-        lambda bmp, x, y, inc, color: filledrect(bmp, x, y, x + inc, y + inc, color)
+        lambda bmp, x, y, inc, color: \
+            filledrect(bmp, x, y, \
+                x + inc, y + inc, color)
         )
 
 def plot8bitpatternasdots(
