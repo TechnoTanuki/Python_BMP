@@ -14,7 +14,7 @@ Hello World Dot Upsidedown Font Demo
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        plotreversestringasdots,
+        plotstringupsidedownasdots,
         getcolorname2RGBdict,
         font8x14,
         saveBMP
@@ -30,7 +30,7 @@ def main():
         rootdir = path.dirname(__file__) # get path of this script
         mx, my = 840, 100 # bitmap size
         bmp = newBMP(mx,my,24) # RGB bitmap
-        plotreversestringasdots(bmp,
+        plotstringupsidedownasdots(bmp,
                 50, 10, # position the text
                 'Hello World!!', # random text
                 7, # uint font size multiplier
@@ -38,7 +38,7 @@ def main():
                 0, # uint default space between char
                 getcolorname2RGBdict()['yellow'],
                 font8x14)
-        file = 'HelloWorldDotsrev.bmp' #file name
+        file = 'HelloWorldDotsupsidedown.bmp' #file name
         saveBMP(file,bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done

@@ -4706,6 +4706,57 @@ def plotrotated8bitpatternwithdots(
         )
 
 
+def plot8bitpatternupsidedownwithfn(
+        bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int,
+        fn: Callable):
+    """Draws a 8-bit pattern
+        upsidedown with a
+        function
+
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to
+                    draw the pattern
+        bitpattern: list of bytes that
+                    makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+        fn        : function
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    inc = scale - 1 - pixspace
+    i = len(bitpattern)-1
+    while i > -1:
+        bits = bitpattern[i]
+        ox = x
+        mask = 128
+        while mask > 0:
+            if (mask & bits)>0:
+                if scale == 1 or inc <= 0:
+                    plotxybit(bmp, x, y, color)
+                else:
+                    fn(bmp,x, y, inc, color)
+            mask >>= 1
+            x += scale
+        y += scale
+        x = ox
+        i -= 1
+
+
 def plot8bitpatternupsidedown(
         bmp: array,
         x: int, y: int,
@@ -4734,26 +4785,49 @@ def plot8bitpatternupsidedown(
         unsigned byte array
 
     """
-    inc = scale - 1 - pixspace
-    i = len(bitpattern)-1
-    while i > -1:
-        bits = bitpattern[i]
-        ox = x
-        mask = 128
-        while mask > 0:
-            if (mask & bits)>0:
-                if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y, color)
-                else:
-                    filledrect(bmp,
-                        x, y, x + inc,
+    plot8bitpatternupsidedownwithfn(
+        bmp, x, y, bitpattern, scale,
+        pixspace, color,
+        lambda bmp, x, y, inc, color:
+        filledrect(bmp, x, y, x + inc,
                               y + inc,
-                              color)
-            mask >>= 1
-            x += scale
-        y += scale
-        x = ox
-        i -= 1
+                                color)
+    )
+
+
+def plot8bitpatternupsidedownasdots(
+        bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
+    """Draws a 8-bit pattern
+        upsidedown with dots
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to
+                    draw the pattern
+        bitpattern: list of bytes that
+                    makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plot8bitpatternupsidedownwithfn(
+        bmp, x, y, bitpattern, scale,
+        pixspace, color,
+        plotcircinsqr
+    )
 
 
 def plot8bitpatternsideway(
@@ -4995,6 +5069,51 @@ def plotstringupsidedown(
         fontbuf,
         _enchr,
         plot8bitpatternupsidedown)
+
+
+def plotstringupsidedownasdots(
+        bmp: array,
+        x: int,
+        y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list):
+    """Draws a string upsidedown
+
+    Args:
+        bmp             : unsigned byte array
+                          with bmp format
+        x,y             : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringfunc(
+        bmp,
+        x, y,
+        str2plot,
+        scale,
+        pixspace,
+        spacebetweenchar,
+        color,
+        fontbuf,
+        _enchr,
+        plot8bitpatternupsidedownasdots)
 
 
 def plotreversestring(
