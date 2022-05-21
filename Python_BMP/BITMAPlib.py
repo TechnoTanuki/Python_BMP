@@ -4441,16 +4441,18 @@ def bspline(
         roundpen(bmp, v, penradius, color)
 
 
-def plotrotated8bitpattern(
+def plotrotated8bitpatternwithfn(
         bmp: array,
         x: int,
         y: int,
         bitpattern: list,
         scale: int,
         pixspace: int,
-        color: int):
+        color: int,
+        fn: Callable):
     """Draws a 8-bit pattern
         with the bits rotated
+        with a function
 
     Args:
         bmp       : unsigned byte array
@@ -4480,10 +4482,7 @@ def plotrotated8bitpattern(
                 if scale == 1 or inc <= 0:
                     plotxybit(bmp, x, y, color)
                 else:
-                    filledrect(
-                        bmp, x, y, x + inc,
-                                   y + inc,
-                                     color)
+                    fn(bmp, x, y, inc)
             mask >>= 1
             x += scale
         y += scale
@@ -4600,10 +4599,95 @@ def plot8bitpatternasdots(
 
     """
     def _f(bmp, x, y, inc, color):
-        r = inc // 2
-        filledcircle(bmp, x + r, y + r, r, color)
+        inc >>= 1
+        filledcircle(bmp, x + inc,
+                          y + inc,
+                          inc, color)
 
     plot8bitpatternwithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        _f
+        )
+
+
+def plotrotated8bitpattern(
+        bmp: array,
+        x: int,
+        y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
+    """Draws a 8-bit pattern
+        with the bits rotated
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that make a pattern
+        scale     : control how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotrotated8bitpatternwithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        lambda bmp, x, y, inc, color: \
+            filledrect(bmp, x, y, \
+                x + inc, y + inc, color)
+        )
+
+
+
+def plotrotated8bitpatternwithdots(
+        bmp: array,
+        x: int,
+        y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
+    """Draws a 8-bit pattern
+        with the bits rotated
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that make a pattern
+        scale     : control how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+
+    def _f(bmp, x, y, inc):
+        inc >>= 1
+        filledcircle(bmp, x + inc,
+                          y + inc,
+                          inc, color)
+
+
+    plotrotated8bitpatternwithfn(
         bmp, x, y, bitpattern,
         scale, pixspace, color,
         _f
@@ -4944,6 +5028,52 @@ def plotreversestring(
         fontbuf,
         _enchrev,
         plotrotated8bitpattern)
+
+
+def plotreversestringasdots(
+        bmp: array,
+        x: int,
+        y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list):
+    """Draws a string reversed
+    with dots
+
+    Args:
+        bmp             : unsigned byte array
+                          with bmp format
+        x,y             : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringfunc(
+        bmp,
+        x, y,
+        str2plot,
+        scale,
+        pixspace,
+        spacebetweenchar,
+        color,
+        fontbuf,
+        _enchrev,
+        plotrotated8bitpatternwithdots)
 
 
 def plotstringsideway(
