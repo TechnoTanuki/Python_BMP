@@ -4830,14 +4830,16 @@ def plot8bitpatternupsidedownasdots(
     )
 
 
-def plot8bitpatternsideway(
+def plot8bitpatternsidewaywithfn(
         bmp: array,
         x: int, y: int,
         bitpattern: list,
         scale: int,
         pixspace: int,
-        color: int):
+        color: int,
+        fn: Callable):
     """Draws a 8-bit pattern sideways
+    with a function
 
     Args:
         bmp       : unsigned byte array
@@ -4866,14 +4868,83 @@ def plot8bitpatternsideway(
                 if scale == 1 or inc <= 0:
                     plotxybit(bmp, x, y, color)
                 else:
-                    filledrect(bmp,
-                        x, y, x + inc,
-                              y + inc,
-                              color)
+                    fn(bmp, x, y, inc, color)
             mask >>= 1
             y -= scale
         x += scale
         y = oy
+
+
+def plot8bitpatternsideway(
+        bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
+    """Draws a 8-bit pattern sideways
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to
+                    draw the pattern
+        bitpattern: list of bytes that
+                    makes the pattern
+        scale     : control how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+
+    plot8bitpatternsidewaywithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        lambda bmp, x, y, inc, color:
+        filledrect(bmp, x, y, x + inc,
+                              y + inc,
+                               color))
+
+
+def plot8bitpatternsidewaywithdots(
+        bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
+    """Draws a 8-bit pattern sideways
+    with dots
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to
+                    draw the pattern
+        bitpattern: list of bytes that
+                    makes the pattern
+        scale     : control how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+
+    plot8bitpatternsidewaywithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        plotcircinsqr)
 
 
 def plotstringfunc(
@@ -5207,6 +5278,59 @@ def plotreversestringasdots(
         plotrotated8bitpatternwithdots)
 
 
+def plotstringsidewayfn(
+        bmp: array,
+        x: int,
+        y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list,
+        fn: Callable):
+    """Draws a string sideways
+    with a function
+
+    Args:
+        bmp             : unsigned byte array
+                          with bmp format
+        x,y             : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    if spacebetweenchar == 0:
+        spacebetweenchar = 1
+    oy = y
+    xstep = (scale << 3 ) + spacebetweenchar
+    ypixels = fontbuf[0]
+    ystep = ypixels * scale + spacebetweenchar
+    for c in _enchr(str2plot):
+        if c == '\n':
+            x += ystep #we swap x and y since sideways
+            y = oy
+        elif c == '\t':
+            y -= xstep << 2 #we swap x and y since sideways
+        else:
+            fn(bmp, x, y,
+               getcharfont(fontbuf, c),
+               scale, pixspace, color)
+            y -= xstep
+
+
 def plotstringsideway(
         bmp: array,
         x: int,
@@ -5239,24 +5363,52 @@ def plotstringsideway(
         unsigned byte array
 
     """
-    if spacebetweenchar == 0:
-        spacebetweenchar=1
-    oy = y
-    xstep = (scale << 3 ) + spacebetweenchar
-    ypixels = fontbuf[0]
-    ystep = ypixels * scale + spacebetweenchar
-    for c in _enchr(str2plot):
-        if c == '\n':
-            x += ystep #we swap x and y since sideways
-            y = oy
-        elif c == '\t':
-            y -= xstep << 2 #we swap x and y since sideways
-        else:
-            plot8bitpatternsideway(
-                bmp, x, y,
-                getcharfont(fontbuf, c),
-                scale, pixspace, color)
-            y -= xstep
+    plotstringsidewayfn(
+        bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        plot8bitpatternsideway)
+
+
+def plotstringsidewayasdots(
+        bmp: array,
+        x: int,
+        y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list):
+    """Draws a string sideways
+
+    Args:
+        bmp             : unsigned byte array
+                          with bmp format
+        x,y             : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringsidewayfn(
+        bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        plot8bitpatternsidewaywithdots)
 
 
 def plotstringvertical(
