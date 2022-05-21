@@ -4490,14 +4490,16 @@ def plotrotated8bitpattern(
         x = ox
 
 
-def plot8bitpattern(
+def plot8bitpatternwithfn(
         bmp: array,
         x: int, y: int,
         bitpattern: list,
         scale: int,
         pixspace: int,
-        color: int):
+        color: int,
+        fn: Callable):
     """Draws a 8-bit pattern
+    with a function
 
     Args:
         bmp       : unsigned byte array
@@ -4526,15 +4528,46 @@ def plot8bitpattern(
                 if scale == 1 or inc <= 0:
                     plotxybit(bmp, x, y, color)
                 else:
-                    filledrect(
-                        bmp, x, y, x + inc,
-                                   y + inc,
-                                   color)
+                    fn(bmp, x, y, inc, color)
             mask >>= 1
             x += scale
         y += scale
         x = ox
 
+
+def plot8bitpattern(
+        bmp: array,
+        x: int, y: int,
+        bitpattern: list,
+        scale: int,
+        pixspace: int,
+        color: int):
+    """Draws a 8-bit pattern
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x,y       : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+
+    plot8bitpatternwithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        lambda bmp, x, y, inc, color: filledrect(bmp, x, y, x + inc, y + inc, color)
+        )
 
 def plot8bitpatternasdots(
         bmp: array,
@@ -4564,21 +4597,15 @@ def plot8bitpatternasdots(
         unsigned byte array
 
     """
-    inc= scale - 1 - pixspace
-    for bits in bitpattern:
-        ox = x
-        mask = 128
-        while mask > 0:
-            if (mask & bits) > 0:
-                if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y, color)
-                else:
-                    r = inc // 2
-                    filledcircle(bmp, x + r, y + r, r, color)
-            mask >>= 1
-            x += scale
-        y += scale
-        x = ox
+    def _f(bmp, x, y, inc, color):
+        r = inc // 2
+        filledcircle(bmp, x + r, y + r, r, color)
+
+    plot8bitpatternwithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        _f
+        )
 
 
 def plot8bitpatternupsidedown(
