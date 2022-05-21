@@ -5411,7 +5411,7 @@ def plotstringsidewayasdots(
         plot8bitpatternsidewaywithdots)
 
 
-def plotstringvertical(
+def plotstringverticalwithfn(
         bmp: array,
         x: int,
         y: int,
@@ -5420,8 +5420,10 @@ def plotstringvertical(
         pixspace: int,
         spacebetweenchar: int,
         color: int,
-        fontbuf: list):
+        fontbuf: list,
+        fn: Callable):
     """Draws a string vertically
+    using a function
 
     Args:
         bmp             : unsigned byte array
@@ -5458,10 +5460,91 @@ def plotstringvertical(
         elif c == '\t':
             y += ystep << 2
         else:
-            plot8bitpattern(bmp, x, y,
-                getcharfont(fontbuf,c),
-                scale, pixspace, color)
+            fn(bmp, x, y,
+               getcharfont(fontbuf,c),
+               scale, pixspace, color)
             y += ystep
+
+
+def plotstringvertical(
+        bmp: array,
+        x: int,
+        y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list):
+    """Draws a string vertically
+
+    Args:
+        bmp             : unsigned byte array
+                          with bmp format
+        x, y            : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringverticalwithfn(
+        bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        plot8bitpattern)
+
+
+def plotstringverticalasdots(
+        bmp: array,
+        x: int,
+        y: int,
+        str2plot: str,
+        scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int,
+        fontbuf: list):
+    """Draws a string vertically
+    with dots
+
+    Args:
+        bmp             : unsigned byte array
+                          with bmp format
+        x, y            : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit in pixels
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringverticalwithfn(
+        bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        plot8bitpatternasdots)
 
 
 def fillboundary(
