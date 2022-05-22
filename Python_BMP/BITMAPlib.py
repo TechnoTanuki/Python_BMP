@@ -9229,7 +9229,7 @@ def imgregionbyRGB2file(
         NewBMPfile: str,
         edgeradius: int,
         edgecolor: int,
-        rgb: list,
+        rgb: list[int, int, int],
         similaritythreshold: float,
         showedgeonly:bool):
     """Gets an image region
@@ -9240,14 +9240,20 @@ def imgregionbyRGB2file(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        edgeradius     : radius of pen for edge
+        edgeradius     : radius of pen
+                         for the edge
         edgecolor      : color of edge
-        rgb            : (r:byte,g:byte,b:byte)
+        rgb            : (r: byte,
+                          g: byte,
+                          b: byte)
                          color to select
-        similaritythreshold: how close it is to
-                             rgb before select
-              showedgeonly : True -> only edges
-                            False -> edge and image
+        similaritythreshold: how close
+                             the color
+                             is to rgb
+                             before
+                             selection
+        showedgeonly: True-> only edges
+                 False-> edge and image
 
     Returns:
         new bitmap file
@@ -9269,8 +9275,7 @@ def imgregionbyRGB2file(
 def invertbits2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Inverts the bits
-        in a bitmap file
+    """Inverts the bits in a bmp file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9290,8 +9295,7 @@ def invertbits2file(
 def flipvertical2file(
     ExistingBMPfile: str,
     NewBMPfile: str):
-    """Flips a bitmap file
-        vertically
+    """Flips a bitmap file vertically
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9311,8 +9315,8 @@ def flipvertical2file(
 def mirrortop2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the top-half
-        of a bitmap file
+    """Mirrors the top-half of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9332,8 +9336,8 @@ def mirrortop2file(
 def mirrortopleft2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the top-left
-        of a bitmap file
+    """Mirrors the top-left of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9352,8 +9356,8 @@ def mirrortopleft2file(
 def mirrortopright2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the top-right
-        of a bitmap file
+    """Mirrors the top-right of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path
@@ -9374,8 +9378,8 @@ def mirrortopright2file(
 def mirrorbottomleft2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the bottom-left
-        of a bitmap file
+    """Mirrors the bottom-left of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9395,8 +9399,8 @@ def mirrorbottomleft2file(
 def mirrorbottomright2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the bottom right
-        of a bitmap file
+    """Mirrors the bottom right of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9416,12 +9420,13 @@ def mirrorbottomright2file(
 def mirrorbottom2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the bottom half
-        of a bitmap file
+    """Mirrors the bottom half of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path
-                         to existing file
+                         to an existing
+                         file
         NewBMPfile     : New file to
                          save changes in
 
@@ -9437,8 +9442,8 @@ def mirrorbottom2file(
 def mirrorleft2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the left-half
-        of a bitmap file
+    """Mirrors the left-half of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9458,8 +9463,8 @@ def mirrorleft2file(
 def mirrorright2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Mirrors the right half
-        of a bitmap file
+    """Mirrors the right half of a
+        bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9524,9 +9529,8 @@ def flipverticalregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips vertically
-        a rectangular area
-        in a bitmap file
+    """Flips vertically a rectangular
+        area in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9534,7 +9538,8 @@ def flipverticalregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9552,9 +9557,8 @@ def fliphorizontalregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Flips horizontally
-        a rectangular area
-        in a bitmap file
+    """Flips horizontally a rectangular
+        area in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9562,7 +9566,8 @@ def fliphorizontalregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9590,7 +9595,8 @@ def mirrorleftinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9618,7 +9624,8 @@ def mirrorrightinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9646,7 +9653,8 @@ def mirrortopinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9674,7 +9682,8 @@ def mirrorbottominregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9702,7 +9711,8 @@ def mirrortopleftinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9730,7 +9740,8 @@ def mirrortoprightinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9749,7 +9760,7 @@ def mirrorbottomleftinregion2file(
         x1: int, y1: int,
         x2: int, y2: int):
     """Mirrors the bottom-left
-        regiom in a rectangular
+        region in a rectangular
         area in a bitmap file
 
     Args:
@@ -9758,7 +9769,8 @@ def mirrorbottomleftinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular region
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9786,7 +9798,8 @@ def mirrorbottomrightinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2  :defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9814,7 +9827,8 @@ def invertregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -9866,8 +9880,9 @@ def adjustbrightness2file(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        percentadj     : can be a positive
-                         or negative value
+        percentadj     : can be a
+                         positive or
+                         negative value
                          (signed float)
 
     Returns:
@@ -9891,8 +9906,9 @@ def thresholdadjust2file(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        lumrange       : (byte:byte) the
-                         threshold to apply
+        lumrange       : (byte:byte)
+                         threshold
+                         to apply
 
     Returns:
         new bitmap file
@@ -9920,10 +9936,13 @@ def adjustbrightnessinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
-        percentadj     : can be a positive or
-                         negative adjustment
-                         (signed float)
+                         rectangular
+                         region
+        percentadj     : can be a
+                         positive or
+                         negative
+                         adjustment
+                        (signed float)
 
     Returns:
         new bitmap file
@@ -9953,9 +9972,11 @@ def adjustthresholdinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
         lumrange       : (byte:byte) the
-                         threshold to apply
+                         threshold to
+                         apply
 
     Returns:
         new bitmap file
@@ -10032,9 +10053,11 @@ def colorfilterinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
         rgbfactors     : (r,g,b) r, g, b
-                         values range from
+                         values range
+                         from
                          0.0 to 1.0
 
     Returns:
@@ -10064,7 +10087,8 @@ def monofilterinregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -10081,7 +10105,7 @@ def pixelizenxntofile(
         ExistingBMPfile: str,
         NewBMPfile: str, n: int):
     """Pixellate a bitmap file
-        with n x n pixel areas
+        with n by n pixel areas
         by averaging regions
 
     Args:
@@ -10148,7 +10172,7 @@ def upgradeto24bitimage2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
     """Upgrades a bitmap file
-        (1,4,8 bits color depth)
+        (1, 4, 8 bits color depth)
         to 24-bits
 
     Args:
@@ -10175,8 +10199,9 @@ def gammaadj2file(
         ExistingBMPfile: Whole path to
                          existing file
         NewBMPfile     : New file to
-                         save changes to
-        gamma          : gamma correction
+                         save changes in
+        gamma          : gamma
+                         correction
 
     Returns:
         new bitmap file
@@ -10203,9 +10228,10 @@ def gammaadjtoregion2file(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
-                         to apply the
-        gamma          : gamma correction
+                         rectangular
+                         region
+        gamma          : gamma
+                         correction
 
     Returns:
         new bitmap file
@@ -10227,13 +10253,16 @@ def eraseeverynthhorilineinregion2file(
         in a rectangular region
 
     Args:
-        ExistingBMPfile: Whole path
-                         to existing file
+        ExistingBMPfile: Whole path to
+                         an existing
+                         file
         NewBMPfile     : New file to
-                         save changes to
+                         save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular region
-        n              : erase every nth line
+                         rectangular
+                         region
+        n              : erase every
+                         nth line
 
     Returns:
         new bitmap file
@@ -10259,7 +10288,7 @@ def rectangle2file(
         ExistingBMPfile: Whole path to
                          existing file
         NewBMPfile     : New file to
-                         save changes to
+                         save changes in
         x1, y1, x2, y2 : defines the
                          rectangular region
         color          : color of rectangle
@@ -10288,7 +10317,7 @@ def fern2file(
         ExistingBMPfile: Whole path to
                          existing file
         NewBMPfile     : New file to
-                         save changes to
+                         save changes in
         x1, y1, x2, y2 : defines the
                          rectangular region
         color          : color of the
@@ -10313,8 +10342,9 @@ def eraseeverynthhoriline2file(
         ExistingBMPfile: Whole path
                          to existing file
         NewBMPfile     : New file to
-                         save changes to
-        n              : erase every nth line
+                         save changes in
+        n              : erase every
+                         nth line
 
     Returns:
         new bitmap file
@@ -10340,7 +10370,8 @@ def outlineregion2file(
         NewBMPfile     : New file to
                          save changes to
         x1, y1, x2, y2 : defines the
-                         rectangular region
+                         rectangular
+                         region
 
     Returns:
         new bitmap file
@@ -10361,7 +10392,7 @@ def outline2file(
         ExistingBMPfile: Whole path to
                          existing file
         NewBMPfile     : New file to
-                         save changes to
+                         save changes in
 
     Returns:
         new bitmap file
@@ -10429,9 +10460,10 @@ def monochromecircregion2file(
 
     Args:
         ExistingBMPfile: Whole path
-                         to existing file
+                         to an existing
+                         file
         NewBMPfile     : New file to
-                         save changes to
+                         save changes in
         x, y, r        : center (x, y)
                          and radius r
 
@@ -10543,11 +10575,12 @@ def gammacorrectcircregion2file(
                          to existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
                          of a circular
-                         region to apply a
-        gamma          : gamma adjustment
+                         region
+        gamma          : gamma
+                         adjustment
 
     Returns:
         new bitmap file
@@ -10576,8 +10609,10 @@ def sphere2file(
                          save changes to
         x, y, r        : center (x, y)
                          and radius r
-        rgbfactors     : (r, g, b) values
-                         range from 0 to 1
+        rgbfactors     : (r, g, b)
+                         values
+                         range from
+                         0.0 to 1.0
 
     Returns:
         new bitmap file
@@ -10628,7 +10663,7 @@ def circle2file(
         ExistingBMPfile: Whole path to
                          existing file
         NewBMPfile     : New file to
-                         save changes to
+                         save changes in
         x, y, r        : center (x, y)
                          and radius r
         color          : color of circle
@@ -10722,12 +10757,14 @@ def vertbrightnessgrad2circregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
-                         of a circular area
-                         in which we apply a
-        lumrange       : brightness gradient
-                         (byte:byte) adjust
+                         of a circular
+                         region
+        lumrange       : brightness
+                         gradient
+                         (byte: byte)
+                         adjust
 
     Returns:
         new bitmap file
@@ -10754,7 +10791,7 @@ def horibrightnessgrad2circregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
                          of a circular
                          region in which
@@ -10812,7 +10849,7 @@ def eraseeverynthhorilineinccircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
                          in which we
         n              : omit every
@@ -10866,7 +10903,7 @@ def mirrorbottomincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
 
     Returns:
@@ -10892,7 +10929,7 @@ def mirrorleftincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
 
     Returns:
@@ -10918,7 +10955,7 @@ def mirrorrightincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
 
     Returns:
@@ -11022,7 +11059,7 @@ def mirrorbottomrightincircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
 
     Returns:
@@ -11126,7 +11163,7 @@ def magnifyNtimescircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
         intmagfactor   : int magnification
                          factor
@@ -11156,9 +11193,9 @@ def pixelizenxncircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
-        intpixsize     : n x n
+        intpixsize     : n by n
                          pixel blur size
 
     Returns:
