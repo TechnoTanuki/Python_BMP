@@ -4405,7 +4405,7 @@ def plot8bitpatternupsidedownasdots(
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : sets where to
+        x, y      : sets where to
                     draw the pattern
         bitpattern: list of bytes that
                     makes the pattern
@@ -4460,9 +4460,11 @@ def plot8bitpatternsidewaywithfn(
         while mask > 0:
             if (mask & bits) > 0:
                 if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y, color)
+                    plotxybit(bmp, x, y,
+                                    color)
                 else:
-                    fn(bmp, x, y, inc, color)
+                    fn(bmp, x, y, inc,
+                                    color)
             mask >>= 1
             y -= scale
         x += scale
@@ -5317,7 +5319,7 @@ def plot3d(bmp: array, sides: list,
         sides       : list of polygons
                       and normals
         isolid      : toggles solid render
-        RGBfactors  : [r,g,b] r,g,b
+        RGBfactors  : [r,g,b] r, g, b
                       range in value
                       from 0.0 to 1.0
         showoutine  : toggles the
@@ -5355,17 +5357,24 @@ def plot3Dsolid(bmp: array,
                       with bmp format
         sides       : list of polygons
                       and normals
-        isolid      : toggles solid render
-        RGBfactors  : [r,g,b] r,g,b all range
-                      in value from 0.0 to 1.0
-        showoutine  : toggles  polygon outline
-        outlinecolor: color of polygon outline
+        isolid      : toggles the
+                      solid render
+        RGBfactors  : [r,g,b] r, g, b
+                      range in value
+                      from 0.0 to 1.0
+        showoutine  : toggles the
+                      polygon outline
+        outlinecolor: color of the
+                      polygon outline
         rotvect     : rotation vector
-        transvect3D : 3D translation vector
-        d           : distance of observer
-                      from screen
-        transvect   : 2D translation vector
-                      for screen positioning
+        transvect3D : 3D translation
+                      vector
+        d           : distance of the
+                      observer from
+                      the screen
+        transvect   : 2D translation
+                      vector for
+                      screen position
 
     Returns:
         byref modified
@@ -5653,13 +5662,12 @@ def XYaxis(bmp: array, origin: list,
 def userdef2Dcooordsys2screenxy(
         x: int, y: int,
         lstcooordinfo: list):
-    """Does a 2D screen
-        coordinate transformation
-        from user to
-        screen coordinate system
+    """Does a 2D coordinate
+        transformation from user to
+        screen coordinates
 
     Args:
-        x,y          : user coordinates
+        x, y         : user coordinates
         lstcooordinfo: info on how to
                        transform the
                        2D coordinate system
@@ -5696,7 +5704,8 @@ def XYscatterplot(
     """Create a XY scatterplot
 
     Args:
-        bmp             : unsigned byte array
+        bmp             : unsigned
+                          byte array
                           with bmp format
         XYData          : [[x,y,
                           radius (max radius is 5),
@@ -5759,8 +5768,7 @@ def XYscatterplot(
 
 
 def getneighborcolorlist(
-        bmp: array,
-        v: list):
+        bmp: array, v: list):
     return [getRGBxybitvec(bmp, u)
             for u in itergetneighbors(
                 v, getmaxx(bmp), getmaxy(bmp), True)]
@@ -5769,17 +5777,20 @@ def getneighborcolorlist(
 def iterimagedgevert(
         bmp: array,
         similaritythreshold: float):
-    """Find edges in an
-        image iteratively
+    """Find edges in an image
 
     Args:
-        bmp                : unsigned byte array
-                             with bmp format
-        similaritythreshold: how close to the color
-                             before we yield it
+        bmp                : unsigned
+                             byte array
+                             with
+                             bmp format
+        similaritythreshold: how close
+                             to the color
+                             before we
+                             yield it
 
     Yields:
-        (x:int,y:int)
+        (x: int, y: int)
 
     """
     m = getmaxxy(bmp)
@@ -5799,14 +5810,21 @@ def iterimageregionvertbyRGB(
         bmp: array,
         rgb: list[int, int, int],
         similaritythreshold: int):
-    """RGB Color selection by similarity
+    """RGB Color selection by
+        color similarity
 
     Args:
-        bmp                : unsigned byte array
-                             with bmp format
-        rgb                : (r:byte,g:byte,b:byte)
-        similaritythreshold: how close to the color
-                             before we yield it
+        bmp                : unsigned
+                             byte array
+                             with bmp
+                             format
+        rgb                : (r: byte,
+                              g: byte,
+                              b: byte)
+        similaritythreshold: how close
+                             to the color
+                             before we
+                             yield it
 
     Yields:
         ((x:int,y:int),(r:byte,g:byte,b:byte))
@@ -5827,11 +5845,17 @@ def getimageregionbyRGB(
     """Select a region by color
 
     Args:
-        bmp                 : unsigned byte array
-                              with bmp format
-        rgb                 : (r:byte,g:byte,b:byte)
-        similaritythreshold : controls edge detection
-                              sensitivity
+        bmp                 :unsigned
+                             byte array
+                             with bmp
+                             format
+        rgb                 :(r: byte,
+                              g: byte,
+                              b: byte)
+        similaritythreshold: controls
+                             the edge
+                             detection
+                             sensitivity
 
     Returns:
         list of vertices
@@ -5839,8 +5863,7 @@ def getimageregionbyRGB(
     """
     return [v for v in
                 iterimageregionvertbyRGB(
-                    bmp,
-                    rgb,
+                    bmp, rgb,
                     similaritythreshold)]
 
 
@@ -5849,10 +5872,14 @@ def getimagedgevert(bmp: array,
     """Find edges in an image
 
     Args:
-        bmp                : unsigned byte array
-                             with bmp format
-        similaritythreshold: how close to the color
-                             before we yield it
+        bmp                : unsigned
+                             byte array
+                             with bmp
+                            format
+        similaritythreshold: how close
+                             to the color
+                             before we
+                             yield it
 
     Yields:
         [(x:int,y:int),...]
@@ -5871,12 +5898,20 @@ def plotimgedges(bmp: array,
     """Draw edges
 
     Args:
-        bmp                 : unsigned byte array
-                              with bmp format
-        similaritythreshold : controls edge detection
-                              sensitivity
-        edgeradius,edgecolor: radius and color of pen
-                              used to draw the edges
+        bmp                : unsigned
+                             byte array
+                             with bmp
+                             format
+        similaritythreshold: controls
+                             the edge
+                             detection
+                             sensitivity
+        edgeradius         : radius and
+        edgecolor            color of
+                             the pen
+                             used to
+                             draw the
+                             edges
 
     Returns:
         byref modified
@@ -5980,8 +6015,8 @@ def iterimageRGB(bmp: array,
         waitmsg   : what to display
                     in terminal at
                     process start
-        rowprocind: char to display
-                    as a row is processed
+        rowprocind: char to display as
+                    a row is processed
         finishmsg : what to display
                     in terminal at
                     process end
@@ -6057,10 +6092,10 @@ def iterimagecolor(bmp: array,
         waitmsg   : what to display
                     in the terminal
                     when process starts
-        rowprocind: string to print
-                    in the terminal
-                    as a row is processed
-                    as a process indicator
+        rowprocind: string to print in
+                    the terminal as a
+                    row is processed as
+                    a process indicator
         finishmsg : what to display
                     in the terminal
                     when process ends
@@ -6152,15 +6187,16 @@ def copyrect(bmp: array,
 def pasterect(bmp: array,
         buf: array,
         x1: int, y1: int):
-    """Paste a rectangular area
-        defined in a buffer
-        to a bitmap
+    """Paste a rectangular area defined
+        in a buffer to a bitmap
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        buf  : rectangular image buffer
-        x1,y1: point to paste the buffer
+        bmp   : unsigned byte array
+                with bmp format
+        buf   : rectangular
+                image buffer
+        x1, y1: point to paste
+                the buffer
 
     Returns:
         byref modified
@@ -6217,8 +6253,7 @@ def convertselection2BMP(buf: array):
 
 
 def invertimagebits(bmp: array):
-    """Inverts the bits
-        in a bitmap
+    """Inverts the bits in a bitmap
 
     Args:
         bmp: unsigned byte array
@@ -6282,8 +6317,7 @@ def erasealternatehorizontallines(
 
 
 def eraseeverynthhorizontalline(
-        bmp: array,
-        n: int):
+        bmp: array, n: int):
     """Erase every nth horizontal line
 
     Args:
@@ -6320,14 +6354,19 @@ def erasealternatehorizontallinesincircregion(
                              and radius r
                              of the
                              circular area
-        int_eraseeverynline: erase every nth line
-                             in the circular region
-        int_eraseNthline   : control which line
-                             every n lines
+        int_eraseeverynline: erase every
+                             nth line
+                             in the
+                             circular
+                             region
+        int_eraseNthline   : control which
+                             line every
+                             n lines
                              to erase
-        bytepat            : byte pattern
-                             to overwrite
-                             the erased lines
+        bytepat            : pattern to
+                             overwrite
+                             the erased
+                             lines
 
     Returns:
         byref modified
@@ -6356,8 +6395,7 @@ def erasealternatehorizontallinesincircregion(
 def eraseeverynthhorizontallineinccircregion(
         bmp: array,
         x: int, y: int, r: int, n: int):
-    """Erase every
-        nth horizontal line
+    """Erase every nth horizontal line
         in a circular region
 
     Args:
@@ -6389,18 +6427,25 @@ def erasealternatehorizontallinesinregion(
         in a rectangular region
 
     Args:
-        bmp                : unsigned byte array
-                             with bmp format
-        x1, y1, x2, y2     : ints that defines
-                             the rectangular area
-        int_eraseeverynline: erase every nth line
+        bmp                : unsigned
+                             byte array
+                             with bmp
+                             format
+        x1, y1, x2, y2     : ints that
+                             defines the
+                             rectangular
+                             region
+        int_eraseeverynline: erase every
+                             nth line
                              in the region
         int_eraseNthline   : control which
                              line every
-                             n lines to erase
-        bytepat            : byte pattern
-                             to overwrite
-                             erased lines
+                             n lines
+                             to erase
+        bytepat            : pattern to
+                             overwrite
+                             the erased
+                             lines
 
     Returns:
         byref modified
