@@ -423,7 +423,7 @@ def zlevelcoords(verlist: list) -> tuple:
 
 def genspheresurfaces(
         zlevelcoord:list) -> list:
-    [zl, vl] = zlevelcoord
+    (zl, vl) = zlevelcoord
     surf = []
     levels = len(zl) - 1
     northpole = vl[zl[0]][0]
