@@ -51,6 +51,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_reversed.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_sideway.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_vertical.py
 
 **Named colors**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
