@@ -7880,12 +7880,13 @@ def piechart(bmp: array,
         a 24-bit bitmap
 
     Args:
-        bmp              : unsigned byte array
-                           with bmp format
-        x, y, r          : center (x,y)
-                           and radius r
-        dataandcolorlist : stuff to plot
-                           + color
+        bmp             : unsigned
+                          byte array
+                          with bmp format
+        x, y, r         : center (x,y)
+                          and radius r
+        dataandcolorlist: stuff to plot
+                          + color
 
     Returns:
         byref modified
@@ -7914,7 +7915,8 @@ def _usebyrefnopar24bitfn2reg(
         in a 24-bit bitmap
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
         x1, y1, x2, y2: defines the
                         rectangular area
@@ -7951,7 +7953,8 @@ def _usebyref24btfn2reg(
         a 24-bit bitmap
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
         x1, y1, x2, y2: defines the
                         rectangular area
@@ -7986,7 +7989,8 @@ def _use24bitfn2reg(bmp: array,
         in a 24-bit bitmap
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
         x1, y1, x2, y2: defines the
                         rectangular area
@@ -8017,17 +8021,19 @@ def verticalbrightnessgradto24bitregion(
         x1: int, y1: int,
         x2: int, y2: int,
         lumrange: list[int, int]):
-    """Apply a
-        vertical brightness gradient
-        to a rectangular area
-        in a 24-bit bitmap
+    """Apply a vertical brightness
+        gradient to a rectangular
+        area in a 24-bit bitmap
 
     Args:
-        bmp          :  unsigned byte array
+        bmp          :  unsigned
+                        byte array
                         with bmp format
-        x1, y1, x2, y2: defines rectangular area
-        lumrange      : (byte:byte) defines
-                        the brightness gradient
+        x1, y1, x2, y2: defines the
+                        rectangular area
+        lumrange      : (byte:byte) the
+                         brightness
+                         gradient
 
     Returns:
         byref modified
@@ -8086,13 +8092,10 @@ def horizontalbrightnessgradto24bitregion(
 
 
 @_fn24bitencircbnd
-def magnifyNtimescircregion(
-        bmp: array,
-        x: int, y: int, r: int,
-        n: int):
+def magnifyNtimescircregion(bmp: array,
+        x: int, y: int, r: int, n: int):
     """Magnify a circular region
-        in a bitmap file
-        by int n
+        in a bitmap file by int n
 
     Args:
         bmp    : unsigned byte array
@@ -8281,8 +8284,7 @@ def gammaadjto24bitimage(
         unsigned byte array
 
     """
-    gammaadjto24bitregion(
-        bmp, 0, 0,
+    gammaadjto24bitregion(bmp, 0, 0,
         getmaxx(bmp) - 1,
         getmaxy(bmp) - 1, gamma)
 
@@ -8312,15 +8314,16 @@ def outlineregion(
         y1: int,
         x2: int,
         y2: int):
-    """Outines an area
-        in a rectangular region
-        in a bitmap file
+    """Outines an area in a rectangular
+        region in a bitmap file
 
     Args:
-        bmp           : unsigned byte array
+        bmp           : unsigned
+                        byte array
                         with bmp format
         x1, y1, x2, y2: ints that defines
-                        the rectangular area
+                        the rectangular
+                        region
 
     Returns:
         byref modified
@@ -9094,8 +9097,8 @@ def cropBMPandsave(
         new bitmap file
 
     """
-    _usefn2regsv(
-        ExistingBMPfile, NewBMPfile,
+    _usefn2regsv(ExistingBMPfile,
+        NewBMPfile,
         x1, y1, x2, y2, crop)
 
 
@@ -9122,13 +9125,12 @@ def cropBMPandsaveusingrectbnd(
         new bitmap file
 
     """
-    _usefn2regsv(
-        ExistingBMPfile, NewBMPfile,
+    _usefn2regsv(ExistingBMPfile,
+        NewBMPfile,
         rectbnd[0][0],
         rectbnd[0][1],
         rectbnd[1][0] + 1,
-        rectbnd[1][1] + 1,
-        crop)
+        rectbnd[1][1] + 1, crop)
 
 
 @_filechks
