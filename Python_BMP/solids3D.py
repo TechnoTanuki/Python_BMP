@@ -280,11 +280,11 @@ def perspective(
         d: float) -> tuple:
     rotvlist = []
     projvlist = []
-    [sroll, croll] = rotvec[0]
-    [spitch, cpitch] = rotvec[1]
-    [syaw, cyaw] = rotvec[2]
+    (sroll, croll) = rotvec[0]
+    (spitch, cpitch) = rotvec[1]
+    (syaw, cyaw) = rotvec[2]
     for p in vlist:
-        [px, py, pz] = p
+        (px, py, pz) = p
         x1 = -cyaw * px - syaw * pz
         y1 = croll * py - sroll * x1
         z1 = -syaw * px + cyaw * pz
@@ -450,8 +450,7 @@ def genspheresurfaces(
                 j = 0 if i == maxp else i + 1
                 surf += [[adjpts[j % maxadjpts],
                           adjpts[i % maxadjpts],
-                          pts[i],
-                          pts[j]]]
+                          pts[i], pts[j]]]
     return surf
 
 
@@ -587,10 +586,8 @@ def conevertandsurface(
 
 
 def surfplot3Dvertandsurface(
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+        x1: int, y1: int,
+        x2: int, y2: int,
         step: int,
         fnxy: Callable
         ) -> tuple:
