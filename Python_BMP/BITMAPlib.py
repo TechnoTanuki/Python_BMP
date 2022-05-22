@@ -8582,11 +8582,9 @@ def _usefn2regsv(
         x1: int, y1: int,
         x2: int, y2: int,
         func: Callable):
-    """Apply a
-        function with
-        no parameters to
-        a rectangular region
-        and save
+    """Apply a function with
+        no parameters to a
+        rectangular region and save
 
     Args:
         ExistingBMPfile: Whole path to
@@ -8594,7 +8592,8 @@ def _usefn2regsv(
         NewBMPfile     : New file to
                          save changes in
         x1, y1, x2, y2 : defines the
-                         rectangular area
+                         rectangular
+                         region
         func           : user defined
                          function
 
@@ -8616,10 +8615,8 @@ def _usebyreffnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
-    """Apply a
-        by-ref function
-        with no parameters
-        and save
+    """Apply a by-ref function
+        with no parameters and save
 
     Args:
         ExistingBMPfile: Whole path to
@@ -8650,10 +8647,8 @@ def _usebyreffnwithparnsv(
     func(bmp, funcparam)
     saveBMP(NewBMPfile, bmp)
     print(sysmsg['savesingleparamfunc'] %
-            (func.__name__,
-            str(funcparam),
-            ExistingBMPfile,
-            NewBMPfile))
+    (func.__name__, str(funcparam),
+    ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8679,9 +8674,8 @@ def _usefnsv(
     bmp = loadBMP(ExistingBMPfile)
     saveBMP(NewBMPfile, func(bmp))
     print(sysmsg['savefunc'] %
-            (func.__name__ ,
-            ExistingBMPfile,
-            NewBMPfile))
+    (func.__name__ ,
+    ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8689,10 +8683,8 @@ def _use24btfnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
-    """Apply a 24-bit only
-        function with
-        no parameters
-        and save
+    """Apply a 24-bit only function
+        with no parameters and save
 
     Args:
         ExistingBMPfile: Whole path to
@@ -8777,9 +8769,8 @@ def apply8bitabovefuncandsave(
     else:
         saveBMP(NewBMPfile, func(bmp))
         print(sysmsg['savefunc'] %
-                (func.__name__ ,
-                ExistingBMPfile,
-                NewBMPfile))
+        (func.__name__ ,
+        ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8797,7 +8788,7 @@ def _usefn2circreg(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
         func           : user defined
                          function
@@ -8810,9 +8801,8 @@ def _usefn2circreg(
     func(bmp, x, y, r)
     saveBMP(NewBMPfile, bmp)
     print(sysmsg['savecircfunc'] %
-            (func.__name__ , x, y, r,
-            ExistingBMPfile,
-            NewBMPfile))
+         (func.__name__ , x, y, r,
+         ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -8867,7 +8857,7 @@ def _use24btclrfntocircregion(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
         func           : user defined
                          function
@@ -8961,11 +8951,11 @@ def _useclradjfn(
             brightnesseadjto24bitimage(
                 bmp, funcparam)
         elif func.__name__ == 'gammacorrect':
-                gammaadjto24bitimage(
-                    bmp, funcparam)
+            gammaadjto24bitimage(
+                bmp, funcparam)
         elif func.__name__ == 'thresholdadjust':
-                thresholdadjto24bitimage(
-                    bmp, funcparam)
+            thresholdadjto24bitimage(
+                bmp, funcparam)
         else:
             for v in iterimageRGB(bmp,
                         sysmsg['coloradj'], '*',
@@ -8984,15 +8974,15 @@ def _use24btclrfn(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable, funcparam):
-    """Apply a user provided
-        color adjustment
-        function to
+    """Apply a user provided color
+        adjustment function to
         a 24-bit bitmap
 
     Args:
         ExistingBMPfile: Whole path to
                          existing file
-        NewBMPfile     : New file to save
+        NewBMPfile     : New file to
+                         save the
                          changes in
         func           : user defined
                          function
@@ -9064,17 +9054,18 @@ def cropBMPandsave(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Crops and saves
-        a rectangular area
-        to a bitmap file
+    """Crops and saves a rectangular
+        area to a bitmap file
 
     Args:
         ExistingBMPfile: Whole path
-                         to existing file
+                         to an
+                         existing file
         NewBMPfile     : New file to
                          save changes to
         x1, y1, x2, y2 : defines the
-                         rectagular region
+                         rectagular
+                         region
 
     Returns:
         new bitmap file
@@ -9100,9 +9091,12 @@ def cropBMPandsaveusingrectbnd(
         NewBMPfile     : New file to
                          save changes in
         rectbnd        : list defining
-                         a rectangular area
-                         [(x1,y1),(x2,y2),
-                          (x3,y3),(x4,y4)]
+                         a rectangular
+                         region
+                         [(x1, y1),
+                          (x2, y2),
+                          (x3, y3),
+                          (x4, y4)]
 
     Returns:
         new bitmap file
@@ -9129,12 +9123,12 @@ def imagecomp(
         bitwise comparator function
 
     Args:
-        Inputfile1,Inputfile2: Whole paths
-                               to existing files
-        diff_file            : New file to
-                               save changes in
-        func                 : User provided
-                               bitwise function
+        Inputfile1: path to bmp file
+        Inputfile2: path to bmp file
+        diff_file : New file to save
+                    comparison in
+        func      : User provided
+                    bitwise function
 
     Returns:
         new bitmap file
@@ -9176,20 +9170,20 @@ def reduce24bitimagebits(
         a 24-bit bitmap file
 
     Args:
-        ExistingBMPfile     : Whole path
-                              to existing file
-        NewBMPfile          : New file to
-                              save changes in
-        newbits             : can be 1,4 or 8 bits
-        similaritythreshold : how close can a color
-                              be to another color
-        usemonopal          : True -> image will
+        ExistingBMPfile    : Whole path
+                             to existing file
+        NewBMPfile         : New file to
+                             save changes in
+        newbits            : can be 1,4 or 8 bits
+        similaritythreshold: how close can a color
+                             be to another color
+        usemonopal         : True -> image will
                                       be mono
-        RGBfactors          : (r:float,b:float,g:float)
-                              value of r,g,b
-                              range from 0 to 1
-                              used only if
-                              usemonopal is True
+        RGBfactors         : (r:float,b:float,g:float)
+                             value of r,g,b
+                             range from 0 to 1
+                             used only if
+                            usemonopal is True
     Returns:
         new bitmap file
 
