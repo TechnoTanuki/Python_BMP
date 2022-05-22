@@ -3556,26 +3556,26 @@ def gradthickcircle(bmp: array,
         penradius: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
-    """Draws a thick circle
-        with gradient lumrange
-        defined by
-        centerpoint (x,y)
-        and radius r
-        using a pen with
-        radius penradius
-        and color defined
-        by RGBfactors
+    """Draws a thick circle with
+        gradient lumrange
+        defined by centerpoint (x, y)
+        and radius r using a pen with
+        radius penradius and color
+        defined by RGBfactors
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
         x, y, r   : center (x, y)
                     and radius r
-        penradius : radius of round pen
-        lumrange  : [byte,byte] the range
-                    of the luminosity gradient
-        rgbfactors: [r,g,b] range of r, g and b
-                    are from 0.0 min to 1.0 max
+        penradius : radius of the
+                    round pen
+        lumrange  : [byte,byte] range
+                    of the luminosity
+                    gradient
+        rgbfactors: [r,g,b] range of
+                    r, g and b are
+                    from 0.0 to 1.0
 
     Returns:
         byref modified
@@ -3644,8 +3644,9 @@ def thickellipserot(bmp: array,
         bmp       : unsigned byte array
                     with bmp format
         x, y      : center of ellipse
-        b, a      : major amd minor axis
-        degrot    : rotation of the ellipse
+        b, a      : major and minor axis
+        degrot    : rotation of
+                    the ellipse
                     in degrees
         penradius : defines the thickness
                     of the pen
@@ -3679,14 +3680,16 @@ def gradthickellipserot(bmp: array,
                     with bmp format
         x,y       : center of ellipse
         b,a       : major amd minor axis
-        degrot    : rotation of the ellipse
+        degrot    : rotation of
+                    the ellipse
                     in degrees
-        penradius : defines the thickness
+        penradius : defines the
+                    thickness
                     of the pen
-        lumrange  : [byte:byte] controls
+        lumrange  : [byte:byte] sets
                     the range of the
                     luminosity gradient
-        rgbfactors: [r,g,b] range of
+        rgbfactors: [r, g, b] range of
                     r,g and b are from
                     0.0 min to 1.0 max
 
@@ -3712,8 +3715,8 @@ def filledellipse(bmp: array,
         x: int, y: int, b: int, a: int,
         color: int):
     """Draws an filled ellipse
-        defined by centerpoint (x,y)
-        and major and minor axis (b,a)
+        defined by centerpoint (x, y)
+        and major and minor axis (b, a)
 
     Args:
         bmp  : unsigned byte array
@@ -3729,7 +3732,7 @@ def filledellipse(bmp: array,
     """
     bits = bmp[_bmclrbits]
     if bits < 8:
-        for v in iterellipsepart(b,a):
+        for v in iterellipsepart(b, a):
             x1, x2 = mirror(x, v[0])
             y1, y2 = mirror(y, v[1])
             horiline(
@@ -3740,8 +3743,8 @@ def filledellipse(bmp: array,
         m = getmaxxy(bmp)
         if bits == 24:
             for v in iterellipsepart(b, a):
-                x1, x2 =mirror(x, v[0])
-                y1, y2 =mirror(y, v[1])
+                x1, x2 = mirror(x, v[0])
+                y1, y2 = mirror(y, v[1])
                 x1 = setmin(x1, 0)
                 x2 = setmax(x2, m[0] - 1)
                 dx = x2 - x1 + 1
@@ -3762,8 +3765,8 @@ def filledellipse(bmp: array,
             for v in iterellipsepart(b, a):
                 x1, x2 = mirror(x, v[0])
                 y1, y2 = mirror(y, v[1])
-                x1 = setmin(x1,0)
-                x2 = setmax(x2,m[0]-1)
+                x1 = setmin(x1, 0)
+                x2 = setmax(x2, m[0]-1)
                 dx = x2 - x1 + 1
                 ymax = m[1]
                 colorbuf = \
@@ -3781,8 +3784,8 @@ def ellipse(bmp: array,
         color: int,
         isfilled: bool = None):
     """Draws an ellipse defined
-        by centerpoint (x,y) and
-        major and minor axis (b,a)
+        by centerpoint (x, y) and
+        major and minor axis (b, a)
 
     Args:
         bmp     : unsigned byte array
@@ -3883,8 +3886,7 @@ def drawarc(bmp: array,
         x: int, y: int, r: int,
         startdegangle: float,
         enddegangle: float,
-        color: int,
-        showoutline: bool,
+        color: int, showoutline: bool,
         fillcolor: int, isfilled: bool):
     """Draws an arc centered
         at point (x,y) with radius r
@@ -4036,8 +4038,7 @@ def bspline(bmp: array, pntlist: list,
         penradius: int, color: int,
         isclosed: bool,
         curveback: bool):
-    """Draws a bspline of
-        a given color
+    """Draws a bspline of a given color
         and thickness
 
     Args:
@@ -4070,9 +4071,8 @@ def plotrotated8bitpatternwithfn(
         bitpattern: list, scale: int,
         pixspace: int, color: int,
         fn: Callable):
-    """Draws a 8-bit pattern
-        with the bits rotated
-        with a function
+    """Draws a 8-bit pattern with the
+        bits rotated with a function
 
     Args:
         bmp       : unsigned byte array
