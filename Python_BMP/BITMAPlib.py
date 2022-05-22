@@ -4043,7 +4043,7 @@ def bspline(bmp: array, pntlist: list,
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        pntlist  : [(x,y)...] list of
+        pntlist  : [(x, y)...] list of
                    the control points
         penradius: radius of pen in pixels
         color    : color of bezier curve
@@ -4116,12 +4116,12 @@ def plot8bitpatternwithfn(
         pixspace: int, color: int,
         fn: Callable):
     """Draws a 8-bit pattern
-    with a function
+        with a function
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : sets where to draw
+        x, y      : sets where to draw
                     the pattern
         bitpattern: list of bytes
                     that makes the pattern
@@ -5430,13 +5430,16 @@ def xygrid(bmp: array,
     """Draws a grid
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: sets limits of grid
-        xysteps    : [x,y] -> sets the
-                     increment in x and y
-        color      : sets the color
-                     of the grid
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: sets limits
+                        of the grid
+        xysteps       : [x, y] sets the
+                        increments in
+                        x and y
+        color         : sets the color
+                        of the grid
 
     Returns:
         byref modified
