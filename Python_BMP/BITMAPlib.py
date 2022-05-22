@@ -5672,8 +5672,8 @@ def userdef2Dcooordsys2screenxy(
                        transform the
                        2D coordinate system
                        [origin,steps,xylimits,
-                        xyvalstarts,xysteps]
-                        all (x:int,y:int) pairs
+                       xyvalstarts,xysteps]
+                       all (x:int,y:int) pairs
 
     Returns:
         [x:int,y:int] screen coordinates
@@ -5875,14 +5875,14 @@ def getimagedgevert(bmp: array,
         bmp                : unsigned
                              byte array
                              with bmp
-                            format
+                             format
         similaritythreshold: how close
                              to the color
                              before we
                              yield it
 
     Yields:
-        [(x:int,y:int),...]
+        [(x: int, y: int),...]
 
     """
     return [v for v in
