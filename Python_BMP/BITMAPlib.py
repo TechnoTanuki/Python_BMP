@@ -7927,10 +7927,8 @@ def plotfilledflower(bmp: array,
 
     """
     for nr in range (r, 2, -1):
-        plotflower(
-            bmp, cx, cy, nr,
-            petals,
-            angrot,
+        plotflower(bmp, cx, cy, nr,
+            petals, angrot,
             lumrange, RGBfactors)
 
 
@@ -7987,13 +7985,11 @@ def piechart(bmp: array,
     """
     alist, big = genpiechartdata(dataandcolorlist)
     if big > -1: #for speed more computions in drawarc
-            circle(
-                bmp, x, y, r,
+            circle(bmp, x, y, r,
                 alist[big][2], True)
     for a in alist:
         if a[4] < 50:
-            drawarc(
-                bmp, x, y, r,
+            drawarc(bmp, x, y, r,
                 a[0], a[1], a[2],
                 True, a[2], True)
     return [alist, big]
@@ -8292,8 +8288,7 @@ def resizeNtimessmaller(
     return nbmp
 
 
-def pixelizenxn(
-        bmp: array,
+def pixelizenxn(bmp: array,
         n: int) -> array:
     """Pixelize a whole image
         with n by n areas
@@ -8675,6 +8670,7 @@ def _usebyreffn2regnsv(
         x1, y1, x2, y2,
         ExistingBMPfile,
         NewBMPfile))
+
 
 @_filechk
 def applyfunctoregionandsave(
@@ -9522,8 +9518,7 @@ def mirrorbottomright2file(
 
     """
     _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         mirrorbottomright)
 
 
@@ -9545,8 +9540,7 @@ def mirrorbottom2file(
 
     """
     _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         mirrorbottom)
 
 
@@ -9568,8 +9562,7 @@ def mirrorleft2file(
 
     """
     _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         mirrorleft)
 
 
@@ -9591,8 +9584,7 @@ def mirrorright2file(
 
     """
     _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         mirrorright)
 
 
@@ -9615,8 +9607,7 @@ def fliphorizontal2file(
 
     """
     _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         fliphorizontal)
 
 
@@ -10300,16 +10291,14 @@ def upgradeto24bitimage2file(
         new bitmap file
 
     """
-    _usefnsv(
-        ExistingBMPfile, NewBMPfile,
-        upgradeto24bitimage)
+    _usefnsv(ExistingBMPfile,
+      NewBMPfile, upgradeto24bitimage)
 
 
 @_fntimer
 def gammaadj2file(
         ExistingBMPfile: str,
-        NewBMPfile: str,
-        gamma: float):
+        NewBMPfile: str, gamma: float):
     """Applies a gamma correction
 
     Args:
@@ -10373,7 +10362,7 @@ def eraseeverynthhorilineinregion2file(
                          to existing file
         NewBMPfile     : New file to
                          save changes to
-        x1,y1,x2,y2    : defines the
+        x1, y1, x2, y2 : defines the
                          rectangular region
         n              : erase every nth line
 
@@ -10484,7 +10473,7 @@ def outlineregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x1,y1,x2,y2    : defines the
+        x1, y1, x2, y2 : defines the
                          rectangular region
 
     Returns:
@@ -10513,7 +10502,7 @@ def outline2file(
 
     """
     _usebyreffnsv(ExistingBMPfile,
-               NewBMPfile,outline)
+             NewBMPfile, outline)
 
 
 @_fntimer
@@ -10578,7 +10567,7 @@ def monochromecircregion2file(
                          to existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
 
     Returns:
@@ -10604,8 +10593,8 @@ def invertbitsincircregion2file(
         ExistingBMPfile: Whole path to
                          existing file
         NewBMPfile     : New file to
-                         save changes to
-        x, y, r        : center (x,y)
+                         save changes in
+        x, y, r        : center (x, y)
                          and radius r
 
     Returns:
@@ -10633,9 +10622,9 @@ def colorfiltercircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
-        rgbfactors     : (r,g,b) r,g,b values
+        rgbfactors     : (r, g, b) values
                          range from 0 to 1
 
     Returns:
@@ -10726,9 +10715,9 @@ def sphere2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
-        rgbfactors     : (r,g,b) r,g,b values
+        rgbfactors     : (r, g, b) values
                          range from 0 to 1
 
     Returns:
@@ -11138,9 +11127,7 @@ def mirrorbottomleftincircregion2file(
 def mirrortoprightincircregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x: int,
-        y: int,
-        r: int):
+        x: int, y: int, r: int):
     """Mirrors the top right
         of a circular region
 
