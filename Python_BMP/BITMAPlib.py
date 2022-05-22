@@ -201,9 +201,7 @@ from .chartools import(
     )
 
 from .conditionaltools import(
-    iif,
-    swapif
-)
+    iif, swapif)
 
 from .dicttools import(
     dict2descorderlist as _dsordlst)
@@ -282,8 +280,7 @@ def getmaxx(bmp: array) -> int:
              with bmp format
 
     Returns:
-        int value of
-        x bmp dimension
+        int value of x bmp dimension
 
     """
     return _rdint(_bmx, 4, bmp)
@@ -315,8 +312,7 @@ def getmaxy(bmp: array) -> int:
              with bmp format
 
     Returns:
-        int value of
-        y bmp dimension
+        int value of y bmp dimension
 
     """
     return _rdint(_bmy, 4, bmp)
@@ -341,10 +337,8 @@ def getmaxxy(bmp: array) -> tuple:
 
 def bottomrightcoord(
         bmp: array) -> tuple:
-    """Gets the maximum
-        bottom right
-        coordinates of
-        a windows bitmap
+    """Gets the maximum bottom right
+        coordinates of a win bmp
 
     Args:
         bmp: unsigned byte array
@@ -359,8 +353,7 @@ def bottomrightcoord(
 
 
 def centercoord(bmp: array) -> tuple:
-    """Gets the
-        central coordinates
+    """Gets the central coordinates
         of a windows bitmap
 
     Args:
@@ -479,7 +472,7 @@ def _setflsz(bmp: array, size: int):
 
 def _flsz(bmp: array) -> int:
     """Get the file size of a win bmp
-        from bmp header
+        from its bmp header
 
     Args:
         bmp: unsigned byte array
@@ -569,11 +562,11 @@ def _24bmofhd(bmp: array,
         with bmp header
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location in
-             x-axis and y-axis
+        bmp:  unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location in
+              x-axis and y-axis
 
     Returns:
         int value of offset to
@@ -592,11 +585,11 @@ def _8bmof(bmp: array,
         given x and y data
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location in
-             x-axis and y-axis
+        bmp:  unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location in
+              x-axis and y-axis
 
     Returns:
         int value of offset to
@@ -617,11 +610,11 @@ def _8bmofhd(bmp: array,
         made for a bmp header
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location in
-             x-axis and y-axis
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location in
+              x-axis and y-axis
 
     Returns:
         int value of offset to
@@ -641,11 +634,11 @@ def _4bmof(bmp: array,
         given x and y data
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location in
-             x-axis and y-axis
+        bmp:  unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location in
+              x-axis and y-axis
 
     Returns:
         int value of offset to
@@ -664,11 +657,11 @@ def _1bmof(bmp: array,
         given x and y data
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location in
-             x-axis and y-axis
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location in
+              x-axis and y-axis
 
     Returns:
         int value of offset to
@@ -689,11 +682,11 @@ def _4bmofhd(bmp: array,
         made due to a header
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location in
-             x-axis and y-axis
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location in
+              x-axis and y-axis
 
     Returns:
         int value of offset to
@@ -715,11 +708,11 @@ def _1bmofhd(bmp: array,
         made for a bmp header
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location in
-             x-axis and y-axis
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location in
+              x-axis and y-axis
 
     Returns:
         int value of offset to
@@ -738,7 +731,7 @@ def _getBMoffhdfunc(bmp: array):
         with headers in a given bmp
 
     Args:
-        bmp: An unsigned byte array
+        bmp: unsigned byte array
              with bmp format
 
     Returns:
@@ -861,21 +854,18 @@ def _xbytes(x: int, bits: int) -> int:
 
 
 def _pdbytes(x: int, bits: int) -> int:
-    """Get the number of bytes
-        used to pad for
-        32-bit alignment
-        given x dimension
-        and bit depth
+    """Get the number of bytes used to
+        pad for 32-bit alignment
+        given x dimension and bit depth
 
     Args:
         x   : unsigned int value of
               x-dimension
         bits: unsigned int value of
-              bit depth (1,4,8,24)
+              bit depth (1, 4, 8, 24)
 
     Returns:
-        int value of
-        number of pad bytes
+        int value of number of pad bytes
 
     """
     if bits <= 8:
@@ -894,9 +884,9 @@ def _getbmflsz(x: int, y: int,
     """computes bitmap file size
 
     Args:
-        x,y : unsigned int value
+        x, y: unsigned int value
               of x and y dimensions
-        bits: bit depth (1,4,8,24)
+        bits: bit depth (1, 4, 8, 24)
 
     Returns:
         int value of file size
@@ -908,15 +898,13 @@ def _getbmflsz(x: int, y: int,
 
 def _bmmeta(x: int, y: int,
         bits: int) -> tuple:
-    """computes bitmap
-        meta data
+    """computes bitmap meta data
 
     Args:
         x,y  : unsigned int
                values of the
                x and y dimension
-        bits : bit depth
-               (1,4,8,24)
+        bits : bit depth (1, 4, 8, 24)
 
     Returns:
         unsigned int values for
@@ -964,7 +952,7 @@ def getBMPimgbytes(bmp: array) -> list:
 def setBMPimgbytes(
         bmp: array, buf: array):
     """Sets the raw image buffer
-        of a bmp
+        of a bitmap
 
     Args:
         bmp: unsigned byte array
@@ -994,7 +982,7 @@ def setbmppal(bmp: array,
         unsigned byte array
 
     """
-    c=0
+    c = 0
     if len(pallist) == getmaxcolors(bmp):
         for p in pallist:
             setRGBpal(bmp, c, p[0],
@@ -1045,11 +1033,11 @@ def setRGBpal(bmp: array, c: int,
         of color c in a bitmap
 
     Args:
-        bmp   : unsigned byte array
-                with bmp format
-        r,g,b : unsigned byte values
-                for red, green and blue
-        c     : unsigned int color
+        bmp    : unsigned byte array
+                 with bmp format
+        r, g, b: unsigned byte values
+                 for red, green and blue
+        c      : unsigned int color
 
     Returns:
         byref modified
@@ -1147,10 +1135,8 @@ def copyBMPhdr(bmp: array) -> array:
 
 def copyRGBpal(sourceBMP: array,
         destBMP: array):
-    """Copies the
-        RGB palette info from
-        a source
-        unsigned byte array
+    """Copies the RGB palette info from
+        a source unsigned byte array
         to a destination
         unsigned byte array
 
@@ -1232,8 +1218,7 @@ def setnewpalfromsourcebmp(
     return newpal
 
 
-def RGBpalbrightnessadjust(
-        bmp: array,
+def RGBpalbrightnessadjust(bmp: array,
         percentadj: float)-> list:
     """Copies the RGB palette info
         from a source
