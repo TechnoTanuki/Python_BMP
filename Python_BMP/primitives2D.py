@@ -140,13 +140,13 @@ def iterline(
         [x:int, y:int]
 
     """
-    [dx, dy] = subvect(p2, p1)
+    (dx, dy) = subvect(p2, p1)
     sdx = sign(dx)
     sdy = sign(dy)
     dxabs = abs(dx)
     dyabs = abs(dy)
     x = y = 0
-    [px, py] = p1
+    (px, py) = p1
     if dxabs >= dyabs:
         ilim = dxabs + 1
         for i in range(0, ilim):
@@ -203,13 +203,13 @@ def iterellipsepart(
         a: int):
     row = b
     col = 0
-    a_sqr = a*a
-    b_sqr = b*b
+    a_sqr = a * a
+    b_sqr = b * b
     _2a_sqr = a_sqr << 1
     _4a_sqr = a_sqr << 2
     _2b_sqr = b_sqr << 1
     _4b_sqr = b_sqr << 2
-    d= _2a_sqr *((row - 1) * row) + \
+    d= _2a_sqr * ((row - 1) * row) + \
         a_sqr + _2b_sqr * (1 - a_sqr)
     while row * a_sqr >= col * b_sqr:
         yield [col, row]
