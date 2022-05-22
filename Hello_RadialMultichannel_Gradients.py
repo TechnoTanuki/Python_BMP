@@ -19,7 +19,6 @@ from Python_BMP.BITMAPlib import(
         distance,
         centercoord,
         plotRGBxybit,
-        getmaxxy,
         saveBMP
         )
 
