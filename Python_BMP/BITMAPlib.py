@@ -2303,7 +2303,7 @@ def gradthickroundline(bmp: array,
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        p1, p2   : (x,y) endpoints
+        p1, p2   : (x, y) endpoints
                     of the line
         penradius: radius of pen
         lumrange : list of two
@@ -2341,7 +2341,7 @@ def _usenopar24btfn2circreg(bmp: array,
         func: Callable):
     """Apply a no parameter function
         to a circular region
-        with center at (x,y)
+        with center at (x, y)
         and a radius r
         in a 24-bit bitmap
 
@@ -2422,8 +2422,8 @@ def _use24btfn2circreg(bmp: array,
             getmaxx(bmp), -1,
             getmaxy(bmp), r):
         for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x,v[0])
-            y1, y2 = mirror(y,v[1])
+            x1, x2 = mirror(x, v[0])
+            y1, y2 = mirror(y, v[1])
             s1 = c(bmp, x1, y1)
             e1 = c(bmp, x2, y1)
             s2 = c(bmp, x1, y2)
@@ -2459,7 +2459,7 @@ def copycircregion2buf(bmp: array,
         r: int) -> list:
     """Copies a circular region
         to a buffer which is
-        defined by centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
@@ -2474,7 +2474,7 @@ def copycircregion2buf(bmp: array,
         of circular region
 
     """
-    copybuf = [_getclrbits(bmp),r]
+    copybuf = [_getclrbits(bmp), r]
     c = _getBMoffhdfunc(bmp)
     for v in itercirclepartlineedge(r):
         x1, x2 = mirror(x, v[0])
@@ -3244,7 +3244,7 @@ def colorfiltercircregion(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x, y, r   : center (x,y)
+        x, y, r   : center (x, y)
                     and radius r
                     of the region
         rgbfactors: [r, g, b] range of
@@ -3349,7 +3349,7 @@ def circlevec(bmp: array,
     Args:
         bmp     : unsigned byte array
                   with bmp format
-        v       : (x,y) center of
+        v       : (x, y) center of
                   the circular region
         r       : radius of the
                   circular region
@@ -3528,7 +3528,7 @@ def thickcircle(bmp: array,
         x: int, y: int, r: int,
         penradius: int, color: int):
     """Draws a thick circle
-        defined by centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r with
         a given color using
         a pen with radius penradius
@@ -3569,7 +3569,7 @@ def gradthickcircle(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x, y, r   : center (x,y)
+        x, y, r   : center (x, y)
                     and radius r
         penradius : radius of round pen
         lumrange  : [byte,byte] the range
@@ -3643,8 +3643,8 @@ def thickellipserot(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : center of ellipse
-        b,a       : major amd minor axis
+        x, y      : center of ellipse
+        b, a      : major amd minor axis
         degrot    : rotation of the ellipse
                     in degrees
         penradius : defines the thickness
