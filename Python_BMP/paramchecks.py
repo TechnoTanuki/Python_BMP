@@ -52,10 +52,12 @@ def intcircleparam(func):
 
 
 def intcircleparam24bitonly(func):
-    """Decorator to test if 2nd, 3rd, 4th parameters in a function 
+    """Decorator to test if 2nd, 3rd,
+        4th parameters in a function
         that renders circle are ints
-        and restrict the use of this function
-        to only 24-bit or RGB bitmaps (1st parameter)
+        and restrict the use of this
+        function to only 24-bit or
+        RGB bitmaps (1st parameter)
 
     Args:
         function(bmp:array,x,y,r....)
@@ -78,8 +80,10 @@ def intcircleparam24bitonly(func):
 
 
 def func24bitonly(func):
-    """Decorator to restrict the use of this function
-        to only 24-bit or RGB bitmaps (1st parameter)
+    """Decorator to restrict the
+        use of this function to only
+        24-bit or RGB bitmaps
+        (1st parameter)
 
     Args:
         function(bmp:array,...)
@@ -97,14 +101,18 @@ def func24bitonly(func):
 
 
 def func24bitonlyandentirerectinboundary(func):
-    """Decorator to restrict the use of this functi
-        to only 24-bit or RGB bitmaps (1st parameter)
-        and ensure that the 2nd, 3rd, 4th and 5th parameters
-        are ints whose values when interpreted
-        as x and y coordinates lay within the RGB bitmap.
+    """Decorator to restrict the
+        use of this function to only
+        24-bit or RGB bitmaps
+        (1st parameter) and ensure that
+        the 2nd, 3rd, 4th and 5th
+        parameters are ints whose
+        values when interpreted as
+        x and y coordinates lay
+        within the RGB bitmap.
 
     Args:
-        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
+        function
 
     Returns:
         caller function
@@ -133,12 +141,14 @@ def func24bitonlyandentirerectinboundary(func):
 
 
 def func24bitonlyandentirecircleinboundary(func):
-    """Decorator to restrict the use of this function
-        to only 24-bit bitmaps (1st parameter)
-        and ensure that the 2nd, 3rd, 4th parameters
-        are ints whose values when interpreted as
-        x,y and radius of a circle that lay within
-        the RGB bitmap.
+    """Decorator to restrict the
+        use of this function to only
+        24-bit bitmaps (1st parameter)
+        and ensure that the 2nd, 3rd,
+        4th parameters are ints whose
+        values when interpreted as
+        x, y and radius of a circle
+        lay within the RGB bitmap.
 
     Args:
         function(bmp:array,x:int,y:int,r:int...)
@@ -169,12 +179,15 @@ def func24bitonlyandentirecircleinboundary(func):
 
 
 def func8and24bitonlyandentirecircleinboundary(func):
-    """Decorator to restrict the use of this function
-        to only 24-bit or 8-bit bitmaps (1st parameter)
-        and ensure that the 2nd, 3rd, 4th parameters
-        are ints whose values when interpreted as
-        x,y and radius of a circle that lay within
-        the RGB bitmap.
+    """Decorator to restrict the
+        use of this function to only
+        24-bit or 8-bit bitmaps
+        (1st parameter) and ensure
+        that the 2nd, 3rd, 4th
+        parameters are ints whose
+        values when interpreted as
+        x, y and radius of a circle
+        lay within the RGB bitmap.
 
     Args:
         function(bmp:array,x:int,y:int,r:int...)
@@ -226,15 +239,19 @@ def func8and24bitonly(func):
 
 
 def func8and24bitonlyandentirerectinboundary(func):
-    """Decorator to restrict the use of this function
-        to only 24 bit or 8 bit bitmaps (1st parameter)
-        and ensure that the 2nd, 3rd, 4th and 5th parameters
-        are ints whose values when interpreted
-        as x and y coordinates of a rectangle
-        that lay within the RGB bitmap.
+    """Decorator to restrict the
+        use of this functiom to only
+        24 bit or 8 bit bitmaps
+        (1st parameter) and ensure
+        that the 2nd, 3rd, 4th and
+        5th parameters are ints whose
+        values when interpreted as
+        x and y coordinates of a
+        rectangle lay within
+        the RGB bitmap.
 
     Args:
-        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
+        function
 
     Returns:
         caller function
@@ -262,12 +279,16 @@ def func8and24bitonlyandentirerectinboundary(func):
 
 
 def entirerectinboundary(func):
-    """Decorator to ensure that the 2nd, 3rd, 4th and 5th parameters 
-        are ints whose values when interpreted as x and y coordinates
-        of a rectangle that lay within the bitmap.
+    """Decorator to ensure that the
+        2nd, 3rd, 4th and 5th
+        parameters are ints whose
+        values when interpreted as
+        x and y coordinates of a
+        rectangle lay within
+        the bitmap.
 
     Args:
-        function(bmp:array,x1:int,y2:int,x2:int,y2:int...)
+        function
 
     Returns:
         caller function
