@@ -8338,12 +8338,9 @@ def adjustcolordicttopal(
                     getallRGBpal(bmp))
 
 
-def gammaadjto24bitregion(
-        bmp: array,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+def gammaadjto24bitregion(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
         gamma: float):
     """Applies a gamma correction
         to a rectangular region
@@ -8366,8 +8363,7 @@ def gammaadjto24bitregion(
 
 
 def gammaadjto24bitimage(
-        bmp: array,
-        gamma: float):
+        bmp: array, gamma: float):
     """Applies a gamma correction
         to an in-memory 24-bit bitmap
 
@@ -8388,12 +8384,9 @@ def gammaadjto24bitimage(
 
 
 @_enrectbnd
-def compareimglines(
-        bmp: array,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+def _cmpimglines(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
         func: Callable):
     offset = _BMoffset(bmp, x1, y2)
     r = _xchrcnt(bmp)
@@ -8430,9 +8423,8 @@ def outlineregion(
         unsigned byte array
 
     """
-    compareimglines(
-        bmp, x1, y1,
-             x2, y2, xorvect)
+    _cmpimglines(bmp, x1, y1,
+                      x2, y2, xorvect)
 
 
 def outline(bmp: array):
