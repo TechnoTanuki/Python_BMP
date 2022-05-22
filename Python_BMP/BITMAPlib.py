@@ -8582,7 +8582,7 @@ def _usebyreffn2regnsv(
 
 
 @_filechk
-def applyfunctoregionandsave(
+def _usefn2regsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         x1: int, y1: int,
@@ -8694,7 +8694,7 @@ def _usefnsv(
 
 
 @_filechk
-def apply24bitfuncandsave(
+def _use24btfnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
@@ -8721,9 +8721,8 @@ def apply24bitfuncandsave(
     else:
         saveBMP(NewBMPfile, func(bmp))
         print(sysmsg['savefunc'] %
-            (func.__name__ ,
-            ExistingBMPfile,
-            NewBMPfile))
+         (func.__name__ ,
+         ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -9095,7 +9094,7 @@ def cropBMPandsave(
         new bitmap file
 
     """
-    applyfunctoregionandsave(
+    _usefn2regsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2, crop)
 
@@ -9123,7 +9122,7 @@ def cropBMPandsaveusingrectbnd(
         new bitmap file
 
     """
-    applyfunctoregionandsave(
+    _usefn2regsv(
         ExistingBMPfile, NewBMPfile,
         rectbnd[0][0],
         rectbnd[0][1],
@@ -9183,8 +9182,7 @@ def imagecomp(
 @_fntimer
 def reduce24bitimagebits(
         Existing24BMPfile: str,
-        NewBMPfile: str,
-        newbits: int,
+        NewBMPfile: str, newbits: int,
         similaritythreshold: float,
         usemonopal: bool,
         RGBfactors: list[float, float, float]):
@@ -9279,8 +9277,7 @@ def imgregionbyRGB2file(
         edge, edgeradius, edgecolor)
     saveBMP(NewBMPfile,bmp)
     print(sysmsg['savemod'] % (
-                ExistingBMPfile,
-                     NewBMPfile))
+         ExistingBMPfile, NewBMPfile))
 
 
 @_fntimer
@@ -9375,7 +9372,8 @@ def mirrortopright2file(
 
     Args:
         ExistingBMPfile: Whole path
-                         to existing file
+                         to existing
+                         file
         NewBMPfile     : New file to
                          save changes in
 
@@ -9501,8 +9499,7 @@ def mirrorright2file(
 def fliphorizontal2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Flips horizontally
-        the image
+    """Flips horizontally the image
         in a bitmap file
 
     Args:
@@ -9547,10 +9544,8 @@ def flipXY2file(
 def flipverticalregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Flips vertically
         a rectangular area
         in a bitmap file
@@ -9617,7 +9612,7 @@ def mirrorleftinregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        x1,y1,x2,y2    : defines the
+        x1, y1, x2, y2 : defines the
                          rectangular area
 
     Returns:
@@ -9957,7 +9952,7 @@ def adjustbrightnessinregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        x1,y1,x2,y2    : defines the
+        x1, y1, x2, y2 : defines the
                          rectangular area
         percentadj     : can be a positive or
                          negative adjustment
@@ -10261,8 +10256,7 @@ def eraseeverynthhorilineinregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
         x1: int, y1: int,
-        x2: int, y2: int,
-        n: int):
+        x2: int, y2: int, n: int):
     """Erase every nth line
         in a rectangular region
 
@@ -10340,8 +10334,7 @@ def fern2file(
     """
     _usebyreffnwithpar2regnsv(
         ExistingBMPfile, NewBMPfile,
-        x1, y1, x2, y2, fern,
-        color)
+        x1, y1, x2, y2, fern, color)
 
 
 @_fntimer
@@ -10363,8 +10356,7 @@ def eraseeverynthhoriline2file(
     """
     _usebyreffnwithparnsv(
         ExistingBMPfile, NewBMPfile,
-        eraseeverynthhorizontalline,
-        n)
+        eraseeverynthhorizontalline, n)
 
 
 @_fntimer
