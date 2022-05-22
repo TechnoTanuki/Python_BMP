@@ -1241,8 +1241,7 @@ def _setmeta(bmpmeta: list) -> array:
 
 
 def setnewpalfromsourcebmp(
-        sourcebmp: array,
-        newbmp: array,
+        sourcebmp: array, newbmp: array,
         similaritythreshold: float) -> list:
     """Copies the RGB palette info from
         a source unsigned byte array
@@ -1251,7 +1250,7 @@ def setnewpalfromsourcebmp(
         can have different bit depths)
 
     Args:
-        sourceBMP,newBMP   : unsigned byte arrays
+        sourceBMP, newBMP  : unsigned byte arrays
                              with bmp format
         similaritythreshold: how close can a color
                              in a palette entry
@@ -1314,8 +1313,7 @@ def setBMP2monochrome(bmp: array,
 
     """
     newpal = monochromepal(
-                _getclrbits(bmp),
-                RGBfactors)
+           _getclrbits(bmp),RGBfactors)
     setbmppal(bmp, newpal)
     return newpal
 
@@ -1335,7 +1333,8 @@ def newBMP(x: int, y: int,
         with bitmap layout
 
     """
-    return _setmeta(_bmmeta(x, y, colorbits))
+    return _setmeta(
+           _bmmeta(x, y, colorbits))
 
 
 def CopyBMPxydim2newBMP(bmp: array,
@@ -1405,12 +1404,9 @@ def saveBMP(filename: str, bmp: array):
         f.close()
 
 
-def BMPbitBLTput(
-        bmp: array,
-        offset: int,
-        arraybuf: array):
-    """Sets offset in array
-        to arraybuf
+def BMPbitBLTput(bmp: array,
+        offset: int, arraybuf: array):
+    """Sets offset in array to arraybuf
 
     Args:
         bmp     : unsigned byte array
@@ -1467,13 +1463,13 @@ def BMPbitBLTget(bmp: array,
 def vertBMPbitBLTget(bmp: array,
         x: int, y1: int,
                 y2: int) -> array:
-    """Gets vertical slice
-        to a new array
+    """Gets vertical slice to a
+        new array
 
     Args:
         bmp   : unsigned byte array
                 with bmp format
-        x,    : unsigned int x
+        x     : unsigned int x
         y1, y2  and y coordinates
 
     Returns:
@@ -1509,7 +1505,7 @@ def _fnwithpar2vertslice(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y1,y2   : unsigned int
+        x, y1, y2 : unsigned int
                     x and y coordinates
         func      : user defined function
         funcparam : parameters of
@@ -1590,16 +1586,15 @@ def plotRGBxybit(bmp: array,
 
 def plotxybit(bmp: array,
         x: int, y: int, c: int):
-    """Sets pixel at x,y
-        in a bitmap
+    """Sets pixel at x,y in a bitmap
         to color c
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int
-             locations in x and y
-        c  : unsigned int color
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int
+              locations in x and y
+        c   : unsigned int color
 
     Returns:
         byref modified
@@ -1638,8 +1633,8 @@ def plotxybit(bmp: array,
 
 def getxybit(bmp: array,
         x: int, y: int) -> int:
-    """Gets color of pixel
-        at x,y in a bitmap
+    """Gets color of pixel at x, y
+    in a windows bitmap
 
     Args:
         bmp: unsigned byte array
@@ -1680,10 +1675,8 @@ def getxybit(bmp: array,
 
 def getRGBxybitvec(bmp: array,
         v:list) -> list:
-    """Gets the RGB
-        of a pixel
-        at (x,y)
-        in a bitmap
+    """Gets the RGB of a pixel
+        at (x,y) in a bitmap
 
     Args:
         bmp: unsigned byte array
@@ -1695,8 +1688,7 @@ def getRGBxybitvec(bmp: array,
         [R:byte, G:byte, B:byte]
 
     """
-    return getRGBxybit(bmp, v[0],
-                            v[1])
+    return getRGBxybit(bmp, v[0], v[1])
 
 
 def getRGBxybit(bmp: array,
@@ -1740,29 +1732,27 @@ def getxybitvec(bmp: array,
         unsigned int color value
 
     """
-    return getxybit(bmp, v[0],
-                         v[1])
+    return getxybit(bmp, v[0], v[1])
 
 
 def intplotvecxypoint(bmp: array,
         v: list, c: int):
-    """Sets the color
-        of a pixel at (x,y)
+    """Sets the color of a pixel
+        at (x,y)
 
     Args:
         bmp: unsigned byte array
              with bmp format
         v  : (x:int, y:int)
         c  : unsigned int
-        color value
+             color value
 
     Returns:
         byref modified
         unsigned byte array
 
     """
-    plotxybit(bmp, v[0],
-                   v[1], c)
+    plotxybit(bmp, v[0], v[1], c)
 
 
 def plotvecxypoint(bmp: array,
@@ -1785,8 +1775,7 @@ def plotvecxypoint(bmp: array,
 
     """
     v = roundvect(v)
-    plotxybit(bmp, v[0],
-                   v[1], c)
+    plotxybit(bmp, v[0], v[1], c)
 
 
 def plotRGBxybitvec(bmp: array,
@@ -1804,20 +1793,16 @@ def plotRGBxybitvec(bmp: array,
         unsigned byte array
 
     """
-    plotRGBxybit(bmp, v[0],
-                      v[1], rgb)
+    plotRGBxybit(bmp, v[0], v[1], rgb)
 
 
 def plotxypointlist(bmp: array,
         vlist: list, penradius: int,
         color: int):
-    """Draws a circle
-        or a point
-        depending on
-        the penradius
-        with a given color
-        for all points
-        in a point list
+    """Draws a circle or a point
+        depending on the penradius
+        with a given color for
+        all points in a point list
 
     Args:
         bmp      : unsigned byte array
@@ -1840,10 +1825,9 @@ def plotxypointlist(bmp: array,
 
 def roundpen(bmp: array, point: list,
         penradius: int, color: int):
-    """Draws a circle or
-        a point depending
-        on penradius of
-        a given color
+    """Draws a circle or a point
+        depending on the penradius
+        with a given color
 
     Args:
         bmp      : unsigned byte array
@@ -1859,13 +1843,12 @@ def roundpen(bmp: array, point: list,
         unsigned byte array
 
     """
-    x = point[0]
-    y = point[1]
+    (x, y) = point
     if penradius <= 1:
         plotxybit(bmp, x, y, color)
     else:
-        circle(bmp, x, y,
-            penradius, color, True)
+        circle(bmp, x, y, penradius,
+                        color, True)
 
 
 def swapcolors(bmp: array,
@@ -1874,10 +1857,10 @@ def swapcolors(bmp: array,
         two points in a bitmap
 
     Args:
-        bmp  : unsigned byte array
-               with bmp format
-        p1,p2: endpoints of the
-               line(x:uint,y:uint)
+        bmp   : unsigned byte array
+                with bmp format
+        p1, p2: endpoints of the
+                line(x: uint, y: uint)
 
     Returns:
         byref modified
@@ -1898,11 +1881,11 @@ def line(bmp: array,
         in a bitmap
 
     Args:
-        bmp      : unsigned byte array
-                   with bmp format
-        x1, y1   : endpoints of the line
+        bmp   : unsigned byte array
+                with bmp format
+        x1, y1: endpoints of the line
         x2, y2
-        color    : color of the line
+        color : color of the line
 
     Returns:
         byref modified
