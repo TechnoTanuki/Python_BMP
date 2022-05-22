@@ -2083,12 +2083,10 @@ def fillbackgroundwithgrad(bmp: array,
         unsigned byte array
 
     """
-    filledgradrect(bmp,
-        0, 0,
+    filledgradrect(bmp, 0, 0,
         getmaxx(bmp) - 1,
         getmaxy(bmp) -1,
-        lumrange,
-        RGBfactors,
+        lumrange, RGBfactors,
         direction)
 
 
@@ -2197,7 +2195,7 @@ def intlinevec(bmp: array,
     Args:
         bmp   : unsigned byte array
                 with bmp format
-        u, v  : (x:int,y:int) endpoints
+        u, v  : (x: int, y: int) points
                 that defines the line
         color : color of the line
 
@@ -2213,17 +2211,16 @@ def intlinevec(bmp: array,
 def linevec(bmp: array,
         u: list, v: list,
         color: int):
-    """Creates a line
-        in a bitmap
+    """Creates a line in a bitmap
 
     Args:
-        bmp   : unsigned byte array
-                with bmp format
-        u, v  : (x:float,y:float)
-                the endpoints
-                of the line
-        color : the color
-                of the line
+        bmp  : unsigned byte array
+               with bmp format
+        u, v : (x:float,y:float)
+               the endpoints
+               of the line
+        color: the color
+               of the line
 
     Returns:
         byref modified
@@ -2237,17 +2234,16 @@ def linevec(bmp: array,
 def filledparallelogram(bmp: array,
         p1: list, p2: list, p3: list,
         color: int):
-    """Creates a
-        filled parallelogram
+    """Creates a filled parallelogram
         defined by 3 points
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        p1, p2, p3: (x:float,y:float)
+        p1, p2, p3:(x: float, y: float)
                     points that define
                     a parallelogram
-        color     : color of
+        color     : color of the
                     filled parallelgram
 
     Returns:
@@ -2266,8 +2262,7 @@ def drawvec(bmp: array,
         headsize0fordefault: int,
         color: int):
     """Draws a vector
-        (line segment
-        with arrow head)
+       (line segment with arrow head)
 
     Args:
         bmp     : unsigned byte array
@@ -2305,14 +2300,12 @@ def drawvec(bmp: array,
                     color)
 
     def _hdsub(bmp, v, hm, a1, a2):
-        linevec(bmp, v,
-            subvect(v,
-                polar2rectcoord2D([hm, a1])),
-                    color)
-        linevec(bmp, v,
-            subvect(v,
-                polar2rectcoord2D([hm, a2])),
-                    color)
+        linevec(bmp, v, subvect(v,
+        polar2rectcoord2D([hm, a1])),
+                              color)
+        linevec(bmp, v, subvect(v,
+        polar2rectcoord2D([hm, a2])),
+                              color)
 
     if u[0] < v[0] and u[1] < v[1]:
         _hdsub(bmp, v, hm, a1, a2)
@@ -2341,7 +2334,7 @@ def thickroundline(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        p1,p2     : (x,y) endpoints
+        p1, p2    : (x, y) endpoints
                     of the line
         penradius : radius of pen
                     in pixels
@@ -2362,21 +2355,19 @@ def gradthickroundline(bmp: array,
         penradius: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
-    """Creates a
-        thick rounded line
+    """Creates a thick rounded line
 
     Args:
-        bmp       : unsigned byte array
-                    with bmp format
-        p1, p2    : (x,y) endpoints
-                     of the line
-        penradius : radius of pen
-                    in pixels
-        lumrange  : list of two
-                    byte values
-                    [gradstart,gradend]
-                    that define the
-                    luminosity gradient
+        bmp      : unsigned byte array
+                   with bmp format
+        p1, p2   : (x,y) endpoints
+                    of the line
+        penradius: radius of pen
+        lumrange : list of two
+                   byte values
+                   [gradstart,gradend]
+                   that define the
+                   luminosity gradient
         RGBfactors: [r,g,b]
                     each item
                     in list is an
@@ -2405,8 +2396,7 @@ def gradthickroundline(bmp: array,
 def _usenopar24btfn2circreg(bmp: array,
         x: int, y: int, r: int,
         func: Callable):
-    """Apply a
-        no parameter function
+    """Apply a no parameter function
         to a circular region
         with center at (x,y)
         and a radius r
@@ -2626,7 +2616,7 @@ def copycircregion(bmp: array,
     pastecirularbuf(
         bmp, newxy[0], newxy[1],
         copycircregion2buf(
-            bmp, x, y, r))
+              bmp, x, y, r))
 
 
 @_intcircpar
@@ -2842,8 +2832,7 @@ def mirrorleftincircregion(
         x: int, y: int, r: int):
     """Mirrors the top-left
         of a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x,y)
         and radius r
 
     Args:
@@ -2866,8 +2855,7 @@ def mirrorrightincircregion(
         x: int, y: int, r: int):
     """Mirrors the right-half
         of a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x,y)
         and radius r
 
     Args:
@@ -2890,8 +2878,7 @@ def flipvertcircregion(bmp: array,
         x: int, y: int, r: int):
     """Does a vertical flip
         of a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x,y)
         and radius r
 
     Args:
@@ -2917,8 +2904,7 @@ def verttransformincircregion(
         trans: str):
     """Applies a vertical
         transform to circular region
-        with a center x,y and
-        a radius r
+        with a center x, y and radius r
 
     Args:
         bmp    : unsigned byte array
@@ -2967,15 +2953,14 @@ def mirrortopincircregion(
         x: int, y: int, r: int):
     """Mirrors the top half
         of a circular region
-        defined by centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y)
-                 and radius r
-                 of region
+        x, y, r: center (x, y)
+                 and radius r of area
 
     Returns:
         byref modified
@@ -3015,8 +3000,7 @@ def mirrortopleftincircregion(
         x: int, y: int, r: int):
     """Mirrors the top-left
         of a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x,y)
         and radius r
 
     Args:
@@ -3042,14 +3026,13 @@ def mirrortoprightincircregion(
         x: int, y: int, r: int):
     """Mirrors the top-right
         of a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y) and
+        x, y, r: center (x, y) and
                  radius r of region
 
     Returns:
@@ -3068,8 +3051,7 @@ def mirrorbottomleftincircregion(
         x: int, y: int, r: int):
     """Mirrors the bottom-left
         of a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
@@ -3094,8 +3076,7 @@ def mirrorbottomrightincircregion(
         x: int, y: int, r: int):
     """Mirrors the bottom-right
         of a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x,y)
         and radius r
 
     Args:
@@ -3170,7 +3151,7 @@ def horibrightnessgrad2circregion(
         gradient adjustment
         to a circular region
         with a center at (x,y)
-        and a radius r
+        and radius r
 
     Args:
         bmp     : unsigned byte array
@@ -3208,14 +3189,13 @@ def outlinecircregion(bmp: array,
     """Outlines the area
         within
         a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        x, y, r: center (x,y)
+        x, y, r: center (x, y)
                  and radius r
                  of the region
 
@@ -3296,7 +3276,7 @@ def monocircle(bmp: array,
         x: int, y: int, r: int):
     """Applies a monochrome filter
         to a circular region defined
-        by centerpoint (x,y)
+        by a centerpoint at (x,y)
         and radius r
 
     Args:
@@ -3322,7 +3302,7 @@ def colorfiltercircregion(bmp: array,
     """Applies a color filter
         defined by rgbfactors
         to a circular region
-        defined by centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
@@ -3331,7 +3311,7 @@ def colorfiltercircregion(bmp: array,
         x, y, r   : center (x,y)
                     and radius r
                     of the region
-        rgbfactors: [r,g,b] range of
+        rgbfactors: [r, g, b] range of
                     r,g & b are from
                     0.0 min to 1.0 max
 
@@ -3351,7 +3331,7 @@ def gammacorrectcircregion(
         gamma: float):
     """Applies a gamma correction
         to a circular region
-        defined by centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
@@ -3380,13 +3360,13 @@ def brightnessadjcircregion(
     """Applies a
         brightness adjustment
         to a circular region
-        defined by centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x, y, r   : center (x,y)
+        x, y, r   : center (x, y)
                     and radius r
                     of the region
         percentadj: float percent of the
@@ -3405,8 +3385,7 @@ def invertbitsincircregion(bmp: array,
         x: int, y: int, r: int):
     """Inverts the bits
         in a circular region
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
 
     Args:
@@ -3428,10 +3407,8 @@ def invertbitsincircregion(bmp: array,
 def circlevec(bmp: array,
         v: list, r: int, color: int,
         isfilled: bool = None):
-    """Draws a circle
-        defined by
-        centerpoint v
-        and radius r
+    """Draws a circle defined by
+        centerpoint v and radius r
         with a given color
 
     Args:
@@ -3459,8 +3436,7 @@ def filledcircle(bmp: array,
         x: int, y: int, r: int,
         color: int):
     """Draws a filled circle
-        defined by
-        centerpoint (x,y)
+        defined by centerpoint (x, y)
         and radius r
         with a given color
 
@@ -3529,7 +3505,7 @@ def circle(bmp: array,
         color: int,
         isfilled: bool = None):
     """Draws a circle defined
-        by centerpoint (x,y)
+        by centerpoint (x, y)
         and radius r
         with a given color
 
@@ -3565,8 +3541,7 @@ def circle(bmp: array,
             color = int2BGRarr(color)
             if dobndcheck:
                 for p in itercircle(x, y, r):
-                    px = p[0]
-                    py = p[1]
+                    (px, py)  = p
                     if isinBMPrectbnd(
                             bmp, px, py):
                         s = c(bmp, px, py)
@@ -3596,7 +3571,7 @@ def circle(bmp: array,
         elif bits == 8:
             if dobndcheck:
                 for p in itercircle(x, y, r):
-                    px, py = p[0], p[1]
+                    (px, py) = p
                     if isinBMPrectbnd(bmp, px, py):
                         bmp[c(bmp, px, py)] = color
             else:
@@ -3608,9 +3583,10 @@ def circle(bmp: array,
                     bmp[c(bmp, x1, y2)] = \
                     bmp[c(bmp, x2, y1)] = color
         else:
-            for p in itercircle(x, y, r):
+            for p in itercircle(
+                        x, y, r):
                 plotxybit(bmp, p[0],
-                               p[1], color)
+                        p[1], color)
 
 
 def thickcircle(bmp: array,
