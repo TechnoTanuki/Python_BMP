@@ -9395,10 +9395,8 @@ def invertbits2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        invertimagebits)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, invertimagebits)
 
 
 @_fntimer
@@ -9418,10 +9416,8 @@ def flipvertical2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        flipvertical)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, flipvertical)
 
 
 @_fntimer
@@ -9441,8 +9437,7 @@ def mirrortop2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile,
+    _usebyreffnsv(ExistingBMPfile,
         NewBMPfile, mirrortop)
 
 
@@ -9463,10 +9458,8 @@ def mirrortopleft2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        mirrortopleft)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, mirrortopleft)
 
 @_fntimer
 def mirrortopright2file(
@@ -9485,10 +9478,8 @@ def mirrortopright2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        mirrortopright)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, mirrortopright)
 
 
 @_fntimer
@@ -9509,8 +9500,7 @@ def mirrorbottomleft2file(
 
     """
     _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         mirrorbottomleft)
 
 
@@ -11422,8 +11412,7 @@ def horizontalbrightnessgradregion2file(
 
     """
     _use24btbyrefclrfn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         horizontalbrightnessgradto24bitregion,
         lumrange)
@@ -11451,8 +11440,7 @@ def verticalbrightnessgrad2file(
 
     """
     _use24btclrfn(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         verticalbrightnessgradto24bitimage,
         lumrange)
 
@@ -11484,8 +11472,7 @@ def verticalbrightnessgradregion2file(
 
     """
     _use24btbyrefclrfn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         verticalbrightnessgradto24bitregion,
         lumrange)
