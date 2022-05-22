@@ -837,8 +837,8 @@ def _BMoffsethd(bmp: array,
         to data in buffer
 
     """
-    f = _getBMoffhdfunc(bmp)
-    return f(bmp, x, y)
+
+    return _getBMoffhdfunc(bmp)(bmp, x, y)
 
 
 def getmaxxyandbits(
@@ -938,9 +938,7 @@ def _getbmflsz(
            _getbmhdsz[bits]
 
 
-def _bmmeta(
-        x: int,
-        y: int,
+def _bmmeta(x: int, y: int,
         bits: int) -> tuple:
     """computes bitmap
         meta data
@@ -997,8 +995,7 @@ def getBMPimgbytes(bmp: array) -> list:
 
 
 def setBMPimgbytes(
-        bmp: array,
-        buf: array):
+        bmp: array, buf: array):
     """Sets the raw
         image buffer
         of a bitmap
@@ -1016,8 +1013,7 @@ def setBMPimgbytes(
     bmp[_hdsz(bmp): _flsz(bmp)] = buf
 
 
-def setbmppal(
-        bmp: array,
+def setbmppal(bmp: array,
         pallist: list):
     """Sets the RGB palette
         of a windows bitmap
@@ -1044,8 +1040,7 @@ def setbmppal(
 
 def getallRGBpal(
         bmp: array) -> list[list[int, int, int]]:
-    """Gets the RGB palette
-        of a bitmap
+    """Gets the RGB palette of a bitmap
 
     Args:
         bmp: unsigned byte array
@@ -1061,12 +1056,10 @@ def getallRGBpal(
             for c in range(0, colors)]
 
 
-def getRGBpal(
-        bmp: array,
+def getRGBpal(bmp: array,
         c: int) -> list[int, int, int]:
     """Gets the [R,G,B] values
-        of color c
-        in a bitmap
+        of color c in a bitmap
 
     Args:
         bmp: unsigned byte array
@@ -1083,12 +1076,9 @@ def getRGBpal(
             bmp[i]]
 
 
-def setRGBpal(
-        bmp: array,
+def setRGBpal(bmp: array,
         c: int,
-        r: int,
-        g: int,
-        b: int):
+        r: int, g: int, b: int):
     """Sets the r,g,b values
         of color c in a bitmap
 
@@ -1135,8 +1125,7 @@ def colorhistorgram(bmp: array) -> list:
 
 
 def makenewpalfromcolorhist(
-        chist: list,
-        colors: int,
+        chist: list, colors: int,
         similaritythreshold: float) -> list:
     """Creates a new palatte
         based on
@@ -1177,10 +1166,8 @@ def makenewpalfromcolorhist(
 
 
 def copyBMPhdr(bmp: array) -> array:
-    """Copies the
-        bitmap header of
-        an in-memory bmp
-        to a new
+    """Copies the bitmap header of
+        an in-memory bmp to a new
         unsigned byte array
 
     Args:
@@ -1198,8 +1185,7 @@ def copyBMPhdr(bmp: array) -> array:
     return newbmp
 
 
-def copyRGBpal(
-        sourceBMP: array,
+def copyRGBpal(sourceBMP: array,
         destBMP: array):
     """Copies the
         RGB palette info from
@@ -1209,8 +1195,7 @@ def copyRGBpal(
         unsigned byte array
 
     Args:
-        sourceBMP and destBMP
-        are both
+        sourceBMP and destBMP are both
         unsigned byte arrays
         with bmp format
 
