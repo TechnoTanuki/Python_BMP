@@ -1663,7 +1663,7 @@ def getRGBxybit(bmp: array,
 
 def getxybitvec(bmp: array,
         v: list) -> int:
-    """Gets color of pixel at (x,y)
+    """Gets color of pixel at (x, y)
 
     Args:
         bmp: unsigned byte array
