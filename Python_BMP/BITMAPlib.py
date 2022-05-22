@@ -473,7 +473,7 @@ def _getclrbits(bmp: array) -> int:
 
     Returns:
         int value of bit depth
-        (1,4,8,24)
+        (1, 4, 8, 24)
 
     """
     return bmp[_bmclrbits]
@@ -497,9 +497,7 @@ def _xchrcnt(bmp: array) -> int:
                     bmp[_bmclrbits])
 
 
-def _setflsz(
-        bmp: array,
-        size: int):
+def _setflsz(bmp: array, size: int):
     """Set the file size
         of a windows bitmap
 
@@ -536,9 +534,7 @@ def _flsz(bmp: array) -> int:
     return _rdint(_bmflsz, 8, bmp)
 
 
-def _sethdsz(
-        bmp: array,
-        hdsize: int):
+def _sethdsz(bmp: array, hdsize: int):
     """Set the header size
         of a windows bitmap
 
@@ -588,14 +584,10 @@ def getmaxcolors(bmp: array) -> int:
     return 1 << bmp[_bmclrbits]
 
 
-def _24bmof(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
-        with RGB data
-        given x and y
+def _24bmof(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
+        with RGB data given x and y
 
     Args:
         bmp: unsigned byte array
@@ -614,14 +606,10 @@ def _24bmof(
         _xbytes(_rdint(_bmx, 4, bmp), 24))
 
 
-def _24bmofhd(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
-        with RGB data
-        given x and y
+def _24bmofhd(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
+        with RGB data given x and y
         with bmp header
 
     Args:
@@ -641,12 +629,9 @@ def _24bmofhd(
         _xbytes(_rdint(_bmx, 4, bmp), 24 )) + 54
 
 
-def _8bmof(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
+def _8bmof(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
         with 8 bit color data
         given x and y data
 
@@ -667,12 +652,9 @@ def _8bmof(
             _xbytes(_rdint(_bmx, 4, bmp), 8))
 
 
-def _8bmofhd(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
+def _8bmofhd(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
         with 8 bit color data
         given x and y
         with adjustments
@@ -696,12 +678,9 @@ def _8bmofhd(
                  1078
 
 
-def _4bmof(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
+def _4bmof(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
         with 4 bit color data
         given x and y data
 
@@ -722,12 +701,9 @@ def _4bmof(
              _xbytes(_rdint(_bmx, 4, bmp), 4))
 
 
-def _1bmof(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
+def _1bmof(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
         with 1 bit color data
         given x and y data
 
@@ -748,12 +724,9 @@ def _1bmof(
             _xbytes(_rdint(_bmx, 4, bmp), 1))
 
 
-def _4bmofhd(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
+def _4bmofhd(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
         with 4 bit color data
         given x and y
         with adjustments
@@ -777,12 +750,9 @@ def _4bmofhd(
                 118
 
 
-def _1bmofhd(
-        bmp: array,
-        x: int,
-        y: int) -> int:
-    """Get the offset
-        in a byte array
+def _1bmofhd(bmp: array,
+        x: int, y: int) -> int:
+    """Get the offset in a byte array
         with 1 bit color data
         given x and y
         with adjustments
@@ -808,11 +778,9 @@ def _1bmofhd(
 
 def _getBMoffhdfunc(
         bmp: array):
-    """Returns the
-        correct function to use
-        in computing offsets
-        with headers
-        in a given bitmap
+    """Returns the correct function
+        to use in computing offsets
+        with headers in a given bmp
 
     Args:
         bmp: An unsigned byte array
@@ -830,9 +798,8 @@ def _getBMoffhdfunc(
 
 
 def _getBMofffunc(bmp: array):
-    """Returns the
-        correct function to use
-        in computing the offset
+    """Returns the correct function
+        to use in computing the offset
         in a given bitmap
 
     Args:
@@ -849,18 +816,17 @@ def _getBMofffunc(bmp: array):
              1: _1bmof}[bmp[_bmclrbits]]
 
 
-def _BMoffset(
-        bmp: array,
-        x: int,
-        y: int) -> int:
+def _BMoffset(bmp: array,
+        x: int, y: int) -> int:
     """Returns the offset
         given a bitmap
+        and (x, y) coordinates
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int location
-             in x-axis and y-axis
+        bmp : unsigned byte array
+              with bmp format
+        x, y:unsigned int location
+              in x-axis and y-axis
 
     Returns:
         unsigned int offset
@@ -871,19 +837,18 @@ def _BMoffset(
     return f(bmp, x, y)
 
 
-def _BMoffsethd(
-        bmp: array,
-        x: int,
-        y: int) -> int:
+def _BMoffsethd(bmp: array,
+        x: int, y: int) -> int:
     """Returns the offset
         given a bitmap
+        and (x, y) coordinates
         with header considered
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int location
-             in x-axis and y-axis
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int location
+              in x-axis and y-axis
 
     Returns:
         unsigned int offset
@@ -896,18 +861,16 @@ def _BMoffsethd(
 
 def getmaxxyandbits(
         bmp: array) -> tuple:
-    """Returns bitmap metadat
-       (x dimension,
-        y dimension,
-          bit depth)
+    """Returns bitmap metadata
+       (x-dimension, y-dimension,
+        bit depth)
 
     Args:
         bmp: unsigned byte array
              with bmp format
 
     Returns:
-        (x dimension,
-         y dimension,
+        (x-dimension, y-dimension,
          bit depth)
 
     """
@@ -916,23 +879,20 @@ def getmaxxyandbits(
               bmp[_bmclrbits]))
 
 
-def _xbytes(
-        x: int,
-        bits: int) -> int:
-    """Get the number of
-        bytes in a bmp row
-        given x dimension
+def _xbytes(x: int, bits: int) -> int:
+    """Get the number of bytes in
+        a bmp row given x dimension
         and bit depth
 
     Args:
         x   : unsigned int value of
               x-dimension
         bits: unsigned int value of
-              bit depth (1,4,8,24)
+              bit depth (1, 4, 8, 24)
 
     Returns:
-        int value of number
-        of bytes in a row
+        int value of number of bytes
+        in a row
 
     """
     if bits <= 8:
