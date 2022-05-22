@@ -7169,8 +7169,7 @@ def fliphorizontal(bmp: array):
 
 
 def flipXY(bmp: array):
-    """Flips the x and y
-        coordinates of
+    """Flips the x and y coordinates of
         an in-memory bitmap
         for a 90 degree rotation
 
@@ -7243,15 +7242,18 @@ def itergetcolorfromrectregion(
 def crop(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Crops the image
-        to a rectangular region
-        defined by (x1,y1)
-               and (x2,y2)
+    """Crops the image to a
+        rectangular region
+        defined by (x1, y1)
+               and (x2, y2)
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: defines the rectangle
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: defines the
+                        rectangular
+                        trgion
 
     Returns:
         unsigned byte array
@@ -7519,8 +7521,7 @@ def brightnesseadjto24bitregion(
     """
     _use24bitfn2reg(
         bmp, x1, y1, x2, y2,
-        _bradj2BGRbuf,
-        percentadj)
+        _bradj2BGRbuf, percentadj)
 
 
 def thresholdadjto24bitregion(
@@ -7549,8 +7550,7 @@ def thresholdadjto24bitregion(
     """
     _use24bitfn2reg(
         bmp, x1, y1, x2, y2,
-        _thresadj2BGRbuf,
-        lumrange)
+        _thresadj2BGRbuf, lumrange)
 
 
 def thresholdadjcircregion(
@@ -7575,10 +7575,8 @@ def thresholdadjcircregion(
         unsigned byte array
 
     """
-    _use24btfn2circreg(
-        bmp, x, y, r,
-        _thresadj2BGRbuf,
-        lumrange)
+    _use24btfn2circreg(bmp, x, y, r,
+        _thresadj2BGRbuf, lumrange)
 
 
 def brightnesseadjto24bitimage(
