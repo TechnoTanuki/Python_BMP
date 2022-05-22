@@ -3811,15 +3811,10 @@ def gradcircle(bmp: array,
         thickcircle(bmp, x, y, i, 2, c)
 
 
-def thickellipserot(
-        bmp: array,
-        x: int,
-        y: int,
-        b: int,
-        a: int,
-        degrot: float,
-        penradius: int,
-        color: int):
+def thickellipserot(bmp: array,
+        x: int, y: int,
+        b: int, a: int, degrot: float,
+        penradius: int, color: int):
     """Draws an thick ellipse with
         a defined pen radius
         with a centerpoint at (x,y)
@@ -3842,22 +3837,15 @@ def thickellipserot(
         unsigned byte array
 
     """
-    for p in iterellipserot(
-                x, y,
+    for p in iterellipserot(x, y,
                 b, a, degrot):
-        circle(bmp,
-            p[0], p[1],
+        circle(bmp, p[0], p[1],
             penradius, color, True)
 
 
-def gradthickellipserot(
-        bmp: array,
-        x: int,
-        y: int,
-        b: int,
-        a: int,
-        degrot: float,
-        penradius: int,
+def gradthickellipserot(bmp: array,
+        x: int, y: int, b: int, a: int,
+        degrot: float, penradius: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
     """Draws an thick ellipse
@@ -3897,19 +3885,13 @@ def gradthickellipserot(
             c = matchRGBtopal(
                     int2RGBarr(c),
                     getallRGBpal(bmp))
-        thickellipserot(
-            bmp,
-            x, y,
-            b, a,
-            degrot, i, c)
+        thickellipserot(bmp,
+            x, y, b, a, degrot, i, c)
 
 
-def filledellipse(
-        bmp: array,
-        x: int,
-        y: int,
-        b: int,
-        a: int,
+def filledellipse(bmp: array,
+        x: int, y: int,
+        b: int, a: int,
         color: int):
     """Draws an filled ellipse
         defined by centerpoint (x,y)
@@ -3976,12 +3958,9 @@ def filledellipse(
                     bmp[s: s + dx] = colorbuf
 
 
-def ellipse(
-        bmp: array,
-        x: int,
-        y: int,
-        b: int,
-        a: int,
+def ellipse(bmp: array,
+        x: int, y: int,
+        b: int, a: int,
         color: int,
         isfilled: bool = None):
     """Draws an ellipse defined
@@ -4042,12 +4021,9 @@ def ellipse(
                                p[1], color)
 
 
-def gradellipse(
-        bmp: array,
-        x: int,
-        y: int,
-        b: int,
-        a: int,
+def gradellipse(bmp: array,
+        x: int, y: int,
+        b: int, a: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
     """Draws an ellipical
@@ -4090,17 +4066,13 @@ def gradellipse(
 
 
 @_intcircpar
-def drawarc(
-        bmp: array,
-        x: int,
-        y: int,
-        r: int,
+def drawarc(bmp: array,
+        x: int, y: int, r: int,
         startdegangle: float,
         enddegangle: float,
         color: int,
         showoutline: bool,
-        fillcolor: int,
-        isfilled: bool):
+        fillcolor: int, isfilled: bool):
     """Draws an arc centered
         at point (x,y)
         with radius r
@@ -4129,10 +4101,7 @@ def drawarc(
             enddegangle,
             showoutline)
     for p in av:
-        plotxybit(
-            bmp,
-            p[0],
-            p[1],
+        plotxybit(bmp, p[0], p[1],
             color)
     if isfilled:
         fillboundary(bmp,
@@ -4142,8 +4111,7 @@ def drawarc(
                 fillcolor)
 
 
-def rectangle(
-        bmp: array,
+def rectangle(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         color: int):
@@ -4167,12 +4135,9 @@ def rectangle(
 
 
 @_enrectbnd
-def filledrect(
-        bmp: array,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+def filledrect(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
         color: int):
     """Draws a filled rectangle
         of a given color
@@ -4220,11 +4185,9 @@ def filledrect(
             offset += r
 
 
-def beziercurve(
-        bmp: array,
+def beziercurve(bmp: array,
         pntlist: list,
-        penradius: int,
-        color: int):
+        penradius: int, color: int):
     """Draws a bezier curve of
         a given color and thickness
 
@@ -4247,11 +4210,8 @@ def beziercurve(
         roundpen(bmp, v, penradius, color)
 
 
-def bspline(
-        bmp: array,
-        pntlist: list,
-        penradius: int,
-        color: int,
+def bspline(bmp: array, pntlist: list,
+        penradius: int, color: int,
         isclosed: bool,
         curveback: bool):
     """Draws a bspline of
@@ -4284,13 +4244,9 @@ def bspline(
 
 
 def plotrotated8bitpatternwithfn(
-        bmp: array,
-        x: int,
-        y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int,
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int,
         fn: Callable):
     """Draws a 8-bit pattern
         with the bits rotated
@@ -4332,12 +4288,9 @@ def plotrotated8bitpatternwithfn(
 
 
 def plot8bitpatternwithfn(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int,
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int,
         fn: Callable):
     """Draws a 8-bit pattern
     with a function
@@ -4377,12 +4330,9 @@ def plot8bitpatternwithfn(
 
 
 def plot8bitpattern(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern
 
     Args:
@@ -4437,12 +4387,9 @@ def plotcircinsqr(bmp, x, y, d, color):
 
 
 def plot8bitpatternasdots(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern
         as circles
 
@@ -4473,13 +4420,9 @@ def plot8bitpatternasdots(
 
 
 def plotrotated8bitpattern(
-        bmp: array,
-        x: int,
-        y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern
         with the bits rotated
 
@@ -4512,13 +4455,9 @@ def plotrotated8bitpattern(
 
 
 def plotrotated8bitpatternwithdots(
-        bmp: array,
-        x: int,
-        y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern
         with the bits rotated
 
@@ -4549,12 +4488,9 @@ def plotrotated8bitpatternwithdots(
 
 
 def plot8bitpatternupsidedownwithfn(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int,
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int,
         fn: Callable):
     """Draws a 8-bit pattern
         upsidedown with a
@@ -4589,9 +4525,11 @@ def plot8bitpatternupsidedownwithfn(
         while mask > 0:
             if (mask & bits)>0:
                 if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y, color)
+                    plotxybit(bmp, x, y,
+                        color)
                 else:
-                    fn(bmp,x, y, inc, color)
+                    fn(bmp,x, y, inc,
+                        color)
             mask >>= 1
             x += scale
         y += scale
@@ -4600,12 +4538,9 @@ def plot8bitpatternupsidedownwithfn(
 
 
 def plot8bitpatternupsidedown(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern
         upsidedown
 
@@ -4638,12 +4573,9 @@ def plot8bitpatternupsidedown(
 
 
 def plot8bitpatternupsidedownasdots(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern
         upsidedown with dots
 
@@ -4673,12 +4605,9 @@ def plot8bitpatternupsidedownasdots(
 
 
 def plot8bitpatternsidewaywithfn(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int,
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int,
         fn: Callable):
     """Draws a 8-bit pattern sideways
     with a function
@@ -4718,12 +4647,9 @@ def plot8bitpatternsidewaywithfn(
 
 
 def plot8bitpatternsideway(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern sideways
 
     Args:
@@ -4755,12 +4681,9 @@ def plot8bitpatternsideway(
 
 
 def plot8bitpatternsidewaywithdots(
-        bmp: array,
-        x: int, y: int,
-        bitpattern: list,
-        scale: int,
-        pixspace: int,
-        color: int):
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
     """Draws a 8-bit pattern sideways
     with dots
 
@@ -4789,16 +4712,11 @@ def plot8bitpatternsidewaywithdots(
         plotcircinsqr)
 
 
-def plotstringfunc(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotstringfunc(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list,
+        color: int, fontbuf: list,
         orderfunc: Callable,
         fontrenderfunc: Callable):
     """Draws a string
@@ -4849,16 +4767,11 @@ def plotstringfunc(
             x += xstep
 
 
-def plotstring(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotstring(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string
 
     Args:
@@ -4881,29 +4794,18 @@ def plotstring(
         unsigned byte array
 
     """
-    plotstringfunc(
-        bmp,
-        x, y,
-        str2plot,
-        scale,
-        pixspace,
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
         spacebetweenchar,
-        color,
-        fontbuf,
-        _enchr,
-        plot8bitpattern)
+        color, fontbuf,
+        _enchr, plot8bitpattern)
 
 
-def plotstringasdots(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotstringasdots(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string
 
     Args:
@@ -4926,29 +4828,18 @@ def plotstringasdots(
         unsigned byte array
 
     """
-    plotstringfunc(
-        bmp,
-        x, y,
-        str2plot,
-        scale,
-        pixspace,
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
         spacebetweenchar,
-        color,
-        fontbuf,
-        _enchr,
-        plot8bitpatternasdots)
+        color, fontbuf,
+        _enchr, plot8bitpatternasdots)
 
 
-def plotstringupsidedown(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotstringupsidedown(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string upsidedown
 
     Args:
@@ -4971,29 +4862,19 @@ def plotstringupsidedown(
         unsigned byte array
 
     """
-    plotstringfunc(
-        bmp,
-        x, y,
-        str2plot,
-        scale,
-        pixspace,
-        spacebetweenchar,
-        color,
-        fontbuf,
-        _enchr,
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar, color,
+        fontbuf, _enchr,
         plot8bitpatternupsidedown)
 
 
 def plotstringupsidedownasdots(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
+        bmp: array, x: int, y: int,
+        str2plot: str, scale: int,
         pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string upsidedown
 
     Args:
@@ -5016,35 +4897,24 @@ def plotstringupsidedownasdots(
         unsigned byte array
 
     """
-    plotstringfunc(
-        bmp,
-        x, y,
-        str2plot,
-        scale,
-        pixspace,
-        spacebetweenchar,
-        color,
-        fontbuf,
-        _enchr,
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar, color,
+        fontbuf, _enchr,
         plot8bitpatternupsidedownasdots)
 
 
-def plotreversestring(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotreversestring(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string reversed
 
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : sets where to
+        x, y            : sets where to
                           draw the string
         str2plot        : string to draw
         scale           : control how big
@@ -5061,29 +4931,20 @@ def plotreversestring(
         unsigned byte array
 
     """
-    plotstringfunc(
-        bmp,
-        x, y,
-        str2plot,
-        scale,
-        pixspace,
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
         spacebetweenchar,
-        color,
-        fontbuf,
+        color, fontbuf,
         _enchrev,
         plotrotated8bitpattern)
 
 
 def plotreversestringasdots(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
+        bmp: array, x: int, y: int,
+        str2plot: str, scale: int,
         pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string reversed
     with dots
 
@@ -5107,29 +4968,18 @@ def plotreversestringasdots(
         unsigned byte array
 
     """
-    plotstringfunc(
-        bmp,
-        x, y,
-        str2plot,
-        scale,
-        pixspace,
-        spacebetweenchar,
-        color,
-        fontbuf,
-        _enchrev,
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar, color,
+        fontbuf, _enchrev,
         plotrotated8bitpatternwithdots)
 
 
-def plotstringsidewayfn(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotstringsidewayfn(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list,
+        color: int, fontbuf: list,
         fn: Callable):
     """Draws a string sideways
     with a function
@@ -5173,16 +5023,11 @@ def plotstringsidewayfn(
             y -= xstep
 
 
-def plotstringsideway(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotstringsideway(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string sideways
 
     Args:
@@ -5205,30 +5050,24 @@ def plotstringsideway(
         unsigned byte array
 
     """
-    plotstringsidewayfn(
-        bmp, x, y, str2plot,
-        scale, pixspace,
-        spacebetweenchar,
-        color, fontbuf,
+    plotstringsidewayfn(bmp, x, y,
+        str2plot, scale, pixspace,
+        spacebetweenchar, color, fontbuf,
         plot8bitpatternsideway)
 
 
 def plotstringsidewayasdots(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
+        bmp: array, x: int, y: int,
+        str2plot: str, scale: int,
         pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string sideways
 
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : sets where to
+        x, y            : sets where to
                           draw the string
         str2plot        : string to draw
         scale           : control how big
@@ -5245,24 +5084,18 @@ def plotstringsidewayasdots(
         unsigned byte array
 
     """
-    plotstringsidewayfn(
-        bmp, x, y, str2plot,
-        scale, pixspace,
-        spacebetweenchar,
-        color, fontbuf,
+    plotstringsidewayfn(bmp, x, y,
+        str2plot, scale, pixspace,
+        spacebetweenchar, color, fontbuf,
         plot8bitpatternsidewaywithdots)
 
 
 def plotstringverticalwithfn(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
+        bmp: array, x: int, y: int,
+        str2plot: str, scale: int,
         pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list,
+        color: int, fontbuf: list,
         fn: Callable):
     """Draws a string vertically
     using a function
@@ -5270,7 +5103,7 @@ def plotstringverticalwithfn(
     Args:
         bmp             : unsigned byte array
                           with bmp format
-        x,y             : sets where to
+        x, y            : sets where to
                           draw the string
         str2plot        : string to draw
         scale           : control how big
@@ -5308,16 +5141,11 @@ def plotstringverticalwithfn(
             y += ystep
 
 
-def plotstringvertical(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
-        pixspace: int,
+def plotstringvertical(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string vertically
 
     Args:
@@ -5340,24 +5168,18 @@ def plotstringvertical(
         unsigned byte array
 
     """
-    plotstringverticalwithfn(
-        bmp, x, y, str2plot,
-        scale, pixspace,
-        spacebetweenchar,
-        color, fontbuf,
-        plot8bitpattern)
+    plotstringverticalwithfn(bmp,
+        x, y, str2plot, scale,
+        pixspace, spacebetweenchar,
+        color, fontbuf, plot8bitpattern)
 
 
 def plotstringverticalasdots(
-        bmp: array,
-        x: int,
-        y: int,
-        str2plot: str,
-        scale: int,
+        bmp: array, x: int, y: int,
+        str2plot: str, scale: int,
         pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list):
+        color: int, fontbuf: list):
     """Draws a string vertically
     with dots
 
@@ -5381,20 +5203,17 @@ def plotstringverticalasdots(
         unsigned byte array
 
     """
-    plotstringverticalwithfn(
-        bmp, x, y, str2plot,
-        scale, pixspace,
-        spacebetweenchar,
+    plotstringverticalwithfn(bmp,
+        x, y, str2plot, scale,
+        pixspace, spacebetweenchar,
         color, fontbuf,
         plot8bitpatternasdots)
 
 
-def fillboundary(
-        bmp: array,
-        bndfilldic: dict,
-        color: int):
-    """Draws lines in a
-        boundary to fill it
+def fillboundary(bmp: array,
+        bndfilldic: dict, color: int):
+    """Draws lines in a boundary
+        to fill it
 
     Args:
         bmp        : unsigned byte array
@@ -5422,12 +5241,10 @@ def fillboundary(
                               color)
 
 
-def plotpolyfill(
-        bmp: array,
-        vertlist: list,
-        color: int):
-    """Draws a filled polygon
-        with a given color
+def plotpolyfill(bmp: array,
+        vertlist: list, color: int):
+    """Draws a filled polygon with
+        a given color
 
     Args:
         bmp     : unsigned byte array
@@ -5447,13 +5264,10 @@ def plotpolyfill(
             getmaxx(bmp), getmaxy(bmp)), color)
 
 
-def thickplotpoly(
-        bmp: array,
-        vertlist: list,
-        penradius: int,
+def thickplotpoly(bmp: array,
+        vertlist: list, penradius: int,
         color: int):
-    """Draws a polygon
-        of a given color
+    """Draws a polygon of a given color
         and thickness
 
     Args:
@@ -5490,9 +5304,8 @@ def gradthickplotpoly(
         penradius: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
-    """Draws a polygon of
-        a given gradient
-        and thickness
+    """Draws a polygon of a given
+        gradient and thickness
 
     Args:
         bmp       : unsigned byte array
@@ -5524,12 +5337,9 @@ def gradthickplotpoly(
         thickplotpoly(bmp, vertlist, i, c)
 
 
-def plotlines(
-        bmp: array,
-        vertlist: list,
-        color: int):
-    """Draws connected lines
-        defined by
+def plotlines(bmp: array,
+        vertlist: list, color: int):
+    """Draws connected lines defined by
         a list of vertices
 
     Args:
@@ -5551,10 +5361,8 @@ def plotlines(
                          vertlist[i], color)
 
 
-def plotpoly(
-        bmp: array,
-        vertlist: list,
-        color: int):
+def plotpoly(bmp: array,
+        vertlist: list, color: int):
     """Draws a polygon defined by
         a list of vertices
 
@@ -5575,10 +5383,8 @@ def plotpoly(
         vertlist[len(vertlist) - 1], color)
 
 
-def plotpolylist(
-        bmp: array,
-        polylist: list,
-        color: int):
+def plotpolylist(bmp: array,
+        polylist: list, color: int):
     """Draws a list of polygons
         of a given color
 
@@ -5600,8 +5406,7 @@ def plotpolylist(
 
 
 def plotpolyfillist(
-        bmp: array,
-        sides: list,
+        bmp: array, sides: list,
         RGBfactors: list[float, float]):
     """3D polygon rendering function
 
@@ -5638,9 +5443,7 @@ def plotpolyfillist(
         i += 1
 
 
-def plot3d(
-        bmp: array,
-        sides: list,
+def plot3d(bmp: array, sides: list,
         issolid: bool,
         RGBfactors: list[float, float],
         showoutline: bool,
@@ -5708,22 +5511,16 @@ def plot3Dsolid(bmp: array,
         unsigned byte array
 
     """
-    plot3d(bmp,
-        gensides(
-            perspective(
-                vertandsides[0],
-                rotvect,
-                transvect3D, d),
-            transvect,
-            vertandsides[1]),
-        issolid,
-        RGBfactors,
+    plot3d(bmp, gensides(perspective(
+           vertandsides[0], rotvect,
+           transvect3D, d),
+        transvect, vertandsides[1]),
+        issolid, RGBfactors,
         showoutline,
         outlinecolor)
 
 
-def gradvert(
-        bmp: array,
+def gradvert(bmp: array,
         vertlist: list,
         penradius: int,
         lumrange: list[int, int],
@@ -5736,9 +5533,11 @@ def gradvert(
                     with bmp format
         vertlist  : [(x,y),...]
                     list of vertices
-        penradius : radius of the spheres
+        penradius : radius of
+                    the spheres
         lumrange  : [byte,byte] controls
-                    the luminosity gradient
+                    the luminosity
+                    gradient
         RGBfactors: (r,b,g:) values of
                     r,g and range from
                     min 0.0 to 1.0 max
@@ -5762,12 +5561,9 @@ def gradvert(
 
 
 @_enrectbnd
-def xygrid(
-        bmp: array,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+def xygrid(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
         xysteps: list,
         color: int):
     """Draws a grid
@@ -5796,12 +5592,9 @@ def xygrid(
         horiline(bmp, y, x1, x2, color)
 
 
-def xygridvec(
-        bmp: array,
-        u: list,
-        v: list,
-        steps: list,
-        gridcolor: int):
+def xygridvec(bmp: array,
+        u: list, v: list,
+        steps: list, gridcolor: int):
     """Draws a grid
         using (x,y)
         2D point pairs
@@ -5827,18 +5620,13 @@ def xygridvec(
                 steps, gridcolor)
 
 
-def numbervert(
-        bmp: array,
-        vlist: list,
-        xadj: int,
-        yadj: int,
+def numbervert(bmp: array, vlist: list,
+        xadj: int, yadj: int,
         scale: int,
-        valstart: int,
-        valstep: int,
+        valstart: int, valstep: int,
         pixspace: int,
         spacebetweenchar: int,
-        color: int,
-        fontbuf: list,
+        color: int, fontbuf: list,
         suppresszero: bool,
         suppresslastnum: bool,
         rightjustify: bool):
@@ -5860,24 +5648,16 @@ def numbervert(
             plotstring(bmp,
                 v[0] + xadj - rjust,
                 v[1] + yadj,
-                stval,
-                scale,
-                pixspace,
+                stval, scale, pixspace,
                 spacebetweenchar,
-                color,
-                fontbuf)
+                color, fontbuf)
 
 
-def vertlinevert(
-        bmp: array,
-        vlist: list,
-        linelen: int,
-        yadj: int,
-        color: int):
-    """Draws vertical
-        line marks
-        at vertices
-        set in vlist
+def vertlinevert(bmp: array,
+        vlist: list, linelen: int,
+        yadj: int, color: int):
+    """Draws vertical line marks
+        at vertices set in vlist
 
     Args:
         bmp    : unsigned byte array
@@ -5902,16 +5682,11 @@ def vertlinevert(
                       color)
 
 
-def horilinevert(
-        bmp: array,
-        vlist: list,
-        linelen: int,
-        xadj: int,
-        color: int):
-    """Draws horizontal
-        line marks
-        at the vertices
-        set in vlist
+def horilinevert(bmp: array,
+        vlist: list, linelen: int,
+        xadj: int, color: int):
+    """Draws horizontal line marks
+        at the vertices set in vlist
 
     Args:
         bmp    : unsigned byte array
@@ -5937,14 +5712,12 @@ def horilinevert(
                       color)
 
 
-def XYaxis(bmp: array,
-        origin: list,
+def XYaxis(bmp: array, origin: list,
         steps: list,
         xylimits: list,
         xyvalstarts: list,
         xysteps: list,
-        color: int,
-        textcolor: int,
+        color: int, textcolor: int,
         showgrid: bool,
         gridcolor: int):
     """Draws XY axis with
@@ -6006,8 +5779,7 @@ def XYaxis(bmp: array,
             (len(hvert) - 1) * xysteps[0]
     yvalmax = xyvalstarts[1] + \
             (len(vvert) - 1) * xysteps[1]
-    return (origin,
-            steps,
+    return (origin, steps,
             xylimits,
             xyvalstarts,
             xysteps,
@@ -6015,8 +5787,7 @@ def XYaxis(bmp: array,
 
 
 def userdef2Dcooordsys2screenxy(
-        x: int,
-        y: int,
+        x: int, y: int,
         lstcooordinfo: list):
     """Does a 2D screen
         coordinate transformation
@@ -6030,7 +5801,7 @@ def userdef2Dcooordsys2screenxy(
                        2D coordinate system
                        [origin,steps,xylimits,
                         xyvalstarts,xysteps]
-                       all (x:int,y:int) pairs
+                        all (x:int,y:int) pairs
 
     Returns:
         [x:int,y:int] screen coordinates
@@ -6129,25 +5900,6 @@ def getneighborcolorlist(
     return [getRGBxybitvec(bmp, u)
             for u in itergetneighbors(
                 v, getmaxx(bmp), getmaxy(bmp), True)]
-
-
-def isimgedge(
-        bmp: array,
-        v: list,
-        mx: int,
-        my: int,
-        similaritythreshold: float):
-
-    retval = False
-    rgb = getRGBxybitvec(bmp,v)
-    for u in itergetneighbors(
-                v, mx, my, False):
-        if distance(getRGBxybitvec(
-                    bmp, u), rgb) > \
-                        similaritythreshold:
-            retval = True
-            break
-    return retval
 
 
 def iterimagedgevert(
