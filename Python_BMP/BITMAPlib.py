@@ -3665,8 +3665,7 @@ def gradcircle(bmp: array,
     """Draws a filled circle
         with gradient lumrange
         defined by centerpoint (x,y)
-        and radius r
-        and color defined
+        and radius r and color defined
         by RGBfactors
 
     Args:
@@ -3776,8 +3775,7 @@ def gradthickellipserot(bmp: array,
 
 
 def filledellipse(bmp: array,
-        x: int, y: int,
-        b: int, a: int,
+        x: int, y: int, b: int, a: int,
         color: int):
     """Draws an filled ellipse
         defined by centerpoint (x,y)
@@ -3845,8 +3843,7 @@ def filledellipse(bmp: array,
 
 
 def ellipse(bmp: array,
-        x: int, y: int,
-        b: int, a: int,
+        x: int, y: int, b: int, a: int,
         color: int,
         isfilled: bool = None):
     """Draws an ellipse defined
@@ -3856,8 +3853,8 @@ def ellipse(bmp: array,
     Args:
         bmp     : unsigned byte array
                   with bmp format
-        x,y     : center of ellipse
-        b,a     : major amd minor axis
+        x, y    : center of ellipse
+        b, a    : major amd minor axis
         color   : color of the ellipse
         isfilled: True -> filled ellipse
                   False -> one pixel thick
@@ -3882,8 +3879,7 @@ def ellipse(bmp: array,
             color=int2BGRarr(color)
             if dobndcheck:
                 for p in iterellipse(x, y, b, a):
-                    px = p[0]
-                    py = p[1]
+                    (px, py) = p
                     if isinBMPrectbnd(bmp, px, py):
                         s = c(bmp, px, py)
                         bmp[s: s + 3] = color
@@ -3894,8 +3890,7 @@ def ellipse(bmp: array,
         elif bits == 8:
             if dobndcheck:
                 for p in iterellipse(x, y, b, a):
-                    px = p[0]
-                    py = p[1]
+                    (px, py) = p
                     if isinBMPrectbnd(bmp,px,py):
                         bmp[c(bmp, px, py)] = color
             else:
@@ -3908,8 +3903,7 @@ def ellipse(bmp: array,
 
 
 def gradellipse(bmp: array,
-        x: int, y: int,
-        b: int, a: int,
+        x: int, y: int, b: int, a: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
     """Draws an ellipical
@@ -3960,11 +3954,9 @@ def drawarc(bmp: array,
         showoutline: bool,
         fillcolor: int, isfilled: bool):
     """Draws an arc centered
-        at point (x,y)
-        with radius r
+        at point (x,y) with radius r
         and specified start
-        and end angles
-        in degrees
+        and end angles in degrees
 
     Args:
         bmp        : unsigned byte array
@@ -3983,9 +3975,8 @@ def drawarc(bmp: array,
 
     """
     av = arcvert(x, y, r,
-            startdegangle,
-            enddegangle,
-            showoutline)
+          startdegangle, enddegangle,
+          showoutline)
     for p in av:
         plotxybit(bmp, p[0], p[1],
             color)
