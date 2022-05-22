@@ -8440,18 +8440,14 @@ def outline(bmp: array):
         unsigned byte array
 
     """
-    outlineregion(
-        bmp, 0, 0,
+    outlineregion(bmp, 0, 0,
         getmaxx(bmp) - 1,
         getmaxy(bmp) - 1)
 
 
 @_intcircpar
-def sphere(
-        bmp: array,
-        x: int,
-        y: int,
-        r: int,
+def sphere(bmp: array,
+        x: int, y: int, r: int,
         rgbfactors: list[float, float, float]):
     """Draws a rendered sphere
 
@@ -8471,25 +8467,20 @@ def sphere(
         unsigned byte array
 
     """
-    gradcircle(
-        bmp, x, y, r,
-        [255, 0],
-        rgbfactors)
+    gradcircle(bmp, x, y, r,
+        [255, 0], rgbfactors)
 
 
 @_intcircpar
-def thickencirclearea(
-        bmp: array,
-        x: int,
-        y: int,
-        r: int,
+def thickencirclearea(bmp: array,
+        x: int, y: int, r: int,
         rgbfactors: list[float, float, float]):
     """Encircle area with a gradient
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : center of circle
+        x, y      : center of circle
         r         : radius of circle
         rgbfactors: (r,g,b) r, g and b
                     values are 0 to 1
@@ -8500,28 +8491,26 @@ def thickencirclearea(
         unsigned byte array
 
     """
-    gradthickcircle(
-        bmp, x, y, r,
-        8, [255,0],
-        rgbfactors)
+    gradthickcircle(bmp, x, y, r,
+        8, [255,0], rgbfactors)
 
 
 @_enrectbnd
-def fern(
-    bmp: array,
-    x1: int,
-    y1: int,
-    x2: int,
-    y2: int,
+def fern(bmp: array,
+    x1: int, y1: int,
+    x2: int, y2: int,
     color: int):
-    """Draws a fern
+    """Draws an IFS fern fractal
 
     Args:
-        bmp        : unsigned byte array
-                     with bmp format
-        x1,y1,x2,y2: rectangular area
-                     to draw fern in
-        color      : color of the fern
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular
+                        area to draw
+                        the fern in
+        color         : color of the
+                        fern fractal
 
     Returns:
         byref modified
@@ -8529,8 +8518,7 @@ def fern(
 
     """
     y = abs(y2 - y1) // 10
-    IFS(bmp,
-        getIFSparams()['fern'],
+    IFS(bmp, getIFSparams()['fern'],
         x1, y1, x2, y2,
         y, y, abs(x2 - x1) // 2, 0,
         color, 100000)
@@ -8540,12 +8528,9 @@ def fern(
 def _usebyreffnwithpar2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
-        func: Callable,
-        funcparam):
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable, funcparam):
     """Apply a 24-bit byref function
         to a rectangular area and save
 
@@ -8577,12 +8562,9 @@ def _usebyreffnwithpar2regnsv(
 def _use24btbyrefclrfn2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
-        func: Callable,
-        funcparam):
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable, funcparam):
     """Apply a 24-bit byref
         color modification function
         to a rectangular area
@@ -8593,7 +8575,7 @@ def _use24btbyrefclrfn2regnsv(
                          existing file
         NewBMPfile     : New file to
                          save changes in
-        x1,y1,x2,y2    : defines the
+        x1, y1, x2, y2: defines the
                          rectangular area
         func           : user defined
                          function
@@ -8622,10 +8604,8 @@ def _use24btbyrefclrfn2regnsv(
 def _usebyref24btfn2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+        x1: int, y1: int,
+        x2: int, y2: int,
         func: Callable):
     """Apply a
         24-bit by-ref function
@@ -8664,10 +8644,8 @@ def _usebyref24btfn2regnsv(
 def _usebyreffn2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+        x1: int, y1: int,
+        x2: int, y2: int,
         func: Callable):
     """Apply a
         by-ref function
@@ -8702,10 +8680,8 @@ def _usebyreffn2regnsv(
 def applyfunctoregionandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+        x1: int, y1: int,
+        x2: int, y2: int,
         func: Callable):
     """Apply a
         function with
@@ -8773,8 +8749,7 @@ def _usebyreffnsv(
 def _usebyreffnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        func: Callable,
-        funcparam):
+        func: Callable, funcparam):
     bmp = loadBMP(ExistingBMPfile)
     func(bmp, funcparam)
     saveBMP(NewBMPfile, bmp)
@@ -8850,8 +8825,7 @@ def apply24bitfuncandsave(
 def _use24btfnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        func: Callable,
-        funcparam):
+        func: Callable, funcparam):
     """Apply a 24-bit only function
         with parameters and save
 
@@ -8920,9 +8894,7 @@ def _usefn2circreg(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
-        x: int,
-        y: int,
-        r: int):
+        x: int, y: int, r: int):
     """Apply a user provided
         function (no parameters)
         to a circular area
@@ -8956,9 +8928,7 @@ def _usefnwithpar2circreg(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
-        x: int,
-        y: int,
-        r: int,
+        x: int, y: int, r: int,
         funcparam):
     """Apply a user provided
         function with parameters
@@ -8996,9 +8966,7 @@ def _use24btclrfntocircregion(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
-        x: int,
-        y: int,
-        r: int):
+        x: int, y: int, r: int):
     """Apply a no parameter color
         adjustment function
         to a circular area
@@ -9034,9 +9002,7 @@ def _use24btclrfnwithpar2circreg(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable,
-        x: int,
-        y: int,
-        r: int,
+        x: int, y: int, r: int,
         funcparam):
     """Apply a user provided
         color adjustment function
@@ -9074,8 +9040,7 @@ def _use24btclrfnwithpar2circreg(
 def _useclradjfn(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        func: Callable,
-        funcparam):
+        func: Callable, funcparam):
     """Apply a user provided
         color adjustmen function
         to an existing bitmap
@@ -9128,8 +9093,7 @@ def _useclradjfn(
 def _use24btclrfn(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        func: Callable,
-        funcparam):
+        func: Callable, funcparam):
     """Apply a user provided
         color adjustment
         function to
@@ -9208,10 +9172,8 @@ def _usenoparclradjfn(
 def cropBMPandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Crops and saves
         a rectangular area
         to a bitmap file
@@ -9257,8 +9219,7 @@ def cropBMPandsaveusingrectbnd(
 
     """
     applyfunctoregionandsave(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         rectbnd[0][0],
         rectbnd[0][1],
         rectbnd[1][0] + 1,
@@ -9717,8 +9678,7 @@ def flipverticalregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         flipverticalregion)
 
@@ -9727,10 +9687,8 @@ def flipverticalregion2file(
 def fliphorizontalregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Flips horizontally
         a rectangular area
         in a bitmap file
@@ -9757,10 +9715,8 @@ def fliphorizontalregion2file(
 def mirrorleftinregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Mirrors the
         left-half region
         in a rectangular area
@@ -9779,8 +9735,7 @@ def mirrorleftinregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         mirrorleftinregion)
 
@@ -9789,10 +9744,8 @@ def mirrorleftinregion2file(
 def mirrorrightinregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Mirrors the
         right half region
         in a rectangular area
@@ -9811,8 +9764,7 @@ def mirrorrightinregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         mirrorrightinregion)
 
@@ -9821,10 +9773,8 @@ def mirrorrightinregion2file(
 def mirrortopinregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Mirrors the
         top half region
         in a rectangular area
@@ -9843,8 +9793,7 @@ def mirrortopinregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         mirrortopinregion)
 
@@ -9853,10 +9802,8 @@ def mirrortopinregion2file(
 def mirrorbottominregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     """Mirrors the
         bottom-half region
         in a rectangular area
@@ -9904,8 +9851,7 @@ def mirrortopleftinregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         mirrortopleftinregion)
 
@@ -9963,8 +9909,7 @@ def mirrorbottomleftinregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         mirrorbottomleftinregion)
 
@@ -9993,8 +9938,7 @@ def mirrorbottomrightinregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         mirrorbottomrightinregion)
 
@@ -10022,8 +9966,7 @@ def invertregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         invertregion)
 
@@ -10079,10 +10022,8 @@ def adjustbrightness2file(
 
     """
     _useclradjfn(
-        ExistingBMPfile,
-        NewBMPfile,
-        brightnessadjust,
-        percentadj)
+        ExistingBMPfile, NewBMPfile,
+        brightnessadjust, percentadj)
 
 
 @_fntimer
@@ -10105,10 +10046,8 @@ def thresholdadjust2file(
 
     """
     _useclradjfn(
-        ExistingBMPfile,
-        NewBMPfile,
-        thresholdadjust,
-        lumrange)
+        ExistingBMPfile, NewBMPfile,
+        thresholdadjust, lumrange)
 
 
 @_fntimer
@@ -10141,7 +10080,8 @@ def adjustbrightnessinregion2file(
     _use24btbyrefclrfn2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
-        brightnesseadjto24bitregion, percentadj)
+        brightnesseadjto24bitregion,
+        percentadj)
 
 
 @_fntimer
@@ -10172,7 +10112,8 @@ def adjustthresholdinregion2file(
     _use24btbyrefclrfn2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
-        thresholdadjto24bitregion, lumrange)
+        thresholdadjto24bitregion,
+        lumrange)
 
 
 @_fntimer
@@ -10197,10 +10138,8 @@ def colorfilter2file(
 
     """
     _useclradjfn(
-        ExistingBMPfile,
-        NewBMPfile,
-        colorfilter,
-        rgbfactors)
+        ExistingBMPfile, NewBMPfile,
+        colorfilter, rgbfactors)
 
 
 @_fntimer
@@ -10221,10 +10160,8 @@ def monochrome2file(
         new bitmap file
 
     """
-    _usenoparclradjfn(
-        ExistingBMPfile,
-        NewBMPfile,
-        monochrome)
+    _usenoparclradjfn(ExistingBMPfile,
+               NewBMPfile, monochrome)
 
 
 @_fntimer
@@ -10254,8 +10191,7 @@ def colorfilterinregion2file(
 
     """
     _use24btbyrefclrfn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         colorfilterto24bitregion,
         rgbfactors)
@@ -10284,8 +10220,7 @@ def monofilterinregion2file(
 
     """
     _usebyref24btfn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         monofilterto24bitregion)
 
@@ -10309,8 +10244,7 @@ def pixelizenxntofile(
 
     """
     _use24btfnwithparnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         pixelizenxn, n)
 
 
@@ -10332,8 +10266,7 @@ def resizeNtimessmaller2file(
 
     """
     _use24btfnwithparnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         resizeNtimessmaller, n)
 
 
@@ -10378,8 +10311,7 @@ def upgradeto24bitimage2file(
 
     """
     _usefnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         upgradeto24bitimage)
 
 
@@ -10402,10 +10334,8 @@ def gammaadj2file(
 
     """
     _useclradjfn(
-        ExistingBMPfile,
-        NewBMPfile,
-        gammacorrect,
-        gamma)
+        ExistingBMPfile, NewBMPfile,
+        gammacorrect, gamma)
 
 
 @_fntimer
@@ -10433,8 +10363,7 @@ def gammaadjtoregion2file(
 
     """
     _use24btbyrefclrfn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         gammaadjto24bitregion, gamma)
 
@@ -10463,8 +10392,7 @@ def eraseeverynthhorilineinregion2file(
 
     """
     _usebyreffnwithpar2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
         eraseeverynthhorilineinregion,
         n)
@@ -10493,10 +10421,8 @@ def rectangle2file(
 
     """
     _usebyreffnwithpar2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        x1, y1, x2, y2,
-        rectangle,
+        ExistingBMPfile, NewBMPfile,
+        x1, y1, x2, y2, rectangle,
         color)
 
 
@@ -10525,10 +10451,8 @@ def fern2file(
 
     """
     _usebyreffnwithpar2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        x1, y1, x2, y2,
-        fern,
+        ExistingBMPfile, NewBMPfile,
+        x1, y1, x2, y2, fern,
         color)
 
 
@@ -10550,8 +10474,7 @@ def eraseeverynthhoriline2file(
 
     """
     _usebyreffnwithparnsv(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         eraseeverynthhorizontalline,
         n)
 
@@ -10579,10 +10502,8 @@ def outlineregion2file(
 
     """
     _usebyreffn2regnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        x1, y1, x2, y2,
-        outlineregion)
+        ExistingBMPfile, NewBMPfile,
+        x1, y1, x2, y2, outlineregion)
 
 
 @_fntimer
@@ -10601,10 +10522,8 @@ def outline2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile,
-        NewBMPfile,
-        outline)
+    _usebyreffnsv(ExistingBMPfile,
+               NewBMPfile,outline)
 
 
 @_fntimer
@@ -10704,8 +10623,7 @@ def invertbitsincircregion2file(
 
     """
     _usefn2circreg(
-        ExistingBMPfile,
-        NewBMPfile,
+        ExistingBMPfile, NewBMPfile,
         invertbitsincircregion,
         x, y, r)
 
