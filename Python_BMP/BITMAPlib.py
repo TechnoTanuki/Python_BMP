@@ -284,9 +284,7 @@ from .XKCDcolordict import(
     getXKCDRGBfactors
     )
 
-def _setx(
-        bmp: array,
-        xmax: int):
+def _setx(bmp: array, xmax: int):
     """Sets the x value stored
         in the windows bmp header
 
@@ -319,9 +317,7 @@ def getmaxx(bmp: array) -> int:
     return _rdint(_bmx, 4, bmp)
 
 
-def _sety(
-        bmp: array,
-        ymax: int):
+def _sety(bmp: array, ymax: int):
     """Sets the y value stored
         in the windows bmp header
 
@@ -390,8 +386,7 @@ def bottomrightcoord(
             _rdint(_bmy, 4, bmp) - 1)
 
 
-def centercoord(
-        bmp: array) -> tuple:
+def centercoord(bmp: array) -> tuple:
     """Gets the
         central coordinates
         of a windows bitmap
@@ -408,21 +403,18 @@ def centercoord(
             (_rdint(_bmy, 4, bmp) - 1) >> 1)
 
 
-def isinBMPrectbnd(
-        bmp: array,
-        x: int,
-        y: int) -> bool:
+def isinBMPrectbnd(bmp: array,
+        x: int, y: int) -> bool:
     """Checks if (x,y) coordinates
-        are within
-        the rectangular bounds
+        are within the rectangular area
         of a bitmap
 
     Args:
-        bmp: unsigned byte array
-             with bmp format
-        x,y: unsigned int value
-             of location
-             in x-axis and y-axis
+        bmp : unsigned byte array
+              with bmp format
+        x, y: unsigned int value
+              of location
+              in x-axis and y-axis
 
     Returns:
         True if within bounds
@@ -434,19 +426,17 @@ def isinBMPrectbnd(
            (x > -1 and y > -1)
 
 
-def listinBMPrecbnd(
-        bmp: array,
+def listinBMPrecbnd(bmp: array,
         xylist: list) -> bool:
     """Checks if a list of
         (x,y) coordinates
-        are within
-        the rectangular bounds
+        are within the rectangular area
         of a bitmap
 
     Args:
         bmp   : unsigned byte array
                 with bmp format
-        xylist: list of (x,y)
+        xylist: list of (x, y)
                 coordinates
                 to be checked
 
@@ -464,8 +454,7 @@ def listinBMPrecbnd(
 
 
 def _getclrbits(bmp: array) -> int:
-    """Get the bit depth
-        of a windows bmp
+    """Get the bit depth of a win bmp
 
     Args:
         bmp: unsigned byte array
@@ -480,8 +469,8 @@ def _getclrbits(bmp: array) -> int:
 
 
 def _xchrcnt(bmp: array) -> int:
-    """Get the chars or bytes
-        in row of a bmp
+    """Get the chars or bytes in row
+        of a bmp
 
     Args:
         bmp: unsigned byte array
@@ -498,8 +487,7 @@ def _xchrcnt(bmp: array) -> int:
 
 
 def _setflsz(bmp: array, size: int):
-    """Set the file size
-        of a windows bitmap
+    """Set the file size of a win bmp
 
     Args:
         bmp  : unsigned byte array
@@ -518,8 +506,7 @@ def _setflsz(bmp: array, size: int):
 
 
 def _flsz(bmp: array) -> int:
-    """Get the file size
-        of a windows bmp
+    """Get the file size of a win bmp
         from bmp header
 
     Args:
@@ -535,8 +522,7 @@ def _flsz(bmp: array) -> int:
 
 
 def _sethdsz(bmp: array, hdsize: int):
-    """Set the header size
-        of a windows bitmap
+    """Set the header size of a win bmp
 
     Args:
         bmp   : unsigned byte array
@@ -554,8 +540,7 @@ def _sethdsz(bmp: array, hdsize: int):
 
 
 def _hdsz(bmp: array) -> int:
-    """Get the header size
-        of a windows bmp
+    """Get the header size of a win bmp
 
     Args:
         bmp: unsigned byte array
@@ -569,9 +554,8 @@ def _hdsz(bmp: array) -> int:
 
 
 def getmaxcolors(bmp: array) -> int:
-    """Get the maximum number
-        of colors supported
-        by a windows bitmap
+    """Get the maximum number of colors
+         supported by a windows bitmap
 
     Args:
         bmp: unsigned byte array
