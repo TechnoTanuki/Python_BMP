@@ -760,8 +760,7 @@ def _1bmofhd(bmp: array,
                 62
 
 
-def _getBMoffhdfunc(
-        bmp: array):
+def _getBMoffhdfunc(bmp: array):
     """Returns the correct function
         to use in computing offsets
         with headers in a given bmp
@@ -817,8 +816,7 @@ def _BMoffset(bmp: array,
         to data in buffer
 
     """
-    f = _getBMofffunc(bmp)
-    return f(bmp, x, y)
+    return _getBMofffunc(bmp)(bmp, x, y)
 
 
 def _BMoffsethd(bmp: array,
