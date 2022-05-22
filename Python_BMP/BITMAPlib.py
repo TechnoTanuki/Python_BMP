@@ -1648,7 +1648,7 @@ def getRGBxybit(bmp: array,
         [R:byte, G:byte, B:byte]
 
     """
-    retval=[]
+    retval = []
     if isinBMPrectbnd(bmp, x, y):
         if _getclrbits(bmp) == 24:
             i = _24bmofhd(bmp, x, y)
@@ -1668,7 +1668,8 @@ def getxybitvec(bmp: array,
     Args:
         bmp: unsigned byte array
              with bmp format
-        v  : (x:int,y:int)
+        v  : (x: int, y: int)
+             pixel coordinates
 
     Returns:
         unsigned int color value
@@ -1686,6 +1687,7 @@ def intplotvecxypoint(bmp: array,
         bmp: unsigned byte array
              with bmp format
         v  : (x:int, y:int)
+             pixel coordinates
         c  : unsigned int
              color value
 
@@ -1699,8 +1701,8 @@ def intplotvecxypoint(bmp: array,
 
 def plotvecxypoint(bmp: array,
         v: list, c: int):
-    """Sets the color
-        of a pixel at (x,y)
+    """Sets the color of
+        a pixel at (x,y)
 
     Args:
         bmp: unsigned byte array
@@ -1824,8 +1826,8 @@ def line(bmp: array,
     Args:
         bmp   : unsigned byte array
                 with bmp format
-        x1, y1: endpoints of the line
-        x2, y2
+        x1, y1: endpoint 1 of the line
+        x2, y2: endpoint 2 of the line
         color : color of the line
 
     Returns:
@@ -1894,8 +1896,8 @@ def horiline(bmp: array, y: int,
                 with bmp format
         y     : constant y value
                 of the line
-        x1, x2: line starts at x1
-                and ends at x2
+        x1    : line starts at x1
+        x2    : line ends at x2
         color : color of the line
 
     Returns:
@@ -1955,8 +1957,8 @@ def vertline(bmp: array, x: int,
                with bmp format
         x    : constant x value
                of the line
-        y1,y2: line starts at y1
-               and ends at y2
+        y1   : line starts at y1
+        y2   : line ends at y2
         color: color of the line
 
     Returns:
@@ -2040,17 +2042,23 @@ def filledgradrect(bmp: array,
         with a linear gradient
 
     Args:
-        bmp         : unsigned byte array
-                      with bmp format
-        x1,y1,x2,y2 : defines the rectangle
-        lumrange    : [byte,byte] that
-                      defines the range
-                      of the gradient
-        RGBfactors  : [r,g,b] each item
-                      in list are unsigned
-                      floats from 0 to 1
-        direction   : 0 - vertical
-                      1 - horizontal
+        bmp            : unsigned
+                         byte array
+                         with bmp format
+        x1, y1, x2, y2 : defines the
+                         rectangular
+                         region
+        lumrange       : [byte, byte]
+                         defines
+                         the range
+                         of the
+                         gradient
+        RGBfactors     : [r, g, b] items
+                          in list are
+                          unsigned floats
+                          from 0.0 to 1.0
+        direction      : 0 - vertical
+                         1 - horizontal
 
     Returns:
         byref modified
@@ -2155,8 +2163,7 @@ def linevec(bmp: array,
         u, v : (x:float,y:float)
                the endpoints
                of the line
-        color: the color
-               of the line
+        color: the color of the line
 
     Returns:
         byref modified
@@ -2304,7 +2311,7 @@ def gradthickroundline(bmp: array,
                    [gradstart,gradend]
                    that define the
                    luminosity gradient
-        RGBfactors: [r,g,b]
+        RGBfactors: [r, g, b]
                     each item
                     in list is an
                     unsigned float
@@ -2392,8 +2399,7 @@ def _use24btfn2circreg(bmp: array,
         to a circular region
         with center defined by
         x,y with a radius r
-        that is within
-        a 24-bit bitmap
+        that is within a 24-bit bitmap
 
     Args:
         bmp       : unsigned byte array
@@ -2527,10 +2533,8 @@ def copycircregion(bmp: array,
         newxy: list):
     """Copy a circular buffer
         with center at (x,y)
-        and a radius r
-        to a new area
-        with centerpoint
-        at newxy [x,y]
+        and a radius r to a new area
+        with centerpoint at newxy [x,y]
 
     Args:
         bmp    : unsigned byte array
@@ -2550,9 +2554,8 @@ def copycircregion(bmp: array,
 
     """
     pastecirularbuf(
-        bmp, newxy[0], newxy[1],
-        copycircregion2buf(
-              bmp, x, y, r))
+      bmp, newxy[0], newxy[1],
+      copycircregion2buf(bmp, x, y, r))
 
 
 @_intcircpar
@@ -2711,7 +2714,7 @@ def horitransformincircregion(
                  transform code
                  'L' -> mirror left
                  'R' -> mirror right
-                ' F' -> flip
+                 'F' -> flip
 
     Returns:
         byref modified
@@ -3037,8 +3040,7 @@ def vertbrightnessgrad2circregion(
         bmp: array,
         x: int, y: int, r: int,
         lumrange: list[int, int]):
-    """Applies a
-        vertical brightness
+    """Applies a vertical brightness
         gradient adjustment
         to a circular region
         with a center at (x,y)
@@ -3082,8 +3084,7 @@ def horibrightnessgrad2circregion(
         bmp: array,
         x: int, y: int, r: int,
         lumrange: list[int, int]):
-    """Applies a
-        horizontal brightness
+    """Applies a horizontal brightness
         gradient adjustment
         to a circular region
         with a center at (x,y)
@@ -3122,8 +3123,7 @@ def horibrightnessgrad2circregion(
 @_intcircpar
 def outlinecircregion(bmp: array,
         x: int, y: int, r: int):
-    """Outlines the area
-        within
+    """Outlines the area within
         a circular region
         defined by centerpoint (x, y)
         and radius r
@@ -3293,8 +3293,7 @@ def brightnessadjcircregion(
         bmp: array,
         x: int, y: int, r: int,
         percentadj: float):
-    """Applies a
-        brightness adjustment
+    """Applies a brightness adjustment
         to a circular region
         defined by centerpoint (x, y)
         and radius r
@@ -3552,8 +3551,7 @@ def thickcircle(bmp: array,
         penradius, color, True)
 
 
-def gradthickcircle(
-        bmp: array,
+def gradthickcircle(bmp: array,
         x: int, y: int, r: int,
         penradius: int,
         lumrange: list[int, int],
@@ -3611,9 +3609,9 @@ def gradcircle(bmp: array,
                     and radius r
         lumrange  : [byte,byte] range of
                     the gradient
-        rgbfactors: [r,g,b] range of
+        rgbfactors: [r, g, b] range of
                     r, g and b are
-                    from 0 min to 1 max
+                    from 0.0 to 1.0
 
     Returns:
         byref modified
@@ -3720,8 +3718,8 @@ def filledellipse(bmp: array,
     Args:
         bmp  : unsigned byte array
                with bmp format
-        x,y  : center of ellipse
-        b,a  : major amd minor axis
+        x, y : center of ellipse
+        b, a : major amd minor axis
         color: color of the ellipse
 
     Returns:
@@ -3842,22 +3840,21 @@ def gradellipse(bmp: array,
         x: int, y: int, b: int, a: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
-    """Draws an ellipical
-        gradient defined
-        by centerpoint (x,y)
-        and major/minor
-        axis (b,a)
+    """Draws an ellipical gradient
+        defined by centerpoint (x, y)
+        and major/minor axis (b, a)
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : center of ellipse
-        b,a       : major amd minor axis
+        x, y      : center of ellipse
+        b, a      : major amd minor axis
         lumrange  : [byte:byte] controls
                     the range of the
                     luminosity gradient
-        rgbfactors: [r,g,b] range of r,g and b
-                    are from 0.0 min to 1.0 max
+        rgbfactors: [r,g,b] range
+                    of r, g and b
+                    are from 0.0 to 1.0
 
     Returns:
         byref modified
@@ -3865,7 +3862,7 @@ def gradellipse(bmp: array,
 
     """
     lum1, lumrang = _rng2bsndel(lumrange)
-    r = iif(a > b, a, b)
+    r = a if a > b else b
     a -= r
     b -= r
     for i in range(r,0,-1):
