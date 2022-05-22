@@ -23,11 +23,7 @@ from math import(
     sqrt
     )
 
-from random import(
-    randint,
-    random
-    )
-
+from random import randint
 from functools import reduce
 from typing import Callable
 from .conditionaltools import iif
@@ -60,10 +56,8 @@ def range2baseanddelta(lst_range: list):
     return lst_range[0], lst_range[1] - lst_range[0]
 
 
-def roundvect(
-        v: list) -> list:
-    return [round(n)
-            for n in v]
+def roundvect(v: list) -> list:
+    return [round(n) for n in v]
 
 
 def roundvectlist(
@@ -129,7 +123,7 @@ def pivotlist(vlist:list) -> list:
 
 
 def variance(v: list) -> list:
-    ave=mean(v)
+    ave = mean(v)
     return [n - ave for n in v]
 
 
@@ -161,11 +155,11 @@ def setminmax(val: float,
 def intsetminmax(val: float,
               minval: int,
               maxval: int) -> int:
-    val=round(val)
+    val = round(val)
     if val > maxval:
-        val=maxval
+        val = maxval
     if val < minval:
-        val=minval
+        val = minval
     return val
 
 
@@ -272,8 +266,8 @@ def dotprod(u: list,
     return sum(mulvect(u, v))
 
 
-def vmag(v:list) -> float:
-    s=0
+def vmag(v: list) -> float:
+    s = 0
     for i in v:
         s += i*i
     return sqrt(s)
@@ -295,8 +289,8 @@ def distancetable(vertlist: list) -> list:
     return dlist
 
 
-def countdist(distlist:list) -> dict:
-    d={}
+def countdist(distlist: list) -> dict:
+    d = {}
     for i in distlist:
         dist = i[2]
         if dist not in d:
@@ -324,18 +318,16 @@ def cosaffin(u: list,
 
 
 def dircos(v: list) -> list:
-    mag=vmag(v)
+    mag = vmag(v)
     return [i / mag for i in v]
 
 
 def diracos(dcos: list) -> list:
-    return [acos(d)
-            for d in dcos]
+    return [acos(d) for d in dcos]
 
 
 def dirdeg(raddir: list) -> list:
-    return [degrees(d)
-            for d in raddir]
+    return [degrees(d) for d in raddir]
 
 
 def rect2sphericalcoord3D(
@@ -387,7 +379,7 @@ def rect2polarcoord2D(
 
 def polarcoordangle2D(
         v:list) -> float:
-    a = acos(cosaffin(v, [0,-1]))
+    a = acos(cosaffin(v, [0, -1]))
     if v[0] < 0:
         a = 2 * pi - a
     return a
@@ -480,10 +472,8 @@ def mirror1stquad(
         v: list) -> list:
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
-    return [[xmin, ymax],
-            [xmax, ymax],
-            [xmin, ymin],
-            [xmax, ymin]]
+    return [[xmin, ymax],[xmax, ymax],
+            [xmin, ymin],[xmax, ymin]]
 
 
 def xorvect(u: list,
@@ -498,9 +488,8 @@ def andvect(u: list,
             for i, j in zip(u, v)]
 
 
-def bitmaskvect(
-              v: list,
-        bitmask: int) -> list:
+def bitmaskvect(v: list,
+          bitmask: int) -> list:
     return [b & bitmask
             for b in v ]
 
