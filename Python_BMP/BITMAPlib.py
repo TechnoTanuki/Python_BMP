@@ -8072,14 +8072,10 @@ def _usebyref24btfn2reg(
 
 
 @_fn24bitenrectbnd
-def _use24bitfn2reg(
-        bmp: array,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
-        func: Callable,
-        funcparam):
+def _use24bitfn2reg(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable, funcparam):
     """Apply func(funcparam)
         to a rectangular area
         in a 24-bit bitmap
@@ -8113,10 +8109,8 @@ def _use24bitfn2reg(
 @_fn24bitenrectbnd
 def verticalbrightnessgradto24bitregion(
         bmp: array,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+        x1: int, y1: int,
+        x2: int, y2: int,
         lumrange: list[int, int]):
     """Apply a
         vertical brightness gradient
@@ -8151,10 +8145,8 @@ def verticalbrightnessgradto24bitregion(
 @_fn24bitenrectbnd
 def horizontalbrightnessgradto24bitregion(
         bmp: array,
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int,
+        x1: int, y1: int,
+        x2: int, y2: int,
         lumrange: list[int, int]):
     """Apply a
         horizontal brightness gradient
@@ -8191,9 +8183,7 @@ def horizontalbrightnessgradto24bitregion(
 @_fn24bitencircbnd
 def magnifyNtimescircregion(
         bmp: array,
-        x: int,
-        y: int,
-        r: int,
+        x: int, y: int, r: int,
         n: int):
     """Magnify a circular region
         in a bitmap file
@@ -8257,8 +8247,7 @@ def pixelizenxncircregion(
 
 @_fn24bit
 def resizeNtimessmaller(
-        bmp: array,
-        n:int) -> array:
+        bmp: array, n:int) -> array:
     """Resize a whole image
         int n times smaller
         (in-memory 24-bit bitmap)
@@ -8326,8 +8315,21 @@ def pixelizenxn(
 
 
 def adjustcolordicttopal(
-        bmp:array,
-        colordict:dict):
+        bmp: array, colordict: dict):
+    """Adjust a color dictionary
+        to match as closely as
+        possible a bitmap palette
+
+    Args:
+        bmp      : unsigned byte array
+                   with bmp format
+        colordict: dictionary of colors
+
+    Returns:
+        byref modified
+        dictionary of colors
+
+    """
     if _getclrbits(bmp) < 24:
         for color in colordict:
             colordict[color] = \
