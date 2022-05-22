@@ -9199,7 +9199,8 @@ def reduce24bitimagebits(
         newbits             : can be 1,4 or 8 bits
         similaritythreshold : how close can a color
                               be to another color
-        usemonopal          : True -> image will be mono
+        usemonopal          : True -> image will
+                                      be mono
         RGBfactors          : (r:float,b:float,g:float)
                               value of r,g,b
                               range from 0 to 1
@@ -9402,9 +9403,8 @@ def mirrorbottomleft2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile, NewBMPfile,
-        mirrorbottomleft)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, mirrorbottomleft)
 
 
 @_fntimer
@@ -9424,9 +9424,8 @@ def mirrorbottomright2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile, NewBMPfile,
-        mirrorbottomright)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, mirrorbottomright)
 
 
 @_fntimer
@@ -9446,9 +9445,8 @@ def mirrorbottom2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile, NewBMPfile,
-        mirrorbottom)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, mirrorbottom)
 
 
 @_fntimer
@@ -9468,9 +9466,8 @@ def mirrorleft2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile, NewBMPfile,
-        mirrorleft)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, mirrorleft)
 
 
 @_fntimer
@@ -9490,9 +9487,8 @@ def mirrorright2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile, NewBMPfile,
-        mirrorright)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, mirrorright)
 
 
 @_fntimer
@@ -9512,9 +9508,8 @@ def fliphorizontal2file(
         new bitmap file
 
     """
-    _usebyreffnsv(
-        ExistingBMPfile, NewBMPfile,
-        fliphorizontal)
+    _usebyreffnsv(ExistingBMPfile,
+        NewBMPfile, fliphorizontal)
 
 
 @_fntimer
@@ -9602,8 +9597,7 @@ def mirrorleftinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        left-half region
+    """Mirrors the left-half region
         in a rectangular area
         in a bitmap file
 
@@ -9631,8 +9625,7 @@ def mirrorrightinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        right half region
+    """Mirrors the right-half region
         in a rectangular area
         in a bitmap file
 
@@ -9660,8 +9653,7 @@ def mirrortopinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        top half region
+    """Mirrors the top-half region
         in a rectangular area
         in a bitmap file
 
@@ -9689,8 +9681,7 @@ def mirrorbottominregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        bottom-half region
+    """Mirrors the bottom-half region
         in a rectangular area
         in a bitmap file
 
@@ -9718,8 +9709,7 @@ def mirrortopleftinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        top left region
+    """Mirrors the top left region
         in a rectangular area
         in a bitmap file
 
@@ -9747,8 +9737,7 @@ def mirrortoprightinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        top-right region
+    """Mirrors the top-right region
         in a rectangular area
         in a bitmap file
 
@@ -9776,10 +9765,9 @@ def mirrorbottomleftinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        bottom-left region
-        in a rectangular area
-        in a bitmap file
+    """Mirrors the bottom-left
+        regiom in a rectangular
+        area in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9805,10 +9793,9 @@ def mirrorbottomrightinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Mirrors the
-        bottom-right region
-        in a rectangular area
-        in a bitmap file
+    """Mirrors the bottom-right
+        region in a rectangular
+        area in a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9834,8 +9821,8 @@ def invertregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Inverts the bits
-        in a rectangular area
+    """Inverts the bits in a
+        rectangular area
         in a bitmap file
 
     Args:
@@ -9861,9 +9848,8 @@ def autocropimg2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
         similaritythreshold: float):
-    """Perform an auto crop
-        to the image
-        in a bitmap file
+    """Perform an auto crop to the
+        image in a bitmap file
 
     Args:
         ExistingBMPfile    : Whole path to
@@ -9942,10 +9928,9 @@ def adjustbrightnessinregion2file(
         x1: int, y1: int,
         x2: int, y2: int,
         percentadj: float):
-    """Applies
-        a brightness adjustment
-        to rectangular area
-        in a 24-bit bitmap
+    """Applies a brightness adjustment
+        to rectangular area in a 24-bit
+        bitmap
 
     Args:
         ExistingBMPfile: Whole path to
@@ -10006,8 +9991,7 @@ def colorfilter2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
         rgbfactors: list[float, float, float]):
-    """Applies color filter
-        rgbfactors
+    """Applies color filter rgbfactors
         to a bitmap file
 
     Args:
@@ -10031,8 +10015,7 @@ def colorfilter2file(
 def monochrome2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Applies
-        a monochrome filter
+    """Applies a monochrome filter
         to a bitmap file
 
     Args:
@@ -10365,8 +10348,7 @@ def outlineregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int):
-    """Applies
-        an outline filter
+    """Applies an outline filter
         to rectangular area
 
     Args:
@@ -10411,8 +10393,7 @@ def imagediff(
         inputfile1: str,
         inputfile2: str,
         diff_file: str):
-    """Compares 2 files
-        and saves diff
+    """Compares 2 files and saves diff
         to a bitmap file
 
     Args:
@@ -10553,7 +10534,7 @@ def thresholdadjcircregion2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
         lumrange       : (byte:byte)
                          threshold range
@@ -10672,7 +10653,7 @@ def circle2file(
                          existing file
         NewBMPfile     : New file to
                          save changes to
-        x, y, r        : center (x,y)
+        x, y, r        : center (x, y)
                          and radius r
         color          : color of circle
 
@@ -10700,7 +10681,7 @@ def thickencirclearea2file(
 
               x,y : center of circle
                 r : radius of circle
-        rgbfactors: (r,g,b) r,g and b
+        rgbfactors: (r,g,b) r, g and b
                     values are 0 to 1
                     unsigned floats
 
@@ -10730,10 +10711,14 @@ def brightnessadjcircregion2file(
                          save changes to
         x, y, r        : center (x,y)
                          and radius r
-                         of a circular region
-                         in which we apply a
-        percentadj     : brightness adjustment
-                         that can be positive
+                         of a circular
+                         region
+                         in which we
+                         apply a
+        percentadj     : brightness
+                         adjustment
+                         that can be
+                         positive
                          or negative
 
     Returns:
