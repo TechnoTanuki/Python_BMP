@@ -624,10 +624,22 @@ def bitmaskvect(v: list,
     return [b & bitmask for b in v ]
 
 
-def orvect(u: list,
-           v: list) -> list:
-    return [i | j
-            for i, j in zip(u, v)]
+def orvect(u: list[int],
+           v: list[int]) -> list[int]:
+    """Applies a bitwise or operation
+        of between the elements of
+        two lists of ints
+
+    Args:
+        v      : list[int]
+        bitmask: int
+
+    Returns:
+        list[int]
+
+    """
+    return [i | j for i, j in zip(u, v)]
+
 
 def gammacorrectbyte(
         lumbyte: list,
@@ -713,7 +725,8 @@ def getdatalisttotal(dlist: list) -> float:
 
 
 def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
-    sa,tot=0,getdatalisttotal(dlist)
+    sa = 0
+    tot = getdatalisttotal(dlist)
     alist = []
     big = -1
     for d in dlist:
