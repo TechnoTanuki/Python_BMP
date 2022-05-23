@@ -315,7 +315,7 @@ def dotprod(u: list, v: list) -> float:
 def vmag(v: list[float]) -> float:
     """Compute the Magnitude or length
         of a vector v of arbitrary
-        dimension 2, 3 and up
+        dimension n equal to len(v)
 
     Args:
         v: list of ints or floats
@@ -325,7 +325,7 @@ def vmag(v: list[float]) -> float:
     """
     s = 0
     for i in v:
-        s += i*i
+        s += i * i
     return sqrt(s)
 
 
