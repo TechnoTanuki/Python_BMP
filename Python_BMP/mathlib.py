@@ -90,6 +90,15 @@ def subvect(u: list[Number],
 def mulvect(u: list[Number],
             v: list[Number]
           ) -> list[Number]:
+    """Gets the inner product of
+        vector u and vector v
+
+    Args:
+        u, v: list of ints or floats
+
+    Returns:
+        list of ints or floats
+    """
     return [i * j for i, j in zip(u, v)]
 
 
@@ -289,6 +298,7 @@ def isorthogonal(
                 null vector that
                 has a zero magnitude
                 and no direction
+
         False : inner product of
                 u and v is a
                 non zero vector
@@ -300,9 +310,11 @@ def isorthogonal(
 
 def crossprod3d(
         u: list[float, float, float],
-        v: list[float, float, float]) -> list[float, float, float]:
+        v: list[float, float, float]
+      ) -> list[float, float, float]:
     """Compute the cross product of
         3D vectors u and v.
+
         The cross product is
         perpendicular to both
         u and v
@@ -334,6 +346,7 @@ def getnormvec(
         define the surface in 3D space
         using a cross product between
         two vectors a and b:
+
         The normal vector is orthogonal
         to vectors a and b. (see below)
 
@@ -350,13 +363,12 @@ def dotprod(u: list[Number],
             v: list[Number]) -> float:
     """Dot product is an algebraic
         operation that takes two
-        equal-length sequences
-        of numbers and returns
-        a float it is the
-        sum of the products
-        of the corresponding
-        entries of the two
-        sequences of numbers
+        equal-length sequences of
+        numbers and returns a float.
+
+        It is the sum of the products
+        of the corresponding entries
+        of the two sequences of numbers
 
     Args:
         u, v : list of ints or floats
@@ -388,12 +400,10 @@ def distance(u: list[float],
              v: list[float]) -> float:
     """Compute the Distance or length
         of a vector v of arbitrary
-        dimension n in an
-        n-dimensional
-        Euclidean space
-        where u and v
-        are both vectors of
-        with n components
+        dimension n in a n-dimensional
+        Euclidean space where u and v
+        are both vectors with
+        n components
 
     Args:
         u, v: list of ints or floats
