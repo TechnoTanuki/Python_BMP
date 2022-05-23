@@ -312,7 +312,17 @@ def dotprod(u: list, v: list) -> float:
     return sum(mulvect(u, v))
 
 
-def vmag(v: list) -> float:
+def vmag(v: list[float]) -> float:
+    """Compute the Magnitude or length
+        of a vector v of arbitrary
+        dimension 2, 3 and up
+
+    Args:
+        v: list of ints or floats
+
+    Returns:
+        float
+    """
     s = 0
     for i in v:
         s += i*i
