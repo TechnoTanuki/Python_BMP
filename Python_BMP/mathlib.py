@@ -329,9 +329,24 @@ def vmag(v: list[float]) -> float:
     return sqrt(s)
 
 
-def distance(u: list,
-             v: list) -> float:
-    return vmag(subvect(u,v))
+def distance(u: list[float],
+             v: list[float]) -> float:
+    """Compute the Distance or length
+        of a vector v of arbitrary
+        dimension n in an
+        n-dimensional
+        Euclidean space
+        where u and v
+        are both vectors of
+        with n components
+
+    Args:
+        u, v: list of ints or floats
+
+    Returns:
+        float
+    """
+    return vmag(subvect(u, v))
 
 
 def distancetable(vertlist: list) -> list:
