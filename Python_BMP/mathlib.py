@@ -235,8 +235,27 @@ def slope(u: list[float, float],
            (v[0] - u[0])
 
 
-def coefvar(v: list) -> float:
-    return StdDev(v) /mean(v)
+def coefvar(v: list[Number]) -> float:
+    """Coefficient of variation (CV)
+        is a statistical measure of
+        the relative dispersion of
+        data points in a data series
+        around the mean.
+
+        It is also known as (RSD) or
+        relative standard deviation
+        and is defined as the ratio
+        of the standard deviation
+        to the mean
+
+    Args:
+        v: list of ints or floats
+
+    Returns:
+        float
+
+    """
+    return StdDev(v) / mean(v)
 
 
 def vectiszero(v: list[Number]) -> bool:
