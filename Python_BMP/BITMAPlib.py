@@ -767,7 +767,7 @@ def _BMoffset(bmp: array,
     Args:
         bmp : unsigned byte array
               with bmp format
-        x, y:unsigned int location
+        x, y: unsigned int location
               in x-axis and y-axis
 
     Returns:
@@ -967,8 +967,9 @@ def setbmppal(bmp: array,
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        pallist: [(r:byte,
-                 g:byte,b:byte),...]
+        pallist: [(r: byte,
+                   g: byte,
+                   b: byte), ...]
 
     Returns:
         byref modified
@@ -1016,8 +1017,7 @@ def getRGBpal(bmp: array,
 
     """
     i= _bmpal + (c << 2)
-    return [bmp[i + 2], bmp[i + 1],
-            bmp[i]]
+    return [bmp[i + 2], bmp[i + 1], bmp[i]]
 
 
 def setRGBpal(bmp: array, c: int,
@@ -1129,9 +1129,8 @@ def copyBMPhdr(bmp: array) -> array:
 def copyRGBpal(sourceBMP: array,
         destBMP: array):
     """Copies the RGB palette info from
-        a source unsigned byte array
-        to a destination
-        unsigned byte array
+        a source unsigned byte array to
+        a destination unsigned byte array
 
     Args:
         sourceBMP and destBMP are both
@@ -1143,9 +1142,9 @@ def copyRGBpal(sourceBMP: array,
         (unsigned byte array)
 
     """
-    hdsz = _hdsz(sourceBMP)
-    destBMP[_bmpal: hdsz] = \
-    sourceBMP[_bmpal: hdsz]
+    l = _hdsz(sourceBMP)
+    destBMP[_bmpal: l] = \
+  sourceBMP[_bmpal: l]
 
 
 def _setmeta(bmpmeta: list) -> array:
@@ -1213,11 +1212,9 @@ def setnewpalfromsourcebmp(
 
 def RGBpalbrightnessadjust(bmp: array,
         percentadj: float)-> list:
-    """Copies the RGB palette info
-        from a source
-        unsigned byte array
-        to a destination
-        unsigned byte array
+    """Copies the RGB palette info from
+        a source unsigned byte array to
+        a destination unsigned byte array
 
     Args:
         bmp       : unsigned byte array
