@@ -404,7 +404,8 @@ def det3D(a1: list,
            a1[2] * a2[1] * a2[0]
 
 
-def cosaffin(u: list, v: list) -> float:
+def cosaffin(u: list[Number],
+             v: list[Number]) -> float:
     """Compute Cosine Similarity
         or Cosine Affinity
 
@@ -412,31 +413,35 @@ def cosaffin(u: list, v: list) -> float:
         u, v : list of ints or floats
 
     Returns:
-        float
-        proportional vectors = 1
-        orthogonal vectors = 0
-        opposite vectors = -1
-        and values in between
+        float value
+            proportional vectors = 1
+            orthogonal vectors = 0
+            opposite vectors = -1
+            and values in between
     """
     return dotprod(u, v) / \
          (vmag(u) * vmag(v))
 
 
-def dircos(v: list) -> list:
+def dircos(v: list[Number]
+         ) -> list[float]:
     mag = vmag(v)
     return [i / mag for i in v]
 
 
-def diracos(dcos: list) -> list:
+def diracos(dcos: list[float]
+              )-> list[float]:
     return [acos(d) for d in dcos]
 
 
-def dirdeg(raddir: list) -> list:
+def dirdeg(raddir: list[float]
+              ) -> list[float]:
     return [degrees(d) for d in raddir]
 
 
 def rect2sphericalcoord3D(
-        v: list) -> list:
+        v: list[Number]
+      ) -> list[float, float, float]:
     p = vmag(v)
     azimuth = atan(v[1] / v[0])
     colatitude = acos(v[2] / p)
