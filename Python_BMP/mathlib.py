@@ -254,8 +254,28 @@ def vectiszero(v: list[Number]) -> bool:
 
 
 def isorthogonal(
-        u: list[float],
-        v: list[float]) -> bool:
+        u: list[Number],
+        v: list[Number]) -> bool:
+    """Checks if vector u and vector v
+        are orthogonal to each other
+
+    Args:
+        u, v: list of ints or floats
+
+    Returns:
+        True  : vectors are orthogonal
+                since the inner product
+                of u and v is a
+                zero vector or a
+                null vector that
+                has a zero magnitude
+                and no direction
+        False : inner product of
+                u and v is a
+                non zero vector
+                so they are
+                nonorthogonal vectors
+    """
     return vectiszero(mulvect(u, v))
 
 
