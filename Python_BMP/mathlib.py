@@ -442,8 +442,10 @@ def dircos(v: list[Number]
 
     Args:
         v : list of ints or floats
+            (vector components)
 
     Returns:
+        Direction Cosine list
         list[float,...]
 
     """
@@ -453,11 +455,41 @@ def dircos(v: list[Number]
 
 def diracos(dcos: list[float]
               )-> list[float]:
+    """Takes the Direction cosine
+        of the vector and returns
+        a list of angles in radians
+
+    Args:
+        v : Direction Cosine
+            list[float]
+
+    Returns:
+        list of angles in radians
+        per vector component
+        list[float,...]
+
+    """
     return [acos(d) for d in dcos]
 
 
 def dirdeg(raddir: list[float]
               ) -> list[float]:
+    """Takes the Directional angles
+        of the vector in radians
+        and returns a list of
+        angles in degrees
+
+    Args:
+        v : list of angles
+            per vector component
+            in radians
+
+    Returns:
+        list of angles in degrees
+        per vector component
+        list[float,...]
+
+    """
     return [degrees(d) for d in raddir]
 
 
