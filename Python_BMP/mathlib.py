@@ -419,8 +419,17 @@ def mirrorvec(vcen: list,
             addvect(vcen, v)]
 
 
-def mirror(pt: float,
-        delta: float):
+def mirror(pt: float, delta: float):
+    """Mirrors a value in a nunberline
+
+    Args:
+        pt   : real value in numberline
+        delta: value to mirror
+
+    Returns:
+        pt - delta, pt + delta
+
+    """
     return pt - delta, pt + delta
 
 
@@ -440,15 +449,28 @@ def addrndtovert(vertlist: list,
 
 def adddimz(vlist2D: list,
               value: float) -> list:
+    """Adds a third value for the
+        z dimensiion in a list
+        of (x, y) vertices
+
+    Args:
+        vlist2D: list of 2D vertices
+                 [(x, y), ....]
+        value  : constant z value
+
+    Returns:
+        list of 3D vertices
+        [(x, y, z), ....]
+
+    """
     return [[v[0], v[1], value]
-            for v in vlist2D]
+              for v in vlist2D]
 
 
 def anglebetween2Dlines(
-        u: list,
-        v: list) -> float:
+        u: list, v: list) -> float:
     if u[0] != v[0]:
-        a=atan(slope(u,v))
+        a = atan(slope(u, v))
     else:
         a = iif(u[0] < v[0],
                     1.5707963267948966,
@@ -456,7 +478,16 @@ def anglebetween2Dlines(
     return a
 
 
-def rotatebits(bits:int) -> int:
+def rotatebits(bits: int) -> int:
+    """Rotates the bits in a byte
+
+    Args:
+        bits: the int 8 bits to rotate
+
+    Returns:
+        int value of rotated 8 bits
+
+    """
     bit = 7
     retval = 0
     while bit>0:
@@ -534,18 +565,49 @@ def mapfunctolist(
 
 
 def swapxy(v:list) -> list:
+    """Swaps the first two values
+        in a list
+
+    Args:
+        list[x, y]
+
+    Returns:
+        list[y, x]
+
+    """
     return [v[1], v[0]]
 
 
-def centerpoint(x1: int,
-                y1: int,
-                x2: int,
-                y2: int):
+def centerpoint(x1: int, y1: int,
+                x2: int, y2: int):
+    """Returns the centerpoint x, y
+        in rectangular area
+        defined by (x1, y1)
+               and (x2, y2)
+
+    Args:
+        x1, y1 : defines the
+        x2, y2   rectangular area
+
+    Returns:
+        x: int, y: int centerpoint
+
+    """
     return ((x2 - x1) >> 1) + x1, ((y2 - y1) >> 1) + y1
 
 
 def getdatalisttotal(dlist: list) -> float:
-    total=0
+    """Returns the total of a
+        list of ints or floats
+
+    Args:
+        dlist: list of ints or floats
+
+    Returns:
+        float or int
+
+    """
+    total = 0
     for d in dlist:
         total += d[0]
     return total
@@ -560,13 +622,24 @@ def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
         ea = sa + p * 360
         p *= 100
         alist.append([sa, ea, d[1], d[0], p])
-        if p>=50:
+        if p >= 50:
             big = dlist.index(d)
         sa = ea
     return alist, big
 
 
-def enumbits(byteval):
+def enumbits(byteval: int):
+    """Yields the 8 bits in a byte
+
+    Args:
+        byteval: int value
+                 from 0 to 255
+
+    Yields:
+        Eight bits that is either
+        int 0 or int 1
+
+    """
     bit = 7
     while bit > -1:
         yield  ((byteval & (1<<bit))>>bit)
