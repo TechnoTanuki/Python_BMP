@@ -566,7 +566,7 @@ def rotatebits(bits: int) -> int:
 
 
 def mirror1stquad(x: int, y: int,
-        v: list) -> list:
+        v: list[int, int]) -> list[list[int, int]]:
 
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
@@ -608,8 +608,8 @@ def andvect(u: list[int],
     return [i & j for i, j in zip(u, v)]
 
 
-def bitmaskvect(v: list,
-        bitmask: int) -> list:
+def bitmaskvect(v: list[int],
+        bitmask: int) -> list[int]:
     """Applies a bitmask to a list
         of ints
 
