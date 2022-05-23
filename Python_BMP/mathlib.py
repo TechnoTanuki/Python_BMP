@@ -425,6 +425,28 @@ def cosaffin(u: list[Number],
 
 def dircos(v: list[Number]
          ) -> list[float]:
+    """Direction cosine of the vector
+        computed by dividing the
+        corresponding coordinate
+        of a vector by the
+        vector length.
+
+        The unit vector
+        coordinate is equal to the
+        direction cosine. One such
+        property of the direction
+        cosine is that the addition
+        of the squares of the
+        direction cosines is
+        equivalent to one
+
+    Args:
+        v : list of ints or floats
+
+    Returns:
+        list[float,...]
+
+    """
     mag = vmag(v)
     return [i / mag for i in v]
 
