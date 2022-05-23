@@ -261,8 +261,23 @@ def getnormvec(p1: list,
                        subvect(p3, p1))
 
 
-def dotprod(u: list,
-            v: list) -> float:
+def dotprod(u: list, v: list) -> float:
+    """Dot product is an algebraic
+        operation that takes two
+        equal-length sequences
+        of numbers and returns
+        a float it is the
+        sum of the products
+        of the corresponding
+        entries of the two
+        sequences of numbers
+
+    Args:
+        u, v : list of ints or floats
+
+    Returns:
+        float
+    """
     return sum(mulvect(u, v))
 
 
