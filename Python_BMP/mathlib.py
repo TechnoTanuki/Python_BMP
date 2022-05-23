@@ -23,6 +23,7 @@ from math import(
     sqrt
     )
 
+from numbers import Number
 from random import randint
 from functools import reduce
 from typing import Callable
@@ -56,43 +57,50 @@ def range2baseanddelta(lst_range: list):
     return lst_range[0], lst_range[1] - lst_range[0]
 
 
-def roundvect(v: list[float]) -> list[int]:
+def roundvect(v: list[Number]
+            ) -> list[int]:
     return [round(n) for n in v]
 
 
 def roundvectlist(
-        vlist: list[list[float]]) -> list[list[int]]:
+        vlist: list[list[Number]]
+          ) -> list[list[int]]:
     return [roundvect(v) for v in vlist]
 
 
-def addvect(u: list[float],
-            v: list[float]) -> list[float]:
+def addvect(u: list[Number],
+            v: list[Number]
+          ) -> list[Number]:
     return [i + j for i, j in zip(u, v)]
 
 
-def trans(vlist: list[float],
-              u: list[float]) -> list[float]:
+def trans(vlist: list[Number],
+              u: list[Number]
+            ) -> list[Number]:
     return [addvect(v, u) for v in vlist]
 
 
-def subvect(u: list[float],
-            v: list[float]) -> list[float]:
+def subvect(u: list[Number],
+            v: list[Number]
+          ) -> list[Number]:
     return [i - j
             for i, j in zip(u, v)]
 
 
-def mulvect(u: list[float],
-            v: list[float]) -> list[float]:
-    return [i * j for i, j in zip(u,v)]
+def mulvect(u: list[Number],
+            v: list[Number]
+          ) -> list[Number]:
+    return [i * j for i, j in zip(u, v)]
 
 
-def divvect(u: list,
-            v: list) -> list:
+def divvect(u: list[Number],
+            v: list[Number]
+          ) -> list[float]:
     return [i / j for i, j in zip(u, v)]
 
 
-def scalarmulvect(vec: list,
-            scalarval: float) -> list:
+def scalarmulvect(vec: list[float],
+  scalarval: float) -> list[float]:
     return [s * scalarval for s in vec]
 
 
@@ -106,13 +114,15 @@ def mean(v: list) -> float:
     return sum(v) / len(v)
 
 
-def meanlist(vlist: list[list[float]]) -> list[float]:
+def meanlist(
+      vlist: list[list[float]]
+        ) -> list[float]:
     return [mean(v) for v in vlist]
 
 
 def pivotlist(
-    vlist:list[list[float]]
-     ) -> list[list[float]]:
+        vlist:list[list[float]]
+         ) -> list[list[float]]:
     j = len(vlist[0])
     return [[v[i] for v in vlist]
             for i in range(0, j)]
