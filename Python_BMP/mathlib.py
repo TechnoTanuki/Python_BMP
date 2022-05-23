@@ -404,8 +404,7 @@ def rotvec2D(v: list,
             v[0] * rotvec[0] + v[1] * rotvec[1]]
 
 
-def mirrorx(p: list,
-            x: float) -> list:
+def mirrorx(p: list, x: float) -> list:
     return [p[0] - x, p[1]], [p[0] + x, p[1]]
 
 
@@ -497,32 +496,63 @@ def rotatebits(bits: int) -> int:
     return retval
 
 
-def mirror1stquad(
-        x: int,
-        y: int,
+def mirror1stquad(x: int, y: int,
         v: list) -> list:
+
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
     return [[xmin, ymax],[xmax, ymax],
             [xmin, ymin],[xmax, ymin]]
 
 
-def xorvect(u: list,
-            v: list) -> list:
-    return [i ^ j
-            for i, j in zip(u, v)]
+def xorvect(u: list[int],
+            v: list[int]) -> list[int]:
+    """Applies a xor operation
+        of between the elements of
+        two lists of ints
+
+    Args:
+        v      : list[int]
+        bitmask: int
+
+    Returns:
+        list[int]
+
+    """
+    return [i ^ j for i, j in zip(u, v)]
 
 
-def andvect(u: list,
-            v: list) -> list:
-    return [i & j
-            for i, j in zip(u, v)]
+def andvect(u: list[int],
+            v: list[int]) -> list[int]:
+    """Applies a bitwise and operation
+        of between the elements of
+        two lists of ints
+
+    Args:
+        v      : list[int]
+        bitmask: int
+
+    Returns:
+        list[int]
+
+    """
+    return [i & j for i, j in zip(u, v)]
 
 
 def bitmaskvect(v: list,
-          bitmask: int) -> list:
-    return [b & bitmask
-            for b in v ]
+        bitmask: int) -> list:
+    """Applies a bitmask to a list
+        of ints
+
+    Args:
+        v      : list[int]
+        bitmask: int
+
+    Returns:
+        list[int]
+
+    """
+    return [b & bitmask for b in v ]
 
 
 def orvect(u: list,
