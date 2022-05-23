@@ -320,8 +320,7 @@ def getmaxy(bmp: array) -> int:
 
 def getmaxxy(bmp: array) -> tuple:
     """Gets the max x and y values
-        stored in the
-        windows bmp header
+        stored in the bmp header
 
     Args:
         bmp: unsigned byte array
@@ -370,8 +369,8 @@ def centercoord(bmp: array) -> tuple:
 
 def isinBMPrectbnd(bmp: array,
         x: int, y: int) -> bool:
-    """Checks if (x,y) coordinates
-        are within the rectangular area
+    """Checks if (x,y) coordinates are
+        within the rectangular area
         of a bitmap
 
     Args:
@@ -393,10 +392,9 @@ def isinBMPrectbnd(bmp: array,
 
 def listinBMPrecbnd(bmp: array,
         xylist: list) -> bool:
-    """Checks if a list of
-        (x, y) coordinates
-        are within the rectangular area
-        of a bitmap
+    """Checks if a list of (x, y)
+        coordinates are within
+        the rectangular area of a bmp
 
     Args:
         bmp   : unsigned byte array
@@ -604,9 +602,8 @@ def _8bmof(bmp: array,
 def _8bmofhd(bmp: array,
         x: int, y: int) -> int:
     """Get the offset in a byte array
-        with 8 bit color data
-        given x and y
-        with adjustments
+        with 8 bit color data given
+        x and y with adjustments
         made for a bmp header
 
     Args:
@@ -676,9 +673,8 @@ def _1bmof(bmp: array,
 def _4bmofhd(bmp: array,
         x: int, y: int) -> int:
     """Get the offset in a byte array
-        with 4 bit color data
-        given x and y
-        with adjustments
+        with 4 bit color data given
+        x and y with adjustments
         made due to a header
 
     Args:
@@ -702,9 +698,8 @@ def _4bmofhd(bmp: array,
 def _1bmofhd(bmp: array,
         x: int, y: int) -> int:
     """Get the offset in a byte array
-        with 1 bit color data
-        given x and y
-        with adjustments
+        with 1 bit color data given
+        x and y with adjustments
         made for a bmp header
 
     Args:
@@ -751,8 +746,8 @@ def _getBMofffunc(bmp: array):
         in a given bitmap
 
     Args:
-        bmp: An unsigned byte array
-        with bmp format
+        bmp: unsigned byte array
+             with bmp format
 
     Returns:
         function to compute offsets
@@ -766,8 +761,7 @@ def _getBMofffunc(bmp: array):
 
 def _BMoffset(bmp: array,
         x: int, y: int) -> int:
-    """Returns the offset
-        given a bitmap
+    """Returns the offset given a bmp
         and (x, y) coordinates
 
     Args:
@@ -786,10 +780,9 @@ def _BMoffset(bmp: array,
 
 def _BMoffsethd(bmp: array,
         x: int, y: int) -> int:
-    """Returns the offset
-        given a bitmap
-        and (x, y) coordinates
-        with header considered
+    """Returns the offset given a bmp
+        and (x, y) coordinates with
+        header considered
 
     Args:
         bmp : unsigned byte array
@@ -881,7 +874,7 @@ def _pdbytes(x: int, bits: int) -> int:
 
 def _getbmflsz(x: int, y: int,
             bits: int) -> int:
-    """computes bitmap file size
+    """Computes bitmap file size
 
     Args:
         x, y: unsigned int value
@@ -898,10 +891,10 @@ def _getbmflsz(x: int, y: int,
 
 def _bmmeta(x: int, y: int,
         bits: int) -> tuple:
-    """computes bitmap meta data
+    """Computes bitmap meta data
 
     Args:
-        x,y  : unsigned int
+        x, y : unsigned int
                values of the
                x and y dimension
         bits : bit depth (1, 4, 8, 24)
@@ -917,8 +910,8 @@ def _bmmeta(x: int, y: int,
 
 
 def isdefaultpal(bmp: array) -> bool:
-    """Checks if bitmap has
-        a default RGB color palette
+    """Checks if bitmap has a default
+        RGB color palette
 
     Args:
         bmp: unsigned byte array
@@ -1000,7 +993,7 @@ def getallRGBpal(
              with bmp format
 
     Returns:
-        [(r:byte, g:byte,b:byte),...]
+        [(r: byte, g: byte,b: byte),...]
 
     """
     colors = getmaxcolors(bmp)
@@ -1010,7 +1003,7 @@ def getallRGBpal(
 
 def getRGBpal(bmp: array,
         c: int) -> list[int, int, int]:
-    """Gets the [R,G,B] values
+    """Gets the [R, G, B] values
         of color c in a bitmap
 
     Args:
@@ -1076,8 +1069,8 @@ def colorhistorgram(bmp: array) -> list:
 def makenewpalfromcolorhist(
         chist: list, colors: int,
         similaritythreshold: float) -> list:
-    """Creates a new palatte
-        based on a color histogram
+    """Creates a new palatte based on
+        a color histogram
 
     Args:
         chist              : list sorted in
@@ -1242,13 +1235,13 @@ def RGBpalbrightnessadjust(bmp: array,
 
 def setBMP2monochrome(bmp: array,
         RGBfactors: list[float, float, float]) -> list:
-    """Sets a bitmap to
-        use a monochrome palette
+    """Sets a bitmap to use a
+        monochrome palette
 
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        RGBfactors: (r,g,b)
+        RGBfactors: (r, g, b)
                     all values range
                     from 0.0 to 1.0
 
@@ -1268,7 +1261,7 @@ def newBMP(x: int, y: int,
     """Creates a new in-memory bitmap
 
     Args:
-        x,y      : unsigned int values
+        x, y     : unsigned int values
                    of x and y dims
         colorbits: bit depth
                    (1, 4, 8, 24)
