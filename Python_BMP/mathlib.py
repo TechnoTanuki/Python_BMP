@@ -33,7 +33,7 @@ def setmaxvec(
         vlist: list,
         maxval: float) -> list:
     return [setmax(v, maxval)
-                for v in vlist]
+               for v in vlist]
 
 
 def setminmaxvec(
@@ -41,7 +41,7 @@ def setminmaxvec(
         minval: float,
         maxval: float) -> list:
     return [setminmax(v, minval, maxval)
-                for v in vlist]
+                  for v in vlist]
 
 
 def intsetminmaxvec(
@@ -106,14 +106,16 @@ def mean(v: list) -> float:
     return sum(v) / len(v)
 
 
-def meanlist(vlist: list) -> list:
+def meanlist(vlist: list[list[float]]) -> list[float]:
     return [mean(v) for v in vlist]
 
 
-def pivotlist(vlist:list) -> list:
+def pivotlist(
+    vlist:list[list[float]]
+     ) -> list[list[float]]:
     j = len(vlist[0])
     return [[v[i] for v in vlist]
-            for i in range(0,j)]
+            for i in range(0, j)]
 
 
 def variance(v: list) -> list:
