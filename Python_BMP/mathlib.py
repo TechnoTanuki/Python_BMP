@@ -56,49 +56,44 @@ def range2baseanddelta(lst_range: list):
     return lst_range[0], lst_range[1] - lst_range[0]
 
 
-def roundvect(v: list) -> list:
+def roundvect(v: list[float]) -> list[int]:
     return [round(n) for n in v]
 
 
 def roundvectlist(
-        vlist: list) -> list:
-    return [roundvect(v)
-            for v in vlist]
+        vlist: list[list[float]]) -> list[list[int]]:
+    return [roundvect(v) for v in vlist]
 
 
-def addvect(u: list,
-            v: list) -> list:
-    return [i + j
-            for i, j in zip(u, v)]
+def addvect(u: list[float],
+            v: list[float]) -> list[float]:
+    return [i + j for i, j in zip(u, v)]
 
 
-def trans(vlist: list,
-              u: list) -> list:
-    return [addvect(v, u)
-            for v in vlist]
+def trans(vlist: list[float],
+              u: list[float]) -> list[float]:
+    return [addvect(v, u) for v in vlist]
 
 
-def subvect(u: list,
-            v: list) -> list:
+def subvect(u: list[float],
+            v: list[float]) -> list[float]:
     return [i - j
             for i, j in zip(u, v)]
 
 
-def mulvect(u: list,
-            v: list) -> list:
-    return [i * j
-            for i, j in zip(u,v)]
+def mulvect(u: list[float],
+            v: list[float]) -> list[float]:
+    return [i * j for i, j in zip(u,v)]
 
 
 def divvect(u: list,
             v: list) -> list:
-    return [i / j
-            for i, j in zip(u, v)]
+    return [i / j for i, j in zip(u, v)]
 
 
 def scalarmulvect(vec: list,
             scalarval: float) -> list:
-    return [s*scalarval for s in vec]
+    return [s * scalarval for s in vec]
 
 
 def intscalarmulvect(vec: list,
@@ -221,7 +216,9 @@ def StdDev(v:list) -> float:
     return sqrt(sum(mulvect(vr, vr)) / len(v))
 
 
-def slope(u:list,v:list) -> float:
+def slope(u: list[float, float],
+          v: list[float, float]) -> float:
+
     return (v[1] - u[1]) / \
            (v[0] - u[0])
 
@@ -241,7 +238,7 @@ def vectiszero(v: list) -> bool:
 
 def isorthogonal(u: list,
                  v: list) -> bool:
-    return vectiszero(mulvect(u,v))
+    return vectiszero(mulvect(u, v))
 
 
 def crossprod3d(
