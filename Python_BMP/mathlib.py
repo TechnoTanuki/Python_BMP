@@ -244,8 +244,25 @@ def isorthogonal(u: list,
     return vectiszero(mulvect(u,v))
 
 
-def crossprod3d(u: list,
-                v: list) -> list:
+def crossprod3d(
+        u: list[float, float, float],
+        v: list[float, float, float]) -> list[float, float, float]:
+    """Compute the cross product of
+        3D vectors u and v.
+        The cross product is
+        perpendicular to both
+        u and v
+
+    Args:
+        u, v: list of ints
+              or floats
+              [x, y, z]
+
+    Returns:
+        [x, y, z] : after u x v
+                    where x is
+                    crossprod
+    """
     x = y = z= 0
     if len(u) == 3 and len(v) == 3:
         x = u[1] * v[2] - u[2] * v[1]
@@ -365,7 +382,6 @@ def cosaffin(u: list, v: list) -> float:
         opposite vectors = -1
         and values in between
     """
-
     return dotprod(u, v) / \
          (vmag(u) * vmag(v))
 
