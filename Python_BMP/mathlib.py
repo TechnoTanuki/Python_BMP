@@ -311,10 +311,23 @@ def det3D(a1: list,
            a1[2] * a2[1] * a2[0]
 
 
-def cosaffin(u: list,
-             v: list) -> float:
+def cosaffin(u: list, v: list) -> float:
+    """Compute Cosine Similarity
+        or Cosine Affinity
+
+    Args:
+        u, v : list of ints or floats
+
+    Returns:
+        float
+        proportional vectors = 1
+        orthogonal vectors = 0
+        opposite vectors = -1
+        and values in between
+    """
+
     return dotprod(u, v) / \
-           (vmag(u) * vmag(v))
+         (vmag(u) * vmag(v))
 
 
 def dircos(v: list) -> list:
