@@ -928,8 +928,7 @@ def isdefaultpal(bmp: array) -> bool:
 
 def getBMPimgbytes(bmp: array) -> list:
     """Gets the raw image buffer
-        of a bitmap
-        without the header
+        of a bmp without the header
 
     Args:
         bmp: unsigned byte array
