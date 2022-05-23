@@ -107,8 +107,7 @@ def mean(v: list) -> float:
 
 
 def meanlist(vlist: list) -> list:
-    return [mean(v)
-            for v in vlist]
+    return [mean(v) for v in vlist]
 
 
 def pivotlist(vlist:list) -> list:
@@ -236,8 +235,9 @@ def vectiszero(v: list) -> bool:
     return b
 
 
-def isorthogonal(u: list,
-                 v: list) -> bool:
+def isorthogonal(
+        u: list[float],
+        v: list[float]) -> bool:
     return vectiszero(mulvect(u, v))
 
 
