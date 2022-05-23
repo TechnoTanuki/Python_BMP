@@ -104,13 +104,14 @@ def scalarmulvect(vec: list[float],
     return [s * scalarval for s in vec]
 
 
-def intscalarmulvect(vec: list,
-               scalarval: float) -> list:
+def intscalarmulvect(vec: list[Number],
+               scalarval: float
+                     ) -> list[int]:
     return [round(s * scalarval)
             for s in vec]
 
 
-def mean(v: list) -> float:
+def mean(v: list[Number]) -> float:
     return sum(v) / len(v)
 
 
@@ -301,7 +302,8 @@ def getnormvec(
                        subvect(p3, p1))
 
 
-def dotprod(u: list, v: list) -> float:
+def dotprod(u: list[Number],
+            v: list[Number]) -> float:
     """Dot product is an algebraic
         operation that takes two
         equal-length sequences
