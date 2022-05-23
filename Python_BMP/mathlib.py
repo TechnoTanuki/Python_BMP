@@ -303,6 +303,17 @@ def countdist(distlist: list) -> dict:
 def det3D(a1: list,
           a2: list,
           a3: list) -> float:
+    """Compute the Determinant
+        of a 3D matrix
+
+    Args:
+        a1, a2, a3 : list of ints
+                     or floats
+                     [x, y, z]
+
+    Returns:
+        float
+    """
     return a1[0] * a2[1] * a3[2] + \
            a1[1] * a2[2] * a3[0] + \
            a1[2] * a2[0] * a3[1] - \
