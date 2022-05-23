@@ -239,13 +239,18 @@ def coefvar(v: list) -> float:
     return StdDev(v) /mean(v)
 
 
-def vectiszero(v: list) -> bool:
-    b = True
-    for i in v:
-        if i > 0:
-            b = False
-            break
-    return b
+def vectiszero(v: list[Number]) -> bool:
+    """Checks if a vector is all zero
+
+    Args:
+        v: list of ints or floats
+
+    Returns:
+        True  :if list is all zero
+        False :if there is any non zero
+               in the list
+    """
+    return all(u == 0 for u in v)
 
 
 def isorthogonal(
