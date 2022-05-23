@@ -254,9 +254,23 @@ def crossprod3d(u: list,
     return [x, y, z]
 
 
-def getnormvec(p1: list,
-               p2: list,
-               p3: list) -> list:
+def getnormvec(
+        p1: list[float, float, float],
+        p2: list[float, float, float],
+        p3: list[float, float, float]) -> list:
+    """Gets the normal to a plane
+        given 3 vertices (x, y, z) that
+        define the surface in 3D space
+        using a cross product between
+        two vectors a and b:
+        The normal vector is orthogonal
+        to vectors a and b. (see below)
+
+        a = (p2 - p1)
+        b = (p3 - p1)
+        n = (a x b) where x is crossprod
+        n = ((p2 - p1) x (p3 - p1))
+    """
     return crossprod3d(subvect(p2, p1),
                        subvect(p3, p1))
 
