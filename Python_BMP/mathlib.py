@@ -189,18 +189,37 @@ def intscalarmulvect(vec: list[Number],
     Returns:
         list of ints
     """
-
     return [round(s * scalarval)
             for s in vec]
 
 
 def mean(v: list[Number]) -> float:
+    """Gets the average of a list
+        of numbers
+
+    Args:
+        v: the vector or a list of
+           ints or floats
+
+    Returns:
+        float
+    """
     return sum(v) / len(v)
 
 
 def meanlist(
       vlist: list[list[float]]
         ) -> list[float]:
+    """Gets the averages of a list
+        of list of numbers
+
+    Args:
+        vlist: the vector or a list
+               of ints or floats
+
+    Returns:
+        list[float, ...]
+    """
     return [mean(v) for v in vlist]
 
 
