@@ -8178,12 +8178,12 @@ def resizeNtimessmaller(
     """
     bits = bmp[_bmclrbits]
     nbmp = -1
-    m = getmaxxy(bmp)
-    nx = m[0] // n
-    ny = m[1] // n
+    (mx, my) = getmaxxy(bmp)
+    nx = mx // n
+    ny = my // n
     nbmp = newBMP(nx, ny, bits)
-    mx = m[0]-1
-    my = m[1]-1
+    mx -= 1
+    my -= 1
     ny -= 1
     offset = _24bmof(nbmp, 0, ny)
     r = _xchrcnt(nbmp)
@@ -8223,7 +8223,7 @@ def pixelizenxn(bmp: array,
 
     """
     return resizeNtimesbigger(
-                resizeNtimessmaller(bmp, n), n)
+           resizeNtimessmaller(bmp, n), n)
 
 
 def adjustcolordicttopal(
@@ -8747,14 +8747,13 @@ def _use24btfnwithparnsv(
 
 
 @_filechk
-def apply8bitabovefuncandsave(
+def _use8n24btfnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable):
-    """Apply a function
-        for 8 and 24-bit bmp
-        with no parameters
-        and save
+    """Apply a function for 8
+        and 24-bit bmp with
+        no parameters and save
 
     Args:
         ExistingBMPfile: Whole path to
@@ -8980,8 +8979,8 @@ def _use24btclrfn(
         NewBMPfile: str,
         func: Callable, funcparam):
     """Apply a user provided color
-        adjustment function to
-        a 24-bit bitmap
+        adjustment function to a
+        24-bit bitmap
 
     Args:
         ExistingBMPfile: Whole path to
@@ -9006,8 +9005,8 @@ def _use24btclrfn(
         func(bmp, funcparam)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savesingleparamfunc'] %
-             (func.__name__, str(funcparam),
-                ExistingBMPfile, NewBMPfile))
+        (func.__name__, str(funcparam),
+          ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -9016,8 +9015,8 @@ def _usenoparclradjfn(
         NewBMPfile: str,
         func: Callable):
     """Apply a user provided
-        no parameter
-        color adjustment function
+        no parameter color
+        adjustment function
         to an existing bitmap
 
     Args:
@@ -9077,8 +9076,8 @@ def cropBMPandsave(
 
     """
     _usefn2regsv(ExistingBMPfile,
-        NewBMPfile,
-        x1, y1, x2, y2, crop)
+        NewBMPfile, x1, y1, x2, y2,
+        crop)
 
 
 @_filechk
@@ -9108,8 +9107,8 @@ def cropBMPandsaveusingrectbnd(
 
     """
     _usefn2regsv(ExistingBMPfile,
-        NewBMPfile,
-        rectbnd[0][0], rectbnd[0][1],
+        NewBMPfile, rectbnd[0][0],
+        rectbnd[0][1],
         rectbnd[1][0] + 1,
         rectbnd[1][1] + 1, crop)
 
@@ -10018,8 +10017,8 @@ def colorfilter2file(
 def monochrome2file(
         ExistingBMPfile: str,
         NewBMPfile: str):
-    """Applies a monochrome filter
-        to a bitmap file
+    """Applies a monochrome filter to
+        a bitmap file
 
     Args:
         ExistingBMPfile: Whole path to
