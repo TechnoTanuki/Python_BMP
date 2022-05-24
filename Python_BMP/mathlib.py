@@ -114,7 +114,7 @@ def trans(vlist: list[Number],
 def subvect(u: list[Number],
             v: list[Number]
           ) -> list[Number]:
-    """Substracts vectors u and v by
+    """Subtracts vectors u and v by
         subtracting their components
 
     Args:
@@ -744,7 +744,7 @@ def spherical2rectcoord3D(
 def rect2cylindricalcoord3D(
         v: list) -> list:
     return [vmag(v),
-            atan(v[1]/v[0]),
+            atan(v[1] / v[0]),
             v[2]]
 
 
@@ -895,8 +895,8 @@ def mirror1stquad(x: int, y: int,
 
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
-    return [[xmin, ymax],[xmax, ymax],
-            [xmin, ymin],[xmax, ymin]]
+    return [[xmin, ymax], [xmax, ymax],
+            [xmin, ymin], [xmax, ymin]]
 
 
 def xorvect(u: list[int],
