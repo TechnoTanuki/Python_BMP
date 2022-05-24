@@ -59,18 +59,48 @@ def range2baseanddelta(lst_range: list):
 
 def roundvect(v: list[Number]
             ) -> list[int]:
+    """Rounds off the components of a
+        vector
+       (list of floats -> list of ints)
+
+    Args:
+        v: list of floats
+
+    Returns:
+        list of ints
+    """
     return [round(n) for n in v]
 
 
 def roundvectlist(
         vlist: list[list[Number]]
           ) -> list[list[int]]:
+    """Rounds the components of a vector
+        in a list within a list
+        lists of (list of floats) ->
+        lista of (list of ints)
+
+    Args:
+        vlist: list[list[floats]
+
+    Returns:
+        list[list[ints]
+    """
     return [roundvect(v) for v in vlist]
 
 
 def addvect(u: list[Number],
             v: list[Number]
           ) -> list[Number]:
+    """Add vectors u and v by
+        adding their components
+
+    Args:
+        u, v: list of ints or floats
+
+    Returns:
+        list of ints or floats
+    """
     return [i + j for i, j in zip(u, v)]
 
 
@@ -83,6 +113,15 @@ def trans(vlist: list[Number],
 def subvect(u: list[Number],
             v: list[Number]
           ) -> list[Number]:
+    """Substracts vectors u and v by
+        subtracting their components
+
+    Args:
+        u, v: list of ints or floats
+
+    Returns:
+        list of ints or floats
+    """
     return [i - j
             for i, j in zip(u, v)]
 
@@ -108,14 +147,49 @@ def divvect(u: list[Number],
     return [i / j for i, j in zip(u, v)]
 
 
-def scalarmulvect(vec: list[float],
-  scalarval: float) -> list[float]:
-    return [s * scalarval for s in vec]
+def scalarmulvect(
+            v: list[Number],
+         scalarval: Number
+          ) -> list[Number]:
+    """Scales a vector by multiplying
+        a scalar value (float) to all
+        components of the vector or a
+        list of numbers in pure Python
+
+    Args:
+        v        : the vector or
+                   a list of
+                   ints or floats
+        scalarval: scalar value
+                   (float or int)
+
+    Returns:
+        list of ints or floats
+    """
+    return [s * scalarval for s in v]
 
 
 def intscalarmulvect(vec: list[Number],
-               scalarval: float
-                     ) -> list[int]:
+                    scalarval: Number
+                    ) -> list[int]:
+    """Scales a vector by multiplying
+        a scalar value (float) to all
+        components of the vector or a
+        list of numbers in pure Python
+        then rounds off values in the
+        list to a whole number
+
+    Args:
+        v        : the vector or
+                   a list of
+                   ints or floats
+        scalarval: scalar value
+                   (float or int)
+
+    Returns:
+        list of ints
+    """
+
     return [round(s * scalarval)
             for s in vec]
 
