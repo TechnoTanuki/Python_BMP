@@ -12,6 +12,7 @@
 # -----------------------------------
 
 
+from ast import Num
 from math import(
     acos,
     atan,
@@ -267,9 +268,8 @@ def isinrange(value: float,
 
 def setmax(val: Number,
         maxval: Number) -> Number:
-    """Set the maximum possible value
-        of val to maxval
-        if val > maxval
+    """Set the value of val
+        to maxval if val > maxval
 
     Args:
         val   : numeric variable
@@ -283,13 +283,12 @@ def setmax(val: Number,
 
 def setmin(val: Number,
         minval: Number) -> Number:
-    """Set the minimum possible value
-        of val to minval
-        if val < maxval
+    """Set the value of val
+        to minval if val < minval
 
     Args:
         val   : numeric variable
-        maxval: lower limit of variable
+        minval: lower limit of variable
 
     Returns:
         Number
@@ -297,17 +296,46 @@ def setmin(val: Number,
     return minval if val < minval else val
 
 
-def setminmax(val: float,
-           minval: float,
-           maxval: float) -> float:
-    if val > maxval: val = maxval
-    if val < minval: val = minval
+def setminmax(val: Number,
+           minval: Number,
+           maxval: Number) -> Number:
+    """Set the value of val
+        to minval if val < minval
+        or the value of val
+        to maxval if val > maxval
+
+    Args:
+        val   : numeric variable
+        minval: lower limit of variable
+        maxval: upper limit of variable
+
+    Returns:
+        Number
+    """
+    if val > maxval:
+        val = maxval
+    if val < minval:
+        val = minval
     return val
 
 
-def intsetminmax(val: float,
+def intsetminmax(val: Number,
               minval: int,
               maxval: int) -> int:
+    """Set the value of val
+        to minval if val < minval
+        or the value of val
+        to maxval if val > maxval
+        and return an int
+
+    Args:
+        val   : numeric variable
+        minval: lower limit of variable
+        maxval: upper limit of variable
+
+    Returns:
+        int
+    """
     val = round(val)
     if val > maxval:
         val = maxval
