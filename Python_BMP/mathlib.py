@@ -345,6 +345,16 @@ def intsetminmax(val: Number,
 
 
 def sign(intval: int) -> int:
+    """Returns an int depending
+        on the sign of intval
+    Args:
+        intval   : an int
+
+    Returns:
+        Postive value ->  1
+        zero          ->  0
+        Negative value-> -1
+    """
     retval = 0
     if intval > 0:
         retval = 1
