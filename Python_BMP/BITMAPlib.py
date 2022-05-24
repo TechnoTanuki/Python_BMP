@@ -4116,7 +4116,7 @@ def plot8bitpatternwithfn(
         unsigned byte array
 
     """
-    inc= scale - 1 - pixspace
+    inc = scale - 1 - pixspace
     for bits in bitpattern:
         ox = x
         mask = 128
@@ -4130,6 +4130,51 @@ def plot8bitpatternwithfn(
             x += scale
         y += scale
         x = ox
+
+
+def plotitalic8bitpatternwithfn(
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int,
+        fn: Callable):
+    """Draws a 8-bit pattern
+        with a function
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    inc = scale - 1 - pixspace
+    i = scale // 2
+    for bits in bitpattern:
+        ox = x
+        mask = 128
+        while mask > 0:
+            if (mask & bits) > 0:
+                if scale == 1 or inc <= 0:
+                    plotxybit(bmp, x, y, color)
+                else:
+                    fn(bmp, x, y, inc, color)
+            mask >>= 1
+            x += scale
+        y += scale
+        x = ox - i
+        if y % 2 == 0 and scale == 1:
+            x -= 1
 
 
 def plot8bitpattern(
@@ -4158,6 +4203,39 @@ def plot8bitpattern(
     """
 
     plot8bitpatternwithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        lambda bmp, x, y, inc, color: \
+            filledrect(bmp, x, y, \
+                x + inc, y + inc, color))
+
+
+def plotitalic8bitpattern(
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
+    """Draws a 8-bit italic pattern
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+
+    plotitalic8bitpatternwithfn(
         bmp, x, y, bitpattern,
         scale, pixspace, color,
         lambda bmp, x, y, inc, color: \
@@ -4196,7 +4274,7 @@ def plot8bitpatternasdots(
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : sets where to draw
+        x, y      : sets where to draw
                     the pattern
         bitpattern: list of bytes
                     that makes the
@@ -4297,7 +4375,7 @@ def plot8bitpatternupsidedownwithfn(
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : sets where to
+        x, y      : sets where to
                     draw the pattern
         bitpattern: list of bytes that
                     makes the pattern
@@ -4603,6 +4681,44 @@ def plotstring(bmp: array,
         spacebetweenchar,
         color, fontbuf, _enchr,
         plot8bitpattern)
+
+
+def plotitalicstring(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
+    """Draws a string
+
+    Args:
+        bmp             : unsigned
+                          byte array
+                          with bmp format
+        x, y            : sets where to
+                          draw the
+                          string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of
+                         the font
+        fontbuf         : the font
+                          (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf, _enchr,
+        plotitalic8bitpattern)
 
 
 def plotstringasdots(bmp: array,
