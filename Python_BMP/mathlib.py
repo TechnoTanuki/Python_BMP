@@ -993,13 +993,6 @@ def addvectlist(vlist1: list,
             for u, v in zip(vlist1, vlist2)]
 
 
-def mapfunctolist(
-        func: Callable,
-        vlist: list) -> list:
-    return [func(v)
-            for v in vlist]
-
-
 def swapxy(v:list) -> list:
     """Swaps the first two values
         in a list
