@@ -32,6 +32,7 @@ from math import(sin, cos, radians)
 
 from random import random
 from typing import Callable
+from numbers import Number
 
 from .proctimer import(
     functimer as _fntimer
@@ -55,7 +56,6 @@ from .mathlib import(
     anglebetween2Dlines,
     centerpoint,
     cosaffin,
-    delta,
     distance,
     enumbits,
     genpiechartdata,
@@ -3992,7 +3992,7 @@ def filledrect(bmp: array,
 
 
 def beziercurve(bmp: array,
-        pntlist: list,
+        pntlist: list[list[Number, Number]],
         penradius: int, color: int):
     """Draws a bezier curve of
         a given color and thickness
@@ -4043,8 +4043,7 @@ def bspline(bmp: array, pntlist: list,
     """
     for v in iterbspline(pntlist,
              isclosed, curveback):
-        roundpen(bmp, v, penradius,
-                 color)
+        roundpen(bmp, v, penradius, color)
 
 
 def plotrotated8bitpatternwithfn(
@@ -4163,8 +4162,7 @@ def plot8bitpattern(
         scale, pixspace, color,
         lambda bmp, x, y, inc, color: \
             filledrect(bmp, x, y, \
-                x + inc, y + inc, color)
-        )
+                x + inc, y + inc, color))
 
 
 def plotcircinsqr(bmp, x, y, d, color):
@@ -4201,7 +4199,8 @@ def plot8bitpatternasdots(
         x,y       : sets where to draw
                     the pattern
         bitpattern: list of bytes
-                    that makes the pattern
+                    that makes the
+                    pattern
         scale     : controls how big
                     the pattern is
         pixspace  : space between
@@ -4214,11 +4213,9 @@ def plot8bitpatternasdots(
 
     """
 
-    plot8bitpatternwithfn(
-        bmp, x, y, bitpattern,
-        scale, pixspace, color,
-        plotcircinsqr
-        )
+    plot8bitpatternwithfn(bmp, x, y,
+        bitpattern, scale, pixspace,
+        color, plotcircinsqr)
 
 
 def plotrotated8bitpattern(
@@ -4247,14 +4244,12 @@ def plotrotated8bitpattern(
         unsigned byte array
 
     """
-    plotrotated8bitpatternwithfn(
-        bmp, x, y, bitpattern,
-        scale, pixspace, color,
+    plotrotated8bitpatternwithfn(bmp,
+        x, y, bitpattern, scale,
+        pixspace, color,
         lambda bmp, x, y, inc, color: \
             filledrect(bmp, x, y, \
-                x + inc, y + inc, color)
-        )
-
+                x + inc, y + inc, color))
 
 
 def plotrotated8bitpatternwithdots(
@@ -4287,8 +4282,7 @@ def plotrotated8bitpatternwithdots(
     plotrotated8bitpatternwithfn(
         bmp, x, y, bitpattern,
         scale, pixspace, color,
-        plotcircinsqr
-        )
+        plotcircinsqr)
 
 
 def plot8bitpatternupsidedownwithfn(
@@ -4401,9 +4395,7 @@ def plot8bitpatternupsidedownasdots(
     """
     plot8bitpatternupsidedownwithfn(
         bmp, x, y, bitpattern, scale,
-        pixspace, color,
-        plotcircinsqr
-    )
+        pixspace, color, plotcircinsqr)
 
 
 def plot8bitpatternsidewaywithfn(
@@ -4609,8 +4601,8 @@ def plotstring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf,
-        _enchr, plot8bitpattern)
+        color, fontbuf, _enchr,
+        plot8bitpattern)
 
 
 def plotstringasdots(bmp: array,
@@ -4645,8 +4637,8 @@ def plotstringasdots(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf,
-        _enchr, plot8bitpatternasdots)
+        color, fontbuf, _enchr,
+        plot8bitpatternasdots)
 
 
 def plotstringupsidedown(bmp: array,
@@ -4756,8 +4748,7 @@ def plotreversestring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf,
-        _enchrev,
+        color, fontbuf, _enchrev,
         plotrotated8bitpattern)
 
 
@@ -5109,15 +5100,14 @@ def plotpolyfill(bmp: array,
 
 def thickplotpoly(bmp: array,
         vertlist: list,
-        penradius: int,
-        color: int):
+        penradius: int, color: int):
     """Draws a polygon of a given color
         and thickness
 
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        vertlist : [(x,y)...]
+        vertlist : [(x, y)...]
                    list of vertices
         penradius: radius of pen
                    in pixels
