@@ -224,9 +224,18 @@ def meanlist(
 
 
 def pivotlist(
-        vlist:list[list[float]]
-         ) -> list[list[float]]:
+        vlist:list[list[any]]
+         ) -> list[list[any]]:
     j = len(vlist[0])
+    """Does a pivottable with a list
+        of list of anything
+
+    Args:
+        vlist: a list of lists
+
+    Returns:
+        list of lists
+    """
     return [[v[i] for v in vlist]
             for i in range(0, j)]
 
