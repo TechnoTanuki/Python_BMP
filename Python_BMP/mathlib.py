@@ -12,7 +12,6 @@
 # -----------------------------------
 
 
-from ast import Num
 from math import(
     acos,
     atan,
@@ -408,7 +407,16 @@ def TTest(XYdata: list) -> float:
     return r * sqrt((len(XYdata) - 2) / (1 - r ** 2))
 
 
-def StdDev(v: list) -> float:
+def StdDev(v: list[Number]) -> float:
+    """Computes the standard deviation
+        of a list of numbers
+
+    Args:
+        v:  list of numbers
+
+    Returns:
+        float
+    """
     vr = variance(v)
     return sqrt(sum(mulvect(vr, vr)) / len(v))
 
