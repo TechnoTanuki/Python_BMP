@@ -7416,20 +7416,18 @@ def resizeNtimesbigger(
 
     """
     bits = bmp[_bmclrbits]
-    m = getmaxxy(bmp)
-    nx = m[0] * n
-    ny = m[1] * n
+    (mx, my) = getmaxxy(bmp)
+    nx = mx * n
+    ny = my * n
     nbmp = newBMP(nx, ny, bits)
-    mx = m[0] - 1
-    my = m[1] - 1
+    mx -= 1
+    my -= 1
     ny -= 1
     if bits < 24:
         copyRGBpal(bmp, nbmp)
-    offset = _BMoffset(
-                  nbmp, 0, ny)
+    offset = _BMoffset(nbmp, 0, ny)
     r = _xchrcnt(nbmp)
-    for buf in itercopyrect(
-                    bmp, 0, 0,
+    for buf in itercopyrect(bmp, 0, 0,
                         mx, my):
         nbuf = _rsbfNtmbig(buf, n, bits)
         i = 0
@@ -7491,11 +7489,9 @@ def colorfilterto24bitimage(
         unsigned byte array
 
     """
-    colorfilterto24bitregion(
-        bmp, 0, 0,
+    colorfilterto24bitregion(bmp, 0, 0,
         getmaxx(bmp) - 1,
-        getmaxy(bmp) - 1,
-        rgbfactors)
+        getmaxy(bmp) - 1, rgbfactors)
 
 
 def brightnesseadjto24bitregion(
@@ -7523,8 +7519,7 @@ def brightnesseadjto24bitregion(
         unsigned byte array
 
     """
-    _use24bitfn2reg(
-        bmp, x1, y1, x2, y2,
+    _use24bitfn2reg(bmp, x1, y1, x2, y2,
         _bradj2BGRbuf, percentadj)
 
 
@@ -7554,8 +7549,7 @@ def thresholdadjto24bitregion(
         unsigned byte array
 
     """
-    _use24bitfn2reg(
-        bmp, x1, y1, x2, y2,
+    _use24bitfn2reg(bmp, x1, y1, x2, y2,
         _thresadj2BGRbuf, lumrange)
 
 
@@ -7606,10 +7600,8 @@ def brightnesseadjto24bitimage(
 
     """
     brightnesseadjto24bitregion(
-        bmp, 0, 0,
-        getmaxx(bmp) - 1,
-        getmaxy(bmp) - 1,
-        percentadj)
+        bmp, 0, 0, getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1, percentadj)
 
 
 def thresholdadjto24bitimage(
@@ -7631,10 +7623,8 @@ def thresholdadjto24bitimage(
 
     """
     thresholdadjto24bitregion(
-        bmp, 0, 0,
-        getmaxx(bmp) - 1,
-        getmaxy(bmp) - 1,
-        lumrange)
+        bmp, 0, 0, getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1, lumrange)
 
 
 def verticalbrightnessgradto24bitimage(
@@ -7656,10 +7646,8 @@ def verticalbrightnessgradto24bitimage(
 
     """
     verticalbrightnessgradto24bitregion(
-        bmp, 0, 0,
-        getmaxx(bmp) - 1,
-        getmaxy(bmp) - 1,
-        lumrange)
+        bmp, 0, 0, getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1, lumrange)
 
 
 def mandelbrot(bmp: array,
@@ -8092,8 +8080,8 @@ def horizontalbrightnessgradto24bitregion(
     l = lumrange[0]
     dl = (lumrange[1] - lumrange[0]) / (x2 - x1)
     for x in range(x1, xlim):
-        s = c(bmp,x,y2)
-        e = c(bmp,x,y1)
+        s = c(bmp, x, y2)
+        e = c(bmp, x, y1)
         bmp[s: e - 2: r], bmp[s + 1: e - 1: r], bmp[s + 2: e: r] = \
         f(bmp[s: e - 2: r], l), f(bmp[s + 1: e -1 : r], l), f(bmp[s + 2: e: r], l)
         l += dl
