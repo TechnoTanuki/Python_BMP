@@ -5286,7 +5286,8 @@ def plotpolyfillist(
         i += 1
 
 
-def plot3d(bmp: array, sides: list,
+def plot3d(bmp: array,
+        sides: list[list, list],
         issolid: bool,
         RGBfactors: list[float, float],
         showoutline: bool,
@@ -6173,8 +6174,8 @@ def copyrect(bmp: array,
     return retval
 
 
-def pasterect(bmp: array,
-        buf: array, x1: int, y1: int):
+def pasterect(bmp: array, buf: array,
+                   x1: int, y1: int):
     """Paste a rectangular area defined
         in a buffer to a bitmap
 
@@ -6216,9 +6217,8 @@ def pasterect(bmp: array,
 
 
 def convertselection2BMP(buf: array):
-    """Converts a custom
-        unsigned byte array to
-        the windows bmp format
+    """Converts a custom unsigned
+        byte array to the bmp format
 
     Args:
         buf: unsigned byte array
@@ -6579,8 +6579,7 @@ def mirrorbottom(bmp: array):
 @_enrectbnd
 def verttransregion(bmp: array,
         x1: int, y1: int,
-        x2: int, y2: int,
-        trans: str):
+        x2: int, y2: int, trans: str):
     """Do vertical image transforms
         in a rectangular region
 
@@ -6650,8 +6649,8 @@ def flipverticalregion(bmp: array,
         unsigned byte array
 
     """
-    verttransregion(bmp,
-        x1, y1, x2, y2, 'F')
+    verttransregion(bmp, x1, y1,
+                         x2, y2, 'F')
 
 
 def mirrorbottominregion(bmp: array,
@@ -6672,8 +6671,8 @@ def mirrorbottominregion(bmp: array,
         unsigned byte array
 
     """
-    verttransregion(bmp,
-        x1, y1, x2, y2, 'B')
+    verttransregion(bmp, x1, y1,
+                         x2, y2, 'B')
 
 
 def mirrortopinregion(bmp: array,
@@ -6700,9 +6699,8 @@ def mirrortopinregion(bmp: array,
 
 @_enrectbnd
 def fliphorzontalpixelbased(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Flips horizontal
         a rectangular region
         using pixel addressing
@@ -6734,9 +6732,8 @@ def fliphorzontalpixelbased(
 
 @_enrectbnd
 def fliphverticalalpixelbased(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Flips vertical
         a rectangular region
         using pixel addressing
@@ -6847,9 +6844,8 @@ def fliphorizontalregion(bmp: array,
 
 
 def mirrorleftinregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Mirrors the left-half
         of a rectangular area
 
@@ -6881,8 +6877,8 @@ def mirrorleftinregion(
         bmp[s2: e2: r] = \
             _rtbtbf(bmp[s1: e1: r])
 
-    horizontalbulkswap(
-        bmp, x1, y1, x2, y2,
+    horizontalbulkswap(bmp,
+        x1, y1, x2, y2,
         {24: _24,
           8: _8,
           4: _4,
@@ -6890,9 +6886,8 @@ def mirrorleftinregion(
 
 
 def mirrorrightinregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Mirrors the right-half of
         a rectangular area in a bitmap
 
@@ -6969,9 +6964,8 @@ def mirrorright(bmp: array):
 
 
 def mirrortopleftinregion(
-        bmp:array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp:array, x1: int, y1: int,
+                   x2: int, y2: int):
     """Mirrors the top-left of a
         rectangular region defined by
         (x1, y1) and (x2, y2)
@@ -6995,9 +6989,8 @@ def mirrortopleftinregion(
 
 
 def mirrortoprightinregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Mirrors the top-right of a
         rectangular region defined by
         (x1, y1) and (x2, y2)
@@ -7021,9 +7014,8 @@ def mirrortoprightinregion(
 
 
 def mirrorbottomleftinregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Mirrors the bottom-left of a
         rectangular region defined
         by (x1, y1) and (x2, y2)
@@ -7047,9 +7039,8 @@ def mirrorbottomleftinregion(
 
 
 def mirrorbottomrightinregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Mirrors the bottom-right of a
         rectangular region defined by
         (x1, y1) and (x2, y2)
@@ -7105,9 +7096,9 @@ def mirrortopright(bmp: array):
         unsigned byte array
 
     """
-    mirrorrightinregion(bmp,
-        0, 0, getmaxx(bmp) - 1,
-             (getmaxy(bmp) - 1) // 2)
+    mirrorrightinregion(bmp, 0, 0,
+        getmaxx(bmp) - 1,
+       (getmaxy(bmp) - 1) // 2)
     mirrortop(bmp)
 
 
@@ -7125,9 +7116,8 @@ def mirrorbottomleft(bmp: array):
 
     """
     ymax = getmaxy(bmp) - 1
-    mirrorleftinregion(bmp,
-        0, ymax // 2,
-        getmaxx(bmp) - 1,
+    mirrorleftinregion(bmp, 0,
+        ymax // 2, getmaxx(bmp) - 1,
         ymax)
     mirrorbottom(bmp)
 
@@ -7146,9 +7136,8 @@ def mirrorbottomright(bmp: array):
 
     """
     ymax = getmaxy(bmp) - 1
-    mirrorrightinregion(bmp,
-        0, ymax // 2,
-        getmaxx(bmp) - 1,
+    mirrorrightinregion(bmp, 0,
+        ymax // 2, getmaxx(bmp) - 1,
         ymax)
     mirrorbottom(bmp)
 
@@ -7166,9 +7155,9 @@ def fliphorizontal(bmp: array):
         unsigned byte array
 
     """
-    fliphorizontalregion(bmp,
-        0, 0, getmaxx(bmp) - 1,
-              getmaxy(bmp) - 1)
+    fliphorizontalregion(bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1)
 
 
 def flipXY(bmp: array):
@@ -7213,9 +7202,8 @@ def flipXY(bmp: array):
 
 @_enrectbnd
 def itergetcolorfromrectregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Yields color info of
         a rectangular area
 
@@ -7244,9 +7232,8 @@ def itergetcolorfromrectregion(
 
 
 @_enrectbnd
-def crop(bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+def crop(bmp: array, x1: int, y1: int,
+                     x2: int, y2: int):
     """Crops the image to a
         rectangular region
         defined by (x1, y1)
@@ -7368,8 +7355,7 @@ def monofilterto24bitimage(bmp: array):
         unsigned byte array
 
     """
-    monofilterto24bitregion(
-        bmp, 0, 0,
+    monofilterto24bitregion(bmp, 0, 0,
         getmaxx(bmp) - 1,
         getmaxy(bmp) - 1)
 
@@ -7393,10 +7379,8 @@ def horizontalbrightnessgradto24bitimage(
 
     """
     horizontalbrightnessgradto24bitregion(
-        bmp, 0, 0,
-        getmaxx(bmp) - 1,
-        getmaxy(bmp) - 1,
-        lumrange)
+        bmp, 0, 0, getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1, lumrange)
 
 
 def resizeNtimesbigger(
