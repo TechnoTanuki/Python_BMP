@@ -227,7 +227,7 @@ def pivotlist(
         vlist:list[list[any]]
          ) -> list[list[any]]:
     j = len(vlist[0])
-    """Does a pivottable with a list
+    """Does a pivot table with a list
         of list of anything
 
     Args:
@@ -240,7 +240,20 @@ def pivotlist(
             for i in range(0, j)]
 
 
-def variance(v: list) -> list:
+def variance(v: list[Number]
+           ) -> list[float]:
+    """Computes the variance
+        of the elements in
+        a list of numbers
+
+    Args:
+        vlist: a list of
+               ints or floats
+
+
+    Returns:
+        list of floats
+    """
     ave = mean(v)
     return [n - ave for n in v]
 
@@ -252,14 +265,36 @@ def isinrange(value: float,
            (value < highlimit)
 
 
-def setmax(val: float,
-        maxval: float) -> float:
-    return maxval if val>maxval else val
+def setmax(val: Number,
+        maxval: Number) -> Number:
+    """Set the maximum possible value
+        of val to maxval
+        if val > maxval
+
+    Args:
+        val   : numeric variable
+        maxval: upper limit of variable
+
+    Returns:
+        Number
+    """
+    return maxval if val > maxval else val
 
 
-def setmin(val: float,
-        minval: float) -> float:
-    return minval if val<minval else val
+def setmin(val: Number,
+        minval: Number) -> Number:
+    """Set the minimum possible value
+        of val to minval
+        if val < maxval
+
+    Args:
+        val   : numeric variable
+        maxval: lower limit of variable
+
+    Returns:
+        Number
+    """
+    return minval if val < minval else val
 
 
 def setminmax(val: float,
