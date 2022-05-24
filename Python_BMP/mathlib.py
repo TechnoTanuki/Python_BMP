@@ -415,7 +415,16 @@ def StdDev(v: list) -> float:
 
 def slope(u: list[float, float],
           v: list[float, float]) -> float:
+    """Computes the slope of a line
+        using points u(x1, y1)
+                 and v(x2, y2)
 
+    Args:
+        u, v:  line endpoints (x, y)
+
+    Returns:
+        float
+    """
     return (v[1] - u[1]) / \
            (v[0] - u[0])
 
