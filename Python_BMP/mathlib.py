@@ -385,14 +385,15 @@ def LSMYint(XYdata:list) -> float:
 
 
 def PearsonsR(XYdata: list) -> float:#first two values inlist must be [[x and y...]...]
-    XY, N = pivotlist(XYdata), len(XYdata)
+    XY = pivotlist(XYdata)
+    N = len(XYdata)
     X = XY[0]
     Y = XY[1]
     EX = sum(X)
     EY = sum(Y)
-    EXY = sum(mulvect(X,Y))
-    EsqX = sum(mulvect(X,X))
-    EsqY = sum(mulvect(Y,Y))
+    EXY = sum(mulvect(X, Y))
+    EsqX = sum(mulvect(X, X))
+    EsqY = sum(mulvect(Y, Y))
     return ((N * EXY) - (EX * EY)) / \
         sqrt(abs(((N * EsqX) - (EX ** 2))) * \
             abs(((N * EsqY) - (EY ** 2))))
@@ -407,8 +408,8 @@ def TTest(XYdata: list) -> float:
     return r * sqrt((len(XYdata) - 2) / (1 - r ** 2))
 
 
-def StdDev(v:list) -> float:
-    vr=variance(v)
+def StdDev(v: list) -> float:
+    vr = variance(v)
     return sqrt(sum(mulvect(vr, vr)) / len(v))
 
 
