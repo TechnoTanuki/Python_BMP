@@ -428,6 +428,19 @@ def PearsonsR(XYdata: list) -> float:
 
 
 def Rsquare(XYdata: list) -> float:
+    """Squared Pearson correlation
+    coefficient not to be confused
+    with the coefficient of
+    determination (R²)
+
+     Args:
+        XYdata: list[list[x: Number,
+                          y: Number,
+                               ...]]
+
+    Returns:
+        a value between 0 and 1
+"""
     return PearsonsR(XYdata) ** 2
 
 
