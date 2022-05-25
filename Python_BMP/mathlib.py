@@ -608,7 +608,7 @@ def distance(u: list[float],
 
 
 def distancetable(vertlist: list) -> list:
-    dlist=[]
+    dlist = []
     for v in vertlist:
         for u in vertlist:
             if u != v:
@@ -900,8 +900,24 @@ def mirrory(p: list[Number, Number], y: Number
     return [p[0], p[1] - y], [p[0], p[1] + y]
 
 
-def mirrorvec(vcen: list,
-                 v: list) -> list:
+def mirrorvec(vcen: list[Number],
+                 v: list[Number]
+               ) -> list[Number]:
+    """Mirrors a vector v of arbitrary
+        dimension n in a n-dimensional
+        Euclidean space where
+        v is the vector to mirror
+        and vcen is the origin point
+        both with n components
+
+    Args:
+        v, vcen: list of numbers
+                 with equal lengths
+
+    Returns:
+        list of two vectors
+        [list[Number], list[Number]]
+    """
     return [subvect(vcen, v),
             addvect(vcen, v)]
 
