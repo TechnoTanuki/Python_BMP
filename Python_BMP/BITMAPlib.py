@@ -7450,9 +7450,8 @@ def crop(bmp: array, x1: int, y1: int,
 
 @_enrectbnd
 def invertregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Inverts the bits in a
         rectangular region defined
         by (x1,y1) and (x2,y2)
@@ -7492,9 +7491,8 @@ def invertregion(
 
 
 def monofilterto24bitregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int):
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int):
     """Applies a monochrome filter
         to a rectangular area
         defined by (x1, y1) and
@@ -7683,9 +7681,8 @@ def brightnesseadjto24bitregion(
 
 
 def thresholdadjto24bitregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int,
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int,
         lumrange: list[int, int]):
     """Applies a threshold adjustment
         to a rectangular region in
@@ -7837,7 +7834,7 @@ def mandelbrot(bmp: array,
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
-    [Pmax, Pmin, Qmax, Qmin] = \
+    (Pmax, Pmin, Qmax, Qmin) = \
                  mandelparam
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
@@ -8061,9 +8058,8 @@ def piechart(bmp: array,
 
 @_fn24bitenrectbnd
 def _usebyrefnopar24bitfn2reg(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int,
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int,
         func: Callable):
     """Apply func to a rectangular area
         in a 24-bit bitmap
@@ -8167,9 +8163,8 @@ def _use24bitfn2reg(bmp: array,
 
 @_fn24bitenrectbnd
 def verticalbrightnessgradto24bitregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int,
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int,
         lumrange: list[int, int]):
     """Apply a vertical brightness
         gradient to a rectangular
@@ -8206,9 +8201,8 @@ def verticalbrightnessgradto24bitregion(
 
 @_fn24bitenrectbnd
 def horizontalbrightnessgradto24bitregion(
-        bmp: array,
-        x1: int, y1: int,
-        x2: int, y2: int,
+        bmp: array, x1: int, y1: int,
+                    x2: int, y2: int,
         lumrange: list[int, int]):
     """Apply a horizontal brightness
         gradient to a rectangular area
@@ -8555,10 +8549,8 @@ def thickencirclearea(bmp: array,
 
 
 @_enrectbnd
-def fern(bmp: array,
-    x1: int, y1: int,
-    x2: int, y2: int,
-    color: int):
+def fern(bmp: array, x1: int, y1: int,
+         x2: int, y2: int, color: int):
     """Draws an IFS fern fractal
 
     Args:
@@ -8831,36 +8823,6 @@ def _usefnsv(
 
 
 @_filechk
-def _use24btfnsv(
-        ExistingBMPfile: str,
-        NewBMPfile: str,
-        func: Callable):
-    """Apply a 24-bit only function
-        with no parameters and save
-
-    Args:
-        ExistingBMPfile: Whole path to
-                         existing file
-        NewBMPfile     : New file to
-                         save changes in
-        func           : user defined
-                         function
-
-    Returns:
-        new bitmap file
-
-    """
-    bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
-        print(sysmsg['not24bit'])
-    else:
-        saveBMP(NewBMPfile, func(bmp))
-        print(sysmsg['savefunc'] %
-         (func.__name__ ,
-         ExistingBMPfile, NewBMPfile))
-
-
-@_filechk
 def _use24btfnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8891,37 +8853,6 @@ def _use24btfnwithparnsv(
         print(sysmsg['savesingleparamfunc'] %
         (func.__name__, str(funcparam),
           ExistingBMPfile, NewBMPfile))
-
-
-@_filechk
-def _use8n24btfnsv(
-        ExistingBMPfile: str,
-        NewBMPfile: str,
-        func: Callable):
-    """Apply a function for 8
-        and 24-bit bmp with
-        no parameters and save
-
-    Args:
-        ExistingBMPfile: Whole path to
-                         existing file
-        NewBMPfile     : New file to
-                         save changes in
-        func           : user defined
-                         function
-
-    Returns:
-        new bitmap file
-
-    """
-    bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] not in [8, 24]:
-        print(sysmsg['not24or8bit'])
-    else:
-        saveBMP(NewBMPfile, func(bmp))
-        print(sysmsg['savefunc'] %
-        (func.__name__ ,
-        ExistingBMPfile, NewBMPfile))
 
 
 @_filechk
@@ -9068,8 +8999,7 @@ def _use24btclrfnwithpar2circreg(
 
 
 @_filechk
-def _useclradjfn(
-        ExistingBMPfile: str,
+def _useclradjfn(ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable, funcparam):
     """Apply a user provided
@@ -9121,8 +9051,7 @@ def _useclradjfn(
 
 
 @_filechk
-def _use24btclrfn(
-        ExistingBMPfile: str,
+def _use24btclrfn(ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable, funcparam):
     """Apply a user provided color
@@ -9232,9 +9161,8 @@ def cropBMPandsaveusingrectbnd(
         ExistingBMPfile: str,
         NewBMPfile: str,
         rectbnd: list):
-    """Crops and saves
-        a rectangular area
-        to a bitmap file
+    """Crops and saves a rectangular
+        area to a bitmap file
 
     Args:
         ExistingBMPfile: Whole path
@@ -9316,9 +9244,8 @@ def reduce24bitimagebits(
         usemonopal: bool,
         RGBfactors: list[float, float, float]):
 
-    """Reduce the bits used
-        to encode color in
-        a 24-bit bitmap file
+    """Reduce the bits used to encode
+        color in a 24-bit bitmap file
 
     Args:
         ExistingBMPfile    : Whole path
