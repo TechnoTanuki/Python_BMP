@@ -191,6 +191,12 @@ def monochrome(
     return [round(mean(rgb))] * 3
 
 
+def gammacorrectbyte(
+        lumbyte: list,
+        gamma: float) -> int:
+    return int(((lumbyte / 255) ** gamma) * 255)
+
+
 def gammacorrect(rgb: list,
                gamma: int) -> list:
     c = RGBtoRGBfactorsandlum(rgb)

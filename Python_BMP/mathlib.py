@@ -1033,21 +1033,19 @@ def orvect(u: list[int],
     return [i | j for i, j in zip(u, v)]
 
 
-def gammacorrectbyte(
-        lumbyte: list,
-        gamma: float) -> int:
-    return int(((lumbyte / 255) ** gamma) * 255)
-
-
 def addvectinlist(vlist: list):
     return reduce(addvect,vlist)
 
 
-def addvectpairlist(vpair: list):
+def addvectpairlist(
+    vpair: list[list[Number], list[Number]]
+     )  -> list[Number]:
     return addvect(vpair[0], vpair[1])
 
 
-def addvecttripletlist(vtriplet: list):
+def addvecttripletlist(
+    vtriplet: list[list[Number], list[Number], list[Number]]
+         ) -> list[Number]:
     return addvect(
            addvect(vtriplet[0],
                    vtriplet[1]),
