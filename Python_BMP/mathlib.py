@@ -833,9 +833,20 @@ def polar2rectcoord2D(
 
 
 def rect2polarcoord2D(
-        v: list) -> list:
-    return [vmag(v),
-            atan(v[1] / v[0])]
+        v: list[Number, Number]
+      ) -> list[float, float]:
+    """Converts rectangular to
+        polar coordinates with
+        origin at (0,0)
+    Args:
+        v: a vector (x: Number,
+                     y: Number)
+
+    Returns:
+        [magnitude: float,
+             angle: float]
+    """
+    return [vmag(v), atan(v[1] / v[0])]
 
 
 def polarcoordangle2D(
@@ -847,9 +858,25 @@ def polarcoordangle2D(
 
 
 def rect2polarcoord2Dwithcenter(
-        vcen: list,
-        vpnt: list) -> list:
-    v=subvect(vpnt, vcen)
+        vcen: list[Number, Number],
+        vpnt: list[Number, Number]
+         ) -> list[float, float]:
+    """Converts rectangular to
+        polar coordinates with
+        origin at vcen(x, y)
+
+    Args:
+        vcen: origin (x: Number,
+                      y: Number)
+
+        vpnt: a vector (x: Number,
+                        y: Number)
+
+    Returns:
+        [magnitude: float,
+             angle: float]
+    """
+    v = subvect(vpnt, vcen)
     return [vmag(v),
             polarcoordangle2D(v)]
 
