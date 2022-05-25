@@ -4296,6 +4296,37 @@ def plot8bitpatternasdots(
         color, plotcircinsqr)
 
 
+def plotitalic8bitpatternasdots(
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
+    """Draws a 8-bit italic pattern
+        as dots
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+
+    plotitalic8bitpatternwithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        plotcircinsqr)
+
 def plotrotated8bitpattern(
         bmp: array, x: int, y: int,
         bitpattern: list, scale: int,
@@ -4688,7 +4719,7 @@ def plotitalicstring(bmp: array,
         scale: int, pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list):
-    """Draws a string
+    """Draws a string as Italic
 
     Args:
         bmp             : unsigned
@@ -4726,7 +4757,7 @@ def plotstringasdots(bmp: array,
         scale: int, pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list):
-    """Draws a string
+    """Draws a string as Dots
 
     Args:
         bmp             : unsigned
@@ -4755,6 +4786,44 @@ def plotstringasdots(bmp: array,
         spacebetweenchar,
         color, fontbuf, _enchr,
         plot8bitpatternasdots)
+
+
+def plotitalicstringasdots(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
+    """Draws a string as Italic dots
+
+    Args:
+        bmp             : unsigned
+                          byte array
+                          with bmp format
+        x, y            : sets where to
+                          draw the
+                          string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of
+                         the font
+        fontbuf         : the font
+                          (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf, _enchr,
+        plotitalic8bitpatternasdots)
 
 
 def plotstringupsidedown(bmp: array,
