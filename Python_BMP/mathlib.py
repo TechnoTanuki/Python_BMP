@@ -960,8 +960,12 @@ def rotatebits(bits: int) -> int:
     return retval
 
 
-def mirror1stquad(x: int, y: int,
-        v: list[int, int]) -> list[list[int, int]]:
+def mirror1stquad(x: Number, y: Number,
+        v: list[Number, Number]
+      ) -> list[list[Number, Number],
+                list[Number, Number],
+                list[Number, Number],
+                list[Number, Number]]:
 
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
