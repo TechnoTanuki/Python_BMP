@@ -868,11 +868,35 @@ def rotvec2D(v: list[Number, Number],
 
 def mirrorx(p: list[Number, Number], x: Number
           ) -> list[Number, Number]:
+    """Mirrors the x value at
+        point p(ox, y) to return
+        two points at p1(ox - x, y)
+                  and p2(ox + x, y)
+
+    Args:
+        p(ox, y): original point
+        x       : value to mirror
+
+    Returns:
+        [x1, y], [x2, y]
+    """
     return [p[0] - x, p[1]], [p[0] + x, p[1]]
 
 
-def mirrory(p:list[Number, Number], y: Number
-         ) -> list[Number, Number]:
+def mirrory(p: list[Number, Number], y: Number
+         ) -> list[Number, Number] :
+    """Mirrors the y value at
+        point p(x, oy) to return
+        two points at p1(x, oy - y)
+                  and p2(x, oy + y)
+
+    Args:
+        p(x, oy): original point
+        y       : value to mirror
+
+    Returns:
+        [x, y1], [x, y2]
+    """
     return [p[0], p[1] - y], [p[0], p[1] + y]
 
 
@@ -883,7 +907,7 @@ def mirrorvec(vcen: list,
 
 
 def mirror(pt: float, delta: float):
-    """Mirrors a value in a nunberline
+    """Mirrors a value in a numberline
 
     Args:
         pt   : real value in numberline
@@ -913,7 +937,7 @@ def addrndtovert(vertlist: list,
 def adddimz(vlist2D: list,
               value: float) -> list:
     """Adds a third value for the
-        z dimensiion in a list
+        z dimension in a list
         of (x, y) vertices
 
     Args:
