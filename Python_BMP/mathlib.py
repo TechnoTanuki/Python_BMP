@@ -1146,6 +1146,19 @@ def addvectpairlist(
 def addvecttripletlist(
     vtriplet: list[list[Number], list[Number], list[Number]]
          ) -> list[Number]:
+    """Adds pairwise the numbers
+        in a list of
+        three lists of numbers
+        and returns a single
+        list of numbers
+
+    Args:
+        vpair: list of three lists[Number]
+
+    Returns:
+        list[Number]
+
+    """
     return addvect(
            addvect(vtriplet[0],
                    vtriplet[1]),
