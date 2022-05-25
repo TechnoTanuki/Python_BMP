@@ -433,6 +433,23 @@ def Rsquare(XYdata: list) -> float:
     with the coefficient of
     determination (R²)
 
+    In linear least squares multiple
+    regression with an estimated
+    intercept term, R2 equals the
+    square of the Pearson correlation
+    coefficient between the observed y
+    y and modeled (predicted)
+    data values of the dependent
+    variable.
+
+     In a linear least squares
+     regression with an intercept term
+     and a single explanator, this is
+     also equal to the squared
+     Pearson correlation coefficient of
+     the dependent variable y and
+     explanatory variable x.
+
      Args:
         XYdata: list[list[x: Number,
                           y: Number,
