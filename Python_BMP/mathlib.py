@@ -859,17 +859,20 @@ def computerotvec(degrot:float) -> list:
     return (sin(a), cos(a))
 
 
-def rotvec2D(v: list,
-        rotvec: list) -> list:
+def rotvec2D(v: list[Number, Number],
+        rotvec: list[float, float]
+           ) -> list[float, float]:
     return [v[0] * rotvec[1] - v[1] * rotvec[0],
             v[0] * rotvec[0] + v[1] * rotvec[1]]
 
 
-def mirrorx(p: list, x: float) -> list:
+def mirrorx(p: list[Number, Number], x: Number
+          ) -> list[Number, Number]:
     return [p[0] - x, p[1]], [p[0] + x, p[1]]
 
 
-def mirrory(p:list, y:float) -> list:
+def mirrory(p:list[Number, Number], y: Number
+         ) -> list[Number, Number]:
     return [p[0], p[1] - y], [p[0], p[1] + y]
 
 
@@ -1137,7 +1140,7 @@ def enumbits(byteval: int):
     """
     bit = 7
     while bit > -1:
-        yield  ((byteval & (1<<bit))>>bit)
+        yield  ((byteval & (1 << bit)) >> bit)
         bit -= 1
 
 
