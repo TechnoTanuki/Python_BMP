@@ -1127,6 +1127,19 @@ def addvectinlist(vlist: list):
 def addvectpairlist(
     vpair: list[list[Number], list[Number]]
      )  -> list[Number]:
+    """Adds pairwise the numbers
+        in a list of
+        two lists of numbers
+        and returns a single
+        list of numbers
+
+    Args:
+        vpair: list of two lists[Number]
+
+    Returns:
+        list[Number]
+
+    """
     return addvect(vpair[0], vpair[1])
 
 
