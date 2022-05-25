@@ -1153,7 +1153,7 @@ def addvecttripletlist(
         list of numbers
 
     Args:
-        vpair: list of three lists[Number]
+        vtriplet: list of three lists[Number]
 
     Returns:
         list[Number]
@@ -1201,39 +1201,6 @@ def centerpoint(x1: int, y1: int,
 
     """
     return ((x2 - x1) >> 1) + x1, ((y2 - y1) >> 1) + y1
-
-
-def getdatalisttotal(dlist: list) -> float:
-    """Returns the total of a
-        list of ints or floats
-
-    Args:
-        dlist: list of ints or floats
-
-    Returns:
-        float or int
-
-    """
-    total = 0
-    for d in dlist:
-        total += d[0]
-    return total
-
-
-def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
-    sa = 0
-    tot = getdatalisttotal(dlist)
-    alist = []
-    big = -1
-    for d in dlist:
-        p = d[0] / tot
-        ea = sa + p * 360
-        p *= 100
-        alist.append([sa, ea, d[1], d[0], p])
-        if p >= 50:
-            big = dlist.index(d)
-        sa = ea
-    return alist, big
 
 
 def enumbits(byteval: int):

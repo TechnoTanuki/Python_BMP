@@ -58,8 +58,6 @@ from .mathlib import(
     cosaffin,
     distance,
     enumbits,
-    genpiechartdata,
-    getdatalisttotal,
     intscalarmulvect,
     isinrange,
     LSMslope,
@@ -232,6 +230,11 @@ from .bufresize import(
         as _rsbfNtmbig,
     resizesmaller24bitbuf
         as _rssm25btbf
+    )
+
+from .charts import(
+    getdatalisttotal,
+    genpiechartdata
     )
 
 from .textgraphics import(
