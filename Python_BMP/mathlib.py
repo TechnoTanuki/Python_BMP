@@ -1033,7 +1033,20 @@ def mirror1stquad(x: Number, y: Number,
                 list[Number, Number],
                 list[Number, Number],
                 list[Number, Number]]:
+    """Mirrors a 2D vector in the
+        1st quadrant to create four
+        symmetrical 2D vectors
 
+    Args:
+        x: x-axis of symmetry
+        y: y-axis of symmetry
+        v: vector (x:Number, y:Number)
+           to mirror along x and y
+
+    Returns:
+        four symmetrical vectors(x, y)
+
+    """
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
     return [[xmin, ymax], [xmax, ymax],
