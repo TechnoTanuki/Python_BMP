@@ -4159,7 +4159,7 @@ def plotitalic8bitpatternwithfn(
 
     """
     inc = scale - 1 - pixspace
-    i = scale // 2
+    i = scale >> 1
     for bits in bitpattern:
         ox = x
         mask = 128
