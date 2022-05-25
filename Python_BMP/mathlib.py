@@ -741,17 +741,67 @@ def dirdeg(raddir: list[float]
 
 
 def rect2sphericalcoord3D(
-        v: list[Number]
+        v: list[Number, Number, Number]
       ) -> list[float, float, float]:
+    """Does a 3D coordinate transfrom
+        from rectangular to spherical
+        coordinate system
+
+        p = The length of the hypotenuse
+            or the magnitude of the
+            vector
+
+        theta = is the angle between the
+                positive x-axis and p
+                (azimuth)
+
+        phi = is the angle between the
+              positive z-axis and p
+              (colatitude)
+
+    Args:
+        vspherecoord: [p, theta, phi]
+                      spherical
+                      coordinates
+
+    Returns:
+        [p: float,
+        theta: float,
+        phi: float]
+    """
     p = vmag(v)
-    azimuth = atan(v[1] / v[0])
-    colatitude = acos(v[2] / p)
-    return [p, azimuth, colatitude]
+    return [p, atan(v[1] / v[0]),
+               acos(v[2] / p)]
 
 
 def spherical2rectcoord3D(
-        vspherecoord3D: list) -> list:
-    [p, theta, phi] = vspherecoord3D
+    vspherecoord: list[float, float, float]
+             ) -> list[float, float, float]:
+    """Does a 3D coordinate transfrom
+        from spherical to rectangular
+        coordinate system
+
+        p = The length of the hypotenuse
+            or the magnitude of the
+            vector
+
+        theta = is the angle between the
+                positive x-axis and p
+                (azimuth)
+
+        phi = is the angle between the
+              positive z-axis and p
+              (colatitude)
+
+    Args:
+        vspherecoord: [p, theta, phi]
+                      spherical
+                      coordinates
+
+    Returns:
+        [x:float, y: float, z: float]
+    """
+    (p, theta, phi) = vspherecoord
     sinphi = sin(phi)
     return [p * sinphi * cos(theta),
             p * sinphi * sin(theta),
