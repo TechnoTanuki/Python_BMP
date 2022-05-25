@@ -868,25 +868,38 @@ def spherical2rectcoord3D(
 
 
 def rect2cylindricalcoord3D(
-        v: list) -> list:
+        v: list[Number, Number, Number]
+      ) -> list[float, float, float]:
+    """Converts rectangular to
+        cylindrical coordinates with
+        origin at (0,0)
+    Args:
+        v: a vector (x: Number,
+                     y: Number,
+                     z: Number)
+
+    Returns:
+        [magnitude: float,
+             angle: float,
+             z: Number]
+    """
     return [vmag(v),
             atan(v[1] / v[0]),
             v[2]]
 
 
 def cylindrical2rectcoord3D(
-        vcylindcoord3D: list) -> list:
-    r = vcylindcoord3D[0]
-    theta = vcylindcoord3D[1]
+        vcylindcoord3D: list[float, float, float]
+        ) -> list[float, float, float]:
+    (r, theta, z) = vcylindcoord3D
     return [r * cos(theta),
-            r * sin(theta),
-            vcylindcoord3D[2]]
+            r * sin(theta), z]
 
 
 def polar2rectcoord2D(
-        vpolarcoord2D: list) -> list:
-    r = vpolarcoord2D[0]
-    theta = vpolarcoord2D[1]
+        vpolarcoord2D: list[float, float]
+                  ) -> list[float, float]:
+    (r, theta) = vpolarcoord2D
     return [r * cos(theta),
             r * sin(theta)]
 
