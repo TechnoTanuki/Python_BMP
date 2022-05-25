@@ -383,7 +383,36 @@ def LSMYint(XYdata:list) -> float:
     return meanY - LSMslope(XYdata) * meanX
 
 
-def PearsonsR(XYdata: list) -> float:#first two values inlist must be [[x and y...]...]
+def PearsonsR(XYdata: list) -> float:
+    """Pearsons r is a measure of linear
+    correlation between two setsof data.
+
+    It is the ratio between the
+    covariance of two variables and the
+    product of their standard deviations;
+    thus it is essentially a normalized
+    measurement of the covariance, such
+    that the result always has a value
+    between -1 and 1.
+
+    A value of +1 implies that all data
+    points lie on a line for which
+    Y increases as X increases, and
+    vice versa for -1.
+
+    A value of 0 implies that there is
+    no linear dependency between the
+    variables.
+
+    Args:
+        XYdata: list[list[x: Number,
+                          y: Number,
+                               ...]]
+
+    Returns:
+        a value between -1 and 1
+
+"""
     XY = pivotlist(XYdata)
     N = len(XYdata)
     X = XY[0]
