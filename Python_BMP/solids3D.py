@@ -369,7 +369,7 @@ def polyboundary(
 
 
 def gensides(
-        pointlists: list,
+        pointlists: list[list, list],
         transvect: list,
         sides: list) -> tuple:
     [plist, slist] = pointlists
@@ -443,7 +443,8 @@ def zlevelcoords(verlist: list) -> tuple:
 
 
 def genspheresurfaces(
-        zlevelcoord:list) -> list:
+        zlevelcoord:list[list, list]
+                     ) -> list:
     (zl, vl) = zlevelcoord
     surf = []
     levels = len(zl) - 1
@@ -452,7 +453,7 @@ def genspheresurfaces(
     npts = vl[zl[1]]
     spts = vl[zl[levels - 1]]
     lpts = len(npts)
-    maxp = lpts-1
+    maxp = lpts - 1
     i = 0
     for i in range(0, lpts):
         j = 0 if i == maxp else i + 1
@@ -564,9 +565,8 @@ def conevertandsurface(
         r: float,
         zlen: float,
         deganglestep: float) -> tuple:
-    """Returns a list
-        of sparse vertices
-        and tiled surfaces
+    """Returns a list of sparse
+        vertices and tiled surfaces
         for a cone
 
     Args:
@@ -583,8 +583,7 @@ def conevertandsurface(
                       the list will be
 
     Returns:
-        list of vertices
-        and surfaces
+        list of vertices and surfaces
         for plot3Dsolid()
         see Hello_Cone.py
 
