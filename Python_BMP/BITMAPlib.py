@@ -5595,7 +5595,7 @@ def gradvert(bmp: array,
 def xygrid(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
-        xysteps: list,
+        xysteps: list[int, int],
         color: int):
     """Draws a grid
 
@@ -5627,19 +5627,18 @@ def xygrid(bmp: array,
 
 
 def xygridvec(bmp: array,
-        u: list, v: list,
+        u: list[int, int],
+        v: list[int, int],
         steps: list, gridcolor: int):
-    """Draws a grid
-        using (x,y)
-        2D point pairs
-        u and v
+    """Draws a grid using (x, y)
+        2D point pairs u and v
 
     Args:
         bmp  : unsigned byte array
                with bmp format
-        u,v  : (x,y) sets limits
+        u, v : (x, y) sets limits
                 of the  grid
-        steps: (x,y) -> sets the
+        steps: (x, y) -> sets the
                increments for x and y
         color: sets the color
                of the grid
