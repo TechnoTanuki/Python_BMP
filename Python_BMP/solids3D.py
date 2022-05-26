@@ -389,11 +389,10 @@ def gensides(
 
 
 def spherevert(
-        vcen: list,
+        vcen: list[float, float, float],
         r: float,
         deganglestep: float) -> list:
-    """Returns a list
-        of sparse vertices
+    """Returns a list of sparse vertices
         for a sphere
 
     Args:
@@ -480,9 +479,8 @@ def spherevertandsurface(
         vcen: list[float, float, float],
         r: float,
         deganglestep: float)-> tuple:
-    """Returns a list
-        of sparse vertices
-        and tiled surfaces
+    """Returns a list of sparse
+        vertices and tiled surfaces
         for a sphere
 
     Args:
@@ -496,8 +494,7 @@ def spherevertandsurface(
                       the list will be
 
     Returns:
-        list of vertices
-        and surfaces
+        list of vertices and surfaces
         for plot3Dsolid()
         see Hello_DiscoBall.py
         and Hello_Globe.py
@@ -530,8 +527,7 @@ def cylindervertandsurface(
                       the list will be
 
     Returns:
-        list of vertices
-        and surfaces
+        list of vertices and surfaces
         for plot3Dsolid()
         see Hello_Coin.py
 
