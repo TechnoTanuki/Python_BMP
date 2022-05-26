@@ -204,7 +204,7 @@ def decahedvertandsurface(
 #don't edit this it took much
 # computation to make
 def icosahedvertandsurface(
-        x: float) -> list:
+        x: float) -> list[list, tuple]:
     """Returns a list of vertices
         and surfaces for an icosahedron
 
@@ -265,9 +265,9 @@ def rotvec3D(
         roll, pitch, yaw
 
     Returns:
-        tuple ((float,float),
-               (float,float),
-               (float,float))
+        tuple ((float, float),
+               (float, float),
+               (float, float))
 
     """
     return (computerotvec(roll),
