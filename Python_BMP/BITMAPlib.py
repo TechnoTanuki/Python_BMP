@@ -5688,7 +5688,7 @@ def numbervert(bmp: array, vlist: list,
 
 
 def vertlinevert(bmp: array,
-        vlist: list,
+        vlist: list[list[int, int]],
         linelen: int,
         yadj: int, color: int):
     """Draws vertical line marks
@@ -5749,11 +5749,11 @@ def horilinevert(bmp: array,
 
 
 def XYaxis(bmp: array,
-        origin: list,
-        steps: list,
-        xylimits: list,
-        xyvalstarts: list,
-        xysteps: list,
+        origin: list[int, int],
+        steps: list[int, int],
+        xylimits: list[int, int],
+        xyvalstarts: list[Number, Number],
+        xysteps: list[Number, Number],
         color: int, textcolor: int,
         showgrid: bool,
         gridcolor: int):
@@ -5770,10 +5770,18 @@ def XYaxis(bmp: array,
                    tick marks onscreen
         xylimits : (x, y) sets where the
                    graph ends onscreen
+        xyvalstarts: (x, y) sets the
+                      start point of
+                      x and y number
+                      lines
+        xysteps   : (x, y) sets the
+                    number increment
+                    along the x and y
+                    numberlines
         color    : color of the lines
         textcolor: color of the
                    numberline text
-        showgird : True -> display
+        showgrid : True -> display
                            gridline
                    False -> no grid
         gridcolor: color of the grid
