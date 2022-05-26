@@ -5718,7 +5718,7 @@ def vertlinevert(bmp: array,
 
 
 def horilinevert(bmp: array,
-        vlist: list,
+        vlist: list[list[int, int]],
         linelen: int,
         xadj: int, color: int):
     """Draws horizontal line marks
@@ -5727,7 +5727,7 @@ def horilinevert(bmp: array,
     Args:
         bmp    : unsigned byte array
                  with bmp format
-        vlist  : [(x,y),...]
+        vlist  : [(x, y), ...]
                  the list of
                  2D vertices
         linelen: length of the
@@ -5763,12 +5763,12 @@ def XYaxis(bmp: array,
     Args:
         bmp      : unsigned byte array
                    with bmp format
-        origin   : (x,y) on screen
+        origin   : (x, y) on screen
                     origin point
                     of the axis
-        steps    : (x,y) steps between
+        steps    : (x, y) steps between
                    tick marks onscreen
-        xylimits : (x,y) sets where the
+        xylimits : (x, y) sets where the
                    graph ends onscreen
         color    : color of the lines
         textcolor: color of the
@@ -6269,7 +6269,7 @@ def iterimagecolor(bmp: array,
                     when process ends
 
     Yields:
-        ((x:int,y:int),color:int)
+        ((x: int, y: int), color: int)
 
     """
     if waitmsg != '':
@@ -6341,7 +6341,7 @@ def copyrect(bmp: array,
     """
     retval = array('B', [bmp[_bmclrbits]])
     x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
+       sortrecpoints(x1, y1, x2, y2)
     retval += _in2bf(2, x2 - x1 + 2)
     retval += _in2bf(2, y2 - y1 + 1)
     retval += _in2bf(2,
@@ -7412,10 +7412,9 @@ def itergetcolorfromrectregion(
 @_enrectbnd
 def crop(bmp: array, x1: int, y1: int,
                      x2: int, y2: int):
-    """Crops the image to a
-        rectangular region
-        defined by (x1, y1)
-               and (x2, y2)
+    """Crops the image to a rectangular
+        region defined by (x1, y1)
+                      and (x2, y2)
 
     Args:
         bmp           : unsigned
