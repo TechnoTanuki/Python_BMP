@@ -281,7 +281,9 @@ def rotvec3D(
 #translated from C code by Roger Stevens
 def perspective(
         vlist: list[list[Number, Number, Number]],
-        rotvec: list,
+        rotvec: list[list[float, float],
+                     list[float, float],
+                     list[float, float]],
         dispvec: list[Number, Number, Number],
         d: float) -> tuple:
     projvlist = []
