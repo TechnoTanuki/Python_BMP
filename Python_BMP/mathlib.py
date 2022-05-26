@@ -1248,8 +1248,25 @@ def addvecttripletlist(
                    vtriplet[2])
 
 
-def addvectlist(vlist1: list,
-                vlist2: list) -> list:
+def addvectlist(
+        vlist1: list[list[Number]],
+        vlist2: list[list[Number]]
+           ) -> list[list[Number]]:
+    """Adds pairwise the vectors
+        (list of numbers) in a list
+        then returns a list of vectors
+
+    Args:
+        vlist1: First list of vectors
+                list[lists[Number]]
+        vlist2: Second list of vectors
+                list[lists[Number]]
+
+    Returns:
+        A list of vectors
+        list[list[Number]]
+
+    """
     return [addvect(u, v)
             for u, v in zip(vlist1, vlist2)]
 
