@@ -69,9 +69,11 @@ def getshapesidedict() -> dict:
                           (3, 2, 5))}
 
 
-def tetrahedravert(x: float) -> list:
-    """Returns a list
-        of vertices
+def tetrahedravert(x: float
+                ) -> list[list[float,
+                               float,
+                               float]]:
+    """Returns a list of vertices
         for a tetraheron
 
     Args:
@@ -91,9 +93,11 @@ def tetrahedravert(x: float) -> list:
             [halfx, halfx, sqrt(3 / 8 * x_sqr)]]
 
 
-def cubevert(x: float) -> list:
-    """Returns a list
-        of vertices
+def cubevert(x: float
+            ) -> list[list[float,
+                           float,
+                           float]]:
+    """Returns a list of vertices
         for a cube
 
     Args:
@@ -115,9 +119,11 @@ def cubevert(x: float) -> list:
             [x, x, x]]
 
 
-def hexahedravert(x: float) -> list:
-    """Returns a list
-        of vertices
+def hexahedravert(x: float
+            ) -> list[list[float,
+                           float,
+                           float]]:
+    """Returns a list of vertices
         for a hexahedron
 
     Args:
