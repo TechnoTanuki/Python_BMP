@@ -5427,7 +5427,9 @@ def plotpolylist(bmp: array,
 
 
 def plotpolyfillist(
-        bmp: array, sides: list,
+        bmp: array,
+        sides: list[list[list[list]],
+               list[list[float, float, float]]],
         RGBfactors: list[float, float]):
     """3D polygon rendering function
 
