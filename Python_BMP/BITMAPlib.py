@@ -4330,6 +4330,7 @@ def plotitalic8bitpatternasdots(
         scale, pixspace, color,
         plotcircinsqr)
 
+
 def plotrotated8bitpattern(
         bmp: array, x: int, y: int,
         bitpattern: list, scale: int,
