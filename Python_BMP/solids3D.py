@@ -16,6 +16,7 @@ from math import(
     sqrt,
     radians
     )
+
 from numbers import Number
 from typing import Callable
 
@@ -74,7 +75,7 @@ def tetrahedravert(x: float
                                float,
                                float]]:
     """Returns a list of vertices
-        for a tetraheron
+        for a tetrahedron
 
     Args:
         x: lenght of a side
@@ -261,10 +262,9 @@ def icosahedvertandsurface(
             (6, 10, 11))]
 
 
-def rotvec3D(
-        roll: float,
-        pitch: float,
-        yaw: float) -> tuple:
+def rotvec3D(roll: float,
+            pitch: float,
+              yaw: float) -> tuple:
     """Returns a 3D rotation vector
 
     Args:
