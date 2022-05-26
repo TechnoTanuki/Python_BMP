@@ -376,8 +376,8 @@ def polyboundary(
 
 def gensides(
         pointlists: list[list, list],
-        transvect: list,
-        sides: list) -> tuple:
+        transvect: list[float, float, float],
+        sides: list[list[float]]) -> tuple:
     [plist, slist] = pointlists
     polylist = []
     normlist = []
