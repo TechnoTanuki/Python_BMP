@@ -1047,7 +1047,19 @@ def mirror(pt: float, delta: float):
 
 
 def randomvect(minrnd: int,
-               maxrnd: int) -> list:
+               maxrnd: int
+              ) -> list[int, int, int]:
+    """Creates a random 3D vector
+
+    Args:
+        minrnd: minimum int random value
+                of 3D vector component
+        maxrnd: maximum int random value
+                of 3D vector component
+    Returns:
+        list[x: int, y: int , z: int]
+
+    """
     return [randint(minrnd, maxrnd),
             randint(minrnd, maxrnd),
             randint(minrnd, maxrnd)]
@@ -1060,8 +1072,11 @@ def addrndtovert(vertlist: list,
                 for pt in vertlist]
 
 
-def adddimz(vlist2D: list,
-              value: float) -> list:
+def adddimz(
+         vlist2D: list[Number, Number],
+         value: Number
+             ) -> list[Number, Number,
+                               Number]:
     """Adds a third value for the
         z dimension in a list
         of (x, y) vertices
