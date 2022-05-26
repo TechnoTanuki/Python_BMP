@@ -5263,7 +5263,7 @@ def fillboundary(bmp: array,
 
 
 def plotpolyfill(bmp: array,
-        vertlist: list,
+        vertlist: list[list[Number, Number]],
         color: int):
     """Draws a filled polygon with
         a given color
@@ -5287,7 +5287,7 @@ def plotpolyfill(bmp: array,
 
 
 def thickplotpoly(bmp: array,
-        vertlist: list,
+        vertlist: list[list[Number, Number]],
         penradius: int, color: int):
     """Draws a polygon of a given color
         and thickness
