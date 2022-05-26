@@ -657,6 +657,9 @@ def surfacetest(
         number if not
 
     """
-    return p1[0] * (p3[1] * p2[2] - p2[1] * p3[2]) - \
-           p2[0] * (p3[1] * p1[2] - p1[1] * p3[2]) - \
-           p3[0] * (p1[1] * p2[2] - p2[1] * p1[2])
+    (p1x, p1y, p1z) = p1
+    (p2x, p2y, p2z) = p2
+    (p3x, p3y, p3z) = p3
+    return p1x * (p3y * p2z - p2y * p3z) - \
+           p2x * (p3y * p1z - p1y * p3z) - \
+           p3x * (p1y * p2z - p2y * p1z)
