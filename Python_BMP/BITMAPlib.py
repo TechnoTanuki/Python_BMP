@@ -5629,7 +5629,8 @@ def xygrid(bmp: array,
 def xygridvec(bmp: array,
         u: list[int, int],
         v: list[int, int],
-        steps: list, gridcolor: int):
+        steps: list[int, int],
+        gridcolor: int):
     """Draws a grid using (x, y)
         2D point pairs u and v
 
@@ -5653,10 +5654,12 @@ def xygridvec(bmp: array,
                 steps, gridcolor)
 
 
-def numbervert(bmp: array, vlist: list,
+def numbervert(bmp: array,
+        vlist: list[list[int, int]],
         xadj: int, yadj: int,
         scale: int,
-        valstart: int, valstep: int,
+        valstart: Number,
+        valstep: Number,
         pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list,
