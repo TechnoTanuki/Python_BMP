@@ -328,7 +328,7 @@ def fillpolydata(
         xlim: int,
         ylim: int) -> list:
     filld = {}
-    bnd= rectboundarycoords(polybnd)
+    bnd = rectboundarycoords(polybnd)
     [minx, miny] = bnd[0]
     [maxx, maxy] = bnd[1]
     maxx += 1
@@ -412,7 +412,6 @@ def spherevert(
               z: float)
 
     """
-
     plist = []
     for theta in range(0, 360, deganglestep):
         for phi in range(0, 180, deganglestep):
@@ -477,7 +476,7 @@ def genspheresurfaces(
 
 
 def spherevertandsurface(
-        vcen: list,
+        vcen: list[float, float, float],
         r: float,
         deganglestep: float)-> tuple:
     """Returns a list
@@ -508,7 +507,7 @@ def spherevertandsurface(
 
 
 def cylindervertandsurface(
-        vcen: list,
+        vcen: list[float, float, float],
         r: float,
         zlen: float,
         deganglestep: float) -> tuple:
@@ -561,7 +560,7 @@ def cylindervertandsurface(
 
 
 def conevertandsurface(
-        vcen: list,
+        vcen: list[float, float, float],
         r: float,
         zlen: float,
         deganglestep: float) -> tuple:
@@ -632,9 +631,10 @@ def surfplot3Dvertandsurface(
 
 
 def surfacetest(
-        p1: list,
-        p2: list,
-        p3: list) -> float:
+        p1: list[float, float, float],
+        p2: list[float, float, float],
+        p3: list[float, float, float]
+               ) -> float:
     """Hidden surface removal test
         returns a positive number
         if hidden and negative
