@@ -16,6 +16,7 @@ from math import(
     sqrt,
     radians
     )
+from numbers import Number
 from typing import Callable
 
 from .mathlib import(
@@ -138,9 +139,11 @@ def hexahedravert(x: float) -> list:
             [halfx, halfx, -z]]
 
 
-def octahedravert(x:float) -> list:
-    """Returns a list
-        of vertices
+def octahedravert(x: float
+        ) -> list[list[float,
+                       float,
+                       float]]:
+    """Returns a list of vertices
         for an octrahedron
 
     Args:
@@ -162,9 +165,11 @@ def octahedravert(x:float) -> list:
 
 
 def decahedvertandsurface(
-        x: float) -> list:
-    """Returns a list
-        of vertices
+        x: float
+        ) -> list[list[float,
+                       float,
+                       float]]:
+    """Returns a list of vertices
         for a icosahedron
 
     Args:
@@ -178,8 +183,7 @@ def decahedvertandsurface(
               z: float)
 
     """
-    pts = regpolygonvert(
-            0, 0, x, 5, 0)
+    pts = regpolygonvert(0, 0, x, 5, 0)
     z = sqrt(distance(pts[0],
              pts[1]) ** 2 - x * x)
     return [[[0, 0, -z]] + \
@@ -201,9 +205,8 @@ def decahedvertandsurface(
 # computation to make
 def icosahedvertandsurface(
         x: float) -> list:
-    """Returns a list
-        of vertices
-        for an icosahedron
+    """Returns a list of vertices
+        and surfaces for an icosahedron
 
     Args:
         x: min radius of sphere
@@ -276,7 +279,7 @@ def rotvec3D(
 def perspective(
         vlist: list,
         rotvec: list,
-        dispvec: list,
+        dispvec: list[Number, Number, Number],
         d: float) -> tuple:
     rotvlist = []
     projvlist = []
