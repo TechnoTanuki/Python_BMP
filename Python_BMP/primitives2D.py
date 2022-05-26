@@ -179,8 +179,9 @@ def iterparallelogram(
         yield [u,v]
 
 
-def lineseg(p1: list,
-            p2: list) -> list[list[int,int]]:
+def lineseg(p1: list[int, int],
+            p2: list[int, int]
+      ) -> list[list[int, int]]:
     """Generates a list of (int, int)
         2D vertices along
         a line segment defined
@@ -198,9 +199,7 @@ def lineseg(p1: list,
             iterline(p1, p2)]
 
 
-def iterellipsepart(
-        b: int,
-        a: int):
+def iterellipsepart(b: int, a: int):
     row = b
     col = 0
     a_sqr = a * a
@@ -230,23 +229,19 @@ def iterellipsepart(
         row -= 1
 
 
-def iterellipse(x: int,
-                y: int,
-                b: int,
-                a: int):
+def iterellipse(x: int, y: int,
+                b: int, a: int):
     for p in iterellipsepart(b,a):
          for v in mirror1stquad(x,y,p):
              yield v
 
 
 def iterellipserot(
-        x: int,
-        y: int,
-        b: int,
-        a: int,
+        x: int, y: int,
+        b: int, a: int,
         degrot: float):
     rotvec = computerotvec(degrot)
-    c = [x, y]
+    c = (x, y)
     for p in iterellipsepart(b, a):
          for v in mirror1stquad(x, y, p):
              yield roundvect(
@@ -255,10 +250,8 @@ def iterellipserot(
                             subvect(v, c), rotvec), c))
 
 
-def itercircle(
-        x: int,
-        y: int,
-        r: int)->list:
+def itercircle(x: int, y: int,
+        r: int) -> list[int, int]:
     for p in itercirclepart(r):
          for v in mirror1stquad(x, y, p):
              yield v
