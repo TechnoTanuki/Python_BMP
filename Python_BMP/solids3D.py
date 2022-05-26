@@ -204,8 +204,10 @@ def decahedvertandsurface(
 #don't edit this it took much
 # computation to make
 def icosahedvertandsurface(
-        x: float) -> list[list[list[float, float, float]],
-                         tuple]:
+        x: float) -> list[list[list[float,
+                                    float,
+                                    float]],
+                          tuple]:
     """Returns a list of vertices
         and surfaces for an icosahedron
 
@@ -278,12 +280,12 @@ def rotvec3D(
 
 #translated from C code by Roger Stevens
 def perspective(
-        vlist: list,
+        vlist: list[list[Number, Number, Number]],
         rotvec: list,
         dispvec: list[Number, Number, Number],
         d: float) -> tuple:
-    rotvlist = []
     projvlist = []
+    rotvlist = []
     (sroll, croll) = rotvec[0]
     (spitch, cpitch) = rotvec[1]
     (syaw, cyaw) = rotvec[2]
