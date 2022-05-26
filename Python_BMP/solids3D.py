@@ -335,8 +335,8 @@ def fillpolydata(
         ylim: int) -> list:
     filld = {}
     bnd = rectboundarycoords(polybnd)
-    [minx, miny] = bnd[0]
-    [maxx, maxy] = bnd[1]
+    (minx, miny) = bnd[0]
+    (maxx, maxy) = bnd[1]
     maxx += 1
     maxy += 1
     if (minx >= 0 and miny >= 0) and \
@@ -515,10 +515,8 @@ def cylindervertandsurface(
         r: float,
         zlen: float,
         deganglestep: float) -> tuple:
-    """Returns a list
-        of sparse vertices
-        and tiled surfaces
-        for a cylinder
+    """Returns a list of sparse vertices
+       and tiled surfaces for a cylinder
 
     Args:
         vcen       : [x: float, center
