@@ -288,9 +288,9 @@ def perspective(
         d: float) -> tuple:
     projvlist = []
     rotvlist = []
-    (sroll, croll) = rotvec[0]
-    (spitch, cpitch) = rotvec[1]
-    (syaw, cyaw) = rotvec[2]
+    ((sroll, croll),
+    (spitch, cpitch),
+    (syaw, cyaw)) = rotvec
     for p in vlist:
         (px, py, pz) = p
         x1 = -cyaw * px - syaw * pz
