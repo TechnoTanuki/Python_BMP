@@ -259,8 +259,7 @@ def rotvec3D(
         roll: float,
         pitch: float,
         yaw: float) -> tuple:
-    """Returns a tuple
-        of rotation vector
+    """Returns a 3D rotation vector
 
     Args:
         All input arguements
@@ -286,6 +285,21 @@ def perspective(
                      list[float, float]],
         dispvec: list[Number, Number, Number],
         d: float) -> tuple:
+    """Projects 3D points to 2D and
+        apply rotation and translation
+        vectors
+
+    Args:
+        vlist  : list of 3D vertices
+        rotvec : 3D rotation vector
+        dispvec: 3D translation vector
+        d      : Distance of observer
+                 from the screen
+
+    Returns:
+        tuple (list, list)
+
+    """
     projvlist = []
     rotvlist = []
     ((sroll, croll),
