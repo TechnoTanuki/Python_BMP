@@ -5501,7 +5501,7 @@ def plot3d(bmp: array,
 
 
 def plot3Dsolid(bmp: array,
-        vertandsides: list,
+        vertandsides: list[list, list],
         issolid: bool,
         RGBfactors: list[float, float, float],
         showoutline: bool,
@@ -5552,7 +5552,7 @@ def plot3Dsolid(bmp: array,
 
 
 def gradvert(bmp: array,
-        vertlist: list,
+        vertlist: list[list[int, int]],
         penradius: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
