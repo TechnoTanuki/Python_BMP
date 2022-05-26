@@ -1096,7 +1096,19 @@ def adddimz(
 
 
 def anglebetween2Dlines(
-        u: list, v: list) -> float:
+        u: list[Number, Number],
+        v: list[Number, Number]
+        ) -> float:
+    """Compute the angle between two
+        lines of vectors
+
+    Args:
+        u, v: list[Number, Number]
+
+    Returns:
+        float angle in radians
+
+    """
     if u[0] != v[0]:
         a = atan(slope(u, v))
     else:
