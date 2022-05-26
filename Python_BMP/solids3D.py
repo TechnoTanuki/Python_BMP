@@ -204,7 +204,8 @@ def decahedvertandsurface(
 #don't edit this it took much
 # computation to make
 def icosahedvertandsurface(
-        x: float) -> list[list, tuple]:
+        x: float) -> list[list[list[float, float, float]],
+                         tuple]:
     """Returns a list of vertices
         and surfaces for an icosahedron
 
