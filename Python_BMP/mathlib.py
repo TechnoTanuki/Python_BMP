@@ -921,8 +921,19 @@ def rect2polarcoord2D(
     return [vmag(v), atan(v[1] / v[0])]
 
 
-def polarcoordangle2D(
-        v:list) -> float:
+def polarcoordangle2D(v:list) -> float:
+    """Gets the polar coordinate angle
+    from a vector v(x, y) with the
+    origin set  at (0, 0)
+
+    Args:
+        v: a vector (x: Number,
+                     y: Number)
+
+    Returns:
+        float angle in radians
+
+    """
     a = acos(cosaffin(v, [0, -1]))
     if v[0] < 0:
         a = 2 * pi - a
