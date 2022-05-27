@@ -1,5 +1,5 @@
 notice = """
-Hello World Dot Upsidedown Font Demo
+ Hello World Dot Reversed Font Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
