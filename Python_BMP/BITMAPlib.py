@@ -4093,6 +4093,52 @@ def plotrotated8bitpatternwithfn(
         x = ox
 
 
+def plotrotateditalic8bitpatternwithfn(
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int,
+        fn: Callable):
+    """Draws a bit rotated Italic
+        8-bit pattern with a function
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    inc = scale - 1 - pixspace
+    i = scale >> 1
+    for bits in bitpattern:
+        ox = x
+        mask = 128
+        bits = rotatebits(bits)
+        while mask > 0:
+            if (mask & bits) > 0:
+                if scale == 1 or inc <= 0:
+                    plotxybit(bmp, x, y, color)
+                else:
+                    fn(bmp, x, y, inc, color)
+            mask >>= 1
+            x += scale
+        y += scale
+        x = ox - i
+        if y % 2 == 0 and scale == 1:
+            x -= 1
+
+
 def plot8bitpatternwithfn(
         bmp: array, x: int, y: int,
         bitpattern: list, scale: int,
@@ -4140,7 +4186,7 @@ def plotitalic8bitpatternwithfn(
         bitpattern: list, scale: int,
         pixspace: int, color: int,
         fn: Callable):
-    """Draws a 8-bit pattern
+    """Draws an Italic 8-bit pattern
         with a function
 
     Args:
@@ -4326,6 +4372,38 @@ def plotitalic8bitpatternasdots(
     """
 
     plotitalic8bitpatternwithfn(
+        bmp, x, y, bitpattern,
+        scale, pixspace, color,
+        plotcircinsqr)
+
+
+def plotreverseditalic8bitpatternasdots(
+        bmp: array, x: int, y: int,
+        bitpattern: list, scale: int,
+        pixspace: int, color: int):
+    """Draws a 8-bit revered italic
+        pattern as dots
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y      : sets where to draw
+                    the pattern
+        bitpattern: list of bytes
+                    that makes the pattern
+        scale     : controls how big
+                    the pattern is
+        pixspace  : space between
+                    each bit in pixels
+        color     : color of the pattern
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+
+    plotrotateditalic8bitpatternwithfn(
         bmp, x, y, bitpattern,
         scale, pixspace, color,
         plotcircinsqr)
@@ -4828,6 +4906,45 @@ def plotitalicstringasdots(bmp: array,
         spacebetweenchar,
         color, fontbuf, _enchr,
         plotitalic8bitpatternasdots)
+
+
+def plotreverseditalicstringasdots(bmp: array,
+        x: int, y: int, str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
+    """Draws a reversed string as
+        Italic dots
+
+    Args:
+        bmp             : unsigned
+                          byte array
+                          with bmp format
+        x, y            : sets where to
+                          draw the
+                          string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of
+                         the font
+        fontbuf         : the font
+                          (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringfunc(bmp, x, y, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf, _enchrev,
+        plotreverseditalic8bitpatternasdots)
 
 
 def plotstringupsidedown(bmp: array,
