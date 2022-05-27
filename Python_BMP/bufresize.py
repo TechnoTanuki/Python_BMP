@@ -229,10 +229,18 @@ def resize8bitbufNtimesbigger(
         retval += [b] * n
     return array('B', retval)
 
-def resizesmaller24bitbuf(buflist: array):
-    n,a,m,s=len(buflist),addvectinlist,intscalarmulvect,altsplitbufnway
-    c,f=altsplitbuf3way(a(buflist)),1/(n*n)
-    return  makeBGRbuf(m(a(s(c[0],n)),f),m(a(s(c[1],n)),f),m(a(s(c[2],n)),f))
+
+def resizesmaller24bitbuf(
+        buflist: array) -> array:
+    n = len(buflist)
+    f = 1 / (n * n)
+    buf = altsplitbuf3way(
+            addvectinlist(buflist))
+    return  makeBGRbuf(
+            *[intscalarmulvect(
+                 addvectinlist(
+               altsplitbufnway(i, n)), f)
+                           for i in buf])
 
 
 def resize24bitbufNtimesbigger(
@@ -240,11 +248,11 @@ def resize24bitbufNtimesbigger(
         n: int):
     """Resize a 24-bit buffer
         n times bigger
-    
+
     Args:
         buf: unsigned byte array
-        n  : buffer multiplier 
-        
+        n  : buffer multiplier
+
     Returns:
         unsigned byte array
 
