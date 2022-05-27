@@ -265,20 +265,20 @@ def resize24bitbufNtimesbigger(
 def resizebufNtimesbigger(
         buf:array,
         n: int, bits: int):
-    """Resize a buffer 
-        n times bigger 
-        given a particular 
+    """Resize a buffer
+        n times bigger
+        given a particular
         bit depth n
-    
+
     Args:
         buf : array to resize
         n   : resize factor
-        bits: bit depth of 
+        bits: bit depth of
               color info
               (1,4,8,24)
-        
+
     Returns:
-        list 
+        list
 
     """
     f={24: resize24bitbufNtimesbigger,
