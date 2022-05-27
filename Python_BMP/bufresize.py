@@ -61,7 +61,7 @@ def adjustxbufsize(
 
 
 def packbitlisttobuf(
-        blist: list[int]) -> list[int] :
+        blist: list[int]) -> list[int]:
     """Packs literal list
         of ones and zeros
         to a list of bytes
@@ -108,7 +108,7 @@ def resizebitpattenNtimesbigger(
 
 
 def resize1bitbufNtimesbigger(
-        buf: array ,n: int):
+        buf: array, n: int):
     """Resize a 1-bit buffer
         n times bigger
 
@@ -120,7 +120,7 @@ def resize1bitbufNtimesbigger(
         unsigned byte array
 
     """
-    retval=[]
+    retval = []
     for b in buf:
         retval += packbitlisttobuf(
                     resizebitpattenNtimesbigger(
@@ -128,9 +128,10 @@ def resize1bitbufNtimesbigger(
     return array('B', retval)
 
 
-def unpack4bitbuf(buf):
+def unpack4bitbuf(buf: list[int]
+                   ) ->list[int]:
     """Unpacks a 4-bit buffer
-    into a list
+        into a list
 
     Args:
         buf: unsigned byte array
@@ -139,14 +140,15 @@ def unpack4bitbuf(buf):
         list
 
     """
-    retval=[]
+    retval = []
     for b in buf:
-        retval+=[b//16, b&0xf]
+        retval += [b >> 4, b & 0xf]
     return retval
 
 
 def unpack4bitbufresizeNtimesbigger(
-        buf: array, n: int):
+        buf: list[int], n: int
+        ) -> list[int]:
     """unpacks a 4-bit buffer
     into a list and repeats
     4-bit units to resize
@@ -167,9 +169,10 @@ def unpack4bitbufresizeNtimesbigger(
     return retval
 
 def pack4bitbuf(
-        unpackedbuf: list) -> list:
+        unpackedbuf: list[int]
+                ) -> list[int]:
     """Packs an unpacked 4-bit buffer
-    into a list
+        into a list
 
     Args:
         buf: unsigned byte array
@@ -190,13 +193,16 @@ def pack4bitbuf(
     return retval
 
 
-def resize4bitbufNtimesbigger(buf: array, n: int) -> array:
-    """Resize a 4-bit buffer n times bigger
-    
+def resize4bitbufNtimesbigger(
+        buf: array, n: int
+        ) -> array:
+    """Resize a 4-bit buffer
+        n times bigger
+
     Args:
         buf: An unsigned byte array
-        n  : buffer multiplier 
-        
+        n  : buffer multiplier
+
     Returns:
         unsigned byte array
 
@@ -205,19 +211,20 @@ def resize4bitbufNtimesbigger(buf: array, n: int) -> array:
 
 
 def resize8bitbufNtimesbigger(
-        buf: array, n: int):
+        buf: array, n: int
+        ) -> array:
     """Resize a 8-bit buffer
         n times bigger
-    
+
     Args:
         buf: unsigned byte array
-        n  : buffer multiplier 
-        
+        n  : buffer multiplier
+
     Returns:
         unsigned byte array
 
     """
-    retval=[]
+    retval = []
     for b in buf:
         retval += [b] * n
     return array('B', retval)
