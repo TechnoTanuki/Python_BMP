@@ -38,7 +38,7 @@ def main():
                 0, # uint default space between char
                 getcolorname2RGBdict()['yellow'],
                 font8x14)
-        file = 'HelloWorldDotsrev.bmp' #file name
+        file = 'HelloWorldDotsrevital.bmp' #file name
         saveBMP(file,bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
