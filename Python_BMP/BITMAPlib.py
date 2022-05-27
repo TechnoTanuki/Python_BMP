@@ -5650,6 +5650,84 @@ def plotstringverticalasdots(
         plot8bitpatternasdots)
 
 
+def plotitalicstringverticalasdots(
+        bmp: array, x: int, y: int,
+        str2plot: str, scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
+    """Draws an italic string vertically
+        with dots
+
+    Args:
+        bmp             : unsigned
+                          byte array
+                          with bmp format
+        x, y            : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of
+                          the font
+        fontbuf         : the font
+                         (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringverticalwithfn(bmp,
+        x, y, str2plot, scale,
+        pixspace, spacebetweenchar,
+        color, fontbuf,
+        plotitalic8bitpatternasdots)
+
+
+def plotitalicstringvertical(
+        bmp: array, x: int, y: int,
+        str2plot: str, scale: int,
+        pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list):
+    """Draws an italic string vertically
+        with dots
+
+    Args:
+        bmp             : unsigned
+                          byte array
+                          with bmp format
+        x, y            : sets where to
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of
+                          the font
+        fontbuf         : the font
+                         (see fonts.py)
+
+    Returns:
+        byref modified
+        unsigned byte array
+
+    """
+    plotstringverticalwithfn(bmp,
+        x, y, str2plot, scale,
+        pixspace, spacebetweenchar,
+        color, fontbuf,
+        plotitalic8bitpattern)
+
+
 def fillboundary(bmp: array,
         bndfilldic: dict, color: int):
     """Draws lines in a boundary
