@@ -439,7 +439,7 @@ def recvert(x1: int, y1: int,
     Args:
         x1, y1, x1, y2: int values
 
-    Yields:
+    Returns:
         list of vertices
         [(x1, y1), (x2, y1),
          (x2, y2), (x1, y2)]
@@ -451,15 +451,25 @@ def recvert(x1: int, y1: int,
 def floatregpolygonvert(
         cx: int, cy: int, r: int,
         sides: int, angle: float
-        ) -> list[list[int, int]]:
+        ) -> list[list[float, float]]:
+    """Creates a list of vertices for
+        a regular polygon
+
+    Args:
+
+
+    Returns:
+        list of vertices
+        [(x, y), ...]
+    """
     v = []
     angle = radians(angle)
     anginc = 360 // sides
     maxang = 360
     for a in range(0, maxang, anginc):
         ang = angle + radians(a)
-        v.append([int(cx -r * sin(ang)),
-                  int(cy -r * cos(ang))])
+        v.append([cx - r * sin(ang),
+                  cy - r * cos(ang)])
     return v
 
 
