@@ -38,6 +38,13 @@ from .mathlib import(
 
 
 def getdefaultlumrange() -> dict:
+    """Gets the default luminosity
+        ranges lookup
+
+    Returns:
+        a dict for default
+        luminosity ranges
+    """
     return {'maxdesc': [255, 0],
              'maxasc': [0, 255],
             'middesc': [192, 64],
@@ -195,7 +202,6 @@ def RGBfactors2RGB(
         obtain byte r, g, b values
         stored in a list [r, g, b]
 
-
     Args:
         lum       : a byte value for
                     luminosity
@@ -303,7 +309,6 @@ def RGBtoRGBfactorsandlum(
         color and express color
         as ratios of r, g and b
         float values from 0.0 to 1.0
-
 
     Args:
         rgb: color byte values
@@ -568,7 +573,6 @@ def applymonochromefiltertoBGRbuf(
                        g: float,
                        b: float]
 
-
     Returns:
         byref unsigned byte array
         holding mono BGR data
@@ -596,7 +600,6 @@ def monochromefiltertoBGRbuf(
                       [r: float,
                        g: float,
                        b: float]
-
 
     Returns:
         unsigned byte array
@@ -747,7 +750,6 @@ def RGBfactorstoBaseandRange(
                      g: float,
                      b: float]
 
-
     Returns:
         base luminosity as
         [r: byte, g: byte, b: byte]
@@ -852,7 +854,6 @@ def RGB2BGRbuf(buf: array):
         buf: unsigned byte array
              holding RGB data
 
-
     Returns:
         byref unsigned byte array
         holding BGR data
@@ -875,7 +876,6 @@ def makeBGRbuf(bbuf: array,
               for green data
         rbuf: unsigned byte array
               for red data
-
 
     Returns:
         unsigned byte array
