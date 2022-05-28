@@ -818,6 +818,22 @@ def entirecircleisinboundary(
         minx: int, maxx: int,
         miny: int, maxy: int,
         r: int):
+    """Checks if an entire circle
+        is within a rectagular area
+
+    Args:
+        x, y: center of the ellipse
+        xmin, ymin: min (x, y) bounds
+        xmax, ymax: max (x, y) bounds
+        r   : radius of the circle
+
+    Returns:
+        boolean value
+        True  -> All (x, y)
+                 is in bounds
+        False -> Not all (x, y)
+                 is in bounds
+    """
     return (isinrange(x - r, maxx, minx) and \
             isinrange(x + r, maxx, minx)) and \
            (isinrange(y - r, maxy, miny) and \
@@ -829,6 +845,22 @@ def entireellipseisinboundary(
         minx: int, maxx: int,
         miny: int, maxy: int,
         b: int, a: int):
+    """Checks if an entire ellipse
+        is within a rectagular area
+
+    Args:
+        x, y: center of the ellipse
+        xmin, ymin: min (x, y) bounds
+        xmax, ymax: max (x, y) bounds
+        b, a: major and minor axes
+
+    Returns:
+        boolean value
+        True  -> All (x, y)
+                 is in bounds
+        False -> Not all (x, y)
+                 is in bounds
+    """
     return (isinrange(x - b, maxx, minx) and \
             isinrange(x + b, maxx, minx)) and \
            (isinrange(y - a, maxy, miny) and \
