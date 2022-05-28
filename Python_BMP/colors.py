@@ -495,6 +495,26 @@ def thresholdadjust(
         rgb: list[int, int, int],
         lumrange: list[int, int]
         ) -> list[int, int, int]:
+    """Apply a threshold adjustment
+        to a rgb
+
+    Args:
+        rgb: color as [r: byte,
+                       g: byte,
+                       b: byte]
+        lumrange: [min: byte,
+                   max: byte]
+                  brightness
+                  threshold
+                  adjustment
+                  limits
+
+    Returns:
+        a brightness threshold adjusted
+        color as [r: byte,
+                  g: byte,
+                  b: byte]
+    """
     c = RGBtoRGBfactorsandlum(rgb)
     lumrange = intsetminmaxvec(lumrange, 0, 255)
     if  lumrange[0] > lumrange[1]:
