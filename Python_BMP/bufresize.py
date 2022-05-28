@@ -1,15 +1,18 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
+"""
+ Buffer resize, pack and unpack mod
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
 
 from array import array
 from .mathlib import(
