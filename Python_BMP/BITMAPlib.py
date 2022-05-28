@@ -164,7 +164,7 @@ from .colors import(
     RGBfactors2RGB,
     RGBfactorstoBaseandRange
         as _RGBf2BasenRng,
-    RGBtoBGRarr,
+    RGB2BGRarr,
     thresholdadjust
     )
 
@@ -1040,7 +1040,7 @@ def setRGBpal(bmp: array, c: int,
 
     """
     s = _bmpal + (c << 2)
-    bmp[s: s + 3] = RGBtoBGRarr(r, g, b)
+    bmp[s: s + 3] = RGB2BGRarr(r, g, b)
 
 
 def colorhistorgram(bmp: array) -> list:

@@ -138,24 +138,39 @@ def int2RGBlist(i: int
         [r: byte, g: byte, b: byte]
 
     """
-    return [i >> 16,
-           (i >> 8) & 0xff,
-            i & 0xff]
-
-
-def RGBtoBGRarr(r: int,
-                g: int,
-                b: int) -> array:
-    return array('B', [b, g, r])
+    return [i >> 16, (i >> 8) & 0xff,
+                            i & 0xff]
 
 
 def int2BGRarr(i: int) -> array:
+    """Returns a bgr array from
+        int i color input
+
+
+    Args:
+        i: color value
+
+    Returns:
+        unsigned byte BGR array
+
+    """
     return array('B', [i & 0xff,
                       (i >> 8) & 0xff,
                        i >> 16])
 
 
 def int2RGBarr(i: int) -> array:
+    """Returns a rgb array from
+        int i color input
+
+
+    Args:
+        i: color value
+
+    Returns:
+        unsigned byte RGB array
+
+    """
     return array('B', [i >> 16,
                       (i >> 8) & 0xff,
                        i & 0xff])
