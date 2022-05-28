@@ -611,7 +611,7 @@ def arcvert(
 
 
 def rectboundarycoords(
-    vlist: list) -> list:
+        vlist: list) -> list:
     """Returns the rectangular bounds
         of a list of 2D vertices
 
@@ -629,9 +629,21 @@ def rectboundarycoords(
 
 def itergetneighbors(
         v: list[int, int],
-        mx: int,
-        my: int,
-        includecenter: bool)->list:
+        mx: int, my: int,
+        includecenter: bool) -> list[int, int]:
+    """Yields the neighboring pixels
+        of point v
+
+    Args:
+        v : (x:int, y:int) point
+        mx: maximum x
+        my: maximum y
+        includecenter: do we yield
+                       point v too
+
+    Yields:
+        [x: int, y: int]
+    """
     (x, y) = v
     if x > -1 and y > -1:
         lx = x - 1
