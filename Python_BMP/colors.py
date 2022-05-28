@@ -296,7 +296,7 @@ def matchRGBtopal(RGB: list,
 
 
 def RGBtoRGBfactorsandlum(
-        RGB: list[int, int, int]
+        rgb: list[int, int, int]
         ) -> list[list[float, float,
                        float], int]:
     """Separates luminosity from
@@ -306,7 +306,7 @@ def RGBtoRGBfactorsandlum(
 
 
     Args:
-        RGB: color byte values
+        rgb: color byte values
              [r: byte,
               b: byte,
               g: byte]
@@ -316,12 +316,12 @@ def RGBtoRGBfactorsandlum(
                   g: float,
                   b: float], lum: byte]
     """
-    lum = max(RGB)
+    lum = max(rgb)
     if lum == 0:
         lum = 1
-    return [[RGB[0] / lum,
-             RGB[1] / lum,
-             RGB[2] / lum], lum]
+    return [[rgb[0] / lum,
+             rgb[1] / lum,
+             rgb[2] / lum], lum]
 
 
 def probplotRGBto1bit(
