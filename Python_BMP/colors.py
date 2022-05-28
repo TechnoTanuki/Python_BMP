@@ -48,12 +48,34 @@ def getdefaultlumrange() -> dict:
            'lowerasc': [0, 128]}
 
 
-def isvalidcolorbit(bits:int) -> bool:
+def isvalidcolorbit(bits: int) -> bool:
+    """Checks if bits is in the valid
+        color bits list (1, 4, 8, 24)
+
+    Args:
+        bits: int value
+
+    Returns:
+        True if bits in (1, 4, 8, 24)
+        False if other values not in
+              the list above
+
+    """
     return bits in bmpvalidcolorbits
 
 
 def getdefaultbitpal(
-        bits:int) -> list:
+        bits: int) -> list:
+    """Gets the standard bitmap palette
+        for a  specified bit depth bits
+
+    Args:
+        bits: int value (1, 4, 8, 24)
+
+    Returns:
+        list of palette entries
+
+    """
     return bmpstdpal[bits]
 
 
