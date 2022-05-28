@@ -635,7 +635,7 @@ def itergetneighbors(
         of point v
 
     Args:
-        v : (x:int, y:int) point
+        v : (x: int, y: int) point
         mx: maximum x
         my: maximum y
         includecenter: do we yield
@@ -678,7 +678,7 @@ def getneighborlist(
         of point v
 
     Args:
-        v : (x:int, y:int) point
+        v : (x: int, y: int) point
         mx: maximum x
         my: maximum y
         includecenter: do we yield
@@ -695,8 +695,27 @@ def getneighborlist(
 def spiralcontrolpointsvert(
         x: int, y: int,
         step: int,
-        growthfactor: int,
+        growthfactor: float,
         turns: int):
+    """Returns a list[(int, int)]
+        of 2D vertices along a path
+        defined by a square spiral
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        step: int step increment
+        growthfactor: float multiplier
+                      to step increment
+                      to make exponential
+                      spirals
+        turns: number of turns of the
+               spiral
+
+    Yields:
+        list of vertices of the spiral
+        list[[x: int, y: int]]
+    """
     v = [[x, y]]
     inc = step
     while turns > 0:
