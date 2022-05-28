@@ -378,7 +378,7 @@ def gensides(
         pointlists: list[list, list],
         transvect: list[float, float, float],
         sides: list[list[float]]) -> tuple:
-    [plist, slist] = pointlists
+    (plist, slist) = pointlists
     polylist = []
     normlist = []
     for sidepts in sides:
