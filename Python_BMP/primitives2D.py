@@ -452,14 +452,22 @@ def floatregpolygonvert(
         cx: int, cy: int, r: int,
         sides: int, angle: float
         ) -> list[list[float, float]]:
-    """Creates a list of vertices for
-        a regular polygon
+    """Creates a list of float vertices
+        for a regular polygon
 
     Args:
-
+        cx, cy: int center of a circle
+        r     : int radius of a circle
+                that circumscribes the
+                regular polygon
+        sides : int sides of the
+                regular polygon
+        angle:  angle of rotation
+                of the polygon in
+                degrees
 
     Returns:
-        list of vertices
+        list of float vertices
         [(x, y), ...]
     """
     v = []
@@ -477,9 +485,27 @@ def regpolygonvert(cx: int, cy: int,
         r: int, sides: int,
         angle: float
         ) -> list[list[int, int]]:
+    """Creates a list of int vertices
+        for a regular polygon
+
+    Args:
+        cx, cy: int center of a circle
+        r     : int radius of a circle
+                that circumscribes the
+                regular polygon
+        sides : int sides of the
+                regular polygon
+        angle:  angle of rotation
+                of the polygon in
+                degrees
+
+    Returns:
+        list of int vertices
+        [(x, y), ...]
+    """
     return roundvectlist(
-                floatregpolygonvert(
-                cx,cy,r,sides,angle))
+            floatregpolygonvert(
+            cx, cy, r, sides, angle))
 
 
 def horizontalvert(y: int,
