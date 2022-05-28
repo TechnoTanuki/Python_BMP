@@ -367,7 +367,9 @@ def probplotRGBto4bitpal(
         color += 2
     if round(randint(0, b) / 256) == 1:
         color += 1
-    r, g, b = r >> 6, g >> 6, b >> 6
+    r >>= 6
+    g >>= 6
+    b >>= 6
     if r > 1 or g > 1 or b > 1:
         color += 8
     return color
