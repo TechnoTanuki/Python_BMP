@@ -1,15 +1,18 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
+"""
+Function decorators for parameter check
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
 
 from .messages import sysmsg
 from .bmpconstants import(
@@ -24,9 +27,11 @@ from .primitives2D import(
     entirecircleisinboundary
     )
 
+
 f = lambda bmp, x, y: (x < readint(bmpx,4,bmp) and \
                        y < readint(bmpy,4,bmp)) and \
                       (x > -1 and y > -1)
+
 
 def intcircleparam(func):
     """Decorator to test if the
@@ -158,7 +163,7 @@ def func24bitonlyandentirecircleinboundary(func):
 
     """
     def callf(*args, **kwargs):
-        bmp =args[0]
+        bmp = args[0]
         x = args[1]
         y = args[2]
         r = args[3]
@@ -169,7 +174,7 @@ def func24bitonlyandentirecircleinboundary(func):
                                and type(r) == int:
                 if entirecircleisinboundary(
                     x, y, -1, readint(bmpx,4,bmp),
-                          -1, readint(bmpy,4,bmp),r):
+                          -1, readint(bmpy,4,bmp), r):
                     return(func(*args, **kwargs))
                 else:
                     print(sysmsg['regionoutofbounds'])
@@ -207,8 +212,8 @@ def func8and24bitonlyandentirecircleinboundary(func):
             if (type(x) == int and type(y) == int) \
                                and type(r) == int:
                 if entirecircleisinboundary(
-                    x, y, -1, readint(bmpx,4,bmp),
-                          -1, readint(bmpy,4,bmp),r):
+                    x, y, -1, readint(bmpx, 4, bmp),
+                          -1, readint(bmpy, 4, bmp), r):
                     return(func(*args, **kwargs))
                 else:
                     print(sysmsg['regionoutofbounds'])
@@ -284,8 +289,8 @@ def entirerectinboundary(func):
         parameters are ints whose
         values when interpreted as
         x and y coordinates of a
-        rectangle lay within
-        the bitmap.
+        rectangle lay within the
+        bitmap.
 
     Args:
         function
