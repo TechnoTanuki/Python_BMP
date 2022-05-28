@@ -526,33 +526,105 @@ def thresholdadjust(
 
 
 def colorfilter(
-        rgb: list,
-        rgbfactors: list) -> list:
+        rgb: list[int, int, int],
+        rgbfactors: list[float,
+                         float,
+                         float]
+        ) -> list[int, int, int]:
+    """Apply a color filter
+        rgbfactors to rgb
+
+    Args:
+        rgb: color as [r: byte,
+                       g: byte,
+                       b: byte]
+
+        rgbfactors: color filter as
+                      [r: float,
+                       g: float,
+                       b: float]
+
+    Returns:
+        a color filtered
+        color as [r: byte,
+                  g: byte,
+                  b: byte]
+    """
     return intsetminmaxvec(mulvect(
-            rgb,rgbfactors), 0, 255)
+            rgb, rgbfactors), 0, 255)
 
 
 def applymonochromefiltertoBGRbuf(
         buf: array):
-       m = len(buf)
-       buf[0: m - 2: 3] = \
-       buf[1: m - 1: 3] = \
-       buf[2: m: 3] = \
-       array('B',[int((b + g + r) / 3)
-       for b, g, r in zip(buf[0: m - 2: 3],
-                          buf[1: m - 1: 3],
-                          buf[2: m: 3])])
+    """Apply a monochrome filter to a
+        BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        rgbfactors: color filter as
+                      [r: float,
+                       g: float,
+                       b: float]
+
+
+    Returns:
+        byref unsigned byte array
+        holding mono BGR data
+    """
+    m = len(buf)
+    buf[0: m - 2: 3] = \
+    buf[1: m - 1: 3] = \
+    buf[2: m: 3] = \
+    array('B',[int((b + g + r) / 3)
+    for b, g, r in zip(buf[0: m - 2: 3],
+                       buf[1: m - 1: 3],
+                       buf[2: m: 3])])
 
 
 def monochromefiltertoBGRbuf(
-        buf:array) -> array:
-       applymonochromefiltertoBGRbuf(buf)
-       return buf
+        buf: array) -> array:
+    """Apply a monochrome filter to a
+        BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        rgbfactors: color filter as
+                      [r: float,
+                       g: float,
+                       b: float]
+
+
+    Returns:
+        unsigned byte array
+        holding mono BGR data
+    """
+    applymonochromefiltertoBGRbuf(buf)
+    return buf
 
 
 def applycolorfiltertoBGRbuf(
         buf: array,
-        rgbfactors: list):
+        rgbfactors: list[float, float, float]):
+    """Apply a color filter to a
+        BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        rgbfactors: color filter as
+                      [r: float,
+                       g: float,
+                       b: float]
+
+    Returns:
+        byref unsigned byte array
+        holding color BGR data
+    """
     m = len(buf) - 1
     buf[0: m - 2: 3], buf[1: m - 1: 3], buf[2: m: 3] = \
         array('B', intscalarmulvect(buf[0: m - 2: 3], rgbfactors[2])), \
@@ -562,7 +634,24 @@ def applycolorfiltertoBGRbuf(
 
 def colorfiltertoBGRbuf(
         buf: array,
-        rgbfactors: list) -> array:
+        rgbfactors: list[float, float, float]
+        ) -> array:
+    """Apply a color filter to a
+        BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        rgbfactors: color filter as
+                      [r: float,
+                       g: float,
+                       b: float]
+
+    Returns:
+        unsigned byte array
+        holding color BGR data
+    """
     applycolorfiltertoBGRbuf(buf,rgbfactors)
     return buf
 
