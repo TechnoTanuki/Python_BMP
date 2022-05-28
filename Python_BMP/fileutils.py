@@ -1,28 +1,31 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|       The primary author and any  |
-#| any subsequent code contributors  |
-#| shall not be liable in any event  |
-#| for  incidental or consequential  |
-#| damages  in connection with,  or  |
-#| arising out from the use of this  |
-#| code in current form or with any  |
-#| modifications.                    |
-# -----------------------------------
+"""    File utilities module
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|       The primary author and any  |
+| any subsequent code contributors  |
+| shall not be liable in any event  |
+| for  incidental or consequential  |
+| damages  in connection with,  or  |
+| arising out from the use of this  |
+| code in current form or with any  |
+| modifications.                    |
+ -----------------------------------
+"""
+
 
 from os.path import isfile
 from typing import Callable
 from .messages import sysmsg
 
+
 def checklink(func: Callable):
-    """Decorator to test if
-        the first parameter
-        in a function is
+    """Decorator to test if the first
+        parameter in a function is
         a valid file
 
     Args:
@@ -39,10 +42,10 @@ def checklink(func: Callable):
             print(sysmsg['filenotexist'])
     return(callf)
 
+
 def checklinks(func: Callable):
-    """Decorator to test if
-        the two parameters
-        in a function
+    """Decorator to test if the two
+        parameters in a function
         are valid files
 
     Args:
