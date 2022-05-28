@@ -1,16 +1,18 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
-
+"""
+  Color manipulation numerics module
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
 
 from random import randint
 from array import array
@@ -83,6 +85,7 @@ def int2BGRarr(i: int) -> array:
                       (i >> 8) & 0xff,
                        i >> 16])
 
+
 def int2RGBarr(i: int) -> array:
     return array('B', [i >> 16,
                       (i >> 8) & 0xff,
@@ -123,9 +126,8 @@ def matchRGBtodefault4bitpal(
        return color
 
 
-def matchRGBtopal(
-        RGB: list,
-        pal: list) -> int:
+def matchRGBtopal(RGB: list,
+                  pal: list) -> int:
        c = 0
        i = 0
        d = 442
@@ -169,7 +171,7 @@ def probplotRGBto4bitpal(
     if round(randint(0, b) / 256) == 1:
         color += 1
     r, g, b = r >> 6, g >> 6, b >> 6
-    if r>1 or g>1 or b>1:
+    if r > 1 or g > 1 or b > 1:
         color += 8
     return color
 
@@ -208,7 +210,7 @@ def gammacorrect(rgb: list,
 def brightnessadjust(
         rgb: list,
         percentadj: float) -> list:
-    c=RGBtoRGBfactorsandlum(rgb)
+    c = RGBtoRGBfactorsandlum(rgb)
     return setminmaxvec(RGBfactors2RGB(c[0],
      c[1] + c[1] * (percentadj / 100)),
      0, 255)
@@ -231,19 +233,19 @@ def colorfilter(
         rgb: list,
         rgbfactors: list) -> list:
     return intsetminmaxvec(mulvect(
-            rgb,rgbfactors),0,255)
+            rgb,rgbfactors), 0, 255)
 
 
 def applymonochromefiltertoBGRbuf(
         buf: array):
        m = len(buf)
-       buf[0: m - 2: 3]= \
-       buf[1: m - 1: 3]= \
+       buf[0: m - 2: 3] = \
+       buf[1: m - 1: 3] = \
        buf[2: m: 3] = \
-       array('B',[int((b + g + r)/3)
-       for b,g,r in zip(buf[0: m - 2: 3],
-                        buf[1: m - 1: 3],
-                        buf[2: m: 3])])
+       array('B',[int((b + g + r) / 3)
+       for b, g, r in zip(buf[0: m - 2: 3],
+                          buf[1: m - 1: 3],
+                          buf[2: m: 3])])
 
 
 def monochromefiltertoBGRbuf(
@@ -270,21 +272,20 @@ def colorfiltertoBGRbuf(
 
 
 def applygammaBGRbuf(
-        buf: array,
-        gamma: float):
-    j = len(buf)
+        buf: array, gamma: float):
+    imax = len(buf)
     i = 0
-    while i < j:
-        b = buf[i: i + 3]
-        lum = max(b)
+    while i < imax:
+        lum = max(buf[i: i + 3])
         if lum == 0:
             lum = 1
-        f = int(((lum / 255) ** gamma) * 255) / lum
-        i1 = i + 1
-        i2 = i + 2
+        f = int(((lum / 255) ** gamma) * 255) / \
+                  lum
+        j = i + 1
+        k = i + 2
         buf[i] = int(buf[i] * f) & 0xff
-        buf[i1] = int(buf[i1] * f) & 0xff
-        buf[i2] = int(buf[i2 ]* f) & 0xff
+        buf[j] = int(buf[j] * f) & 0xff
+        buf[k] = int(buf[k] * f) & 0xff
         i += 3
 
 
@@ -311,8 +312,10 @@ def RGBfactorstoBaseandRange(
     return baselum, lumrange
 
 
-def invertbitsinbuffer(buf:array) -> array:
-    return array('B', [b ^ 0xFF for b in buf])
+def invertbitsinbuffer(buf: array
+                       ) -> array:
+    return array('B', [b ^ 0xFF
+                   for b in buf])
 
 
 def applybrightnessadjtoBGRbuf(
@@ -357,7 +360,7 @@ def makeBGRbuf(
         bbuf: array,
         gbuf: array,
         rbuf: array) -> array:
-    buf=[]
+    buf = []
     for b, g, r in zip(bbuf, gbuf, rbuf):
         buf += [b, g, r]
     return array('B', buf)
