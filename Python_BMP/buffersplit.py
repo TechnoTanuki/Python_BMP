@@ -1,4 +1,5 @@
 """
+Buffer or array or list splitting mod
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
