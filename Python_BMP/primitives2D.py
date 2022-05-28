@@ -1,15 +1,18 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
+""" Math for 2D Graphics Primitives
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
+
 
 from math import(
     sin,
@@ -17,6 +20,7 @@ from math import(
     radians,
     comb
     )
+from tokenize import Number
 
 from .conditionaltools import(
     iif,
@@ -469,17 +473,15 @@ def itergetneighbors(
 
 
 def getneighborlist(
-        v: list,
-        mx: int,
-        my: int,
+        v: list[int, int],
+        mx: int, my: int,
         includecenter: bool):
     return [u for u in itergetneighbors(
                 v, mx, my, includecenter)]
 
 
 def spiralcontrolpointsvert(
-        x: int,
-        y: int,
+        x: int, y: int,
         step: int,
         growthfactor: int,
         turns: int):
@@ -504,32 +506,25 @@ def spiralcontrolpointsvert(
 
 
 def sortrecpoints(
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int):
+        x1: int, y1: int,
+        x2: int, y2: int):
     x1, x2 = swapif(x1, x2, x1 > x2)
     y1, y2 = swapif(y1, y2, y1 > y2)
     return x1, y1, x2, y2
 
 
 def isinrectbnd(
-        x: int,
-        y: int,
-        xmin: int,
-        ymin: int,
-        xmax: int,
-        ymax: int) -> bool:
+        x: int, y: int,
+        xmin: int, ymin: int,
+        xmax: int, ymax: int) -> bool:
     return (x < xmax and y < ymax) and \
            (x > xmin and y > ymin)
 
 
 def listinrecbnd(
-        xylist: list,
-        xmin: int,
-        ymin: int,
-        xmax: int,
-        ymax: int) -> bool:
+        xylist: list[Number, Number],
+        xmin: int, ymin: int,
+        xmax: int, ymax: int) -> bool:
     retval = True
     for v in xylist:
         if isinrectbnd(v[0], v[1],
@@ -539,28 +534,23 @@ def listinrecbnd(
             break
     return retval
 
+
 def entirecircleisinboundary(
-        x: int,
-        y: int,
-        minx: int,
-        maxx: int,
-        miny: int,
-        maxy: int,
+        x: int, y: int,
+        minx: int, maxx: int,
+        miny: int, maxy: int,
         r: int):
     return (isinrange(x - r, maxx, minx) and \
             isinrange(x + r, maxx, minx)) and \
            (isinrange(y - r, maxy, miny) and \
             isinrange(y + r, maxy, miny))
 
+
 def entireellipseisinboundary(
-        x: int,
-        y: int,
-        minx: int,
-        maxx: int,
-        miny: int,
-        maxy: int,
-        b: int,
-        a: int):
+        x: int, y: int,
+        minx: int, maxx: int,
+        miny: int, maxy: int,
+        b: int, a: int):
     return (isinrange(x - b, maxx, minx) and \
             isinrange(x + b, maxx, minx)) and \
            (isinrange(y - a, maxy, miny) and \
@@ -568,8 +558,7 @@ def entireellipseisinboundary(
 
 
 def ellipsevert(
-    x: int,
-    y: int,
-    b: int,
-    a: int) -> list:
-    return [v for v in iterellipse(x, y, b, a)]
+    x: int, y: int,
+    b: int, a: int) -> list[int, int]:
+    return [v for v in iterellipse(
+                         x, y, b, a)]
