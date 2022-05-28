@@ -1,16 +1,17 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
-
+"""   3D math and solids module
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
 
 from math import(
     sqrt,
@@ -78,7 +79,7 @@ def tetrahedravert(x: float
         for a tetrahedron
 
     Args:
-        x: lenght of a side
+        x: length of a side
 
     Returns:
         list (x: float,
@@ -334,9 +335,8 @@ def fillpolydata(
         xlim: int,
         ylim: int) -> list:
     filld = {}
-    bnd = rectboundarycoords(polybnd)
-    (minx, miny) = bnd[0]
-    (maxx, maxy) = bnd[1]
+    ((minx, miny), (maxx, maxy)) = \
+    rectboundarycoords(polybnd)
     maxx += 1
     maxy += 1
     if (minx >= 0 and miny >= 0) and \
