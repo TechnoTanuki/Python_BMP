@@ -838,5 +838,21 @@ def entireellipseisinboundary(
 def ellipsevert(
     x: int, y: int,
     b: int, a: int) -> list[int, int]:
+    """Returns (int, int) 2D vertices
+        along a path defined by
+        major and minor axes
+        b and a as it traces
+        an ellipse with origin
+        set at (x, y)
+
+    Args:
+        x, y: center of the ellipse
+        b, a: major and minor axes
+
+    Returns:
+        The list vertices of an
+        ellipse
+        [[x: int, y: int], ...]
+    """
     return [v for v in iterellipse(
                          x, y, b, a)]
