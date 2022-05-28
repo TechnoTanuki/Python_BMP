@@ -845,15 +845,42 @@ def applythresholdadjtoBGRbuf(
 
 
 def RGB2BGRbuf(buf: array):
+    """Convert an RGB buffer
+             to a BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding RGB data
+
+
+    Returns:
+        byref unsigned byte array
+        holding BGR data
+    """
     m = len(buf)
     buf[0: m - 2: 3], buf[2: m: 3] = \
     buf[2: m: 3], buf[0: m - 2: 3]
 
 
-def makeBGRbuf(
-        bbuf: array,
-        gbuf: array,
-        rbuf: array) -> array:
+def makeBGRbuf(bbuf: array,
+               gbuf: array,
+               rbuf: array) -> array:
+    """Assemble a BGR buffer from
+        blue, green and red buffers
+
+    Args:
+        bbuf: unsigned byte array
+              for blue data
+        gbuf: unsigned byte array
+              for green data
+        rbuf: unsigned byte array
+              for red data
+
+
+    Returns:
+        unsigned byte array
+        holding BGR data
+    """
     buf = []
     for b, g, r in zip(bbuf, gbuf, rbuf):
         buf += [b, g, r]
