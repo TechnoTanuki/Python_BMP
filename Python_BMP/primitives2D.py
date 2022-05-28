@@ -756,10 +756,25 @@ def sortrecpoints(x1: int, y1: int,
     return x1, y1, x2, y2
 
 
-def isinrectbnd(
-        x: int, y: int,
+def isinrectbnd(x: int, y: int,
         xmin: int, ymin: int,
         xmax: int, ymax: int) -> bool:
+    """Checks if the x and y values
+        lie within the rectangular area
+        defined by xmin, ymin and
+                   xmax, ymax
+
+    Args:
+        x, y: (x,y) coordinates to test
+        xmin, ymin: min (x, y) bounds
+        xmax, ymax: max (x, y) bounds
+
+
+    Returns:
+        boolean value
+        True  -> (x, y) is in bounds
+        False -> (x, y) is out of bounds
+    """
     return (x < xmax and y < ymax) and \
            (x > xmin and y > ymin)
 
