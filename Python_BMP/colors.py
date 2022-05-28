@@ -100,7 +100,7 @@ def colormix(lum: int,
                     0.0 to 1.0
 
     Returns:
-        list of palette entries
+        int color val
 
     """
     return RGB2int(int(RGBfactors[0] * lum),
@@ -178,18 +178,68 @@ def int2RGBarr(i: int) -> array:
 def RGB2BGRarr(r: int,
                g: int,
                b: int) -> array:
+    """Returns a bgr array from
+        individual r, g and b color
+        component inputs
+
+    Args:
+        r, g, b: byte color values
+
+    Returns:
+        unsigned byte BGR array
+
+    """
     return array('B', [b, g, r])
 
+
 def RGBfactors2RGB(
-        RGBfactors: list,
-        bytelum: list) -> list:
+        RGBfactors: list[float,
+                         float,
+                         float],
+        bytelum: int
+               ) -> list[int,
+                         int,
+                         int]:
+    """Mix a byte luminosity value to
+        an rgb triplet that express
+        a color value in [r, g, b]
+        ratios from 0.0 to 1.0 to
+        obtain byte r, g, b values
+        stored in a list [r, g, b]
+
+
+    Args:
+        lum       : a byte value for
+                    luminosity
+        RGBfactors: list[r: float,
+                         g: float,
+                         b: float]
+                    float values from
+                    0.0 to 1.0
+
+    Returns:
+        [r: byte, g: byte, b: byte]
+
+    """
     return roundvect(scalarmulvect(
-                RGBfactors,bytelum))
+                RGBfactors, bytelum))
 
 
-def RGB2int(r: int,
-            g: int,
-            b: int) -> int:
+def RGB2int(r: int, g: int, b: int
+                          ) -> int:
+    """Pack byte r, g and b color value
+        components to an int
+        representation for a
+        specific color
+
+
+    Args:
+        r, g, b: color byte values
+
+    Returns:
+        int color val
+
+    """
     return b + (g << 8) + (r << 16)
 
 
