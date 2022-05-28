@@ -673,7 +673,21 @@ def itergetneighbors(
 def getneighborlist(
         v: list[int, int],
         mx: int, my: int,
-        includecenter: bool):
+        includecenter: bool) -> list:
+    """Returns the neighboring pixels
+        of point v
+
+    Args:
+        v : (x:int, y:int) point
+        mx: maximum x
+        my: maximum y
+        includecenter: do we yield
+                       point v too
+
+    Returns:
+        list of neighboring pixels
+        [[x: int, y: int],...]
+    """
     return [u for u in itergetneighbors(
                 v, mx, my, includecenter)]
 
