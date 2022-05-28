@@ -79,18 +79,65 @@ def getdefaultbitpal(
     return bmpstdpal[bits]
 
 
-def colormix(lum: list,
-      RGBfactors: list) -> int:
+def colormix(lum: int,
+      RGBfactors: list[float, float, float]
+             ) -> int:
+    """Mix a byte luminosity value to
+        an rgb triplet that express
+        a color value in [r, g, b]
+        ratios from 0.0 to 1.0 to
+        obtain an int value for a
+        specific color
+
+
+    Args:
+        lum       : a byte value for
+                    luminosity
+        RGBfactors: list[r: float,
+                         g: float,
+                         b: float]
+                    float values from
+                    0.0 to 1.0
+
+    Returns:
+        list of palette entries
+
+    """
     return RGB2int(int(RGBfactors[0] * lum),
                    int(RGBfactors[1] * lum),
                    int(RGBfactors[2] * lum))
 
 
 def int2RGB(i: int):
-        return i >> 16, (i >> 8) & 0xff, i & 0xff
+    """Break down int color i to its
+        byte valued r, g and b
+        components
 
 
-def int2RGBlist(i: int) -> list:
+    Args:
+        i: int color value
+
+    Returns:
+        r: byte, g: byte, b: byte
+
+    """
+    return i >> 16, (i >> 8) & 0xff, i & 0xff
+
+
+def int2RGBlist(i: int
+         ) -> list[int, int, int]:
+    """Break down int color i to its
+        byte valued r, g and b
+        components in a list
+
+
+    Args:
+        i: int color value
+
+    Returns:
+        [r: byte, g: byte, b: byte]
+
+    """
     return [i >> 16,
            (i >> 8) & 0xff,
             i & 0xff]
