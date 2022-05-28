@@ -1,0 +1,7 @@
+[project]
+name = "python_bmp"
+description = "A pure Python 2D/3D graphics library that outputs to windows bitmap format"
+version = "0.9.0"
+authors = [
+    { name = "Joel Alcarez", email = "joelalcarez1975@gmail.com" }
+]
