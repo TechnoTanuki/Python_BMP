@@ -1,19 +1,25 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
+"""
+ Chart or graph specific numeric mod
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
+
+
 from numbers import Number
 
 
-def getdatalisttotal(dlist: list[Number]) -> Number:
+def getdatalisttotal(dlist: list[Number]
+                            ) -> Number:
     """Returns the total of a
         list of ints or floats
 
@@ -30,7 +36,19 @@ def getdatalisttotal(dlist: list[Number]) -> Number:
     return total
 
 
-def genpiechartdata(dlist:list): #[[20,c['red']],[30,c['brightyellow']]...]
+def genpiechartdata(dlist: list):
+    """Preprocess data to make
+        it suitable for a pie chart
+
+    Args:
+        dlist: [[20, c['red']],
+                [30, c['brightyellow']],
+                ...]
+
+    Returns:
+        list and large value (if any)
+
+    """
     sa = 0
     tot = getdatalisttotal(dlist)
     alist = []
