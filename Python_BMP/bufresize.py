@@ -35,7 +35,7 @@ def adjustbufsize(
         bufsize: initial estimate
                  of buffer size
         bits   : bit depth of bitmap
-                 (1,4,8,24)
+                 (1, 4, 8, 24) bits
 
     Returns:
         An adjusted int value of the
@@ -300,7 +300,7 @@ def resizebufNtimesbigger(buf: array,
         n   : resize factor
         bits: bit depth of
               color info
-              (1, 4, 8, 24)
+              (1, 4, 8, 24) bits
 
     Returns:
         list
