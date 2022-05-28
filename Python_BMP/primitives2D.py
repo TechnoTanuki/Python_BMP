@@ -79,6 +79,23 @@ def itercirclepart(r: int
 
 def itercirclepartlineedge(
         r: int) -> list[int, int]:
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        radius r as it traces
+        one eight of a circle
+        with origin set at (0, 0)
+        tuned for generating
+        filled circles with
+        horizontal lines and other
+        tasks involving a circular
+        area
+
+    Args:
+        r: int radius
+
+    Yields:
+        [x: int, y: int]
+    """
     row = r
     col = 0
     r_sqr = r * r
@@ -103,6 +120,23 @@ def itercirclepartlineedge(
 
 def itercirclepartvertlineedge(
         r: int) -> list[int, int]:
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        radius r as it traces
+        one eight of a circle
+        with origin set at (0, 0)
+        tuned for generating
+        filled circles with
+        vertical lines and other
+        tasks involving a circular
+        area
+
+    Args:
+        r: int radius
+
+    Yields:
+        [x: int, y: int]
+    """
     row = r
     col = 0
     r_sqr = r * r
