@@ -3905,8 +3905,7 @@ def drawarc(bmp: array,
 
     """
     av = arcvert(x, y, r,
-         startdegangle, enddegangle,
-         showoutline)
+         startdegangle, enddegangle)
     for p in av:
         plotxybit(bmp, p[0], p[1],
             color)

@@ -574,8 +574,25 @@ def circlevert(x: int, y: int, r: int
 def arcvert(
         x: int, y: int, r: int,
         startdegangle: float,
-        enddegangle: float,
-        showoutline: bool):
+        enddegangle: float):
+    """Returns a list[(int, int)]
+        of 2D vertices along a path
+        defined by radius r as it
+        traces an arc with
+        origin set at (x, y)
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        r   : int radius
+
+        startangle: degree start of arc
+        endangle  : degree end of arc
+
+    Yields:
+        list of vertices of the arc
+        list[[x: int, y: int]]
+    """
     v = []
     tol = 0.03
     c = (x, y)
