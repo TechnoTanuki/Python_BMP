@@ -345,23 +345,17 @@ def bsplineblend(u:float)->list:
     return (a,b,c,d)
 
 
-def recvert(
-        x1: int,
-        y1: int,
-        x2: int,
-        y2: int)->list:
-    return [(x1,y1),
-            (x2,y1),
-            (x2,y2),
-            (x1,y2)]
+def recvert(x1: int, y1: int,
+            x2: int, y2: int
+            ) -> list[list[int, int]]:
+    return [(x1, y1), (x2, y1),
+            (x2, y2), (x1, y2)]
 
 
 def floatregpolygonvert(
-        cx: int,
-        cy: int,
-        r: int,
-        sides: int,
-        angle: float)->list:
+        cx: int, cy: int, r: int,
+        sides: int, angle: float
+        ) -> list[list[int, int]]:
     v = []
     angle = radians(angle)
     anginc = 360 // sides
@@ -373,46 +367,36 @@ def floatregpolygonvert(
     return v
 
 
-def regpolygonvert(
-        cx: int,
-        cy: int,
-        r: int,
-        sides: int,
-        angle: float) -> list:
+def regpolygonvert(cx: int, cy: int,
+        r: int, sides: int,
+        angle: float
+        ) -> list[list[int, int]]:
     return roundvectlist(
                 floatregpolygonvert(
-                    cx,cy,r,sides,angle))
+                cx,cy,r,sides,angle))
 
 
-def horizontalvert(
-        y: int,
-        x1: int,
-        x2: int,
-        dx: int) -> list:
-    return [[x,y]
+def horizontalvert(y: int,
+        x1: int, x2: int, dx: int
+        ) -> list[list[int, int]]:
+    return [[x, y]
             for x in range(x1, x2, dx)]
 
 
-def verticalvert(
-        x: int,
-        y1: int,
-        y2: int,
-        dy: int) -> list:
-    return [[x,y]
+def verticalvert(x: int,
+        y1: int, y2: int, dy: int
+        ) -> list[list[int, int]]:
+    return [[x, y]
             for y in range(y1, y2, dy)]
 
 
-def circlevert(
-        x: int,
-        y: int,
-        r: int) -> list:
+def circlevert(x: int, y: int, r: int
+              ) -> list[list[int, int]]:
     return [v for v in itercircle(x, y, r)]
 
 
 def arcvert(
-        x: int,
-        y: int,
-        r: int,
+        x: int, y: int, r: int,
         startdegangle: float,
         enddegangle: float,
         showoutline: bool):
@@ -434,7 +418,8 @@ def arcvert(
 
 
 def rectboundarycoords(
-    vlist: list) -> list:
+    vlist: list[Number, Number]
+      ) -> list[Number, Number]:
     u = pivotlist(vlist)
     (x, y) = u
     return ((min(x), min(y)),
@@ -442,7 +427,7 @@ def rectboundarycoords(
 
 
 def itergetneighbors(
-        v: list,
+        v: list[int, int],
         mx: int,
         my: int,
         includecenter: bool)->list:
