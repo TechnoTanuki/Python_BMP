@@ -1,25 +1,46 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
+"""        Timer module
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
 
 from time import process_time_ns
 
 
 def elaspedtimeinseconds(inittime):
+    """Get elasped time in seconds
+
+    Args:
+        inittime: int start time in
+                  nanoseconds
+
+    Returns:
+        int elapsed time in seconds
+    """
     return (process_time_ns() - inittime) / \
             1000000000
 
 
-def hhmmsselaspedtime(inittime):
+def hhmmsselaspedtime(inittime: int
+                           ) -> str:
+    """Get elasped time
+
+    Args:
+        inittime: int start time in
+                  nanoseconds
+
+    Returns:
+      formatted string for elapsed time
+    """
     secs, ns = divmod(
                 (process_time_ns() - inittime),
                 1000000000)
@@ -31,11 +52,20 @@ def hhmmsselaspedtime(inittime):
 
 
 def functimer(func):
+    """Function timer Decorator
+
+    Args:
+        function
+
+    Returns:
+        caller function
+
+    """
     def callf(*args, **kwargs):
         print('Applying ' + func.__name__ + \
               ' please wait...')
-        inittime=process_time_ns()
-        r=func(*args, **kwargs)
+        inittime = process_time_ns()
+        r = func(*args, **kwargs)
         print("Done in: " + \
                hhmmsselaspedtime(inittime))
         return(r)
