@@ -511,6 +511,20 @@ def regpolygonvert(cx: int, cy: int,
 def horizontalvert(y: int,
         x1: int, x2: int, dx: int
         ) -> list[list[int, int]]:
+    """Creates a list of int vertices
+        along a horizontal line with
+        int step dx
+
+    Args:
+        y : int constant y
+        x1: int start point
+        x2: int end point
+        dx: int x step increment
+
+    Returns:
+        list of int vertices
+        [(x, y), ...]
+    """
     return [[x, y]
             for x in range(x1, x2, dx)]
 
@@ -518,12 +532,42 @@ def horizontalvert(y: int,
 def verticalvert(x: int,
         y1: int, y2: int, dy: int
         ) -> list[list[int, int]]:
+    """Creates a list of int vertices
+        along a vertical line with
+        int step dy
+
+    Args:
+        x : int constant x
+        y1: int start point
+        y2: int end point
+        dy: int y step increment
+
+    Returns:
+        list of int vertices
+        [(x, y), ...]
+    """
     return [[x, y]
             for y in range(y1, y2, dy)]
 
 
 def circlevert(x: int, y: int, r: int
               ) -> list[list[int, int]]:
+    """Returns a list[(int, int)]
+        of 2D vertices along a path
+        defined by radius r as it
+        traces a circle with
+        origin set at (x, y)
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        r   : int radius
+
+    Yields:
+        list of vertices
+        to draw a circle
+        list[[x: int, y: int]]
+    """
     return [v for v in itercircle(x, y, r)]
 
 
