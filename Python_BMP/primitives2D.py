@@ -20,7 +20,8 @@ from math import(
     radians,
     comb
     )
-from tokenize import Number
+
+from numbers import Number
 
 from .conditionaltools import(
     iif,
@@ -44,7 +45,20 @@ from .mathlib import (
     )
 
 
-def itercirclepart(r: int) -> list:
+def itercirclepart(r: int
+       ) -> list[int, int]:
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        radius r as it traces
+        one eight of a circle
+        with origin set at (0, 0)
+
+    Args:
+        r: int radius
+
+    Yields:
+        [x: int, y: int]
+    """
     row = r
     col = 0
     r_sqr = r * r
@@ -63,7 +77,8 @@ def itercirclepart(r: int) -> list:
         col += 1
 
 
-def itercirclepart1(r: int)->list:
+def itercirclepart1(r: int
+        ) -> list[int, int]:
     row = r
     col = 0
     r_sqr = r * r
@@ -81,7 +96,7 @@ def itercirclepart1(r: int)->list:
 
 
 def itercirclepartlineedge(
-        r: int) -> list:
+        r: int) -> list[int, int]:
     row = r
     col = 0
     r_sqr = r * r
@@ -105,7 +120,7 @@ def itercirclepartlineedge(
 
 
 def itercirclepartvertlineedge(
-        r: int) -> list:
+        r: int) -> list[int, int]:
     row = r
     col = 0
     r_sqr = r * r
@@ -142,7 +157,6 @@ def iterline(
 
     Yields:
         [x:int, y:int]
-
     """
     (dx, dy) = subvect(p2, p1)
     sdx = sign(dx)
@@ -173,9 +187,8 @@ def iterline(
 
 
 def iterparallelogram(
-        p1: list,
-        p2: list,
-        p3: list)->list:
+        p1: list, p2: list, p3: list
+        ) -> list[int, int]:
     p = lineseg(p1, p3)
     q = lineseg(p2, addvect(p3,
                     subvect(p2, p1)))
@@ -261,10 +274,7 @@ def itercircle(x: int, y: int,
              yield v
 
 
-def bezierblend(
-        i: int,
-        n: int,
-        u: int):
+def bezierblend(i: int, n: int, u: int):
     return comb(n, i) * (u ** i) * ((1 - u) ** (n - i))
 
 
@@ -295,14 +305,14 @@ def iterbeziercurve(pntlist: list) -> list:
 def beziercurvevert(
         pntlist: list,
         isclosed: bool,
-        curveback: bool)->list:
+        curveback: bool) -> list:
     return [v for v in iterbeziercurve(pntlist)]
 
 
 def iterbspline(
         pntlist: list,
         isclosed: bool,
-        curveback: bool)->list:
+        curveback: bool) -> list:
     i = 0
     cnt = len(pntlist)
     v = pntlist[0]
@@ -329,14 +339,16 @@ def iterbspline(
 def bsplinevert(
     pntlist: list,
     isclosed: bool,
-    curveback: bool)->list:
+    curveback: bool) -> list:
     return [v for v in iterbspline(pntlist,
                                   isclosed,
                                  curveback)]
 
 
 #dont edit this square shaped code
-def bsplineblend(u:float)->list:
+def bsplineblend(u: float
+          ) -> list[float, float,
+                    float, float,]:
     u2,u3= u*u,u*u*u
     d,f = u3/6 , 1/6
     a=-d +u2/2-u/2+f
@@ -347,7 +359,10 @@ def bsplineblend(u:float)->list:
 
 def recvert(x1: int, y1: int,
             x2: int, y2: int
-            ) -> list[list[int, int]]:
+            ) -> list[list[int, int],
+                      list[int, int],
+                      list[int, int],
+                      list[int, int]]:
     return [(x1, y1), (x2, y1),
             (x2, y2), (x1, y2)]
 
