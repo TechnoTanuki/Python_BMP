@@ -51,15 +51,32 @@ def adjustbufsize(
     return bufsize
 
 
-def adjustxbufsize(
-    bmp: array, x1: int, x2: int
-    ) -> int:
-    return adjustbufsize(x2 - x1 +1,
+def adjustxbufsize(bmp: array,
+    x1: int, x2: int) -> int:
+    """Returns a 32 -bit padded
+        int buffer size for a
+        buffer with the bit depth
+        stored in byte number 28
+        of the bitmap bmp and an
+        int length of x2 - x1 + 1
+
+    Args:
+        bmp   : unsigned byte array
+                with bmp format
+        x1, x2: int params for
+                a x coord line
+                in the bitmap
+
+    Returns:
+        int adjusted buffer size
+
+    """
+    return adjustbufsize(x2 - x1 + 1,
                             bmp[28])
 
 
-def packbitlisttobuf(
-        blist: list[int]) -> list[int]:
+def packbitlisttobuf(blist: list[int]
+                       ) -> list[int]:
     """Packs literal list of ones and
         zeros to a list of bytes
 
@@ -86,7 +103,7 @@ def packbitlisttobuf(
 
 
 def resizebitpattenNtimesbigger(
-        byteval: int, n: int):
+           byteval: int, n: int):
     """Resize byte n times bigger
         bit wise
 
@@ -230,8 +247,8 @@ def resize8bitbufNtimesbigger(
     return array('B', retval)
 
 
-def resizesmaller24bitbuf(
-        buflist: array) -> array:
+def resizesmaller24bitbuf(buf: array
+                          ) -> array:
     """Resize a 24-bit buffer
         n times smaller
 
@@ -243,22 +260,21 @@ def resizesmaller24bitbuf(
         unsigned byte array
 
     """
-    n = len(buflist)
+    n = len(buf)
     f = 1 / (n * n)
-    buf = altsplitbuf3way(
-            addvectinlist(buflist))
+    b = altsplitbuf3way(
+          addvectinlist(buf))
     return  makeBGRbuf(
             *[intscalarmulvect(
                  addvectinlist(
                altsplitbufnway(i, n)), f)
-                           for i in buf])
+                           for i in b])
 
 
 def resize24bitbufNtimesbigger(
-        buf: array,
-        n: int):
-    """Resize a 24-bit buffer
-        n times bigger
+            buf: array, n: int):
+    """Resize a 24-bit buffer n times
+        bigger
 
     Args:
         buf: unsigned byte array
@@ -274,13 +290,10 @@ def resize24bitbufNtimesbigger(
                    i, n) for i in buf])
 
 
-def resizebufNtimesbigger(
-        buf: array,
-        n: int, bits: int):
-    """Resize a buffer
-        n times bigger
-        given a particular
-        bit depth n
+def resizebufNtimesbigger(buf: array,
+         n: int, bits: int) -> array:
+    """Resize a buffer n times bigger
+        given a particular bit depth n
 
     Args:
         buf : array to resize
