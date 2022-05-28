@@ -208,7 +208,7 @@ def iterparallelogram(
     q = lineseg(p2, addvect(p3,
                     subvect(p2, p1)))
     for u, v in zip(p, q):
-        yield [u,v]
+        yield [u, v]
 
 
 def lineseg(p1: list[int, int],
@@ -433,6 +433,17 @@ def recvert(x1: int, y1: int,
                       list[int, int],
                       list[int, int],
                       list[int, int]]:
+    """Creates a list of vertices for
+        a rectangle
+
+    Args:
+        x1, y1, x1, y2: int values
+
+    Yields:
+        list of vertices
+        [(x1, y1), (x2, y1),
+         (x2, y2), (x1, y2)]
+    """
     return [(x1, y1), (x2, y1),
             (x2, y2), (x1, y2)]
 
