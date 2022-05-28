@@ -1,16 +1,20 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
-
+"""
+Math library for vectors, statistics
+basic linear algebra, bit operations
+and other maths
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
 
 from math import(
     acos,
@@ -31,30 +35,90 @@ from .conditionaltools import iif
 
 
 def setmaxvec(
-        vlist: list,
-        maxval: float) -> list:
+        vlist: list[Number],
+        maxval: Number) -> list[Number]:
+    """Sets the maximum value in a list
+        of numbers (a vector) to maxval
+
+    Args:
+        vlist : list of Numbers
+        maxval: upper limit for
+                the list of
+                Numbers
+
+    Returns:
+        list of Numbers
+    """
     return [setmax(v, maxval)
                for v in vlist]
 
 
 def setminmaxvec(
-        vlist: list,
-        minval: float,
-        maxval: float) -> list:
+        vlist: list[Number],
+        minval: Number,
+        maxval: Number) -> list[Number]:
+    """Sets the minimum and maximum
+        values in a list of numbers
+        (a vector) to minval and
+        maxval respectively
+
+    Args:
+        vlist : list of Numbers
+        minval: lower limit for
+                the list of
+                Numbers
+        maxval: upper limit for
+                the list of
+                Numbers
+
+    Returns:
+        list of Numbers
+    """
     return [setminmax(v, minval, maxval)
                   for v in vlist]
 
 
 def intsetminmaxvec(
-        vlist: list,
+        vlist: list[Number],
         minval: int,
-        maxval: int) -> list:
+        maxval: int) -> list[int]:
+    """Sets the minimum and maximum
+        values in a list of numbers
+        (a vector) to minval and
+        maxval respectively and
+        return int values
+
+    Args:
+        vlist : list of Numbers
+        minval: lower limit for
+                the list of
+                Numbers
+        maxval: upper limit for
+                the list of
+                Numbers
+
+    Returns:
+        list of ints
+    """
     return [intsetminmax(v, minval, maxval)
                 for v in vlist]
 
 
-def range2baseanddelta(lst_range: list):
-    return lst_range[0], lst_range[1] - lst_range[0]
+def range2baseanddelta(
+        lst_range: list[int, int]):
+    """Gets the base and range
+        values in a list of numbers
+
+    Args:
+        lst_range: list[min: int,
+                        max: int]
+
+    Returns:
+        minimum value and delta
+        of min and max value
+        in lst_range
+    """
+    return lst_range[0], delta(lst_range)
 
 
 def roundvect(v: list[Number]
@@ -1350,7 +1414,16 @@ def enumbits(byteval: int):
         bit -= 1
 
 
-def delta(v: list):
+def delta(v: list[Number, Number]):
+    """Gets the delta from a list
+        of two numbers
+
+    Args:
+        v: list[Number, Number]
+
+    Returns:
+        delta of numbera
+    """
     return (v[1] - v[0])
 
 
