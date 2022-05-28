@@ -59,7 +59,6 @@ def isvalidcolorbit(bits: int) -> bool:
         True if bits in (1, 4, 8, 24)
         False if other values not in
               the list above
-
     """
     return bits in bmpvalidcolorbits
 
@@ -74,7 +73,6 @@ def getdefaultbitpal(
 
     Returns:
         list of palette entries
-
     """
     return bmpstdpal[bits]
 
@@ -89,7 +87,6 @@ def colormix(lum: int,
         obtain an int value for a
         specific color
 
-
     Args:
         lum       : a byte value for
                     luminosity
@@ -101,7 +98,6 @@ def colormix(lum: int,
 
     Returns:
         int color val
-
     """
     return RGB2int(int(RGBfactors[0] * lum),
                    int(RGBfactors[1] * lum),
@@ -113,13 +109,11 @@ def int2RGB(i: int):
         byte valued r, g and b
         components
 
-
     Args:
         i: int color value
 
     Returns:
         r: byte, g: byte, b: byte
-
     """
     return i >> 16, (i >> 8) & 0xff, i & 0xff
 
@@ -130,13 +124,11 @@ def int2RGBlist(i: int
         byte valued r, g and b
         components in a list
 
-
     Args:
         i: int color value
 
     Returns:
         [r: byte, g: byte, b: byte]
-
     """
     return [i >> 16, (i >> 8) & 0xff,
                             i & 0xff]
@@ -146,13 +138,11 @@ def int2BGRarr(i: int) -> array:
     """Returns a bgr array from
         int i color input
 
-
     Args:
         i: color value
 
     Returns:
         unsigned byte BGR array
-
     """
     return array('B', [i & 0xff,
                       (i >> 8) & 0xff,
@@ -169,7 +159,6 @@ def int2RGBarr(i: int) -> array:
 
     Returns:
         unsigned byte RGB array
-
     """
     return array('B', [i >> 16,
                       (i >> 8) & 0xff,
@@ -187,7 +176,6 @@ def RGB2BGRarr(r: int,
 
     Returns:
         unsigned byte BGR array
-
     """
     return array('B', [b, g, r])
 
@@ -219,7 +207,6 @@ def RGBfactors2RGB(
 
     Returns:
         [r: byte, g: byte, b: byte]
-
     """
     return roundvect(scalarmulvect(
                 RGBfactors, bytelum))
@@ -232,13 +219,11 @@ def RGB2int(r: int, g: int, b: int
         representation for a
         specific color
 
-
     Args:
         r, g, b: color byte values
 
     Returns:
         int color val
-
     """
     return b + (g << 8) + (r << 16)
 
@@ -253,11 +238,12 @@ def matchRGBtodefault4bitpal(
 
     Args:
         RGB: color byte values
-             [r: byte, b:byte, g:byte]
+             [r: byte,
+              g: byte,
+              b: byte]
 
     Returns:
         int color val (4-bit)
-
     """
     (r, g, b) = RGB
     r >>= 6
@@ -286,12 +272,13 @@ def matchRGBtopal(RGB: list,
 
     Args:
         RGB: color byte values
-             [r: byte, b:byte, g:byte]
+             [r: byte,
+              g: byte,
+              b: byte]
         pal: the bmp palette to match
 
     Returns:
         int color val (4-bit)
-
     """
     c = i = 0
     d = 442
@@ -309,7 +296,26 @@ def matchRGBtopal(RGB: list,
 
 
 def RGBtoRGBfactorsandlum(
-        RGB: list) -> list:
+        RGB: list[int, int, int]
+        ) -> list[list[float, float,
+                       float], int]:
+    """Seperates luminosity from
+        color and express color
+        as ratios of r, g and b
+        float values from 0.0 to 1.0
+
+
+    Args:
+        RGB: color byte values
+             [r: byte,
+              b: byte,
+              g: byte]
+
+    Returns:
+        list[list[r: float,
+                  g: float,
+                  b: float], lum: byte]
+    """
     lum = max(RGB)
     if lum == 0:
         lum = 1
@@ -319,7 +325,7 @@ def RGBtoRGBfactorsandlum(
 
 
 def probplotRGBto1bit(
-        rgb: list,
+        rgb: list[int, int, int],
         brightness: int) -> int:
     return round(brightness * randint(0, sum(rgb)) / 768)
 
