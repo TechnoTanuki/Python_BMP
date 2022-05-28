@@ -244,38 +244,68 @@ def RGB2int(r: int, g: int, b: int
 
 
 def matchRGBtodefault4bitpal(
-        RGB:list) -> int:
-       r = RGB[0] >> 6
-       g = RGB[1] >> 6
-       b = RGB[2] >> 6
-       color = 0
-       if r > 1 or g > 1 or b > 1:
-           color = 8
-       if r >= 1:
-           color += 4
-       if g >= 1:
-           color += 2
-       if b >= 1:
-           color += 1
-       return color
+        RGB: list[int, int, int]
+             ) -> int:
+    """Deterministic color matching
+        from a 24-bit palette to a
+        the default 4-bit palette
+        using formulas
+
+    Args:
+        RGB: color byte values
+             [r: byte, b:byte, g:byte]
+
+    Returns:
+        int color val (4-bit)
+
+    """
+    (r, g, b) = RGB
+    r >>= 6
+    g >>= 6
+    b >>= 6
+    color = 0
+    if r > 1 or g > 1 or b > 1:
+        color = 8
+    if r >= 1:
+        color += 4
+    if g >= 1:
+        color += 2
+    if b >= 1:
+        color += 1
+    return color
 
 
 def matchRGBtopal(RGB: list,
                   pal: list) -> int:
-       c = 0
-       i = 0
-       d = 442
-       if RGB in pal:
-           c = pal.index(RGB)
-       else:
-           for p in pal:
-               if p != [0,0,0] and RGB != [0,0,0]:
-                   newd = distance(RGB,p)
-                   if newd < d:
-                       c = i
-                       d = newd
-               i += 1
-       return c
+    """Color matching from a 24-bit
+        palette to any 1, 4 or 8-bit
+        palette using Euclidean
+        distance minimization
+        in an rgb colorspace for
+        the closest color match
+
+    Args:
+        RGB: color byte values
+             [r: byte, b:byte, g:byte]
+        pal: the bmp palette to match
+
+    Returns:
+        int color val (4-bit)
+
+    """
+    c = i = 0
+    d = 442
+    if RGB in pal:
+        c = pal.index(RGB)
+    else:
+        for p in pal:
+            if p != [0,0,0] and RGB != [0,0,0]:
+                newd = distance(RGB, p)
+                if newd < d:
+                    c = i
+                    d = newd
+            i += 1
+    return c
 
 
 def RGBtoRGBfactorsandlum(
