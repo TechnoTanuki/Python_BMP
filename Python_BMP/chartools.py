@@ -1,19 +1,23 @@
-# -----------------------------------
-#| Copyright 2022 by Joel C. Alcarez |
-#| [joelalcarez1975@gmail.com]       |
-#|-----------------------------------|
-#|    We make absolutely no warranty |
-#| of any kind, expressed or implied |
-#|-----------------------------------|
-#|   Contact primary author          |
-#|   if you plan to use this         |
-#|   in a commercial product at      |
-#|   joelalcarez1975@gmail.com       |
-# -----------------------------------
+"""
+   Char enum and conversion module
+ -----------------------------------
+| Copyright 2022 by Joel C. Alcarez |
+| [joelalcarez1975@gmail.com]       |
+|-----------------------------------|
+|    We make absolutely no warranty |
+| of any kind, expressed or implied |
+|-----------------------------------|
+|   Contact primary author          |
+|   if you plan to use this         |
+|   in a commercial product at      |
+|   joelalcarez1975@gmail.com       |
+ -----------------------------------
+"""
+
 
 def enumletters(st: str) -> str:
     """Enumerates the characters
-    in a string
+        in a string
 
     Args:
         st: string
@@ -28,10 +32,9 @@ def enumletters(st: str) -> str:
         i += 1
 
 
-def enumreverseletters(
-        st: str) -> str:
-    """Enumerates the characters
-    in a string in reverse order
+def enumreverseletters(st: str) -> str:
+    """Enumerates the characters in a
+        string in reverse order
 
     Args:
         st: string
@@ -47,15 +50,14 @@ def enumreverseletters(
         i -= 1
 
 
-def char2int(
-        charcodestr: str) -> int:
-    """Packs a string into
-    an int using ascii code
+def char2int(charcodestr: str) -> int:
+    """Packs a string into an int
+        using ascii code
 
     Args:
         charcodestr: string
 
-    Yeilds:
+    Yields:
         int value
 
     """
