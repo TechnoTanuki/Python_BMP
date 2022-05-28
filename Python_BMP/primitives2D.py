@@ -622,8 +622,7 @@ def rectboundarycoords(
         ((min(x), min(y)),
          (max(x), max(y)))
     """
-    u = pivotlist(vlist)
-    (x, y) = u
+    (x, y) = pivotlist(vlist)
     return ((min(x), min(y)),
             (max(x), max(y)))
 
