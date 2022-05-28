@@ -728,17 +728,54 @@ def gammacorrectbyte(lumbyte: int,
 
 
 def RGBfactorstoBaseandRange(
-        lumrange: list,
-        RGBfactors: list):
-    baselum = scalarmulvect(RGBfactors,lumrange[0])
+        lumrange: list[int, int],
+        rgbfactors: list[float,
+                         float,
+                         float]):
+    """Get base color luminosity and
+        luminosity range from color
+        expressed as r, g, b  float
+        values and min and max byte
+        luminosity values
+
+    Args:
+        lumrange: [minval: byte
+                   maxval: byte]
+
+        rgbfactors: color  as
+                    [r: float,
+                     g: float,
+                     b: float]
+
+
+    Returns:
+        base luminosity as
+        [r: byte, g: byte, b: byte]
+
+        luminosity range as
+        [r: byte, g: byte, b: byte]
+    """
+    baselum = intscalarmulvect(
+                    rgbfactors,
+                    lumrange[0])
     lumrange = subvect(scalarmulvect(
-                    RGBfactors,lumrange[1]),
-                    baselum)
+                         rgbfactors,
+                         lumrange[1]),
+                              baselum)
     return baselum, lumrange
 
 
 def invertbitsinbuffer(buf: array
                        ) -> array:
+    """Flips all the bits in an
+        unsigned byte array
+
+    Args:
+        buf: unsigned byte array
+
+    Returns:
+        bit flipped unsigned byte array
+    """
     return array('B', [b ^ 0xFF
                    for b in buf])
 
@@ -746,6 +783,23 @@ def invertbitsinbuffer(buf: array
 def applybrightnessadjtoBGRbuf(
         buf: array,
         percentadj: float) -> array:
+    """Apply a brightness adjustment
+        to a BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        percentadj: float brightness
+                    adjust can be
+                    positive or
+                    negative
+
+    Returns:
+        unsigned byte array
+        holding brightness adjusted
+        BGR data
+    """
     return array('B',setminmaxvec(addvect(buf,
             intscalarmulvect(buf, percentadj / 100)), 0, 255))
 
@@ -753,6 +807,21 @@ def applybrightnessadjtoBGRbuf(
 def applythresholdadjtoBGRbuf(
         buf: array,
         lumrange: list) -> array:
+    """Apply a threshold adjustment
+        to a BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        lumrange: [min: int, max: int]
+                  brightness threshold
+
+    Returns:
+        unsigned byte array
+        holding threshold adjusted
+        BGR data
+    """
     lummin = lumrange[0] & 0xff
     lummax = lumrange[1] & 0xff
     m = len(buf)
