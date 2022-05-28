@@ -780,9 +780,29 @@ def isinrectbnd(x: int, y: int,
 
 
 def listinrecbnd(
-        xylist: list[Number, Number],
+        xylist: list[list[Number, Number]],
         xmin: int, ymin: int,
         xmax: int, ymax: int) -> bool:
+    """Checks if all the values in a
+        list of x and y value pairs
+        lie within the rectangular area
+        defined by xmin, ymin and
+                   xmax, ymax
+
+    Args:
+        x, y: list[list(x,y)] list of
+              x, y pairs to test
+        xmin, ymin: min (x, y) bounds
+        xmax, ymax: max (x, y) bounds
+
+
+    Returns:
+        boolean value
+        True  -> All (x, y)
+                 is in bounds
+        False -> Not all (x, y)
+                 is in bounds
+    """
     retval = True
     for v in xylist:
         if isinrectbnd(v[0], v[1],
