@@ -608,7 +608,8 @@ def monochromefiltertoBGRbuf(
 
 def applycolorfiltertoBGRbuf(
         buf: array,
-        rgbfactors: list[float, float, float]):
+        rgbfactors: list[float,
+                         float, float]):
     """Apply a color filter to a
         BGR buffer
 
@@ -634,7 +635,8 @@ def applycolorfiltertoBGRbuf(
 
 def colorfiltertoBGRbuf(
         buf: array,
-        rgbfactors: list[float, float, float]
+        rgbfactors: list[float,
+                         float, float]
         ) -> array:
     """Apply a color filter to a
         BGR buffer
@@ -658,6 +660,20 @@ def colorfiltertoBGRbuf(
 
 def applygammaBGRbuf(
         buf: array, gamma: float):
+    """Apply a gamma adjustment to a
+        BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        gamma: float gamma adjust
+
+    Returns:
+        byref unsigned byte array
+        holding gamma adjusted
+        BGR data
+    """
     imax = len(buf)
     i = 0
     while i < imax:
@@ -677,13 +693,37 @@ def applygammaBGRbuf(
 def gammaBGRbuf(
         buf: array,
         gamma: float) -> array:
-    applygammaBGRbuf(buf,gamma)
+    """Apply a gamma adjustment to a
+        BGR buffer
+
+    Args:
+        buf: unsigned byte array
+             holding BGR data
+
+        gamma: float gamma adjust
+
+    Returns:
+        unsigned byte array
+        holding gamma adjusted
+        BGR data
+    """
+    applygammaBGRbuf(buf, gamma)
     return buf
 
 
-def gammacorrectbyte(
-        lumbyte: int,
-        gamma: float) -> int:
+def gammacorrectbyte(lumbyte: int,
+             gamma: float) -> int:
+    """Apply a gamma adjustment
+        to a byte
+
+    Args:
+        lumbyte: int value
+
+        gamma: float gamma adjust
+
+    Returns:
+        unsigned gamma adjusted byte
+    """
     return int(((lumbyte / 255) ** gamma) * 255)
 
 
