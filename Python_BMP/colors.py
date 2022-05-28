@@ -299,7 +299,7 @@ def RGBtoRGBfactorsandlum(
         RGB: list[int, int, int]
         ) -> list[list[float, float,
                        float], int]:
-    """Seperates luminosity from
+    """Separates luminosity from
         color and express color
         as ratios of r, g and b
         float values from 0.0 to 1.0
@@ -327,13 +327,40 @@ def RGBtoRGBfactorsandlum(
 def probplotRGBto1bit(
         rgb: list[int, int, int],
         brightness: int) -> int:
+    """Use a non deterministic plot
+        to convert 24-bit colors to
+        1-bit
+
+    Args:
+        rgb: color byte values
+             [r: byte,
+              b: byte,
+              g: byte]
+
+    Returns:
+        0 or 1
+    """
     return round(brightness * randint(0, sum(rgb)) / 768)
 
 
 def probplotRGBto4bitpal(
-        rgb: list) -> int:
+        rgb: list[int, int, int]
+                       ) -> int:
+    """Use a non deterministic plot
+        to convert 24-bit colors to
+        4-bits
+
+    Args:
+        rgb: color byte values
+             [r: byte,
+              b: byte,
+              g: byte]
+
+    Returns:
+        4 bit int value
+    """
     color = 0
-    [r, g, b] = rgb
+    (r, g, b) = rgb
     if round(randint(0, r) / 256) == 1:
         color += 4
     if round(randint(0, g) / 256) == 1:
