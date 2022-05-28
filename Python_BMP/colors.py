@@ -334,8 +334,8 @@ def probplotRGBto1bit(
     Args:
         rgb: color byte values
              [r: byte,
-              b: byte,
-              g: byte]
+              g: byte,
+              b: byte]
 
     Returns:
         0 or 1
@@ -353,8 +353,8 @@ def probplotRGBto4bitpal(
     Args:
         rgb: color byte values
              [r: byte,
-              b: byte,
-              g: byte]
+              g: byte,
+              b: byte]
 
     Returns:
         4 bit int value
@@ -377,29 +377,87 @@ def probplotRGBto4bitpal(
 
 def monochromepal(
         bits: int,
-        RGBfactors: list) -> list:
+        rgbfactors: list[float,
+                         float,
+                         float]
+               ) -> list[list[int,
+                              int,
+                              int]]:
+    """Returns a monochrome palette
+        based on bit depth bits and
+        rgbfactors
+
+    Args:
+        bits      : bit depth
+                    (1, 4, 8)
+        rgbfactors: color values
+                    0.0 to 1.0
+                    [r: float,
+                     g: float,
+                     b: float]
+
+    Returns:
+      a palette as
+      list[list[r: int, g: int, b int]]
+    """
     inc = (256 >> bits) + \
         iif(bits == 4, 1,
         iif(bits == 1, 127, 0))
-    return [[round(RGBfactors[0] * c),
-             round(RGBfactors[1] * c),
-             round(RGBfactors[2] * c)]
+    return [[round(rgbfactors[0] * c),
+             round(rgbfactors[1] * c),
+             round(rgbfactors[2] * c)]
              for c in range(0, 256, inc)]
 
 
-def monochrome(
-        rgb: list) -> list:
+def monochrome(rgb: list[int, int, int]
+               ) -> list[int, int, int]:
+    """Returns a monochrome color
+        based on a 24-bit RGB value
+
+    Args:
+        rgb: color values
+            [r: byte, g: byte, b: byte]
+
+    Returns:
+        a gray color (r = g = b)
+        [r: byte, g: byte, b: byte]
+    """
     return [round(mean(rgb))] * 3
 
 
-def gammacorrectbyte(
-        lumbyte: list,
-        gamma: float) -> int:
+def gammacorrectbyte(lumbyte: int,
+                      gamma: float
+                         ) -> int:
+    """Apply a gamma factor to a
+        luminosity byte value
+
+    Args:
+        lumbyte: byte luminosity
+                 value
+        gamma  : gamma adjustment
+
+    Returns:
+        a gamma adjusted byte value
+    """
     return int(((lumbyte / 255) ** gamma) * 255)
 
 
-def gammacorrect(rgb: list,
-               gamma: int) -> list:
+def gammacorrect(
+        rgb: list[int, int, int],
+        gamma: float
+        ) -> list[int, int, int]:
+    """Apply a gamma factor to a rgb
+
+    Args:
+        rgb: color as [r: byte,
+                       g: byte,
+                       b: byte]
+        gamma  : gamma adjustment
+
+    Returns:
+        a gamma adjusted color as
+        [r: byte, g: byte, b: byte]
+    """
     c = RGBtoRGBfactorsandlum(rgb)
     return setminmaxvec(RGBfactors2RGB(c[0],
             gammacorrectbyte(c[1], gamma)),
@@ -407,8 +465,26 @@ def gammacorrect(rgb: list,
 
 
 def brightnessadjust(
-        rgb: list,
-        percentadj: float) -> list:
+        rgb: list[int, int, int],
+        percentadj: float
+        ) -> list[int, int, int]:
+    """Apply a brightness adjustment
+        to a rgb
+
+    Args:
+        rgb: color as [r: byte,
+                       g: byte,
+                       b: byte]
+        percentadj: brightness
+                    adjustment
+                    in percent
+                    can be positive
+                    or negative
+
+    Returns:
+        a brightness adjusted color as
+        [r: byte, g: byte, b: byte]
+    """
     c = RGBtoRGBfactorsandlum(rgb)
     return setminmaxvec(RGBfactors2RGB(c[0],
      c[1] + c[1] * (percentadj / 100)),
@@ -416,8 +492,9 @@ def brightnessadjust(
 
 
 def thresholdadjust(
-        rgb: list,
-        lumrange: list) -> list:
+        rgb: list[int, int, int],
+        lumrange: list[int, int]
+        ) -> list[int, int, int]:
     c = RGBtoRGBfactorsandlum(rgb)
     lumrange = intsetminmaxvec(lumrange, 0, 255)
     if  lumrange[0] > lumrange[1]:
