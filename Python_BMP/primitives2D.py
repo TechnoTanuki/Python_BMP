@@ -50,7 +50,7 @@ def itercirclepart(r: int
     """Yields (int, int) 2D vertices
         along a path defined by
         radius r as it traces
-        one eight of a circle
+        one fourth of a circle
         with origin set at (0, 0)
 
     Args:
@@ -82,7 +82,7 @@ def itercirclepartlineedge(
     """Yields (int, int) 2D vertices
         along a path defined by
         radius r as it traces
-        one eight of a circle
+        one fourth of a circle
         with origin set at (0, 0)
         tuned for generating
         filled circles with
@@ -123,7 +123,7 @@ def itercirclepartvertlineedge(
     """Yields (int, int) 2D vertices
         along a path defined by
         radius r as it traces
-        one eight of a circle
+        one fourth of a circle
         with origin set at (0, 0)
         tuned for generating
         filled circles with
@@ -162,9 +162,8 @@ def itercirclepartvertlineedge(
 def iterline(
         p1: list[int,int],
         p2: list[int,int]) -> list[int,int]:
-    """Yields (int, int)
-        2D vertices along
-        a line segment defined
+    """Yields (int, int) 2D vertices
+        along a line segment defined
         by endpoints p1 and p2
 
     Args:
@@ -233,6 +232,19 @@ def lineseg(p1: list[int, int],
 
 
 def iterellipsepart(b: int, a: int):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        major and minor axes
+        b and a as it traces
+        one fourth of an ellipse
+        with origin set at (0, 0)
+
+    Args:
+        b, a: major and minor axes
+
+    Yields:
+        [x: int, y: int]
+    """
     row = b
     col = 0
     a_sqr = a * a
@@ -264,6 +276,19 @@ def iterellipsepart(b: int, a: int):
 
 def iterellipse(x: int, y: int,
                 b: int, a: int):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        major and minor axes
+        b and a as it traces
+        an ellipse with origin
+        set at (x, y)
+
+    Args:
+        b, a: major and minor axes
+
+    Yields:
+        [x: int, y: int]
+    """
     for p in iterellipsepart(b,a):
          for v in mirror1stquad(x,y,p):
              yield v
@@ -273,6 +298,21 @@ def iterellipserot(
         x: int, y: int,
         b: int, a: int,
         degrot: float):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        major and minor axes
+        b and a as it traces
+        an ellipse with origin
+        set at (x, y) rotated
+        by degrot degrees
+
+    Args:
+        b, a: major and minor axes
+        degrot: rotation in degrees
+
+    Yields:
+        [x: int, y: int]
+    """
     rotvec = computerotvec(degrot)
     c = (x, y)
     for p in iterellipsepart(b, a):
@@ -285,6 +325,20 @@ def iterellipserot(
 
 def itercircle(x: int, y: int,
         r: int) -> list[int, int]:
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        radius r as it traces
+        a circle with origin set
+        at (x, y)
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        r   : int radius
+
+    Yields:
+        [x: int, y: int]
+    """
     for p in itercirclepart(r):
          for v in mirror1stquad(x, y, p):
              yield v
