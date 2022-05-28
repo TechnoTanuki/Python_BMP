@@ -27,10 +27,9 @@ from .colors import makeBGRbuf
 
 
 def adjustbufsize(
-        bufsize: int,
-        bits: int) -> int:
-    """Adjust buffer size
-        to account for bit depth
+      bufsize: int, bits: int) -> int:
+    """Adjust buffer size to
+        account for bit depth
 
     Args:
         bufsize: initial estimate
@@ -39,8 +38,8 @@ def adjustbufsize(
                  (1,4,8,24)
 
     Returns:
-        An adjusted int value
-        of the buffer size
+        An adjusted int value of the
+        buffer size
 
     """
     if bits == 24:
@@ -53,18 +52,16 @@ def adjustbufsize(
 
 
 def adjustxbufsize(
-    bmp: array,
-    x1: int,
-    x2: int
-    ):
-    return adjustbufsize(x2 - x1 +1, bmp[28])
+    bmp: array, x1: int, x2: int
+    ) -> int:
+    return adjustbufsize(x2 - x1 +1,
+                            bmp[28])
 
 
 def packbitlisttobuf(
         blist: list[int]) -> list[int]:
-    """Packs literal list
-        of ones and zeros
-        to a list of bytes
+    """Packs literal list of ones and
+        zeros to a list of bytes
 
     Args:
         blist: literal list
@@ -75,7 +72,7 @@ def packbitlisttobuf(
 
     """
     retval = []
-    j = len(blist)+1
+    j = len(blist) + 1
     i = 1
     b = 0
     while i < j:
@@ -101,7 +98,7 @@ def resizebitpattenNtimesbigger(
         list of ones and zeroes
 
     """
-    retval=[]
+    retval = []
     for bit in enumbits(byteval):
         retval += [bit] * n
     return retval
@@ -123,7 +120,7 @@ def resize1bitbufNtimesbigger(
     retval = []
     for b in buf:
         retval += packbitlisttobuf(
-                    resizebitpattenNtimesbigger(
+          resizebitpattenNtimesbigger(
                         b, n))
     return array('B', retval)
 
@@ -149,9 +146,10 @@ def unpack4bitbuf(buf: list[int]
 def unpack4bitbufresizeNtimesbigger(
         buf: list[int], n: int
         ) -> list[int]:
-    """unpacks a 4-bit buffer
-    into a list and repeats
-    4-bit units to resize
+    """unpacks a 4-bit buffer into a
+        list and repeats 4-bit units
+        to resize the buffer int n
+        times bigger
 
     Args:
         buf: unsigned byte array
@@ -162,7 +160,7 @@ def unpack4bitbufresizeNtimesbigger(
         list
 
     """
-    retval=[]
+    retval = []
     for b in buf:
         retval += [b >> 4] * n
         retval += [b & 0xf] * n
@@ -196,8 +194,8 @@ def pack4bitbuf(
 def resize4bitbufNtimesbigger(
         buf: array, n: int
         ) -> array:
-    """Resize a 4-bit buffer
-        n times bigger
+    """Resize a 4-bit buffer n times
+        bigger
 
     Args:
         buf: An unsigned byte array
@@ -207,14 +205,16 @@ def resize4bitbufNtimesbigger(
         unsigned byte array
 
     """
-    return array('B', pack4bitbuf(unpack4bitbufresizeNtimesbigger(buf, n)))
+    return array('B', pack4bitbuf(
+      unpack4bitbufresizeNtimesbigger(
+          buf, n)))
 
 
 def resize8bitbufNtimesbigger(
         buf: array, n: int
         ) -> array:
-    """Resize a 8-bit buffer
-        n times bigger
+    """Resize a 8-bit buffer n times
+        bigger
 
     Args:
         buf: unsigned byte array
@@ -232,6 +232,17 @@ def resize8bitbufNtimesbigger(
 
 def resizesmaller24bitbuf(
         buflist: array) -> array:
+    """Resize a 24-bit buffer
+        n times smaller
+
+    Args:
+        buf: unsigned byte array
+        n  : buffer multiplier
+
+    Returns:
+        unsigned byte array
+
+    """
     n = len(buflist)
     f = 1 / (n * n)
     buf = altsplitbuf3way(
@@ -257,13 +268,14 @@ def resize24bitbufNtimesbigger(
         unsigned byte array
 
     """
-    c, r = altsplitbuf3way(buf), resize8bitbufNtimesbigger
-    return makeBGRbuf(r(c[0], n),
-                      r(c[1], n),
-                      r(c[2], n))
+    buf = altsplitbuf3way(buf)
+    return makeBGRbuf(
+           *[resize8bitbufNtimesbigger(
+                   i, n) for i in buf])
+
 
 def resizebufNtimesbigger(
-        buf:array,
+        buf: array,
         n: int, bits: int):
     """Resize a buffer
         n times bigger
@@ -275,7 +287,7 @@ def resizebufNtimesbigger(
         n   : resize factor
         bits: bit depth of
               color info
-              (1,4,8,24)
+              (1, 4, 8, 24)
 
     Returns:
         list
