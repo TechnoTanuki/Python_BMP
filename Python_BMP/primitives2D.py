@@ -611,8 +611,17 @@ def arcvert(
 
 
 def rectboundarycoords(
-    vlist: list[Number, Number]
-      ) -> list[Number, Number]:
+    vlist: list) -> list:
+    """Returns the rectangular bounds
+        of a list of 2D vertices
+
+    Args:
+        vlist: list[(x: int, y :int)]
+
+    Yields:
+        ((min(x), min(y)),
+         (max(x), max(y)))
+    """
     u = pivotlist(vlist)
     (x, y) = u
     return ((min(x), min(y)),
