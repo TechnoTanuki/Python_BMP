@@ -347,7 +347,6 @@ def fillpolydata(
                 if [x, y] in polybnd:
                     filld[y] += [x]
     else:
-        print(bnd)
         print(sysmsg['regionoutofbounds'])
         filld = []
     return filld
