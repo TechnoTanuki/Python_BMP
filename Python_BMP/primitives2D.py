@@ -736,9 +736,21 @@ def spiralcontrolpointsvert(
     return v
 
 
-def sortrecpoints(
-        x1: int, y1: int,
-        x2: int, y2: int):
+def sortrecpoints(x1: int, y1: int,
+                  x2: int, y2: int):
+    """Sorts the x and y values
+        that defines a rectangular area
+
+    Args:
+        x1, x2: int x coordinates
+        y1, y2: int y coordinates
+
+    Returns:
+        sorted coordinates
+        x1, y1, x2, y2
+        such that
+        x1 < x2 and y1 < y2
+    """
     x1, x2 = swapif(x1, x2, x1 > x2)
     y1, y2 = swapif(y1, y2, y1 > y2)
     return x1, y1, x2, y2
