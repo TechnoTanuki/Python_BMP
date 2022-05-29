@@ -885,3 +885,42 @@ def makeBGRbuf(bbuf: array,
     for b, g, r in zip(bbuf, gbuf, rbuf):
         buf += [b, g, r]
     return array('B', buf)
+
+
+def RGB2HSL(r: int, g: int, b: int
+           ) -> list[int, int, int]:
+    """Converts an RGB value to HSL
+
+    Args:
+        r: unsigned byte red value
+        g: unsigned byte green value
+        b: unsigned byte blue value
+
+    Returns:
+        [hue: int,  ->  in degrees
+         sat: int,  ->  percentage
+         lum: int]  ->  percentage
+    """
+    r /= 255
+    g /= 255
+    b /= 255
+    hi = max(r, g, b)
+    lo = min(r, g, b)
+    lum = (hi + lo) / 2
+    hue = sat = 0
+    if (hi != lo):
+        c = hi - lo
+        sat = c / (1 - abs(2 * lum - 1))
+        if hi == r:
+            hue =  (g - b) / c
+            if g < b:
+                hue += 6
+        elif hi == g:
+            hue = (b - r) / c + 2
+        elif hi == b:
+            hue = (r - g) / c + 4
+    hue = round(hue * 60)
+    sat = round(sat * 100)
+    lum = round(lum * 100)
+    return [hue, sat, lum]
+

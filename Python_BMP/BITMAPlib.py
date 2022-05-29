@@ -163,6 +163,7 @@ from .colors import(
     monochromepal,
     probplotRGBto1bit,
     RGB2BGRbuf,
+    RGB2HSL,
     RGB2int,
     RGBfactors2RGB,
     RGBfactorstoBaseandRange
