@@ -1,5 +1,17 @@
 def rgb2hsl(r: int, g: int, b: int
            ) -> list[int, int, int]:
+    """Converts an RGB value to HSL
+
+    Args:
+        r: unsigned byte red value
+        g: unsigned byte green value
+        b: unsigned byte blue value
+
+    Returns:
+        [hue: int,  ->  in degrees
+         sat: int,  ->  percentage
+         lum: int]  ->  percentage
+    """
     r /= 255
     g /= 255
     b /= 255
@@ -7,7 +19,7 @@ def rgb2hsl(r: int, g: int, b: int
     lo = min(r, g, b)
     lum = (hi + lo) / 2
     hue = sat = 0
-    if (hi != lo): 
+    if (hi != lo):
         c = hi - lo
         sat = c / (1 - abs(2 * lum - 1))
         if hi == r:
@@ -20,7 +32,7 @@ def rgb2hsl(r: int, g: int, b: int
             hue = (r - g) / c + 4
     hue = round(hue * 60)
     sat = round(sat * 100)
-    lum = round(lum * 100) 
+    lum = round(lum * 100)
     return [hue, sat, lum]
 
 
