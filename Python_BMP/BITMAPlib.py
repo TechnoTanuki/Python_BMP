@@ -252,6 +252,7 @@ from .colordict import(
 
 from .X11colordict import(
     getX11colorname2RGBdict,
+    getX11colorname2HSLdict,
     getX11RGBfactors
     )
 
