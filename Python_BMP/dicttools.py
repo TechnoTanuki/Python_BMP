@@ -1,5 +1,4 @@
-"""
-    Dictionaries and lists module
+""" Dictionaries and lists module
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -27,7 +26,6 @@ def dict2descorderlist(
 
     Returns:
         list
-
     """
     l = []
     for k in d:
