@@ -43,7 +43,6 @@ def adjustbufsize(
     Returns:
         An adjusted int value of the
         buffer size
-
     """
     if bits == 24:
         bufsize *= 3
@@ -72,7 +71,6 @@ def adjustxbufsize(bmp: array,
 
     Returns:
         int adjusted buffer size
-
     """
     return adjustbufsize(x2 - x1 + 1,
                             bmp[28])
@@ -89,7 +87,6 @@ def packbitlisttobuf(blist: list[int]
 
     Returns:
         list
-
     """
     retval = []
     j = len(blist) + 1
@@ -116,7 +113,6 @@ def resizebitpattenNtimesbigger(
 
     Returns:
         list of ones and zeroes
-
     """
     retval = []
     for bit in enumbits(byteval):
@@ -135,7 +131,6 @@ def resize1bitbufNtimesbigger(
 
     Returns:
         unsigned byte array
-
     """
     retval = []
     for b in buf:
@@ -155,7 +150,6 @@ def unpack4bitbuf(buf: list[int]
 
     Returns:
         list
-
     """
     retval = []
     for b in buf:
@@ -166,7 +160,7 @@ def unpack4bitbuf(buf: list[int]
 def unpack4bitbufresizeNtimesbigger(
         buf: list[int], n: int
         ) -> list[int]:
-    """unpacks a 4-bit buffer into a
+    """Unpacks a 4-bit buffer into a
         list and repeats 4-bit units
         to resize the buffer int n
         times bigger
@@ -178,7 +172,6 @@ def unpack4bitbufresizeNtimesbigger(
 
     Returns:
         list
-
     """
     retval = []
     for b in buf:
@@ -198,7 +191,6 @@ def pack4bitbuf(
 
     Returns:
         list
-
     """
     retval = []
     j = len(unpackedbuf) - 1
@@ -223,7 +215,6 @@ def resize4bitbufNtimesbigger(
 
     Returns:
         unsigned byte array
-
     """
     return array('B', pack4bitbuf(
       unpack4bitbufresizeNtimesbigger(
@@ -242,7 +233,6 @@ def resize8bitbufNtimesbigger(
 
     Returns:
         unsigned byte array
-
     """
     retval = []
     for b in buf:
@@ -261,7 +251,6 @@ def resizesmaller24bitbuf(buf: array
 
     Returns:
         unsigned byte array
-
     """
     n = len(buf)
     f = 1 / (n * n)
@@ -285,7 +274,6 @@ def resize24bitbufNtimesbigger(
 
     Returns:
         unsigned byte array
-
     """
     buf = altsplitbuf3way(buf)
     return makeBGRbuf(
@@ -307,11 +295,9 @@ def resizebufNtimesbigger(buf: array,
 
     Returns:
         list
-
     """
     f={24: resize24bitbufNtimesbigger,
         8: resize8bitbufNtimesbigger,
         4: resize4bitbufNtimesbigger,
         1: resize1bitbufNtimesbigger}[bits]
     return f(buf, n)
-
