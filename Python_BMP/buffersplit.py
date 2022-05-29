@@ -1,5 +1,5 @@
 """
-Buffer or array or list splitting mod
+  Buffer/array/list splitting module
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -25,7 +25,6 @@ def altsplitbuf(buf: list[any]
 
     Returns:
         [[odd list], [even list]]
-
     """
     m = len(buf)
     if m % 2 == 0:
@@ -48,7 +47,6 @@ def altsplitbuf3way(buf: list[any]
         [[red list],
          [green list],
          [blue list]]
-
     """
     m = len(buf)
     if m % 3 == 0:
@@ -72,7 +70,6 @@ def altsplitbufnway(buf: list[any],
         [[red list],
          [green list],
          [blue list]]
-
     """
     retval = []
     m = len(buf)
