@@ -1,5 +1,4 @@
-"""
-    Conditional functions module
+"""  Conditional functions module
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
