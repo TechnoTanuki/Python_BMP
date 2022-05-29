@@ -3321,9 +3321,8 @@ def circle(bmp: array,
         x: int, y: int, r: int,
         color: int,
         isfilled: bool = None):
-    """Draws a circle defined
-        by centerpoint (x, y)
-        and radius r
+    """Draws a circle defined by
+        centerpoint (x, y) and radius r
         with a given color
 
     Args:
@@ -3343,8 +3342,8 @@ def circle(bmp: array,
         unsigned byte array
     """
     if isfilled:
-        filledcircle(
-            bmp, x, y, r, color)
+        filledcircle(bmp, x, y, r,
+                            color)
     else:
         m = getmaxxy(bmp)
         bits = bmp[_bmclrbits]
@@ -3366,24 +3365,14 @@ def circle(bmp: array,
                 for p in itercirclepart(r):
                     x1, x2 = mirror(x, p[0])
                     y1, y2 = mirror(y, p[1])
-                    x3, x4 = mirror(x, p[1])
-                    y3, y4 = mirror(y, p[0])
                     s1 = c(bmp, x1, y1)
                     s2 = c(bmp, x2, y2)
                     s3 = c(bmp, x1, y2)
                     s4 = c(bmp, x2, y1)
-                    s5 = c(bmp, x3, y3)
-                    s6 = c(bmp, x4, y4)
-                    s7 = c(bmp, x3, y4)
-                    s8 = c(bmp, x4, y3)
                     bmp[s1: s1 + 3] = \
                     bmp[s2: s2 + 3] = \
                     bmp[s3: s3 + 3] = \
-                    bmp[s4: s4 + 3] = \
-                    bmp[s5: s5 + 3] = \
-                    bmp[s6: s6 + 3] = \
-                    bmp[s7: s7 + 3] = \
-                    bmp[s8: s8 + 3] = color
+                    bmp[s4: s4 + 3] = color
         elif bits == 8:
             if dobndcheck:
                 for p in itercircle(x, y, r):
