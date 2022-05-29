@@ -25,11 +25,10 @@ def rotatebitsinbuf(
         in an unsigned byte array
 
     Args:
-        buf : unsigned byte array
+        buf: unsigned byte array
 
     Returns:
         unsigned byte array
-
     """
     return array('B', [rotatebits(b)
                        for b in buf])
@@ -40,11 +39,10 @@ def flipnibbleinbuf(
     """Flips a 4-bit image buffer
 
     Args:
-        buf : unsigned byte array
+        buf: unsigned byte array
 
     Returns:
         unsigned byte array
-
     """
     return array('B', [(b >> 4) + ((b % 16) << 4)
                     for b in buf])
@@ -58,7 +56,6 @@ def flip24bitbuf(buf: array) -> array:
 
     Returns:
         unsigned byte array
-
     """
     buf.reverse()
     RGB2BGRbuf(buf)
@@ -75,7 +72,6 @@ def flipbuf(buf: array, bits: int
 
     Returns:
         unsigned byte array
-
     """
     if bits == 24:
         buf = flip24bitbuf(buf)
