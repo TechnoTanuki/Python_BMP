@@ -168,9 +168,21 @@ def addvect(u: list[Number],
     return [i + j for i, j in zip(u, v)]
 
 
-def trans(vlist: list[Number],
+def trans(vlist: list[list[Number]],
               u: list[Number]
-            ) -> list[Number]:
+            ) -> list[list[Number]]:
+    """Translates list of vectors
+        by adding vector u
+        to all vectors in the list
+        of vectors
+
+    Args:
+        vlist: list of vectors
+        u    : translation vector
+
+    Returns:
+        list of vectors
+    """
     return [addvect(v, u) for v in vlist]
 
 
@@ -322,9 +334,23 @@ def variance(v: list[Number]
     return [n - ave for n in v]
 
 
-def isinrange(value: float,
-          highlimit: float,
-           lowlimit: float) -> bool:
+def isinrange(value: Number,
+          highlimit: Number,
+           lowlimit: Number) -> bool:
+    """Checks is value is within
+        high and low limits
+
+    Args:
+        value    : numeric variable
+                   to check
+        highlimit: upper limit of
+                   the variable
+        lowlimit : lower limit of
+                   the variable
+
+    Returns:
+        True if within bounds
+    """
     return (value > lowlimit) and \
            (value < highlimit)
 
@@ -428,7 +454,19 @@ def sign(intval: int) -> int:
     return retval
 
 
-def LSMslope(XYdata: list) -> float:#first two values inlist must be [[x and y...]...]
+def LSMslope(XYdata: list) -> float:
+    """Returns the slope of a line
+        obtained by least squares
+        method
+
+    Args:
+        XYdata: list of vectors
+        first two values in the
+        list must be [[x, y, ..,], ...]
+
+    Returns:
+        float slope of line
+    """
     XY , N = pivotlist(XYdata), len(XYdata)
     X =  XY[0]
     Y =  XY[1]
@@ -441,6 +479,18 @@ def LSMslope(XYdata: list) -> float:#first two values inlist must be [[x and y..
 
 
 def LSMYint(XYdata:list) -> float:
+    """Returns the y-intercept of a
+        linen obtained by least squares
+        method
+
+    Args:
+        XYdata: list of vectors
+        first two values in the
+        list must be [[x, y, ..,], ...]
+
+    Returns:
+        float y-intercept of line
+    """
     XY = pivotlist(XYdata)
     meanX = mean(XY[0])
     meanY = mean(XY[1])
@@ -475,7 +525,6 @@ def PearsonsR(XYdata: list) -> float:
 
     Returns:
         a value between -1 and 1
-
 """
     XY = pivotlist(XYdata)
     N = len(XYdata)
@@ -521,7 +570,7 @@ def Rsquare(XYdata: list) -> float:
 
     Returns:
         a value between 0 and 1
-"""
+    """
     return PearsonsR(XYdata) ** 2
 
 
@@ -578,7 +627,6 @@ def coefvar(v: list[Number]) -> float:
 
     Returns:
         float
-
     """
     return StdDev(v) / mean(v)
 
@@ -731,6 +779,15 @@ def distance(u: list[float],
 
 
 def distancetable(vertlist: list) -> list:
+    """Compute the Distances between
+        the vectices in a list
+
+    Args:
+        vertlist: list of vertices
+
+    Returns:
+        list of vertices and distances
+    """
     dlist = []
     for v in vertlist:
         for u in vertlist:
@@ -819,7 +876,6 @@ def dircos(v: list[Number]
     Returns:
         Direction Cosine list
         list[float,...]
-
     """
     mag = vmag(v)
     return [i / mag for i in v]
@@ -860,7 +916,6 @@ def dirdeg(raddir: list[float]
         list of angles in degrees
         per vector component
         list[float,...]
-
     """
     return [degrees(d) for d in raddir]
 
@@ -868,7 +923,7 @@ def dirdeg(raddir: list[float]
 def rect2sphericalcoord3D(
         v: list[Number, Number, Number]
       ) -> list[float, float, float]:
-    """Does a 3D coordinate transfrom
+    """Does a 3D coordinate transform
         from rectangular to spherical
         coordinate system
 
@@ -902,7 +957,7 @@ def rect2sphericalcoord3D(
 def spherical2rectcoord3D(
     vspherecoord: list[float, float, float]
              ) -> list[float, float, float]:
-    """Does a 3D coordinate transfrom
+    """Does a 3D coordinate transform
         from spherical to rectangular
         coordinate system
 
@@ -938,7 +993,8 @@ def rect2cylindricalcoord3D(
       ) -> list[float, float, float]:
     """Converts rectangular to
         cylindrical coordinates with
-        origin at (0,0)
+        origin at (0, 0)
+
     Args:
         v: a vector (x: Number,
                      y: Number,
@@ -955,17 +1011,49 @@ def rect2cylindricalcoord3D(
 
 
 def cylindrical2rectcoord3D(
-        vcylindcoord3D: list[float, float, float]
+        vcylindcoord: list[float,
+                           float,
+                           float]
         ) -> list[float, float, float]:
-    (r, theta, z) = vcylindcoord3D
+    """Converts from cylindrical
+        coordinates with origin
+        at (0, 0) to 3D rectangular
+        coordinates
+
+    Args:
+        vcylindcoord:(r: float,
+                  theta: float,
+                      z: float)
+
+    Returns:
+        [x: float,
+         y: float,
+         z: float]
+    """
+    (r, theta, z) = vcylindcoord
     return [r * cos(theta),
             r * sin(theta), z]
 
 
 def polar2rectcoord2D(
-        vpolarcoord2D: list[float, float]
-                  ) -> list[float, float]:
-    (r, theta) = vpolarcoord2D
+        vpolarcoord: list[float,
+                            float]
+                  ) -> list[float,
+                            float]:
+    """Converts from polar
+        coordinates with origin
+        at (0, 0) to 2D rectangular
+        coordinates
+
+    Args:
+        vcylindcoord:(r: float,
+                  theta: float)
+
+    Returns:
+        [x: float,
+         y: float]
+    """
+    (r, theta) = vpolarcoord
     return [r * cos(theta),
             r * sin(theta)]
 
@@ -998,7 +1086,6 @@ def polarcoordangle2D(v:list) -> float:
 
     Returns:
         float angle in radians
-
     """
     a = acos(cosaffin(v, [0, -1]))
     if v[0] < 0:
@@ -1107,7 +1194,6 @@ def mirror(pt: float, delta: float):
 
     Returns:
         pt - delta, pt + delta
-
     """
     return pt - delta, pt + delta
 
@@ -1124,7 +1210,6 @@ def randomvect(minrnd: int,
                 of 3D vector component
     Returns:
         list[x: int, y: int , z: int]
-
     """
     return [randint(minrnd, maxrnd),
             randint(minrnd, maxrnd),
@@ -1134,6 +1219,16 @@ def randomvect(minrnd: int,
 def addrndtovert(vertlist: list,
                    minrnd: int,
                    maxrnd: int) -> list:
+    """Adds random int values to a
+        list of (vertices
+
+    Args:
+        vertlist: list of vertices
+        minrnd  : minimum random value
+        maxrnd  : maximum random value
+    Returns:
+        list of vertices
+    """
     return [addvect(pt, randomvect(minrnd, maxrnd))
                 for pt in vertlist]
 
@@ -1155,7 +1250,6 @@ def adddimz(
     Returns:
         list of 3D vertices
         [(x, y, z), ....]
-
     """
     return [[v[0], v[1], value]
               for v in vlist2D]
@@ -1173,7 +1267,6 @@ def anglebetween2Dlines(
 
     Returns:
         float angle in radians
-
     """
     if u[0] != v[0]:
         a = atan(slope(u, v))
@@ -1192,7 +1285,6 @@ def rotatebits(bits: int) -> int:
 
     Returns:
         int value of rotated 8 bits
-
     """
     bit = 7
     retval = 0
@@ -1221,7 +1313,6 @@ def mirror1stquad(x: Number, y: Number,
 
     Returns:
         four symmetrical vectors(x, y)
-
     """
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
@@ -1241,7 +1332,6 @@ def xorvect(u: list[int],
 
     Returns:
         list[int]
-
     """
     return [i ^ j for i, j in zip(u, v)]
 
@@ -1258,7 +1348,6 @@ def andvect(u: list[int],
 
     Returns:
         list[int]
-
     """
     return [i & j for i, j in zip(u, v)]
 
@@ -1274,7 +1363,6 @@ def bitmaskvect(v: list[int],
 
     Returns:
         list[int]
-
     """
     return [b & bitmask for b in v ]
 
@@ -1291,7 +1379,6 @@ def orvect(u: list[int],
 
     Returns:
         list[int]
-
     """
     return [i | j for i, j in zip(u, v)]
 
@@ -1301,7 +1388,8 @@ def addvectinlist(vlist: list):
 
 
 def addvectpairlist(
-    vpair: list[list[Number], list[Number]]
+    vpair: list[list[Number],
+                list[Number]]
      )  -> list[Number]:
     """Adds pairwise the numbers
         in a list of
@@ -1314,26 +1402,27 @@ def addvectpairlist(
 
     Returns:
         list[Number]
-
     """
     return addvect(vpair[0], vpair[1])
 
 
 def addvecttripletlist(
-    vtriplet: list[list[Number], list[Number], list[Number]]
+    vtriplet: list[list[Number],
+                   list[Number],
+                   list[Number]]
          ) -> list[Number]:
-    """Adds pairwise the numbers
-        in a list of
-        three lists of numbers
-        and returns a single
-        list of numbers
+    """Adds pairwise the numbers in a
+        list of three lists of numbers
+        and returns a single list of
+        numbers
 
     Args:
-        vtriplet: list of three lists[Number]
+        vtriplet: list[list[Number],
+                       list[Number],
+                       list[Number]]
 
     Returns:
         list[Number]
-
     """
     return addvect(
            addvect(vtriplet[0],
@@ -1358,7 +1447,6 @@ def addvectlist(
     Returns:
         A list of vectors
         list[list[Number]]
-
     """
     return [addvect(u, v)
             for u, v in zip(vlist1, vlist2)]
@@ -1373,7 +1461,6 @@ def swapxy(v:list) -> list:
 
     Returns:
         list[y, x]
-
     """
     return [v[1], v[0]]
 
@@ -1391,7 +1478,6 @@ def centerpoint(x1: int, y1: int,
 
     Returns:
         x: int, y: int centerpoint
-
     """
     return ((x2 - x1) >> 1) + x1, ((y2 - y1) >> 1) + y1
 
@@ -1406,7 +1492,6 @@ def enumbits(byteval: int):
     Yields:
         Eight bits that is either
         int 0 or int 1
-
     """
     bit = 7
     while bit > -1:
@@ -1425,5 +1510,3 @@ def delta(v: list[Number, Number]):
         delta of numbera
     """
     return (v[1] - v[0])
-
-
