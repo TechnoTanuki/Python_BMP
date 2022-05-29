@@ -16,16 +16,12 @@ Function decorators for parameter check
 
 from .messages import sysmsg
 from .bmpconstants import(
-    bmpcolorbits,
-    bmpx,
-    bmpy
-    )
+    bmpcolorbits, bmpx, bmpy)
 
 from .inttools import readint
 
 from .primitives2D import(
-    entirecircleisinboundary
-    )
+    entirecircleisinboundary)
 
 
 f = lambda bmp, x, y: (x < readint(bmpx,4,bmp) and \
@@ -44,7 +40,6 @@ def intcircleparam(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         if (type(args[1]) == int and \
@@ -69,7 +64,6 @@ def intcircleparam24bitonly(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         if args[0][bmpcolorbits] != 24:
@@ -95,7 +89,6 @@ def func24bitonly(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         if args[0][bmpcolorbits] != 24:
@@ -121,7 +114,6 @@ def func24bitonlyandentirerectinboundary(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         bmp = args[0]
@@ -160,7 +152,6 @@ def func24bitonlyandentirecircleinboundary(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         bmp = args[0]
@@ -199,7 +190,6 @@ def func8and24bitonlyandentirecircleinboundary(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         bmp = args[0]
@@ -233,7 +223,6 @@ def func8and24bitonly(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         if args[0][bmpcolorbits] not in [24, 8]:
@@ -260,9 +249,7 @@ def func8and24bitonlyandentirerectinboundary(func):
 
     Returns:
         caller function
-
     """
-
     def callf(*args, **kwargs):
         bmp = args[0]
         x1 = args[1]
@@ -297,9 +284,7 @@ def entirerectinboundary(func):
 
     Returns:
         caller function
-
     """
-
     def callf(*args, **kwargs):
         bmp = args[0]
         x1 = args[1]
@@ -330,7 +315,6 @@ def entirecircleinboundary(func):
 
     Returns:
         caller function
-
     """
     def callf(*args, **kwargs):
         bmp = args[0]
