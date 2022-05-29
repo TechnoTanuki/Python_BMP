@@ -258,6 +258,7 @@ from .X11colordict import(
 
 from .XKCDcolordict import(
     getXKCDcolorname2RGBdict,
+    getXKCDcolorname2HSLdict,
     getXKCDRGBfactors
     )
 
