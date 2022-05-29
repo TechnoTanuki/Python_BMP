@@ -1,5 +1,4 @@
-"""
-   Char enum and conversion module
+""" Char enum and conversion module
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -24,9 +23,9 @@ def enumletters(st: str) -> str:
 
     Yields:
         individual characters
-
     """
-    c, i = len(st), 0
+    c = len(st)
+    i = 0
     while i < c:
         yield st[i: i + 1]
         i += 1
@@ -41,9 +40,7 @@ def enumreverseletters(st: str) -> str:
 
     Yields:
         individual characters
-
     """
-
     i = len(st) - 1
     while i > -1:
         yield st[i: i + 1]
@@ -59,9 +56,8 @@ def char2int(charcodestr: str) -> int:
 
     Yields:
         int value
-
     """
-    place, strhash = 0, 0
+    place = strhash = 0
     for c in enumletters(charcodestr):
         strhash += \
             ord(c) * (256 ** place)
