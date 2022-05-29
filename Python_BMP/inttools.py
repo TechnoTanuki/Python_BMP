@@ -13,14 +13,11 @@
  -----------------------------------
 """
 
-
 from array import array
 
 
-def writeint(offset: int,
-                cnt: int,
-                arr: array,
-              value: int):
+def writeint(offset: int, cnt: int,
+            arr: array, value: int):
     """Writes an integer value to an
         unsigned byte array
 
@@ -64,7 +61,7 @@ def readint(offset: int, cnt: int,
         unsigned int value
     """
     v = 0
-    j = cnt-1
+    j = cnt - 1
     for i in range(0, j):
         v += arr[offset + i] << (i << 3)
     return v
@@ -82,8 +79,9 @@ def int2buf(cnt: int, value: int
     Returns:
         unsigned byte array
     """
-    return array('B', [(value >> (i * 8)) & 0xff
-                        for i in range(0, cnt)])
+    return array('B',
+            [(value >> (i * 8)) & 0xff
+              for i in range(0, cnt)])
 
 
 def buf2int(buf: array) -> int :
