@@ -45,6 +45,14 @@ from .messages import sysmsg
 
 
 def getshapesidedict() -> dict:
+    """Returns a dictionary of side
+        or polygon definitions for
+        simple solids
+
+    Returns:
+        dictionary of side or polygon
+        definitions for basic solids
+    """
     return {"tetrahedra":((2, 1, 0),
                           (2, 3, 1),
                           (0, 3, 2),
@@ -85,7 +93,6 @@ def tetrahedravert(x: float
         list (x: float,
               y: float,
               z: float)
-
     """
     x_sqr = x * x
     halfx= x / 2
@@ -109,7 +116,6 @@ def cubevert(x: float
         list (x: float,
               y: float,
               z: float)
-
     """
     return [[0, 0, 0],
             [0, x, 0],
@@ -135,7 +141,6 @@ def hexahedravert(x: float
         list (x: float,
               y: float,
               z: float)
-
     """
     x_sqr = x * x
     halfx= x / 2
@@ -161,7 +166,6 @@ def octahedravert(x: float
         list (x: float,
               y: float,
               z: float)
-
     """
     halfx = x / 2
     return [[halfx, halfx, halfx],
@@ -189,7 +193,6 @@ def decahedvertandsurface(
         list (x: float,
               y: float,
               z: float)
-
     """
     pts = regpolygonvert(0, 0, x, 5, 0)
     z = sqrt(distance(pts[0],
@@ -228,7 +231,6 @@ def icosahedvertandsurface(
         list (x: float,
               y: float,
               z: float)
-
     """
     pts = floatregpolygonvert(
                 0, 0, x, 5, 0)
@@ -269,15 +271,13 @@ def rotvec3D(roll: float,
     """Returns a 3D rotation vector
 
     Args:
-        All input arguements
-        are in degrees
-        roll, pitch, yaw
+        All input arguements are in
+        degrees (roll, pitch, yaw)
 
     Returns:
         tuple ((float, float),
                (float, float),
                (float, float))
-
     """
     return (computerotvec(roll),
             computerotvec(pitch),
@@ -286,11 +286,15 @@ def rotvec3D(roll: float,
 
 #translated from C code by Roger Stevens
 def perspective(
-        vlist: list[list[Number, Number, Number]],
+        vlist: list[list[Number,
+                         Number,
+                         Number]],
         rotvec: list[list[float, float],
                      list[float, float],
                      list[float, float]],
-        dispvec: list[Number, Number, Number],
+        dispvec: list[Number,
+                      Number,
+                      Number],
         d: float) -> tuple:
     """Projects 3D points to 2D and
         apply rotation and translation
@@ -375,8 +379,11 @@ def polyboundary(
 
 def gensides(
         pointlists: list[list, list],
-        transvect: list[float, float, float],
-        sides: list[list[float]]) -> tuple:
+        transvect: list[float,
+                        float,
+                        float],
+        sides: list[list[float]]
+                          ) -> tuple:
     (plist, slist) = pointlists
     polylist = []
     normlist = []
@@ -393,9 +400,10 @@ def gensides(
     return (polylist, normlist)
 
 
-def spherevert(
-        vcen: list[float, float, float],
-        r: float,
+def spherevert(vcen: list[float,
+                          float,
+                          float],
+                   r: float,
         deganglestep: float) -> list:
     """Returns a list of sparse vertices
         for a sphere
@@ -406,19 +414,19 @@ def spherevert(
                       z: float] sphere
         r           : spherical radius
         deganglestep: angle step between
-                      vertices that
-                      controls how sparse
-                      the list will be
+        vertices that controls how sparse
+        the list will be
 
     Returns:
         list (x: float,
               y: float,
               z: float)
-
     """
     plist = []
-    for theta in range(0, 360, deganglestep):
-        for phi in range(0, 180, deganglestep):
+    for theta in range(0, 360,
+                deganglestep):
+        for phi in range(0, 180,
+                  deganglestep):
             p = addvect(vcen,
                    spherical2rectcoord3D(
                        [r, radians(theta),
@@ -494,16 +502,14 @@ def spherevertandsurface(
                       z: float] sphere
         r           : spherical radius
         deganglestep: angle step between
-                      vertices that
-                      controls how sparse
-                      the list will be
+        vertices that controls how sparse
+        the list will be
 
     Returns:
         list of vertices and surfaces
         for plot3Dsolid()
         see Hello_DiscoBall.py
         and Hello_Globe.py
-
     """
     s = spherevert(vcen, r, deganglestep)
     return (s, genspheresurfaces(zlevelcoords(s)))
@@ -525,15 +531,13 @@ def cylindervertandsurface(
         zlen        : height of the
                       cylinder
         deganglestep: angle step between
-                      vertices that
-                      controls how sparse
-                      the list will be
+        vertices that controls how sparse
+        the list will be
 
     Returns:
         list of vertices and surfaces
         for plot3Dsolid()
         see Hello_Coin.py
-
     """
     z = zlen / 2
     i = 0
@@ -577,15 +581,13 @@ def conevertandsurface(
         zlen        : height of
                       the cone
         deganglestep: angle step between
-                      vertices that
-                      controls how sparse
-                      the list will be
+        vertices that controls how sparse
+        the list will be
 
     Returns:
         list of vertices and surfaces
         for plot3Dsolid()
         see Hello_Cone.py
-
     """
     z = zlen / 2
     i = 1
@@ -607,8 +609,7 @@ def conevertandsurface(
 def surfplot3Dvertandsurface(
         x1: int, y1: int,
         x2: int, y2: int,
-        step: int,
-        fnxy: Callable
+        step: int, fnxy: Callable
         ) -> tuple:
     vlist = []
     surf = []
@@ -642,17 +643,14 @@ def surfacetest(
         p1, p2, p3 : [x: float,
                       y: float,
                       z: float]
-                      the first
-                      3 vertices
-                      of a surface
-                      (can be triangle
-                       or square)
+        the first 3 vertices of a
+        surface or polygon that
+        can be triangle or square
 
     Returns:
         float -> a positive number
         if hidden and negative
         number if not
-
     """
     (p1x, p1y, p1z) = p1
     (p2x, p2y, p2z) = p2
