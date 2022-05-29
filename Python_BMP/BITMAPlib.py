@@ -1,5 +1,4 @@
-"""
-  Main library include this to use
+""" Main library include this to use
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -173,8 +172,7 @@ from .colors import(
     )
 
 from .paramchecks import(
-    entirecircleinboundary
-        as _encircbnd,
+    entirecircleinboundary as _encircbnd,
     entirerectinboundary as _enrectbnd,
     func24bitonly as _fn24bit,
     func24bitonlyandentirecircleinboundary
@@ -248,6 +246,7 @@ from .textgraphics import(
 
 from .colordict import(
     getcolorname2RGBdict,
+    getcolorname2HSLdict,
     getRGBfactors
     )
 
