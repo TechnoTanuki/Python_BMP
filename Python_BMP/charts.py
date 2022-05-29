@@ -14,7 +14,6 @@
  -----------------------------------
 """
 
-
 from numbers import Number
 
 
@@ -28,7 +27,6 @@ def getdatalisttotal(dlist: list[Number]
 
     Returns:
         float or int
-
     """
     total = 0
     for d in dlist:
@@ -47,7 +45,6 @@ def genpiechartdata(dlist: list):
 
     Returns:
         list and large value (if any)
-
     """
     sa = 0
     tot = getdatalisttotal(dlist)
