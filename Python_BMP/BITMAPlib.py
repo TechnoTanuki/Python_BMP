@@ -3397,11 +3397,10 @@ def circle(bmp: array,
 def thickcircle(bmp: array,
         x: int, y: int, r: int,
         penradius: int, color: int):
-    """Draws a thick circle
-        defined by centerpoint (x, y)
-        and radius r with
-        a given color using
-        a pen with radius penradius
+    """Draws a thick circle defined by
+        centerpoint (x, y) and radius r
+        with a given color using a pen
+        with radius penradius
 
     Args:
         bmp      : unsigned byte array
@@ -3413,7 +3412,7 @@ def thickcircle(bmp: array,
 
     Returns:
         byref modified
-        unsigned byte array\
+        unsigned byte array
     """
     for p in itercircle(x, y, r):
         circle(bmp, p[0], p[1],
@@ -3426,11 +3425,11 @@ def gradthickcircle(bmp: array,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
     """Draws a thick circle with
-        gradient lumrange
-        defined by centerpoint (x, y)
-        and radius r using a pen with
-        radius penradius and color
-        defined by RGBfactors
+        gradient lumrange defined by
+        centerpoint (x, y) and radius r
+        using a pen with radius
+        penradius and color defined by
+        RGBfactors
 
     Args:
         bmp       : unsigned byte array
@@ -3542,8 +3541,8 @@ def gradthickellipserot(bmp: array,
     Args:
         bmp       : unsigned byte array
                     with bmp format
-        x,y       : center of ellipse
-        b,a       : major amd minor axis
+        x, y      : center of ellipse
+        b, a      : major amd minor axis
         degrot    : rotation of
                     the ellipse
                     in degrees
@@ -3939,7 +3938,7 @@ def plotrotated8bitpatternwithfn(
         byref modified
         unsigned byte array
     """
-    inc= scale - 1 - pixspace
+    inc = scale - 1 - pixspace
     for bits in bitpattern:
         ox = x
         mask = 128
@@ -4193,7 +4192,6 @@ def plotitalic8bitpattern(
     Returns:
         byref modified
         unsigned byte array
-
     """
     plotitalic8bitpatternwithfn(
         bmp, x, y, bitpattern,
