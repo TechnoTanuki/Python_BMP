@@ -1405,7 +1405,18 @@ def orvect(u: list[int],
     return [i | j for i, j in zip(u, v)]
 
 
-def addvectinlist(vlist: list):
+def addvectinlist(
+        vlist: list[list[Number]]
+               ) -> Number:
+    """Gets the sum of the vectors in
+        a list vectors
+
+    Args:
+        vlist: list of vectors
+
+    Returns:
+        list or vector
+    """
     return reduce(addvect,vlist)
 
 
