@@ -3307,7 +3307,6 @@ def filledcircle(bmp: array,
                 x1 = setmin(x1, 0)
                 x2 = setmax(x2, xmax)
                 dx = x2 - x1 + 1
-                ymax = m[1]
                 colorbuf = \
                     array('B', [color & 0xff] * dx)
                 if isinrange(y2, ymax, -1):
