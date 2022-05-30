@@ -1117,7 +1117,18 @@ def rect2polarcoord2Dwithcenter(
             polarcoordangle2D(v)]
 
 
-def computerotvec(degrot:float) -> list:
+def computerotvec(degrot: float
+                ) -> list[float,
+                          float]:
+    """Compute a 2D rotation vector
+       based on angle degrot in degrees
+
+    Args:
+        degrot: rotation in degrees
+
+    Returns:
+        [float, float] rotation vector
+    """
     a = radians(degrot)
     return (sin(a), cos(a))
 
@@ -1125,6 +1136,17 @@ def computerotvec(degrot:float) -> list:
 def rotvec2D(v: list[Number, Number],
         rotvec: list[float, float]
            ) -> list[float, float]:
+    """Compute a 2D rotation vector
+       based on angle degrot in degrees
+       and v(x, y)
+
+    Args:
+        v     : centerpoint
+        degrot: rotation in degrees
+
+    Returns:
+        [float, float] rotation vector
+    """
     return [v[0] * rotvec[1] - v[1] * rotvec[0],
             v[0] * rotvec[0] + v[1] * rotvec[1]]
 
