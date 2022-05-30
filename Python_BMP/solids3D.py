@@ -309,7 +309,6 @@ def perspective(
 
     Returns:
         tuple (list, list)
-
     """
     projvlist = []
     rotvlist = []
