@@ -27,9 +27,7 @@ def dict2descorderlist(
     Returns:
         list
     """
-    l = []
-    for k in d:
-        l.append([d[k], k])
+    l = [[v, k] for k, v in d.items()]
     l.sort()
     l.reverse()
     return l

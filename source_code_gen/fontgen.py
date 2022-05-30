@@ -215,15 +215,9 @@ def makecharbuf(
         chardict: dict) -> list:
     charlen = len(chardict['0'])
     b = [charlen]
-    blankchar = []
-    for i in range(0, charlen):
-        blankchar.append(0)
-    for i in range(0,256):
-        ch = chr(i)
-        if ch in chardict:
-            c = chardict[chr(i)]
-        else:
-            c = blankchar
+    blankchar = [0 for _ in range(charlen)]
+    for i in range(256):
+        c = chardict.get(chr(i), blankchar)
         b += c
     return b
 

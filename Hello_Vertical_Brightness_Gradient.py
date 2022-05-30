@@ -26,13 +26,13 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(rootdir + '/assets/tanuki.bmp') #load to memory
+        bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
         verticalbrightnessgradto24bitimage(bmp, [80, -90]) # [-50,100] is range of brightness
         file = 'HelloVertBrightGrad.bmp' # file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

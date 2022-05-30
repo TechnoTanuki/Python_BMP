@@ -44,12 +44,12 @@ def adjustbufsize(
         An adjusted int value of the
         buffer size
     """
-    if bits == 24:
+    if bits == 1:
+        bufsize >>= 3
+    elif bits == 24:
         bufsize *= 3
     elif bits == 4:
-        bufsize = bufsize >> 1
-    elif bits == 1:
-        bufsize = bufsize >> 3
+        bufsize >>= 1
     return bufsize
 
 
@@ -253,7 +253,7 @@ def resizesmaller24bitbuf(buf: array
         unsigned byte array
     """
     n = len(buf)
-    f = 1 / (n * n)
+    f = 1 / n**2
     b = altsplitbuf3way(
           addvectinlist(buf))
     return  makeBGRbuf(

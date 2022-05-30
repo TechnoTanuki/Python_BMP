@@ -46,7 +46,6 @@ def main():
         lum = getdefaultlumrange()
 
         d = 200 # distance of the observer
-                # from the screen
         tvect = [0, 0, 100] #3D translation vector
 
         fontsize = 6 # font size
@@ -102,7 +101,7 @@ def main():
         saveBMP(file,bmp) # dump bytes to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

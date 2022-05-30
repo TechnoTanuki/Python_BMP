@@ -30,7 +30,7 @@ def main():
         saveBMP(file, bmp) #save the fern
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
-        ret = proc.call(imgedt + ' ' + file) # load the image
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

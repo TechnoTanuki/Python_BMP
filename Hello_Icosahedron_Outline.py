@@ -46,7 +46,7 @@ def main():
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
-        ret = proc.call(imgedt + ' ' + file) # replace with another editor if Unix
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

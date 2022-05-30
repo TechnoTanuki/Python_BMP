@@ -23,11 +23,11 @@ def main():
         print(notice % (n))
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        existingfile = rootdir + '/assets/earth.bmp' # existing file
+        existingfile = f'{rootdir}/assets/earth.bmp'
         file = 'Hello4timesbigger.bmp' # new file
         resizeNtimesbigger2file(existingfile, file, n) # make earth bigg by n times
-        print('All done close %s to finish' % (imgedt)) # tell user something happened
-        ret = proc.call(imgedt + ' ' + file) # load the image
+        print(f'All done close {imgedt} to finish')
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

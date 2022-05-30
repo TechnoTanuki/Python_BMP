@@ -31,7 +31,7 @@ def plotbitsastext(bits: int):
             print(' ', end='')
         else:
             print('*', end='')
-        mask = mask >> 1
+        mask >>= 1
 
 
 def plot8bitpatternastext(
@@ -56,6 +56,6 @@ def plot8bitpatternastext(
         mask = 128
         while mask > 0:
             s += onechar if mask & bits > 0 else zerochar
-            mask = mask >> 1
+            mask >>= 1
         s += '\n'
     return s

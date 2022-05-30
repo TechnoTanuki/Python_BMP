@@ -123,8 +123,8 @@ from Python_BMP.BITMAPlib import(
 rootdir = path.dirname(__file__)
 testimgdir ='/assets/test_images/'
 sdir = rootdir + testimgdir
-odir = rootdir +'/test_output/'
-ofile = sdir + 'raccoon.bmp'
+odir = f'{rootdir}/test_output/'
+ofile = f'{sdir}raccoon.bmp'
 
 cf = getRGBfactors()
 c = getcolorname2RGBdict()
@@ -642,8 +642,7 @@ class Test2filefunc(unittest.TestCase):
         def testautocropimg2file(self):
                 (newfile, reffile) = \
                 _d(odir, sdir, 'flower-autocrop.bmp')
-                autocropimg2file(sdir + 'flower.bmp',
-                                 newfile,64)
+                autocropimg2file(f'{sdir}flower.bmp', newfile, 64)
                 self.filecmp(reffile,
                              newfile)
 

@@ -94,7 +94,7 @@ def tetrahedravert(x: float
               y: float,
               z: float)
     """
-    x_sqr = x * x
+    x_sqr = x**2
     halfx= x / 2
     return [[0, 0, 0],
             [halfx, sqrt(x_sqr / 2), 0],
@@ -142,7 +142,7 @@ def hexahedravert(x: float
               y: float,
               z: float)
     """
-    x_sqr = x * x
+    x_sqr = x**2
     halfx= x / 2
     z = sqrt(3 / 8 * x_sqr)
     return [[0, 0, 0],
@@ -195,8 +195,8 @@ def decahedvertandsurface(
               z: float)
     """
     pts = regpolygonvert(0, 0, x, 5, 0)
-    z = sqrt(distance(pts[0],
-             pts[1]) ** 2 - x * x)
+    z = sqrt((distance(pts[0], pts[1]) ** 2 - x**2))
+
     return [[[0, 0, -z]] + \
             adddimz(pts, 0) + \
             [[0, 0, z]],
@@ -236,8 +236,8 @@ def icosahedvertandsurface(
                 0, 0, x, 5, 0)
     pts1 = floatregpolygonvert(
                 0, 0, x, 5, 36)
-    z = sqrt(distance(pts[0],
-               pts[1]) ** 2 - x * x)
+    z = sqrt((distance(pts[0], pts[1]) ** 2 - x**2))
+
     z1 = 2 * x - z
     return [[[0, 0, -z]] + \
              adddimz(pts, 0) + \
@@ -359,7 +359,7 @@ def polyboundary(
         vertlist: list) -> list:
     px = []
     vertcount = len(vertlist)
-    for i in range(0, vertcount):
+    for i in range(vertcount):
         if i>0:
             v1 = roundvect(
                     vertlist[i - 1])
@@ -466,7 +466,7 @@ def genspheresurfaces(
     lpts = len(npts)
     maxp = lpts - 1
     i = 0
-    for i in range(0, lpts):
+    for i in range(lpts):
         j = 0 if i == maxp else i + 1
         surf += [[northpole, npts[j], npts[i]],
                  [southpole, spts[i], spts[j]]]
@@ -479,7 +479,7 @@ def genspheresurfaces(
             maxadjpts = len(adjpts)
             maxp = lpts - 1
             i = 0
-            for i in range(0, lpts):
+            for i in range(lpts):
                 j = 0 if i == maxp else i + 1
                 surf += [[adjpts[j % maxadjpts],
                           adjpts[i % maxadjpts],
@@ -546,12 +546,15 @@ def cylindervertandsurface(
     side = []
     maxang = 360 + (deganglestep << 1)
     for theta in range(0, maxang, deganglestep):
-        plist.append(addvect(vcen,
-            cylindrical2rectcoord3D([r,
-                        radians(theta), -z])))
-        plist.append(addvect(vcen,
-            cylindrical2rectcoord3D([r,
-                        radians(theta), z])))
+        plist.extend(
+            (
+                addvect(
+                    vcen, cylindrical2rectcoord3D([r, radians(theta), -z])
+                ),
+                addvect(vcen, cylindrical2rectcoord3D([r, radians(theta), z])),
+            )
+        )
+
         top.append(i)
         bottom.append(i + 1)
         if i > 2:
@@ -589,19 +592,17 @@ def conevertandsurface(
         see Hello_Cone.py
     """
     z = zlen / 2
-    i = 1
     bottom = []
     side = []
     maxang = 360 + (deganglestep << 1)
     plist = [subvect(vcen, [0, 0, z])]
-    for theta in range(0, maxang, deganglestep):
+    for i, theta in enumerate(range(0, maxang, deganglestep), start=1):
         plist.append(addvect(vcen,
                 cylindrical2rectcoord3D(
                     [r, radians(theta), z])))
         bottom.append(i)
         if i > 2:
             side.append([0, i, i - 1])
-        i += 1
     return (plist, side + [bottom])
 
 

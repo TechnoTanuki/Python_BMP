@@ -24,13 +24,13 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        bmp = loadBMP(rootdir + '/assets/earth.bmp') #load earth to memory
+        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         invertimagebits(bmp)
         file = 'HelloInvertColors.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
-        ret = proc.call(imgedt + ' ' + file) # load the image
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

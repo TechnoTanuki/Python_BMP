@@ -68,13 +68,12 @@ def intcircleparam24bitonly(func):
     def callf(*args, **kwargs):
         if args[0][bmpcolorbits] != 24:
             print(sysmsg['not24bit'])
-        else:
-            if (type(args[1]) == int and \
+        elif (type(args[1]) == int and \
                 type(args[2]) == int) and \
                 type(args[3]) == int:
-                return(func(*args, **kwargs))
-            else:
-                print(sysmsg['inttypereq'])
+            return(func(*args, **kwargs))
+        else:
+            print(sysmsg['inttypereq'])
     return(callf)
 
 
@@ -124,16 +123,15 @@ def func24bitonlyandentirerectinboundary(func):
 
         if bmp[bmpcolorbits] != 24:
             print(sysmsg['not24bit'])
-        else:
-            if (type(x1) == int and type(x2) == int) and \
+        elif (type(x1) == int and type(x2) == int) and \
                (type(y1) == int and type(y2) == int):
 
-                if not (f(bmp, x1, y1) and f(bmp, x2, y2)):
-                    print(sysmsg['regionoutofbounds'])
-                else:
-                    return(func(*args, **kwargs))
+            if f(bmp, x1, y1) and f(bmp, x2, y2):
+                return(func(*args, **kwargs))
             else:
-                print(sysmsg['inttypereq'])
+                print(sysmsg['regionoutofbounds'])
+        else:
+            print(sysmsg['inttypereq'])
     return(callf)
 
 
@@ -160,17 +158,16 @@ def func24bitonlyandentirecircleinboundary(func):
         r = args[3]
         if bmp[bmpcolorbits] != 24:
             print(sysmsg['not24bit'])
-        else:
-            if (type(x) == int and type(y) == int) \
+        elif (type(x) == int and type(y) == int) \
                                and type(r) == int:
-                if entirecircleisinboundary(
-                    x, y, -1, readint(bmpx,4,bmp),
-                          -1, readint(bmpy,4,bmp), r):
-                    return(func(*args, **kwargs))
-                else:
-                    print(sysmsg['regionoutofbounds'])
+            if entirecircleisinboundary(
+                x, y, -1, readint(bmpx,4,bmp),
+                      -1, readint(bmpy,4,bmp), r):
+                return(func(*args, **kwargs))
             else:
-                print(sysmsg['inttypereq'])
+                print(sysmsg['regionoutofbounds'])
+        else:
+            print(sysmsg['inttypereq'])
     return(callf)
 
 
@@ -198,17 +195,16 @@ def func8and24bitonlyandentirecircleinboundary(func):
         r = args[3]
         if bmp[bmpcolorbits] not in [24, 8]:
             print(sysmsg['not24or8bit'])
-        else:
-            if (type(x) == int and type(y) == int) \
+        elif (type(x) == int and type(y) == int) \
                                and type(r) == int:
-                if entirecircleisinboundary(
-                    x, y, -1, readint(bmpx, 4, bmp),
-                          -1, readint(bmpy, 4, bmp), r):
-                    return(func(*args, **kwargs))
-                else:
-                    print(sysmsg['regionoutofbounds'])
+            if entirecircleisinboundary(
+                x, y, -1, readint(bmpx, 4, bmp),
+                      -1, readint(bmpy, 4, bmp), r):
+                return(func(*args, **kwargs))
             else:
-                print(sysmsg['inttypereq'])
+                print(sysmsg['regionoutofbounds'])
+        else:
+            print(sysmsg['inttypereq'])
     return(callf)
 
 
@@ -258,15 +254,14 @@ def func8and24bitonlyandentirerectinboundary(func):
         y2 = args[4]
         if bmp[bmpcolorbits] not in [24, 8]:
             print(sysmsg['not24or8bit'])
-        else:
-            if (type(x1) == int and type(x2) == int) and \
+        elif (type(x1) == int and type(x2) == int) and \
                (type(y1) == int and type(y2) == int):
-                if not (f(bmp, x1, y1) and f(bmp, x2, y2)):
-                    print(sysmsg['regionoutofbounds'])
-                else:
-                    return(func(*args, **kwargs))
+            if f(bmp, x1, y1) and f(bmp, x2, y2):
+                return(func(*args, **kwargs))
             else:
-                print(sysmsg['inttypereq'])
+                print(sysmsg['regionoutofbounds'])
+        else:
+            print(sysmsg['inttypereq'])
     return(callf)
 
 
