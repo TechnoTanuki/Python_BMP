@@ -486,7 +486,20 @@ def spherevert(vcen: list[float,
 
 
 #we have a 3D object and we take z slices
-def zlevelcoords(verlist: list) -> tuple:
+def zlevelcoords(verlist: list
+                )     -> list[list, list]:
+    """Takes a list of 3D vertices
+        and makes slices along the
+        z-axis
+
+    Args:
+        verlist: list of 3D vertices
+
+    Returns:
+        (list of z-axis slices,
+         dict of z-axis slices
+         with 3D vertices)
+    """
     zlist = []
     zord = {}
     for p in verlist:
@@ -505,6 +518,16 @@ def genspheresurfaces(
                      ) -> list:
     """Generates the tiled surfaces
         of a sphere
+
+    Args:
+        zlevelcoord:
+        (list of z-axis slices,
+         dict of z-axis slices
+         with 3D vertices)
+
+    Returns:
+        list of polygons to render
+        the surface of a sphere
     """
     (zl, vl) = zlevelcoord
     surf = []
