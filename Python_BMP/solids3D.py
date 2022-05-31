@@ -334,9 +334,27 @@ def perspective(
 
 #may be slow if polygon goes offscreen
 def fillpolydata(
-        polybnd: list,
+        polybnd: list[list[int, int]],
         xlim: int,
         ylim: int) -> list:
+    """Generates a list of x values per
+        y values for filling polygon
+        boundaries
+
+    Args:
+        polybnd : list of 2D vertices
+                  list[list[x: int,
+                            y: int]]
+        xlim    : Screen limit x dim
+        ylim    : Screen limit x dim
+
+    Returns:
+        A dictionary with y values
+        as key and list of x values
+        per key (if within bounds)
+        or an empty list if out of
+        bounds
+    """
     filld = {}
     ((minx, miny), (maxx, maxy)) = \
     rectboundarycoords(polybnd)
@@ -356,7 +374,21 @@ def fillpolydata(
 
 
 def polyboundary(
-        vertlist: list) -> list:
+        vertlist: list[list[int, int]]
+             ) -> list[list[int, int]]:
+    """Generates a polygon boundary
+        from a list of 2D vertices
+
+    Args:
+        polybnd : list of 2D vertices
+                  list[list[x: int,
+                            y: int]]
+
+    Returns:
+        list[list[x: int, y: int]]
+        A list of vertices that traces
+        the boundaries of the polygon
+    """
     px = []
     vertcount = len(vertlist)
     for i in range(0, vertcount):
