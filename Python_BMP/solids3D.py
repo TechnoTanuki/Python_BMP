@@ -426,6 +426,9 @@ def gensides(
         with the hidden surfaces
         removed that is suitable
         for rendering on a 2D surface
+        and also applies a
+        3D translation vector for
+        positioning
     """
     (plist, slist) = pointlists
     polylist = []
@@ -500,6 +503,9 @@ def zlevelcoords(verlist: list) -> tuple:
 def genspheresurfaces(
         zlevelcoord:list[list, list]
                      ) -> list:
+    """Generates the tiled surfaces
+        of a sphere
+    """
     (zl, vl) = zlevelcoord
     surf = []
     levels = len(zl) - 1
