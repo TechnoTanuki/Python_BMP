@@ -61,10 +61,10 @@ def itercirclepart(r: int
     """
     row = r
     col = 0
-    r_sqr = r**2
+    r_sqr = r * r
     _2r_sqr = r_sqr << 1
     _4r_sqr = r_sqr << 2
-    d = _2r_sqr * ((row -1 ) * (row)) + \
+    d = _2r_sqr * ((row - 1 ) * (row)) + \
         r_sqr + _2r_sqr * (1 - r_sqr)
     while row >= col:
         yield([col, row])
@@ -98,11 +98,11 @@ def itercirclepartlineedge(
     """
     row = r
     col = 0
-    r_sqr = r**2
+    r_sqr = r * r
     _2r_sqr = r_sqr << 1
     _4r_sqr = r_sqr << 2
-    d = _2r_sqr * ((row - 1) *(row)) + \
-        r_sqr+ _2r_sqr * (1 - r_sqr)
+    d = _2r_sqr * ((row - 1) * (row)) + \
+        r_sqr + _2r_sqr * (1 - r_sqr)
     y = []
     while row >= col:
         if col not in y:
@@ -139,7 +139,7 @@ def itercirclepartvertlineedge(
     """
     row = r
     col = 0
-    r_sqr = r**2
+    r_sqr = r * r
     _2r_sqr = r_sqr << 1
     _4r_sqr = r_sqr << 2
     d = _2r_sqr * ((row - 1) * (row)) + \
@@ -159,9 +159,9 @@ def itercirclepartvertlineedge(
         col += 1
 
 
-def iterline(
-        p1: list[int,int],
-        p2: list[int,int]) -> list[int,int]:
+def iterline(p1: list[int,int],
+             p2: list[int,int]
+            ) -> list[int,int]:
     """Yields (int, int) 2D vertices
         along a line segment defined
         by endpoints p1 and p2
@@ -202,7 +202,9 @@ def iterline(
 
 
 def iterparallelogram(
-        p1: list, p2: list, p3: list
+         p1: list[int, int],
+         p2: list[int, int],
+         p3: list[int, int]
         ) -> list[int, int]:
     p = lineseg(p1, p3)
     q = lineseg(p2, addvect(p3,
@@ -225,7 +227,6 @@ def lineseg(p1: list[int, int],
 
     Returns:
         [[x:int, y:int],..]
-
     """
     return list(iterline(p1, p2))
 
@@ -246,8 +247,8 @@ def iterellipsepart(b: int, a: int):
     """
     row = b
     col = 0
-    a_sqr = a**2
-    b_sqr = b**2
+    a_sqr = a * a
+    b_sqr = b * b
     _2a_sqr = a_sqr << 1
     _4a_sqr = a_sqr << 2
     _2b_sqr = b_sqr << 1
@@ -292,10 +293,9 @@ def iterellipse(x: int, y: int,
         yield from mirror1stquad(x,y,p)
 
 
-def iterellipserot(
-        x: int, y: int,
-        b: int, a: int,
-        degrot: float):
+def iterellipserot(x: int, y: int,
+                   b: int, a: int,
+                   degrot: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         major and minor axes
@@ -341,8 +341,9 @@ def itercircle(x: int, y: int,
         yield from mirror1stquad(x, y, p)
 
 
-def bezierblend(i: int, n: int, u: int):
-    return comb(n, i) * (u ** i) * ((1 - u) ** (n - i))
+def _bezierblend(i: int, n: int, u: int):
+    return comb(n, i) * (u ** i) * \
+              ((1 - u) ** (n - i))
 
 
 def iterbeziercurve(
@@ -374,7 +375,7 @@ def iterbeziercurve(
                     v = addvect(v,
                          scalarmulvect(
                                 pntlist[j],
-                          bezierblend(
+                          _bezierblend(
                                 j, last, u)))
                 yield from iterline(roundvect(v),
                                     roundvect(w))
@@ -430,7 +431,7 @@ def iterbspline(
         for k in range(klim):
             u = k / klim
             v = [0, 0]
-            nc = bsplineblend(u)
+            nc = _bsplineblend(u)
             for j in range(4):
                 k = i + j
                 v = addvect(v, scalarmulvect(
@@ -465,7 +466,7 @@ def bsplinevert(
 
 
 #dont edit this square shaped code
-def bsplineblend(u: float
+def _bsplineblend(u: float
           ) -> list[float, float,
                     float, float,]:
     u2,u3 = u**2, u**2 * u
@@ -604,8 +605,8 @@ def circlevert(x: int, y: int, r: int
     """Returns a list[(int, int)]
         of 2D vertices along a path
         defined by radius r as it
-        traces a circle with
-        origin set at (x, y)
+        traces a circle with origin
+        set at (x, y)
 
     Args:
         x, y: int centerpoint
