@@ -345,7 +345,22 @@ def bezierblend(i: int, n: int, u: int):
     return comb(n, i) * (u ** i) * ((1 - u) ** (n - i))
 
 
-def iterbeziercurve(pntlist: list) -> list:
+def iterbeziercurve(
+        pntlist: list[list[int, int]]
+                 ) -> list[int, int]:
+    """Yields a list of vertices for
+        a bezier curve based on
+        2D control points in pntlist
+
+    Args:
+        pntlist: 2D control points
+                 for the bezier curve
+                 as list[list[x: int,
+                              y: int]]
+
+    Yields:
+        vertices as list[x: int, y: int]
+    """
     cnt = len(pntlist)
     w = v = pntlist[0]
     klim = cnt << 2
@@ -361,22 +376,49 @@ def iterbeziercurve(pntlist: list) -> list:
                                 pntlist[j],
                           bezierblend(
                                 j, last, u)))
-                yield from iterline(roundvect(v), roundvect(w))
-
+                yield from iterline(roundvect(v),
+                                    roundvect(w))
                 w = v
 
 
 def beziercurvevert(
-        pntlist: list,
+        pntlist: list[list[int, int]],
         isclosed: bool,
-        curveback: bool) -> list:
+        curveback: bool) -> list[int, int]:
+    """Creates a list of vertices for
+        a bezier curve based on
+        2D control points in pntlist
+
+    Args:
+        pntlist: 2D control points
+                 for the bezier curve
+                 as list[list[x: int,
+                              y: int]]
+
+    Returns:
+        list of vertices as
+        list[list[x: int, y: int]]
+    """
     return list(iterbeziercurve(pntlist))
 
 
 def iterbspline(
-        pntlist: list,
+        pntlist: list[list[int, int]],
         isclosed: bool,
-        curveback: bool) -> list:
+        curveback: bool) -> list[int, int]:
+    """Yields a list of vertices for
+        a bspline curve based on
+        2D control points in pntlist
+
+    Args:
+        pntlist: 2D control points
+                 for the bspline curve
+                 as list[list[x: int,
+                              y: int]]
+
+    Yields:
+        vertices as list[x: int, y: int]
+    """
     i = 0
     cnt = len(pntlist)
     v = pntlist[0]
@@ -394,7 +436,8 @@ def iterbspline(
                 v = addvect(v, scalarmulvect(
                      pntlist[k % cnt if curveback else setmax(k, mx)], nc[j]))
             if i > 1:
-                yield from iterline(roundvect(v), roundvect(w))
+                yield from iterline(roundvect(v),
+                                    roundvect(w))
             w = v
         i += 1
 
@@ -410,10 +453,9 @@ def bsplinevert(
 
     Args:
         pntlist: 2D control points
-                 for the bspline
-                 curve as
-                 list[list[x: int,
-                           y: int]]
+                 for the bspline curve
+                 as list[list[x: int,
+                              y: int]]
 
     Returns:
         list of vertices as
