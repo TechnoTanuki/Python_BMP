@@ -345,6 +345,10 @@ def fillpolydata(
         polybnd : list of 2D vertices
                   list[list[x: int,
                             y: int]]
+                  that forms a
+                  complete polygon
+                  boundary (see
+                  def polyboundary)
         xlim    : Screen limit x dim
         ylim    : Screen limit x dim
 
