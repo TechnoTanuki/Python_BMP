@@ -419,6 +419,14 @@ def gensides(
                         float],
         sides: list[list[float]]
                           ) -> tuple:
+    """Generates a list of polygons
+        and normals from 3D polygon
+        and side data to a list of
+        sides and normals with
+        with the hidden surfaces
+        removed that is suitable
+        for rendering on a 2D surface
+    """
     (plist, slist) = pointlists
     polylist = []
     normlist = []
