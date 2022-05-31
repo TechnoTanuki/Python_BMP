@@ -469,7 +469,7 @@ def bsplinevert(
 def _bsplineblend(u: float
           ) -> list[float, float,
                     float, float,]:
-    u2,u3 = u**2, u**2 * u
+    u2,u3= u*u,u*u*u
     d,f = u3/6 , 1/6
     a=-d +u2/2-u/2+f
     b= u3/2 -u2 +2/3
