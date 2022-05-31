@@ -13,3 +13,6 @@ homepage = https://github.com/TechnoTanuki/Python_BMP
 repository = https://github.com/TechnoTanuki/Python_BMP
 documentation = https://github.com/TechnoTanuki/Python_BMP
 
+[build-system]
+# Minimum requirements for the build system to execute.
+requires = ["setuptools", "wheel"]  # PEP 508 specifications.
