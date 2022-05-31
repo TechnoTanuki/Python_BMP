@@ -34,8 +34,8 @@ def main():
         bmp = newBMP(mx, my, 24) # (x,y,bit depth) 24 bit BMP
         cen = centercoord(bmp) # get x,y of center
         f = lambda d: d * 4 # simple linear func
-        for y in range(0, my):
-                for x in range(0, mx):
+        for y in range(my):
+                for x in range(mx):
                         b = int(f(distance(cen, (x, y)))) % 256 # blue gradient
                         r = 255 - b # red gradient get inverse value of b
                         g = (abs(r - b)) % 256 # green gradient func of r and b
@@ -44,7 +44,7 @@ def main():
         saveBMP(file, bmp) # dump bytearray to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

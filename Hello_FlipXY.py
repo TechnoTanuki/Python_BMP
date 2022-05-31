@@ -24,13 +24,13 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(rootdir + '/assets/tanuki.bmp') # load bitmap to byte array-> bmp
+        bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
         bmp = flipXY(bmp) # need to return new XY flipped image
         file = 'HelloFlipXY.bmp' # file name
         saveBMP(file, bmp) # save XY flipped image
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
-        ret = proc.call(imgedt + ' ' + file) # load the image
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

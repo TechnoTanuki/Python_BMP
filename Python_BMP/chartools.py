@@ -25,10 +25,8 @@ def enumletters(st: str) -> str:
         individual characters
     """
     c = len(st)
-    i = 0
-    while i < c:
+    for i in range(c):
         yield st[i: i + 1]
-        i += 1
 
 
 def enumreverseletters(st: str) -> str:

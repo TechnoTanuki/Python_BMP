@@ -28,10 +28,7 @@ def getdatalisttotal(dlist: list[Number]
     Returns:
         float or int
     """
-    total = 0
-    for d in dlist:
-        total += d[0]
-    return total
+    return sum(d[0] for d in dlist)
 
 
 def genpiechartdata(dlist: list):

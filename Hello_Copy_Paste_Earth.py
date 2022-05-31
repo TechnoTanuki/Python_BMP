@@ -25,14 +25,14 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp= loadBMP(rootdir + '/assets/earth.bmp') #load earth to memory
+        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         buf = copyrect(bmp, 3, 3, 60, 60) # copy a rectangular region (x1,y1,x2,y2) to a buffer
         pasterect(bmp,buf,40,40) # paste buffer to a rectangular region at (x1,y1)
         file = 'HelloEarthCopyPaste.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
-        ret = proc.call(imgedt + ' ' + file) # load the image
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

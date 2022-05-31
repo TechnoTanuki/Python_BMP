@@ -30,15 +30,15 @@ def main():
         mx = my = 512 # bitmap size y = x square bitmap
         bmp = newBMP(mx, my, 8) #8 bit = 256 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        for r in range(0,x): # increase the radius of the circle from 0 to x
+        for r in range(x): # increase the radius of the circle from 0 to x
                 c = r # set color equal to radius
-                circle(bmp,x,y,r,c,False) # all ints are unsigned
-                # Python_BMP.BITMAPlib.circle(bmp bytearray,x int ,y int, r int, c int,isfilled bool)
+                circle(bmp, x, y, c, c, False)
+                        # Python_BMP.BITMAPlib.circle(bmp bytearray,x int ,y int, r int, c int,isfilled bool)
         file='HelloCircles.bmp' # file name
         saveBMP(file,bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

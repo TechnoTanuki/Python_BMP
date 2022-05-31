@@ -27,7 +27,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(rootdir + '/assets/earth.bmp') #load earth to memory
+        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         r = x - 20 # radius set to x - 20
         monocircle(bmp, x, y, r)
@@ -36,7 +36,7 @@ def main():
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
-        ret = proc.call(imgedt + ' ' + file)
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

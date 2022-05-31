@@ -34,15 +34,15 @@ def main():
         cen = centercoord(bmp) # get x,y of center
         f = lambda d: d * d # simple non linear func
         r = b = 0 # turn off red and blue
-        for y in range(0, my):
-                for x in range(0, mx):
+        for y in range(my):
+                for x in range(mx):
                         g = int(f(distance(cen, (x, y)))) % 256 # green gradient
                         plotRGBxybit(bmp, x, y, (r, g, b)) # make a rainbow
         file='HelloNonLinearRadialGradients.bmp' # file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

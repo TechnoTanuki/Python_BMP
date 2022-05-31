@@ -255,9 +255,7 @@ def matchRGBtodefault4bitpal(
     r >>= 6
     g >>= 6
     b >>= 6
-    color = 0
-    if r > 1 or g > 1 or b > 1:
-        color = 8
+    color = 8 if r > 1 or g > 1 or b > 1 else 0
     if r >= 1:
         color += 4
     if g >= 1:
@@ -578,13 +576,15 @@ def applymonochromefiltertoBGRbuf(
         holding mono BGR data
     """
     m = len(buf)
-    buf[0: m - 2: 3] = \
-    buf[1: m - 1: 3] = \
-    buf[2: m: 3] = \
-    array('B',[int((b + g + r) / 3)
-    for b, g, r in zip(buf[0: m - 2: 3],
-                       buf[1: m - 1: 3],
-                       buf[2: m: 3])])
+    buf[0 : m - 2 : 3] = buf[1 : m - 1 : 3] = buf[2:m:3] = array(
+        'B',
+        [
+            int((b + g + r) / 3)
+            for b, g, r in zip(
+                buf[: m - 2 : 3], buf[1 : m - 1 : 3], buf[2:m:3]
+            )
+        ],
+    )
 
 
 def monochromefiltertoBGRbuf(
@@ -630,10 +630,11 @@ def applycolorfiltertoBGRbuf(
         holding color BGR data
     """
     m = len(buf) - 1
-    buf[0: m - 2: 3], buf[1: m - 1: 3], buf[2: m: 3] = \
-        array('B', intscalarmulvect(buf[0: m - 2: 3], rgbfactors[2])), \
-        array('B', intscalarmulvect(buf[1: m - 1: 3], rgbfactors[1])), \
-        array('B', intscalarmulvect(buf[2: m: 3], rgbfactors[0]))
+    buf[0 : m - 2 : 3], buf[1 : m - 1 : 3], buf[2:m:3] = (
+        array('B', intscalarmulvect(buf[: m - 2 : 3], rgbfactors[2])),
+        array('B', intscalarmulvect(buf[1 : m - 1 : 3], rgbfactors[1])),
+        array('B', intscalarmulvect(buf[2:m:3], rgbfactors[0])),
+    )
 
 
 def colorfiltertoBGRbuf(
@@ -678,8 +679,7 @@ def applygammaBGRbuf(
         BGR data
     """
     imax = len(buf)
-    i = 0
-    while i < imax:
+    for i in range(0, imax, 3):
         lum = max(buf[i: i + 3])
         if lum == 0:
             lum = 1
@@ -690,7 +690,6 @@ def applygammaBGRbuf(
         buf[i] = int(buf[i] * f) & 0xff
         buf[j] = int(buf[j] * f) & 0xff
         buf[k] = int(buf[k] * f) & 0xff
-        i += 3
 
 
 def gammaBGRbuf(
@@ -827,8 +826,7 @@ def applythresholdadjtoBGRbuf(
     lummin = lumrange[0] & 0xff
     lummax = lumrange[1] & 0xff
     m = len(buf)
-    i = 0
-    while i < m:
+    for i in range(0, m, 3):
         lum = max(buf[i:i+3])
         f = 1
         if lummin > lummax:
@@ -842,7 +840,6 @@ def applythresholdadjtoBGRbuf(
             buf[i] = int(f * buf[i])
             buf[i + 1] = int(f * buf[i + 1])
             buf[i + 2] = int(f * buf[i + 2])
-        i += 3
     return buf
 
 
@@ -859,8 +856,7 @@ def RGB2BGRbuf(buf: array):
         holding BGR data
     """
     m = len(buf)
-    buf[0: m - 2: 3], buf[2: m: 3] = \
-    buf[2: m: 3], buf[0: m - 2: 3]
+    buf[0: m - 2: 3], buf[2: m: 3] = buf[2: m: 3], buf[:m - 2:3]
 
 
 def makeBGRbuf(bbuf: array,

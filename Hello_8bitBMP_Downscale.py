@@ -24,7 +24,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        file = rootdir + '/assets/earth.bmp'
+        file = f'{rootdir}/assets/earth.bmp'
         newfile = '8bitBMP.bmp'
         bits= 8 # valid values are 8,4,1
         threshold = 4 # in computing new palette how far apart should colors be
@@ -34,9 +34,8 @@ def main():
                 file, newfile,
                 bits, threshold,
                 usemono, RGBfactors) # magic takes time
-        print('All done close %s to finish' % \
-                (imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + newfile) # load image in editor
+        print(f'All done close {imgedt} to finish')
+        ret = proc.call(f'{imgedt} {newfile}')
 
 if __name__=="__main__":
         main()

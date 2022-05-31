@@ -24,13 +24,13 @@ def main():
         print(notice)
         rootdir = path.dirname(__file__)
         imgedt = 'mspaint'  # replace with another editor if Unix
-        bmp = loadBMP(rootdir + '/assets/tanuki.bmp') #load to memory
+        bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
         fliphorizontal(bmp)
         file = 'HelloFliphorzontal.bmp' #file name
         saveBMP(file, bmp) # save to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

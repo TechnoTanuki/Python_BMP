@@ -32,12 +32,12 @@ def main():
         a = x # a axis = x
         lumrange = (255, 0) # decreasing gradient from center uint bytes
         rgbfactors = (.3, .9, .5) # rgb triplet as values 0 to 1 unsigned float
-        gradellipse(bmp, x, y, b, a, lumrange, rgbfactors)
+        gradellipse(bmp, a, b, b, a, lumrange, rgbfactors)
         file = 'HelloEllipticalGradent.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
-        ret = proc.call(imgedt + ' ' + file) # load the image
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

@@ -27,7 +27,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(rootdir + '/assets/somebody.bmp')
+        bmp = loadBMP(f'{rootdir}/assets/somebody.bmp')
         r = 110
         vertbrightnessgrad2circregion(
                 bmp, # unsigned byte array
@@ -39,7 +39,7 @@ def main():
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

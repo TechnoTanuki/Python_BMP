@@ -34,8 +34,7 @@ def itergetcharfromfontbuf(
 def getcharfont(
         charbuf: list,
         character: str) -> list:
-    return [b for b in itergetcharfromfontbuf(
-                           charbuf, character)]
+    return list(itergetcharfromfontbuf(charbuf, character))
 
 # print(charbuf)
 # print(getcharfont(charbuf,'A'))

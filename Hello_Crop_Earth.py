@@ -24,7 +24,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        existingfile = rootdir + '/assets/earth.bmp'
+        existingfile = f'{rootdir}/assets/earth.bmp'
         file = 'HelloCropEarth.bmp' #file name
         # crop a rectangular region (x1,y1,x2,y2) to a file
         cropBMPandsave(
@@ -32,9 +32,8 @@ def main():
                 file, # new file to save in
                 20, 20, 100, 100 # area to crop
                 )
-        print('All done close %s to finish' % \
-                (imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        print(f'All done close {imgedt} to finish')
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

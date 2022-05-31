@@ -61,7 +61,7 @@ def itercirclepart(r: int
     """
     row = r
     col = 0
-    r_sqr = r * r
+    r_sqr = r**2
     _2r_sqr = r_sqr << 1
     _4r_sqr = r_sqr << 2
     d = _2r_sqr * ((row -1 ) * (row)) + \
@@ -98,7 +98,7 @@ def itercirclepartlineedge(
     """
     row = r
     col = 0
-    r_sqr = r * r
+    r_sqr = r**2
     _2r_sqr = r_sqr << 1
     _4r_sqr = r_sqr << 2
     d = _2r_sqr * ((row - 1) *(row)) + \
@@ -139,7 +139,7 @@ def itercirclepartvertlineedge(
     """
     row = r
     col = 0
-    r_sqr = r * r
+    r_sqr = r**2
     _2r_sqr = r_sqr << 1
     _4r_sqr = r_sqr << 2
     d = _2r_sqr * ((row - 1) * (row)) + \
@@ -182,7 +182,7 @@ def iterline(
     (px, py) = p1
     if dxabs >= dyabs:
         ilim = dxabs + 1
-        for i in range(0, ilim):
+        for _ in range(ilim):
             y += dyabs
             if y >= dxabs:
                 y -= dxabs
@@ -191,7 +191,7 @@ def iterline(
             px += sdx
     else:
         ilim = dyabs + 1
-        for i in range(0, ilim):
+        for _ in range(ilim):
             x += dxabs
             if x >= dyabs:
                 x -= dyabs
@@ -227,8 +227,7 @@ def lineseg(p1: list[int, int],
         [[x:int, y:int],..]
 
     """
-    return [p for p in \
-            iterline(p1, p2)]
+    return list(iterline(p1, p2))
 
 
 def iterellipsepart(b: int, a: int):
@@ -247,8 +246,8 @@ def iterellipsepart(b: int, a: int):
     """
     row = b
     col = 0
-    a_sqr = a * a
-    b_sqr = b * b
+    a_sqr = a**2
+    b_sqr = b**2
     _2a_sqr = a_sqr << 1
     _4a_sqr = a_sqr << 2
     _2b_sqr = b_sqr << 1
@@ -265,7 +264,7 @@ def iterellipsepart(b: int, a: int):
     d = _2b_sqr * ((col - 1) * col) + \
         _2a_sqr * (row * (row - 2) + 1) + \
         (1 - _2a_sqr) * b_sqr
-    while (row + 1) > 0:
+    while row > -1:
         yield [col, row]
         if d >= 0:
             col += 1
@@ -290,8 +289,7 @@ def iterellipse(x: int, y: int,
         [x: int, y: int]
     """
     for p in iterellipsepart(b,a):
-         for v in mirror1stquad(x,y,p):
-             yield v
+        yield from mirror1stquad(x,y,p)
 
 
 def iterellipserot(
@@ -340,8 +338,7 @@ def itercircle(x: int, y: int,
         [x: int, y: int]
     """
     for p in itercirclepart(r):
-         for v in mirror1stquad(x, y, p):
-             yield v
+        yield from mirror1stquad(x, y, p)
 
 
 def bezierblend(i: int, n: int, u: int):
@@ -349,34 +346,31 @@ def bezierblend(i: int, n: int, u: int):
 
 
 def iterbeziercurve(pntlist: list) -> list:
-    i = 0
     cnt = len(pntlist)
     w = v = pntlist[0]
     klim = cnt << 2
-    while i < cnt:
+    for i in range(cnt):
         if i > cnt - 2:
             last = i - 1
-            for k in range(0, klim):
+            for k in range(klim):
                 u = k / klim
                 v = [0, 0]
-                for j in range(0,i):
+                for j in range(i):
                     v = addvect(v,
                          scalarmulvect(
                                 pntlist[j],
                           bezierblend(
                                 j, last, u)))
-                for pnt in iterline(roundvect(v),
-                                    roundvect(w)):
-                    yield pnt
+                yield from iterline(roundvect(v), roundvect(w))
+
                 w = v
-        i += 1
 
 
 def beziercurvevert(
         pntlist: list,
         isclosed: bool,
         curveback: bool) -> list:
-    return [v for v in iterbeziercurve(pntlist)]
+    return list(iterbeziercurve(pntlist))
 
 
 def iterbspline(
@@ -391,17 +385,16 @@ def iterbspline(
     ilim = cnt + iif(isclosed, 2, 0)
     mx = cnt-1
     while i < ilim:
-        for k in range(0, klim):
+        for k in range(klim):
             u = k / klim
             v = [0, 0]
             nc = bsplineblend(u)
-            for j in range(0, 4):
+            for j in range(4):
                 k = i + j
                 v = addvect(v, scalarmulvect(
                      pntlist[k % cnt if curveback else setmax(k, mx)], nc[j]))
             if i > 1:
-                for pnt in iterline(roundvect(v), roundvect(w)):
-                    yield pnt
+                yield from iterline(roundvect(v), roundvect(w))
             w = v
         i += 1
 
@@ -410,16 +403,14 @@ def bsplinevert(
     pntlist: list,
     isclosed: bool,
     curveback: bool) -> list:
-    return [v for v in iterbspline(pntlist,
-                                  isclosed,
-                                 curveback)]
+    return list(iterbspline(pntlist, isclosed, curveback))
 
 
 #dont edit this square shaped code
 def bsplineblend(u: float
           ) -> list[float, float,
                     float, float,]:
-    u2,u3= u*u,u*u*u
+    u2,u3 = u**2, u**2 * u
     d,f = u3/6 , 1/6
     a=-d +u2/2-u/2+f
     b= u3/2 -u2 +2/3
@@ -568,7 +559,7 @@ def circlevert(x: int, y: int, r: int
         to draw a circle
         list[[x: int, y: int]]
     """
-    return [v for v in itercircle(x, y, r)]
+    return list(itercircle(x, y, r))
 
 
 def arcvert(
@@ -605,8 +596,7 @@ def arcvert(
             v.append(p)
             if abs(a - sa) < tol or \
                abs(a - ea) < tol: #for larger arcs tol may be >0.03
-                for np in iterline(c, p):
-                    v.append(np)
+                v.extend(iter(iterline(c, p)))
     return v
 
 
@@ -688,8 +678,7 @@ def getneighborlist(
         list of neighboring pixels
         [[x: int, y: int],...]
     """
-    return [u for u in itergetneighbors(
-                v, mx, my, includecenter)]
+    return list(itergetneighbors(v, mx, my, includecenter))
 
 
 def spiralcontrolpointsvert(
@@ -803,14 +792,13 @@ def listinrecbnd(
         False -> Not all (x, y)
                  is in bounds
     """
-    retval = True
     for v in xylist:
         if isinrectbnd(v[0], v[1],
                        xmin, ymin,
                        xmax, ymax) == \
             False:
             break
-    return retval
+    return True
 
 
 def entirecircleisinboundary(
@@ -886,5 +874,4 @@ def ellipsevert(
         ellipse
         [[x: int, y: int], ...]
     """
-    return [v for v in iterellipse(
-                         x, y, b, a)]
+    return list(iterellipse(x, y, b, a))
