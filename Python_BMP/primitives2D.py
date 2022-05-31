@@ -400,9 +400,25 @@ def iterbspline(
 
 
 def bsplinevert(
-    pntlist: list,
+    pntlist: list[list[int, int]],
     isclosed: bool,
-    curveback: bool) -> list:
+    curveback: bool
+    ) -> list[list[int, int]]:
+    """Creates a list of vertices for
+        a bspline curve based on
+        2D control points in pntlist
+
+    Args:
+        pntlist: 2D control points
+                 for the bspline
+                 curve as
+                 list[list[x: int,
+                           y: int]]
+
+    Returns:
+        list of vertices as
+        list[list[x: int, y: int]]
+    """
     return list(iterbspline(pntlist, isclosed, curveback))
 
 
@@ -562,10 +578,9 @@ def circlevert(x: int, y: int, r: int
     return list(itercircle(x, y, r))
 
 
-def arcvert(
-        x: int, y: int, r: int,
-        startdegangle: float,
-        enddegangle: float):
+def arcvert(x: int, y: int, r: int,
+            startdegangle: float,
+            enddegangle: float):
     """Returns a list[(int, int)]
         of 2D vertices along a path
         defined by radius r as it
@@ -617,10 +632,10 @@ def rectboundarycoords(
             (max(x), max(y)))
 
 
-def itergetneighbors(
-        v: list[int, int],
-        mx: int, my: int,
-        includecenter: bool) -> list[int, int]:
+def itergetneighbors(v: list[int, int],
+                      mx: int, my: int,
+                   includecenter: bool
+                   ) -> list[int, int]:
     """Yields the neighboring pixels
         of point v
 
@@ -855,9 +870,9 @@ def entireellipseisinboundary(
             isinrange(y + a, maxy, miny))
 
 
-def ellipsevert(
-    x: int, y: int,
-    b: int, a: int) -> list[int, int]:
+def ellipsevert(x: int, y: int,
+                b: int, a: int
+               ) -> list[int, int]:
     """Returns (int, int) 2D vertices
         along a path defined by
         major and minor axes
