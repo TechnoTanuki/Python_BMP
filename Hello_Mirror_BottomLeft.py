@@ -26,13 +26,13 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(rootdir + '/assets/Tanuki.bmp') # load to memory
+        bmp = loadBMP(f'{rootdir}/assets/Tanuki.bmp')
         mirrorbottomleft(bmp)
         file = 'HelloMirrorBottomLeft.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

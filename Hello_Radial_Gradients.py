@@ -35,8 +35,8 @@ def main():
         end = getmaxxy(bmp) # get max x and y
         cen = centercoord(bmp) # get x,y of center
         ori = (0, 0) # define as origin
-        for y in range(0, my):
-                for x in range(0, mx):
+        for y in range(my):
+                for x in range(mx):
                         pt = (x, y) # pacc x,y to tuple
                         r = int(distance(ori, pt)) % 256 # red gradient
                         g = int(distance(end, pt)) % 256 # green gradient
@@ -46,7 +46,7 @@ def main():
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

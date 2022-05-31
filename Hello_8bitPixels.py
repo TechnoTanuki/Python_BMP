@@ -26,14 +26,14 @@ def main():
         rootdir = path.dirname(__file__) # get path of this script
         mx = my= 512 #bitmap size
         bmp = newBMP(mx, my, 8) #256 colors
-        for x in range(0,mx):
-                for y in range(0,my):
+        for x in range(mx):
+                for y in range(my):
                         plotxybit(bmp, x, y, (x & y) & 0xFF)
         file = 'Hello8bitPixels.bmp' #file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

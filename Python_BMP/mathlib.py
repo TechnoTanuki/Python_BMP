@@ -312,8 +312,7 @@ def pivotlist(
     Returns:
         list of lists
     """
-    return [[v[i] for v in vlist]
-            for i in range(0, j)]
+    return [[v[i] for v in vlist] for i in range(j)]
 
 
 def variance(v: list[Number]
@@ -426,10 +425,8 @@ def intsetminmax(val: Number,
         int
     """
     val = round(val)
-    if val > maxval:
-        val = maxval
-    if val < minval:
-        val = minval
+    val = min(val, maxval)
+    val = max(val, minval)
     return val
 
 
@@ -446,12 +443,11 @@ def sign(intval: int) -> int:
     """
     retval = 0
     if intval > 0:
-        retval = 1
+        return 1
     elif intval == 0:
-        retval = 0
+        return 0
     else:
-        retval = -1
-    return retval
+        return -1
 
 
 def LSMslope(XYdata: list) -> float:
@@ -754,9 +750,7 @@ def vmag(v: list[float]) -> float:
     Returns:
         float
     """
-    s = 0
-    for i in v:
-        s += i * i
+    s = sum(i * i for i in v)
     return sqrt(s)
 
 
@@ -790,11 +784,12 @@ def distancetable(vertlist: list) -> list:
     """
     dlist = []
     for v in vertlist:
-        for u in vertlist:
-            if u != v:
-                dlist.append([vertlist.index(v),
-                              vertlist.index(u),
-                              distance(u,v)])
+        dlist.extend(
+            [vertlist.index(v), vertlist.index(u), distance(u, v)]
+            for u in vertlist
+            if u != v
+        )
+
     return dlist
 
 
@@ -1290,13 +1285,11 @@ def anglebetween2Dlines(
     Returns:
         float angle in radians
     """
-    if u[0] != v[0]:
-        a = atan(slope(u, v))
-    else:
-        a = iif(u[0] < v[0],
-                    1.5707963267948966,
-                    4.71238898038469)
-    return a
+    return (
+        atan(slope(u, v))
+        if u[0] != v[0]
+        else iif(u[0] < v[0], 1.5707963267948966, 4.71238898038469)
+    )
 
 
 def rotatebits(bits: int) -> int:
@@ -1308,13 +1301,9 @@ def rotatebits(bits: int) -> int:
     Returns:
         int value of rotated 8 bits
     """
-    bit = 7
-    retval = 0
-    while bit>0:
-        retval += \
-            ((bits & (1 << bit)) >> bit) << (7 - bit)
-        bit -= 1
-    return retval
+    return sum(
+        ((bits & (1 << bit)) >> bit) << (7 - bit) for bit in range(7, 0, -1)
+    )
 
 
 def mirror1stquad(x: Number, y: Number,
@@ -1526,10 +1515,8 @@ def enumbits(byteval: int):
         Eight bits that is either
         int 0 or int 1
     """
-    bit = 7
-    while bit > -1:
+    for bit in range(7, -1, -1):
         yield  ((byteval & (1 << bit)) >> bit)
-        bit -= 1
 
 
 def delta(v: list[Number, Number]):

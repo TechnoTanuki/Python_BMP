@@ -26,7 +26,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(rootdir + '/assets/earth.bmp') # load earth to memory
+        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         #gammaadjto24bitregion(bmp,x1,y1,x2,y2,gammadj <ufloat>)
         gammaadjto24bitregion(
                 bmp,
@@ -40,7 +40,7 @@ def main():
         saveBMP(file, bmp) # bmp<byte array in bitmap format> --> file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

@@ -37,7 +37,7 @@ def writeint(offset: int, cnt: int,
         byref unsigned byte array
     """
     j = cnt - 1
-    for i in range(0, j):
+    for i in range(j):
         b = value & 0xff
         arr[offset + i] = b
         value = value >> 8
@@ -60,11 +60,8 @@ def readint(offset: int, cnt: int,
     Returns:
         unsigned int value
     """
-    v = 0
     j = cnt - 1
-    for i in range(0, j):
-        v += arr[offset + i] << (i << 3)
-    return v
+    return sum(arr[offset + i] << (i << 3) for i in range(j))
 
 
 def int2buf(cnt: int, value: int
@@ -79,12 +76,10 @@ def int2buf(cnt: int, value: int
     Returns:
         unsigned byte array
     """
-    return array('B',
-            [(value >> (i * 8)) & 0xff
-              for i in range(0, cnt)])
+    return array('B', [(value >> (i * 8)) & 0xff for i in range(cnt)])
 
 
-def buf2int(buf: array) -> int :
+def buf2int(buf: array) -> int:
     """Converts an unsigned byte array
         to an integer value
 
@@ -94,8 +89,5 @@ def buf2int(buf: array) -> int :
     Returns:
         unsigned int value
     """
-    v = 0
     j = len(buf) - 1
-    for i in range(0, j):
-        v += buf[i] << (i << 3)
-    return v
+    return sum(buf[i] << (i << 3) for i in range(j))

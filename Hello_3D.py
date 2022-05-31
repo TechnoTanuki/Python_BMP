@@ -57,11 +57,8 @@ def main():
         tvect = [0,0,100] # be careful with these variables or object goes offscreen
         sd = getshapesidedict() # shape dictonary
         pts = tetrahedravert(80) # get points in 3D space that forms a tetrahedron
-        # make list of objects to render
-                #be careful with these variables
         # or  the object goes offscreen
         d = 200 # distance of the observer
-                # from the screen
         tvect = [0, 0, 100] #3D translation vector
 
         shapes = [[[trans(cubevert(30), pts[3]),
@@ -118,7 +115,7 @@ def main():
         saveBMP(file,bmp) # dump bytes to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(imgedt + ' ' + file) # load image in editor
+        ret = proc.call(f'{imgedt} {file}')
 
 if __name__=="__main__":
         main()

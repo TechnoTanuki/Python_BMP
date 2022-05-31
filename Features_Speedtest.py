@@ -114,9 +114,8 @@ def hhmmsselaspedtime(inittime):
                 divmod((_time_ns() - inittime), 1000000000)
         mins, secs = divmod(secs, 60)
         hrs, mins = divmod(mins, 60)
-        return str(hrs).zfill(2) + ':' \
-             + str(mins).zfill(2) + ':' \
-             + str(secs).zfill(2) + '.' + str(ns)
+        return (((f'{str(hrs).zfill(2)}:' + str(mins).zfill(2)) + ':') +
+                str(secs).zfill(2) + '.') + str(ns)
 
 def main():
         rootdir = path.dirname(__file__)
