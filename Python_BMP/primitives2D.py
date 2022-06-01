@@ -963,10 +963,11 @@ def iterspirograph(
     d = 1 - k
     f = d / k
     while a < lim:
+        b = a * f
         dx =  round(r * (d * cos(a) + \
-                         e * cos(a * f)))
+                         e * cos(b)))
         dy =  round(r * (d * sin(a) + \
-                         e * sin(a * f)))
+                         e * sin(b)))
         a += delta
         yield (x + dx, y + dy)
 
