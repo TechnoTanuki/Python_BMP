@@ -27,7 +27,7 @@ def main():
         file = 'Hello4timessmaller.bmp' # new file
         resizeNtimessmaller2file(existingfile, file, n) # make earth smol by n times
         print(f'All done close {imgedt} to finish')
-        ret = proc.call(f'{imgedt} {file}')
+        ret = proc.call([imgedt, file])
 
 if __name__=="__main__":
         main()
