@@ -684,6 +684,20 @@ def surfplot3Dvertandsurface(
         x2: int, y2: int,
         step: int, fnxy: Callable
         ) -> tuple:
+    """Does a 3D surface plot of a
+        function z = fnxy(x, y)
+
+    Args:
+        x1, y1, x2, y2: set drawing area
+        fnxy          : fnxy(x, y)
+                        Callable
+                        (lambda or fn)
+
+    Returns:
+        list of vertices and surfaces
+        for plot3Dsolid()
+        see Hello_3D_surfaceplot.py
+    """
     vlist = []
     surf = []
     for y in range(y1, y2, step):
