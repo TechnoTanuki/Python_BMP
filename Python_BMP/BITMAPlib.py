@@ -4078,22 +4078,45 @@ def plotitalic8bitpatternwithfn(
     """
     inc = scale - 1 - pixspace
     i = scale >> 1
-    for bits in bitpattern:
-        ox = x
-        mask = 128
-        while mask > 0:
-            if (mask & bits) > 0:
-                if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y, color)
-                else:
-                    fn(bmp, x, y, inc, color)
-            mask >>= 1
-            x += scale
-        y += scale
-        x = ox - i
-        if y % 2 == 0 and scale == 1:
-            x -= 1
-
+    if type(color) == int:
+        for bits in bitpattern:
+            ox = x
+            mask = 128
+            while mask > 0:
+                if (mask & bits) > 0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y, color)
+                    else:
+                        fn(bmp, x, y, inc, color)
+                mask >>= 1
+                x += scale
+            y += scale
+            x = ox - i
+            if y % 2 == 0 and scale == 1:
+                x -= 1
+    elif type(color) == list or type(color) == tuple:
+        colorind = 0
+        colorcnt = len(color)
+        for bits in bitpattern:
+            ox = x
+            mask = 128
+            while mask > 0:
+                if (mask & bits) > 0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y,
+                            color[colorind])
+                    else:
+                        fn(bmp, x, y, inc,
+                            color[colorind])
+                mask >>= 1
+                x += scale
+            y += scale
+            x = ox - i
+            colorind += 1
+            if colorind == colorcnt:
+                colorind = 0
+            if y % 2 == 0 and scale == 1:
+                x -= 1
 
 def plotitalic8bitpatternupsidedownwithfn(
         bmp: array, x: int, y: int,
