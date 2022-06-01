@@ -4118,6 +4118,7 @@ def plotitalic8bitpatternwithfn(
             if y % 2 == 0 and scale == 1:
                 x -= 1
 
+
 def plotitalic8bitpatternupsidedownwithfn(
         bmp: array, x: int, y: int,
         bitpattern: list, scale: int,

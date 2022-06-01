@@ -31,7 +31,7 @@ def main():
         mx, my = 840, 100 # bitmap size
         bmp = newBMP(mx,my,24) # RGB bitmap
         plotupsidedownitalicstring(bmp,
-                50, 10, # position the text
+                50, 0, # position the text
                 'Hello World!!', # random text
                 7, # uint font size multiplier
                 1, # uint space between pixels
