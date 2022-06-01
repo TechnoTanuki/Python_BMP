@@ -936,14 +936,13 @@ def ellipsevert(x: int, y: int,
 
 def iterspirograph(
                x: int, y:int, r: int,
-               delta: float,
-               lim: float,
+               delta: float, lim: float,
                l: float, k: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         spirograph scaling factor r
-        dimensionless parameters
-        l and k with origin set
+        and dimensionless parameters
+        l and k with an origin set
         at (x, y)
 
     Args:
@@ -974,15 +973,14 @@ def iterspirograph(
 
 def spirographvert(
                x: int, y:int, r: int,
-               delta: float,
-               lim: float,
+               delta: float, lim: float,
                l: float, k: float):
     """Returns a list(int, int) of
         2D vertices along a path
         defined by a spirograph
-        with a  scaling factor r
-        dimensionless parameters
-        l and k and origin set
+        with a scaling factor r
+        and dimensionless parameters
+        l and k with an origin set
         at (x, y)
 
     Args:
