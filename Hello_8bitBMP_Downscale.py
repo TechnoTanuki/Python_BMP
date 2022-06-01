@@ -35,7 +35,7 @@ def main():
                 bits, threshold,
                 usemono, RGBfactors) # magic takes time
         print(f'All done close {imgedt} to finish')
-        ret = proc.call(f'{imgedt} {newfile}')
+        ret = proc.call([imgedt, newfile])
 
 if __name__=="__main__":
         main()

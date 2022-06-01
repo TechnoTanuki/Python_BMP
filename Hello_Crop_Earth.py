@@ -33,7 +33,7 @@ def main():
                 20, 20, 100, 100 # area to crop
                 )
         print(f'All done close {imgedt} to finish')
-        ret = proc.call(f'{imgedt} {file}')
+        ret = proc.call([imgedt, file])
 
 if __name__=="__main__":
         main()
