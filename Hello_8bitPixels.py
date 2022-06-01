@@ -33,7 +33,7 @@ def main():
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(f'{imgedt} {file}')
+        ret = proc.call([imgedt, file])
 
 if __name__=="__main__":
         main()

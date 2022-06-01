@@ -53,7 +53,7 @@ def main():
         print(f'Saved {file}')
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
-        ret = proc.call(f'{imgedt} {file}')
+        ret = proc.call([imgedt, file])
 
 if __name__=="__main__":
         main()

@@ -101,7 +101,7 @@ def main():
         saveBMP(file,bmp) # dump bytes to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(f'{imgedt} {file}')
+        ret = proc.call([imgedt, file])
 
 if __name__=="__main__":
         main()
