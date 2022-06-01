@@ -933,3 +933,28 @@ def ellipsevert(x: int, y: int,
         [[x: int, y: int], ...]
     """
     return list(iterellipse(x, y, b, a))
+
+
+def iterspirograph(
+               x: int, y:int, r: int,
+               delta: float,
+               lim: float,
+               l: float, k: float):
+    a = 0
+    while a < lim:
+        e = l * k
+        d = 1 - k
+        f = d / k
+        dx =  round(r * (d * cos(a) + e * cos(a * f)))
+        dy =  round(r * (d * sin(a) + e * sin(a * f)))
+        a += delta
+        yield (x + dx, y + dy)
+
+
+def spirographvert(
+               x: int, y:int, r: int,
+               delta: float,
+               lim: float,
+               l: float, k: float):
+    return list(iterspirograph(x, y, r,
+                delta, lim, l, k))

@@ -30,7 +30,7 @@
 """
 
 from array import array
-from math import(sin, cos, radians)
+from math import(sin, cos, radians, pi)
 
 from random import random
 from typing import Callable
@@ -100,11 +100,13 @@ from .primitives2D import(
     itergetneighbors,
     iterline,
     iterparallelogram,
+    iterspirograph,
     listinrecbnd,
     rectboundarycoords,
     recvert,
     regpolygonvert,
     sortrecpoints,
+    spirographvert,
     spiralcontrolpointsvert,
     verticalvert
     )
