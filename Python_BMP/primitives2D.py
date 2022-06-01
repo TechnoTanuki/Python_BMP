@@ -959,12 +959,14 @@ def iterspirograph(
         [[x: int, y: int], ...]
     """
     a = 0
+    e = l * k
+    d = 1 - k
+    f = d / k
     while a < lim:
-        e = l * k
-        d = 1 - k
-        f = d / k
-        dx =  round(r * (d * cos(a) + e * cos(a * f)))
-        dy =  round(r * (d * sin(a) + e * sin(a * f)))
+        dx =  round(r * (d * cos(a) + \
+                         e * cos(a * f)))
+        dy =  round(r * (d * sin(a) + \
+                         e * sin(a * f)))
         a += delta
         yield (x + dx, y + dy)
 

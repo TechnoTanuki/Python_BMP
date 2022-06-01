@@ -36,9 +36,9 @@ def main():
         step = 5 # pixel interval between spiral turn
         growthfactor = 1 # greater than 1 means exponential spiral
         turns = 13 # number of turns of spiral
-        d = 2/360
+        d = 1/120
         lim = pi * 2 + d
-        vertlist = spirographvert(x, y, 200, d , lim, 3, .05) # list of (x,y) control points
+        vertlist = spirographvert(x, y, 200, d , lim, 1, .05) # list of (x,y) control points
         color = 10
         plotlines(bmp, vertlist, color) # connect the dots with lines
         saveBMP(file, bmp) # save file
