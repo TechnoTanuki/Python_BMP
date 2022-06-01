@@ -33,14 +33,12 @@ def main():
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         file = 'HelloSpirograph.bmp' # file name
-        step = 5 # pixel interval between spiral turn
-        growthfactor = 1 # greater than 1 means exponential spiral
-        turns = 13 # number of turns of spiral
         d = 1/120
-        lim = pi * 2 + d
-        vertlist = spirographvert(x, y, 200, d , lim, 1, .05) # list of (x,y) control points
+        lim = pi * 20 + d
         color = 10
-        plotlines(bmp, vertlist, color) # connect the dots with lines
+        plotlines(bmp,
+                spirographvert(x, y, 200, d , lim, 1, .07),
+                color) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
