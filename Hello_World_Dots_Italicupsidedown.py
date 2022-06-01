@@ -29,9 +29,9 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx, my = 840, 100 # bitmap size
-        bmp = newBMP(mx,my,24) # RGB bitmap
+        bmp = newBMP(mx, my, 24) # RGB bitmap
         plotupsidedownitalicstringasdots(bmp,
-                50, 10, # position the text
+                50, 0, # position the text
                 'Hello World!!', # random text
                 7, # uint font size multiplier
                 1, # uint space between pixels
