@@ -31,13 +31,13 @@ def main():
         mx, my = 770, 70 # bitmap size
         bmp = newBMP(mx,my,24) # RGB bitmap
         c = getcolorname2RGBdict()
-        colors = [c['brightred'],
+        colors = (c['brightred'],
                   c['brightorange'],
                   c['brightyellow'],
                   c['brightgreen'],
                   c['cyan'],
                   c['brightblue'],
-                  c['brightmagenta']]
+                  c['brightmagenta'])
         plotstring(bmp,
                 20, 10, # position the text
                 'Hello World!!', # random text
