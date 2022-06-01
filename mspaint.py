@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 """
 Cross-platform launcher to replace and/or wrap 'mspaint'
-
 Opens the image file specified in argv[1] if given;
 otherwise, open the first `.bmp` file found in the
 current working directory or a subdirectory.
-
 Installation:
 =============
-
   Windows
   -------
     Simply run your desired script from the directory 
@@ -21,7 +18,6 @@ Installation:
     
     Ensure `.PY` is in your `PATHEXT` environment
     variable and that Python >= 3.8 is installed.
-
   Unix/Mac/Linux/Android
   ----------------------
     ### One-Step Run
@@ -43,110 +39,118 @@ Installation:
 """
 from subprocess import CalledProcessError, check_output
 from pathlib import Path
-from sys import argv, platform
+from sys import argv, exit, platform, stderr
 from urllib.parse import ParseResult, urlunparse
 
 # The path tp the file we want to open
-file: Path = Path(
-  argv[1:] and argv[1]
-  or str(
-    next(
-      Path.cwd().rglob("*.bmp")
-    )
-  )
-).resolve().absolute()
+def mtime(p: Path) -> float:
+    return p.stat().st_mtime
 
 
+def determine_file(*argv) -> Path:
+    glob: Optional[str] = None
+    file: Optional[Path] = None
+    if argv[1:]:
+        if Path(argv[1]).exists():
+            return Path(argv[1]).resolve().absolute()
+        glob = argv[1]
+    else:
+        glob = "*.bmp"
+    for f in sorted(
+        Path.cwd().rglob(glob),
+        key=mtime,
+        reverse=True,
+    ):
+        return f
+    print(f"No file specified and no {glob} " f"found in {Path.cwd()!s}", file=stderr)
+    exit(1)
+
+
+file: Path = determine_file(argv)
+print(file)
 is_windows: bool = platform == "win32"
 is_android: bool
 try:
-  is_android = check_output(
-    [
-      "toolbox",
-      "getprop",
-      "ro.product.system.manufacturer"
-    ],
-    encoding="UTF-8"
-  ).strip() == "Android"
+    is_android = (
+        check_output(
+            ["toolbox", "getprop", "ro.product.system.manufacturer"], encoding="UTF-8"
+        ).strip()
+        == "Android"
+    )
 except (CalledProcessError, FileNotFoundException):
-  is_android = False
-
-
+    is_android = False
 if is_windows:
-  print(check_output(
-    [
-      "cmd.exe", "/C", "start", "", "mspaint.exe",
-      str(file)
-    ],
-    shell=False,
-  ))
-else:
-  if is_android:
-    url: str = urlunparse(
-      ParseResult(
-        scheme="file",
-        netloc="",
-        path=file.as_posix(),
-        params="",
-        query="",
-        fragment="",
-      )
-    )
-    # Prefixes that indicate file is on internal SD card
-    sd_prefixes = (
-      ("data","media"),
-      ("storage","emulated"),
-      ("mnt", "shell", "emulated"),
-    )
-    # Adjust path to a globally-readable form if Android
-    # and path is on internal SD card
-    file = (
-      Path(
-        *(
-          "/",
-          "sdcard",
-        )
-        + next(
-          file.parts[1 + len(sl) :]
-          for sl in sd_prefixes
-          if file.parts[1 : 1 + len(sl)] == sl
-        )[1:]
-      )
-      if any(
-        file.parts[1 : 1 + len(sl)] == sl 
-        for sl in sd_prefixes
-      )
-      else file
-    )
     print(
-      check_output(
-        [
-          "am",
-          "start",
-          "--user",
-          "0",
-          "-a",
-          "android.intent.action.VIEW",
-          "-c",
-          "android.intent.category.DEFAULT",
-          "-t",
-          "image/*",
-          "--grant-read-uri-permission",
-          "--grant-write-uri-permission",
-          "--grant-persistable-uri-permission",
-          "--grant-prefix-uri-permission",
-          "-d",
-          url,
-        ]
-      )
+        check_output(
+            ["cmd.exe", "/C", "start", "", "mspaint.exe", str(file)],
+            shell=False,
+        )
     )
-  else:
-    # Linux, Mac
-    print(check_output(
-      [
-        "xdg-open", file.as_posix()
-      ],
-      shell=False,
-    ))
-
-
+else:
+    if is_android:
+        # Prefixes that indicate file is on internal SD card
+        sd_prefixes = (
+            ("data", "media"),
+            ("storage", "emulated"),
+            ("mnt", "shell", "emulated"),
+        )
+        # Adjust path to a globally-readable form if Android
+        # and path is on internal SD card
+        file = (
+            Path(
+                *(
+                    "/",
+                    "sdcard",
+                )
+                + next(
+                    file.parts[1 + len(sl) :]
+                    for sl in sd_prefixes
+                    if file.parts[1 : 1 + len(sl)] == sl
+                )[1:]
+            )
+            if any(file.parts[1 : 1 + len(sl)] == sl for sl in sd_prefixes)
+            else file
+        )
+        url: str = urlunparse(
+            ParseResult(
+                scheme="file",
+                netloc="",
+                path=file.as_posix(),
+                params="",
+                query="",
+                fragment="",
+            )
+        )
+        print(
+            check_output(
+                [
+                    "am",
+                    "start",
+                    "--user",
+                    "0",
+                    "-a",
+                    "android.intent.action.VIEW",
+                    "-c",
+                    "android.intent.category.DEFAULT",
+                    "-t",
+                    "image/*",
+                    "--grant-read-uri-permission",
+                    "--grant-write-uri-permission",
+                    "--grant-persistable-uri-permission",
+                    "--grant-prefix-uri-permission",
+                    "-d",
+                    url,
+                ]
+            )
+        )
+    else:
+        # Linux, Mac
+        print(
+            check_output(
+                [
+                    "open" if platform == "darwin" else "xdg-open",
+                    file.absolute().as_posix(),
+                ],
+                shell=False,
+            )
+        )
