@@ -4014,20 +4014,41 @@ def plot8bitpatternwithfn(
         unsigned byte array
     """
     inc = scale - 1 - pixspace
-    for bits in bitpattern:
-        ox = x
-        mask = 128
-        while mask > 0:
-            if (mask & bits) > 0:
-                if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y, color)
-                else:
-                    fn(bmp, x, y, inc, color)
-            mask >>= 1
-            x += scale
-        y += scale
-        x = ox
-
+    if type(color) == int:
+        for bits in bitpattern:
+            ox = x
+            mask = 128
+            while mask > 0:
+                if (mask & bits) > 0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y, color)
+                    else:
+                        fn(bmp, x, y, inc, color)
+                mask >>= 1
+                x += scale
+            y += scale
+            x = ox
+    elif type(color) == list or type(color) == tuple:
+        colorcount = len(color)
+        colorind = 0
+        for bits in bitpattern:
+            ox = x
+            mask = 128
+            while mask > 0:
+                if (mask & bits) > 0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y,
+                            color[colorind])
+                    else:
+                        fn(bmp, x, y, inc,
+                            color[colorind])
+                mask >>= 1
+                x += scale
+            y += scale
+            colorind += 1
+            if colorind == colorcount:
+                colorind = 0
+            x = ox
 
 def plotitalic8bitpatternwithfn(
         bmp: array, x: int, y: int,
