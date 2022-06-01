@@ -816,7 +816,6 @@ def isinrectbnd(x: int, y: int,
         xmin, ymin: min (x, y) bounds
         xmax, ymax: max (x, y) bounds
 
-
     Returns:
         boolean value
         True  -> (x, y) is in bounds
@@ -940,6 +939,25 @@ def iterspirograph(
                delta: float,
                lim: float,
                l: float, k: float):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        spirograph scaling factor r
+        dimensionless parameters
+        l and k with origin set
+        at (x, y)
+
+    Args:
+        x, y : center of the spirograph
+        r    : spirograph scaling factor
+        l, k : spirograph shape parameters
+        delta: angle increment
+        lim  : angle limit
+
+    Yields:
+        The vertices of an
+        spirograph
+        [[x: int, y: int], ...]
+    """
     a = 0
     while a < lim:
         e = l * k
@@ -956,5 +974,25 @@ def spirographvert(
                delta: float,
                lim: float,
                l: float, k: float):
+    """Returns a list(int, int) of
+        2D vertices along a path
+        defined by a spirograph
+        with a  scaling factor r
+        dimensionless parameters
+        l and k and origin set
+        at (x, y)
+
+    Args:
+        x, y : center of the spirograph
+        r    : spirograph scaling factor
+        l, k : spirograph shape parameters
+        delta: angle increment
+        lim  : angle limit
+
+    Returns:
+        The vertices of an
+        spirograph in a list
+        [[x: int, y: int], ...]
+    """
     return list(iterspirograph(x, y, r,
                 delta, lim, l, k))
