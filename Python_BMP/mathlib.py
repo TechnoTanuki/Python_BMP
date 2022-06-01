@@ -141,8 +141,8 @@ def roundvectlist(
           ) -> list[list[int]]:
     """Rounds the components of a vector
         in a list within a list
-        lists of (list of floats) ->
-        lista of (list of ints)
+        list of (list of floats) ->
+        list of (list of ints)
 
     Args:
         vlist: list[list[floats]
@@ -1527,6 +1527,6 @@ def delta(v: list[Number, Number]):
         v: list[Number, Number]
 
     Returns:
-        delta of numbera
+        delta of numbers
     """
     return (v[1] - v[0])
