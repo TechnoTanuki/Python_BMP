@@ -2541,7 +2541,7 @@ def flipXYcircregion(bmp: array,
     """
     bits = bmp[_bmclrbits]
     c = _getBMoffhdfunc(bmp)
-    if bits not in [24,8]:
+    if bits not in [24, 8]:
         n = flipXY(bmp)
         for v in itercirclepartlineedge(r):
             x3, x4 = mirror(y, v[0])
@@ -3732,7 +3732,7 @@ def drawarc(bmp: array,
         color: int, showoutline: bool,
         fillcolor: int, isfilled: bool):
     """Draws an arc centered
-        at point (x,y) with radius r
+        at point (x, y) with radius r
         and specified start
         and end angles in degrees
 
