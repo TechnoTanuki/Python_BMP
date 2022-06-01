@@ -81,17 +81,17 @@ if is_windows:
     shell=False,
   ))
 else:
-  url: str = urlunparse(
-    ParseResult(
-      scheme="file",
-      netloc="",
-      path=file.as_posix(),
-      params="",
-      query="",
-      fragment="",
-    )
-  )
   if is_android:
+    url: str = urlunparse(
+      ParseResult(
+        scheme="file",
+        netloc="",
+        path=file.as_posix(),
+        params="",
+        query="",
+        fragment="",
+      )
+    )
     # Prefixes that indicate file is on internal SD card
     sd_prefixes = (
       ("data","media"),
@@ -141,7 +141,12 @@ else:
       )
     )
   else:
-    from webbrowser import open_new_tab
-    open_new_tab(url)
+    # Linux, Mac
+    print(check_output(
+      [
+        "xdg-open", file.as_posix()
+      ],
+      shell=False,
+    ))
 
 
