@@ -28,7 +28,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx, my = 840, 100 # bitmap size
+        mx, my = 970, 80 # bitmap size
         bmp = newBMP(mx,my,24) # RGB bitmap
         c = getcolorname2RGBdict()
         colors = (c['brightred'],
@@ -39,9 +39,9 @@ def main():
                   c['brightblue'],
                   c['brightmagenta'])
         plotstringupsidedownasdots(bmp,
-                50, 0, # position the text
+                 25, 0, # position the text
                 'Hello World!!', # random text
-                7, # uint font size multiplier
+                9, # uint font size multiplier
                 1, # uint space between pixels
                 0, # uint default space between char
                 colors,
