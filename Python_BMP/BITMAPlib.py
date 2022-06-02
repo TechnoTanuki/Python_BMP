@@ -4099,14 +4099,13 @@ def plotitalic8bitpatternwithfn(
         for bits in bitpattern:
             ox = x
             mask = 128
+            cl = color[colorind]
             while mask > 0:
                 if (mask & bits) > 0:
                     if scale == 1 or inc <= 0:
-                        plotxybit(bmp, x, y,
-                            color[colorind])
+                        plotxybit(bmp, x, y, cl)
                     else:
-                        fn(bmp, x, y, inc,
-                            color[colorind])
+                        fn(bmp, x, y, inc, cl)
                 mask >>= 1
                 x += scale
             y += scale
