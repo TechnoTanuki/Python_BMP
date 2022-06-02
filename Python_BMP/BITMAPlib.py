@@ -4073,6 +4073,7 @@ def plot8bitpatternwithfn(
                 colorind = 0
             x = ox
 
+
 def plotitalic8bitpatternwithfn(
         bmp: array, x: int, y: int,
         bitpattern: list, scale: int,
@@ -4214,6 +4215,7 @@ def plotitalic8bitpatternupsidedownwithfn(
                 colorind = 0
             if y % 2 == 0 and scale == 1:
                 x -= 1
+
 
 def plot8bitpattern(
         bmp: array, x: int, y: int,
@@ -4798,24 +4800,46 @@ def plotitalic8bitpatternsidewaywithfn(
     """
     inc = scale - 1 - pixspace
     i = scale >> 1
-    for bits in bitpattern:
-        oy = y
-        mask = 128
-        while mask > 0:
-            if (mask & bits) > 0:
-                if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y,
-                                    color)
-                else:
-                    fn(bmp, x, y, inc,
-                                    color)
-            mask >>= 1
-            y -= scale
-        x += scale
-        y = oy + i
-        if x % 2 == 0 and scale == 1:
-            y -= 1
-
+    if type(color) == int:
+        for bits in bitpattern:
+            oy = y
+            mask = 128
+            while mask > 0:
+                if (mask & bits) > 0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y,
+                                        color)
+                    else:
+                        fn(bmp, x, y, inc,
+                                        color)
+                mask >>= 1
+                y -= scale
+            x += scale
+            y = oy + i
+            if x % 2 == 0 and scale == 1:
+                y -= 1
+    elif type(color) == list or type(color) == tuple:
+        colorcnt = len(color)
+        colorind = 0
+        for bits in bitpattern:
+            oy = y
+            mask = 128
+            cl = color[colorind]
+            while mask > 0:
+                if (mask & bits) > 0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y, cl)
+                    else:
+                        fn(bmp, x, y, inc, cl)
+                mask >>= 1
+                y -= scale
+            x += scale
+            y = oy + i
+            colorind += 1
+            if colorind == colorcnt:
+                colorind = 0
+            if x % 2 == 0 and scale == 1:
+                y -= 1
 
 def plot8bitpatternsideway(
         bmp: array, x: int, y: int,
