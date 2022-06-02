@@ -47,7 +47,7 @@ def main():
                 colors,
                 font8x8)
         file = 'HelloWorldRainbowItalicdots.bmp' #file name
-        saveBMP(file,bmp)
+        saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])

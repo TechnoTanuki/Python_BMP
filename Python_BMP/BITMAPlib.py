@@ -4034,14 +4034,13 @@ def plot8bitpatternwithfn(
         for bits in bitpattern:
             ox = x
             mask = 128
+            cl = color[colorind]
             while mask > 0:
                 if (mask & bits) > 0:
                     if scale == 1 or inc <= 0:
-                        plotxybit(bmp, x, y,
-                            color[colorind])
+                        plotxybit(bmp, x, y, cl)
                     else:
-                        fn(bmp, x, y, inc,
-                            color[colorind])
+                        fn(bmp, x, y, inc, cl)
                 mask >>= 1
                 x += scale
             y += scale
@@ -4148,26 +4147,50 @@ def plotitalic8bitpatternupsidedownwithfn(
     inc = scale - 1 - pixspace
     i = len(bitpattern) - 1
     j = scale >> 1
-    while i > -1:
-        bits = bitpattern[i]
-        ox = x
-        mask = 128
-        while mask > 0:
-            if (mask & bits)>0:
-                if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y,
-                        color)
-                else:
-                    fn(bmp,x, y, inc,
-                        color)
-            mask >>= 1
-            x += scale
-        y += scale
-        x = ox - j
-        i -= 1
-        if y % 2 == 0 and scale == 1:
-            x -= 1
-
+    if type(color) == int:
+        while i > -1:
+            bits = bitpattern[i]
+            ox = x
+            mask = 128
+            while mask > 0:
+                if (mask & bits)>0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y,
+                            color)
+                    else:
+                        fn(bmp,x, y, inc,
+                            color)
+                mask >>= 1
+                x += scale
+            y += scale
+            x = ox - j
+            i -= 1
+            if y % 2 == 0 and scale == 1:
+                x -= 1
+    elif type(color) == list or  type(color) == tuple:
+        colorcnt = len(color)
+        colorind = 0
+        while i > -1:
+            bits = bitpattern[i]
+            ox = x
+            mask = 128
+            cl = color[colorind]
+            while mask > 0:
+                if (mask & bits)>0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y, cl)
+                    else:
+                        fn(bmp,x, y, inc, cl)
+                mask >>= 1
+                x += scale
+            y += scale
+            x = ox - j
+            i -= 1
+            colorind += 1
+            if colorcnt == colorind:
+                colorind = 0
+            if y % 2 == 0 and scale == 1:
+                x -= 1
 
 def plot8bitpattern(
         bmp: array, x: int, y: int,
@@ -4558,23 +4581,46 @@ def plot8bitpatternupsidedownwithfn(
     """
     inc = scale - 1 - pixspace
     i = len(bitpattern)-1
-    while i > -1:
-        bits = bitpattern[i]
-        ox = x
-        mask = 128
-        while mask > 0:
-            if (mask & bits)>0:
-                if scale == 1 or inc <= 0:
-                    plotxybit(bmp, x, y,
-                        color)
-                else:
-                    fn(bmp,x, y, inc,
-                        color)
-            mask >>= 1
-            x += scale
-        y += scale
-        x = ox
-        i -= 1
+    if type(color) == int:
+        while i > -1:
+            bits = bitpattern[i]
+            ox = x
+            mask = 128
+            while mask > 0:
+                if (mask & bits)>0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y,
+                            color)
+                    else:
+                        fn(bmp,x, y, inc,
+                            color)
+                mask >>= 1
+                x += scale
+            y += scale
+            x = ox
+            i -= 1
+    elif type(color) == list or type(color) == tuple:
+        colorcnt = len(color)
+        colorind = 0
+        while i > -1:
+            bits = bitpattern[i]
+            ox = x
+            mask = 128
+            cl = color[colorind]
+            while mask > 0:
+                if (mask & bits) > 0:
+                    if scale == 1 or inc <= 0:
+                        plotxybit(bmp, x, y, cl)
+                    else:
+                        fn(bmp,x, y, inc, cl)
+                mask >>= 1
+                x += scale
+            y += scale
+            x = ox
+            i -= 1
+            colorind += 1
+            if colorind == colorcnt:
+                colorind = 0
 
 
 def plot8bitpatternupsidedown(
