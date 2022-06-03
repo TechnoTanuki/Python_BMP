@@ -1137,3 +1137,66 @@ def circleinvolutevert(
     """
     return list(itercircleinvolute(x, y,
                         a, delta, lim))
+
+
+def iterepicycloid(
+            x: int, y: int,
+            a: float, b: float,
+            delta: float, lim: float):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        epicycloid traced by a circle
+        of radius b which rolls round
+        a circle of radius a with an
+        origin set at (x, y)
+
+    Args:
+        x, y : center of epicycloid
+        a    : radius of fixed circle
+        b    : radius of rolling circle
+        delta: angle increment in radians
+        lim  : angle limit in radians
+
+    Yields:
+        The vertices of an
+        epicycloid
+        [[x: int, y: int], ...]
+    """
+    ab = a + b
+    c = (a / b) + 1
+    t = 0
+    while t < lim:
+        d = c * t
+        dx =  round(ab * cos(t) - \
+                     b * cos(d))
+        dy =  round(ab * sin(t) - \
+                     b * sin(d))
+        t += delta
+        yield (x + dx, y + dy)
+
+
+def epicycloidvert(
+            x: int, y: int,
+            a: float, b: float,
+            delta: float, lim: float):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        epicycloid traced by a circle
+        of radius b which rolls round
+        a circle of radius a with an
+        origin set at (x, y)
+
+    Args:
+        x, y : center of epicycloid
+        a    : radius of fixed circle
+        b    : radius of rolling circle
+        delta: angle increment in radians
+        lim  : angle limit in radians
+
+    Returns:
+        The vertices of an
+        epicycloid in a list
+        [[x: int, y: int], ...]
+    """
+    return list(iterepicycloid(x, y,
+                  a, b, delta, lim))
