@@ -949,8 +949,8 @@ def iterspirograph(
         x, y : center of the spirograph
         r    : spirograph scaling factor
         l, k : spirograph shape parameters
-        delta: angle increment
-        lim  : angle limit
+        delta: angle increment in radians
+        lim  : angle limit in radians
 
     Yields:
         The vertices of an
@@ -972,7 +972,7 @@ def iterspirograph(
 
 
 def spirographvert(
-               x: int, y:int, r: int,
+               x: int, y: int, r: int,
                delta: float, lim: float,
                l: float, k: float):
     """Returns a list(int, int) of
@@ -987,8 +987,8 @@ def spirographvert(
         x, y : center of the spirograph
         r    : spirograph scaling factor
         l, k : spirograph shape parameters
-        delta: angle increment
-        lim  : angle limit
+        delta: angle increment in radians
+        lim  : angle limit in radians
 
     Returns:
         The vertices of an
@@ -997,3 +997,72 @@ def spirographvert(
     """
     return list(iterspirograph(x, y, r,
                 delta, lim, l, k))
+
+
+def iterlissajouscurve(
+               x: int, y: int,
+               a: float, b: float,
+               c: float, d: float,
+               e: float,
+               delta: float, lim: float):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        lissajous curve axis scaling
+        factors a and b and frequency
+        scaling factors parameters
+        c and d and radian phase shift
+        angle e with an origin set
+        at (x, y)
+
+    Args:
+        x, y : center of the curve
+        a, b : axis scaling factors
+        c, d : frequency scaling factors
+        e    : phase shift in radians
+        delta: angle increment in radians
+        lim  : angle limit
+
+    Yields:
+        The vertices of an
+        lissajous curve
+        [[x: int, y: int], ...]
+    """
+    t = 0
+    while t < lim:
+        dx =  round(a * cos(c * t + e))
+        dy =  round(b * sin(d * t))
+        t += delta
+        yield (x + dx, y + dy)
+
+
+def lissajouscurvevert(
+               x: int, y: int,
+               a: float, b: float,
+               c: float, d: float,
+               e: float,
+               delta: float, lim: float):
+    """Returns (int, int) 2D vertices
+        along a path defined by
+        lissajous curve axis scaling
+        factors a and b and frequency
+        scaling factors parameters
+        c and d and radian phase shift
+        angle e with an origin set
+        at (x, y)
+
+    Args:
+        x, y : center of the curve
+        a, b : axis scaling factors
+        c, d : frequency scaling factors
+        e    : phase shift in radians
+        delta: angle increment in radians
+        lim  : angle limit
+
+    Returns:
+        The vertices of an
+        lissajous curve
+        [[x: int, y: int], ...]
+    """
+    return list(iterlissajouscurve(x, y,
+                          a, b, c, d, e,
+                            delta, lim))

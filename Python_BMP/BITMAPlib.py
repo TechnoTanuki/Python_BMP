@@ -101,12 +101,14 @@ from .primitives2D import(
     iterline,
     iterparallelogram,
     iterspirograph,
+    iterlissajouscurve,
     listinrecbnd,
     rectboundarycoords,
     recvert,
     regpolygonvert,
     sortrecpoints,
     spirographvert,
+    lissajouscurvevert,
     spiralcontrolpointsvert,
     verticalvert
     )
