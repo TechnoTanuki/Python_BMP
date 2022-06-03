@@ -33,16 +33,19 @@ def main():
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         file = 'HelloSpirograph1.bmp' # file name
-        d = 1/120
-        lim = pi * 10 + d
+        d = 1/120 # angle increment
+        lim = pi * 10 + d # angle limit
         color = 10
         plotlines(bmp,
-                spirographvert(x, y, 200, d , lim, 1, .3),
+                spirographvert(x, y,
+                 200, # control spirograph size
+                 d , lim, # angle step and limit
+                 1, .3), # controls spirograph shape
                 color) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
-        ret = proc.call(f'{imgedt} {file}')
+        ret = proc.call([imgedt, file])
 
 if __name__=="__main__":
         main()
