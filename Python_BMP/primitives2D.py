@@ -1020,7 +1020,7 @@ def iterlissajouscurve(
         c, d : frequency scaling factors
         e    : phase shift in radians
         delta: angle increment in radians
-        lim  : angle limit
+        lim  : angle limit in radians
 
     Yields:
         The vertices of an
@@ -1056,7 +1056,7 @@ def lissajouscurvevert(
         c, d : frequency scaling factors
         e    : phase shift in radians
         delta: angle increment in radians
-        lim  : angle limit
+        lim  : angle limit in radians
 
     Returns:
         The vertices of an
