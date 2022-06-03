@@ -83,6 +83,7 @@ from .mathlib import(
 from .primitives2D import(
     arcvert,
     bsplinevert,
+    circleinvolutevert,
     ellipsevert,
     entirecircleisinboundary,
     entireellipseisinboundary,
@@ -102,6 +103,7 @@ from .primitives2D import(
     iterparallelogram,
     iterspirograph,
     iterlissajouscurve,
+    itercircleinvolute,
     listinrecbnd,
     rectboundarycoords,
     recvert,

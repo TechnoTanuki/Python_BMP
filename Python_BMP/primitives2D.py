@@ -935,9 +935,9 @@ def ellipsevert(x: int, y: int,
 
 
 def iterspirograph(
-               x: int, y:int, r: int,
-               delta: float, lim: float,
-               l: float, k: float):
+            x: int, y:int, r: int,
+            delta: float, lim: float,
+            l: float, k: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         spirograph scaling factor r
@@ -972,9 +972,9 @@ def iterspirograph(
 
 
 def spirographvert(
-               x: int, y: int, r: int,
-               delta: float, lim: float,
-               l: float, k: float):
+            x: int, y: int, r: int,
+            delta: float, lim: float,
+            l: float, k: float):
     """Returns a list(int, int) of
         2D vertices along a path
         defined by a spirograph
@@ -1000,11 +1000,11 @@ def spirographvert(
 
 
 def iterlissajouscurve(
-               x: int, y: int,
-               a: float, b: float,
-               c: float, d: float,
-               e: float,
-               delta: float, lim: float):
+            x: int, y: int,
+            a: float, b: float,
+            c: float, d: float,
+            e: float,
+            delta: float, lim: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         lissajous curve axis scaling
@@ -1023,9 +1023,8 @@ def iterlissajouscurve(
         lim  : angle limit in radians
 
     Yields:
-        The vertices of an
-        lissajous curve
-        [[x: int, y: int], ...]
+        Vertices of a lissajous curve
+        [x: int, y: int]
     """
     t = 0
     while t < lim:
@@ -1036,11 +1035,11 @@ def iterlissajouscurve(
 
 
 def lissajouscurvevert(
-               x: int, y: int,
-               a: float, b: float,
-               c: float, d: float,
-               e: float,
-               delta: float, lim: float):
+            x: int, y: int,
+            a: float, b: float,
+            c: float, d: float,
+            e: float,
+            delta: float, lim: float):
     """Returns (int, int) 2D vertices
         along a path defined by
         lissajous curve axis scaling
@@ -1059,10 +1058,82 @@ def lissajouscurvevert(
         lim  : angle limit in radians
 
     Returns:
-        The vertices of an
-        lissajous curve
-        [[x: int, y: int], ...]
+        Vertices of a lissajous curve
+        in a list [[x: int, y: int], ...]
     """
     return list(iterlissajouscurve(x, y,
                           a, b, c, d, e,
                             delta, lim))
+
+
+def itercircleinvolute(
+            x: int, y: int,
+            a: float,
+            delta: float, lim: float):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        the involute of a circle
+        with scaling factor a
+        and an origin set at (x, y)
+
+        The involute of a circle is the
+        path traced out by a point on a
+        straight line that rolls around
+        a circle.
+
+        It was studied by Huygens when
+        he was considering clocks
+        without pendulums that might be
+        used on ships at sea.
+
+    Args:
+        x, y : center of the curve
+        a    : scaling factor
+        delta: angle increment in radians
+        lim  : angle limit in radians
+
+    Yields:
+        The vertices of the
+        involute of a circle
+        [[x: int, y: int], ...]
+    """
+    t = 0
+    while t < lim:
+        dx =  round(a * (cos(t) + t * sin(t)))
+        dy =  round(a * (sin(t) - t * cos(t)))
+        t += delta
+        yield (x + dx, y + dy)
+
+
+def circleinvolutevert(
+            x: int, y: int, a: float,
+            delta: float, lim: float):
+    """Returns (int, int) 2D vertices
+        along a path defined by
+        the involute of a circle
+        with scaling factor a
+        and an origin set at (x, y)
+
+        The involute of a circle is the
+        path traced out by a point on a
+        straight line that rolls around
+        a circle.
+
+        It was studied by Huygens when
+        he was considering clocks
+        without pendulums that might be
+        used on ships at sea.
+
+    Args:
+        x, y : center of the curve
+        a    : scaling factor
+        delta: angle increment in radians
+        lim  : angle limit in radians
+
+    Yields:
+        The vertices of the
+        involute of a circle in a list
+        [[x: int, y: int], ...]
+    """
+    return list(itercircleinvolute(x, y,
+                        a, delta, lim))
