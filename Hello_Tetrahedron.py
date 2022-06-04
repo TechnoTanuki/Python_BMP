@@ -18,7 +18,7 @@ from Python_BMP.BITMAPlib import(
         rotvec3D,
         plot3Dsolid,
         getshapesidedict,
-        tetrahedravert,
+        tetrahedravert as f,
         saveBMP
         )
 
@@ -27,10 +27,12 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:1]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
-        file = 'HelloTetrahedra.bmp' # some random file name as string
+        file = f'Hello{fname}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
@@ -42,7 +44,7 @@ def main():
         outlinecolor = 10 # outline color
         sd = getshapesidedict() # common shape dict for surface definitions
         rotation = rotvec3D(45,60,15) # rotation vector (x,y,z) in degrees
-        vertices = tetrahedravert(60) # get tetrahedra vetices
+        vertices = f(60) # get tetrahedra vetices
         surfaces = sd["tetrahedra"] # get tetrahedra surfaces
         obj3D = [vertices, surfaces] # A solid is defined by vertices and surfaces
         plot3Dsolid(bmp, obj3D, isSolid, color,
@@ -50,7 +52,6 @@ def main():
                 rotation, translationvector,
                 d, cenpt)
         saveBMP(file, bmp) # save file
-        print(f'Saved {file}')
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
         ret = proc.call([imgedt, file])
