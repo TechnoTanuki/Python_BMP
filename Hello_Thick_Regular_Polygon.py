@@ -14,7 +14,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         regpolygonvert,
-        thickplotpoly,
+        thickplotpoly as f,
         saveBMP
         )
 
@@ -23,6 +23,8 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:4]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 200 # bitmap size
@@ -35,8 +37,8 @@ def main():
                 regpolygonvert(x, y, r, sides, angle) # generate vertices
         color = 11 # color in 4 bit mode (min 0 - max 15)
         penradius = 5 # radius of pen
-        thickplotpoly(bmp, polygonvertexlist, penradius, color)  # plot the polygon
-        file = 'HelloThickRegularPolygon.bmp' # file name
+        f(bmp, polygonvertexlist, penradius, color)  # plot the polygon
+        file = f'Hello{fname}.bmp' # file name
         saveBMP(file, bmp) # save the bitmap
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
