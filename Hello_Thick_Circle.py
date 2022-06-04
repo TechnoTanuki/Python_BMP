@@ -12,6 +12,7 @@ notice = """
  -----------------------------------
 """
 
+from turtle import pen
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
@@ -29,13 +30,15 @@ def main():
         print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my = 256 # bitmap size y = x square bitmap
+        mx = my = 512 # bitmap size y = x square bitmap
         bmp = newBMP(mx, my, 4) # 4 bit = 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        r = x - 20  # set radius = x - 12
-        color = 6 # set the color
-        penradius = 20 # control the thickness
-        f(bmp, x, y, r, penradius, color) # all unsigned
+        penradius = 7 # control the thickness
+        r = x - penradius  # set radius = x - 12
+        dr = 2 * penradius + 3
+        for c in range(1, 16):
+                f(bmp, x, y, r, penradius, c) # all unsigned
+                r -= dr
         #Python_BMP.BITMAPlib.thickcircle(bmp bytyearray,x int,y int ,r int,penradius int,color int)
         file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) #dump the bytearray to disk
