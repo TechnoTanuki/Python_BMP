@@ -25,7 +25,7 @@ from os import path
 def main():
         print(notice)
         fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         x = y = 600 # bitmap size
