@@ -15,7 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        circle,
+        circle as f,
         saveBMP
         )
 
@@ -25,6 +25,8 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 512 # bitmap size y = x square bitmap
@@ -32,10 +34,10 @@ def main():
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         for r in range(x): # increase the radius of the circle from 0 to x
                 c = r # set color equal to radius
-                circle(bmp, x, y, c, c, False)
+                f(bmp, x, y, c, c, False) # draw circles
                         # Python_BMP.BITMAPlib.circle(bmp bytearray,x int ,y int, r int, c int,isfilled bool)
-        file='HelloCircles.bmp' # file name
-        saveBMP(file,bmp) # save file
+        file = f'Hello{fname}.bmp' # file name
+        saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
