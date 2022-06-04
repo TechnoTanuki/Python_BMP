@@ -14,7 +14,7 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        spherevertandsurface,
+        spherevertandsurface as f,
         centercoord,
         plot3Dsolid,
         rotvec3D,
@@ -27,13 +27,15 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 320 # x=y square bmp
-        file = 'HelloGlobe.bmp' # some random file name as string
+        file = f'Hello{fname}1.bmp' # some random file name as string
         bmp = newBMP(mx, my, 4) # 16 color bmp
         plot3Dsolid(bmp,
-                spherevertandsurface([0, 0, 0], 50, 15),
+                f([0, 0, 0], 50, 15),
                 False, # toggle solid
                 0, # color of solid
                 True, # toggle outline
