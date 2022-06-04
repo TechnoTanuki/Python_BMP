@@ -1,6 +1,5 @@
 notice = """
-Circular region brightness adjustment
-                demo
+Circular Region Brightness Adjustment
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -16,7 +15,7 @@ Circular region brightness adjustment
 from Python_BMP.BITMAPlib import(
         loadBMP,
         centercoord,
-        brightnessadjcircregion,
+        brightnessadjcircregion as f,
         saveBMP
         )
 
@@ -25,18 +24,20 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
-        (x,y) = centercoord(bmp) # How to get center of the bitmap
+        (x, y) = centercoord(bmp) # How to get center of the bitmap
         r1 = 60 # radius 1 set to 60
         r2 = 40 # radius 2 set to 40
         br1 = -50.8 # brightness adj set to -50.8%
         br2 = 120 # brightness adj set to 120%
-        brightnessadjcircregion(bmp, x, y, r1, br1)
-        brightnessadjcircregion(bmp, x, y, r2, br2)
+        f(bmp, x, y, r1, br1)
+        f(bmp, x, y, r2, br2)
         # Python_BMP.BITMAPlib.brightnessadjcircregion(bmp bytearray,x int,y int, r int ,br signed float)
-        file='HelloCircularRegionBrightnessAdj.bmp' #file name
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
