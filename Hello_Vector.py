@@ -14,7 +14,7 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        drawvec,
+        drawvec as f,
         saveBMP
         )
 
@@ -24,6 +24,8 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 200 # bitmap size
@@ -32,8 +34,8 @@ def main():
         p2 = [mx - 5, my - 5] # (x,y) point 2 or where the vector points
         arrowhead = 0 # 0=auto other value will set length
         color = 1
-        drawvec(bmp, p1, p2, arrowhead, color)
-        file = 'HelloVector.bmp' # file name
+        f(bmp, p1, p2, arrowhead, color)
+        file = f'Hello{fname}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
