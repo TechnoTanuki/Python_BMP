@@ -14,8 +14,8 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        plotstring,
-        getcolorname2RGBdict,
+        plotstring as f,
+        getX11colorname2RGBdict,
         font8x14,
         saveBMP
         )
@@ -26,19 +26,21 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx, my = 500, 80 # bitmap size
-        bmp = newBMP(mx,my,24) # RGB bitmap
-        plotstring(bmp,
-                50, 10, # position the text
-                'Hello World!!', # random text
-                4, # uint font size multiplier
-                1, # uint space between pixels
-                0, # uint default space between char
-                getcolorname2RGBdict()['yellow'],
-                font8x14)
-        file = 'HelloWorld.bmp' #file name
+        mx, my = 600, 80 # bitmap size
+        bmp = newBMP(mx, my, 24) # RGB bitmap
+        c = getX11colorname2RGBdict()
+        f(bmp, 35, 10, # position the text
+          'Hello World!!', # random text
+           5, # uint font size multiplier
+           1, # uint space between pixels
+           0, # uint default space between char
+           [c['orangered'], c['orange']],
+           font8x14)
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file,bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done

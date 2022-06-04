@@ -5053,7 +5053,10 @@ def plotstring(bmp: array,
         spacebetweenchar: space between
                           the characters
         color           : color of
-                         the font
+                          the font
+                          (can be an int
+                               or a
+                          list of ints)
         fontbuf         : the font
                           (see fonts.py)
 
