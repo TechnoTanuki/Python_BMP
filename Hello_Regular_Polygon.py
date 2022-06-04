@@ -15,7 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        regpolygonvert,
+        regpolygonvert as f,
         plotpoly,
         saveBMP
         )
@@ -27,6 +27,8 @@ from os import path
 def main():
         sides = 5 # for a pentagon
         print(notice % (sides))
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 200 # bitmap size
@@ -34,11 +36,10 @@ def main():
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         r = x - 20 # radius of a circle that contains all the vertices
         angle = 30 # for rotation in degrees
-        polygonvertexlist = \
-                regpolygonvert(x, y, r, sides, angle) # generate vertices
-        color = 11 # color in 4 bit mode (min 0 - max 15)
-        plotpoly(bmp, polygonvertexlist, color) # plot the polygon
-        file = 'HelloRegularPolygon.bmp' # file name
+        for c in range(1, 16):
+                plotpoly(bmp,  f(x, y, r, sides, angle), c) # plot the polygon
+                r -= 5
+        file = f'Hello{fname}.bmp' # file name
         saveBMP(file,bmp) # save the bitmap
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
