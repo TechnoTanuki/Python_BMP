@@ -25,11 +25,11 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        mx = my =320 # bitmap size y = x square bitmap
+        mx = my = 300 # bitmap size y = x square bitmap
         bmp = newBMP(mx, my, 24) # 24 bit BMP
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         r = x - 12 # radius = x - 12
-        rgbfactors=(.4, 1, .7) # unsigned floats 0 to 1 -> (r,g,b)
+        rgbfactors = (.4, 1, .7) # unsigned floats 0 to 1 -> (r,g,b)
         sphere(bmp, x, y, r, rgbfactors) # bmp is unsigned byte array
         file = 'HelloSphere.bmp' # file name
         saveBMP(file, bmp) # save file
