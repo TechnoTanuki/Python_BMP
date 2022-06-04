@@ -13,7 +13,7 @@ notice = """
 """
 from Python_BMP.BITMAPlib import(
         newBMP,
-        fillbackgroundwithgrad,
+        fillbackgroundwithgrad as f,
         saveBMP
         )
 
@@ -22,14 +22,16 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 500 # bitmap size
         bmp = newBMP(mx, my, 24)
-        file = 'HelloLinearGradient.bmp' # file name
+        file = f'Hello{fname}.bmp' # file name
         rf, gf, bf = 0, .5, 1 # floats for r,g,b 0 to 1
         minval, maxval = 0, 255 #=gradient range int 0 to 255
-        fillbackgroundwithgrad(bmp, [minval, maxval], [rf, gf, bf], 0) #last param alters orientation 0 or 1 
+        f(bmp, [minval, maxval], [rf, gf, bf], 0) #last param alters orientation 0 or 1 
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
