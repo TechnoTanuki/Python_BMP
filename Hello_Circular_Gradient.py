@@ -15,7 +15,8 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        gradcircle,
+        distance,
+        gradcircle as f,
         saveBMP
         )
 
@@ -25,17 +26,18 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:6]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = 800 # bitmap size x
-        my = 600 # bitmap size y
+        mx = my = 300 # bitmap size x
         bmp = newBMP(mx, my, 24) # RGB bitmap
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        r = 500 # max radius of gradient
+        r = int(distance((x, y), (0, 0)))  # max radius of gradient
         lumrange = (0, 255) # increase in color brightness farther from (x,y)
         rgbfactors = (.25, .75, .5) # rgb triplet as ufloat 0 to 1
-        gradcircle(bmp, x, y, r, lumrange, rgbfactors) # compute gradient
-        file = 'HelloCircularGradient.bmp' #file name
+        f(bmp, x, y, r, lumrange, rgbfactors) # compute gradient
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
