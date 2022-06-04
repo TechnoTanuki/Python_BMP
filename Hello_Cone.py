@@ -17,7 +17,7 @@ from Python_BMP.BITMAPlib import(
         plot3Dsolid,
         getRGBfactors,
         rotvec3D,
-        conevertandsurface,
+        conevertandsurface as f,
         saveBMP
         )
 
@@ -26,10 +26,12 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:4]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
-        file = 'HelloCone.bmp' # some random file name as string
+        file = f'Hello{fname}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
@@ -44,7 +46,7 @@ def main():
         r = 40 # radius of cone
         zlen = 40 # height of cone
         deganglestep = 5 # how finely we tile flat surfaces around the cone
-        obj3D = conevertandsurface(vcen, r, zlen, deganglestep)# A solid is defined by vertices and surfaces
+        obj3D = f(vcen, r, zlen, deganglestep) # A solid is defined by vertices and surfaces
         plot3Dsolid(bmp, obj3D, isSolid, color,
                 showoutline, outlinecolor,
                 rotation, translationvector, d, cenpt)
