@@ -17,7 +17,7 @@ from Python_BMP.BITMAPlib import(
         getRGBfactors,
         rotvec3D,
         plot3Dsolid,
-        icosahedvertandsurface,
+        icosahedvertandsurface as f,
         saveBMP
         )
 
@@ -26,14 +26,16 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:1]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
-        file = 'HelloIcosahedron.bmp' # some random file name as string
+        file = f'Hello{fname}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cf = getRGBfactors() # color info with presets
         plot3Dsolid(bmp,
-                icosahedvertandsurface(40), # parameter is radius of sphere that holds the solid
+                f(40), # parameter is radius of sphere that holds the solid
                 True, # toggle solid render
                 cf['brightwhite'], # color of solid
                 False, # toggle outline display
