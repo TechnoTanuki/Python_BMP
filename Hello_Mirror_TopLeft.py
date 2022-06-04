@@ -14,7 +14,7 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         loadBMP,
-        mirrortopleft,
+        mirrortopleft as f,
         saveBMP
         )
 
@@ -24,11 +24,13 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
-        mirrortopleft(bmp)
-        file = 'HelloMirrorTopLeft.bmp' # file name
+        f(bmp) # call mirrortopleft
+        file = f'Hello{fname}.bmp' # file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
