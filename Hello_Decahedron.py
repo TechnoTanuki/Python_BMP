@@ -18,7 +18,7 @@ from Python_BMP.BITMAPlib import(
         getRGBfactors,
         plot3Dsolid,
         rotvec3D,
-        decahedvertandsurface,
+        decahedvertandsurface as f,
         saveBMP
         )
 
@@ -29,9 +29,11 @@ from os import path
 def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:1]}\n\t{f.__doc__}')
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
-        file = 'HelloDecahedron.bmp' # some random file name as string
+        file = f'Hello{fname}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
@@ -42,7 +44,7 @@ def main():
         color = cf['brightwhite'] # color of solid
         outlinecolor = 10 # outline color
         rotation = rotvec3D(30, 20, 20) # rotation vector (x,y,z) in degrees
-        plot3Dsolid(bmp, decahedvertandsurface(50),
+        plot3Dsolid(bmp, f(50),
                 isSolid, color, showoutline,
                 outlinecolor, rotation,
                 translationvector, d, cenpt)

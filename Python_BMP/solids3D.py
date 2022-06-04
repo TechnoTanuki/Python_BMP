@@ -182,7 +182,7 @@ def decahedvertandsurface(
                        float,
                        float]]:
     """Returns a list of vertices
-        for a icosahedron
+        for a decahedron
 
     Args:
         x: min radius of sphere
