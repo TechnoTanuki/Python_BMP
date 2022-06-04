@@ -16,7 +16,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
         plotlines,
-        spiralcontrolpointsvert,
+        spiralcontrolpointsvert as f,
         saveBMP
         )
 
@@ -26,18 +26,18 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # bitmap size
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        file = 'HelloSquareSpiral.bmp' # file name
+        file = f'Hello{fname}.bmp' # file name
         step = 5 # pixel interval between spiral turn
         growthfactor = 1 # greater than 1 means exponential spiral
         turns = 13 # number of turns of spiral
-        vertlist = spiralcontrolpointsvert(x, y,
-                        step, growthfactor,
-                        turns) # list of (x,y) control points
+        vertlist = f(x, y, step, growthfactor, turns) # list of (x,y) control points
         color = 9
         plotlines(bmp, vertlist, color) # connect the dots with lines
         saveBMP(file, bmp) # save file
