@@ -15,7 +15,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
         regpolygonvert,
-        gradthickplotpoly,
+        gradthickplotpoly as f,
         saveBMP
         )
 
@@ -24,9 +24,11 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my= 400 # bitmap size
+        mx = my = 400 # bitmap size
         bmp =  newBMP(mx, my ,24) # RGB bitmap black background
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         r = x - 20 # radius of a circle that contains all the vertices
@@ -36,9 +38,9 @@ def main():
         lumrange = (0, 255) # increasing luminosity from center of pen
         rgbfactors = (.7, .5, .6) # rgb values from 0 to 1 ufloat
         polygonvertexlist = regpolygonvert(x, y, r, sides, angle) # generate vertices
-        gradthickplotpoly(bmp, polygonvertexlist, penradius,
+        f(bmp, polygonvertexlist, penradius,
                 lumrange, rgbfactors)  # plot the polygon
-        file='HelloThickGradientRegularPolygon.bmp' # file name
+        file = f'Hello{fname}.bmp' # file name
         saveBMP(file, bmp) # save the bitmap
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
