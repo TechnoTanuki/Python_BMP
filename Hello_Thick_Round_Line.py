@@ -1,5 +1,5 @@
 notice = """
-          Hello Globe Demo
+    Hello Thick Round Line Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -14,7 +14,7 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        thickroundline,
+        thickroundline as f,
         saveBMP
         )
 
@@ -24,17 +24,19 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 200 # bitmap size
         bmp = newBMP(mx, my, 4) # 4 bit = 16 color
-        p1 = (12,12) # 1st point as (x,y)
-        p2 = (mx -12, my-12) # 2nd point as (x,y)
+        p1 = (12, 12) # 1st point as (x,y)
+        p2 = (mx - 12, my - 12) # 2nd point as (x,y)
         penradius = 10
-        color = 13
-        thickroundline(bmp, p1, p2, penradius, color) # all unsigned
+        color = 8
+        f(bmp, p1, p2, penradius, color) # all unsigned
         #Python_BMP.BITMAPlib.thickroundline(bmp bytearray,p1 xy-tuple,p2 xy-tuple,penradius int,color int)
-        file = 'HelloThickroundLine.bmp' #file name
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
