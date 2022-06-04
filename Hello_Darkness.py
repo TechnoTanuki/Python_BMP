@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        newBMP, #insert other func
+        newBMP as f, #insert other func
         saveBMP #here
 )
 
@@ -21,10 +21,12 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        bmp = newBMP(640, 480, 24) # (x,y,bit depth) -> 500 x 80 x 24 bit BMP
-        file = 'HelloDarkness.bmp' #file name
+        bmp = f(640, 480, 24) # (x,y,bit depth) -> 500 x 80 x 24 bit BMP
+        file = f'Hello{fname}.bmp' #file name
         #insert something here
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
