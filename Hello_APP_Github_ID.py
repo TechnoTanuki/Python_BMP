@@ -27,7 +27,7 @@ from Python_BMP.BITMAPlib import(
         surfplot3Dvertandsurface,
         icosahedvertandsurface,
         getdefaultlumrange,
-        saveBMP,
+        saveBMP as f,
         )
 
 import subprocess as proc
@@ -37,6 +37,8 @@ from os import path
 def main():
         file = 'Hello_GithubID.bmp'
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:2]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = newBMP(1280, 640, 24)
@@ -98,7 +100,7 @@ def main():
         sphere(bmp, 280, cy + 100, 80, cf['royalblue'])
         fern(bmp, 940, 100, 1190, 570, c['darkolivegreen3'])
 
-        saveBMP(file,bmp) # dump bytes to file
+        f(file, bmp) # dump bytes to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
