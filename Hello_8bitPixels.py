@@ -13,7 +13,7 @@ notice = """
 """
 from Python_BMP.BITMAPlib import(
         newBMP,
-        plotxybit,
+        plotxybit as f,
         saveBMP
         )
 
@@ -22,14 +22,16 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:4]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my= 512 #bitmap size
+        mx = my = 256 #bitmap size
         bmp = newBMP(mx, my, 8) #256 colors
         for x in range(mx):
                 for y in range(my):
-                        plotxybit(bmp, x, y, (x & y) & 0xFF)
-        file = 'Hello8bitPixels.bmp' #file name
+                        f(bmp, x, y, x * y)
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
