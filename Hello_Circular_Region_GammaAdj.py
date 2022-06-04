@@ -1,5 +1,5 @@
 notice = """
-  Circular region gamma adjust demo
+  Circular Region Gamma Adjust Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -15,7 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         loadBMP,
         centercoord,
-        gammacorrectcircregion,
+        gammacorrectcircregion as f,
         saveBMP
         )
 
@@ -24,15 +24,17 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         r = 60 # radius
         gc = .1 # gamma correction
-        gammacorrectcircregion(bmp, x, y, r, gc)
+        f(bmp, x, y, r, gc)
         #Python_BMP.BITMAPlib.gammacorrectcircregion(bmp bytearray,x int,y int,r int,gc signed float)
-        file='HelloCircularRegionGammaAdj.bmp' #file name
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
