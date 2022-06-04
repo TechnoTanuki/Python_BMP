@@ -17,7 +17,7 @@ from Python_BMP.BITMAPlib import(
         getRGBfactors,
         getshapesidedict,
         plot3Dsolid,
-        octahedravert,
+        octahedravert as f,
         rotvec3D,
         saveBMP
         )
@@ -28,14 +28,16 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:1]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        file='HelloOctahedra.bmp' # some random file name as string
-        mx = my = 400 # bitmap dimensions
+        file = f'Hello{fname}.bmp' # some random file name as string
+        mx = my = 300 # bitmap dimensions
         bmp = newBMP(mx,my,4) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
-        d, translationvector=400, [0, 0, 200] # be careful with these variables or object goes offscreen
+        d, translationvector = 400, [-10, 0, 200] # be careful with these variables or object goes offscreen
         isSolid = True # toggle solid or outline
         showoutline = True # can show outline even if solid
         cf = getRGBfactors() # color list
@@ -43,7 +45,7 @@ def main():
         outlinecolor = 0 # outline color
         sd = getshapesidedict() # common shape dict for surface definitions
         rotation = rotvec3D(60, 60, 30) # rotation vector (x,y,z) in degrees
-        vertices = octahedravert(50) # get octahedra vetices
+        vertices = f(50) # get octahedra vetices
         surfaces = sd["octahedra"] # get octahedra surfaces
         obj3D = [vertices, surfaces] # A solid is defined by vertices and surfaces
         plot3Dsolid(bmp, obj3D, isSolid, color,
