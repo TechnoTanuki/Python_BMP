@@ -15,7 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        bspline,
+        bspline as f,
         spiralcontrolpointsvert,
         saveBMP
         )
@@ -26,11 +26,13 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:6]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # bitmap size
         bmp = newBMP(mx, my, 4) # 4 bit = 2^4 = 16 bits
-        file = 'HelloBspline.bmp' # file name
+        file = f'Hello{fname}.bmp' # file name
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         step = 5 # pixel interval between spiral turn
         growthfactor = 1 # greater than 1 means exponential spiral
@@ -43,8 +45,8 @@ def main():
         color = 11
         isclosed = True # closed curve
         curveback = True # do extra computation to curve back to origin
-        bspline(bmp, vertlist, penradius,
-                color, isclosed, curveback)
+        f(bmp, vertlist, penradius, # call bspline
+          color, isclosed, curveback)
         saveBMP(file, bmp) # save bitmap
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
