@@ -27,7 +27,7 @@ from Python_BMP.BITMAPlib import(
         icosahedvertandsurface,
         newBMP,
         octahedravert,
-        plot3Dsolid,
+        plot3Dsolid as f,
         RGB2int,
         rotvec3D,
         saveBMP,
@@ -43,11 +43,13 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = 1024
         my = 768
-        file = 'Hello_3D.bmp'
+        file = f'Hello{fname}.bmp'
         bmp = newBMP(mx, my, 24)
         maxpt = bottomrightcoord(bmp)
         cenpt = centercoord(bmp) # bitmap dependent coords
@@ -74,43 +76,35 @@ def main():
                   sd["hexahedra"]],
                   cf["darkgreen"], True, c['darkgreen']]]
         for s in shapes:
-                plot3Dsolid(bmp,
-                        s[0], True, s[1], s[2], s[3],
-                        rotvec3D(10, 5, 5), tvect, d,
-                        addvect(cenpt, [-160, -10]))
-        plot3Dsolid(bmp,
-                decahedvertandsurface(25),
-                   True, cf['brightred'], False,
-                   0, rotvec3D(7, 77, 20),
-                   tvect, d, addvect(cenpt, [280, -250]))
-        plot3Dsolid(bmp,
-                icosahedvertandsurface(25),
-                   True, cf['brightwhite'], False,
-                   0, rotvec3D(70, 7, 20),
-                   tvect, d, addvect(cenpt, [+60, -130]))
-        plot3Dsolid(bmp,
-                spherevertandsurface([5, 0, 0], 60, 10),
-                True, cf['brightwhite'], False,
-                0, rotvec3D(190, 145, 70),
-                tvect, d, addvect(cenpt, [300, -50]))
-        plot3Dsolid(bmp,
-                cylindervertandsurface([1,0,0], 20, 10, 5),
-                True, cf['brightyellow'], True,
-                RGB2int(20,20,0), rotvec3D(60, 74, 72),
-                tvect, d, addvect(cenpt,[-200, -50]))
-        plot3Dsolid(bmp,
-                conevertandsurface([1, 0, 0], 20, 15, 5),
-                True, cf['brightorange'],
-                False, RGB2int(20,20,0),
-                rotvec3D(6,67,2),
-                tvect, d, addvect(cenpt, [-300, -150]))
+                f(bmp, s[0], True, s[1], s[2], s[3],
+                  rotvec3D(10, 5, 5), tvect, d,
+                  addvect(cenpt, [-160, -10]))
+        f(bmp, decahedvertandsurface(25),
+          True, cf['brightred'], False,
+          0, rotvec3D(7, 77, 20),
+          tvect, d, addvect(cenpt, [280, -250]))
+        f(bmp, icosahedvertandsurface(25),
+          True, cf['brightwhite'], False,
+          0, rotvec3D(70, 7, 20),
+          tvect, d, addvect(cenpt, [+60, -130]))
+        f(bmp, spherevertandsurface([5, 0, 0], 60, 10),
+          True, cf['brightwhite'], False,
+          0, rotvec3D(190, 145, 70),
+          tvect, d, addvect(cenpt, [300, -50]))
+        f(bmp, cylindervertandsurface([1,0,0], 20, 10, 5),
+          True, cf['brightyellow'], True,
+          RGB2int(20,20,0), rotvec3D(60, 74, 72),
+          tvect, d, addvect(cenpt,[-200, -50]))
+        f(bmp, conevertandsurface([1, 0, 0], 20, 15, 5),
+          True, cf['brightorange'],
+          False, RGB2int(20,20,0),
+          rotvec3D(6,67,2),
+          tvect, d, addvect(cenpt, [-300, -150]))
         fnxy = lambda x, y: x | y
-        plot3Dsolid(bmp,
-                surfplot3Dvertandsurface (
-                -35, -35, 35, 35, 15, 5, fnxy),
-                  True, cf['brightcyan'],
-                  True, 0, rotvec3D(20, 67, 30),
-                  tvect, d, addvect(cenpt, [-420, -25]))
+        f(bmp, surfplot3Dvertandsurface(-15, -35, 35, 35, 5, fnxy),
+          True, cf['brightcyan'],
+          True, 0, rotvec3D(20, 67, 30),
+          tvect, d, addvect(cenpt, [-420, -25]))
 
         saveBMP(file,bmp) # dump bytes to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
