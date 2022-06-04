@@ -14,7 +14,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        gradvert,
+        gradvert as f,
         regpolygonvert,
         saveBMP
 )
@@ -24,6 +24,8 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 250 #bitmap size
@@ -36,11 +38,9 @@ def main():
         angle = 0 # angle of rotation of regular polygon in degrees
         polyvertlist = regpolygonvert(x, y, r, sides, angle) # generate polygon vertices
         atomrad = 55 # make radius of carbon atoms 55 pixels
-        gradvert(bmp, polyvertlist,
-                        atomrad,
-                        lumrange,
-                        rgbfactors)
-        file='HelloBenzene.bmp' #file name
+        f(bmp, polyvertlist, atomrad,
+          lumrange, rgbfactors) # call gradvert
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
