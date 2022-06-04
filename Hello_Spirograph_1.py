@@ -17,7 +17,7 @@ from Python_BMP.BITMAPlib import(
         pi,
         centercoord,
         plotlines,
-        spirographvert,
+        spirographvert as f,
         saveBMP
         )
 
@@ -27,21 +27,22 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 500 # bitmap size
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        file = 'HelloSpirograph1.bmp' # file name
+        file = f'Hello{fname}1.bmp' # file name
         d = 1/120 # angle increment
         lim = pi * 10 + d # angle limit
         color = 10
-        plotlines(bmp,
-                spirographvert(x, y,
-                 200, # control spirograph size
-                 d , lim, # angle step and limit
-                 1, .3), # controls spirograph shape
-                color) # connect the dots with lines
+        plotlines(bmp, f(x, y, # control spirograph location
+                  200, # control spirograph size
+                  1, .3, # controls spirograph shape
+                  d , lim), # angle step and limit
+                 color) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done

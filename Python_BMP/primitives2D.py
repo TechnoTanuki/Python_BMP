@@ -935,9 +935,9 @@ def ellipsevert(x: int, y: int,
 
 
 def iterspirograph(
-            x: int, y:int, r: int,
-            delta: float, lim: float,
-            l: float, k: float):
+        x: int, y:int, r: int,
+        l: float, k: float,
+        delta: float, lim: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         spirograph scaling factor r
@@ -972,9 +972,9 @@ def iterspirograph(
 
 
 def spirographvert(
-            x: int, y: int, r: int,
-            delta: float, lim: float,
-            l: float, k: float):
+        x: int, y: int, r: int,
+        l: float, k: float,
+        delta: float, lim: float):
     """Returns a list(int, int) of
         2D vertices along a path
         defined by a spirograph
@@ -996,15 +996,14 @@ def spirographvert(
         [[x: int, y: int], ...]
     """
     return list(iterspirograph(x, y, r,
-                delta, lim, l, k))
+                l, k, delta, lim))
 
 
 def iterlissajouscurve(
-            x: int, y: int,
-            a: float, b: float,
-            c: float, d: float,
-            e: float,
-            delta: float, lim: float):
+        x: int, y: int,
+        a: float, b: float,
+        c: float, d: float, e: float,
+        delta: float, lim: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         lissajous curve axis scaling
@@ -1028,18 +1027,18 @@ def iterlissajouscurve(
     """
     t = 0
     while t < lim:
-        dx =  round(a * cos(c * t + e))
-        dy =  round(b * sin(d * t))
+        dx = round(a * cos(c * t + e))
+        dy = round(b * sin(d * t))
         t += delta
         yield (x + dx, y + dy)
 
 
 def lissajouscurvevert(
-            x: int, y: int,
-            a: float, b: float,
-            c: float, d: float,
-            e: float,
-            delta: float, lim: float):
+        x: int, y: int,
+        a: float, b: float,
+        c: float, d: float,
+        e: float,
+        delta: float, lim: float):
     """Returns (int, int) 2D vertices
         along a path defined by
         lissajous curve axis scaling
@@ -1067,9 +1066,8 @@ def lissajouscurvevert(
 
 
 def itercircleinvolute(
-            x: int, y: int,
-            a: float,
-            delta: float, lim: float):
+        x: int, y: int, a: float,
+        delta: float, lim: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         the involute of a circle
@@ -1106,8 +1104,8 @@ def itercircleinvolute(
 
 
 def circleinvolutevert(
-            x: int, y: int, a: float,
-            delta: float, lim: float):
+        x: int, y: int, a: float,
+        delta: float, lim: float):
     """Returns (int, int) 2D vertices
         along a path defined by
         the involute of a circle
@@ -1140,9 +1138,9 @@ def circleinvolutevert(
 
 
 def iterepicycloid(
-            x: int, y: int,
-            a: float, b: float,
-            delta: float, lim: float):
+        x: int, y: int,
+        a: float, b: float,
+        delta: float, lim: float):
     """Yields (int, int) 2D vertices
         along a path defined by
         epicycloid traced by a circle
@@ -1176,10 +1174,10 @@ def iterepicycloid(
 
 
 def epicycloidvert(
-            x: int, y: int,
-            a: float, b: float,
-            delta: float, lim: float):
-    """Yields (int, int) 2D vertices
+        x: int, y: int,
+        a: float, b: float,
+        delta: float, lim: float):
+    """Returns (int, int) 2D vertices
         along a path defined by
         epicycloid traced by a circle
         of radius b which rolls round
@@ -1200,3 +1198,78 @@ def epicycloidvert(
     """
     return list(iterepicycloid(x, y,
                   a, b, delta, lim))
+
+
+def iterhypotrochoid(
+        x: int, y: int,
+        a: float, b: float, c: float,
+        delta: float, lim: float):
+    """Yields (int, int) 2D vertices
+        along a path defined by
+        hypotrochoid traced by a
+        point from the with a
+        distance c from the
+        center of circle of radius b
+        which rolls round a
+        circle of radius a with an
+        origin set at (x, y)
+
+    Args:
+        x, y : center of epicycloid
+        a    : radius of fixed circle
+        b    : radius of rolling circle
+        c    : distance of pen from the
+               center of circle with
+               radius b
+        delta: angle increment in radians
+        lim  : angle limit in radians
+
+    Yields:
+        The vertices of an
+        epicycloid
+        [[x: int, y: int], ...]
+    """
+    ab = a - b
+    d = (a / b) + 1
+    t = 0
+    while t < lim:
+        e = d * t
+        dx =  round(ab * cos(t) - \
+                     c * cos(e))
+        dy =  round(ab * sin(t) - \
+                     c * sin(e))
+        t += delta
+        yield (x + dx, y + dy)
+
+
+def hypotrochoidvert(
+            x: int, y: int,
+            a: float, b: float, c: float,
+            delta: float, lim: float):
+    """Returns (int, int) 2D vertices
+        along a path defined by
+        hypotrochoid traced by a
+        point from the with a
+        distance c from the
+        center of circle of radius b
+        which rolls round a
+        circle of radius a with an
+        origin set at (x, y)
+
+    Args:
+        x, y : center of hypotrochoid
+        a    : radius of fixed circle
+        b    : radius of rolling circle
+        c    : distance of pen from the
+               center of circle with
+               radius b
+        delta: angle increment in radians
+        lim  : angle limit in radians
+
+    Returns:
+        The vertices of an
+        hypotrochoid in a list
+        [[x: int, y: int], ...]
+    """
+    return list(iterhypotrochoid(x, y,
+                  a, b, c, delta, lim))

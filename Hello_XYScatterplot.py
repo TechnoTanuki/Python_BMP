@@ -15,7 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         XYaxis,
-        XYscatterplot,
+        XYscatterplot as f,
         saveBMP
         )
 
@@ -24,11 +24,13 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         x = y = 600 # bitmap size
         bmp = newBMP(x, y, 4) # 16 color bitmap
-        file = 'HelloXYScatterplot.bmp' # random file name
+        file = f'Hello{fname}.bmp' # random file name
         XYdata = [[20, 80, 5, 15, True], #[[x,y,radius,color,filled]
                   [40, 110, 5, 15, True],
                   [50, 10, 5, 15,True]]
@@ -45,9 +47,9 @@ def main():
                   True, # bool value to toggle grid visibility
                     5) # color of grid
 
-        XYscatterplot(bmp, XYdata, XYcoordinfo, # do coordinate transform and plot
-                     True, # toggle computation and visibility of linear reg line
-                        8) # color of the linear regression line
+        f(bmp, XYdata, XYcoordinfo, # do coordinate transform and plot
+           True, # toggle computation and visibility of linear reg line
+          8) # color of the linear regression line
         saveBMP(file, bmp) # dump bytearray to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))

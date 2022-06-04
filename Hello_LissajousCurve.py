@@ -17,7 +17,7 @@ from Python_BMP.BITMAPlib import(
         pi,
         centercoord,
         plotlines,
-        lissajouscurvevert,
+        lissajouscurvevert as f,
         saveBMP
         )
 
@@ -27,20 +27,22 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 500 # bitmap size
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        file = 'HelloLissajousCurve.bmp' # file name
+        file = f'Hello{fname}.bmp' # file name
         d = 1/120
         lim = pi * 25 + d
         color = 10
         plotlines(bmp,
-                lissajouscurvevert(x, y,
-                200, 200, # axis mulitipliers
-                1/3, .25, # frequency multipliers
-                pi / 2, # phase shift
+                f(x, y, # position the curve
+                 200, 200, # axis mulitipliers
+                 1/3, .25, # frequency multipliers
+                 pi / 2, # phase shift
                 d, lim), # angle increment + limit
                 color) # connect the dots with lines
         saveBMP(file, bmp) # save file

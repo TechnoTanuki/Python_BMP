@@ -28,8 +28,7 @@ from os import path
 def main():
         print(notice)
         fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}')
-        print(f.__doc__)
+        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 500 # bitmap size
@@ -40,7 +39,7 @@ def main():
         lim = pi * 10 + d # angle limit
         color = 10
         plotlines(bmp,
-                  f(x, y,
+                  f(x, y, # position the epicycloid
                  80, # radius of fixed circle
                  50, # radius of rolling circle
                  d, lim # angle step and limit
