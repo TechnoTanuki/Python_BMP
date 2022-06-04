@@ -15,7 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        filledellipse,
+        filledellipse as f,
         saveBMP
         )
 
@@ -25,13 +25,15 @@ from os import path
 
 def main():
         print(notice)
+        fname = f.__name__
+        print(f'def {fname}{f.__code__.co_varnames[0:6]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = newBMP(300, 200, 4) # 16 color 300 x 200 bmp
+        bmp = newBMP(230, 200, 4) # 16 color 300 x 200 bmp
         (a, b) = (x, y) = centercoord(bmp) # How to get center of the bitmap
-        color = 10 # set color
-        filledellipse(bmp,x, y, b, a, color) # all unsigned ints
-        file = 'HelloFilledEllipse.bmp' #file name
+        color = 4 # set color
+        f(bmp,x, y, b, a, color) # call filledellipse all unsigned ints
+        file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
