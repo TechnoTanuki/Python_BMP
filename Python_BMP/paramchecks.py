@@ -14,6 +14,7 @@ Function decorators for parameter check
  -----------------------------------
 """
 
+from functools import wraps
 from .messages import sysmsg
 from .bmpconstants import(
     bmpcolorbits, bmpx, bmpy)
@@ -41,6 +42,7 @@ def intcircleparam(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         if (type(args[1]) == int and \
             type(args[2]) == int) and \
@@ -65,6 +67,7 @@ def intcircleparam24bitonly(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         if args[0][bmpcolorbits] != 24:
             print(sysmsg['not24bit'])
@@ -89,6 +92,7 @@ def func24bitonly(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         if args[0][bmpcolorbits] != 24:
             print(sysmsg['not24bit'])
@@ -114,6 +118,7 @@ def func24bitonlyandentirerectinboundary(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         bmp = args[0]
         x1 = args[1]
@@ -151,6 +156,7 @@ def func24bitonlyandentirecircleinboundary(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         bmp = args[0]
         x = args[1]
@@ -188,6 +194,7 @@ def func8and24bitonlyandentirecircleinboundary(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         bmp = args[0]
         x = args[1]
@@ -220,6 +227,7 @@ def func8and24bitonly(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         if args[0][bmpcolorbits] not in [24, 8]:
             print(sysmsg['not24or8bit'])
@@ -246,6 +254,7 @@ def func8and24bitonlyandentirerectinboundary(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         bmp = args[0]
         x1 = args[1]
@@ -280,6 +289,7 @@ def entirerectinboundary(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         bmp = args[0]
         x1 = args[1]
@@ -311,6 +321,7 @@ def entirecircleinboundary(func):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         bmp = args[0]
         x = args[1]

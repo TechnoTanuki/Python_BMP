@@ -14,6 +14,7 @@
 """
 
 from time import process_time_ns
+from functools import wraps
 
 
 def elaspedtimeinseconds(inittime):
@@ -63,6 +64,7 @@ def functimer(func):
         caller function
 
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         print((f'Applying {func.__name__}' + ' please wait...'))
         inittime = process_time_ns()
