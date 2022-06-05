@@ -1,5 +1,5 @@
 notice = """
-    Hello radial gradients Demo
+    Hello Radial Gradients Demo
     (make a wallpaper with math)
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
@@ -19,6 +19,7 @@ from Python_BMP.BITMAPlib import(
         centercoord,
         plotRGBxybit as f,
         getmaxxy,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -27,9 +28,7 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:4]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = 1024
@@ -46,7 +45,7 @@ def main():
                          int(distance(end, pt)) % 256, # green gradient
                          int(distance(cen, pt)) % 256) # blue gradient
                          ) # make a rainbow
-        file = f'Hello{fname}.bmp' #file name
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done

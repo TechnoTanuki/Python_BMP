@@ -1462,7 +1462,7 @@ def plotRGBxybit(bmp: array,
         x,y: unsigned int locations
              in x and y
         rgb: color defined by
-            [R: byte, G: byte, B: byte]
+             [R: byte, G: byte, B: byte]
 
     Returns:
         byref modified
