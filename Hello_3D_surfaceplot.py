@@ -20,6 +20,7 @@ from Python_BMP.BITMAPlib import(
         rotvec3D,
         saveBMP,
         surfplot3Dvertandsurface as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -27,13 +28,11 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:6]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 500
-        file = f'Hello{fname}.bmp'
+        file = f'Hello{f.__name__}.bmp'
         bmp = newBMP(mx, my, 24)
         cenpt = centercoord(bmp) # bitmap dependent coords
         cf = getRGBfactors() # color info
