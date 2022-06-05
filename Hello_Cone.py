@@ -18,20 +18,20 @@ from Python_BMP.BITMAPlib import(
         getRGBfactors,
         rotvec3D,
         conevertandsurface as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:4]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
-        file = f'Hello{fname}.bmp' # some random file name as string
+        file = f'Hello{f.__name__}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
@@ -41,8 +41,8 @@ def main():
         cf = getRGBfactors() # color list
         color = cf['brightyellow'] # color of solid
         outlinecolor = 0 # outline color
-        rotation = rotvec3D(25,240,70) # rotation vector (x,y,z) in degrees
-        vcen = (1,0,0) # x y z coords
+        rotation = rotvec3D(25, 240, 70) # rotation vector (x,y,z) in degrees
+        vcen = (1, 0, 0) # x y z coords
         r = 40 # radius of cone
         zlen = 40 # height of cone
         deganglestep = 5 # how finely we tile flat surfaces around the cone
