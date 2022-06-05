@@ -28,7 +28,7 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
-        f(bmp)
+        f(bmp) # call flipvertical(bmp)
         file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
