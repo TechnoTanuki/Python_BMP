@@ -14,24 +14,26 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        sphere,
+        sphere as f,
+        getX11RGBfactors as c,
+        getfuncmetastr as meta,
         saveBMP
-)
+        )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 300 # bitmap size y = x square bitmap
         bmp = newBMP(mx, my, 24) # 24 bit BMP
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         r = x - 12 # radius = x - 12
-        rgbfactors = (.4, 1, .7) # unsigned floats 0 to 1 -> (r,g,b)
-        sphere(bmp, x, y, r, rgbfactors) # bmp is unsigned byte array
-        file = 'HelloSphere.bmp' # file name
+        f(bmp, x, y, r, c()['cadetblue']) # bmp is unsigned byte array
+        file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
