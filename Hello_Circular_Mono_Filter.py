@@ -16,6 +16,7 @@ from Python_BMP.BITMAPlib import(
         loadBMP,
         centercoord,
         monocircle as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -24,9 +25,7 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
@@ -34,7 +33,7 @@ def main():
         r = x - 20 # radius set to x - 20
         f(bmp, x, y, r) # call monocircle to apply the filter
         # Python_BMP.BITMAPlib.monocircle(bmp bytearray,x int,y int ,r int)
-        file = f'Hello{fname}.bmp' #file name
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
