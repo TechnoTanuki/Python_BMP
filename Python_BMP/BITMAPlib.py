@@ -3785,8 +3785,7 @@ def drawarc(bmp: array,
 def rectangle(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int, color: int):
-    """Draws a rectangle
-        of a given color
+    """Draws a rectangle of a given color
 
     Args:
         bmp           : unsigned
@@ -5225,8 +5224,7 @@ def plotreverseditalicstring(bmp: array,
         scale: int, pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list):
-    """Draws a reversed string as
-        Italic
+    """Draws a reversed string as Italic
 
     Args:
         bmp             : unsigned
@@ -5242,8 +5240,7 @@ def plotreverseditalicstring(bmp: array,
                           each bit
         spacebetweenchar: space between
                           the characters
-        color           : color of
-                         the font
+        color           : color of font
         fontbuf         : the font
                           (see fonts.py)
 
@@ -6202,8 +6199,8 @@ def gradvert(bmp: array,
         lumrange  : [byte, byte] sets
                     the luminosity
                     gradient
-        RGBfactors: (r,b,g:) values of
-                    r,g and range from
+        RGBfactors: (r, g, b)
+                    values range from
                     min 0.0 to 1.0 max
 
     Returns:
