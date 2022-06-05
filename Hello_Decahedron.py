@@ -19,6 +19,7 @@ from Python_BMP.BITMAPlib import(
         plot3Dsolid,
         rotvec3D,
         decahedvertandsurface as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -27,13 +28,11 @@ from os import path
 
 
 def main():
-        print(notice)
-        imgedt = 'mspaint'  # replace with another editor if Unix
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:1]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
+        imgedt = 'mspaint'
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
-        file = f'Hello{fname}.bmp' # some random file name as string
+        file = f'Hello{f.__name__}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
         cf = getRGBfactors() # color info with presets
