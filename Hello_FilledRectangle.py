@@ -13,7 +13,8 @@ notice = """
 """
 from Python_BMP.BITMAPlib import(
         newBMP,
-        filledrect,
+        filledrect as fn,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -22,7 +23,7 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(fn)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         x, y = 320, 320 # bitmap size
@@ -38,9 +39,9 @@ def main():
                         c += x
                         a = f + x * xf
                         b = f + y * yf
-                        filledrect(bmp, a, b,
-                             a + d, b + d, c) # draw filled rectangle
-        file = 'HelloFilledRectangle.bmp' #file name
+                        fn(bmp, a, b,
+                           a + d, b + d, c) # draw filled rectangle
+        file = f'Hello{fn.__name__}.bmp' #file name
         saveBMP(file, bmp) # bmp <byte array> to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
