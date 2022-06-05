@@ -18,6 +18,7 @@ from Python_BMP.BITMAPlib import(
         centercoord,
         plotlines,
         circleinvolutevert as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -26,23 +27,20 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 500 # bitmap size
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        file = f'Hello{fname}.bmp' # file name
+        file = f'Hello{f.__name__}.bmp' # file name
         d = 1/120 # angle increment
         lim = pi * 20 + d # angle limit
         color = 10
-        plotlines(bmp,
-                f(x, y, # position the circle involute
+        plotlines(bmp,f(x, y, # position the circle involute
                  3, # control size of step
-                 d , lim), # angle step and limit
-                color) # connect the dots with lines
+                 d, lim), # angle step and limit
+                 color) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
