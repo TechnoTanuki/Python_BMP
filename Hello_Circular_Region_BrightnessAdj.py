@@ -16,16 +16,16 @@ from Python_BMP.BITMAPlib import(
         loadBMP,
         centercoord,
         brightnessadjcircregion as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
@@ -37,7 +37,7 @@ def main():
         f(bmp, x, y, r1, br1)
         f(bmp, x, y, r2, br2)
         # Python_BMP.BITMAPlib.brightnessadjcircregion(bmp bytearray,x int,y int, r int ,br signed float)
-        file = f'Hello{fname}.bmp' #file name
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
