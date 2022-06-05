@@ -15,7 +15,8 @@ Hello Filled Gradient Rectangle Demo
 from Python_BMP.BITMAPlib import(
         newBMP,
         getRGBfactors,
-        filledgradrect,
+        filledgradrect as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -24,7 +25,7 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 512 # bitmap size
@@ -32,11 +33,9 @@ def main():
         cf = getRGBfactors() # get color info friendly names
         j = 10 # border in pixel
         #filledgradrect(bmp,x1,y1,x2,y2,lumrange,colorfactorlist,gradientdirection) 
-        filledgradrect(bmp, j, j,
-                mx - j, my - j,
-                [0, 255],
-                cf['brightblue'], 1) # vertical gradient
-        file = 'HelloFilledGradRec.bmp' # file name
+        f(bmp, j, j, mx - j, my - j,
+         [0, 255], cf['brightblue'], 1) # vertical gradient
+        file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
