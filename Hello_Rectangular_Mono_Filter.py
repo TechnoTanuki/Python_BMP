@@ -16,6 +16,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         loadBMP,
         monofilterto24bitregion as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -24,14 +25,12 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         f(bmp, 30, 30, 138, 138) # monofilterto24bitregion(bmp,x1,y1,x2,y2)
-        file = f'Hello{fname}.bmp' # file name
+        file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save the modified earth image to a file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
