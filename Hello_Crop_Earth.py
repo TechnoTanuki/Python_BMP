@@ -13,7 +13,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        cropBMPandsave
+        cropBMPandsave as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -21,17 +22,14 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         existingfile = f'{rootdir}/assets/earth.bmp'
-        file = 'HelloCropEarth.bmp' #file name
+        file = f'Hello{f.__name__}.bmp' #file name
         # crop a rectangular region (x1,y1,x2,y2) to a file
-        cropBMPandsave(
-                existingfile,
-                file, # new file to save in
-                20, 20, 100, 100 # area to crop
-                )
+        f(existingfile, file, # new file to save in
+           20, 20, 100, 100) # area to crop
         print(f'All done close {imgedt} to finish')
         ret = proc.call([imgedt, file])
 
