@@ -12,31 +12,31 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        newBMP, #insert other func
-        getRGBfactors,
+        newBMP,
+        getX11RGBfactors,
         mandelbrot as f,
         mandelparamdict,
-        saveBMP #here
-)
+        getfuncmetastr as meta,
+        saveBMP
+        )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:8]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 300 # square canvas
         bmp = newBMP(mx, my, 24) # RGB bitmap 500 x 500
-        cf = getRGBfactors() #color info
+        cf = getX11RGBfactors() #color info
         mandelpar = mandelparamdict() # common parameters
         #mandelbrot(bmp,x1,y1,x2,y2,mandelpar[],RGBfactors,maxiter)
         f(bmp, 0, 0, mx, my,
           mandelpar['maxeqdim'],
-          cf['yellow'], 255)
-        file = f'hello{fname}.bmp' # random file name
+          cf['deepskyblue'], 255)
+        file = f'hello{f.__name__}.bmp' # random file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
