@@ -16,16 +16,16 @@ from Python_BMP.BITMAPlib import(
         centercoord,
         regpolygonvert,
         gradthickplotpoly as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 400 # bitmap size
@@ -40,7 +40,7 @@ def main():
         polygonvertexlist = regpolygonvert(x, y, r, sides, angle) # generate vertices
         f(bmp, polygonvertexlist, penradius,
                 lumrange, rgbfactors)  # plot the polygon
-        file = f'Hello{fname}.bmp' # file name
+        file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save the bitmap
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
