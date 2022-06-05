@@ -17,13 +17,14 @@ from Python_BMP.BITMAPlib import(
         saveBMP
         )
 
+from inspect import signature
 import subprocess as proc
 from os import path
 
 def main():
         print(notice)
         fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:6]}\n\t{f.__doc__}')
+        print(f'def {fname}{signature(f)}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 300 # bitmap size
