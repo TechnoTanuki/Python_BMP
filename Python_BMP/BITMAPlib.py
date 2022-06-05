@@ -1988,9 +1988,9 @@ def filledgradrect(bmp: array,
                          of the
                          gradient
         RGBfactors     : [r, g, b] items
-                          in list are
-                          unsigned floats
-                          from 0.0 to 1.0
+                         in list are
+                         unsigned floats
+                         from 0.0 to 1.0
         direction      : 0 - vertical
                          1 - horizontal
 
