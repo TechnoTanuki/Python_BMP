@@ -12,22 +12,24 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        loadBMP,
+        loadBMP as f,
         getcolorname2RGBdict,
         plotstring,
         font8x14,
         font8x8,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
+        bmp = f(f'{rootdir}/assets/earth.bmp')
         c = getcolorname2RGBdict() #friendly color names 2 rgb
         fontsize = 4 # font size
         pixspace = 1 # space between bitmap font pixels (0 = default)
@@ -38,7 +40,7 @@ def main():
         plotstring(bmp, 5, 85, 'Earth',
                 fontsize, pixspace, charspace,
                 c['brightwhite'],font8x8)
-        file = 'HelloEarth.bmp' # file name
+        file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))

@@ -20,6 +20,7 @@
 from os.path import isfile
 from typing import Callable
 from .messages import sysmsg
+from functools import wraps
 
 
 def checklink(func: Callable):
@@ -33,6 +34,7 @@ def checklink(func: Callable):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         if isfile(args[0]):
             return(func(*args, **kwargs))
@@ -52,6 +54,7 @@ def checklinks(func: Callable):
     Returns:
         caller function
     """
+    @wraps(func)
     def callf(*args, **kwargs):
         if isfile(args[0]) and \
            isfile(args[1]):
