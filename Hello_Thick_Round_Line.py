@@ -15,6 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         thickroundline as f,
+        addvect as addv,
         saveBMP
         )
 
@@ -28,13 +29,16 @@ def main():
         print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my = 200 # bitmap size
+        mx = my = 400 # bitmap size
         bmp = newBMP(mx, my, 4) # 4 bit = 16 color
-        p1 = (12, 12) # 1st point as (x,y)
-        p2 = (mx - 12, my - 12) # 2nd point as (x,y)
-        penradius = 10
-        color = 8
-        f(bmp, p1, p2, penradius, color) # all unsigned
+        r = 10
+        p1 = (20 + r, r) # 1st point as (x,y)
+        p2 = (20 + r, my - r) # 2nd point as (x,y)
+        d =  (2 * r + 4, 0) # delta vector
+        for c in range(1, 16):
+                f(bmp, p1, p2, r, c) # all unsigned
+                p1 = addv(p1, d) # do vector add
+                p2 = addv(p2, d) # to move line
         #Python_BMP.BITMAPlib.thickroundline(bmp bytearray,p1 xy-tuple,p2 xy-tuple,penradius int,color int)
         file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) # save file
