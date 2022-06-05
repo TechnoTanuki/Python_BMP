@@ -14,21 +14,21 @@ notice = """
 from Python_BMP.BITMAPlib import(
         loadBMP,
         fliphorizontal as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         rootdir = path.dirname(__file__)
         imgedt = 'mspaint'  # replace with another editor if Unix
         bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
         f(bmp) # call fliphorizonal and return byref
-        file = f'Hello{fname}.bmp' # file name
+        file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
