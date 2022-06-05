@@ -17,17 +17,15 @@ from Python_BMP.BITMAPlib import(
         plotstring as f,
         getX11colorname2RGBdict,
         font8x14,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
-
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx, my = 600, 80 # bitmap size
@@ -38,10 +36,10 @@ def main():
            5, # uint font size multiplier
            1, # uint space between pixels
            0, # uint default space between char
-           [c['orangered'], c['orange']],
+           [c['orangered'], c['orange'], c['yellow']],
            font8x14)
-        file = f'Hello{fname}.bmp' #file name
-        saveBMP(file,bmp)
+        file = f'Hello{f.__name__}.bmp' #file name
+        saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
