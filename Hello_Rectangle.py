@@ -14,16 +14,16 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         rectangle as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         x, y = 220, 200 # bitmap size
@@ -35,7 +35,7 @@ def main():
                 d = c * 5
                 f(bmp, x1 + d, y1 + d,
                        x2 - d, y2 - d, c) # draw a rectangle
-        file = f'Hello{fname}.bmp' #file name
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # we dump the byte array bmp -> file (so simple)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
