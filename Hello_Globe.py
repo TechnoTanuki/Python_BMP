@@ -18,6 +18,7 @@ from Python_BMP.BITMAPlib import(
         centercoord,
         plot3Dsolid,
         rotvec3D,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -26,13 +27,11 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:3]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 320 # x=y square bmp
-        file = f'Hello{fname}1.bmp' # some random file name as string
+        file = f'Hello{f.__name__}1.bmp' # some random file name as string
         bmp = newBMP(mx, my, 4) # 16 color bmp
         plot3Dsolid(bmp,
                 f([0, 0, 0], 50, 15),
