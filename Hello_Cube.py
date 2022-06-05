@@ -14,33 +14,32 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        getRGBfactors,
+        getX11RGBfactors,
         getshapesidedict,
         plot3Dsolid,
         rotvec3D,
         cubevert as f,
+        getfuncmetastr as meta,
         saveBMP
-)
+        )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 250 # x = y square bmp
-        file = f'Hello{fname}.bmp' # some random file name as string
+        file = f'Hello{f.__name__}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cenpt = centercoord(bmp) # helper method to get center of a bitmap
-        cf = getRGBfactors() # color info with presets
         d, translationvector = 400, [0, 0, 200] # be careful with these variables or object goes offscreen
         isSolid = True # toggle solid or outline
         showoutline = False # can show outline even if solid
-        cf = getRGBfactors() # color list
-        color = cf['brightwhite'] # color of solid
+        cf = getX11RGBfactors() # color list
+        color = cf['teal'] # color of solid
         outlinecolor = 10 # outline color
         sd = getshapesidedict() # common shape dict for surface definitions
         rotation = rotvec3D(40, 80, 50) # rotation vector (x,y,z) in degrees
