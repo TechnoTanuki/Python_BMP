@@ -28,8 +28,8 @@ def main():
         x, y = 320, 320 # bitmap size
         bmp = newBMP(x, y, 4) # 2^4 = 16 colors -> black background by default
         c = 0
-        d = 32
-        f = 25
+        d = 60
+        f = 8
         xf = x >> 2
         yf = y >> 2
         for y in range(0, 4):
