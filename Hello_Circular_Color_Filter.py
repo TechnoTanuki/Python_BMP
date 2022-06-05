@@ -16,6 +16,7 @@ from Python_BMP.BITMAPlib import(
         loadBMP,
         centercoord,
         colorfiltercircregion as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -24,9 +25,7 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
@@ -35,7 +34,7 @@ def main():
         rf, gf, bf = 1, .7, .3 # RGB color factors (0 to 1) float
         f(bmp, x, y, r, (rf, gf, bf)) # apply the color filter
         # Python_BMP.BITMAPlib.colorfiltercircregion(bmp bytearray,x int ,y int ,r int,cf <tuple of RGB 0..1> )
-        file = f'Hello{fname}.bmp' #file name
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
