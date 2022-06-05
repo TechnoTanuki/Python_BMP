@@ -40,7 +40,7 @@ def main():
         showoutline = True # can show outline even if solid
         color = cf['brightwhite'] # color of solid
         outlinecolor = 10 # outline color
-        rotation = rotvec3D(70,7,25) # rotation vector (x,y,z) in degrees
+        rotation = rotvec3D(70, 7, 25) # rotation vector (x,y,z) in degrees
         plot3Dsolid(bmp, f(40),
                 isSolid, color, showoutline,
                 outlinecolor, rotation,
