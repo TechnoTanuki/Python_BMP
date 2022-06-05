@@ -16,21 +16,21 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         XYaxis,
         XYscatterplot as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:5]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         x = y = 600 # bitmap size
         bmp = newBMP(x, y, 4) # 16 color bitmap
-        file = f'Hello{fname}.bmp' # random file name
+        file = f'Hello{f.__name__}.bmp' # random file name
         XYdata = [[20, 80, 5, 15, True], #[[x,y,radius,color,filled]
                   [40, 110, 5, 15, True],
                   [50, 10, 5, 15,True]]
