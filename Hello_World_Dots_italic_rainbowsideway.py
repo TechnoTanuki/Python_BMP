@@ -30,7 +30,7 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx, my = 80, 1000 # bitmap size
-        bmp = newBMP(mx,my,24) # RGB bitmap
+        bmp = newBMP(mx, my, 24) # RGB bitmap
         c = getcolorname2RGBdict()
         f(bmp, 10, 940, # position the text
          'Hello World!!', # random text
@@ -45,7 +45,7 @@ def main():
            c['brightblue'],
            c['brightmagenta']),
           font8x8)
-        file = 'HelloWorlditalicDotssidewaysrainbow.bmp' #file name
+        file = f'HelloWorld{f.__name__}rainbow.bmp' #file name
         saveBMP(file,bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
