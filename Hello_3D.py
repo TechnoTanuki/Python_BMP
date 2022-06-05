@@ -31,10 +31,11 @@ from Python_BMP.BITMAPlib import(
         RGB2int,
         rotvec3D,
         saveBMP,
-         spherevertandsurface,
+        spherevertandsurface,
         surfplot3Dvertandsurface,
         tetrahedravert,
-        trans
+        trans,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -42,14 +43,12 @@ from os import path
 
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = 1024
         my = 768
-        file = f'Hello{fname}.bmp'
+        file = f'Hello{f.__name__}.bmp'
         bmp = newBMP(mx, my, 24)
         maxpt = bottomrightcoord(bmp)
         cenpt = centercoord(bmp) # bitmap dependent coords
