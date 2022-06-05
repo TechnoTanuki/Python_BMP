@@ -236,6 +236,8 @@ from .inttools import(
 
 from .messages import sysmsg
 
+from .funcmeta import getfuncmetastr
+
 from .bufresize import(
     adjustxbufsize as _adjxbufsz,
     resizebufNtimesbigger

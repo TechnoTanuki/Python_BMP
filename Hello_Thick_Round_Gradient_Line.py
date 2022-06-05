@@ -14,17 +14,15 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         gradthickroundline as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
-from inspect import signature
 import subprocess as proc
 from os import path
 
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{signature(f)}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 300 # bitmap size
@@ -37,7 +35,7 @@ def main():
         penradius = 10 # unsigned int
         f(bmp, p1, p2, penradius,
           lumrange, [rf, gf, bf]) # call gradthickroundline
-        file = f'Hello{fname}.bmp' # file name
+        file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
