@@ -16,6 +16,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         loadBMP,
         brightnesseadjto24bitimage as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -25,14 +26,12 @@ from os import path
 
 def main():
         peradj = 75
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames}\n\t{f.__doc__}')
-        print(notice % (peradj))
+        print(f'{notice % (peradj)}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
         f(bmp, peradj) # 2nd param brightness adj percent + or -
-        file = f'Hello{fname}.bmp' # file name <string>
+        file = f'Hello{f.__name__}.bmp' # file name <string>
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
