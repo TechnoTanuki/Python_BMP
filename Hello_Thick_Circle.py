@@ -17,17 +17,15 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
         thickcircle as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
-
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{signature(f)}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 512 # bitmap size y = x square bitmap
@@ -40,7 +38,7 @@ def main():
                 f(bmp, x, y, r, penradius, c) # all unsigned
                 r -= dr
         #Python_BMP.BITMAPlib.thickcircle(bmp bytyearray,x int,y int ,r int,penradius int,color int)
-        file = f'Hello{fname}.bmp' #file name
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
