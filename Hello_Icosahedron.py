@@ -18,20 +18,20 @@ from Python_BMP.BITMAPlib import(
         rotvec3D,
         plot3Dsolid,
         icosahedvertandsurface as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
-        fname = f.__name__
-        print(f'def {fname}{f.__code__.co_varnames[0:1]}\n\t{f.__doc__}')
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 250 # x=y square bmp
-        file = f'Hello{fname}.bmp' # some random file name as string
+        file = f'Hello{f.__name__}.bmp' # some random file name as string
         bmp = newBMP(mx, my, 24) # RGB bmp
         cf = getRGBfactors() # color info with presets
         plot3Dsolid(bmp,
