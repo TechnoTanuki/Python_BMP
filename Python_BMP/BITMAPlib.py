@@ -5605,7 +5605,7 @@ def plotitalicstringsideway(bmp: array,
         scale: int, pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list):
-    """Draws an italic string sideways
+    """Draws an Italic String Sideways
 
     Args:
         bmp             : unsigned
@@ -5626,7 +5626,7 @@ def plotitalicstringsideway(bmp: array,
                               or a
                           list of ints
         fontbuf         : the font
-                         (see fonts.py)
+                          (see fonts.py)
 
     Returns:
         byref modified
