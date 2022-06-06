@@ -15,7 +15,8 @@ notice = """
 from Python_BMP.BITMAPlib import(
         loadBMP,
         copyrect,
-        convertselection2BMP,
+        convertselection2BMP as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -24,13 +25,13 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         buff = copyrect(bmp, 7, 7, 61, 61) # copy rectagular region (x1,y1,x2,y2) uint to buff
-        nbmp = convertselection2BMP(buff)# convert buffer to bitmap
-        file = 'HelloSaveSelection.bmp' #file name
+        nbmp = f(buff)# convert buffer to bitmap
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, nbmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
