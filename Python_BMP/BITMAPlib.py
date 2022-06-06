@@ -5640,7 +5640,7 @@ def plotstringsidewayasdots(
         pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list):
-    """Draws a string sideways
+    """Draws a string sideways as dots
 
     Args:
         bmp             : unsigned
