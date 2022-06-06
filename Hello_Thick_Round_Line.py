@@ -32,6 +32,7 @@ def main():
         mx = my = 400 # bitmap size
         bmp = newBMP(mx, my, 4) # 4 bit = 16 color
         r = 10
+        my -= 1
         p1 = (20 + r, r) # 1st point as (x,y)
         p2 = (20 + r, my - r) # 2nd point as (x,y)
         d =  (2 * r + 4, 0) # delta vector
