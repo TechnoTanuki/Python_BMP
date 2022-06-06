@@ -15,7 +15,8 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        gradthickcircle,
+        gradthickcircle as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -24,7 +25,7 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 256 # bitmap size y = x square bitmap
@@ -34,11 +35,9 @@ def main():
         r = x - penradius  # set radius
         lumrange = (255, 0) # byte tuple luminosity range
         rgbfactors = (0, .5, 1) # unsigned float tuple RGB 0 to 1 values
-        gradthickcircle(bmp, x, y, r,
-                penradius, lumrange,
-                rgbfactors) # all unsigned
-        # Python_BMP.BITMAPlib.gradthickcircle(bmp bytearray,x int,y int,r int,penradius int,lumrange see line 16,rgbfactors see line 17)
-        file = 'HelloThickGradientCircle.bmp' #file name
+        f(bmp, x, y, r, penradius, lumrange, rgbfactors) # all unsigned
+        # gradthickcircle(bmp bytearray,x int, y int, r int, penradius int, lumrange,rgbfactors)
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # save bitmap
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
