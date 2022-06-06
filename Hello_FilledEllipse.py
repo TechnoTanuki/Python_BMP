@@ -28,10 +28,20 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = newBMP(230, 200, 4) # 16 color 300 x 200 bmp
-        (a, b) = (x, y) = centercoord(bmp) # How to get center of the bitmap
-        color = 4 # set color
-        f(bmp,x, y, b, a, color) # call filledellipse all unsigned ints
+        bmp = newBMP(220, 200, 4) # 16 color 300 x 200 bmp
+        (a, b)  = centercoord(bmp) # How to get center of the bitmap
+        a >>= 2
+        b >>= 2
+        d = b >> 1
+        e = a >> 1
+        for y in range(0, 4):
+                c = y << 2
+                for x in range(0, 4):
+                        f(bmp, b + b * x * 2 + 16,
+                               a * y * 2 + 16,
+                               d, e, c) # call filledellipse all unsigned ints
+                        c += 1
+
         file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
