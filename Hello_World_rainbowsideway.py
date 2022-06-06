@@ -14,9 +14,10 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        plotstringsideway,
+        plotstringsideway as f,
         getcolorname2RGBdict,
         font8x8,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -25,29 +26,27 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx, my = 70, 840 # bitmap size
         bmp = newBMP(mx, my, 24) # RGB bitmap
         c = getcolorname2RGBdict()
-        colors = (c['brightred'],
-                  c['brightorange'],
-                  c['brightyellow'],
-                  c['brightgreen'],
-                  c['cyan'],
-                  c['brightblue'],
-                  c['brightmagenta'])
-        plotstringsideway(bmp,
-                10, 770, # position the text
-                'Hello World!!', # random text
-                7, # uint font size multiplier
-                1, # uint space between pixels
-                0, # uint default space between char
-                colors,
-                font8x8)
-        file = 'HelloWorldrainbowsideways.bmp' #file name
-        saveBMP(file,bmp)
+        f(bmp, 10, 770, # position the text
+          'Hello World!!', # random text
+           7, # uint font size multiplier
+           1, # uint space between pixels
+           0, # uint default space between char
+           (c['brightred'],
+            c['brightorange'],
+            c['brightyellow'],
+            c['brightgreen'],
+            c['cyan'],
+            c['brightblue'],
+            c['brightmagenta']),
+           font8x8)
+        file = f'HelloWorldrainbow{f.__name__}.bmp' #file name
+        saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
