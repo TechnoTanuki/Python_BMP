@@ -12,20 +12,22 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        resizeNtimessmaller2file
-)
+        resizeNtimessmaller2file as f,
+        getfuncmetastr as meta
+        )
 
 import subprocess as proc
 from os import path
 
+
 def main():
         n = 3 # unsigned int multiplier
-        print(notice % (n))
+        print(f'{notice % (n)}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         existingfile = f'{rootdir}/assets/tanuki.bmp'
-        file = 'Hello4timessmaller.bmp' # new file
-        resizeNtimessmaller2file(existingfile, file, n) # make earth smol by n times
+        file = f'Hello{f.__name__}.bmp' # new file
+        f(existingfile, file, n) # make earth smol by n times
         print(f'All done close {imgedt} to finish')
         ret = proc.call([imgedt, file])
 
