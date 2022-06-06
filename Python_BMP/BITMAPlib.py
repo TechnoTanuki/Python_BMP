@@ -5166,7 +5166,7 @@ def plotitalicstringasdots(bmp: array,
         spacebetweenchar: space between
                           the characters
         color           : color of
-                         the font
+                          the font
         fontbuf         : the font
                           (see fonts.py)
 
