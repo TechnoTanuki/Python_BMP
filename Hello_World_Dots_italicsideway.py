@@ -31,7 +31,7 @@ def main():
         rootdir = path.dirname(__file__) # get path of this script
         mx, my = 100, 780 # bitmap size
         bmp = newBMP(mx, my, 24) # RGB bitmap
-        f(bmp, 0, 740, # position the text
+        f(bmp, 0, 730, # position the text
           'Hello World!!', # random text
            7, # uint font size multiplier
            1, # uint space between pixels
