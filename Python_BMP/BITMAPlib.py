@@ -7847,9 +7847,7 @@ def brightnesseadjto24bitregion(
         x1: int, y1: int,
         x2: int, y2: int,
         percentadj: float):
-    """Applies a brightness adjustment
-        to a rectangular region
-        in an in-memory 24-bit bitmap
+    """Brightness adjustment to a rectangular area
 
     Args:
         bmp           : unsigned
@@ -7863,8 +7861,7 @@ def brightnesseadjto24bitregion(
                         or negative
 
     Returns:
-        byref modified
-        unsigned byte array
+        byref modified unsigned byte array
     """
     _use24bitfn2reg(bmp, x1, y1, x2, y2,
         _bradj2BGRbuf, percentadj)
@@ -7874,9 +7871,7 @@ def thresholdadjto24bitregion(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int,
         lumrange: list[int, int]):
-    """Applies a threshold adjustment
-        to a rectangular region in
-        an in-memory 24-bit bitmap
+    """Threshold adjustment to a rectangular area
 
     Args:
         bmp           : unsigned
@@ -7901,8 +7896,7 @@ def thresholdadjcircregion(
         bmp: array,
         x: int, y: int, r: int,
         lumrange: list[int, int]):
-    """Applies a threshold adjustment to a
-    circular region in a 24-bit bitmap
+    """Threshold adjustment to a circular area
 
     Args:
         bmp      : unsigned byte array
@@ -7922,8 +7916,7 @@ def thresholdadjcircregion(
 
 def brightnesseadjto24bitimage(
         bmp: array, percentadj: float):
-    """Applies a brightness adjustment to a
-    whole image in an in-memory 24-bit bitmap
+    """Brightness adjustment to a whole BMP
 
     Args:
         bmp       : unsigned byte array
@@ -7945,8 +7938,7 @@ def brightnesseadjto24bitimage(
 def thresholdadjto24bitimage(
         bmp: array,
         lumrange: list[int, int]):
-    """Applies a threshold adjustment
-    in an in-memory 24-bit bitmap
+    """Threshold adjustment to a whole BMP
 
     Args:
         bmp     : unsigned byte array
@@ -7966,7 +7958,7 @@ def thresholdadjto24bitimage(
 def verticalbrightnessgradto24bitimage(
         bmp: array,
         lumrange: list[int, int]):
-    """Applies a vertical brightnessn gradient
+    """Applies a vertical brightness gradient
 
     Args:
         bmp     : unsigned byte array
