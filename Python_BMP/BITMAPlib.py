@@ -5186,8 +5186,7 @@ def plotreverseditalicstringasdots(bmp: array,
         scale: int, pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list):
-    """Draws a reversed string as
-        Italic dots
+    """Draws a reversed string as Italic dots
 
     Args:
         bmp             : unsigned
@@ -5372,7 +5371,7 @@ def plotstringupsidedownasdots(
         pixspace: int,
         spacebetweenchar: int,
         color: int, fontbuf: list):
-    """Draws a string upsidedown
+    """Draws a string upsidedown as dots
 
     Args:
         bmp             : unsigned
