@@ -47,11 +47,10 @@ from .mathlib import (
 
 def itercirclepart(r: int
        ) -> list[int, int]:
-    """Yields (int, int) 2D vertices
-        along a path defined by
-        radius r as it traces
-        one fourth of a circle
-        with origin set at (0, 0)
+    """Yields (int, int) 2D vertices along
+    a path defined by radius r as it traces
+    one fourth of a circle with origin set
+    at (0, 0)
 
     Args:
         r: int radius
@@ -79,16 +78,12 @@ def itercirclepart(r: int
 
 def itercirclepartlineedge(
         r: int) -> list[int, int]:
-    """Yields (int, int) 2D vertices
-        along a path defined by
-        radius r as it traces
-        one fourth of a circle
-        with origin set at (0, 0)
-        tuned for generating
-        filled circles with
-        horizontal lines and other
-        tasks involving a circular
-        area
+    """Yields (int, int) 2D vertices along
+    a path defined by radius r as it traces
+    one fourth of a circle with origin set
+    at (0, 0) tuned for generating
+    filled circles with horizontal lines
+     and other tasks involving circular areas
 
     Args:
         r: int radius
@@ -120,16 +115,12 @@ def itercirclepartlineedge(
 
 def itercirclepartvertlineedge(
         r: int) -> list[int, int]:
-    """Yields (int, int) 2D vertices
-        along a path defined by
-        radius r as it traces
-        one fourth of a circle
-        with origin set at (0, 0)
-        tuned for generating
-        filled circles with
-        vertical lines and other
-        tasks involving a circular
-        area
+    """Yields (int, int) 2D vertices along
+    a path defined by radius r as it traces
+    one fourth of a circle with origin set
+    at (0, 0) tuned for generating
+    filled circles with vertical lines
+    and other tasks involving circular areas
 
     Args:
         r: int radius
@@ -163,8 +154,8 @@ def iterline(p1: list[int,int],
              p2: list[int,int]
             ) -> list[int,int]:
     """Yields (int, int) 2D vertices
-        along a line segment defined
-        by endpoints p1 and p2
+    along a line segment defined
+    by endpoints p1 and p2
 
     Args:
         p1, p2: line endpoints
@@ -217,9 +208,8 @@ def lineseg(p1: list[int, int],
             p2: list[int, int]
       ) -> list[list[int, int]]:
     """Generates a list of (int, int)
-        2D vertices along
-        a line segment defined
-        by endpoints p1 and p2
+    2D vertices along a line segment
+    defined by endpoints p1 and p2
 
     Args:
         p1, p2: line endpoints
@@ -232,12 +222,10 @@ def lineseg(p1: list[int, int],
 
 
 def iterellipsepart(b: int, a: int):
-    """Yields (int, int) 2D vertices
-        along a path defined by
-        major and minor axes
-        b and a as it traces
-        one fourth of an ellipse
-        with origin set at (0, 0)
+    """Yields (int, int) 2D vertices along
+    a path defined by major and minor axes
+    b and a as it traces one fourth of an
+    ellipse with origin set at (0, 0)
 
     Args:
         b, a: major and minor axes
@@ -276,12 +264,10 @@ def iterellipsepart(b: int, a: int):
 
 def iterellipse(x: int, y: int,
                 b: int, a: int):
-    """Yields (int, int) 2D vertices
-        along a path defined by
-        major and minor axes
-        b and a as it traces
-        an ellipse with origin
-        set at (x, y)
+    """Yields (int, int) 2D vertices along
+    a path defined by major and minor axes
+    b and a as it traces an ellipse with
+    origin set at (x, y)
 
     Args:
         b, a: major and minor axes
@@ -296,13 +282,10 @@ def iterellipse(x: int, y: int,
 def iterellipserot(x: int, y: int,
                    b: int, a: int,
                    degrot: float):
-    """Yields (int, int) 2D vertices
-        along a path defined by
-        major and minor axes
-        b and a as it traces
-        an ellipse with origin
-        set at (x, y) rotated
-        by degrot degrees
+    """Yields (int, int) 2D vertices along
+    a path defined by major and minor axes
+    b and a as it traces an ellipse with origin
+    set at (x, y) rotated by degrot degrees
 
     Args:
         b, a: major and minor axes
@@ -323,11 +306,9 @@ def iterellipserot(x: int, y: int,
 
 def itercircle(x: int, y: int,
         r: int) -> list[int, int]:
-    """Yields (int, int) 2D vertices
-        along a path defined by
-        radius r as it traces
-        a circle with origin set
-        at (x, y)
+    """Yields (int, int) 2D vertices along
+    a path defined by radius r as it traces
+    a circle with origin set at (x, y)
 
     Args:
         x, y: int centerpoint
@@ -349,9 +330,8 @@ def _bezierblend(i: int, n: int, u: int):
 def iterbeziercurve(
         pntlist: list[list[int, int]]
                  ) -> list[int, int]:
-    """Yields a list of vertices for
-        a bezier curve based on
-        2D control points in pntlist
+    """Yields a list of vertices for a bezier curve
+    based on 2D control points in pntlist
 
     Args:
         pntlist: 2D control points
@@ -386,9 +366,8 @@ def beziercurvevert(
         pntlist: list[list[int, int]],
         isclosed: bool,
         curveback: bool) -> list[int, int]:
-    """Creates a list of vertices for
-        a bezier curve based on
-        2D control points in pntlist
+    """Creates a list of vertices for a bezier curve
+    based on 2D control points in pntlist
 
     Args:
         pntlist: 2D control points
@@ -407,9 +386,8 @@ def iterbspline(
         pntlist: list[list[int, int]],
         isclosed: bool,
         curveback: bool) -> list[int, int]:
-    """Yields a list of vertices for
-        a bspline curve based on
-        2D control points in pntlist
+    """Yields a list of vertices for a bspline curve
+    based on 2D control points in pntlist
 
     Args:
         pntlist: 2D control points
@@ -448,9 +426,7 @@ def bsplinevert(
     isclosed: bool,
     curveback: bool
     ) -> list[list[int, int]]:
-    """Creates a list of vertices for
-        a bspline curve based on
-        2D control points in pntlist
+    """Creates a list of vertices for a bspline curve
 
     Args:
         pntlist: 2D control points
@@ -483,8 +459,7 @@ def recvert(x1: int, y1: int,
                       list[int, int],
                       list[int, int],
                       list[int, int]]:
-    """Creates a list of vertices for
-        a rectangle
+    """Creates a list of vertices for a rectangle
 
     Args:
         x1, y1, x1, y2: int values
@@ -502,8 +477,7 @@ def floatregpolygonvert(
         cx: int, cy: int, r: int,
         sides: int, angle: float
         ) -> list[list[float, float]]:
-    """Creates a list of float vertices
-        for a regular polygon
+    """Creates a list of float vertices for a regular polygon
 
     Args:
         cx, cy: int center of a circle
@@ -535,8 +509,7 @@ def regpolygonvert(cx: int, cy: int,
         r: int, sides: int,
         angle: float
         ) -> list[list[int, int]]:
-    """Creates a list of int vertices
-        for a regular polygon
+    """Creates a list of int vertices for a regular polygon
 
     Args:
         cx, cy: int center of a circle
@@ -561,9 +534,8 @@ def regpolygonvert(cx: int, cy: int,
 def horizontalvert(y: int,
         x1: int, x2: int, dx: int
         ) -> list[list[int, int]]:
-    """Creates a list of int vertices
-        along a horizontal line with
-        int step dx
+    """Creates a list of int vertices along
+    a horizontal line with int step dx
 
     Args:
         y : int constant y
@@ -583,8 +555,7 @@ def verticalvert(x: int,
         y1: int, y2: int, dy: int
         ) -> list[list[int, int]]:
     """Creates a list of int vertices
-        along a vertical line with
-        int step dy
+    along a vertical line with int step dy
 
     Args:
         x : int constant x
@@ -602,11 +573,9 @@ def verticalvert(x: int,
 
 def circlevert(x: int, y: int, r: int
               ) -> list[list[int, int]]:
-    """Returns a list[(int, int)]
-        of 2D vertices along a path
-        defined by radius r as it
-        traces a circle with origin
-        set at (x, y)
+    """Returns a list[(int, int)] of 2D vertices
+    along a path defined by radius r as it
+    traces a circle with origin set at (x, y)
 
     Args:
         x, y: int centerpoint
@@ -624,11 +593,9 @@ def circlevert(x: int, y: int, r: int
 def arcvert(x: int, y: int, r: int,
             startdegangle: float,
             enddegangle: float):
-    """Returns a list[(int, int)]
-        of 2D vertices along a path
-        defined by radius r as it
-        traces an arc with
-        origin set at (x, y)
+    """Returns a list[(int, int)] of 2D vertices
+    along a path defined by radius r as it
+    traces an arc with origin set at (x, y)
 
     Args:
         x, y: int centerpoint
@@ -660,8 +627,7 @@ def arcvert(x: int, y: int, r: int,
 
 def rectboundarycoords(
         vlist: list) -> list:
-    """Returns the rectangular bounds
-        of a list of 2D vertices
+    """Returns the rectangular bounds of a list of 2D vertices
 
     Args:
         vlist: list[(x: int, y :int)]
@@ -679,8 +645,7 @@ def itergetneighbors(v: list[int, int],
                       mx: int, my: int,
                    includecenter: bool
                    ) -> list[int, int]:
-    """Yields the neighboring pixels
-        of point v
+    """Yields the neighboring pixels of point v
 
     Args:
         v : (x: int, y: int) point
@@ -722,8 +687,7 @@ def getneighborlist(
         v: list[int, int],
         mx: int, my: int,
         includecenter: bool) -> list:
-    """Returns the neighboring pixels
-        of point v
+    """Returns the neighboring pixels of point v
 
     Args:
         v : (x: int, y: int) point
@@ -744,9 +708,8 @@ def spiralcontrolpointsvert(
         step: int,
         growthfactor: float,
         turns: int):
-    """Returns a list[(int, int)]
-        of 2D vertices along a path
-        defined by a square spiral
+    """Returns a list of 2D vertices in
+    a path defined by a square spiral
 
     Args:
         x, y: int centerpoint
@@ -786,7 +749,7 @@ def spiralcontrolpointsvert(
 def sortrecpoints(x1: int, y1: int,
                   x2: int, y2: int):
     """Sorts the x and y values
-        that defines a rectangular area
+    that defines a rectangular area
 
     Args:
         x1, x2: int x coordinates
@@ -807,9 +770,8 @@ def isinrectbnd(x: int, y: int,
         xmin: int, ymin: int,
         xmax: int, ymax: int) -> bool:
     """Checks if the x and y values
-        lie within the rectangular area
-        defined by xmin, ymin and
-                   xmax, ymax
+    lie within the rectangular area
+    defined by xmin, ymin and xmax, ymax
 
     Args:
         x, y: (x,y) coordinates to test
@@ -830,10 +792,9 @@ def listinrecbnd(
         xmin: int, ymin: int,
         xmax: int, ymax: int) -> bool:
     """Checks if all the values in a
-        list of x and y value pairs
-        lie within the rectangular area
-        defined by xmin, ymin and
-                   xmax, ymax
+    list of x and y value pairs
+    lie within the rectangular area
+    defined by xmin, ymin and xmax, ymax
 
     Args:
         x, y: list[list(x,y)] list of
@@ -864,7 +825,7 @@ def entirecircleisinboundary(
         miny: int, maxy: int,
         r: int):
     """Checks if an entire circle
-        is within a rectagular area
+    is within a rectagular area
 
     Args:
         x, y: center of the ellipse
@@ -891,7 +852,7 @@ def entireellipseisinboundary(
         miny: int, maxy: int,
         b: int, a: int):
     """Checks if an entire ellipse
-        is within a rectagular area
+    is within a rectagular area
 
     Args:
         x, y: center of the ellipse
@@ -916,11 +877,9 @@ def ellipsevert(x: int, y: int,
                 b: int, a: int
                ) -> list[int, int]:
     """Returns (int, int) 2D vertices
-        along a path defined by
-        major and minor axes
-        b and a as it traces
-        an ellipse with origin
-        set at (x, y)
+    along a path defined by major and
+    minor axes b and a as it traces
+    an ellipse with origin set at (x, y)
 
     Args:
         x, y: center of the ellipse
@@ -939,11 +898,10 @@ def iterspirograph(
         l: float, k: float,
         delta: float, lim: float):
     """Yields (int, int) 2D vertices
-        along a path defined by
-        spirograph scaling factor r
-        and dimensionless parameters
-        l and k with an origin set
-        at (x, y)
+    along a path defined by spirograph
+    scaling factor r and dimensionless
+    parameters l and k with an origin
+    set at (x, y)
 
     Args:
         x, y : center of the spirograph
@@ -976,12 +934,10 @@ def spirographvert(
         l: float, k: float,
         delta: float, lim: float):
     """Returns a list(int, int) of
-        2D vertices along a path
-        defined by a spirograph
-        with a scaling factor r
-        and dimensionless parameters
-        l and k with an origin set
-        at (x, y)
+    2D vertices along a path defined
+    by a spirograph with scaling factor r
+    and dimensionless parametersl and k
+    with an origin set at (x, y)
 
     Args:
         x, y : center of the spirograph
@@ -1005,13 +961,12 @@ def iterlissajouscurve(
         c: float, d: float, e: float,
         delta: float, lim: float):
     """Yields (int, int) 2D vertices
-        along a path defined by
-        lissajous curve axis scaling
-        factors a and b and frequency
-        scaling factors parameters
-        c and d and radian phase shift
-        angle e with an origin set
-        at (x, y)
+    along a path defined by lissajous
+    curve axis scaling factors a and b
+    and frequency scaling factors
+    parameters c and d and
+    radian phase shift angle e
+    with an origin set at (x, y)
 
     Args:
         x, y : center of the curve
@@ -1040,13 +995,11 @@ def lissajouscurvevert(
         e: float,
         delta: float, lim: float):
     """Returns (int, int) 2D vertices
-        along a path defined by
-        lissajous curve axis scaling
-        factors a and b and frequency
-        scaling factors parameters
-        c and d and radian phase shift
-        angle e with an origin set
-        at (x, y)
+    along a path defined by a lissajous curve
+    axis scaling factors a and b and
+    frequency scaling factors parameters
+    c and d and radian phase shift angle e
+    with an origin set at (x, y)
 
     Args:
         x, y : center of the curve
@@ -1069,20 +1022,17 @@ def itercircleinvolute(
         x: int, y: int, a: float,
         delta: float, lim: float):
     """Yields (int, int) 2D vertices
-        along a path defined by
-        the involute of a circle
-        with scaling factor a
-        and an origin set at (x, y)
+    along a path defined by the involute
+    of a circle with scaling factor a
+    and an origin set at (x, y)
 
-        The involute of a circle is the
-        path traced out by a point on a
-        straight line that rolls around
-        a circle.
+    The involute of a circle is the path
+    traced out by a point on a straight
+    line that rolls around a circle.
 
-        It was studied by Huygens when
-        he was considering clocks
-        without pendulums that might be
-        used on ships at sea.
+    It was studied by Huygens when he was
+    considering clocks without pendulums
+    that might be used on ships at sea.
 
     Args:
         x, y : center of the curve
@@ -1107,20 +1057,17 @@ def circleinvolutevert(
         x: int, y: int, a: float,
         delta: float, lim: float):
     """Returns (int, int) 2D vertices
-        along a path defined by
-        the involute of a circle
-        with scaling factor a
-        and an origin set at (x, y)
+    along a path defined by the involute
+    of a circle with scaling factor a
+    and an origin set at (x, y)
 
-        The involute of a circle is the
-        path traced out by a point on a
-        straight line that rolls around
-        a circle.
+    The involute of a circle is the path
+    traced out by a point on a straight
+    line that rolls around a circle.
 
-        It was studied by Huygens when
-        he was considering clocks
-        without pendulums that might be
-        used on ships at sea.
+    It was studied by Huygens when he was
+    considering clocks without pendulums
+    that might be used on ships at sea.
 
     Args:
         x, y : center of the curve
@@ -1142,11 +1089,10 @@ def iterepicycloid(
         a: float, b: float,
         delta: float, lim: float):
     """Yields (int, int) 2D vertices
-        along a path defined by
-        epicycloid traced by a circle
-        of radius b which rolls round
-        a circle of radius a with an
-        origin set at (x, y)
+    along a path defined by epicycloid
+    traced by a circleof radius b which
+    rolls round a circle of radius a
+    with an origin set at (x, y)
 
     Args:
         x, y : center of epicycloid
@@ -1178,11 +1124,10 @@ def epicycloidvert(
         a: float, b: float,
         delta: float, lim: float):
     """Returns (int, int) 2D vertices
-        along a path defined by
-        epicycloid traced by a circle
-        of radius b which rolls round
-        a circle of radius a with an
-        origin set at (x, y)
+    along a path defined by epicycloid
+    traced by a circle of radius b which
+    rolls round a circle of radius a
+    with an origin set at (x, y)
 
     Args:
         x, y : center of epicycloid
@@ -1205,14 +1150,11 @@ def iterhypotrochoid(
         a: float, b: float, c: float,
         delta: float, lim: float):
     """Yields (int, int) 2D vertices
-        along a path defined by
-        hypotrochoid traced by a
-        point from the with a
-        distance c from the
-        center of circle of radius b
-        which rolls round a
-        circle of radius a with an
-        origin set at (x, y)
+    along a path defined by a hypotrochoid
+    traced by a point from with distance c
+    from the center of circle of radius b
+    which rolls round a circle of radius a
+    with an origin set at (x, y)
 
     Args:
         x, y : center of epicycloid
@@ -1247,14 +1189,11 @@ def hypotrochoidvert(
             a: float, b: float, c: float,
             delta: float, lim: float):
     """Returns (int, int) 2D vertices
-        along a path defined by
-        hypotrochoid traced by a
-        point from the with a
-        distance c from the
-        center of circle of radius b
-        which rolls round a
-        circle of radius a with an
-        origin set at (x, y)
+    along a path defined by a hypotrochoid
+    traced by a point with distance c from
+    the center of circle of radius b
+    which rolls round a circle of radius a
+    with an origin set at (x, y)
 
     Args:
         x, y : center of hypotrochoid
