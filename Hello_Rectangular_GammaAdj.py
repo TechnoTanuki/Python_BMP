@@ -14,7 +14,8 @@ Gamma Adjust Rectangular Region Demo
 
 from Python_BMP.BITMAPlib import(
         loadBMP,
-        gammaadjto24bitregion,
+        gammaadjto24bitregion as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -23,20 +24,14 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
         #gammaadjto24bitregion(bmp,x1,y1,x2,y2,gammadj <ufloat>)
-        gammaadjto24bitregion(
-                bmp,
-                30, 30, 138, 138, # area to adjust
-                4) # gamma adjustment
-        gammaadjto24bitregion(
-                bmp,
-                50, 50, 118, 118,
-                .1)
-        file = 'HelloRectangularGammaAdj.bmp' #file name
+        f(bmp, 30, 30, 138, 138, 4) # gamma adjustment
+        f(bmp, 50, 50, 118, 118, 0.1)
+        file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # bmp<byte array in bitmap format> --> file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done

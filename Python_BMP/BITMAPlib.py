@@ -8522,8 +8522,7 @@ def gammaadjto24bitregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
         gamma: float):
-    """Applies a gamma correction to a rectangular area
-    in a 24-bit bitmap
+    """Gamma correction to a rectangular area in a 24-bit BMP
 
     Args:
         bmp           : unsigned
@@ -8544,8 +8543,7 @@ def gammaadjto24bitregion(bmp: array,
 
 def gammaadjto24bitimage(
         bmp: array, gamma: float):
-    """Applies a gamma correction
-    to an in-memory 24-bit bitmap
+    """Gamma correction to an in-memory 24-bit BMP
 
     Args:
         bmp  : unsigned byte array
