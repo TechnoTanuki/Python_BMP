@@ -1249,5 +1249,5 @@ def flowervert(cx: int, cy: int, r :int, petals: int, angrot: float):
     Returns:
         list[(x: int, y: int)]
     """
-    return list[iterflower(cx, cy, r,
-                     petals, angrot)]
+    return list(iterflower(cx, cy, r,
+                     petals, angrot))
