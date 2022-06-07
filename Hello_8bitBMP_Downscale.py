@@ -13,7 +13,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        reduce24bitimagebits,
+        reduce24bitimagebits as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -21,7 +22,7 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         file = f'{rootdir}/assets/earth.bmp'
@@ -29,11 +30,7 @@ def main():
         bits= 8 # valid values are 8,4,1
         threshold = 4 # in computing new palette how far apart should colors be
         usemono = False # can apply a mono filter
-        RGBfactors = [0.25, .5, 1] # not used unless usemono filter is True
-        reduce24bitimagebits(
-                file, newfile,
-                bits, threshold,
-                usemono, RGBfactors) # magic takes time
+        f(file, newfile, bits, threshold, usemono) # magic takes time
         print(f'All done close {imgedt} to finish')
         ret = proc.call([imgedt, newfile])
 
