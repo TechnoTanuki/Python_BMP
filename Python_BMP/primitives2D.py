@@ -1268,7 +1268,7 @@ def iterdrawvec(u: list, v: list, headsize: int):
                   0 for default size
 
     Yields:
-        (x: int, y: int)
+        ((x1: int, y1: int), (x2: int, y2: int))
     """
     vm = vmag(subvect(u, v))
     anginc = 0.39269908169872414
@@ -1277,20 +1277,19 @@ def iterdrawvec(u: list, v: list, headsize: int):
     a = anglebetween2Dlines(u, v)
     a1 = a - anginc
     a2 = a + anginc
-    for p in iterline(u, v):
-        yield p
+    yield (u, v)
 
     def _hadd(v, hm, a1, a2):
-        for p in iterline(v, roundvect(addvect(v, polar2rectcoord2D([hm, a1])))):
-            yield p
-        for p in iterline(v, roundvect(addvect(v, polar2rectcoord2D([hm, a2])))):
-            yield p
+        yield (v, roundvect(addvect(v,
+        polar2rectcoord2D([hm, a1]))))
+        yield (v, roundvect(addvect(v,
+        polar2rectcoord2D([hm, a2]))))
 
     def _hsub(v, hm, a1, a2):
-        for p in iterline(v, roundvect(subvect(v, polar2rectcoord2D([hm, a1])))):
-            yield p
-        for p in iterline(v, roundvect(subvect(v, polar2rectcoord2D([hm, a2])))):
-            yield p
+        yield (v, roundvect(subvect(v,
+        polar2rectcoord2D([hm, a1]))))
+        yield (v, roundvect(subvect(v,
+        polar2rectcoord2D([hm, a2]))))
 
     if u[0] < v[0] and u[1] < v[1]:
         for p in _hsub(v, hm, a1, a2):

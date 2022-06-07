@@ -2072,8 +2072,8 @@ def drawvec(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    for p in iterdrawvec(u, v, headsize):
-        intplotvecxypoint(bmp, p, color)
+    for (a, b) in iterdrawvec(u, v, headsize):
+        linevec(bmp, a, b, color)
 
 
 
