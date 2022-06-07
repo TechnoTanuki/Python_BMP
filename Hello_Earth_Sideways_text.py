@@ -35,7 +35,7 @@ def main():
         bmp = l(f'{rootdir}/assets/earth.bmp')
         c = getcolorname2RGBdict() #friendly color names 2 rgb
         x = y = 150
-        fontsize =2
+        fontsize = 2
         pixspace = 1 # space between bitmap font pixels (0 = default)
         charspace = 0 # space bitmap font characters (0 = default)
         f(bmp, x, y, 'Hello!!!', # call plotstringsideway
