@@ -15,9 +15,10 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        distance,
-        centercoord,
-        plotRGBxybit,
+        distance as d,
+        centercoord as c,
+        plotRGBxybit as p,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -26,19 +27,19 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(d)}\n{meta(c)}\n{meta(p)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx, my = 640, 480 # x and y dim of bmp
         bmp = newBMP(mx, my, 24) # (x,y,bit depth) 24 bit BMP
-        cen = centercoord(bmp) # get x,y of center
+        cen = c(bmp) # get x, y of center call centercoord
         f = lambda d: d * d # simple non linear func
         r = b = 0 # turn off red and blue
         for y in range(my):
                 for x in range(mx):
-                        g = int(f(distance(cen, (x, y)))) % 256 # green gradient
-                        plotRGBxybit(bmp, x, y, (r, g, b)) # make a rainbow
-        file='HelloNonLinearRadialGradients.bmp' # file name
+                        g = int(f(d(cen, (x, y)))) % 256 # green gradient
+                        p(bmp, x, y, (r, g, b)) # make a rainbow
+        file = f'Hello{d.__name__}{c.__name__}{p.__name__}.bmp' # file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
