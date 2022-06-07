@@ -30,10 +30,12 @@ from .conditionaltools import(
 
 from .mathlib import (
     addvect,
+    anglebetween2Dlines,
     computerotvec,
     isinrange,
     mirror1stquad,
     pivotlist,
+    polar2rectcoord2D,
     rect2polarcoord2Dwithcenter,
     rotvec2D,
     roundvect,
@@ -42,6 +44,7 @@ from .mathlib import (
     setmax,
     sign,
     subvect,
+    vmag
     )
 
 
@@ -1251,3 +1254,65 @@ def flowervert(cx: int, cy: int, r :int, petals: int, angrot: float):
     """
     return list(iterflower(cx, cy, r,
                      petals, angrot))
+
+
+def iterdrawvec(u: list, v: list, headsize: int):
+    """Yields a vector (line segment with arrow head)
+
+    Args:
+        u       : (x: float, y: float)
+                  point 1 origin
+        v       : (x: float, y: float)
+                  point 2 has arrow
+        headsize: size of the arrow
+                  0 for default size
+
+    Yields:
+        (x: int, y: int)
+    """
+    vm = vmag(subvect(u, v))
+    anginc = 0.39269908169872414
+    hm = iif(headsize == 0,
+            vm / 5, headsize)
+    a = anglebetween2Dlines(u, v)
+    a1 = a - anginc
+    a2 = a + anginc
+    for p in iterline(u, v):
+        yield p
+
+    def _hadd(v, hm, a1, a2):
+        for p in iterline(v, roundvect(addvect(v, polar2rectcoord2D([hm, a1])))):
+            yield p
+        for p in iterline(v, roundvect(addvect(v, polar2rectcoord2D([hm, a2])))):
+            yield p
+
+    def _hsub(v, hm, a1, a2):
+        for p in iterline(v, roundvect(subvect(v, polar2rectcoord2D([hm, a1])))):
+            yield p
+        for p in iterline(v, roundvect(subvect(v, polar2rectcoord2D([hm, a2])))):
+            yield p
+
+    if u[0] < v[0] and u[1] < v[1]:
+        for p in _hsub(v, hm, a1, a2):
+            yield p
+    elif u[0] > v[0] and u[1] > v[1]:
+        for p in _hadd(v, hm, a1, a2):
+            yield p
+    elif v[1] == u[1] and u[0] < v[0]:
+        for p in _hsub(v, hm, a1, a2):
+            yield p
+    elif v[1] == u[1] and u[0] > v[0]:
+        for p in _hadd(v, hm, a1, a2):
+            yield p
+    elif v[0] == u[0] and u[1] > v[1]:
+        for p in _hsub(v, hm, a1, a2):
+            yield p
+    elif v[0] == u[0] and u[1] < v[1]:
+        for p in _hadd(v, hm, a1, a2):
+            yield p
+    elif u[0] < v[0] and u[1] > v[1]:
+        for p in _hsub(v, hm, a1, a2):
+            yield p
+    else:
+        for p in _hadd(v, hm, a1, a2):
+            yield p

@@ -98,6 +98,7 @@ from .primitives2D import(
     itercirclepart,
     itercirclepartlineedge,
     itercirclepartvertlineedge,
+    iterdrawvec,
     iterellipse,
     iterellipsepart,
     iterellipserot,
@@ -2071,49 +2072,9 @@ def drawvec(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    vm = vmag(subvect(u, v))
-    anginc = 0.39269908169872414
-    hm = iif(headsize == 0,
-            vm / 5, headsize)
-    a = anglebetween2Dlines(u, v)
-    a1 = a - anginc
-    a2 = a + anginc
-    linevec(bmp, u, v, color)
+    for p in iterdrawvec(u, v, headsize):
+        intplotvecxypoint(bmp, p, color)
 
-    def _hadd(bmp, v, hm, a1, a2):
-        linevec(bmp, v,
-            addvect(v,
-                polar2rectcoord2D([hm, a1])),
-                    color)
-        linevec(bmp, v,
-            addvect(v,
-                polar2rectcoord2D([hm, a2])),
-                    color)
-
-    def _hsub(bmp, v, hm, a1, a2):
-        linevec(bmp, v, subvect(v,
-        polar2rectcoord2D([hm, a1])),
-                              color)
-        linevec(bmp, v, subvect(v,
-        polar2rectcoord2D([hm, a2])),
-                              color)
-
-    if u[0] < v[0] and u[1] < v[1]:
-        _hsub(bmp, v, hm, a1, a2)
-    elif u[0] > v[0] and u[1] > v[1]:
-        _hadd(bmp, v, hm, a1, a2)
-    elif v[1] == u[1] and u[0] < v[0]:
-        _hsub(bmp, v, hm, a1, a2)
-    elif v[1] == u[1] and u[0] > v[0]:
-        _hadd(bmp, v, hm, a1, a2)
-    elif v[0] == u[0] and u[1] > v[1]:
-        _hsub(bmp, v, hm, a1, a2)
-    elif v[0] == u[0] and u[1] < v[1]:
-        _hadd(bmp, v, hm, a1, a2)
-    elif u[0] < v[0] and u[1] > v[1]:
-        _hsub(bmp, v, hm, a1, a2)
-    else:
-        _hadd(bmp, v, hm, a1, a2)
 
 
 def thickroundline(bmp: array,
