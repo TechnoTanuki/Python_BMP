@@ -229,7 +229,8 @@ from .fonts import(
 from .fractals import(
     getIFSparams,
     iterIFS,
-    mandelparamdict
+    mandelparamdict,
+    itermandelbrot
     )
 
 from .inttools import(
@@ -8005,34 +8006,14 @@ def mandelbrot(bmp: array,
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
-    (Pmax, Pmin, Qmax, Qmin) = \
-                 mandelparam
-    x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
-    maxx = x2 - x1
-    maxy = y2 - y1
-    dp = (Pmax - Pmin) / maxx
-    dq = (Qmax - Qmin) / maxy
-    max_size = 4
-    for y in range(y1, y2):
-        Q = Qmin + (y - y1) * dq
-        for x in range(x1, x2):
-            P = Pmin + (x - x1) * dp
-            xp = yp = c= Xsq = Ysq = 0
-            while (Xsq + Ysq) < max_size:
-                 xp, yp = Xsq - Ysq + P, \
-                       2 * xp * yp + Q
-                 Xsq = xp * xp
-                 Ysq = yp * yp
-                 c += 1
-                 if c > maxiter:
-                     break
-            if bmp[_bmclrbits] == 24:
-                c = colormix(((255 - c) * 20) % 256,
+    for (x, y, c) in itermandelbrot(x1, y1, x2, y2,
+                             mandelparam, maxiter):
+        if bmp[_bmclrbits] == 24:
+            c = colormix(((255 - c) * 20) % 256,
                         RGBfactors)
-            else:
-                c = mcolor - c % maxcolors
-            plotxybit(bmp, x, y, c)
+        else:
+            c = mcolor - c % maxcolors
+        plotxybit(bmp, x, y, c)
 
 
 def IFS(bmp: array,

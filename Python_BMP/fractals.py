@@ -90,3 +90,51 @@ def iterIFS(
         py = int((dy - y * yscale + yoffset) + y1)
         if isinrectbnd(px, py, x1, y1, x2, y2):
           	  yield (px, py)
+
+
+def itermandelbrot(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        mandelparam: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Mandelbrot set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        mandelparam   : see fractals.py
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        (x:int, y: int, c: int)
+    """
+    (Pmax, Pmin, Qmax, Qmin) = \
+                 mandelparam
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
+    maxx = x2 - x1
+    maxy = y2 - y1
+    dp = (Pmax - Pmin) / maxx
+    dq = (Qmax - Qmin) / maxy
+    max_size = 4
+    for y in range(y1, y2):
+        Q = Qmin + (y - y1) * dq
+        for x in range(x1, x2):
+            P = Pmin + (x - x1) * dp
+            xp = yp = c= Xsq = Ysq = 0
+            while (Xsq + Ysq) < max_size:
+                 xp, yp = Xsq - Ysq + P, \
+                       2 * xp * yp + Q
+                 Xsq = xp * xp
+                 Ysq = yp * yp
+                 c += 1
+                 if c > maxiter:
+                     break
+            yield (x, y, c)
