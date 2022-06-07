@@ -1210,3 +1210,44 @@ def hypotrochoidvert(
     """
     return list(iterhypotrochoid(x, y,
                   a, b, c, delta, lim))
+
+
+def iterflower(cx: int, cy: int, r :int,
+           petals: int, angrot: float):
+    """Yields 2D points for a flower
+
+    Args:
+        cx, cy, r : center (cx,cy)
+                    and radius r
+        petals    : number of petals
+        angrot    : angle of rotation
+
+    Yields:
+        (x: int, y: int)
+    """
+    p = petals / 2
+    angmax = 360 * petals
+    angrot = radians(angrot)
+    for a in range(angmax):
+        ang = radians(a / petals)
+        f = cos(p * ang) ** 2
+        rang = ang + angrot
+        x = int(cx - r * sin(rang) *f)
+        y = int(cy - r * cos(rang) *f)
+        yield (x, y)
+
+
+def flowervert(cx: int, cy: int, r :int, petals: int, angrot: float):
+    """Returns a list of 2D points for a flower
+
+    Args:
+        cx, cy, r : center (cx,cy)
+                    and radius r
+        petals    : number of petals
+        angrot    : angle of rotation
+
+    Returns:
+        list[(x: int, y: int)]
+    """
+    return list[iterflower(cx, cy, r,
+                     petals, angrot)]

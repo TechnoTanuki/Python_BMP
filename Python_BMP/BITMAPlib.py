@@ -86,6 +86,7 @@ from .primitives2D import(
     circleinvolutevert,
     ellipsevert,
     epicycloidvert,
+    flowervert,
     entirecircleisinboundary,
     entireellipseisinboundary,
     hypotrochoidvert,
@@ -101,6 +102,7 @@ from .primitives2D import(
     iterellipsepart,
     iterellipserot,
     iterepicycloid,
+    iterflower,
     itergetneighbors,
     iterhypotrochoid,
     iterline,
@@ -8104,15 +8106,7 @@ def plotflower(bmp: array,
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
     lum1, dlum = _rng2bsndel(lumrange)
-    p = petals / 2
-    angmax = 360 * petals
-    angrot = radians(angrot)
-    for a in range(angmax):
-        ang=radians(a/petals)
-        f = cos(p * ang) ** 2
-        rang = ang + angrot
-        x = int(cx - r * sin(rang) *f)
-        y = int(cy - r * cos(rang) *f)
+    for (x, y) in iterflower(cx, cy, r, petals, angrot):
         c = colormix(setmax(abs(int(lum1 + dlum * (distance([x, y], [cx, cy]) / r))),255), RGBfactors)
         if bmp[_bmclrbits] != 24:
             c = mcolor - c % maxcolors
