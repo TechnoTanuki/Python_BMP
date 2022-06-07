@@ -12,7 +12,6 @@ notice = """
  -----------------------------------
 """
 
-from inspect import signature
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
