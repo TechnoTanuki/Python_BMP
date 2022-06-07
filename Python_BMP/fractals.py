@@ -58,18 +58,18 @@ def iterIFS(
     """Yield 2D points for an Interated Function System Fractal
 
     Args:
-        IFStransparam  : see above
-        x1, y1, x2, y2 : rectangular
-                         region
-                         to draw in
-        xscale,yscale  : scaling factors
-        xoffset,yoffset: used to move
-                         the fractal
-        maxiter        : when to break
-                         color compute
+        IFStransparam   : see line 19
+        x1, y1, x2, y2  : rectangular
+                          region
+                          to draw in
+        xscale, yscale  : scaling factors
+        xoffset, yoffset: used to move
+                          the fractal
+        maxiter         : when to break
+                          color compute
 
     Yields:
-        byref modified unsigned byte array
+        (x: int, y: int)
     """
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
