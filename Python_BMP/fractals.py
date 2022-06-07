@@ -112,7 +112,7 @@ def itermandelbrot(
         maxiter       : when to break
                         color compute
 
-    Returns:
+    Yields:
         (x:int, y: int, c: int)
     """
     (Pmax, Pmin, Qmax, Qmin) = \
