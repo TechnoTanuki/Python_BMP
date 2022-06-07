@@ -1,5 +1,5 @@
 notice = """
-       Hello Mathy Flower Demo
+  Hello Filled Trifolium Curve Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -15,7 +15,8 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        plotfilledflower,
+        plotfilledflower as f,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -24,21 +25,20 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         x = y = 256 # square bitmap
         bmp = newBMP(x, y, 24) # (x,y,bit depth) -> 24 bit BMP
         (x, y) = centercoord(bmp) # helper method to get center of a bitmap
         r = x - 10 # radius of flower
-        petals = 3
+        petals = 3 # trifolium curve
         angrot = 45 # angle of rotation in degrees
         lumrange = (0, 255) # for brightness gradient
         rgbfactors = (1, 1, 0) # color as rgb of ufloat 0 to 1
-        file = 'HelloFlower.bmp' #file name
-        plotfilledflower(
-                bmp, x, y, r, petals, angrot,
-                lumrange, rgbfactors)
+        file = f'Hello{f.__name__}.bmp' #file name
+        f(bmp, x, y, r, petals, angrot,
+          lumrange, rgbfactors)
         saveBMP(file, bmp) # dump bytearray to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
