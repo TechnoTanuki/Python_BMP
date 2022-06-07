@@ -13,12 +13,13 @@ Hello Earth with upsidedown text Demo
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        plotstring,
-        plotstringupsidedown,
+        loadBMP as l,
+        plotstring as f,
+        plotstringupsidedown as p,
         font8x14,
         font8x8,
         getcolorname2RGBdict,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -27,22 +28,22 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(l)}\n{meta(f)}\n{meta(p)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
+        bmp = l(f'{rootdir}/assets/earth.bmp')# call loadBMP
         c = getcolorname2RGBdict() #friendly color names 2 rgb
         fontsize = 4 # font size
         pixspace = 1 # space between bitmap font pixels (0 = default)
         charspace = 0 # space bitmap font characters (0 = default)
-        plotstring(bmp, 5, 25,
-                'Hello', fontsize, pixspace, charspace,
-                c['brightred'], font8x14)
-        plotstringupsidedown(bmp, 5, 85,
-                'World', fontsize, pixspace, charspace,
-                c['brightyellow'], font8x8)
-        file = 'HelloEarthDownUpsidedowntext.bmp' #file name
-        saveBMP(file,bmp)
+        f(bmp, 5, 25, 'Hello', fontsize,
+          pixspace, charspace,
+          c['brightred'], font8x14) # call plotstring
+        p(bmp, 5, 85, 'World', fontsize,
+          pixspace, charspace,
+          c['brightyellow'], font8x8) # call plottringupsidedown
+        file = f'Hello{l.__name__}{f.__name__}{p.__name__}.bmp' #file name
+        saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
