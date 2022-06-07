@@ -13,33 +13,35 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        loadBMP,
+        loadBMP as l,
         getcolorname2RGBdict,
-        plotreversestring,
+        plotreversestring as f,
         font8x14,
         font8x8,
+        getfuncmetastr as meta,
         saveBMP
         )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(l)}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
+        bmp = l(f'{rootdir}/assets/earth.bmp')
         c = getcolorname2RGBdict() #friendly color names 2 rgb
         fontsize = 4 # font size (unsigned int)
         pixspace = 1 # space between bitmap font pixels (0 = default) (unsigned int)
         charspace = 0 # space bitmap font characters (0 = default) (unsigned int)
-        plotreversestring(bmp, 5, 25, 'Hello',
-                fontsize, pixspace, charspace,
-                c['brightred'], font8x14)
-        plotreversestring(bmp, 5, 85, 'Earth',
-                fontsize, pixspace, charspace,
-                c['brightyellow'], font8x8)
-        file = 'HelloEarthReverse.bmp' #file name
+        f(bmp, 5, 25, 'Hello',
+        fontsize, pixspace, charspace,
+        c['brightred'], font8x14)
+        f(bmp, 5, 85, 'Earth',
+        fontsize, pixspace, charspace,
+        c['brightyellow'], font8x8)
+        file = f'Hello{l.__name__}{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
