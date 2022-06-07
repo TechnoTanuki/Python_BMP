@@ -708,8 +708,7 @@ def spiralcontrolpointsvert(
         step: int,
         growthfactor: float,
         turns: int):
-    """Returns a list of 2D vertices in
-    a path defined by a square spiral
+    """Returns a list of 2D vertices of a Square Spiral
 
     Args:
         x, y: int centerpoint
@@ -722,7 +721,7 @@ def spiralcontrolpointsvert(
         turns: number of turns of the
                spiral
 
-    Yields:
+    Returns:
         list of vertices of the spiral
         list[[x: int, y: int]]
     """
@@ -748,8 +747,7 @@ def spiralcontrolpointsvert(
 
 def sortrecpoints(x1: int, y1: int,
                   x2: int, y2: int):
-    """Sorts the x and y values
-    that defines a rectangular area
+    """Sorts the x and y values that sets a rectangular area
 
     Args:
         x1, x2: int x coordinates

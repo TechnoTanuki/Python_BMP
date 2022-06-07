@@ -14,9 +14,10 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        gradvert,
-        bsplinevert,
-        spiralcontrolpointsvert,
+        gradvert as g,
+        bsplinevert as b,
+        spiralcontrolpointsvert as s,
+        getfuncmetastr as meta,
         saveBMP
         )
 
@@ -25,18 +26,15 @@ from os import path
 
 
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(g)}\n{meta(b)}\n{meta(s)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 300 #bitmap size
         bmp = newBMP(mx, my, 24)
-        gradvert(bmp,
-                bsplinevert(
-                        spiralcontrolpointsvert(
-                                150, 150, 7, 1, 10),
-                        False, False),
-                5, [255, 0], [.9, .5, .9])
-        file = 'HelloThickGradSpiral.bmp' # random file name
+        g(bmp, b(s(150, 150, 7, 1, 10),
+          False, False), 5, [255, 0],
+          [.9, .5, .9])
+        file = f'Hello{g.__name__}{b.__name__}{s.__name__}.bmp' # random file name
         saveBMP(file, bmp) # dump the byterray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
