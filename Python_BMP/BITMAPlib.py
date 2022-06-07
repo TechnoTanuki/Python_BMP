@@ -9312,9 +9312,8 @@ def reduce24bitimagebits(
         NewBMPfile: str, newbits: int,
         similaritythreshold: float,
         usemonopal: bool,
-        RGBfactors: list[float, float, float]):
-    """Reduce the bits used to encode
-    color in a 24-bit bitmap file
+        RGBfactors: list[float, float, float] = None):
+    """Reduce bits used to encode color in a 24-bit BMP
 
     Args:
         ExistingBMPfile    : Whole path
