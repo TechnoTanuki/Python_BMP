@@ -37,8 +37,7 @@ from .conditionaltools import iif
 def setmaxvec(
         vlist: list[Number],
         maxval: Number) -> list[Number]:
-    """Sets the maximum value in a list
-        of numbers (a vector) to maxval
+    """Sets the maximum value in a list of numbers to maxval
 
     Args:
         vlist : list of Numbers
@@ -57,10 +56,8 @@ def setminmaxvec(
         vlist: list[Number],
         minval: Number,
         maxval: Number) -> list[Number]:
-    """Sets the minimum and maximum
-        values in a list of numbers
-        (a vector) to minval and
-        maxval respectively
+    """Sets the minimum and maximum values in a list of numbers
+    (a vector) to minval and maxval respectively
 
     Args:
         vlist : list of Numbers
@@ -82,11 +79,8 @@ def intsetminmaxvec(
         vlist: list[Number],
         minval: int,
         maxval: int) -> list[int]:
-    """Sets the minimum and maximum
-        values in a list of numbers
-        (a vector) to minval and
-        maxval respectively and
-        return int values
+    """Sets the minimum and maximum values in a list of numbers
+    to minval and maxval respectively and return int values
 
     Args:
         vlist : list of Numbers
@@ -106,16 +100,14 @@ def intsetminmaxvec(
 
 def range2baseanddelta(
         lst_range: list[int, int]):
-    """Gets the base and range
-        values in a list of numbers
+    """Gets the base and range values in a list of numbers
 
     Args:
         lst_range: list[min: int,
                         max: int]
 
     Returns:
-        minimum value and delta
-        of min and max value
+        minimum value and delta of min and max value
         in lst_range
     """
     return lst_range[0], delta(lst_range)
@@ -123,8 +115,7 @@ def range2baseanddelta(
 
 def roundvect(v: list[Number]
             ) -> list[int]:
-    """Rounds off the components of a
-        vector
+    """Rounds off the components of a vector
        (list of floats -> list of ints)
 
     Args:
@@ -139,10 +130,8 @@ def roundvect(v: list[Number]
 def roundvectlist(
         vlist: list[list[Number]]
           ) -> list[list[int]]:
-    """Rounds the components of a vector
-        in a list within a list
-        list of (list of floats) ->
-        list of (list of ints)
+    """Rounds the components of a vector in a list within a list
+        list of (list of floats) -> list of (list of ints)
 
     Args:
         vlist: list[list[floats]
@@ -156,8 +145,7 @@ def roundvectlist(
 def addvect(u: list[Number],
             v: list[Number]
           ) -> list[Number]:
-    """Add vectors u and v by
-        adding their components
+    """Add vectors u and v by adding their components
 
     Args:
         u, v: list of ints or floats
@@ -171,10 +159,8 @@ def addvect(u: list[Number],
 def trans(vlist: list[list[Number]],
               u: list[Number]
             ) -> list[list[Number]]:
-    """Translates list of vectors
-        by adding vector u
-        to all vectors in the list
-        of vectors
+    """Translates list of vectors by adding vector u
+    to all vectors in the list of vectors
 
     Args:
         vlist: list of vectors
@@ -189,8 +175,7 @@ def trans(vlist: list[list[Number]],
 def subvect(u: list[Number],
             v: list[Number]
           ) -> list[Number]:
-    """Subtracts vectors u and v by
-        subtracting their components
+    """Subtracts vectors u and v by subtracting their components
 
     Args:
         u, v: list of ints or floats
@@ -205,8 +190,7 @@ def subvect(u: list[Number],
 def mulvect(u: list[Number],
             v: list[Number]
           ) -> list[Number]:
-    """Gets the inner product of
-        vector u and vector v
+    """Gets the inner product of vector u and vector v
 
     Args:
         u, v: list of ints or floats
@@ -227,10 +211,8 @@ def scalarmulvect(
             v: list[Number],
          scalarval: Number
           ) -> list[Number]:
-    """Scales a vector by multiplying
-        a scalar value (float) to all
-        components of the vector or a
-        list of numbers in pure Python
+    """Scales a vector by multiplying a scalar value (float)
+    to all components of the vector or a list of numbers
 
     Args:
         v        : the vector or
@@ -248,12 +230,9 @@ def scalarmulvect(
 def intscalarmulvect(vec: list[Number],
                     scalarval: Number
                     ) -> list[int]:
-    """Scales a vector by multiplying
-        a scalar value (float) to all
-        components of the vector or a
-        list of numbers in pure Python
-        then rounds off values in the
-        list to a whole number
+    """Scales a vector by multiplying a scalar value (float)
+    to all components of the vector or a list of numbers
+    then rounds off values in the list to a whole number
 
     Args:
         v        : the vector or
@@ -270,8 +249,7 @@ def intscalarmulvect(vec: list[Number],
 
 
 def mean(v: list[Number]) -> float:
-    """Gets the average of a list
-        of numbers
+    """Gets the average of a list of numbers
 
     Args:
         v: the vector or a list of
@@ -286,8 +264,7 @@ def mean(v: list[Number]) -> float:
 def meanlist(
       vlist: list[list[float]]
         ) -> list[float]:
-    """Gets the averages of a list
-        of list of numbers
+    """Gets the averages of a list of list of numbers
 
     Args:
         vlist: the vector or a list
@@ -303,8 +280,7 @@ def pivotlist(
         vlist:list[list[any]]
          ) -> list[list[any]]:
     j = len(vlist[0])
-    """Does a pivot table with a list
-        of list of anything
+    """Pivot table with a list of list of anything
 
     Args:
         vlist: a list of lists
@@ -317,9 +293,7 @@ def pivotlist(
 
 def variance(v: list[Number]
            ) -> list[float]:
-    """Computes the variance
-        of the elements in
-        a list of numbers
+    """Computes the variance of the elements in a list of numbers
 
     Args:
         vlist: a list of
@@ -336,8 +310,7 @@ def variance(v: list[Number]
 def isinrange(value: Number,
           highlimit: Number,
            lowlimit: Number) -> bool:
-    """Checks is value is within
-        high and low limits
+    """Checks is value is within high and low limits
 
     Args:
         value    : numeric variable
@@ -356,8 +329,7 @@ def isinrange(value: Number,
 
 def setmax(val: Number,
         maxval: Number) -> Number:
-    """Set the value of val
-        to maxval if val > maxval
+    """Set the value of val to maxval if val > maxval
 
     Args:
         val   : numeric variable
@@ -371,8 +343,7 @@ def setmax(val: Number,
 
 def setmin(val: Number,
         minval: Number) -> Number:
-    """Set the value of val
-        to minval if val < minval
+    """Set the value of val to minval if val < minval
 
     Args:
         val   : numeric variable
@@ -387,10 +358,8 @@ def setmin(val: Number,
 def setminmax(val: Number,
            minval: Number,
            maxval: Number) -> Number:
-    """Set the value of val
-        to minval if val < minval
-        or the value of val
-        to maxval if val > maxval
+    """Set the value of val to minval if val < minval
+    or the value of val to maxval if val > maxval
 
     Args:
         val   : numeric variable
@@ -410,11 +379,9 @@ def setminmax(val: Number,
 def intsetminmax(val: Number,
               minval: int,
               maxval: int) -> int:
-    """Set the value of val
-        to minval if val < minval
-        or the value of val
-        to maxval if val > maxval
-        and return an int
+    """Set the value of val to minval if val < minval
+    or the value of val to maxval if val > maxval
+    and return an int
 
     Args:
         val   : numeric variable
@@ -431,8 +398,7 @@ def intsetminmax(val: Number,
 
 
 def sign(intval: int) -> int:
-    """Returns an int depending
-        on the sign of intval
+    """Returns an int depending on the sign of intval
     Args:
         intval   : an int
 
@@ -451,9 +417,7 @@ def sign(intval: int) -> int:
 
 
 def LSMslope(XYdata: list) -> float:
-    """Returns the slope of a line
-        obtained by least squares
-        method
+    """Slope of a line obtained by Least Squares Method
 
     Args:
         XYdata: list of vectors
@@ -474,10 +438,9 @@ def LSMslope(XYdata: list) -> float:
            ((N * EsqX) - (EX ** 2))
 
 
-def LSMYint(XYdata:list) -> float:
-    """Returns the y-intercept of a
-        linen obtained by least squares
-        method
+def LSMYint(XYdata: list) -> float:
+    """Returns the y-intercept of a line obtained
+    by Least Squares Method
 
     Args:
         XYdata: list of vectors
@@ -495,24 +458,21 @@ def LSMYint(XYdata:list) -> float:
 
 def PearsonsR(XYdata: list) -> float:
     """Pearsons r is a measure of linear
-    correlation between two setsof data.
+correlation between two sets of data.
 
-    It is the ratio between the
-    covariance of two variables and the
-    product of their standard deviations;
-    thus it is essentially a normalized
-    measurement of the covariance, such
-    that the result always has a value
-    between -1 and 1.
+It is the ratio between the covariance of
+two variables and the product of their
+standard deviations; thus it is essentially
+a normalized measurement of the covariance,
+such that the result always has a value
+between -1 and 1.
 
-    A value of +1 implies that all data
-    points lie on a line for which
-    Y increases as X increases, and
-    vice versa for -1.
+A value of +1 implies that all data points lie
+on a line for which Y increases as X increases,
+and vice versa for -1.
 
-    A value of 0 implies that there is
-    no linear dependency between the
-    variables.
+A value of 0 implies that there is no linear
+dependency between the variables.
 
     Args:
         XYdata: list[list[x: Number,
@@ -537,27 +497,18 @@ def PearsonsR(XYdata: list) -> float:
 
 
 def Rsquare(XYdata: list) -> float:
-    """Squared Pearson correlation
-    coefficient not to be confused
-    with the coefficient of
-    determination (R²)
+    """Squared Pearson correlation coefficient
+not to be confused with the coefficient of determination (R²)
 
-    In linear least squares multiple
-    regression with an estimated
-    intercept term, R2 equals the
-    square of the Pearson correlation
-    coefficient between the observed y
-    y and modeled (predicted)
-    data values of the dependent
-    variable.
+In linear least squares multiple regression with an estimated
+intercept term, R2 equals the square of the Pearson correlation
+coefficient between the observed y and modeled (predicted)
+data values of the dependent variable.
 
-     In a linear least squares
-     regression with an intercept term
-     and a single explanator, this is
-     also equal to the squared
-     Pearson correlation coefficient of
-     the dependent variable y and
-     explanatory variable x.
+In a linear least squares regression with an intercept term
+and a single explanator, this is also equal to the squared
+Pearson correlation coefficient ofthe dependent variable y
+and explanatory variable x.
 
      Args:
         XYdata: list[list[x: Number,
@@ -576,8 +527,7 @@ def TTest(XYdata: list) -> float:
 
 
 def StdDev(v: list[Number]) -> float:
-    """Computes the standard deviation
-        of a list of numbers
+    """Computes the standard deviation of a list of numbers
 
     Args:
         v:  list of numbers
@@ -592,8 +542,7 @@ def StdDev(v: list[Number]) -> float:
 def slope(u: list[float, float],
           v: list[float, float]) -> float:
     """Computes the slope of a line
-        using points u(x1, y1)
-                 and v(x2, y2)
+    using points u(x1, y1) and v(x2, y2)
 
     Args:
         u, v:  line endpoints (x, y)
@@ -606,17 +555,13 @@ def slope(u: list[float, float],
 
 
 def coefvar(v: list[Number]) -> float:
-    """Coefficient of variation (CV)
-        is a statistical measure of
-        the relative dispersion of
-        data points in a data series
-        around the mean.
+    """Coefficient of variation (CV) is a statistical measure
+    of the relative dispersion of data points in a data series
+    around the mean.
 
-        It is also known as (RSD) or
-        relative standard deviation
-        and is defined as the ratio
-        of the standard deviation
-        to the mean
+    It is also known as (RSD) or relative standard deviation
+    and is defined as the ratio of the standard deviation 
+    to the mean
 
     Args:
         v: list of ints or floats
@@ -644,8 +589,7 @@ def vectiszero(v: list[Number]) -> bool:
 def isorthogonal(
         u: list[Number],
         v: list[Number]) -> bool:
-    """Checks if vector u and vector v
-        are orthogonal to each other
+    """Checks if vector u and vector v are orthogonal to each other
 
     Args:
         u, v: list of ints or floats
@@ -672,12 +616,9 @@ def crossprod3d(
         u: list[float, float, float],
         v: list[float, float, float]
       ) -> list[float, float, float]:
-    """Compute the cross product of
-        3D vectors u and v.
+    """Compute the cross product of 3D vectors u and v.
 
-        The cross product is
-        perpendicular to both
-        u and v
+    The cross product is perpendicular to both u and v
 
     Args:
         u, v: list of ints
@@ -701,19 +642,19 @@ def getnormvec(
         p1: list[float, float, float],
         p2: list[float, float, float],
         p3: list[float, float, float]) -> list:
-    """Gets the normal to a plane
-        given 3 vertices (x, y, z) that
-        define the surface in 3D space
-        using a cross product between
-        two vectors a and b:
+    """Gets the normal to a plane given 3 vertices (x, y, z)
+    that define the surface in 3D spaceusing a cross product
+    between two vectors a and b:
 
-        The normal vector is orthogonal
-        to vectors a and b. (see below)
+    The normal vector is orthogonal to vectors a and b.
+    (see below)
 
         a = (p2 - p1)
         b = (p3 - p1)
         n = (a x b) where x is crossprod
         n = ((p2 - p1) x (p3 - p1))
+    Returns:
+        A Normal Vector to the surface
     """
     return crossprod3d(subvect(p2, p1),
                        subvect(p3, p1))
@@ -721,14 +662,11 @@ def getnormvec(
 
 def dotprod(u: list[Number],
             v: list[Number]) -> float:
-    """Dot product is an algebraic
-        operation that takes two
-        equal-length sequences of
-        numbers and returns a float.
+    """Dot product is an algebraic operation that takes two
+    equal-length sequences of numbers and returns a float.
 
-        It is the sum of the products
-        of the corresponding entries
-        of the two sequences of numbers
+    It is the sum of the products of the corresponding entries
+    of the two sequences of numbers
 
     Args:
         u, v : list of ints or floats
@@ -740,9 +678,8 @@ def dotprod(u: list[Number],
 
 
 def vmag(v: list[float]) -> float:
-    """Compute the Magnitude or length
-        of a vector v of arbitrary
-        dimension n equal to len(v)
+    """Compute the Magnitude or length of a vector v
+    of arbitrary dimension n equal to len(v)
 
     Args:
         v: list of ints or floats
@@ -756,12 +693,10 @@ def vmag(v: list[float]) -> float:
 
 def distance(u: list[float],
              v: list[float]) -> float:
-    """Compute the Distance or length
-        of a vector v of arbitrary
-        dimension n in a n-dimensional
-        Euclidean space where u and v
-        are both vectors with
-        n components
+    """Compute the Distance or length of a vector v
+    of arbitrary dimension n in a n-dimensional
+    Euclidean space where u and v are both vectors
+    with n components
 
     Args:
         u, v: list of ints or floats
@@ -773,8 +708,7 @@ def distance(u: list[float],
 
 
 def distancetable(vertlist: list) -> list:
-    """Compute the Distances between
-        the vectices in a list
+    """Compute the Distances between the vectices in a list
 
     Args:
         vertlist: list of vertices
@@ -809,8 +743,7 @@ def det3D(
     a2: list[Number, Number, Number],
     a3: list[Number, Number, Number]
          ) -> float:
-    """Compute the Determinant
-        of a 3D matrix
+    """Compute the Determinant of a 3D matrix
 
     Args:
         a1, a2, a3 : list of ints
@@ -830,8 +763,7 @@ def det3D(
 
 def cosaffin(u: list[Number],
              v: list[Number]) -> float:
-    """Compute Cosine Similarity
-        or Cosine Affinity
+    """Compute Cosine Similarity or Cosine Affinity
 
     Args:
         u, v : list of ints or floats
@@ -849,20 +781,13 @@ def cosaffin(u: list[Number],
 
 def dircos(v: list[Number]
          ) -> list[float]:
-    """Direction cosine of the vector
-        computed by dividing the
-        corresponding coordinate
-        of a vector by the
-        vector length.
+    """Direction cosine of the vector computed by dividing
+    the corresponding coordinates of a vector by the vector length.
 
-        The unit vector
-        coordinate is equal to the
-        direction cosine. One such
-        property of the direction
-        cosine is that the addition
-        of the squares of the
-        direction cosines is
-        equivalent to one
+    The unit vector coordinate is equal to thedirection cosine.
+    One such property of the direction cosine is that the
+    addition of the squares of the direction cosines is
+    equivalent to one
 
     Args:
         v : list of ints or floats
@@ -878,17 +803,15 @@ def dircos(v: list[Number]
 
 def diracos(dcos: list[float]
               )-> list[float]:
-    """Takes the Direction cosine
-        of the vector and returns
-        a list of angles in radians
+    """Takes the Direction cosine of the vector and returns
+    a list of angles in radians
 
     Args:
         v : Direction Cosine
             list[float]
 
     Returns:
-        list of angles in radians
-        per vector component
+        list of angles in radians per vector component
         list[float,...]
 
     """
@@ -897,10 +820,8 @@ def diracos(dcos: list[float]
 
 def dirdeg(raddir: list[float]
               ) -> list[float]:
-    """Takes the Directional angles
-        of the vector in radians
-        and returns a list of
-        angles in degrees
+    """Takes the Directional angles of the vector in radians
+    and returns a list of angles in degrees
 
     Args:
         v : list of angles
@@ -908,8 +829,7 @@ def dirdeg(raddir: list[float]
             in radians
 
     Returns:
-        list of angles in degrees
-        per vector component
+        list of angles in degrees per vector component
         list[float,...]
     """
     return [degrees(d) for d in raddir]
@@ -918,9 +838,7 @@ def dirdeg(raddir: list[float]
 def rect2sphericalcoord3D(
         v: list[Number, Number, Number]
       ) -> list[float, float, float]:
-    """Does a 3D coordinate transform
-        from rectangular to spherical
-        coordinate system
+    """3D coordinate transform from rectangular to spherical
 
         p = The length of the hypotenuse
             or the magnitude of the
@@ -952,9 +870,7 @@ def rect2sphericalcoord3D(
 def spherical2rectcoord3D(
     vspherecoord: list[float, float, float]
              ) -> list[float, float, float]:
-    """Does a 3D coordinate transform
-        from spherical to rectangular
-        coordinate system
+    """3D coordinate transform from spherical to rectangular
 
         p = The length of the hypotenuse
             or the magnitude of the
@@ -986,9 +902,8 @@ def spherical2rectcoord3D(
 def rect2cylindricalcoord3D(
         v: list[Number, Number, Number]
       ) -> list[float, float, float]:
-    """Converts rectangular to
-        cylindrical coordinates with
-        origin at (0, 0)
+    """Converts rectangular to cylindrical coordinates
+    with origin at (0, 0)
 
     Args:
         v: a vector (x: Number,
@@ -1010,10 +925,8 @@ def cylindrical2rectcoord3D(
                            float,
                            float]
         ) -> list[float, float, float]:
-    """Converts from cylindrical
-        coordinates with origin
-        at (0, 0) to 3D rectangular
-        coordinates
+    """Converts from cylindrical coordinates with
+    origin at (0, 0) to 3D rectangular coordinates
 
     Args:
         vcylindcoord:(r: float,
@@ -1021,9 +934,7 @@ def cylindrical2rectcoord3D(
                       z: float)
 
     Returns:
-        [x: float,
-         y: float,
-         z: float]
+        [x: float, y: float, z: float]
     """
     (r, theta, z) = vcylindcoord
     return [r * cos(theta),
@@ -1035,10 +946,8 @@ def polar2rectcoord2D(
                             float]
                   ) -> list[float,
                             float]:
-    """Converts from polar
-        coordinates with origin
-        at (0, 0) to 2D rectangular
-        coordinates
+    """Converts from polar coordinates with
+    origin at (0, 0) to 2D rectangular coordinates
 
     Args:
         vcylindcoord:(r: float,
@@ -1056,28 +965,25 @@ def polar2rectcoord2D(
 def rect2polarcoord2D(
         v: list[Number, Number]
       ) -> list[float, float]:
-    """Converts rectangular to
-        polar coordinates with
-        origin at (0,0)
+    """Converts rectangular to polar coordinates with
+    origin at (0,0)
+
     Args:
         v: a vector (x: Number,
                      y: Number)
 
     Returns:
-        [magnitude: float,
-             angle: float]
+        [magnitude: float, angle: float]
     """
     return [vmag(v), atan(v[1] / v[0])]
 
 
 def polarcoordangle2D(v:list) -> float:
-    """Gets the polar coordinate angle
-    from a vector v(x, y) with the
-    origin set  at (0, 0)
+    """Gets the polar coordinate angle from a vector v(x, y)
+    with the origin set at (0, 0)
 
     Args:
-        v: a vector (x: Number,
-                     y: Number)
+        v: a vector (x: Number, y: Number)
 
     Returns:
         float angle in radians
@@ -1092,20 +998,16 @@ def rect2polarcoord2Dwithcenter(
         vcen: list[Number, Number],
         vpnt: list[Number, Number]
          ) -> list[float, float]:
-    """Converts rectangular to
-        polar coordinates with
-        origin at vcen(x, y)
+    """Converts rectangular to polar coordinates with
+    origin at vcen(x, y)
 
     Args:
-        vcen: origin (x: Number,
-                      y: Number)
+        vcen: origin (x: Number, y: Number)
 
-        vpnt: a vector (x: Number,
-                        y: Number)
+        vpnt: a vector (x: Number, y: Number)
 
     Returns:
-        [magnitude: float,
-             angle: float]
+        [magnitude: float, angle: float]
     """
     v = subvect(vpnt, vcen)
     return [vmag(v),
@@ -1115,8 +1017,7 @@ def rect2polarcoord2Dwithcenter(
 def computerotvec(degrot: float
                 ) -> list[float,
                           float]:
-    """Compute a 2D rotation vector
-       based on angle degrot in degrees
+    """2D rotation vector based on angle degrot in degrees
 
     Args:
         degrot: rotation in degrees
@@ -1131,9 +1032,7 @@ def computerotvec(degrot: float
 def rotvec2D(v: list[Number, Number],
         rotvec: list[float, float]
            ) -> list[float, float]:
-    """Compute a 2D rotation vector
-       based on angle degrot in degrees
-       and v(x, y)
+    """2D rotation vector based on angle degrot in degrees and v(x, y)
 
     Args:
         v     : centerpoint
@@ -1148,34 +1047,30 @@ def rotvec2D(v: list[Number, Number],
 
 def mirrorx(p: list[Number, Number], x: Number
           ) -> list[Number, Number]:
-    """Mirrors the x value at
-        point p(ox, y) to return
-        two points at p1(ox - x, y)
-                  and p2(ox + x, y)
+    """Mirrors the x value at point p(ox, y) to return
+    two points at p1(ox - x, y) and p2(ox + x, y)
 
     Args:
         p(ox, y): original point
         x       : value to mirror
 
     Returns:
-        [x1, y], [x2, y]
+        Two 2D points [x1, y], [x2, y]
     """
     return [p[0] - x, p[1]], [p[0] + x, p[1]]
 
 
 def mirrory(p: list[Number, Number], y: Number
          ) -> list[Number, Number] :
-    """Mirrors the y value at
-        point p(x, oy) to return
-        two points at p1(x, oy - y)
-                  and p2(x, oy + y)
+    """Mirrors the y value at point p(x, oy) to return
+    two points at p1(x, oy - y) and p2(x, oy + y)
 
     Args:
         p(x, oy): original point
         y       : value to mirror
 
     Returns:
-        [x, y1], [x, y2]
+        Two 2D points [x, y1], [x, y2]
     """
     return [p[0], p[1] - y], [p[0], p[1] + y]
 
@@ -1183,12 +1078,10 @@ def mirrory(p: list[Number, Number], y: Number
 def mirrorvec(vcen: list[Number],
                  v: list[Number]
                ) -> list[Number]:
-    """Mirrors a vector v of arbitrary
-        dimension n in a n-dimensional
-        Euclidean space where
-        v is the vector to mirror
-        and vcen is the origin point
-        both with n components
+    """Mirrors a vector v of arbitrary dimension n
+    in a n-dimensional Euclidean space where
+    v is the vector to mirror and vcen is the origin point
+    both with n components
 
     Args:
         v, vcen: list of numbers
@@ -1236,8 +1129,7 @@ def randomvect(minrnd: int,
 def addrndtovert(vertlist: list,
                    minrnd: int,
                    maxrnd: int) -> list:
-    """Adds random int values to a
-        list of (vertices
+    """Adds random int values to a list of vertices
 
     Args:
         vertlist: list of vertices
@@ -1255,9 +1147,7 @@ def adddimz(
          value: Number
              ) -> list[Number, Number,
                                Number]:
-    """Adds a third value for the
-        z dimension in a list
-        of (x, y) vertices
+    """Add the z dimension in a list of (x, y) vertices
 
     Args:
         vlist2D: list of 2D vertices
@@ -1276,8 +1166,7 @@ def anglebetween2Dlines(
         u: list[Number, Number],
         v: list[Number, Number]
         ) -> float:
-    """Compute the angle between two
-        lines of vectors
+    """Compute the angle between two lines of vectors
 
     Args:
         u, v: list[Number, Number]
@@ -1312,9 +1201,8 @@ def mirror1stquad(x: Number, y: Number,
                 list[Number, Number],
                 list[Number, Number],
                 list[Number, Number]]:
-    """Mirrors a 2D vector in the
-        1st quadrant to create four
-        symmetrical 2D vectors
+    """Mirrors a 2D vector in the 1st quadrant to create
+    four symmetrical 2D vectors
 
     Args:
         x: x-axis of symmetry
@@ -1323,7 +1211,7 @@ def mirror1stquad(x: Number, y: Number,
            to mirror along x and y
 
     Returns:
-        four symmetrical vectors(x, y)
+        four symmetrical vectors (x, y)
     """
     xmin, xmax = mirror(x, v[0])
     ymin, ymax = mirror(y, v[1])
@@ -1333,9 +1221,8 @@ def mirror1stquad(x: Number, y: Number,
 
 def xorvect(u: list[int],
             v: list[int]) -> list[int]:
-    """Applies a xor operation
-        of between the elements of
-        two lists of ints
+    """Applies a xor operation of between the elements of
+    two lists of ints
 
     Args:
         v      : list[int]
@@ -1349,9 +1236,8 @@ def xorvect(u: list[int],
 
 def andvect(u: list[int],
             v: list[int]) -> list[int]:
-    """Applies a bitwise and operation
-        of between the elements of
-        two lists of ints
+    """Bitwise and operation of between
+    the elements of two lists of ints
 
     Args:
         v      : list[int]
@@ -1365,8 +1251,7 @@ def andvect(u: list[int],
 
 def bitmaskvect(v: list[int],
         bitmask: int) -> list[int]:
-    """Applies a bitmask to a list
-        of ints
+    """Applies a bitmask to a list of ints
 
     Args:
         v      : list[int]
@@ -1380,9 +1265,8 @@ def bitmaskvect(v: list[int],
 
 def orvect(u: list[int],
            v: list[int]) -> list[int]:
-    """Applies a bitwise or operation
-        of between the elements of
-        two lists of ints
+    """Bitwise or operation between
+    the elements of two lists of ints
 
     Args:
         v      : list[int]
@@ -1397,8 +1281,7 @@ def orvect(u: list[int],
 def addvectinlist(
         vlist: list[list[Number]]
                ) -> Number:
-    """Gets the sum of the vectors in
-        a list vectors
+    """Gets the sum of the vectors in a list of vectors
 
     Args:
         vlist: list of vectors
@@ -1413,11 +1296,9 @@ def addvectpairlist(
     vpair: list[list[Number],
                 list[Number]]
      )  -> list[Number]:
-    """Adds pairwise the numbers
-        in a list of
-        two lists of numbers
-        and returns a single
-        list of numbers
+    """Adds pairwise the numbers in a list of
+    two lists of numbers and returns a single
+    list of numbers
 
     Args:
         vpair: list of two lists[Number]
@@ -1433,10 +1314,8 @@ def addvecttripletlist(
                    list[Number],
                    list[Number]]
          ) -> list[Number]:
-    """Adds pairwise the numbers in a
-        list of three lists of numbers
-        and returns a single list of
-        numbers
+    """Adds pairwise the numbers in a list of three lists
+    of numbers and returns a single list of numbers
 
     Args:
         vtriplet: list[list[Number],
@@ -1456,9 +1335,8 @@ def addvectlist(
         vlist1: list[list[Number]],
         vlist2: list[list[Number]]
            ) -> list[list[Number]]:
-    """Adds pairwise the vectors
-        (list of numbers) in a list
-        then returns a list of vectors
+    """Adds pairwise the vectors (list of numbers) in a list
+    then return a list of vectors
 
     Args:
         vlist1: First list of vectors
@@ -1475,8 +1353,7 @@ def addvectlist(
 
 
 def swapxy(v:list) -> list:
-    """Swaps the first two values
-        in a list
+    """Swaps the first two values in a list
 
     Args:
         list[x, y]
@@ -1489,10 +1366,7 @@ def swapxy(v:list) -> list:
 
 def centerpoint(x1: int, y1: int,
                 x2: int, y2: int):
-    """Returns the centerpoint x, y
-        in rectangular area
-        defined by (x1, y1)
-               and (x2, y2)
+    """Returns the centerpoint x, y in rectangular area
 
     Args:
         x1, y1 : defines the
@@ -1520,8 +1394,7 @@ def enumbits(byteval: int):
 
 
 def delta(v: list[Number, Number]):
-    """Gets the delta from a list
-        of two numbers
+    """Gets the delta from a list of two numbers
 
     Args:
         v: list[Number, Number]
