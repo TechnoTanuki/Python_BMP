@@ -1,4 +1,4 @@
-"""Fractal Parameters and Data Module
+"""    Fractal Numerics Module
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -12,6 +12,9 @@
 |   joelalcarez1975@gmail.com       |
  -----------------------------------
 """
+
+from random import random
+from .primitives2D import sortrecpoints, iif, isinrectbnd
 
 def getIFSparams() -> dict:
     return {'fern':(((0, 0, 0, .16, 0, 0),
@@ -43,3 +46,47 @@ def mandelparamdict() -> dict:
             'mindefault':(.75,-.75,.5,-.5),
               'mineqdim':(.5,-.5,.5,-.5),
                'custom1':(-.5,-.7,-.5,-.7)}
+
+
+def iterIFS(
+        IFStransparam: tuple,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        xscale: int, yscale: int,
+        xoffset: int, yoffset: int,
+        maxiter: int):
+    """Yield 2D points for an Interated Function System Fractal
+
+    Args:
+        IFStransparam  : see above
+        x1, y1, x2, y2 : rectangular
+                         region
+                         to draw in
+        xscale,yscale  : scaling factors
+        xoffset,yoffset: used to move
+                         the fractal
+        maxiter        : when to break
+                         color compute
+
+    Yields:
+        byref modified unsigned byte array
+    """
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
+    af = IFStransparam[0]
+    p = IFStransparam[1]
+    x = x1
+    y = y1
+    dy = y2 - y1
+    for _ in range(maxiter):
+        j = random()
+        t = af[iif(j < p[0], 0,
+               iif(j < p[1], 1,
+               iif(j < p[2], 2, 3)))]
+        nx = t[0] * x + t[1] * y + t[4]
+        y  = t[2] * x + t[3] * y + t[5]
+        x = nx
+        px = int(x * xscale + xoffset + x1)
+        py = int((dy - y * yscale + yoffset) + y1)
+        if isinrectbnd(px, py, x1, y1, x2, y2):
+          	  yield (px, py)

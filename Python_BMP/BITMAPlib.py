@@ -227,7 +227,10 @@ from .fonts import(
     font8x8, font8x14, getcharfont)
 
 from .fractals import(
-    getIFSparams, mandelparamdict)
+    getIFSparams,
+    iterIFS,
+    mandelparamdict
+    )
 
 from .inttools import(
     readint as _rdint,
@@ -8059,24 +8062,10 @@ def IFS(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
-    af = IFStransparam[0]
-    p = IFStransparam[1]
-    x = x1
-    y = y1
-    dy = y2 - y1
-    for _ in range(maxiter):
-        j = random()
-        t = af[iif(j < p[0], 0,
-               iif(j < p[1], 1,
-               iif(j < p[2], 2, 3)))]
-        nx = t[0] * x +t[1] * y + t[4]
-        x, y = nx, t[2] * x + t[3] * y + t[5]
-        px = int(x * xscale + xoffset + x1)
-        py = int((dy - y * yscale + yoffset) + y1)
-        if isinrectbnd(px, py, x1, y1, x2, y2):
-                plotxybit(bmp,px,py,color)
+    for (px, py) in iterIFS(IFStransparam,
+        x1, y1, x2, y2, xscale, yscale,
+        xoffset, yoffset, maxiter):
+        plotxybit(bmp, px, py, color)
 
 
 def plotflower(bmp: array,
