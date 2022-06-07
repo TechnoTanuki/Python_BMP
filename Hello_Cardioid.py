@@ -39,8 +39,7 @@ def main():
                 p(bmp, f(x, y, # position the flower
                   r, # radius
                   1, # petals for cardioid
-                  100, # angle of rotation
-                  ),# angle step and limit
+                  40), # angle of rotation
                   c) # connect the dots with lines
                 r -= 8
         saveBMP(file, bmp) # save file
