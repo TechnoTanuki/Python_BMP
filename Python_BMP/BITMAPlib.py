@@ -2055,26 +2055,31 @@ def filledparallelogram(bmp: array,
 def drawvec(bmp: array,
         u: list, v: list,
         headsize: int,
-        color: int):
+        color: int,
+        penradius: int = None):
     """Draws a vector (line segment with arrow head)
 
     Args:
-        bmp     : unsigned byte array
-                  with bmp format
-        u       : (x: float, y: float)
-                  point 1 origin
-        v       : (x: float, y: float)
-                  point 2 has arrow
-        headsize: size of the arrow
-                  0 for default size
-        color   : color of the vector
+        bmp      : unsigned byte array
+                   with bmp format
+        u        : (x: float, y: float)
+                    point 1 origin
+        v        : (x: float, y: float)
+                   point 2 has arrow
+        headsize : size of the arrow
+                   0 for default size
+        color    : color of the vector
+        penradius: optional parameter
+                   for thick arrow
 
     Returns:
         byref modified unsigned byte array
     """
     for (a, b) in iterdrawvec(u, v, headsize):
-        linevec(bmp, a, b, color)
-
+        if type(penradius) == int:
+            thickroundline(bmp, a, b, penradius, color)
+        else:
+            linevec(bmp, a, b, color)
 
 
 def thickroundline(bmp: array,

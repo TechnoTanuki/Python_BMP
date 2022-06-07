@@ -29,11 +29,11 @@ def main():
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 200 # bitmap size
         bmp = newBMP(mx, my, 1) # 1 bit or mono
-        p1 = (5, 5) # (x,y) point 1 or origin
-        p2 = [mx - 5, my - 5] # (x,y) point 2 or where the vector points
+        p1 = (7, 7) # (x,y) point 1 or origin
+        p2 = [mx - 7, my - 7] # (x,y) point 2 or where the vector points
         arrowhead = 0 # 0=auto other value will set length
         color = 1
-        f(bmp, p1, p2, arrowhead, color)
+        f(bmp, p1, p2, arrowhead, color, 5)
         file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
