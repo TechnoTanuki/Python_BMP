@@ -12,37 +12,39 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        loadBMP,
+        loadBMP as l,
         getcolorname2RGBdict,
-        plotstringvertical,
+        plotstringvertical as f,
         font8x14,
         font8x8,
+        getfuncmetastr as meta,
         saveBMP
-)
+        )
 
 import subprocess as proc
 from os import path
 
+
 def main():
-        print(notice)
+        print(f'{notice}\n{meta(l)}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
+        bmp = l(f'{rootdir}/assets/earth.bmp') # call loadBMP
         c = getcolorname2RGBdict() #friendly color names 2 rgb
         fontsize = 2 # uint font size multiplier
         pixspace = 0 # uint space between bitmap font pixels (0 = default)
         charspace = 0 # unit space bitmap font characters (0 = default)
         x, y = 125, 5 # text anchor x,y uint
-        plotstringvertical(bmp, x, y, 'Hello',
-                fontsize, pixspace, charspace,
-                c['brightwhite'], font8x14)
+        f(bmp, x, y, 'Hello', fontsize,
+          pixspace, charspace,
+          c['brightwhite'], font8x14) # call plotstringvertical
         pixspace = 1 # uint space between bitmap font pixels (0 = default)
         charspace = 14 # unint space bitmap font characters (0 = default)
         x , y= 150, 10 # text anchor x,y uint
-        plotstringvertical(bmp, x,y, 'Earth',
-                fontsize, pixspace, charspace,
-                c['brightyellow'], font8x8)
-        file = 'HelloEarthVertText.bmp' # file name
+        f(bmp, x, y, 'Earth', fontsize,
+          pixspace, charspace,
+          c['brightyellow'], font8x8) # call plotstringvertical
+        file = f'Hello{l.__name__}{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save bitmap  to file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
