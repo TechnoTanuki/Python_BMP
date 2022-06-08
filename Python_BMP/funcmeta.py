@@ -1,7 +1,8 @@
 from typing import Callable
 from inspect import signature
 
+_d= '"'*3
+
 
 def getfuncmetastr(f: Callable):
-    _d= '"'*3
-    return f'def {f.__name__}{signature(f)}\n    {_d}{f.__doc__}{_d}'
+    return f'def {f.__name__}{signature(f)}\n    {_d}{f.__doc__}{_d}\n'
