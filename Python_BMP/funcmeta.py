@@ -5,4 +5,4 @@ _d= '"'*3
 
 
 def getfuncmetastr(f: Callable):
-    return f'def {f.__name__}{signature(f)}\n    {_d}{f.__doc__}{_d}\n'
+    return f'def {f.__name__}{signature(f)}:\n    {_d}{f.__doc__}{_d}\n'
