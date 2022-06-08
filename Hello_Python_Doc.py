@@ -34,7 +34,9 @@ def main():
         edt = 'notepad' # change if Linux
         file = 'BitmapLib_Doc.py'
         print(f'{notice % (file)}')
-        savelist([meta(m[1]) for m in getmembers(m, isfunction)], file)
+        l = [meta(m[1]) for m in getmembers(m, isfunction)]
+        l = sorted(l, key = str.lower)
+        savelist(l, file)
         ret = proc.call([edt, file])
 
 if __name__=="__main__":
