@@ -31,7 +31,7 @@ def savelist(hdr: str, mlist: list, filename: str):
 
 
 def isPublic(s: str) -> bool:
-        return s[0:7] != "**def _"
+        return s[0:7] != "### [`_"
 
 
 def meta(f: Callable):
@@ -51,7 +51,7 @@ def meta(f: Callable):
       f"    {d2}",
       "",
     ])
-    
+
 
 
 def main():

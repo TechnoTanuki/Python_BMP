@@ -391,7 +391,7 @@ def main():
          hhmmsselaspedtime(starttime))
         starttime = _time_ns()
         nbmp = convertselection2BMP(buff)
-        nfile = rootdir +'/assets/flower.bmp'
+        nfile = rootdir + '/assets/flower.bmp'
         saveBMP(nfile, nbmp)
         print('Save selection to ',
                 nfile,' done in ',
