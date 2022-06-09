@@ -39,7 +39,7 @@ def main():
                 plotpoly(bmp,  f(x, y, r, sides, angle), c) # plot the polygon
                 r -= 5
         file = f'Hello{f.__name__}.bmp' # file name
-        saveBMP(file,bmp) # save the bitmap
+        saveBMP(file, bmp) # save the bitmap
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
