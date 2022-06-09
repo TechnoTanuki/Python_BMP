@@ -5,6 +5,9 @@ Check samples with Hello_something.py for sample code on how to do stuff
 # Public API
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLib_Doc.md
 
+# Internal API
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLibInternals_Doc.md
+
 # References
 
 **The Basics:** https://github.com/TechnoTanuki/Python_BMP#readme
