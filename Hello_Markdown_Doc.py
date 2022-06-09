@@ -34,6 +34,10 @@ def isPublic(s: str) -> bool:
         return s[0:7] != "### [`_"
 
 
+def isPrivate(s: str) -> bool:
+        return s[0:7] == "### [`_"
+
+
 def meta(f: Callable):
     fqname = ".".join((f.__module__, f.__qualname__))
     d = getdoc(f) or ""
@@ -56,15 +60,18 @@ def meta(f: Callable):
 
 def main():
         rootdir = path.dirname(__file__) # get path of this script
-        file = f'{rootdir}/docs/BitmapLib_Doc.md'
-        print(f'{notice % (file)}')
+        files = [f'{rootdir}/docs/BitmapLib_Doc.md',
+                 f'{rootdir}/docs/BitmapLibInternals_Doc.md']
+        print(f'{notice % (files)}')
         l = sorted([meta(m[1]) for m in
                         getmembers(m, isfunction)],
                    key = str.lower)
-        savelist("Python BMP Public API", filter(isPublic, l), file)
+        savelist("Python BMP Public API", filter(isPublic, l), files[0])
+        savelist("Python BMP Internal API", filter(isPrivate, l), files[1])
         print('Saved to %s\nAll done close brower to finish' % \
-                (file)) # tell user we are done
-        web.open_new(file)
+                (files)) # tell user we are done
+        web.open_new(files[0])
+        web.open_new(files[1])
 
 if __name__=="__main__":
         main()
