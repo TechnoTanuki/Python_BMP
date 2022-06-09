@@ -40,15 +40,15 @@ def meta(f: Callable):
 
 
 def main():
-        file = 'BitmapLib_Doc.md'
         rootdir = path.dirname(__file__) # get path of this script
+        file = f'{rootdir}/docs/BitmapLib_Doc.md'
         print(f'{notice % (file)}')
         l = [meta(m[1]) for m in getmembers(m, isfunction)]
         l = sorted(l, key = str.lower)
         l = filter(isPublic, l)
         savelist("Python BMP Public API", l, file)
-        print('Saved to %s in %s\nAll done close brower to finish' % \
-                (file, rootdir)) # tell user we are done
+        print('Saved to %s\nAll done close brower to finish' % \
+                (file)) # tell user we are done
         web.open_new(file)
 
 if __name__=="__main__":
