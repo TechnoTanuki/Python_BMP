@@ -14,7 +14,6 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        pi,
         centercoord,
         plotpoly as p,
         flowervert as f,
@@ -33,7 +32,7 @@ def main():
         mx = my = 500 # bitmap size
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        file = f'Hello{f.__name__}8.bmp' # file name
+        file = f'Hello{f.__name__}.bmp' # file name
         r = 200
         for c in range(1, 16):
                 p(bmp, f(x, y, # position the flower
