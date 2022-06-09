@@ -1,5 +1,5 @@
 notice = """
- Documentation Generator Py Version
+ Documentation Generator md Version
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -12,20 +12,19 @@ notice = """
  -----------------------------------
 Output to %s
 """
-from Python_BMP.BITMAPlib import(
-        getfuncmetastr as meta,
-        )
 
-import webbrowser as web
-from inspect import getmembers, isfunction
+from typing import Callable
+from inspect import getmembers, isfunction, signature
 import Python_BMP.BITMAPlib as m
+import webbrowser as web
 
 import subprocess as proc
 from os import path
 
 
-def savelist(mlist: list, filename: str):
+def savelist(hdr: str, mlist: list, filename: str):
     with open(filename,'w') as f:
+        f.write(f'# {hdr}\n\n')
         for m in mlist:
             f.write(f'{m}\n\n')
         f.close()
@@ -35,19 +34,22 @@ def isPublic(s: str) -> bool:
         return s[0:5] != "def _"
 
 
+def meta(f: Callable):
+    _d= '"'*3
+    return f'**def {f.__name__}{signature(f)}:**\n>{_d}{f.__doc__}{_d}\n'
+
+
 def main():
-        edt = 'notepad' # change if Linux
-        file = 'BitmapLib_Doc.py'
+        file = 'BitmapLib_Doc.md'
         rootdir = path.dirname(__file__) # get path of this script
-        file = f'{rootdir}/docs/{file}'
         print(f'{notice % (file)}')
         l = [meta(m[1]) for m in getmembers(m, isfunction)]
         l = sorted(l, key = str.lower)
         l = filter(isPublic, l)
-        savelist(l, file)
-        print('Saved to %s \nAll done close %s to finish' % \
-                (file, edt)) # tell user we are done
-        ret = proc.call([edt, file])
+        savelist("Python BMP Public API", l, file)
+        print('Saved to %s in %s\nAll done close brower to finish' % \
+                (file, rootdir)) # tell user we are done
+        web.open_new(file)
 
 if __name__=="__main__":
         main()
