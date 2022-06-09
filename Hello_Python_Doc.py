@@ -30,6 +30,10 @@ def savelist(mlist: list, filename: str):
         f.close()
 
 
+def isPublic(s: str) -> bool:
+        return s[0:5] != "def _"
+
+
 def main():
         edt = 'notepad' # change if Linux
         file = 'BitmapLib_Doc.py'
@@ -37,6 +41,7 @@ def main():
         print(f'{notice % (file)}')
         l = [meta(m[1]) for m in getmembers(m, isfunction)]
         l = sorted(l, key = str.lower)
+        l = filter(isPublic, l)
         savelist(l, file)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, edt)) # tell user we are done
