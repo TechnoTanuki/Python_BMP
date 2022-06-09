@@ -14,7 +14,7 @@ Output to %s
 """
 
 from typing import Callable
-from inspect import getmembers, isfunction, signature
+from inspect import getdoc, getmembers, isfunction, signature
 import Python_BMP.BITMAPlib as m
 import webbrowser as web
 
@@ -35,7 +35,23 @@ def isPublic(s: str) -> bool:
 
 
 def meta(f: Callable):
-    return f'**def {f.__name__}{signature(f)}:**\n>{f.__doc__}\n'
+    fqname = ".".join((f.__module__, f.__qualname__))
+    d = getdoc(f) or ""
+    d1 = d.split("\n\n")[0]
+    d2 = d[len(d1)+2:].replace("\n", "\n    ")
+    return "\x0a".join([
+      f"### [`{f.__qualname__}`](#{fqname})",
+      "",
+      "```py",
+      f"def {f.__name__}{signature(f)}:",
+      "```",
+      "",
+      d1,
+      "",
+      f"    {d2}",
+      "",
+    ])
+    
 
 
 def main():
@@ -52,4 +68,3 @@ def main():
 
 if __name__=="__main__":
         main()
-
