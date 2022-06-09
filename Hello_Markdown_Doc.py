@@ -40,7 +40,7 @@ def meta(f: Callable):
     d1 = d.split("\n\n")[0]
     d2 = d[len(d1)+2:].replace("\n", "\n    ")
     return "\x0a".join([
-      f"### [`{f.__qualname__}`](#{fqname})",
+      f"### [`{f.__qualname__}`](#{f.__qualname__})",
       "",
       "```py",
       f"def {f.__name__}{signature(f)}:",
