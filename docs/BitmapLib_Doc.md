@@ -1,6 +1,6 @@
 # Python BMP Public API
 
-### [`_1bmof`](#Python_BMP.BITMAPlib._1bmof)
+### [`_1bmof`](#_1bmof)
 
 ```py
 def _1bmof(bmp: array.array, x: int, y: int) -> int:
@@ -20,7 +20,7 @@ with 1 bit color data given x and y data
         int value of offset to that data in byte array
 
 
-### [`_1bmofhd`](#Python_BMP.BITMAPlib._1bmofhd)
+### [`_1bmofhd`](#_1bmofhd)
 
 ```py
 def _1bmofhd(bmp: array.array, x: int, y: int) -> int:
@@ -42,7 +42,7 @@ Get the offset in a byte array
         int value of offset to that data in byte array
 
 
-### [`_24bmof`](#Python_BMP.BITMAPlib._24bmof)
+### [`_24bmof`](#_24bmof)
 
 ```py
 def _24bmof(bmp: array.array, x: int, y: int) -> int:
@@ -61,7 +61,7 @@ Get the offset in a byte array with RGB data given x and y
         int value of offset to that data in byte array
 
 
-### [`_24bmofhd`](#Python_BMP.BITMAPlib._24bmofhd)
+### [`_24bmofhd`](#_24bmofhd)
 
 ```py
 def _24bmofhd(bmp: array.array, x: int, y: int) -> int:
@@ -81,7 +81,7 @@ with RGB data given x and y with bmp header
         int value of offset to that data in byte array
 
 
-### [`_4bmof`](#Python_BMP.BITMAPlib._4bmof)
+### [`_4bmof`](#_4bmof)
 
 ```py
 def _4bmof(bmp: array.array, x: int, y: int) -> int:
@@ -101,7 +101,7 @@ with 4 bit color data given x and y data
         int value of offset to that data in byte array
 
 
-### [`_4bmofhd`](#Python_BMP.BITMAPlib._4bmofhd)
+### [`_4bmofhd`](#_4bmofhd)
 
 ```py
 def _4bmofhd(bmp: array.array, x: int, y: int) -> int:
@@ -123,7 +123,7 @@ made due to a header
         int value of offset to that data in byte array
 
 
-### [`_8bmof`](#Python_BMP.BITMAPlib._8bmof)
+### [`_8bmof`](#_8bmof)
 
 ```py
 def _8bmof(bmp: array.array, x: int, y: int) -> int:
@@ -144,7 +144,7 @@ with 8 bit color data given x and y data
         that data in byte array
 
 
-### [`_8bmofhd`](#Python_BMP.BITMAPlib._8bmofhd)
+### [`_8bmofhd`](#_8bmofhd)
 
 ```py
 def _8bmofhd(bmp: array.array, x: int, y: int) -> int:
@@ -167,7 +167,7 @@ made for a bmp header
         that data in byte array
 
 
-### [`_bmmeta`](#Python_BMP.BITMAPlib._bmmeta)
+### [`_bmmeta`](#_bmmeta)
 
 ```py
 def _bmmeta(x: int, y: int, bits: int) -> tuple:
@@ -187,7 +187,7 @@ Computes bitmap meta data
         xdim, ydim, bitdepth)
 
 
-### [`_BMoffset`](#Python_BMP.BITMAPlib._BMoffset)
+### [`_BMoffset`](#_BMoffset)
 
 ```py
 def _BMoffset(bmp: array.array, x: int, y: int) -> int:
@@ -205,7 +205,7 @@ Returns the offset given a bmp and (x, y) coordinates
         unsigned int offset to data in buffer
 
 
-### [`_BMoffsethd`](#Python_BMP.BITMAPlib._BMoffsethd)
+### [`_BMoffsethd`](#_BMoffsethd)
 
 ```py
 def _BMoffsethd(bmp: array.array, x: int, y: int) -> int:
@@ -224,7 +224,7 @@ and (x, y) coordinates with header considered
         unsigned int offset to data in buffer
 
 
-### [`_cmpimglines`](#Python_BMP.BITMAPlib._cmpimglines)
+### [`_cmpimglines`](#_cmpimglines)
 
 ```py
 def _cmpimglines(bmp: array.array, x1: int, y1: int, x2: int, y2: int, func: Callable):
@@ -235,7 +235,7 @@ def _cmpimglines(bmp: array.array, x1: int, y1: int, x2: int, y2: int, func: Cal
     
 
 
-### [`_flsz`](#Python_BMP.BITMAPlib._flsz)
+### [`_flsz`](#_flsz)
 
 ```py
 def _flsz(bmp: array.array) -> int:
@@ -253,7 +253,7 @@ Get the file size of a win bmp
         of the bmp header
 
 
-### [`_fnwithpar2vertslice`](#Python_BMP.BITMAPlib._fnwithpar2vertslice)
+### [`_fnwithpar2vertslice`](#_fnwithpar2vertslice)
 
 ```py
 def _fnwithpar2vertslice(bmp: array.array, x: int, y1: int, y2: int, func: Callable, funcparam):
@@ -275,7 +275,7 @@ Apply a user defined function to vertical slices
         byref modified unsigned byte array
 
 
-### [`_getbmflsz`](#Python_BMP.BITMAPlib._getbmflsz)
+### [`_getbmflsz`](#_getbmflsz)
 
 ```py
 def _getbmflsz(x: int, y: int, bits: int) -> int:
@@ -292,7 +292,7 @@ Computes bitmap file size
         int value of file size
 
 
-### [`_getBMofffunc`](#Python_BMP.BITMAPlib._getBMofffunc)
+### [`_getBMofffunc`](#_getBMofffunc)
 
 ```py
 def _getBMofffunc(bmp: array.array):
@@ -310,7 +310,7 @@ in a given bitmap
         function to compute offsets
 
 
-### [`_getBMoffhdfunc`](#Python_BMP.BITMAPlib._getBMoffhdfunc)
+### [`_getBMoffhdfunc`](#_getBMoffhdfunc)
 
 ```py
 def _getBMoffhdfunc(bmp: array.array):
@@ -328,7 +328,7 @@ with headers in a given bmp
         function to compute offsets with headers
 
 
-### [`_getclrbits`](#Python_BMP.BITMAPlib._getclrbits)
+### [`_getclrbits`](#_getclrbits)
 
 ```py
 def _getclrbits(bmp: array.array) -> int:
@@ -345,7 +345,7 @@ Get the bit depth of BMP
         (1, 4, 8, 24) bits
 
 
-### [`_hdsz`](#Python_BMP.BITMAPlib._hdsz)
+### [`_hdsz`](#_hdsz)
 
 ```py
 def _hdsz(bmp: array.array) -> int:
@@ -361,7 +361,7 @@ Get the header size of a BMP
         int value of header size
 
 
-### [`_pdbytes`](#Python_BMP.BITMAPlib._pdbytes)
+### [`_pdbytes`](#_pdbytes)
 
 ```py
 def _pdbytes(x: int, bits: int) -> int:
@@ -380,7 +380,7 @@ Get the number of bytes used to pad for
         int value of number of pad bytes
 
 
-### [`_setflsz`](#Python_BMP.BITMAPlib._setflsz)
+### [`_setflsz`](#_setflsz)
 
 ```py
 def _setflsz(bmp: array.array, size: int):
@@ -400,7 +400,7 @@ Set the file size of a BMP
         with new file size
 
 
-### [`_sethdsz`](#Python_BMP.BITMAPlib._sethdsz)
+### [`_sethdsz`](#_sethdsz)
 
 ```py
 def _sethdsz(bmp: array.array, hdsize: int):
@@ -420,7 +420,7 @@ Set the header size of a win bmp
         with new header size
 
 
-### [`_setmeta`](#Python_BMP.BITMAPlib._setmeta)
+### [`_setmeta`](#_setmeta)
 
 ```py
 def _setmeta(bmpmeta: list) -> array.array:
@@ -439,7 +439,7 @@ Creates a new bitmap
         unsigned byte array with bmp format
 
 
-### [`_setx`](#Python_BMP.BITMAPlib._setx)
+### [`_setx`](#_setx)
 
 ```py
 def _setx(bmp: array.array, xmax: int):
@@ -456,7 +456,7 @@ Sets the x value stored in the windows bmp header
         byref modified unsigned byte array
 
 
-### [`_sety`](#Python_BMP.BITMAPlib._sety)
+### [`_sety`](#_sety)
 
 ```py
 def _sety(bmp: array.array, ymax: int):
@@ -473,7 +473,7 @@ Sets the y value stored in the windows bmp header
         byref modified unsigned byte array
 
 
-### [`_use24bitfn2reg`](#Python_BMP.BITMAPlib._use24bitfn2reg)
+### [`_use24bitfn2reg`](#_use24bitfn2reg)
 
 ```py
 def _use24bitfn2reg(bmp: array.array, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam):
@@ -497,7 +497,7 @@ in a 24-bit bitmap
         byref modified unsigned byte array
 
 
-### [`_use24btbyrefclrfn2regnsv`](#Python_BMP.BITMAPlib._use24btbyrefclrfn2regnsv)
+### [`_use24btbyrefclrfn2regnsv`](#_use24btbyrefclrfn2regnsv)
 
 ```py
 def _use24btbyrefclrfn2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam):
@@ -523,7 +523,7 @@ to a rectangular area and save
         new bitmap file
 
 
-### [`_use24btclrfn`](#Python_BMP.BITMAPlib._use24btclrfn)
+### [`_use24btclrfn`](#_use24btclrfn)
 
 ```py
 def _use24btclrfn(ExistingBMPfile: str, NewBMPfile: str, func: Callable, funcparam):
@@ -547,7 +547,7 @@ to a 24-bit bitmap
         new bitmap file
 
 
-### [`_use24btclrfntocircregion`](#Python_BMP.BITMAPlib._use24btclrfntocircregion)
+### [`_use24btclrfntocircregion`](#_use24btclrfntocircregion)
 
 ```py
 def _use24btclrfntocircregion(ExistingBMPfile: str, NewBMPfile: str, func: Callable, x: int, y: int, r: int):
@@ -570,7 +570,7 @@ to a circular area (24-bit only)
         new bitmap file
 
 
-### [`_use24btclrfnwithpar2circreg`](#Python_BMP.BITMAPlib._use24btclrfnwithpar2circreg)
+### [`_use24btclrfnwithpar2circreg`](#_use24btclrfnwithpar2circreg)
 
 ```py
 def _use24btclrfnwithpar2circreg(ExistingBMPfile: str, NewBMPfile: str, func: Callable, x: int, y: int, r: int, funcparam):
@@ -595,7 +595,7 @@ to a circular area (24-bit only)
         new bitmap file
 
 
-### [`_use24btfn2circreg`](#Python_BMP.BITMAPlib._use24btfn2circreg)
+### [`_use24btfn2circreg`](#_use24btfn2circreg)
 
 ```py
 def _use24btfn2circreg(bmp: array.array, x: int, y: int, r: int, func: Callable, funcparam):
@@ -621,7 +621,7 @@ within a 24-bit bitmap
         unsigned byte array
 
 
-### [`_use24btfnwithparnsv`](#Python_BMP.BITMAPlib._use24btfnwithparnsv)
+### [`_use24btfnwithparnsv`](#_use24btfnwithparnsv)
 
 ```py
 def _use24btfnwithparnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable, funcparam):
@@ -643,7 +643,7 @@ Apply a 24-bit only function with parameters and save
         new bitmap file
 
 
-### [`_usebyref24btfn2reg`](#Python_BMP.BITMAPlib._usebyref24btfn2reg)
+### [`_usebyref24btfn2reg`](#_usebyref24btfn2reg)
 
 ```py
 def _usebyref24btfn2reg(bmp: array.array, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam):
@@ -667,7 +667,7 @@ in a 24-bit bitmap
         byref modified unsigned byte array
 
 
-### [`_usebyref24btfn2regnsv`](#Python_BMP.BITMAPlib._usebyref24btfn2regnsv)
+### [`_usebyref24btfn2regnsv`](#_usebyref24btfn2regnsv)
 
 ```py
 def _usebyref24btfn2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable):
@@ -692,7 +692,7 @@ rectangular area and save
         new bitmap file
 
 
-### [`_usebyreffn2regnsv`](#Python_BMP.BITMAPlib._usebyreffn2regnsv)
+### [`_usebyreffn2regnsv`](#_usebyreffn2regnsv)
 
 ```py
 def _usebyreffn2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable):
@@ -717,7 +717,7 @@ rectangular region and save
         new bitmap file
 
 
-### [`_usebyreffnsv`](#Python_BMP.BITMAPlib._usebyreffnsv)
+### [`_usebyreffnsv`](#_usebyreffnsv)
 
 ```py
 def _usebyreffnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable):
@@ -737,7 +737,7 @@ Apply a by-ref function with no parameters and save
         new bitmap file
 
 
-### [`_usebyreffnwithpar2regnsv`](#Python_BMP.BITMAPlib._usebyreffnwithpar2regnsv)
+### [`_usebyreffnwithpar2regnsv`](#_usebyreffnwithpar2regnsv)
 
 ```py
 def _usebyreffnwithpar2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam):
@@ -762,7 +762,7 @@ to a rectangular area and save
         new bitmap file
 
 
-### [`_usebyreffnwithparnsv`](#Python_BMP.BITMAPlib._usebyreffnwithparnsv)
+### [`_usebyreffnwithparnsv`](#_usebyreffnwithparnsv)
 
 ```py
 def _usebyreffnwithparnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable, funcparam):
@@ -773,7 +773,7 @@ def _usebyreffnwithparnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable,
     
 
 
-### [`_usebyrefnopar24bitfn2reg`](#Python_BMP.BITMAPlib._usebyrefnopar24bitfn2reg)
+### [`_usebyrefnopar24bitfn2reg`](#_usebyrefnopar24bitfn2reg)
 
 ```py
 def _usebyrefnopar24bitfn2reg(bmp: array.array, x1: int, y1: int, x2: int, y2: int, func: Callable):
@@ -794,7 +794,7 @@ Apply a func to a rectangular area in a 24-bit bitmap
         byref modified unsigned byte array
 
 
-### [`_useclradjfn`](#Python_BMP.BITMAPlib._useclradjfn)
+### [`_useclradjfn`](#_useclradjfn)
 
 ```py
 def _useclradjfn(ExistingBMPfile: str, NewBMPfile: str, func: Callable, funcparam):
@@ -817,7 +817,7 @@ to an existing bitmap
         new bitmap file
 
 
-### [`_usefn2circreg`](#Python_BMP.BITMAPlib._usefn2circreg)
+### [`_usefn2circreg`](#_usefn2circreg)
 
 ```py
 def _usefn2circreg(ExistingBMPfile: str, NewBMPfile: str, func: Callable, x: int, y: int, r: int):
@@ -840,7 +840,7 @@ to a circular area
         new bitmap file
 
 
-### [`_usefn2regsv`](#Python_BMP.BITMAPlib._usefn2regsv)
+### [`_usefn2regsv`](#_usefn2regsv)
 
 ```py
 def _usefn2regsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable):
@@ -864,7 +864,7 @@ rectangular area and save
         new bitmap file
 
 
-### [`_usefnsv`](#Python_BMP.BITMAPlib._usefnsv)
+### [`_usefnsv`](#_usefnsv)
 
 ```py
 def _usefnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable):
@@ -884,7 +884,7 @@ Apply a function with no parameters and save
         new bitmap file
 
 
-### [`_usefnwithpar2circreg`](#Python_BMP.BITMAPlib._usefnwithpar2circreg)
+### [`_usefnwithpar2circreg`](#_usefnwithpar2circreg)
 
 ```py
 def _usefnwithpar2circreg(ExistingBMPfile: str, NewBMPfile: str, func: Callable, x: int, y: int, r: int, funcparam):
@@ -909,7 +909,7 @@ to a circular area
         new bitmap file
 
 
-### [`_usenopar24btfn2circreg`](#Python_BMP.BITMAPlib._usenopar24btfn2circreg)
+### [`_usenopar24btfn2circreg`](#_usenopar24btfn2circreg)
 
 ```py
 def _usenopar24btfn2circreg(bmp: array.array, x: int, y: int, r: int, func: Callable):
@@ -932,7 +932,7 @@ in a 24-bit bitmap
         byref modified unsigned byte array
 
 
-### [`_usenoparclradjfn`](#Python_BMP.BITMAPlib._usenoparclradjfn)
+### [`_usenoparclradjfn`](#_usenoparclradjfn)
 
 ```py
 def _usenoparclradjfn(ExistingBMPfile: str, NewBMPfile: str, func: Callable):
@@ -953,7 +953,7 @@ Apply a user provided no parameter color
         new bitmap file
 
 
-### [`_usenoparfn2circreg`](#Python_BMP.BITMAPlib._usenoparfn2circreg)
+### [`_usenoparfn2circreg`](#_usenoparfn2circreg)
 
 ```py
 def _usenoparfn2circreg(bmp: array.array, x: int, y: int, r: int, func: Callable):
@@ -978,7 +978,7 @@ center at (x,y) and a radius r
         byref modified unsigned byte array
 
 
-### [`_xbytes`](#Python_BMP.BITMAPlib._xbytes)
+### [`_xbytes`](#_xbytes)
 
 ```py
 def _xbytes(x: int, bits: int) -> int:
@@ -997,7 +997,7 @@ a bmp row given x dimension and bit depth
         int value of number of bytes in a row
 
 
-### [`_xchrcnt`](#Python_BMP.BITMAPlib._xchrcnt)
+### [`_xchrcnt`](#_xchrcnt)
 
 ```py
 def _xchrcnt(bmp: array.array) -> int:
@@ -1014,7 +1014,7 @@ Get the chars or bytes in row of a BMP
         chars in a row (x dim)
 
 
-### [`addvect`](#Python_BMP.mathlib.addvect)
+### [`addvect`](#addvect)
 
 ```py
 def addvect(u: list[numbers.Number], v: list[numbers.Number]) -> list[numbers.Number]:
@@ -1029,7 +1029,7 @@ Add vectors u and v by adding their components
         list of ints or floats
 
 
-### [`addvectinlist`](#Python_BMP.mathlib.addvectinlist)
+### [`addvectinlist`](#addvectinlist)
 
 ```py
 def addvectinlist(vlist: list[list[numbers.Number]]) -> numbers.Number:
@@ -1044,7 +1044,7 @@ Gets the sum of the vectors in a list of vectors
         list or vector
 
 
-### [`adjustbrightness2file`](#Python_BMP.BITMAPlib.adjustbrightness2file)
+### [`adjustbrightness2file`](#adjustbrightness2file)
 
 ```py
 def adjustbrightness2file(ExistingBMPfile: str, NewBMPfile: str, percentadj: float):
@@ -1066,7 +1066,7 @@ Apply a brightness adjustment to the image in a BMP
         new bitmap file
 
 
-### [`adjustbrightnessinregion2file`](#Python_BMP.BITMAPlib.adjustbrightnessinregion2file)
+### [`adjustbrightnessinregion2file`](#adjustbrightnessinregion2file)
 
 ```py
 def adjustbrightnessinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, percentadj: float):
@@ -1092,7 +1092,7 @@ Brightness adjustment to rectangular area in a 24-bit BMP
         new bitmap file
 
 
-### [`adjustcolordicttopal`](#Python_BMP.BITMAPlib.adjustcolordicttopal)
+### [`adjustcolordicttopal`](#adjustcolordicttopal)
 
 ```py
 def adjustcolordicttopal(bmp: array.array, colordict: dict):
@@ -1110,7 +1110,7 @@ as closely as possible a bitmap palette
         byref modified dictionary of colors
 
 
-### [`adjustthresholdinregion2file`](#Python_BMP.BITMAPlib.adjustthresholdinregion2file)
+### [`adjustthresholdinregion2file`](#adjustthresholdinregion2file)
 
 ```py
 def adjustthresholdinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, lumrange: list):
@@ -1134,7 +1134,7 @@ Threshold adjust in a rectangular area in a 24-bit BMP
         new bitmap file
 
 
-### [`adjustxbufsize`](#Python_BMP.bufresize.adjustxbufsize)
+### [`adjustxbufsize`](#adjustxbufsize)
 
 ```py
 def adjustxbufsize(bmp: array.array, x1: int, x2: int) -> int:
@@ -1158,7 +1158,7 @@ Returns a 32 -bit padded
         int adjusted buffer size
 
 
-### [`andvect`](#Python_BMP.mathlib.andvect)
+### [`andvect`](#andvect)
 
 ```py
 def andvect(u: list[int], v: list[int]) -> list[int]:
@@ -1175,7 +1175,7 @@ the elements of two lists of ints
         list[int]
 
 
-### [`anglebetween2Dlines`](#Python_BMP.mathlib.anglebetween2Dlines)
+### [`anglebetween2Dlines`](#anglebetween2Dlines)
 
 ```py
 def anglebetween2Dlines(u: list[numbers.Number, numbers.Number], v: list[numbers.Number, numbers.Number]) -> float:
@@ -1190,7 +1190,7 @@ Compute the angle between two lines of vectors
         float angle in radians
 
 
-### [`applybrightnessadjtoBGRbuf`](#Python_BMP.colors.applybrightnessadjtoBGRbuf)
+### [`applybrightnessadjtoBGRbuf`](#applybrightnessadjtoBGRbuf)
 
 ```py
 def applybrightnessadjtoBGRbuf(buf: array.array, percentadj: float) -> array.array:
@@ -1214,7 +1214,7 @@ Apply a brightness adjustment
         BGR data
 
 
-### [`applycolorfiltertoBGRbuf`](#Python_BMP.colors.applycolorfiltertoBGRbuf)
+### [`applycolorfiltertoBGRbuf`](#applycolorfiltertoBGRbuf)
 
 ```py
 def applycolorfiltertoBGRbuf(buf: array.array, rgbfactors: list[float, float, float]):
@@ -1237,7 +1237,7 @@ Apply a color filter to a
         holding color BGR data
 
 
-### [`applygammaBGRbuf`](#Python_BMP.colors.applygammaBGRbuf)
+### [`applygammaBGRbuf`](#applygammaBGRbuf)
 
 ```py
 def applygammaBGRbuf(buf: array.array, gamma: float):
@@ -1258,7 +1258,7 @@ Apply a gamma adjustment to a
         BGR data
 
 
-### [`applymonochromefiltertoBGRbuf`](#Python_BMP.colors.applymonochromefiltertoBGRbuf)
+### [`applymonochromefiltertoBGRbuf`](#applymonochromefiltertoBGRbuf)
 
 ```py
 def applymonochromefiltertoBGRbuf(buf: array.array):
@@ -1281,7 +1281,7 @@ Apply a monochrome filter to a
         holding mono BGR data
 
 
-### [`applythresholdadjtoBGRbuf`](#Python_BMP.colors.applythresholdadjtoBGRbuf)
+### [`applythresholdadjtoBGRbuf`](#applythresholdadjtoBGRbuf)
 
 ```py
 def applythresholdadjtoBGRbuf(buf: array.array, lumrange: list) -> array.array:
@@ -1303,7 +1303,7 @@ Apply a threshold adjustment
         BGR data
 
 
-### [`arcvert`](#Python_BMP.primitives2D.arcvert)
+### [`arcvert`](#arcvert)
 
 ```py
 def arcvert(x: int, y: int, r: int, startdegangle: float, enddegangle: float):
@@ -1326,7 +1326,7 @@ traces an arc with origin set at (x, y)
         list[[x: int, y: int]]
 
 
-### [`autocropimg2file`](#Python_BMP.BITMAPlib.autocropimg2file)
+### [`autocropimg2file`](#autocropimg2file)
 
 ```py
 def autocropimg2file(ExistingBMPfile: str, NewBMPfile: str, similaritythreshold: float):
@@ -1346,7 +1346,7 @@ Perform an auto crop to the image in a bitmap file
         new bitmap file
 
 
-### [`beziercurve`](#Python_BMP.BITMAPlib.beziercurve)
+### [`beziercurve`](#beziercurve)
 
 ```py
 def beziercurve(bmp: array.array, pntlist: list[list[numbers.Number, numbers.Number]], penradius: int, color: int):
@@ -1367,7 +1367,7 @@ Draws a Bezier Curve
         byref modified unsigned byte array
 
 
-### [`BMPbitBLTget`](#Python_BMP.BITMAPlib.BMPbitBLTget)
+### [`BMPbitBLTget`](#BMPbitBLTget)
 
 ```py
 def BMPbitBLTget(bmp: array.array, offset: int, bufsize: int) -> array.array:
@@ -1387,7 +1387,7 @@ Gets [offset: offset + bufsize] to a new array
         unsigned byte array
 
 
-### [`BMPbitBLTput`](#Python_BMP.BITMAPlib.BMPbitBLTput)
+### [`BMPbitBLTput`](#BMPbitBLTput)
 
 ```py
 def BMPbitBLTput(bmp: array.array, offset: int, arraybuf: array.array):
@@ -1406,7 +1406,7 @@ Sets offset in array to arraybuf
         byref modified unsigned byte array
 
 
-### [`bottomrightcoord`](#Python_BMP.BITMAPlib.bottomrightcoord)
+### [`bottomrightcoord`](#bottomrightcoord)
 
 ```py
 def bottomrightcoord(bmp: array.array) -> tuple:
@@ -1422,7 +1422,7 @@ Gets the maximum bottom right coordinates of a bmp
         tuple (x:int,y:int)
 
 
-### [`brightnessadjcircregion2file`](#Python_BMP.BITMAPlib.brightnessadjcircregion2file)
+### [`brightnessadjcircregion2file`](#brightnessadjcircregion2file)
 
 ```py
 def brightnessadjcircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, percentadj: float):
@@ -1451,7 +1451,7 @@ Brightness gradient to a circular area
         new bitmap file
 
 
-### [`brightnessadjcircregion`](#Python_BMP.BITMAPlib.brightnessadjcircregion)
+### [`brightnessadjcircregion`](#brightnessadjcircregion)
 
 ```py
 def brightnessadjcircregion(bmp: array.array, x: int, y: int, r: int, percentadj: float):
@@ -1472,7 +1472,7 @@ Brightness adjustment to a circular area
         byref modified unsigned byte array
 
 
-### [`brightnessadjust`](#Python_BMP.colors.brightnessadjust)
+### [`brightnessadjust`](#brightnessadjust)
 
 ```py
 def brightnessadjust(rgb: list[int, int, int], percentadj: float) -> list[int, int, int]:
@@ -1496,7 +1496,7 @@ Apply a brightness adjustment
         [r: byte, g: byte, b: byte]
 
 
-### [`brightnesseadjto24bitimage`](#Python_BMP.BITMAPlib.brightnesseadjto24bitimage)
+### [`brightnesseadjto24bitimage`](#brightnesseadjto24bitimage)
 
 ```py
 def brightnesseadjto24bitimage(bmp: array.array, percentadj: float):
@@ -1517,7 +1517,7 @@ Brightness adjustment to a whole BMP
         byref modified unsigned byte array
 
 
-### [`brightnesseadjto24bitregion`](#Python_BMP.BITMAPlib.brightnesseadjto24bitregion)
+### [`brightnesseadjto24bitregion`](#brightnesseadjto24bitregion)
 
 ```py
 def brightnesseadjto24bitregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, percentadj: float):
@@ -1540,7 +1540,7 @@ Brightness adjustment to a rectangular area
         byref modified unsigned byte array
 
 
-### [`bspline`](#Python_BMP.BITMAPlib.bspline)
+### [`bspline`](#bspline)
 
 ```py
 def bspline(bmp: array.array, pntlist: list, penradius: int, color: int, isclosed: bool, curveback: bool):
@@ -1566,7 +1566,7 @@ Draws a Bspline
         byref modified unsigned byte array
 
 
-### [`bsplinevert`](#Python_BMP.primitives2D.bsplinevert)
+### [`bsplinevert`](#bsplinevert)
 
 ```py
 def bsplinevert(pntlist: list[list[int, int]], isclosed: bool, curveback: bool) -> list[list[int, int]]:
@@ -1585,7 +1585,7 @@ Creates a list of vertices for a bspline curve
         list[list[x: int, y: int]]
 
 
-### [`buf2int`](#Python_BMP.inttools.buf2int)
+### [`buf2int`](#buf2int)
 
 ```py
 def buf2int(buf: array.array) -> int:
@@ -1601,7 +1601,7 @@ Converts an unsigned byte array
         unsigned int value
 
 
-### [`centercoord`](#Python_BMP.BITMAPlib.centercoord)
+### [`centercoord`](#centercoord)
 
 ```py
 def centercoord(bmp: array.array) -> tuple:
@@ -1617,7 +1617,7 @@ Gets the central coordinates of a BMP
         tuple (x:int,y:int)
 
 
-### [`centerpoint`](#Python_BMP.mathlib.centerpoint)
+### [`centerpoint`](#centerpoint)
 
 ```py
 def centerpoint(x1: int, y1: int, x2: int, y2: int):
@@ -1633,7 +1633,7 @@ Returns the centerpoint x, y in rectangular area
         x: int, y: int centerpoint
 
 
-### [`char2int`](#Python_BMP.chartools.char2int)
+### [`char2int`](#char2int)
 
 ```py
 def char2int(charcodestr: str) -> int:
@@ -1649,7 +1649,7 @@ Packs a string into an int
         int value
 
 
-### [`checklink`](#Python_BMP.fileutils.checklink)
+### [`checklink`](#checklink)
 
 ```py
 def checklink(func: Callable):
@@ -1666,7 +1666,7 @@ Decorator to test if the first
         caller function
 
 
-### [`checklinks`](#Python_BMP.fileutils.checklinks)
+### [`checklinks`](#checklinks)
 
 ```py
 def checklinks(func: Callable):
@@ -1683,7 +1683,7 @@ Decorator to test if the two
         caller function
 
 
-### [`circle2file`](#Python_BMP.BITMAPlib.circle2file)
+### [`circle2file`](#circle2file)
 
 ```py
 def circle2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, color: int):
@@ -1704,7 +1704,7 @@ Draws a Circle
         new bitmap file
 
 
-### [`circle`](#Python_BMP.BITMAPlib.circle)
+### [`circle`](#circle)
 
 ```py
 def circle(bmp: array.array, x: int, y: int, r: int, color: int, isfilled: bool = None):
@@ -1728,7 +1728,7 @@ Draws a Circle
         byref modified unsigned byte array
 
 
-### [`circleinvolutevert`](#Python_BMP.primitives2D.circleinvolutevert)
+### [`circleinvolutevert`](#circleinvolutevert)
 
 ```py
 def circleinvolutevert(x: int, y: int, a: float, delta: float, lim: float):
@@ -1759,7 +1759,7 @@ and an origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`circlevec`](#Python_BMP.BITMAPlib.circlevec)
+### [`circlevec`](#circlevec)
 
 ```py
 def circlevec(bmp: array.array, v: list, r: int, color: int, isfilled: bool = None):
@@ -1782,7 +1782,7 @@ Draws a circle
         byref modified unsigned byte array
 
 
-### [`colorfilter2file`](#Python_BMP.BITMAPlib.colorfilter2file)
+### [`colorfilter2file`](#colorfilter2file)
 
 ```py
 def colorfilter2file(ExistingBMPfile: str, NewBMPfile: str, rgbfactors: list[float, float, float]):
@@ -1803,7 +1803,7 @@ Applies Color Filter rgbfactors to a BMP
         new bitmap file
 
 
-### [`colorfilter`](#Python_BMP.colors.colorfilter)
+### [`colorfilter`](#colorfilter)
 
 ```py
 def colorfilter(rgb: list[int, int, int], rgbfactors: list[float, float, float]) -> list[int, int, int]:
@@ -1829,7 +1829,7 @@ Apply a color filter
                   b: byte]
 
 
-### [`colorfiltercircregion2file`](#Python_BMP.BITMAPlib.colorfiltercircregion2file)
+### [`colorfiltercircregion2file`](#colorfiltercircregion2file)
 
 ```py
 def colorfiltercircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, rgbfactors: list[float, float, float]):
@@ -1851,7 +1851,7 @@ Applies a color filter to a circular area in a BMP
         new bitmap file
 
 
-### [`colorfiltercircregion`](#Python_BMP.BITMAPlib.colorfiltercircregion)
+### [`colorfiltercircregion`](#colorfiltercircregion)
 
 ```py
 def colorfiltercircregion(bmp: array.array, x: int, y: int, r: int, rgbfactors: list[float, float, float]):
@@ -1873,7 +1873,7 @@ Color Filter to a circular area
         byref modified unsigned byte array
 
 
-### [`colorfilterinregion2file`](#Python_BMP.BITMAPlib.colorfilterinregion2file)
+### [`colorfilterinregion2file`](#colorfilterinregion2file)
 
 ```py
 def colorfilterinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, rgbfactors: list[float, float, float]):
@@ -1898,7 +1898,7 @@ Color Filter to a Rectangular Area in a 24-bit BMP
         new bitmap file
 
 
-### [`colorfilterto24bitimage`](#Python_BMP.BITMAPlib.colorfilterto24bitimage)
+### [`colorfilterto24bitimage`](#colorfilterto24bitimage)
 
 ```py
 def colorfilterto24bitimage(bmp: array.array, rgbfactors: list[float, float, float]):
@@ -1920,7 +1920,7 @@ Applies a color filter
         unsigned byte array
 
 
-### [`colorfilterto24bitregion`](#Python_BMP.BITMAPlib.colorfilterto24bitregion)
+### [`colorfilterto24bitregion`](#colorfilterto24bitregion)
 
 ```py
 def colorfilterto24bitregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, rgbfactors: list[float, float, float]):
@@ -1948,7 +1948,7 @@ Applies a color filter to
         unsigned byte array
 
 
-### [`colorfiltertoBGRbuf`](#Python_BMP.colors.colorfiltertoBGRbuf)
+### [`colorfiltertoBGRbuf`](#colorfiltertoBGRbuf)
 
 ```py
 def colorfiltertoBGRbuf(buf: array.array, rgbfactors: list[float, float, float]) -> array.array:
@@ -1971,7 +1971,7 @@ Apply a color filter to a
         holding color BGR data
 
 
-### [`colorhistorgram`](#Python_BMP.BITMAPlib.colorhistorgram)
+### [`colorhistorgram`](#colorhistorgram)
 
 ```py
 def colorhistorgram(bmp: array.array) -> list:
@@ -1987,7 +1987,7 @@ Creates a color histogram
         list sorted in descending order of color frequencies
 
 
-### [`colormix`](#Python_BMP.colors.colormix)
+### [`colormix`](#colormix)
 
 ```py
 def colormix(lum: int, RGBfactors: list[float, float, float]) -> int:
@@ -2013,7 +2013,7 @@ Mix a byte luminosity value to
         int color val
 
 
-### [`conevertandsurface`](#Python_BMP.solids3D.conevertandsurface)
+### [`conevertandsurface`](#conevertandsurface)
 
 ```py
 def conevertandsurface(vcen: list[float, float, float], r: float, zlen: float, deganglestep: float) -> tuple:
@@ -2041,7 +2041,7 @@ Returns a list of sparse
         see Hello_Cone.py
 
 
-### [`convertbufto24bit`](#Python_BMP.BITMAPlib.convertbufto24bit)
+### [`convertbufto24bit`](#convertbufto24bit)
 
 ```py
 def convertbufto24bit(buf: array.array, bgrpalbuf: array.array, bits: int) -> array.array:
@@ -2059,7 +2059,7 @@ Converts 1, 4 and 8-bit buffers to a BGR buffer
         unsigned byte array
 
 
-### [`convertselection2BMP`](#Python_BMP.BITMAPlib.convertselection2BMP)
+### [`convertselection2BMP`](#convertselection2BMP)
 
 ```py
 def convertselection2BMP(buf: array.array):
@@ -2074,7 +2074,7 @@ Converts custom unsigned byte array to bmp format
         unsigned byte array with bmp format
 
 
-### [`copyBMPhdr`](#Python_BMP.BITMAPlib.copyBMPhdr)
+### [`copyBMPhdr`](#copyBMPhdr)
 
 ```py
 def copyBMPhdr(bmp: array.array) -> array.array:
@@ -2091,7 +2091,7 @@ to a new unsigned byte array
         unsigned byte array with bmp format
 
 
-### [`CopyBMPxydim2newBMP`](#Python_BMP.BITMAPlib.CopyBMPxydim2newBMP)
+### [`CopyBMPxydim2newBMP`](#CopyBMPxydim2newBMP)
 
 ```py
 def CopyBMPxydim2newBMP(bmp: array.array, newbits: int) -> array.array:
@@ -2109,7 +2109,7 @@ Creates a new bitmap with the same dimensions as bmp
         unsigned byte array with bitmap layout
 
 
-### [`copycircregion2buf`](#Python_BMP.BITMAPlib.copycircregion2buf)
+### [`copycircregion2buf`](#copycircregion2buf)
 
 ```py
 def copycircregion2buf(bmp: array.array, x: int, y: int, r: int) -> list:
@@ -2130,7 +2130,7 @@ centerpoint at (x, y) and radius r
         list with buffer of circular region
 
 
-### [`copycircregion2file`](#Python_BMP.BITMAPlib.copycircregion2file)
+### [`copycircregion2file`](#copycircregion2file)
 
 ```py
 def copycircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, newxycenterpoint: list):
@@ -2152,7 +2152,7 @@ Copy/Paste of a circular area in a BMP
         new bitmap file
 
 
-### [`copycircregion`](#Python_BMP.BITMAPlib.copycircregion)
+### [`copycircregion`](#copycircregion)
 
 ```py
 def copycircregion(bmp: array.array, x: int, y: int, r: int, newxy: list):
@@ -2178,7 +2178,7 @@ newxy [x, y]
         byref modified unsigned byte array
 
 
-### [`copyrect`](#Python_BMP.BITMAPlib.copyrect)
+### [`copyrect`](#copyrect)
 
 ```py
 def copyrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int) -> array.array:
@@ -2194,7 +2194,7 @@ Copy a rectangular region to a custom buffer
         custom unsigned byte array
 
 
-### [`copyRGBpal`](#Python_BMP.BITMAPlib.copyRGBpal)
+### [`copyRGBpal`](#copyRGBpal)
 
 ```py
 def copyRGBpal(sourceBMP: array.array, destBMP: array.array):
@@ -2213,7 +2213,7 @@ a destination unsigned byte array
         (unsigned byte array)
 
 
-### [`cosaffin`](#Python_BMP.mathlib.cosaffin)
+### [`cosaffin`](#cosaffin)
 
 ```py
 def cosaffin(u: list[numbers.Number], v: list[numbers.Number]) -> float:
@@ -2232,7 +2232,7 @@ Compute Cosine Similarity or Cosine Affinity
             and values in between
 
 
-### [`crop`](#Python_BMP.BITMAPlib.crop)
+### [`crop`](#crop)
 
 ```py
 def crop(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -2254,7 +2254,7 @@ Crops the image to a rectangular
         with bitmap layout
 
 
-### [`cropBMPandsave`](#Python_BMP.BITMAPlib.cropBMPandsave)
+### [`cropBMPandsave`](#cropBMPandsave)
 
 ```py
 def cropBMPandsave(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -2275,7 +2275,7 @@ Crops and saves a rectangular area to a BMP
         new bitmap file
 
 
-### [`cropBMPandsaveusingrectbnd`](#Python_BMP.BITMAPlib.cropBMPandsaveusingrectbnd)
+### [`cropBMPandsaveusingrectbnd`](#cropBMPandsaveusingrectbnd)
 
 ```py
 def cropBMPandsaveusingrectbnd(ExistingBMPfile: str, NewBMPfile: str, rectbnd: list):
@@ -2300,7 +2300,7 @@ Crops and saves a rectangular area to a BMP
         new bitmap file
 
 
-### [`cubevert`](#Python_BMP.solids3D.cubevert)
+### [`cubevert`](#cubevert)
 
 ```py
 def cubevert(x: float) -> list[list[float, float, float]]:
@@ -2318,7 +2318,7 @@ Returns a list of vertices
               z: float)
 
 
-### [`cylindervertandsurface`](#Python_BMP.solids3D.cylindervertandsurface)
+### [`cylindervertandsurface`](#cylindervertandsurface)
 
 ```py
 def cylindervertandsurface(vcen: list[float, float, float], r: float, zlen: float, deganglestep: float) -> tuple:
@@ -2344,7 +2344,7 @@ Returns a list of sparse vertices
         see Hello_Coin.py
 
 
-### [`decahedvertandsurface`](#Python_BMP.solids3D.decahedvertandsurface)
+### [`decahedvertandsurface`](#decahedvertandsurface)
 
 ```py
 def decahedvertandsurface(x: float) -> list[list[float, float, float]]:
@@ -2364,7 +2364,7 @@ Returns a list of vertices
               z: float)
 
 
-### [`dict2descorderlist`](#Python_BMP.dicttools.dict2descorderlist)
+### [`dict2descorderlist`](#dict2descorderlist)
 
 ```py
 def dict2descorderlist(d: dict) -> list:
@@ -2382,7 +2382,7 @@ Creates a sorted list in
         list
 
 
-### [`distance`](#Python_BMP.mathlib.distance)
+### [`distance`](#distance)
 
 ```py
 def distance(u: list[float], v: list[float]) -> float:
@@ -2400,7 +2400,7 @@ with n components
         float
 
 
-### [`drawarc`](#Python_BMP.BITMAPlib.drawarc)
+### [`drawarc`](#drawarc)
 
 ```py
 def drawarc(bmp: array.array, x: int, y: int, r: int, startdegangle: float, enddegangle: float, color: int, showoutline: bool, fillcolor: int, isfilled: bool):
@@ -2429,7 +2429,7 @@ Draws an Arc
         byref modified unsigned byte array
 
 
-### [`drawvec`](#Python_BMP.BITMAPlib.drawvec)
+### [`drawvec`](#drawvec)
 
 ```py
 def drawvec(bmp: array.array, u: list, v: list, headsize: int, color: int, penradius: int = None):
@@ -2454,7 +2454,7 @@ Draws a vector (line segment with arrow head)
         byref modified unsigned byte array
 
 
-### [`ellipse`](#Python_BMP.BITMAPlib.ellipse)
+### [`ellipse`](#ellipse)
 
 ```py
 def ellipse(bmp: array.array, x: int, y: int, b: int, a: int, color: int, isfilled: bool = None):
@@ -2478,7 +2478,7 @@ Draws an Ellipse
         byref modified unsigned byte array
 
 
-### [`ellipsevert`](#Python_BMP.primitives2D.ellipsevert)
+### [`ellipsevert`](#ellipsevert)
 
 ```py
 def ellipsevert(x: int, y: int, b: int, a: int) -> list[int, int]:
@@ -2499,7 +2499,7 @@ an ellipse with origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`entirecircleinboundary`](#Python_BMP.paramchecks.entirecircleinboundary)
+### [`entirecircleinboundary`](#entirecircleinboundary)
 
 ```py
 def entirecircleinboundary(func):
@@ -2519,7 +2519,7 @@ Decorator to ensure that the 2nd,
         caller function
 
 
-### [`entirecircleisinboundary`](#Python_BMP.primitives2D.entirecircleisinboundary)
+### [`entirecircleisinboundary`](#entirecircleisinboundary)
 
 ```py
 def entirecircleisinboundary(x: int, y: int, minx: int, maxx: int, miny: int, maxy: int, r: int):
@@ -2542,7 +2542,7 @@ is within a rectagular area
                  is in bounds
 
 
-### [`entireellipseisinboundary`](#Python_BMP.primitives2D.entireellipseisinboundary)
+### [`entireellipseisinboundary`](#entireellipseisinboundary)
 
 ```py
 def entireellipseisinboundary(x: int, y: int, minx: int, maxx: int, miny: int, maxy: int, b: int, a: int):
@@ -2565,7 +2565,7 @@ is within a rectagular area
                  is in bounds
 
 
-### [`entirerectinboundary`](#Python_BMP.paramchecks.entirerectinboundary)
+### [`entirerectinboundary`](#entirerectinboundary)
 
 ```py
 def entirerectinboundary(func):
@@ -2586,7 +2586,7 @@ Decorator to ensure that the
         caller function
 
 
-### [`enumbits`](#Python_BMP.mathlib.enumbits)
+### [`enumbits`](#enumbits)
 
 ```py
 def enumbits(byteval: int):
@@ -2603,7 +2603,7 @@ Yields the 8 bits in a byte
         int 0 or int 1
 
 
-### [`enumletters`](#Python_BMP.chartools.enumletters)
+### [`enumletters`](#enumletters)
 
 ```py
 def enumletters(st: str) -> str:
@@ -2619,7 +2619,7 @@ Enumerates the characters
         individual characters
 
 
-### [`enumreverseletters`](#Python_BMP.chartools.enumreverseletters)
+### [`enumreverseletters`](#enumreverseletters)
 
 ```py
 def enumreverseletters(st: str) -> str:
@@ -2635,7 +2635,7 @@ Enumerates the characters in a
         individual characters
 
 
-### [`epicycloidvert`](#Python_BMP.primitives2D.epicycloidvert)
+### [`epicycloidvert`](#epicycloidvert)
 
 ```py
 def epicycloidvert(x: int, y: int, a: float, b: float, delta: float, lim: float):
@@ -2660,7 +2660,7 @@ with an origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`erasealternatehorizontallines`](#Python_BMP.BITMAPlib.erasealternatehorizontallines)
+### [`erasealternatehorizontallines`](#erasealternatehorizontallines)
 
 ```py
 def erasealternatehorizontallines(bmp: array.array, int_eraseeverynline: int, int_eraseNthline: int, bytepat: int):
@@ -2691,7 +2691,7 @@ Erase every nth line
         byref modified unsigned byte array
 
 
-### [`erasealternatehorizontallinesincircregion`](#Python_BMP.BITMAPlib.erasealternatehorizontallinesincircregion)
+### [`erasealternatehorizontallinesincircregion`](#erasealternatehorizontallinesincircregion)
 
 ```py
 def erasealternatehorizontallinesincircregion(bmp: array.array, x: int, y: int, r: int, int_eraseeverynline: int, int_eraseNthline: int, bytepat: int):
@@ -2728,7 +2728,7 @@ Erase every nth line
         byref modified unsigned byte array
 
 
-### [`erasealternatehorizontallinesinregion`](#Python_BMP.BITMAPlib.erasealternatehorizontallinesinregion)
+### [`erasealternatehorizontallinesinregion`](#erasealternatehorizontallinesinregion)
 
 ```py
 def erasealternatehorizontallinesinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, int_eraseeverynline: int, int_eraseNthline: int, bytepat: int):
@@ -2761,7 +2761,7 @@ Erase every nth line in a rectangular region
         byref modified unsigned byte array
 
 
-### [`eraseeverynthhoriline2file`](#Python_BMP.BITMAPlib.eraseeverynthhoriline2file)
+### [`eraseeverynthhoriline2file`](#eraseeverynthhoriline2file)
 
 ```py
 def eraseeverynthhoriline2file(ExistingBMPfile: str, NewBMPfile: str, n: int):
@@ -2781,7 +2781,7 @@ Erase every nth line
         new bitmap file
 
 
-### [`eraseeverynthhorilineinccircregion2file`](#Python_BMP.BITMAPlib.eraseeverynthhorilineinccircregion2file)
+### [`eraseeverynthhorilineinccircregion2file`](#eraseeverynthhorilineinccircregion2file)
 
 ```py
 def eraseeverynthhorilineinccircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, n: int):
@@ -2804,7 +2804,7 @@ Erase every nth horzontal line in a circular area
         new bitmap file
 
 
-### [`eraseeverynthhorilineinregion2file`](#Python_BMP.BITMAPlib.eraseeverynthhorilineinregion2file)
+### [`eraseeverynthhorilineinregion2file`](#eraseeverynthhorilineinregion2file)
 
 ```py
 def eraseeverynthhorilineinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, n: int):
@@ -2828,7 +2828,7 @@ Erase every nth line in a rectangular region
         new bitmap file
 
 
-### [`eraseeverynthhorilineinregion`](#Python_BMP.BITMAPlib.eraseeverynthhorilineinregion)
+### [`eraseeverynthhorilineinregion`](#eraseeverynthhorilineinregion)
 
 ```py
 def eraseeverynthhorilineinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, n: int):
@@ -2853,7 +2853,7 @@ Erase every nth line in a
         unsigned byte array
 
 
-### [`eraseeverynthhorizontalline`](#Python_BMP.BITMAPlib.eraseeverynthhorizontalline)
+### [`eraseeverynthhorizontalline`](#eraseeverynthhorizontalline)
 
 ```py
 def eraseeverynthhorizontalline(bmp: array.array, n: int):
@@ -2870,7 +2870,7 @@ Erase every nth horizontal line
         byref modified unsigned byte array
 
 
-### [`eraseeverynthhorizontallineinccircregion`](#Python_BMP.BITMAPlib.eraseeverynthhorizontallineinccircregion)
+### [`eraseeverynthhorizontallineinccircregion`](#eraseeverynthhorizontallineinccircregion)
 
 ```py
 def eraseeverynthhorizontallineinccircregion(bmp: array.array, x: int, y: int, r: int, n: int):
@@ -2890,7 +2890,7 @@ Erase every nth horizontal line in a circular region
         byref modified unsigned byte array
 
 
-### [`fern2file`](#Python_BMP.BITMAPlib.fern2file)
+### [`fern2file`](#fern2file)
 
 ```py
 def fern2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, color: int):
@@ -2912,7 +2912,7 @@ Fern Fractal in a bounding rectangle
         new bitmap file
 
 
-### [`fern`](#Python_BMP.BITMAPlib.fern)
+### [`fern`](#fern)
 
 ```py
 def fern(bmp: array.array, x1: int, y1: int, x2: int, y2: int, color: int):
@@ -2934,7 +2934,7 @@ Draws an IFS fern fractal
         byref modified unsigned byte array
 
 
-### [`fillbackgroundwithgrad`](#Python_BMP.BITMAPlib.fillbackgroundwithgrad)
+### [`fillbackgroundwithgrad`](#fillbackgroundwithgrad)
 
 ```py
 def fillbackgroundwithgrad(bmp: array.array, lumrange: list[int, int], RGBfactors: list[float, float, float], direction: int):
@@ -2958,7 +2958,7 @@ Fills entire bitmap with a linear gradient
         byref modified unsigned byte array
 
 
-### [`fillboundary`](#Python_BMP.BITMAPlib.fillboundary)
+### [`fillboundary`](#fillboundary)
 
 ```py
 def fillboundary(bmp: array.array, bndfilldic: dict, color: int):
@@ -2976,7 +2976,7 @@ Draws lines in a boundary to fill it
         byref modified unsigned byte array
 
 
-### [`filledcircle2file`](#Python_BMP.BITMAPlib.filledcircle2file)
+### [`filledcircle2file`](#filledcircle2file)
 
 ```py
 def filledcircle2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, color: int):
@@ -2998,7 +2998,7 @@ Draws a Filled Circle
         new bitmap file
 
 
-### [`filledcircle`](#Python_BMP.BITMAPlib.filledcircle)
+### [`filledcircle`](#filledcircle)
 
 ```py
 def filledcircle(bmp: array.array, x: int, y: int, r: int, color: int):
@@ -3019,7 +3019,7 @@ Draws a Filled Circle
         byref modified unsigned byte array
 
 
-### [`filledellipse`](#Python_BMP.BITMAPlib.filledellipse)
+### [`filledellipse`](#filledellipse)
 
 ```py
 def filledellipse(bmp: array.array, x: int, y: int, b: int, a: int, color: int):
@@ -3038,7 +3038,7 @@ Filled Ellipse
         byref modified unsigned byte array
 
 
-### [`filledgradrect`](#Python_BMP.BITMAPlib.filledgradrect)
+### [`filledgradrect`](#filledgradrect)
 
 ```py
 def filledgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int], RGBfactors: list[float, float, float], direction: int):
@@ -3070,7 +3070,7 @@ Draw a filled rectangle with a linear gradient
         unsigned byte array
 
 
-### [`filledparallelogram`](#Python_BMP.BITMAPlib.filledparallelogram)
+### [`filledparallelogram`](#filledparallelogram)
 
 ```py
 def filledparallelogram(bmp: array.array, p1: list, p2: list, p3: list, color: int):
@@ -3091,7 +3091,7 @@ Creates a filled parallelogram defined by 3 points
         byref unsigned modified byte array
 
 
-### [`filledrect`](#Python_BMP.BITMAPlib.filledrect)
+### [`filledrect`](#filledrect)
 
 ```py
 def filledrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, color: int):
@@ -3113,7 +3113,7 @@ Draws a Filled Rectangle
         byref modified unsigned byte array
 
 
-### [`fillpolydata`](#Python_BMP.solids3D.fillpolydata)
+### [`fillpolydata`](#fillpolydata)
 
 ```py
 def fillpolydata(polybnd: list[list[int, int]], xlim: int, ylim: int) -> list:
@@ -3142,7 +3142,7 @@ Generates a list of x values per
         bounds
 
 
-### [`fliphoricircregion2file`](#Python_BMP.BITMAPlib.fliphoricircregion2file)
+### [`fliphoricircregion2file`](#fliphoricircregion2file)
 
 ```py
 def fliphoricircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -3162,7 +3162,7 @@ Horizontal Flip of a circular area
         new bitmap file
 
 
-### [`fliphoricircregion`](#Python_BMP.BITMAPlib.fliphoricircregion)
+### [`fliphoricircregion`](#fliphoricircregion)
 
 ```py
 def fliphoricircregion(bmp: array.array, x: int, y: int, r: int):
@@ -3182,7 +3182,7 @@ Flips horizontally a circular area
         unsigned byte array
 
 
-### [`fliphorizontal2file`](#Python_BMP.BITMAPlib.fliphorizontal2file)
+### [`fliphorizontal2file`](#fliphorizontal2file)
 
 ```py
 def fliphorizontal2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -3200,7 +3200,7 @@ Flips horizontally the image in a BMP
         new bitmap file
 
 
-### [`fliphorizontal`](#Python_BMP.BITMAPlib.fliphorizontal)
+### [`fliphorizontal`](#fliphorizontal)
 
 ```py
 def fliphorizontal(bmp: array.array):
@@ -3218,7 +3218,7 @@ Does a horizontal flip of an
         unsigned byte array
 
 
-### [`fliphorizontalregion2file`](#Python_BMP.BITMAPlib.fliphorizontalregion2file)
+### [`fliphorizontalregion2file`](#fliphorizontalregion2file)
 
 ```py
 def fliphorizontalregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -3238,7 +3238,7 @@ Flips horizontally a rectangular area in a BMP
         new bitmap file
 
 
-### [`fliphorizontalregion`](#Python_BMP.BITMAPlib.fliphorizontalregion)
+### [`fliphorizontalregion`](#fliphorizontalregion)
 
 ```py
 def fliphorizontalregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -3260,7 +3260,7 @@ Does a horizontal flip
         unsigned byte array
 
 
-### [`fliphorzontalpixelbased`](#Python_BMP.BITMAPlib.fliphorzontalpixelbased)
+### [`fliphorzontalpixelbased`](#fliphorzontalpixelbased)
 
 ```py
 def fliphorzontalpixelbased(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -3284,7 +3284,7 @@ Flips horizontal
         unsigned byte array
 
 
-### [`fliphverticalalpixelbased`](#Python_BMP.BITMAPlib.fliphverticalalpixelbased)
+### [`fliphverticalalpixelbased`](#fliphverticalalpixelbased)
 
 ```py
 def fliphverticalalpixelbased(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -3307,7 +3307,7 @@ Flips vertical
         unsigned byte array
 
 
-### [`flipnibbleinbuf`](#Python_BMP.bufferflip.flipnibbleinbuf)
+### [`flipnibbleinbuf`](#flipnibbleinbuf)
 
 ```py
 def flipnibbleinbuf(buf: array.array) -> array.array:
@@ -3322,7 +3322,7 @@ Flips a 4-bit image buffer
         unsigned byte array
 
 
-### [`flipvertcircregion2file`](#Python_BMP.BITMAPlib.flipvertcircregion2file)
+### [`flipvertcircregion2file`](#flipvertcircregion2file)
 
 ```py
 def flipvertcircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -3342,7 +3342,7 @@ Vertical Flip of a circular area
         new bitmap file
 
 
-### [`flipvertcircregion`](#Python_BMP.BITMAPlib.flipvertcircregion)
+### [`flipvertcircregion`](#flipvertcircregion)
 
 ```py
 def flipvertcircregion(bmp: array.array, x: int, y: int, r: int):
@@ -3361,7 +3361,7 @@ Vertical Flip of a circular area
         byref modified unsigned byte array
 
 
-### [`flipvertical2file`](#Python_BMP.BITMAPlib.flipvertical2file)
+### [`flipvertical2file`](#flipvertical2file)
 
 ```py
 def flipvertical2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -3379,7 +3379,7 @@ Flips a bitmap file vertically
         new bitmap file
 
 
-### [`flipvertical`](#Python_BMP.BITMAPlib.flipvertical)
+### [`flipvertical`](#flipvertical)
 
 ```py
 def flipvertical(bmp: array.array):
@@ -3396,7 +3396,7 @@ Does an vertical flip of a bmp
         unsigned byte array
 
 
-### [`flipverticalregion2file`](#Python_BMP.BITMAPlib.flipverticalregion2file)
+### [`flipverticalregion2file`](#flipverticalregion2file)
 
 ```py
 def flipverticalregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -3417,7 +3417,7 @@ Flips vertically a rectangular area in a BMP
         new bitmap file
 
 
-### [`flipverticalregion`](#Python_BMP.BITMAPlib.flipverticalregion)
+### [`flipverticalregion`](#flipverticalregion)
 
 ```py
 def flipverticalregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -3437,7 +3437,7 @@ Flips vertical a rectangular area
         unsigned byte array
 
 
-### [`flipXY2file`](#Python_BMP.BITMAPlib.flipXY2file)
+### [`flipXY2file`](#flipXY2file)
 
 ```py
 def flipXY2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -3455,7 +3455,7 @@ Flips the x and y coordinates to rotate by 90 degrees
         new bitmap file
 
 
-### [`flipXY`](#Python_BMP.BITMAPlib.flipXY)
+### [`flipXY`](#flipXY)
 
 ```py
 def flipXY(bmp: array.array):
@@ -3474,7 +3474,7 @@ Flips the x and y coordinates of
         unsigned byte array
 
 
-### [`flipXYcircregion2file`](#Python_BMP.BITMAPlib.flipXYcircregion2file)
+### [`flipXYcircregion2file`](#flipXYcircregion2file)
 
 ```py
 def flipXYcircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -3494,7 +3494,7 @@ Flips the x and y coordinates of a circular area
         new bitmap file
 
 
-### [`flipXYcircregion`](#Python_BMP.BITMAPlib.flipXYcircregion)
+### [`flipXYcircregion`](#flipXYcircregion)
 
 ```py
 def flipXYcircregion(bmp: array.array, x: int, y: int, r: int):
@@ -3512,7 +3512,7 @@ Flip the X and Y coordinates of a circular area
         byref modified unsigned byte array
 
 
-### [`flowervert`](#Python_BMP.primitives2D.flowervert)
+### [`flowervert`](#flowervert)
 
 ```py
 def flowervert(cx: int, cy: int, r: int, petals: int, angrot: float):
@@ -3530,7 +3530,7 @@ Returns a list of 2D points for a flower
         list[(x: int, y: int)]
 
 
-### [`func24bitonly`](#Python_BMP.paramchecks.func24bitonly)
+### [`func24bitonly`](#func24bitonly)
 
 ```py
 def func24bitonly(func):
@@ -3548,7 +3548,7 @@ Decorator to restrict the
         caller function
 
 
-### [`func24bitonlyandentirecircleinboundary`](#Python_BMP.paramchecks.func24bitonlyandentirecircleinboundary)
+### [`func24bitonlyandentirecircleinboundary`](#func24bitonlyandentirecircleinboundary)
 
 ```py
 def func24bitonlyandentirecircleinboundary(func):
@@ -3570,7 +3570,7 @@ Decorator to restrict the
         caller function
 
 
-### [`func24bitonlyandentirerectinboundary`](#Python_BMP.paramchecks.func24bitonlyandentirerectinboundary)
+### [`func24bitonlyandentirerectinboundary`](#func24bitonlyandentirerectinboundary)
 
 ```py
 def func24bitonlyandentirerectinboundary(func):
@@ -3593,7 +3593,7 @@ Decorator to restrict the
         caller function
 
 
-### [`func8and24bitonlyandentirecircleinboundary`](#Python_BMP.paramchecks.func8and24bitonlyandentirecircleinboundary)
+### [`func8and24bitonlyandentirecircleinboundary`](#func8and24bitonlyandentirecircleinboundary)
 
 ```py
 def func8and24bitonlyandentirecircleinboundary(func):
@@ -3616,7 +3616,7 @@ Decorator to restrict the
         caller function
 
 
-### [`func8and24bitonlyandentirerectinboundary`](#Python_BMP.paramchecks.func8and24bitonlyandentirerectinboundary)
+### [`func8and24bitonlyandentirerectinboundary`](#func8and24bitonlyandentirerectinboundary)
 
 ```py
 def func8and24bitonlyandentirerectinboundary(func):
@@ -3640,7 +3640,7 @@ Decorator to restrict the
         caller function
 
 
-### [`functimer`](#Python_BMP.proctimer.functimer)
+### [`functimer`](#functimer)
 
 ```py
 def functimer(func):
@@ -3655,7 +3655,7 @@ Function timer Decorator
         caller function
 
 
-### [`gammaadj2file`](#Python_BMP.BITMAPlib.gammaadj2file)
+### [`gammaadj2file`](#gammaadj2file)
 
 ```py
 def gammaadj2file(ExistingBMPfile: str, NewBMPfile: str, gamma: float):
@@ -3675,7 +3675,7 @@ Applies a Gamma Correction
         new bitmap file
 
 
-### [`gammaadjto24bitimage`](#Python_BMP.BITMAPlib.gammaadjto24bitimage)
+### [`gammaadjto24bitimage`](#gammaadjto24bitimage)
 
 ```py
 def gammaadjto24bitimage(bmp: array.array, gamma: float):
@@ -3692,7 +3692,7 @@ Gamma correction to an in-memory 24-bit BMP
         byref modified unsigned byte array
 
 
-### [`gammaadjto24bitregion`](#Python_BMP.BITMAPlib.gammaadjto24bitregion)
+### [`gammaadjto24bitregion`](#gammaadjto24bitregion)
 
 ```py
 def gammaadjto24bitregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, gamma: float):
@@ -3713,7 +3713,7 @@ Gamma correction to a rectangular area in a 24-bit BMP
         byref modified unsigned byte array
 
 
-### [`gammaadjtoregion2file`](#Python_BMP.BITMAPlib.gammaadjtoregion2file)
+### [`gammaadjtoregion2file`](#gammaadjtoregion2file)
 
 ```py
 def gammaadjtoregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, gamma: float):
@@ -3736,7 +3736,7 @@ Gamma Correction to a Rectangular Region
         new bitmap file
 
 
-### [`gammaBGRbuf`](#Python_BMP.colors.gammaBGRbuf)
+### [`gammaBGRbuf`](#gammaBGRbuf)
 
 ```py
 def gammaBGRbuf(buf: array.array, gamma: float) -> array.array:
@@ -3757,7 +3757,7 @@ Apply a gamma adjustment to a
         BGR data
 
 
-### [`gammacorrect`](#Python_BMP.colors.gammacorrect)
+### [`gammacorrect`](#gammacorrect)
 
 ```py
 def gammacorrect(rgb: list[int, int, int], gamma: float) -> list[int, int, int]:
@@ -3776,7 +3776,7 @@ Apply a gamma factor to a rgb
         [r: byte, g: byte, b: byte]
 
 
-### [`gammacorrectcircregion2file`](#Python_BMP.BITMAPlib.gammacorrectcircregion2file)
+### [`gammacorrectcircregion2file`](#gammacorrectcircregion2file)
 
 ```py
 def gammacorrectcircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, gamma: float):
@@ -3800,7 +3800,7 @@ Gamma Adjust to a circular area in a BMP
         new bitmap file
 
 
-### [`gammacorrectcircregion`](#Python_BMP.BITMAPlib.gammacorrectcircregion)
+### [`gammacorrectcircregion`](#gammacorrectcircregion)
 
 ```py
 def gammacorrectcircregion(bmp: array.array, x: int, y: int, r: int, gamma: float):
@@ -3821,7 +3821,7 @@ Gamma correction to a circular area
         byref modified unsigned byte array
 
 
-### [`genpiechartdata`](#Python_BMP.charts.genpiechartdata)
+### [`genpiechartdata`](#genpiechartdata)
 
 ```py
 def genpiechartdata(dlist: list):
@@ -3839,7 +3839,7 @@ Preprocess data to make
         list and large value (if any)
 
 
-### [`gensides`](#Python_BMP.solids3D.gensides)
+### [`gensides`](#gensides)
 
 ```py
 def gensides(pointlists: list[list, list], transvect: list[float, float, float], sides: list[list[float]]) -> tuple:
@@ -3859,7 +3859,7 @@ positioning
     
 
 
-### [`getallRGBpal`](#Python_BMP.BITMAPlib.getallRGBpal)
+### [`getallRGBpal`](#getallRGBpal)
 
 ```py
 def getallRGBpal(bmp: array.array) -> list[list[int, int, int]]:
@@ -3875,7 +3875,7 @@ Gets the RGB palette of a bitmap
         [(r: byte, g: byte, b: byte), ...]
 
 
-### [`getBGRpalbuf`](#Python_BMP.BITMAPlib.getBGRpalbuf)
+### [`getBGRpalbuf`](#getBGRpalbuf)
 
 ```py
 def getBGRpalbuf(bmp: array.array):
@@ -3891,7 +3891,7 @@ Gets bitmap palette as stored in the bitmap
         unsigned byte array (BGR)
 
 
-### [`getBMPimgbytes`](#Python_BMP.BITMAPlib.getBMPimgbytes)
+### [`getBMPimgbytes`](#getBMPimgbytes)
 
 ```py
 def getBMPimgbytes(bmp: array.array) -> list:
@@ -3907,7 +3907,7 @@ Gets the raw image buffer of a bmp without the header
         list of unsigned bytes
 
 
-### [`getcharfont`](#Python_BMP.fonts.getcharfont)
+### [`getcharfont`](#getcharfont)
 
 ```py
 def getcharfont(charbuf: list, character: str) -> list:
@@ -3918,7 +3918,7 @@ def getcharfont(charbuf: list, character: str) -> list:
     
 
 
-### [`getcolorname2HSLdict`](#Python_BMP.colordict.getcolorname2HSLdict)
+### [`getcolorname2HSLdict`](#getcolorname2HSLdict)
 
 ```py
 def getcolorname2HSLdict() -> dict:
@@ -3929,7 +3929,7 @@ def getcolorname2HSLdict() -> dict:
     
 
 
-### [`getcolorname2RGBdict`](#Python_BMP.colordict.getcolorname2RGBdict)
+### [`getcolorname2RGBdict`](#getcolorname2RGBdict)
 
 ```py
 def getcolorname2RGBdict() -> dict:
@@ -3940,7 +3940,7 @@ def getcolorname2RGBdict() -> dict:
     
 
 
-### [`getdatalisttotal`](#Python_BMP.charts.getdatalisttotal)
+### [`getdatalisttotal`](#getdatalisttotal)
 
 ```py
 def getdatalisttotal(dlist: list[numbers.Number]) -> numbers.Number:
@@ -3956,7 +3956,7 @@ Returns the total of a
         float or int
 
 
-### [`getdefaultbitpal`](#Python_BMP.colors.getdefaultbitpal)
+### [`getdefaultbitpal`](#getdefaultbitpal)
 
 ```py
 def getdefaultbitpal(bits: int) -> list:
@@ -3972,7 +3972,7 @@ Gets the standard bitmap palette
         list of palette entries
 
 
-### [`getdefaultlumrange`](#Python_BMP.colors.getdefaultlumrange)
+### [`getdefaultlumrange`](#getdefaultlumrange)
 
 ```py
 def getdefaultlumrange() -> dict:
@@ -3986,7 +3986,7 @@ Gets the default luminosity
         luminosity ranges
 
 
-### [`getfuncmetastr`](#Python_BMP.funcmeta.getfuncmetastr)
+### [`getfuncmetastr`](#getfuncmetastr)
 
 ```py
 def getfuncmetastr(f: Callable):
@@ -3997,7 +3997,7 @@ def getfuncmetastr(f: Callable):
     
 
 
-### [`getIFSparams`](#Python_BMP.fractals.getIFSparams)
+### [`getIFSparams`](#getIFSparams)
 
 ```py
 def getIFSparams() -> dict:
@@ -4008,7 +4008,7 @@ def getIFSparams() -> dict:
     
 
 
-### [`getimagedgevert`](#Python_BMP.BITMAPlib.getimagedgevert)
+### [`getimagedgevert`](#getimagedgevert)
 
 ```py
 def getimagedgevert(bmp: array.array, similaritythreshold: int):
@@ -4030,7 +4030,7 @@ Find edges in an image
         [(x: int, y: int),...]
 
 
-### [`getimageregionbyRGB`](#Python_BMP.BITMAPlib.getimageregionbyRGB)
+### [`getimageregionbyRGB`](#getimageregionbyRGB)
 
 ```py
 def getimageregionbyRGB(bmp: array.array, rgb: list[int, int, int], similaritythreshold: int):
@@ -4055,7 +4055,7 @@ Select a region by color
         list of vertices
 
 
-### [`getmaxcolors`](#Python_BMP.BITMAPlib.getmaxcolors)
+### [`getmaxcolors`](#getmaxcolors)
 
 ```py
 def getmaxcolors(bmp: array.array) -> int:
@@ -4071,7 +4071,7 @@ Get the maximum number of colors supported by a BMP
         int value
 
 
-### [`getmaxx`](#Python_BMP.BITMAPlib.getmaxx)
+### [`getmaxx`](#getmaxx)
 
 ```py
 def getmaxx(bmp: array.array) -> int:
@@ -4087,7 +4087,7 @@ Gets the x value stored in the windows bmp header
         int value of x bmp dimension
 
 
-### [`getmaxxy`](#Python_BMP.BITMAPlib.getmaxxy)
+### [`getmaxxy`](#getmaxxy)
 
 ```py
 def getmaxxy(bmp: array.array) -> tuple:
@@ -4103,7 +4103,7 @@ Gets the max x and y values stored in the bmp header
         tuple (x:int,y:int)
 
 
-### [`getmaxxyandbits`](#Python_BMP.BITMAPlib.getmaxxyandbits)
+### [`getmaxxyandbits`](#getmaxxyandbits)
 
 ```py
 def getmaxxyandbits(bmp: array.array) -> tuple:
@@ -4120,7 +4120,7 @@ Returns bitmap metadata
         (x-dimension, y-dimension, bit depth)
 
 
-### [`getmaxy`](#Python_BMP.BITMAPlib.getmaxy)
+### [`getmaxy`](#getmaxy)
 
 ```py
 def getmaxy(bmp: array.array) -> int:
@@ -4136,7 +4136,7 @@ Gets the y value stored in the windows bmp header
         int value of y bmp dimension
 
 
-### [`getneighborcolorlist`](#Python_BMP.BITMAPlib.getneighborcolorlist)
+### [`getneighborcolorlist`](#getneighborcolorlist)
 
 ```py
 def getneighborcolorlist(bmp: array.array, v: list):
@@ -4147,7 +4147,7 @@ def getneighborcolorlist(bmp: array.array, v: list):
     
 
 
-### [`getRGBfactors`](#Python_BMP.colordict.getRGBfactors)
+### [`getRGBfactors`](#getRGBfactors)
 
 ```py
 def getRGBfactors() -> dict:
@@ -4158,7 +4158,7 @@ def getRGBfactors() -> dict:
     
 
 
-### [`getRGBpal`](#Python_BMP.BITMAPlib.getRGBpal)
+### [`getRGBpal`](#getRGBpal)
 
 ```py
 def getRGBpal(bmp: array.array, c: int) -> list[int, int, int]:
@@ -4176,7 +4176,7 @@ Gets the [R, G, B] values
         [R: byte, G: byte, B:byte]
 
 
-### [`getRGBxybit`](#Python_BMP.BITMAPlib.getRGBxybit)
+### [`getRGBxybit`](#getRGBxybit)
 
 ```py
 def getRGBxybit(bmp: array.array, x: int, y: int) -> list[int, int, int]:
@@ -4195,7 +4195,7 @@ of pixel at (x, y) in a bitmap
         [R: byte, G: byte, B: byte]
 
 
-### [`getRGBxybitvec`](#Python_BMP.BITMAPlib.getRGBxybitvec)
+### [`getRGBxybitvec`](#getRGBxybitvec)
 
 ```py
 def getRGBxybitvec(bmp: array.array, v: list) -> list:
@@ -4213,7 +4213,7 @@ Gets the RGB of a pixel at (x,y) in a BMP
         [R: byte, G: byte, B: byte]
 
 
-### [`getshapesidedict`](#Python_BMP.solids3D.getshapesidedict)
+### [`getshapesidedict`](#getshapesidedict)
 
 ```py
 def getshapesidedict() -> dict:
@@ -4228,7 +4228,7 @@ Returns a dictionary of side
         definitions for basic solids
 
 
-### [`getX11colorname2HSLdict`](#Python_BMP.X11colordict.getX11colorname2HSLdict)
+### [`getX11colorname2HSLdict`](#getX11colorname2HSLdict)
 
 ```py
 def getX11colorname2HSLdict() -> dict:
@@ -4239,7 +4239,7 @@ def getX11colorname2HSLdict() -> dict:
     
 
 
-### [`getX11colorname2RGBdict`](#Python_BMP.X11colordict.getX11colorname2RGBdict)
+### [`getX11colorname2RGBdict`](#getX11colorname2RGBdict)
 
 ```py
 def getX11colorname2RGBdict() -> dict:
@@ -4250,7 +4250,7 @@ def getX11colorname2RGBdict() -> dict:
     
 
 
-### [`getX11RGBfactors`](#Python_BMP.X11colordict.getX11RGBfactors)
+### [`getX11RGBfactors`](#getX11RGBfactors)
 
 ```py
 def getX11RGBfactors() -> dict:
@@ -4261,7 +4261,7 @@ def getX11RGBfactors() -> dict:
     
 
 
-### [`getXKCDcolorname2HSLdict`](#Python_BMP.XKCDcolordict.getXKCDcolorname2HSLdict)
+### [`getXKCDcolorname2HSLdict`](#getXKCDcolorname2HSLdict)
 
 ```py
 def getXKCDcolorname2HSLdict() -> dict:
@@ -4272,7 +4272,7 @@ def getXKCDcolorname2HSLdict() -> dict:
     
 
 
-### [`getXKCDcolorname2RGBdict`](#Python_BMP.XKCDcolordict.getXKCDcolorname2RGBdict)
+### [`getXKCDcolorname2RGBdict`](#getXKCDcolorname2RGBdict)
 
 ```py
 def getXKCDcolorname2RGBdict() -> dict:
@@ -4283,7 +4283,7 @@ def getXKCDcolorname2RGBdict() -> dict:
     
 
 
-### [`getXKCDRGBfactors`](#Python_BMP.XKCDcolordict.getXKCDRGBfactors)
+### [`getXKCDRGBfactors`](#getXKCDRGBfactors)
 
 ```py
 def getXKCDRGBfactors() -> dict:
@@ -4294,7 +4294,7 @@ def getXKCDRGBfactors() -> dict:
     
 
 
-### [`getxybit`](#Python_BMP.BITMAPlib.getxybit)
+### [`getxybit`](#getxybit)
 
 ```py
 def getxybit(bmp: array.array, x: int, y: int) -> int:
@@ -4312,7 +4312,7 @@ Gets color of pixel at (x, y) in a BMP
         unsigned int color value
 
 
-### [`getxybitvec`](#Python_BMP.BITMAPlib.getxybitvec)
+### [`getxybitvec`](#getxybitvec)
 
 ```py
 def getxybitvec(bmp: array.array, v: list) -> int:
@@ -4330,7 +4330,7 @@ Gets color of pixel at (x, y)
         unsigned int color value
 
 
-### [`gradcircle`](#Python_BMP.BITMAPlib.gradcircle)
+### [`gradcircle`](#gradcircle)
 
 ```py
 def gradcircle(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -4352,7 +4352,7 @@ Filled Circle with Gradient
         byref modified unsigned byte array
 
 
-### [`gradellipse`](#Python_BMP.BITMAPlib.gradellipse)
+### [`gradellipse`](#gradellipse)
 
 ```py
 def gradellipse(bmp: array.array, x: int, y: int, b: int, a: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -4375,7 +4375,7 @@ Ellipical gradient
         byref modified unsigned byte array
 
 
-### [`gradthickcircle`](#Python_BMP.BITMAPlib.gradthickcircle)
+### [`gradthickcircle`](#gradthickcircle)
 
 ```py
 def gradthickcircle(bmp: array.array, x: int, y: int, r: int, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -4400,7 +4400,7 @@ Thick Circle with a Gradient
         byref modified unsigned byte array
 
 
-### [`gradthickellipserot`](#Python_BMP.BITMAPlib.gradthickellipserot)
+### [`gradthickellipserot`](#gradthickellipserot)
 
 ```py
 def gradthickellipserot(bmp: array.array, x: int, y: int, b: int, a: int, degrot: float, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -4427,7 +4427,7 @@ Thick Ellipse with a Gradient fill
         byref modified unsigned byte array
 
 
-### [`gradthickplotpoly`](#Python_BMP.BITMAPlib.gradthickplotpoly)
+### [`gradthickplotpoly`](#gradthickplotpoly)
 
 ```py
 def gradthickplotpoly(bmp: array.array, vertlist: list, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -4451,7 +4451,7 @@ Draws a polygon of a given gradient and thickness
         byref modified unsigned byte array
 
 
-### [`gradthickroundline`](#Python_BMP.BITMAPlib.gradthickroundline)
+### [`gradthickroundline`](#gradthickroundline)
 
 ```py
 def gradthickroundline(bmp: array.array, p1: list, p2: list, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -4482,7 +4482,7 @@ Draw a Thick Rounded Line with a Gradient
         unsigned byte array
 
 
-### [`gradvert`](#Python_BMP.BITMAPlib.gradvert)
+### [`gradvert`](#gradvert)
 
 ```py
 def gradvert(bmp: array.array, vertlist: list[list[int, int]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -4509,7 +4509,7 @@ List of 2d vertices as spheres of a given color
         unsigned byte array
 
 
-### [`hexahedravert`](#Python_BMP.solids3D.hexahedravert)
+### [`hexahedravert`](#hexahedravert)
 
 ```py
 def hexahedravert(x: float) -> list[list[float, float, float]]:
@@ -4527,7 +4527,7 @@ Returns a list of vertices
               z: float)
 
 
-### [`horibrightnessgrad2circregion2file`](#Python_BMP.BITMAPlib.horibrightnessgrad2circregion2file)
+### [`horibrightnessgrad2circregion2file`](#horibrightnessgrad2circregion2file)
 
 ```py
 def horibrightnessgrad2circregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, lumrange: list[int, int]):
@@ -4552,7 +4552,7 @@ Horizontal brightness gradient to a circular area
         new bitmap file
 
 
-### [`horibrightnessgrad2circregion`](#Python_BMP.BITMAPlib.horibrightnessgrad2circregion)
+### [`horibrightnessgrad2circregion`](#horibrightnessgrad2circregion)
 
 ```py
 def horibrightnessgrad2circregion(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int]):
@@ -4573,7 +4573,7 @@ Horizontal brightness gradient adjustment to a circular area
         byref modified unsigned byte array
 
 
-### [`horiline`](#Python_BMP.BITMAPlib.horiline)
+### [`horiline`](#horiline)
 
 ```py
 def horiline(bmp: array.array, y: int, x1: int, x2: int, color: int):
@@ -4594,7 +4594,7 @@ Draw a Horizontal Line
         byref modified unsigned byte array
 
 
-### [`horilinevert`](#Python_BMP.BITMAPlib.horilinevert)
+### [`horilinevert`](#horilinevert)
 
 ```py
 def horilinevert(bmp: array.array, vlist: list[list[int, int]], linelen: int, xadj: int, color: int):
@@ -4618,7 +4618,7 @@ Horizontal line marks at vertices in vlist
         byref modified unsigned byte array
 
 
-### [`horitransformincircregion`](#Python_BMP.BITMAPlib.horitransformincircregion)
+### [`horitransformincircregion`](#horitransformincircregion)
 
 ```py
 def horitransformincircregion(bmp: array.array, x: int, y: int, r: int, trans: str):
@@ -4642,7 +4642,7 @@ Horizontal transform to a circular area
         unsigned byte array
 
 
-### [`horizontalbrightnessgrad2file`](#Python_BMP.BITMAPlib.horizontalbrightnessgrad2file)
+### [`horizontalbrightnessgrad2file`](#horizontalbrightnessgrad2file)
 
 ```py
 def horizontalbrightnessgrad2file(ExistingBMPfile: str, NewBMPfile: str, lumrange: list[int, int]):
@@ -4664,7 +4664,7 @@ Horizontal brightness gradient to a BMP
         new bitmap file
 
 
-### [`horizontalbrightnessgradregion2file`](#Python_BMP.BITMAPlib.horizontalbrightnessgradregion2file)
+### [`horizontalbrightnessgradregion2file`](#horizontalbrightnessgradregion2file)
 
 ```py
 def horizontalbrightnessgradregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int]):
@@ -4688,7 +4688,7 @@ Horizontal brightness gradient to a rectangular area
         new bitmap file
 
 
-### [`horizontalbrightnessgradto24bitimage`](#Python_BMP.BITMAPlib.horizontalbrightnessgradto24bitimage)
+### [`horizontalbrightnessgradto24bitimage`](#horizontalbrightnessgradto24bitimage)
 
 ```py
 def horizontalbrightnessgradto24bitimage(bmp: array.array, lumrange: list[int, int]):
@@ -4709,7 +4709,7 @@ Applies a horizontal brightness
         unsigned byte array
 
 
-### [`horizontalbrightnessgradto24bitregion`](#Python_BMP.BITMAPlib.horizontalbrightnessgradto24bitregion)
+### [`horizontalbrightnessgradto24bitregion`](#horizontalbrightnessgradto24bitregion)
 
 ```py
 def horizontalbrightnessgradto24bitregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int]):
@@ -4734,7 +4734,7 @@ to a rectangular area in a 24-bit bitmap
         byref modified unsigned byte array
 
 
-### [`horizontalbulkswap`](#Python_BMP.BITMAPlib.horizontalbulkswap)
+### [`horizontalbulkswap`](#horizontalbulkswap)
 
 ```py
 def horizontalbulkswap(bmp: array.array, x1: int, y1: int, x2: int, y2: int, swapfunc: Callable):
@@ -4755,7 +4755,7 @@ Applies function swapfunc
         unsigned byte array
 
 
-### [`horizontalvert`](#Python_BMP.primitives2D.horizontalvert)
+### [`horizontalvert`](#horizontalvert)
 
 ```py
 def horizontalvert(y: int, x1: int, x2: int, dx: int) -> list[list[int, int]]:
@@ -4775,7 +4775,7 @@ a horizontal line with int step dx
         [(x, y), ...]
 
 
-### [`hypotrochoidvert`](#Python_BMP.primitives2D.hypotrochoidvert)
+### [`hypotrochoidvert`](#hypotrochoidvert)
 
 ```py
 def hypotrochoidvert(x: int, y: int, a: float, b: float, c: float, delta: float, lim: float):
@@ -4804,7 +4804,7 @@ with an origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`icosahedvertandsurface`](#Python_BMP.solids3D.icosahedvertandsurface)
+### [`icosahedvertandsurface`](#icosahedvertandsurface)
 
 ```py
 def icosahedvertandsurface(x: float) -> list[list[list[float, float, float]], tuple]:
@@ -4824,7 +4824,7 @@ Returns a list of vertices
               z: float)
 
 
-### [`IFS`](#Python_BMP.BITMAPlib.IFS)
+### [`IFS`](#IFS)
 
 ```py
 def IFS(bmp: array.array, IFStransparam: tuple, x1: int, y1: int, x2: int, y2: int, xscale: int, yscale: int, xoffset: int, yoffset: int, color: int, maxiter: int):
@@ -4851,7 +4851,7 @@ Draw an Interated Function System Fractal
         byref modified unsigned byte array
 
 
-### [`iif`](#Python_BMP.conditionaltools.iif)
+### [`iif`](#iif)
 
 ```py
 def iif(boolcond: bool, trueval: <built-in function any>, falseval: <built-in function any>) -> <built-in function any>:
@@ -4876,7 +4876,7 @@ Returns trueval if
         a value depending on boolcond
 
 
-### [`imagecomp`](#Python_BMP.BITMAPlib.imagecomp)
+### [`imagecomp`](#imagecomp)
 
 ```py
 def imagecomp(inputfile1: str, inputfile2: str, diff_file: str, func: Callable):
@@ -4898,7 +4898,7 @@ using a user defined bitwise comparator function
         new bitmap file
 
 
-### [`imagediff`](#Python_BMP.BITMAPlib.imagediff)
+### [`imagediff`](#imagediff)
 
 ```py
 def imagediff(inputfile1: str, inputfile2: str, diff_file: str):
@@ -4917,7 +4917,7 @@ Compares 2 files and saves diff to a bitmap file
         new bitmap file
 
 
-### [`imgregionbyRGB2file`](#Python_BMP.BITMAPlib.imgregionbyRGB2file)
+### [`imgregionbyRGB2file`](#imgregionbyRGB2file)
 
 ```py
 def imgregionbyRGB2file(ExistingBMPfile: str, NewBMPfile: str, edgeradius: int, edgecolor: int, rgb: list[int, int, int], similaritythreshold: float, showedgeonly: bool):
@@ -4949,7 +4949,7 @@ Gets an image region by rgb in a bitmap file
         new bitmap file
 
 
-### [`int2BGRarr`](#Python_BMP.colors.int2BGRarr)
+### [`int2BGRarr`](#int2BGRarr)
 
 ```py
 def int2BGRarr(i: int) -> array.array:
@@ -4965,7 +4965,7 @@ Returns a bgr array from
         unsigned byte BGR array
 
 
-### [`int2buf`](#Python_BMP.inttools.int2buf)
+### [`int2buf`](#int2buf)
 
 ```py
 def int2buf(cnt: int, value: int) -> array.array:
@@ -4982,7 +4982,7 @@ Converts an integer value to an
         unsigned byte array
 
 
-### [`int2RGB`](#Python_BMP.colors.int2RGB)
+### [`int2RGB`](#int2RGB)
 
 ```py
 def int2RGB(i: int):
@@ -4999,7 +4999,7 @@ Break down int color i to its
         r: byte, g: byte, b: byte
 
 
-### [`int2RGBarr`](#Python_BMP.colors.int2RGBarr)
+### [`int2RGBarr`](#int2RGBarr)
 
 ```py
 def int2RGBarr(i: int) -> array.array:
@@ -5016,7 +5016,7 @@ Returns a rgb array from
         unsigned byte RGB array
 
 
-### [`int2RGBlist`](#Python_BMP.colors.int2RGBlist)
+### [`int2RGBlist`](#int2RGBlist)
 
 ```py
 def int2RGBlist(i: int) -> list[int, int, int]:
@@ -5033,7 +5033,7 @@ Break down int color i to its
         [r: byte, g: byte, b: byte]
 
 
-### [`intcircleparam24bitonly`](#Python_BMP.paramchecks.intcircleparam24bitonly)
+### [`intcircleparam24bitonly`](#intcircleparam24bitonly)
 
 ```py
 def intcircleparam24bitonly(func):
@@ -5053,7 +5053,7 @@ Decorator to test if 2nd, 3rd,
         caller function
 
 
-### [`intcircleparam`](#Python_BMP.paramchecks.intcircleparam)
+### [`intcircleparam`](#intcircleparam)
 
 ```py
 def intcircleparam(func):
@@ -5071,7 +5071,7 @@ Decorator to test if the
         caller function
 
 
-### [`intlinevec`](#Python_BMP.BITMAPlib.intlinevec)
+### [`intlinevec`](#intlinevec)
 
 ```py
 def intlinevec(bmp: array.array, u: list, v: list, color: int):
@@ -5090,7 +5090,7 @@ Draw a line in a bitmap
         byref modified unsigned byte array
 
 
-### [`intplotvecxypoint`](#Python_BMP.BITMAPlib.intplotvecxypoint)
+### [`intplotvecxypoint`](#intplotvecxypoint)
 
 ```py
 def intplotvecxypoint(bmp: array.array, v: list[int, int], c: int):
@@ -5110,7 +5110,7 @@ Sets the color of a pixel at (x, y)
         byref modified unsigned byte array
 
 
-### [`intscalarmulvect`](#Python_BMP.mathlib.intscalarmulvect)
+### [`intscalarmulvect`](#intscalarmulvect)
 
 ```py
 def intscalarmulvect(vec: list[numbers.Number], scalarval: numbers.Number) -> list[int]:
@@ -5131,7 +5131,7 @@ then rounds off values in the list to a whole number
         list of ints
 
 
-### [`invertbits2file`](#Python_BMP.BITMAPlib.invertbits2file)
+### [`invertbits2file`](#invertbits2file)
 
 ```py
 def invertbits2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -5149,7 +5149,7 @@ Inverts the bits in a bmp file
         new bitmap file
 
 
-### [`invertbitsinbuffer`](#Python_BMP.colors.invertbitsinbuffer)
+### [`invertbitsinbuffer`](#invertbitsinbuffer)
 
 ```py
 def invertbitsinbuffer(buf: array.array) -> array.array:
@@ -5165,7 +5165,7 @@ Flips all the bits in an
         bit flipped unsigned byte array
 
 
-### [`invertbitsincircregion2file`](#Python_BMP.BITMAPlib.invertbitsincircregion2file)
+### [`invertbitsincircregion2file`](#invertbitsincircregion2file)
 
 ```py
 def invertbitsincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -5185,7 +5185,7 @@ Inverts bits in a circular area
         new bitmap file
 
 
-### [`invertbitsincircregion`](#Python_BMP.BITMAPlib.invertbitsincircregion)
+### [`invertbitsincircregion`](#invertbitsincircregion)
 
 ```py
 def invertbitsincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -5204,7 +5204,7 @@ Inverts the bits in a circular area
         byref modified unsigned byte array
 
 
-### [`invertimagebits`](#Python_BMP.BITMAPlib.invertimagebits)
+### [`invertimagebits`](#invertimagebits)
 
 ```py
 def invertimagebits(bmp: array.array):
@@ -5220,7 +5220,7 @@ Inverts the bits in a bitmap
         byref modified unsigned byte array
 
 
-### [`invertregion2file`](#Python_BMP.BITMAPlib.invertregion2file)
+### [`invertregion2file`](#invertregion2file)
 
 ```py
 def invertregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -5240,7 +5240,7 @@ Inverts the bits in a rectangular area in a BMP
         new bitmap file
 
 
-### [`invertregion`](#Python_BMP.BITMAPlib.invertregion)
+### [`invertregion`](#invertregion)
 
 ```py
 def invertregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -5261,7 +5261,7 @@ Inverts the bits in a
         unsigned byte array
 
 
-### [`isdefaultpal`](#Python_BMP.BITMAPlib.isdefaultpal)
+### [`isdefaultpal`](#isdefaultpal)
 
 ```py
 def isdefaultpal(bmp: array.array) -> bool:
@@ -5278,7 +5278,7 @@ Checks if bitmap has a default RGB color palette
         False if not default
 
 
-### [`isinBMPrectbnd`](#Python_BMP.BITMAPlib.isinBMPrectbnd)
+### [`isinBMPrectbnd`](#isinBMPrectbnd)
 
 ```py
 def isinBMPrectbnd(bmp: array.array, x: int, y: int) -> bool:
@@ -5298,7 +5298,7 @@ Checks if (x,y) coordinates are within the BMP
         False if out of bounds
 
 
-### [`isinrange`](#Python_BMP.mathlib.isinrange)
+### [`isinrange`](#isinrange)
 
 ```py
 def isinrange(value: numbers.Number, highlimit: numbers.Number, lowlimit: numbers.Number) -> bool:
@@ -5318,7 +5318,7 @@ Checks is value is within high and low limits
         True if within bounds
 
 
-### [`isinrectbnd`](#Python_BMP.primitives2D.isinrectbnd)
+### [`isinrectbnd`](#isinrectbnd)
 
 ```py
 def isinrectbnd(x: int, y: int, xmin: int, ymin: int, xmax: int, ymax: int) -> bool:
@@ -5339,7 +5339,7 @@ defined by xmin, ymin and xmax, ymax
         False -> (x, y) is out of bounds
 
 
-### [`isvalidcolorbit`](#Python_BMP.colors.isvalidcolorbit)
+### [`isvalidcolorbit`](#isvalidcolorbit)
 
 ```py
 def isvalidcolorbit(bits: int) -> bool:
@@ -5357,7 +5357,7 @@ Checks if bits is in the valid
               the list above
 
 
-### [`iterbeziercurve`](#Python_BMP.primitives2D.iterbeziercurve)
+### [`iterbeziercurve`](#iterbeziercurve)
 
 ```py
 def iterbeziercurve(pntlist: list[list[int, int]]) -> list[int, int]:
@@ -5376,7 +5376,7 @@ based on 2D control points in pntlist
         vertices as list[x: int, y: int]
 
 
-### [`iterbspline`](#Python_BMP.primitives2D.iterbspline)
+### [`iterbspline`](#iterbspline)
 
 ```py
 def iterbspline(pntlist: list[list[int, int]], isclosed: bool, curveback: bool) -> list[int, int]:
@@ -5395,7 +5395,7 @@ based on 2D control points in pntlist
         vertices as list[x: int, y: int]
 
 
-### [`itercircle`](#Python_BMP.primitives2D.itercircle)
+### [`itercircle`](#itercircle)
 
 ```py
 def itercircle(x: int, y: int, r: int) -> list[int, int]:
@@ -5414,7 +5414,7 @@ a circle with origin set at (x, y)
         [x: int, y: int]
 
 
-### [`itercircleinvolute`](#Python_BMP.primitives2D.itercircleinvolute)
+### [`itercircleinvolute`](#itercircleinvolute)
 
 ```py
 def itercircleinvolute(x: int, y: int, a: float, delta: float, lim: float):
@@ -5445,7 +5445,7 @@ and an origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`itercirclepart`](#Python_BMP.primitives2D.itercirclepart)
+### [`itercirclepart`](#itercirclepart)
 
 ```py
 def itercirclepart(r: int) -> list[int, int]:
@@ -5463,7 +5463,7 @@ at (0, 0)
         [x: int, y: int]
 
 
-### [`itercirclepartlineedge`](#Python_BMP.primitives2D.itercirclepartlineedge)
+### [`itercirclepartlineedge`](#itercirclepartlineedge)
 
 ```py
 def itercirclepartlineedge(r: int) -> list[int, int]:
@@ -5483,7 +5483,7 @@ filled circles with horizontal lines
         [x: int, y: int]
 
 
-### [`itercirclepartvertlineedge`](#Python_BMP.primitives2D.itercirclepartvertlineedge)
+### [`itercirclepartvertlineedge`](#itercirclepartvertlineedge)
 
 ```py
 def itercirclepartvertlineedge(r: int) -> list[int, int]:
@@ -5503,7 +5503,7 @@ and other tasks involving circular areas
         [x: int, y: int]
 
 
-### [`itercopyrect`](#Python_BMP.BITMAPlib.itercopyrect)
+### [`itercopyrect`](#itercopyrect)
 
 ```py
 def itercopyrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int) -> array.array:
@@ -5523,7 +5523,7 @@ Scan a rectangular area and yield scan lines
         scanlines of the area
 
 
-### [`iterdrawvec`](#Python_BMP.primitives2D.iterdrawvec)
+### [`iterdrawvec`](#iterdrawvec)
 
 ```py
 def iterdrawvec(u: list, v: list, headsize: int):
@@ -5543,7 +5543,7 @@ Yields a vector (line segment with arrow head)
         ((x1: int, y1: int), (x2: int, y2: int))
 
 
-### [`iterellipse`](#Python_BMP.primitives2D.iterellipse)
+### [`iterellipse`](#iterellipse)
 
 ```py
 def iterellipse(x: int, y: int, b: int, a: int):
@@ -5561,7 +5561,7 @@ origin set at (x, y)
         [x: int, y: int]
 
 
-### [`iterellipsepart`](#Python_BMP.primitives2D.iterellipsepart)
+### [`iterellipsepart`](#iterellipsepart)
 
 ```py
 def iterellipsepart(b: int, a: int):
@@ -5579,7 +5579,7 @@ ellipse with origin set at (0, 0)
         [x: int, y: int]
 
 
-### [`iterellipserot`](#Python_BMP.primitives2D.iterellipserot)
+### [`iterellipserot`](#iterellipserot)
 
 ```py
 def iterellipserot(x: int, y: int, b: int, a: int, degrot: float):
@@ -5598,7 +5598,7 @@ set at (x, y) rotated by degrot degrees
         [x: int, y: int]
 
 
-### [`iterepicycloid`](#Python_BMP.primitives2D.iterepicycloid)
+### [`iterepicycloid`](#iterepicycloid)
 
 ```py
 def iterepicycloid(x: int, y: int, a: float, b: float, delta: float, lim: float):
@@ -5623,7 +5623,7 @@ with an origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`iterflower`](#Python_BMP.primitives2D.iterflower)
+### [`iterflower`](#iterflower)
 
 ```py
 def iterflower(cx: int, cy: int, r: int, petals: int, angrot: float):
@@ -5641,7 +5641,7 @@ Yields 2D points for a flower
         (x: int, y: int)
 
 
-### [`itergetcolorfromrectregion`](#Python_BMP.BITMAPlib.itergetcolorfromrectregion)
+### [`itergetcolorfromrectregion`](#itergetcolorfromrectregion)
 
 ```py
 def itergetcolorfromrectregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -5662,7 +5662,7 @@ Yields color info of
         for all points in area
 
 
-### [`itergetneighbors`](#Python_BMP.primitives2D.itergetneighbors)
+### [`itergetneighbors`](#itergetneighbors)
 
 ```py
 def itergetneighbors(v: list[int, int], mx: int, my: int, includecenter: bool) -> list[int, int]:
@@ -5681,7 +5681,7 @@ Yields the neighboring pixels of point v
         [x: int, y: int]
 
 
-### [`iterhypotrochoid`](#Python_BMP.primitives2D.iterhypotrochoid)
+### [`iterhypotrochoid`](#iterhypotrochoid)
 
 ```py
 def iterhypotrochoid(x: int, y: int, a: float, b: float, c: float, delta: float, lim: float):
@@ -5710,7 +5710,7 @@ with an origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`iterIFS`](#Python_BMP.fractals.iterIFS)
+### [`iterIFS`](#iterIFS)
 
 ```py
 def iterIFS(IFStransparam: tuple, x1: int, y1: int, x2: int, y2: int, xscale: int, yscale: int, xoffset: int, yoffset: int, maxiter: int):
@@ -5733,7 +5733,7 @@ Yield 2D points for an Interated Function System Fractal
         (x: int, y: int)
 
 
-### [`iterimagecolor`](#Python_BMP.BITMAPlib.iterimagecolor)
+### [`iterimagecolor`](#iterimagecolor)
 
 ```py
 def iterimagecolor(bmp: array.array, waitmsg: str, rowprocind: str, finishmsg: str):
@@ -5759,7 +5759,7 @@ Yields color information for entire bitmap
         ((x: int, y: int), color: int)
 
 
-### [`iterimagedgevert`](#Python_BMP.BITMAPlib.iterimagedgevert)
+### [`iterimagedgevert`](#iterimagedgevert)
 
 ```py
 def iterimagedgevert(bmp: array.array, similaritythreshold: float):
@@ -5781,7 +5781,7 @@ Find edges in an image
         (x: int, y: int)
 
 
-### [`iterimageregionvertbyRGB`](#Python_BMP.BITMAPlib.iterimageregionvertbyRGB)
+### [`iterimageregionvertbyRGB`](#iterimageregionvertbyRGB)
 
 ```py
 def iterimageregionvertbyRGB(bmp: array.array, rgb: list[int, int, int], similaritythreshold: int):
@@ -5806,7 +5806,7 @@ RGB Color selection by color similarity
         ((x: int, y: int), (r: byte, g: byte, b: byte))
 
 
-### [`iterimageRGB`](#Python_BMP.BITMAPlib.iterimageRGB)
+### [`iterimageRGB`](#iterimageRGB)
 
 ```py
 def iterimageRGB(bmp: array.array, waitmsg: str, rowprocind: str, finishmsg: str):
@@ -5830,7 +5830,7 @@ Yields (r, g, b) information for the entire bitmap
         ((x: int, y: int), (r: byte, g: byte, b: byte))
 
 
-### [`iterline`](#Python_BMP.primitives2D.iterline)
+### [`iterline`](#iterline)
 
 ```py
 def iterline(p1: list[int, int], p2: list[int, int]) -> list[int, int]:
@@ -5848,7 +5848,7 @@ by endpoints p1 and p2
         [x:int, y:int]
 
 
-### [`iterlissajouscurve`](#Python_BMP.primitives2D.iterlissajouscurve)
+### [`iterlissajouscurve`](#iterlissajouscurve)
 
 ```py
 def iterlissajouscurve(x: int, y: int, a: float, b: float, c: float, d: float, e: float, delta: float, lim: float):
@@ -5875,7 +5875,7 @@ with an origin set at (x, y)
         [x: int, y: int]
 
 
-### [`itermandelbrot`](#Python_BMP.fractals.itermandelbrot)
+### [`itermandelbrot`](#itermandelbrot)
 
 ```py
 def itermandelbrot(x1: int, y1: int, x2: int, y2: int, mandelparam: list[float, float, float, float], maxiter: int):
@@ -5900,7 +5900,7 @@ Yields a Mandelbrot set
         (x:int, y: int, c: int)
 
 
-### [`iterparallelogram`](#Python_BMP.primitives2D.iterparallelogram)
+### [`iterparallelogram`](#iterparallelogram)
 
 ```py
 def iterparallelogram(p1: list[int, int], p2: list[int, int], p3: list[int, int]) -> list[int, int]:
@@ -5911,7 +5911,7 @@ def iterparallelogram(p1: list[int, int], p2: list[int, int], p3: list[int, int]
     
 
 
-### [`iterspirograph`](#Python_BMP.primitives2D.iterspirograph)
+### [`iterspirograph`](#iterspirograph)
 
 ```py
 def iterspirograph(x: int, y: int, r: int, l: float, k: float, delta: float, lim: float):
@@ -5936,7 +5936,7 @@ set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`line`](#Python_BMP.BITMAPlib.line)
+### [`line`](#line)
 
 ```py
 def line(bmp: array.array, x1: int, y1: int, x2: int, y2: int, color: int):
@@ -5956,7 +5956,7 @@ Draw a Line in a bitmap
         unsigned byte array
 
 
-### [`linevec`](#Python_BMP.BITMAPlib.linevec)
+### [`linevec`](#linevec)
 
 ```py
 def linevec(bmp: array.array, u: list, v: list, color: int):
@@ -5976,7 +5976,7 @@ Draw a line in a bitmap
         byref modified unsigned byte array
 
 
-### [`lissajouscurvevert`](#Python_BMP.primitives2D.lissajouscurvevert)
+### [`lissajouscurvevert`](#lissajouscurvevert)
 
 ```py
 def lissajouscurvevert(x: int, y: int, a: float, b: float, c: float, d: float, e: float, delta: float, lim: float):
@@ -6002,7 +6002,7 @@ with an origin set at (x, y)
         in a list [[x: int, y: int], ...]
 
 
-### [`listinBMPrecbnd`](#Python_BMP.BITMAPlib.listinBMPrecbnd)
+### [`listinBMPrecbnd`](#listinBMPrecbnd)
 
 ```py
 def listinBMPrecbnd(bmp: array.array, xylist: list) -> bool:
@@ -6022,7 +6022,7 @@ Checks if a list of (x, y) coordinates are within the BMP
         False if out of bounds
 
 
-### [`listinrecbnd`](#Python_BMP.primitives2D.listinrecbnd)
+### [`listinrecbnd`](#listinrecbnd)
 
 ```py
 def listinrecbnd(xylist: list[list[numbers.Number, numbers.Number]], xmin: int, ymin: int, xmax: int, ymax: int) -> bool:
@@ -6048,7 +6048,7 @@ defined by xmin, ymin and xmax, ymax
                  is in bounds
 
 
-### [`loadBMP`](#Python_BMP.BITMAPlib.loadBMP)
+### [`loadBMP`](#loadBMP)
 
 ```py
 def loadBMP(filename: str) -> array.array:
@@ -6065,7 +6065,7 @@ Load bitmap to a byte array
         byte array with bmp file contents
 
 
-### [`LSMslope`](#Python_BMP.mathlib.LSMslope)
+### [`LSMslope`](#LSMslope)
 
 ```py
 def LSMslope(XYdata: list) -> float:
@@ -6082,7 +6082,7 @@ Slope of a line obtained by Least Squares Method
         float slope of line
 
 
-### [`LSMYint`](#Python_BMP.mathlib.LSMYint)
+### [`LSMYint`](#LSMYint)
 
 ```py
 def LSMYint(XYdata: list) -> float:
@@ -6100,7 +6100,7 @@ by Least Squares Method
         float y-intercept of line
 
 
-### [`magnifyNtimescircregion2file`](#Python_BMP.BITMAPlib.magnifyNtimescircregion2file)
+### [`magnifyNtimescircregion2file`](#magnifyNtimescircregion2file)
 
 ```py
 def magnifyNtimescircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, intmagfactor: int):
@@ -6122,7 +6122,7 @@ Magnify a circular region by an integer factor n times
         new bitmap file
 
 
-### [`magnifyNtimescircregion`](#Python_BMP.BITMAPlib.magnifyNtimescircregion)
+### [`magnifyNtimescircregion`](#magnifyNtimescircregion)
 
 ```py
 def magnifyNtimescircregion(bmp: array.array, x: int, y: int, r: int, n: int):
@@ -6142,7 +6142,7 @@ Magnify a circular region in a bitmap file by int n
         byref modified unsigned byte array
 
 
-### [`makeBGRbuf`](#Python_BMP.colors.makeBGRbuf)
+### [`makeBGRbuf`](#makeBGRbuf)
 
 ```py
 def makeBGRbuf(bbuf: array.array, gbuf: array.array, rbuf: array.array) -> array.array:
@@ -6164,7 +6164,7 @@ Assemble a BGR buffer from
         holding BGR data
 
 
-### [`makenewpalfromcolorhist`](#Python_BMP.BITMAPlib.makenewpalfromcolorhist)
+### [`makenewpalfromcolorhist`](#makenewpalfromcolorhist)
 
 ```py
 def makenewpalfromcolorhist(chist: list, colors: int, similaritythreshold: float) -> list:
@@ -6187,7 +6187,7 @@ Creates a new palatte based on a color histogram
         unsigned byte array with bmp format
 
 
-### [`mandelbrot`](#Python_BMP.BITMAPlib.mandelbrot)
+### [`mandelbrot`](#mandelbrot)
 
 ```py
 def mandelbrot(bmp: array.array, x1: int, y1: int, x2: int, y2: int, mandelparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
@@ -6212,7 +6212,7 @@ Draw a Mandelbrot set
         byref modified unsigned byte array
 
 
-### [`mandelparamdict`](#Python_BMP.fractals.mandelparamdict)
+### [`mandelparamdict`](#mandelparamdict)
 
 ```py
 def mandelparamdict() -> dict:
@@ -6223,7 +6223,7 @@ def mandelparamdict() -> dict:
     
 
 
-### [`matchRGBtopal`](#Python_BMP.colors.matchRGBtopal)
+### [`matchRGBtopal`](#matchRGBtopal)
 
 ```py
 def matchRGBtopal(RGB: list, pal: list) -> int:
@@ -6247,7 +6247,7 @@ Color matching from a 24-bit
         int color val (4-bit)
 
 
-### [`mirror`](#Python_BMP.mathlib.mirror)
+### [`mirror`](#mirror)
 
 ```py
 def mirror(pt: float, delta: float):
@@ -6263,7 +6263,7 @@ Mirrors a value in a numberline
         pt - delta, pt + delta
 
 
-### [`mirrorbottom2file`](#Python_BMP.BITMAPlib.mirrorbottom2file)
+### [`mirrorbottom2file`](#mirrorbottom2file)
 
 ```py
 def mirrorbottom2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -6282,7 +6282,7 @@ Mirrors the bottom half of a BMP
         new bitmap file
 
 
-### [`mirrorbottom`](#Python_BMP.BITMAPlib.mirrorbottom)
+### [`mirrorbottom`](#mirrorbottom)
 
 ```py
 def mirrorbottom(bmp: array.array):
@@ -6299,7 +6299,7 @@ Mirrors the bottom-half of a bmp
         unsigned byte array
 
 
-### [`mirrorbottomincircregion2file`](#Python_BMP.BITMAPlib.mirrorbottomincircregion2file)
+### [`mirrorbottomincircregion2file`](#mirrorbottomincircregion2file)
 
 ```py
 def mirrorbottomincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -6319,7 +6319,7 @@ Mirror the bottom-half of a circular area
         new bitmap file
 
 
-### [`mirrorbottomincircregion`](#Python_BMP.BITMAPlib.mirrorbottomincircregion)
+### [`mirrorbottomincircregion`](#mirrorbottomincircregion)
 
 ```py
 def mirrorbottomincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -6338,7 +6338,7 @@ Mirror the bottom-half of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrorbottominregion2file`](#Python_BMP.BITMAPlib.mirrorbottominregion2file)
+### [`mirrorbottominregion2file`](#mirrorbottominregion2file)
 
 ```py
 def mirrorbottominregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -6358,7 +6358,7 @@ Mirrors the bottom-half region in a rectangular area in a bmp
         new bitmap file
 
 
-### [`mirrorbottominregion`](#Python_BMP.BITMAPlib.mirrorbottominregion)
+### [`mirrorbottominregion`](#mirrorbottominregion)
 
 ```py
 def mirrorbottominregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -6379,7 +6379,7 @@ Mirror the bottom-half
         unsigned byte array
 
 
-### [`mirrorbottomleft2file`](#Python_BMP.BITMAPlib.mirrorbottomleft2file)
+### [`mirrorbottomleft2file`](#mirrorbottomleft2file)
 
 ```py
 def mirrorbottomleft2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -6397,7 +6397,7 @@ Mirrors the bottom-left of a BMP
         new bitmap file
 
 
-### [`mirrorbottomleft`](#Python_BMP.BITMAPlib.mirrorbottomleft)
+### [`mirrorbottomleft`](#mirrorbottomleft)
 
 ```py
 def mirrorbottomleft(bmp: array.array):
@@ -6415,7 +6415,7 @@ Mirrors the bottom-left part
         unsigned byte array
 
 
-### [`mirrorbottomleftincircregion2file`](#Python_BMP.BITMAPlib.mirrorbottomleftincircregion2file)
+### [`mirrorbottomleftincircregion2file`](#mirrorbottomleftincircregion2file)
 
 ```py
 def mirrorbottomleftincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -6435,7 +6435,7 @@ Mirror the bottom-left of a circular area
         new bitmap file
 
 
-### [`mirrorbottomleftincircregion`](#Python_BMP.BITMAPlib.mirrorbottomleftincircregion)
+### [`mirrorbottomleftincircregion`](#mirrorbottomleftincircregion)
 
 ```py
 def mirrorbottomleftincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -6453,7 +6453,7 @@ Mirror the bottom-left of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrorbottomleftinregion2file`](#Python_BMP.BITMAPlib.mirrorbottomleftinregion2file)
+### [`mirrorbottomleftinregion2file`](#mirrorbottomleftinregion2file)
 
 ```py
 def mirrorbottomleftinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -6473,7 +6473,7 @@ Mirrors the bottom-left region in a rectangular area in a bmp
         new bitmap file
 
 
-### [`mirrorbottomleftinregion`](#Python_BMP.BITMAPlib.mirrorbottomleftinregion)
+### [`mirrorbottomleftinregion`](#mirrorbottomleftinregion)
 
 ```py
 def mirrorbottomleftinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -6495,7 +6495,7 @@ Mirrors the bottom-left of a
         unsigned byte array
 
 
-### [`mirrorbottomright2file`](#Python_BMP.BITMAPlib.mirrorbottomright2file)
+### [`mirrorbottomright2file`](#mirrorbottomright2file)
 
 ```py
 def mirrorbottomright2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -6513,7 +6513,7 @@ Mirrors the bottom-right of a BMP
         new bitmap file
 
 
-### [`mirrorbottomright`](#Python_BMP.BITMAPlib.mirrorbottomright)
+### [`mirrorbottomright`](#mirrorbottomright)
 
 ```py
 def mirrorbottomright(bmp: array.array):
@@ -6531,7 +6531,7 @@ Mirrors the bottom right part
         unsigned byte array
 
 
-### [`mirrorbottomrightincircregion2file`](#Python_BMP.BITMAPlib.mirrorbottomrightincircregion2file)
+### [`mirrorbottomrightincircregion2file`](#mirrorbottomrightincircregion2file)
 
 ```py
 def mirrorbottomrightincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -6551,7 +6551,7 @@ Mirror the bottom-right of a circular area
         new bitmap file
 
 
-### [`mirrorbottomrightincircregion`](#Python_BMP.BITMAPlib.mirrorbottomrightincircregion)
+### [`mirrorbottomrightincircregion`](#mirrorbottomrightincircregion)
 
 ```py
 def mirrorbottomrightincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -6569,7 +6569,7 @@ Mirror the bottom-right of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrorbottomrightinregion2file`](#Python_BMP.BITMAPlib.mirrorbottomrightinregion2file)
+### [`mirrorbottomrightinregion2file`](#mirrorbottomrightinregion2file)
 
 ```py
 def mirrorbottomrightinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -6589,7 +6589,7 @@ Mirrors the bottom-right region in a rectangular area in a BMP
         new bitmap file
 
 
-### [`mirrorbottomrightinregion`](#Python_BMP.BITMAPlib.mirrorbottomrightinregion)
+### [`mirrorbottomrightinregion`](#mirrorbottomrightinregion)
 
 ```py
 def mirrorbottomrightinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -6611,7 +6611,7 @@ Mirrors the bottom-right of a
         unsigned byte array
 
 
-### [`mirrorleft2file`](#Python_BMP.BITMAPlib.mirrorleft2file)
+### [`mirrorleft2file`](#mirrorleft2file)
 
 ```py
 def mirrorleft2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -6629,7 +6629,7 @@ Mirrors the left-half of a BMP
         new bitmap file
 
 
-### [`mirrorleft`](#Python_BMP.BITMAPlib.mirrorleft)
+### [`mirrorleft`](#mirrorleft)
 
 ```py
 def mirrorleft(bmp: array.array):
@@ -6647,7 +6647,7 @@ Mirrors the left-half of an
         unsigned byte array
 
 
-### [`mirrorleftincircregion2file`](#Python_BMP.BITMAPlib.mirrorleftincircregion2file)
+### [`mirrorleftincircregion2file`](#mirrorleftincircregion2file)
 
 ```py
 def mirrorleftincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -6667,7 +6667,7 @@ Mirror the left-half of a circular area
         new bitmap file
 
 
-### [`mirrorleftincircregion`](#Python_BMP.BITMAPlib.mirrorleftincircregion)
+### [`mirrorleftincircregion`](#mirrorleftincircregion)
 
 ```py
 def mirrorleftincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -6685,7 +6685,7 @@ Mirrors the top-left of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrorleftinregion2file`](#Python_BMP.BITMAPlib.mirrorleftinregion2file)
+### [`mirrorleftinregion2file`](#mirrorleftinregion2file)
 
 ```py
 def mirrorleftinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -6706,7 +6706,7 @@ Mirrors the left-half region in a rectangular area in a bmp
         new bitmap file
 
 
-### [`mirrorleftinregion`](#Python_BMP.BITMAPlib.mirrorleftinregion)
+### [`mirrorleftinregion`](#mirrorleftinregion)
 
 ```py
 def mirrorleftinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -6727,7 +6727,7 @@ Mirrors the left-half
         unsigned byte array
 
 
-### [`mirrorright2file`](#Python_BMP.BITMAPlib.mirrorright2file)
+### [`mirrorright2file`](#mirrorright2file)
 
 ```py
 def mirrorright2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -6745,7 +6745,7 @@ Mirrors the right half of a BMP
         new bitmap file
 
 
-### [`mirrorright`](#Python_BMP.BITMAPlib.mirrorright)
+### [`mirrorright`](#mirrorright)
 
 ```py
 def mirrorright(bmp: array.array):
@@ -6763,7 +6763,7 @@ Mirrors the right-half of an
         unsigned byte array
 
 
-### [`mirrorrightincircregion2file`](#Python_BMP.BITMAPlib.mirrorrightincircregion2file)
+### [`mirrorrightincircregion2file`](#mirrorrightincircregion2file)
 
 ```py
 def mirrorrightincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -6783,7 +6783,7 @@ Mirror the right-half of a circular area
         new bitmap file
 
 
-### [`mirrorrightincircregion`](#Python_BMP.BITMAPlib.mirrorrightincircregion)
+### [`mirrorrightincircregion`](#mirrorrightincircregion)
 
 ```py
 def mirrorrightincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -6802,7 +6802,7 @@ Mirrors the right-half of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrorrightinregion2file`](#Python_BMP.BITMAPlib.mirrorrightinregion2file)
+### [`mirrorrightinregion2file`](#mirrorrightinregion2file)
 
 ```py
 def mirrorrightinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -6822,7 +6822,7 @@ Mirrors the right-half region in a rectangular area in a bmp
         new bitmap file
 
 
-### [`mirrorrightinregion`](#Python_BMP.BITMAPlib.mirrorrightinregion)
+### [`mirrorrightinregion`](#mirrorrightinregion)
 
 ```py
 def mirrorrightinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -6843,7 +6843,7 @@ Mirrors the right-half of
         unsigned byte array
 
 
-### [`mirrortop2file`](#Python_BMP.BITMAPlib.mirrortop2file)
+### [`mirrortop2file`](#mirrortop2file)
 
 ```py
 def mirrortop2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -6861,7 +6861,7 @@ Mirrors the top-half of a bitmap
         new bitmap file
 
 
-### [`mirrortop`](#Python_BMP.BITMAPlib.mirrortop)
+### [`mirrortop`](#mirrortop)
 
 ```py
 def mirrortop(bmp: array.array):
@@ -6878,7 +6878,7 @@ Mirrors the top-half of a bitmap
         unsigned byte array
 
 
-### [`mirrortopincircregion2file`](#Python_BMP.BITMAPlib.mirrortopincircregion2file)
+### [`mirrortopincircregion2file`](#mirrortopincircregion2file)
 
 ```py
 def mirrortopincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -6898,7 +6898,7 @@ Mirror the top-half of a circular area
         new bitmap file
 
 
-### [`mirrortopincircregion`](#Python_BMP.BITMAPlib.mirrortopincircregion)
+### [`mirrortopincircregion`](#mirrortopincircregion)
 
 ```py
 def mirrortopincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -6916,7 +6916,7 @@ Mirror the top-half of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrortopinregion2file`](#Python_BMP.BITMAPlib.mirrortopinregion2file)
+### [`mirrortopinregion2file`](#mirrortopinregion2file)
 
 ```py
 def mirrortopinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -6936,7 +6936,7 @@ Mirrors the top-half region in a rectangular area in a bmp
         new bitmap file
 
 
-### [`mirrortopinregion`](#Python_BMP.BITMAPlib.mirrortopinregion)
+### [`mirrortopinregion`](#mirrortopinregion)
 
 ```py
 def mirrortopinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -6958,7 +6958,7 @@ Mirror the top-half of
         unsigned byte array
 
 
-### [`mirrortopleft2file`](#Python_BMP.BITMAPlib.mirrortopleft2file)
+### [`mirrortopleft2file`](#mirrortopleft2file)
 
 ```py
 def mirrortopleft2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -6976,7 +6976,7 @@ Mirrors the top-left of a bitmap
         new bitmap file
 
 
-### [`mirrortopleft`](#Python_BMP.BITMAPlib.mirrortopleft)
+### [`mirrortopleft`](#mirrortopleft)
 
 ```py
 def mirrortopleft(bmp):
@@ -6994,7 +6994,7 @@ Mirrors the top-left part
         unsigned byte array
 
 
-### [`mirrortopleftincircregion2file`](#Python_BMP.BITMAPlib.mirrortopleftincircregion2file)
+### [`mirrortopleftincircregion2file`](#mirrortopleftincircregion2file)
 
 ```py
 def mirrortopleftincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -7014,7 +7014,7 @@ Mirror the top-left of a circular area
         new bitmap file
 
 
-### [`mirrortopleftincircregion`](#Python_BMP.BITMAPlib.mirrortopleftincircregion)
+### [`mirrortopleftincircregion`](#mirrortopleftincircregion)
 
 ```py
 def mirrortopleftincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -7033,7 +7033,7 @@ Mirror the top-left of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrortopleftinregion2file`](#Python_BMP.BITMAPlib.mirrortopleftinregion2file)
+### [`mirrortopleftinregion2file`](#mirrortopleftinregion2file)
 
 ```py
 def mirrortopleftinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -7053,7 +7053,7 @@ Mirrors the top-left region in a rectangular area in a BMP
         new bitmap file
 
 
-### [`mirrortopleftinregion`](#Python_BMP.BITMAPlib.mirrortopleftinregion)
+### [`mirrortopleftinregion`](#mirrortopleftinregion)
 
 ```py
 def mirrortopleftinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -7075,7 +7075,7 @@ Mirrors the top-left of a
         unsigned byte array
 
 
-### [`mirrortopright2file`](#Python_BMP.BITMAPlib.mirrortopright2file)
+### [`mirrortopright2file`](#mirrortopright2file)
 
 ```py
 def mirrortopright2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -7095,7 +7095,7 @@ Mirrors the top-right of a
         new bitmap file
 
 
-### [`mirrortopright`](#Python_BMP.BITMAPlib.mirrortopright)
+### [`mirrortopright`](#mirrortopright)
 
 ```py
 def mirrortopright(bmp: array.array):
@@ -7113,7 +7113,7 @@ Mirrors the top-right part
         unsigned byte array
 
 
-### [`mirrortoprightincircregion2file`](#Python_BMP.BITMAPlib.mirrortoprightincircregion2file)
+### [`mirrortoprightincircregion2file`](#mirrortoprightincircregion2file)
 
 ```py
 def mirrortoprightincircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -7133,7 +7133,7 @@ Mirror the top-right of a circular area
         new bitmap file
 
 
-### [`mirrortoprightincircregion`](#Python_BMP.BITMAPlib.mirrortoprightincircregion)
+### [`mirrortoprightincircregion`](#mirrortoprightincircregion)
 
 ```py
 def mirrortoprightincircregion(bmp: array.array, x: int, y: int, r: int):
@@ -7151,7 +7151,7 @@ Mirror the top-right of a circular area
         byref modified unsigned byte array
 
 
-### [`mirrortoprightinregion2file`](#Python_BMP.BITMAPlib.mirrortoprightinregion2file)
+### [`mirrortoprightinregion2file`](#mirrortoprightinregion2file)
 
 ```py
 def mirrortoprightinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -7171,7 +7171,7 @@ Mirrors the top-right region in a rectangular area in a BMP
         new bitmap file
 
 
-### [`mirrortoprightinregion`](#Python_BMP.BITMAPlib.mirrortoprightinregion)
+### [`mirrortoprightinregion`](#mirrortoprightinregion)
 
 ```py
 def mirrortoprightinregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -7193,7 +7193,7 @@ Mirrors the top-right of a
         unsigned byte array
 
 
-### [`monochrome2file`](#Python_BMP.BITMAPlib.monochrome2file)
+### [`monochrome2file`](#monochrome2file)
 
 ```py
 def monochrome2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -7211,7 +7211,7 @@ Applies a monochrome filter to a BMP
         new bitmap file
 
 
-### [`monochrome`](#Python_BMP.colors.monochrome)
+### [`monochrome`](#monochrome)
 
 ```py
 def monochrome(rgb: list[int, int, int]) -> list[int, int, int]:
@@ -7229,7 +7229,7 @@ Returns a monochrome color
         [r: byte, g: byte, b: byte]
 
 
-### [`monochromecircregion2file`](#Python_BMP.BITMAPlib.monochromecircregion2file)
+### [`monochromecircregion2file`](#monochromecircregion2file)
 
 ```py
 def monochromecircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -7250,7 +7250,7 @@ Monochrome filter to a circular region
         new bitmap file
 
 
-### [`monochromefiltertoBGRbuf`](#Python_BMP.colors.monochromefiltertoBGRbuf)
+### [`monochromefiltertoBGRbuf`](#monochromefiltertoBGRbuf)
 
 ```py
 def monochromefiltertoBGRbuf(buf: array.array) -> array.array:
@@ -7273,7 +7273,7 @@ Apply a monochrome filter to a
         holding mono BGR data
 
 
-### [`monochromepal`](#Python_BMP.colors.monochromepal)
+### [`monochromepal`](#monochromepal)
 
 ```py
 def monochromepal(bits: int, rgbfactors: list[float, float, float]) -> list[list[int, int, int]]:
@@ -7297,7 +7297,7 @@ Returns a monochrome palette
       list[list[r: int, g: int, b int]]
 
 
-### [`monocircle`](#Python_BMP.BITMAPlib.monocircle)
+### [`monocircle`](#monocircle)
 
 ```py
 def monocircle(bmp: array.array, x: int, y: int, r: int):
@@ -7316,7 +7316,7 @@ Monochrome filter to a circular area
         byref modified unsigned byte array
 
 
-### [`monofilterinregion2file`](#Python_BMP.BITMAPlib.monofilterinregion2file)
+### [`monofilterinregion2file`](#monofilterinregion2file)
 
 ```py
 def monofilterinregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -7337,7 +7337,7 @@ Monochrome filter to rectangular area in a 24-bit BMP
         new bitmap file
 
 
-### [`monofilterto24bitimage`](#Python_BMP.BITMAPlib.monofilterto24bitimage)
+### [`monofilterto24bitimage`](#monofilterto24bitimage)
 
 ```py
 def monofilterto24bitimage(bmp: array.array):
@@ -7355,7 +7355,7 @@ Applies a mono filter
         unsigned byte array
 
 
-### [`monofilterto24bitregion`](#Python_BMP.BITMAPlib.monofilterto24bitregion)
+### [`monofilterto24bitregion`](#monofilterto24bitregion)
 
 ```py
 def monofilterto24bitregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -7377,7 +7377,7 @@ Applies a monochrome filter
         unsigned byte array
 
 
-### [`newBMP`](#Python_BMP.BITMAPlib.newBMP)
+### [`newBMP`](#newBMP)
 
 ```py
 def newBMP(x: int, y: int, colorbits: int) -> array.array:
@@ -7395,7 +7395,7 @@ Creates a new in-memory bitmap
         unsigned byte array with bitmap layout
 
 
-### [`numbervert`](#Python_BMP.BITMAPlib.numbervert)
+### [`numbervert`](#numbervert)
 
 ```py
 def numbervert(bmp: array.array, vlist: list[list[int, int]], xadj: int, yadj: int, scale: int, valstart: numbers.Number, valstep: numbers.Number, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, suppresszero: bool, suppresslastnum: bool, rightjustify: bool):
@@ -7406,7 +7406,7 @@ def numbervert(bmp: array.array, vlist: list[list[int, int]], xadj: int, yadj: i
     
 
 
-### [`octahedravert`](#Python_BMP.solids3D.octahedravert)
+### [`octahedravert`](#octahedravert)
 
 ```py
 def octahedravert(x: float) -> list[list[float, float, float]]:
@@ -7424,7 +7424,7 @@ Returns a list of vertices
               z: float)
 
 
-### [`outline2file`](#Python_BMP.BITMAPlib.outline2file)
+### [`outline2file`](#outline2file)
 
 ```py
 def outline2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -7442,7 +7442,7 @@ Applies an outline filter
         new bitmap file
 
 
-### [`outline`](#Python_BMP.BITMAPlib.outline)
+### [`outline`](#outline)
 
 ```py
 def outline(bmp: array.array):
@@ -7458,7 +7458,7 @@ Applies an Outline Filter
         byref modified unsigned byte array
 
 
-### [`outlinecircregion2file`](#Python_BMP.BITMAPlib.outlinecircregion2file)
+### [`outlinecircregion2file`](#outlinecircregion2file)
 
 ```py
 def outlinecircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int):
@@ -7478,7 +7478,7 @@ Outlines area in a circular region
         new bitmap file
 
 
-### [`outlinecircregion`](#Python_BMP.BITMAPlib.outlinecircregion)
+### [`outlinecircregion`](#outlinecircregion)
 
 ```py
 def outlinecircregion(bmp: array.array, x: int, y: int, r: int):
@@ -7497,7 +7497,7 @@ Outlines a circular area
         byref modified unsigned byte array
 
 
-### [`outlineregion2file`](#Python_BMP.BITMAPlib.outlineregion2file)
+### [`outlineregion2file`](#outlineregion2file)
 
 ```py
 def outlineregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int):
@@ -7518,7 +7518,7 @@ Outline filter to rectangular area
         new bitmap file
 
 
-### [`outlineregion`](#Python_BMP.BITMAPlib.outlineregion)
+### [`outlineregion`](#outlineregion)
 
 ```py
 def outlineregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int):
@@ -7538,7 +7538,7 @@ Outines a rectangular region in a BMP
         byref modified unsigned byte array
 
 
-### [`pastecirularbuf`](#Python_BMP.BITMAPlib.pastecirularbuf)
+### [`pastecirularbuf`](#pastecirularbuf)
 
 ```py
 def pastecirularbuf(bmp: array.array, x: int, y: int, circbuf: list):
@@ -7559,7 +7559,7 @@ given radius to a centerpoint at (x, y)
         byref modified unsigned byte array
 
 
-### [`pasterect`](#Python_BMP.BITMAPlib.pasterect)
+### [`pasterect`](#pasterect)
 
 ```py
 def pasterect(bmp: array.array, buf: array.array, x1: int, y1: int):
@@ -7579,7 +7579,7 @@ Paste a rectangular area from a buffer to a bmp
         byref modified unsigned byte array
 
 
-### [`perspective`](#Python_BMP.solids3D.perspective)
+### [`perspective`](#perspective)
 
 ```py
 def perspective(vlist: list[list[numbers.Number, numbers.Number, numbers.Number]], rotvec: list[list[float, float], list[float, float], list[float, float]], dispvec: list[numbers.Number, numbers.Number, numbers.Number], d: float) -> tuple:
@@ -7600,7 +7600,7 @@ Projects 3D points to 2D and
         tuple (list, list)
 
 
-### [`piechart`](#Python_BMP.BITMAPlib.piechart)
+### [`piechart`](#piechart)
 
 ```py
 def piechart(bmp: array.array, x: int, y: int, r: int, dataandcolorlist: list):
@@ -7621,7 +7621,7 @@ Draw a piechart
         byref modified unsigned byte array
 
 
-### [`pixelizenxn`](#Python_BMP.BITMAPlib.pixelizenxn)
+### [`pixelizenxn`](#pixelizenxn)
 
 ```py
 def pixelizenxn(bmp: array.array, n: int) -> array.array:
@@ -7639,7 +7639,7 @@ in which colors are averaged
         byref modified unsigned byte array
 
 
-### [`pixelizenxncircregion2file`](#Python_BMP.BITMAPlib.pixelizenxncircregion2file)
+### [`pixelizenxncircregion2file`](#pixelizenxncircregion2file)
 
 ```py
 def pixelizenxncircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, intpixsize: int):
@@ -7661,7 +7661,7 @@ Apply a Pixel Blur in a circular area
         new bitmap file
 
 
-### [`pixelizenxncircregion`](#Python_BMP.BITMAPlib.pixelizenxncircregion)
+### [`pixelizenxncircregion`](#pixelizenxncircregion)
 
 ```py
 def pixelizenxncircregion(bmp: array.array, x: int, y: int, r: int, n: int):
@@ -7681,7 +7681,7 @@ Pixelize a circular region in a BMP by n
         byref modified unsigned byte array
 
 
-### [`pixelizenxntofile`](#Python_BMP.BITMAPlib.pixelizenxntofile)
+### [`pixelizenxntofile`](#pixelizenxntofile)
 
 ```py
 def pixelizenxntofile(ExistingBMPfile: str, NewBMPfile: str, n: int):
@@ -7699,7 +7699,7 @@ Pixellate a bitmap file with n by n pixel areas
         new bitmap file
 
 
-### [`plot3d`](#Python_BMP.BITMAPlib.plot3d)
+### [`plot3d`](#plot3d)
 
 ```py
 def plot3d(bmp: array.array, sides: list[list, list], issolid: bool, RGBfactors: list[float, float], showoutline: bool, outlinecolor: int):
@@ -7726,7 +7726,7 @@ The 3D rendering function
         byref modified unsigned byte array
 
 
-### [`plot3Dsolid`](#Python_BMP.BITMAPlib.plot3Dsolid)
+### [`plot3Dsolid`](#plot3Dsolid)
 
 ```py
 def plot3Dsolid(bmp: array.array, vertandsides: list[list, list], issolid: bool, RGBfactors: list[float, float, float], showoutline: bool, outlinecolor: int, rotvect: list[float, float, float], transvect3D: list[float, float, float], d: int, transvect: list[int, int]):
@@ -7763,7 +7763,7 @@ def plot3Dsolid(bmp: array.array, vertandsides: list[list, list], issolid: bool,
         byref modified unsigned byte array
 
 
-### [`plot8bitpattern`](#Python_BMP.BITMAPlib.plot8bitpattern)
+### [`plot8bitpattern`](#plot8bitpattern)
 
 ```py
 def plot8bitpattern(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -7788,7 +7788,7 @@ Draws a 8-bit pattern
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternasdots`](#Python_BMP.BITMAPlib.plot8bitpatternasdots)
+### [`plot8bitpatternasdots`](#plot8bitpatternasdots)
 
 ```py
 def plot8bitpatternasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -7814,7 +7814,7 @@ Draws a 8-bit pattern as circles
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternastext`](#Python_BMP.textgraphics.plot8bitpatternastext)
+### [`plot8bitpatternastext`](#plot8bitpatternastext)
 
 ```py
 def plot8bitpatternastext(bitpattern: list[int], onechar: str, zerochar: str):
@@ -7834,7 +7834,7 @@ Outputs the bits of a list
         console output
 
 
-### [`plot8bitpatternsideway`](#Python_BMP.BITMAPlib.plot8bitpatternsideway)
+### [`plot8bitpatternsideway`](#plot8bitpatternsideway)
 
 ```py
 def plot8bitpatternsideway(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -7859,7 +7859,7 @@ Draws a 8-bit pattern sideways
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternsidewaywithdots`](#Python_BMP.BITMAPlib.plot8bitpatternsidewaywithdots)
+### [`plot8bitpatternsidewaywithdots`](#plot8bitpatternsidewaywithdots)
 
 ```py
 def plot8bitpatternsidewaywithdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -7884,7 +7884,7 @@ Draws a 8-bit pattern sideways with dots
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternsidewaywithfn`](#Python_BMP.BITMAPlib.plot8bitpatternsidewaywithfn)
+### [`plot8bitpatternsidewaywithfn`](#plot8bitpatternsidewaywithfn)
 
 ```py
 def plot8bitpatternsidewaywithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -7909,7 +7909,7 @@ Draws a 8-bit pattern sideways with a function
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternupsidedown`](#Python_BMP.BITMAPlib.plot8bitpatternupsidedown)
+### [`plot8bitpatternupsidedown`](#plot8bitpatternupsidedown)
 
 ```py
 def plot8bitpatternupsidedown(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -7935,7 +7935,7 @@ Draws a 8-bit pattern upsidedown
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternupsidedownasdots`](#Python_BMP.BITMAPlib.plot8bitpatternupsidedownasdots)
+### [`plot8bitpatternupsidedownasdots`](#plot8bitpatternupsidedownasdots)
 
 ```py
 def plot8bitpatternupsidedownasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -7960,7 +7960,7 @@ Draws a 8-bit pattern upsidedown with dots
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternupsidedownwithfn`](#Python_BMP.BITMAPlib.plot8bitpatternupsidedownwithfn)
+### [`plot8bitpatternupsidedownwithfn`](#plot8bitpatternupsidedownwithfn)
 
 ```py
 def plot8bitpatternupsidedownwithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -7986,7 +7986,7 @@ Draws a 8-bit pattern upsidedown with a function
         byref modified unsigned byte array
 
 
-### [`plot8bitpatternwithfn`](#Python_BMP.BITMAPlib.plot8bitpatternwithfn)
+### [`plot8bitpatternwithfn`](#plot8bitpatternwithfn)
 
 ```py
 def plot8bitpatternwithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -8012,7 +8012,7 @@ def plot8bitpatternwithfn(bmp: array.array, x: int, y: int, bitpattern: list, sc
         byref modified unsigned byte array
 
 
-### [`plotbitsastext`](#Python_BMP.textgraphics.plotbitsastext)
+### [`plotbitsastext`](#plotbitsastext)
 
 ```py
 def plotbitsastext(bits: int):
@@ -8029,7 +8029,7 @@ Outputs the bits of byte to
         *     for 1
 
 
-### [`plotbmpastext`](#Python_BMP.BITMAPlib.plotbmpastext)
+### [`plotbmpastext`](#plotbmpastext)
 
 ```py
 def plotbmpastext(bmp: array.array):
@@ -8047,7 +8047,7 @@ Plot a bitmap as text
         for debug and ascii art
 
 
-### [`plotcircinsqr`](#Python_BMP.BITMAPlib.plotcircinsqr)
+### [`plotcircinsqr`](#plotcircinsqr)
 
 ```py
 def plotcircinsqr(bmp, x, y, d, color):
@@ -8071,7 +8071,7 @@ Draws a circle in an
         byref modified unsigned byte array
 
 
-### [`plotfilledflower`](#Python_BMP.BITMAPlib.plotfilledflower)
+### [`plotfilledflower`](#plotfilledflower)
 
 ```py
 def plotfilledflower(bmp: array.array, cx: int, cy: int, r: int, petals: float, angrot: float, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -8097,7 +8097,7 @@ Draw a filled flower
         byref modified unsigned byte array
 
 
-### [`plotflower`](#Python_BMP.BITMAPlib.plotflower)
+### [`plotflower`](#plotflower)
 
 ```py
 def plotflower(bmp: array.array, cx: int, cy: int, r: int, petals: float, angrot: float, lumrange: list[int, int], RGBfactors: list[float, float, float]):
@@ -8123,7 +8123,7 @@ Draw a flower
         byref modified unsigned byte array
 
 
-### [`plotimgedges`](#Python_BMP.BITMAPlib.plotimgedges)
+### [`plotimgedges`](#plotimgedges)
 
 ```py
 def plotimgedges(bmp: array.array, similaritythreshold: int, edgeradius: int, edgecolor: int):
@@ -8151,7 +8151,7 @@ Draw edges
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpattern`](#Python_BMP.BITMAPlib.plotitalic8bitpattern)
+### [`plotitalic8bitpattern`](#plotitalic8bitpattern)
 
 ```py
 def plotitalic8bitpattern(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8177,7 +8177,7 @@ Draws a 8-bit italic pattern
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpatternasdots`](#Python_BMP.BITMAPlib.plotitalic8bitpatternasdots)
+### [`plotitalic8bitpatternasdots`](#plotitalic8bitpatternasdots)
 
 ```py
 def plotitalic8bitpatternasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8202,7 +8202,7 @@ Draws a 8-bit italic pattern as dots
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpatternsideway`](#Python_BMP.BITMAPlib.plotitalic8bitpatternsideway)
+### [`plotitalic8bitpatternsideway`](#plotitalic8bitpatternsideway)
 
 ```py
 def plotitalic8bitpatternsideway(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8227,7 +8227,7 @@ Draws an italic 8-bit pattern sideways
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpatternsidewayasdots`](#Python_BMP.BITMAPlib.plotitalic8bitpatternsidewayasdots)
+### [`plotitalic8bitpatternsidewayasdots`](#plotitalic8bitpatternsidewayasdots)
 
 ```py
 def plotitalic8bitpatternsidewayasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8252,7 +8252,7 @@ Draws an italic 8-bit pattern sideways as dots
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpatternsidewaywithfn`](#Python_BMP.BITMAPlib.plotitalic8bitpatternsidewaywithfn)
+### [`plotitalic8bitpatternsidewaywithfn`](#plotitalic8bitpatternsidewaywithfn)
 
 ```py
 def plotitalic8bitpatternsidewaywithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -8277,7 +8277,7 @@ Draws an Italic 8-bit pattern sideways with a function
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpatternupdsidedownasdots`](#Python_BMP.BITMAPlib.plotitalic8bitpatternupdsidedownasdots)
+### [`plotitalic8bitpatternupdsidedownasdots`](#plotitalic8bitpatternupdsidedownasdots)
 
 ```py
 def plotitalic8bitpatternupdsidedownasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8302,7 +8302,7 @@ Draws a 8-bit italic pattern upsidedown as dots
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpatternupsidedownwithfn`](#Python_BMP.BITMAPlib.plotitalic8bitpatternupsidedownwithfn)
+### [`plotitalic8bitpatternupsidedownwithfn`](#plotitalic8bitpatternupsidedownwithfn)
 
 ```py
 def plotitalic8bitpatternupsidedownwithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -8328,7 +8328,7 @@ Italic 8-bit pattern upsidedown with a function
         byref modified unsigned byte array
 
 
-### [`plotitalic8bitpatternwithfn`](#Python_BMP.BITMAPlib.plotitalic8bitpatternwithfn)
+### [`plotitalic8bitpatternwithfn`](#plotitalic8bitpatternwithfn)
 
 ```py
 def plotitalic8bitpatternwithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -8354,7 +8354,7 @@ Italic 8-bit pattern with a function
         byref modified unsigned byte array
 
 
-### [`plotitalicstring`](#Python_BMP.BITMAPlib.plotitalicstring)
+### [`plotitalicstring`](#plotitalicstring)
 
 ```py
 def plotitalicstring(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8385,7 +8385,7 @@ Draws a string as Italic
         byref modified unsigned byte array
 
 
-### [`plotitalicstringasdots`](#Python_BMP.BITMAPlib.plotitalicstringasdots)
+### [`plotitalicstringasdots`](#plotitalicstringasdots)
 
 ```py
 def plotitalicstringasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8416,7 +8416,7 @@ Draws a string as Italic dots
         byref modified unsigned byte array
 
 
-### [`plotitalicstringsideway`](#Python_BMP.BITMAPlib.plotitalicstringsideway)
+### [`plotitalicstringsideway`](#plotitalicstringsideway)
 
 ```py
 def plotitalicstringsideway(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8449,7 +8449,7 @@ Draws an Italic String Sideways
         byref modified unsigned byte array
 
 
-### [`plotitalicstringsidewayasdots`](#Python_BMP.BITMAPlib.plotitalicstringsidewayasdots)
+### [`plotitalicstringsidewayasdots`](#plotitalicstringsidewayasdots)
 
 ```py
 def plotitalicstringsidewayasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8479,7 +8479,7 @@ Draws an italic string sideways as dots
         byref modified unsigned byte array
 
 
-### [`plotitalicstringvertical`](#Python_BMP.BITMAPlib.plotitalicstringvertical)
+### [`plotitalicstringvertical`](#plotitalicstringvertical)
 
 ```py
 def plotitalicstringvertical(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8509,7 +8509,7 @@ Draws an italic string vertically with dots
         byref modified unsigned byte array
 
 
-### [`plotitalicstringverticalasdots`](#Python_BMP.BITMAPlib.plotitalicstringverticalasdots)
+### [`plotitalicstringverticalasdots`](#plotitalicstringverticalasdots)
 
 ```py
 def plotitalicstringverticalasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8539,7 +8539,7 @@ Draws an italic string vertically with dots
         byref modified unsigned byte array
 
 
-### [`plotlines`](#Python_BMP.BITMAPlib.plotlines)
+### [`plotlines`](#plotlines)
 
 ```py
 def plotlines(bmp: array.array, vertlist: list, color: int):
@@ -8558,7 +8558,7 @@ Draws connected lines defined by a list of vertices
         byref modified unsigned byte array
 
 
-### [`plotpoly`](#Python_BMP.BITMAPlib.plotpoly)
+### [`plotpoly`](#plotpoly)
 
 ```py
 def plotpoly(bmp: array.array, vertlist: list, color: int):
@@ -8577,7 +8577,7 @@ Draws a polygon defined by a list of vertices
         byref modified unsigned byte array
 
 
-### [`plotpolyfill`](#Python_BMP.BITMAPlib.plotpolyfill)
+### [`plotpolyfill`](#plotpolyfill)
 
 ```py
 def plotpolyfill(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], color: int):
@@ -8597,7 +8597,7 @@ Draws a filled polygon with a given color
         byref modified unsigned byte array
 
 
-### [`plotpolyfillist`](#Python_BMP.BITMAPlib.plotpolyfillist)
+### [`plotpolyfillist`](#plotpolyfillist)
 
 ```py
 def plotpolyfillist(bmp: array.array, sides: list[list[list[list]], list[list[float, float, float]]], RGBfactors: list[float, float]):
@@ -8619,7 +8619,7 @@ def plotpolyfillist(bmp: array.array, sides: list[list[list[list]], list[list[fl
         byref modified unsigned byte array
 
 
-### [`plotpolylist`](#Python_BMP.BITMAPlib.plotpolylist)
+### [`plotpolylist`](#plotpolylist)
 
 ```py
 def plotpolylist(bmp: array.array, polylist: list, color: int):
@@ -8639,7 +8639,7 @@ Draws a list of polygons of a given color
         byref modified unsigned byte array
 
 
-### [`plotreverseditalic8bitpattern`](#Python_BMP.BITMAPlib.plotreverseditalic8bitpattern)
+### [`plotreverseditalic8bitpattern`](#plotreverseditalic8bitpattern)
 
 ```py
 def plotreverseditalic8bitpattern(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8664,7 +8664,7 @@ Draws a 8-bit reversed italic pattern
         byref modified unsigned byte array
 
 
-### [`plotreverseditalic8bitpatternasdots`](#Python_BMP.BITMAPlib.plotreverseditalic8bitpatternasdots)
+### [`plotreverseditalic8bitpatternasdots`](#plotreverseditalic8bitpatternasdots)
 
 ```py
 def plotreverseditalic8bitpatternasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8689,7 +8689,7 @@ Draws a 8-bit reversed italic pattern as dots
         byref modified unsigned byte array
 
 
-### [`plotreverseditalicstring`](#Python_BMP.BITMAPlib.plotreverseditalicstring)
+### [`plotreverseditalicstring`](#plotreverseditalicstring)
 
 ```py
 def plotreverseditalicstring(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8718,7 +8718,7 @@ Draws a reversed string as Italic
         byref modified unsigned byte array
 
 
-### [`plotreverseditalicstringasdots`](#Python_BMP.BITMAPlib.plotreverseditalicstringasdots)
+### [`plotreverseditalicstringasdots`](#plotreverseditalicstringasdots)
 
 ```py
 def plotreverseditalicstringasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8749,7 +8749,7 @@ Draws a Reversed String as Italic dots
         byref modified unsigned byte array
 
 
-### [`plotreversestring`](#Python_BMP.BITMAPlib.plotreversestring)
+### [`plotreversestring`](#plotreversestring)
 
 ```py
 def plotreversestring(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8779,7 +8779,7 @@ Draws a string reversed
         byref modified unsigned byte array
 
 
-### [`plotreversestringasdots`](#Python_BMP.BITMAPlib.plotreversestringasdots)
+### [`plotreversestringasdots`](#plotreversestringasdots)
 
 ```py
 def plotreversestringasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8809,7 +8809,7 @@ Draws a string reversed with dots
         byref modified unsigned byte array
 
 
-### [`plotRGBxybit`](#Python_BMP.BITMAPlib.plotRGBxybit)
+### [`plotRGBxybit`](#plotRGBxybit)
 
 ```py
 def plotRGBxybit(bmp: array.array, x: int, y: int, rgb: list):
@@ -8829,7 +8829,7 @@ Sets pixel at (x, y) in a bitmap to color [R, G, B]
         byref modified unsigned byte array
 
 
-### [`plotRGBxybitvec`](#Python_BMP.BITMAPlib.plotRGBxybitvec)
+### [`plotRGBxybitvec`](#plotRGBxybitvec)
 
 ```py
 def plotRGBxybitvec(bmp: array.array, v: list, rgb: list):
@@ -8849,7 +8849,7 @@ Sets [R, G, B] of pixel at (x, y)
         byref modified unsigned byte array
 
 
-### [`plotrotated8bitpattern`](#Python_BMP.BITMAPlib.plotrotated8bitpattern)
+### [`plotrotated8bitpattern`](#plotrotated8bitpattern)
 
 ```py
 def plotrotated8bitpattern(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8875,7 +8875,7 @@ Draws a 8-bit pattern with the bits rotated
         byref modified unsigned byte array
 
 
-### [`plotrotated8bitpatternwithdots`](#Python_BMP.BITMAPlib.plotrotated8bitpatternwithdots)
+### [`plotrotated8bitpatternwithdots`](#plotrotated8bitpatternwithdots)
 
 ```py
 def plotrotated8bitpatternwithdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -8901,7 +8901,7 @@ Draws a 8-bit pattern with the bits rotated
         byref modified unsigned byte array
 
 
-### [`plotrotated8bitpatternwithfn`](#Python_BMP.BITMAPlib.plotrotated8bitpatternwithfn)
+### [`plotrotated8bitpatternwithfn`](#plotrotated8bitpatternwithfn)
 
 ```py
 def plotrotated8bitpatternwithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -8927,7 +8927,7 @@ the bits rotated with a function
         byref modified unsigned byte array
 
 
-### [`plotrotateditalic8bitpatternwithfn`](#Python_BMP.BITMAPlib.plotrotateditalic8bitpatternwithfn)
+### [`plotrotateditalic8bitpatternwithfn`](#plotrotateditalic8bitpatternwithfn)
 
 ```py
 def plotrotateditalic8bitpatternwithfn(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int, fn: Callable):
@@ -8954,7 +8954,7 @@ with a function
         byref modified unsigned byte array
 
 
-### [`plotstring`](#Python_BMP.BITMAPlib.plotstring)
+### [`plotstring`](#plotstring)
 
 ```py
 def plotstring(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -8988,7 +8988,7 @@ Draws a string
         byref modified unsigned byte array
 
 
-### [`plotstringasdots`](#Python_BMP.BITMAPlib.plotstringasdots)
+### [`plotstringasdots`](#plotstringasdots)
 
 ```py
 def plotstringasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9017,7 +9017,7 @@ Draws a string as Dots
         byref modified unsigned byte array
 
 
-### [`plotstringfunc`](#Python_BMP.BITMAPlib.plotstringfunc)
+### [`plotstringfunc`](#plotstringfunc)
 
 ```py
 def plotstringfunc(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, orderfunc: Callable, fontrenderfunc: Callable):
@@ -9053,7 +9053,7 @@ Draws a string
         byref modified unsigned byte array
 
 
-### [`plotstringsideway`](#Python_BMP.BITMAPlib.plotstringsideway)
+### [`plotstringsideway`](#plotstringsideway)
 
 ```py
 def plotstringsideway(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9083,7 +9083,7 @@ Draws a string sideways
         byref modified unsigned byte array
 
 
-### [`plotstringsidewayasdots`](#Python_BMP.BITMAPlib.plotstringsidewayasdots)
+### [`plotstringsidewayasdots`](#plotstringsidewayasdots)
 
 ```py
 def plotstringsidewayasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9113,7 +9113,7 @@ Draws a string sideways as dots
         byref modified unsigned byte array
 
 
-### [`plotstringsidewayfn`](#Python_BMP.BITMAPlib.plotstringsidewayfn)
+### [`plotstringsidewayfn`](#plotstringsidewayfn)
 
 ```py
 def plotstringsidewayfn(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, fn: Callable):
@@ -9143,7 +9143,7 @@ Draws a string sideways with a function
         byref modified unsigned byte array
 
 
-### [`plotstringupsidedown`](#Python_BMP.BITMAPlib.plotstringupsidedown)
+### [`plotstringupsidedown`](#plotstringupsidedown)
 
 ```py
 def plotstringupsidedown(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9173,7 +9173,7 @@ Draws a string upsidedown
         byref modified unsigned byte array
 
 
-### [`plotstringupsidedownasdots`](#Python_BMP.BITMAPlib.plotstringupsidedownasdots)
+### [`plotstringupsidedownasdots`](#plotstringupsidedownasdots)
 
 ```py
 def plotstringupsidedownasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9202,7 +9202,7 @@ Draws a string upsidedown as dots
         byref modified unsigned byte array
 
 
-### [`plotstringvertical`](#Python_BMP.BITMAPlib.plotstringvertical)
+### [`plotstringvertical`](#plotstringvertical)
 
 ```py
 def plotstringvertical(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9232,7 +9232,7 @@ Draws a string vertically
         byref modified unsigned byte array
 
 
-### [`plotstringverticalasdots`](#Python_BMP.BITMAPlib.plotstringverticalasdots)
+### [`plotstringverticalasdots`](#plotstringverticalasdots)
 
 ```py
 def plotstringverticalasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9262,7 +9262,7 @@ Draws a string vertically with dots
         byref modified unsigned byte array
 
 
-### [`plotstringverticalwithfn`](#Python_BMP.BITMAPlib.plotstringverticalwithfn)
+### [`plotstringverticalwithfn`](#plotstringverticalwithfn)
 
 ```py
 def plotstringverticalwithfn(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, fn: Callable):
@@ -9292,7 +9292,7 @@ Draws a string vertically using a function
         byref modified unsigned byte array
 
 
-### [`plotupsidedownitalic8bitpattern`](#Python_BMP.BITMAPlib.plotupsidedownitalic8bitpattern)
+### [`plotupsidedownitalic8bitpattern`](#plotupsidedownitalic8bitpattern)
 
 ```py
 def plotupsidedownitalic8bitpattern(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -9317,7 +9317,7 @@ Draws a 8-bit italic pattern upsidedown
         byref modified unsigned byte array
 
 
-### [`plotupsidedownitalic8bitpatternasdots`](#Python_BMP.BITMAPlib.plotupsidedownitalic8bitpatternasdots)
+### [`plotupsidedownitalic8bitpatternasdots`](#plotupsidedownitalic8bitpatternasdots)
 
 ```py
 def plotupsidedownitalic8bitpatternasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
@@ -9342,7 +9342,7 @@ Draws a 8-bit italic pattern upsidedown as dots
         byref modified unsigned byte array
 
 
-### [`plotupsidedownitalicstring`](#Python_BMP.BITMAPlib.plotupsidedownitalicstring)
+### [`plotupsidedownitalicstring`](#plotupsidedownitalicstring)
 
 ```py
 def plotupsidedownitalicstring(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9373,7 +9373,7 @@ Draw an italic string upsidedown
         byref modified unsigned byte array
 
 
-### [`plotupsidedownitalicstringasdots`](#Python_BMP.BITMAPlib.plotupsidedownitalicstringasdots)
+### [`plotupsidedownitalicstringasdots`](#plotupsidedownitalicstringasdots)
 
 ```py
 def plotupsidedownitalicstringasdots(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list):
@@ -9404,7 +9404,7 @@ Draw an italic string upsidedown as dots
         byref modified unsigned byte array
 
 
-### [`plotvecxypoint`](#Python_BMP.BITMAPlib.plotvecxypoint)
+### [`plotvecxypoint`](#plotvecxypoint)
 
 ```py
 def plotvecxypoint(bmp: array.array, v: list, c: int):
@@ -9427,7 +9427,7 @@ Sets the color of a pixel
         unsigned byte array
 
 
-### [`plotxybit`](#Python_BMP.BITMAPlib.plotxybit)
+### [`plotxybit`](#plotxybit)
 
 ```py
 def plotxybit(bmp: array.array, x: int, y: int, c: int):
@@ -9446,7 +9446,7 @@ Sets pixel at (x, y) in a bitmap to color c
         byref modified unsigned byte array
 
 
-### [`plotxypointlist`](#Python_BMP.BITMAPlib.plotxypointlist)
+### [`plotxypointlist`](#plotxypointlist)
 
 ```py
 def plotxypointlist(bmp: array.array, vlist: list, penradius: int, color: int):
@@ -9470,7 +9470,7 @@ all points in a point list
         byref modified unsigned byte array
 
 
-### [`polar2rectcoord2D`](#Python_BMP.mathlib.polar2rectcoord2D)
+### [`polar2rectcoord2D`](#polar2rectcoord2D)
 
 ```py
 def polar2rectcoord2D(vpolarcoord: list[float, float]) -> list[float, float]:
@@ -9488,7 +9488,7 @@ origin at (0, 0) to 2D rectangular coordinates
          y: float]
 
 
-### [`polyboundary`](#Python_BMP.solids3D.polyboundary)
+### [`polyboundary`](#polyboundary)
 
 ```py
 def polyboundary(vertlist: list[list[int, int]]) -> list[list[int, int]]:
@@ -9508,7 +9508,7 @@ Generates a polygon boundary
         the boundaries of the polygon
 
 
-### [`probplotRGBto1bit`](#Python_BMP.colors.probplotRGBto1bit)
+### [`probplotRGBto1bit`](#probplotRGBto1bit)
 
 ```py
 def probplotRGBto1bit(rgb: list[int, int, int], brightness: int) -> int:
@@ -9528,7 +9528,7 @@ Use a non deterministic plot
         0 or 1
 
 
-### [`range2baseanddelta`](#Python_BMP.mathlib.range2baseanddelta)
+### [`range2baseanddelta`](#range2baseanddelta)
 
 ```py
 def range2baseanddelta(lst_range: list[int, int]):
@@ -9545,7 +9545,7 @@ Gets the base and range values in a list of numbers
         in lst_range
 
 
-### [`readint`](#Python_BMP.inttools.readint)
+### [`readint`](#readint)
 
 ```py
 def readint(offset: int, cnt: int, arr: int) -> int:
@@ -9567,7 +9567,7 @@ Reads an integer value in an
         unsigned int value
 
 
-### [`rectangle2file`](#Python_BMP.BITMAPlib.rectangle2file)
+### [`rectangle2file`](#rectangle2file)
 
 ```py
 def rectangle2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, color: int):
@@ -9588,7 +9588,7 @@ Draws a Rectangle
         new bitmap file
 
 
-### [`rectangle`](#Python_BMP.BITMAPlib.rectangle)
+### [`rectangle`](#rectangle)
 
 ```py
 def rectangle(bmp: array.array, x1: int, y1: int, x2: int, y2: int, color: int):
@@ -9609,7 +9609,7 @@ Draws a Rectangle
         byref modified unsigned byte array
 
 
-### [`rectboundarycoords`](#Python_BMP.primitives2D.rectboundarycoords)
+### [`rectboundarycoords`](#rectboundarycoords)
 
 ```py
 def rectboundarycoords(vlist: list) -> list:
@@ -9625,7 +9625,7 @@ Returns the rectangular bounds of a list of 2D vertices
          (max(x), max(y)))
 
 
-### [`recvert`](#Python_BMP.primitives2D.recvert)
+### [`recvert`](#recvert)
 
 ```py
 def recvert(x1: int, y1: int, x2: int, y2: int) -> list[list[int, int], list[int, int], list[int, int], list[int, int]]:
@@ -9642,7 +9642,7 @@ Creates a list of vertices for a rectangle
          (x2, y2), (x1, y2)]
 
 
-### [`reduce24bitimagebits`](#Python_BMP.BITMAPlib.reduce24bitimagebits)
+### [`reduce24bitimagebits`](#reduce24bitimagebits)
 
 ```py
 def reduce24bitimagebits(Existing24BMPfile: str, NewBMPfile: str, newbits: int, similaritythreshold: float, usemonopal: bool, RGBfactors: list[float, float, float] = None):
@@ -9674,7 +9674,7 @@ Reduce bits used to encode color in a 24-bit BMP
         new bitmap file
 
 
-### [`regpolygonvert`](#Python_BMP.primitives2D.regpolygonvert)
+### [`regpolygonvert`](#regpolygonvert)
 
 ```py
 def regpolygonvert(cx: int, cy: int, r: int, sides: int, angle: float) -> list[list[int, int]]:
@@ -9698,7 +9698,7 @@ Creates a list of int vertices for a regular polygon
         [(x, y), ...]
 
 
-### [`resizebufNtimesbigger`](#Python_BMP.bufresize.resizebufNtimesbigger)
+### [`resizebufNtimesbigger`](#resizebufNtimesbigger)
 
 ```py
 def resizebufNtimesbigger(buf: array.array, n: int, bits: int) -> array.array:
@@ -9718,7 +9718,7 @@ Resize a buffer n times bigger
         list
 
 
-### [`resizeNtimesbigger2file`](#Python_BMP.BITMAPlib.resizeNtimesbigger2file)
+### [`resizeNtimesbigger2file`](#resizeNtimesbigger2file)
 
 ```py
 def resizeNtimesbigger2file(ExistingBMPfile: str, NewBMPfile: str, n: int):
@@ -9736,7 +9736,7 @@ Resize a bitmap file n times bigger
         new bitmap file
 
 
-### [`resizeNtimesbigger`](#Python_BMP.BITMAPlib.resizeNtimesbigger)
+### [`resizeNtimesbigger`](#resizeNtimesbigger)
 
 ```py
 def resizeNtimesbigger(bmp: array.array, n: int):
@@ -9756,7 +9756,7 @@ Resize an in-memory bmp
         unsigned byte array
 
 
-### [`resizeNtimessmaller2file`](#Python_BMP.BITMAPlib.resizeNtimessmaller2file)
+### [`resizeNtimessmaller2file`](#resizeNtimessmaller2file)
 
 ```py
 def resizeNtimessmaller2file(ExistingBMPfile: str, NewBMPfile: str, n: int):
@@ -9774,7 +9774,7 @@ Resize a bitmap file n times smaller
         new bitmap file
 
 
-### [`resizeNtimessmaller`](#Python_BMP.BITMAPlib.resizeNtimessmaller)
+### [`resizeNtimessmaller`](#resizeNtimessmaller)
 
 ```py
 def resizeNtimessmaller(bmp: array.array, n: int) -> array.array:
@@ -9791,7 +9791,7 @@ Resize a whole image int n times smaller
         byref modified unsigned byte array
 
 
-### [`resizesmaller24bitbuf`](#Python_BMP.bufresize.resizesmaller24bitbuf)
+### [`resizesmaller24bitbuf`](#resizesmaller24bitbuf)
 
 ```py
 def resizesmaller24bitbuf(buf: array.array) -> array.array:
@@ -9808,7 +9808,7 @@ Resize a 24-bit buffer
         unsigned byte array
 
 
-### [`RGB2BGRarr`](#Python_BMP.colors.RGB2BGRarr)
+### [`RGB2BGRarr`](#RGB2BGRarr)
 
 ```py
 def RGB2BGRarr(r: int, g: int, b: int) -> array.array:
@@ -9825,7 +9825,7 @@ Returns a bgr array from
         unsigned byte BGR array
 
 
-### [`RGB2BGRbuf`](#Python_BMP.colors.RGB2BGRbuf)
+### [`RGB2BGRbuf`](#RGB2BGRbuf)
 
 ```py
 def RGB2BGRbuf(buf: array.array):
@@ -9843,7 +9843,7 @@ Convert an RGB buffer
         holding BGR data
 
 
-### [`RGB2HSL`](#Python_BMP.colors.RGB2HSL)
+### [`RGB2HSL`](#RGB2HSL)
 
 ```py
 def RGB2HSL(r: int, g: int, b: int) -> list[int, int, int]:
@@ -9862,7 +9862,7 @@ Converts an RGB value to HSL
          lum: int]  ->  percentage
 
 
-### [`RGB2int`](#Python_BMP.colors.RGB2int)
+### [`RGB2int`](#RGB2int)
 
 ```py
 def RGB2int(r: int, g: int, b: int) -> int:
@@ -9880,7 +9880,7 @@ Pack byte r, g and b color value
         int color val
 
 
-### [`RGBfactors2RGB`](#Python_BMP.colors.RGBfactors2RGB)
+### [`RGBfactors2RGB`](#RGBfactors2RGB)
 
 ```py
 def RGBfactors2RGB(RGBfactors: list[float, float, float], bytelum: int) -> list[int, int, int]:
@@ -9906,7 +9906,7 @@ Mix a byte luminosity value to
         [r: byte, g: byte, b: byte]
 
 
-### [`RGBfactorstoBaseandRange`](#Python_BMP.colors.RGBfactorstoBaseandRange)
+### [`RGBfactorstoBaseandRange`](#RGBfactorstoBaseandRange)
 
 ```py
 def RGBfactorstoBaseandRange(lumrange: list[int, int], rgbfactors: list[float, float, float]):
@@ -9935,7 +9935,7 @@ Get base color luminosity and
         [r: byte, g: byte, b: byte]
 
 
-### [`RGBpalbrightnessadjust`](#Python_BMP.BITMAPlib.RGBpalbrightnessadjust)
+### [`RGBpalbrightnessadjust`](#RGBpalbrightnessadjust)
 
 ```py
 def RGBpalbrightnessadjust(bmp: array.array, percentadj: float) -> list:
@@ -9955,7 +9955,7 @@ a destination unsigned byte array
         list of modified RGB values
 
 
-### [`rotatebits`](#Python_BMP.mathlib.rotatebits)
+### [`rotatebits`](#rotatebits)
 
 ```py
 def rotatebits(bits: int) -> int:
@@ -9970,7 +9970,7 @@ Rotates the bits in a byte
         int value of rotated 8 bits
 
 
-### [`rotatebitsinbuf`](#Python_BMP.bufferflip.rotatebitsinbuf)
+### [`rotatebitsinbuf`](#rotatebitsinbuf)
 
 ```py
 def rotatebitsinbuf(buf: array.array) -> array.array:
@@ -9986,7 +9986,7 @@ Does a bit rotate to the bytes
         unsigned byte array
 
 
-### [`rotvec3D`](#Python_BMP.solids3D.rotvec3D)
+### [`rotvec3D`](#rotvec3D)
 
 ```py
 def rotvec3D(roll: float, pitch: float, yaw: float) -> tuple:
@@ -10004,7 +10004,7 @@ Returns a 3D rotation vector
                (float, float))
 
 
-### [`roundpen`](#Python_BMP.BITMAPlib.roundpen)
+### [`roundpen`](#roundpen)
 
 ```py
 def roundpen(bmp: array.array, point: list, penradius: int, color: int):
@@ -10027,7 +10027,7 @@ with a given color
         byref modified unsigned byte array
 
 
-### [`roundvect`](#Python_BMP.mathlib.roundvect)
+### [`roundvect`](#roundvect)
 
 ```py
 def roundvect(v: list[numbers.Number]) -> list[int]:
@@ -10043,7 +10043,7 @@ Rounds off the components of a vector
         list of ints
 
 
-### [`saveBMP`](#Python_BMP.BITMAPlib.saveBMP)
+### [`saveBMP`](#saveBMP)
 
 ```py
 def saveBMP(filename: str, bmp: array.array):
@@ -10061,7 +10061,7 @@ Saves bitmap to file
         A Bitmap File
 
 
-### [`setBMP2monochrome`](#Python_BMP.BITMAPlib.setBMP2monochrome)
+### [`setBMP2monochrome`](#setBMP2monochrome)
 
 ```py
 def setBMP2monochrome(bmp: array.array, RGBfactors: list[float, float, float]) -> list:
@@ -10081,7 +10081,7 @@ Sets a bitmap to use a monochrome palette
         byref modified byte array
 
 
-### [`setBMPimgbytes`](#Python_BMP.BITMAPlib.setBMPimgbytes)
+### [`setBMPimgbytes`](#setBMPimgbytes)
 
 ```py
 def setBMPimgbytes(bmp: array.array, buf: array.array):
@@ -10098,7 +10098,7 @@ Sets the raw image buffer of a bitmap
         byref modified  unsigned byte array
 
 
-### [`setbmppal`](#Python_BMP.BITMAPlib.setbmppal)
+### [`setbmppal`](#setbmppal)
 
 ```py
 def setbmppal(bmp: array.array, pallist: list):
@@ -10117,7 +10117,7 @@ Sets the RGB palette of a bitmap
         byref modified unsigned byte array
 
 
-### [`setmax`](#Python_BMP.mathlib.setmax)
+### [`setmax`](#setmax)
 
 ```py
 def setmax(val: numbers.Number, maxval: numbers.Number) -> numbers.Number:
@@ -10133,7 +10133,7 @@ Set the value of val to maxval if val > maxval
         Number
 
 
-### [`setmin`](#Python_BMP.mathlib.setmin)
+### [`setmin`](#setmin)
 
 ```py
 def setmin(val: numbers.Number, minval: numbers.Number) -> numbers.Number:
@@ -10149,7 +10149,7 @@ Set the value of val to minval if val < minval
         Number
 
 
-### [`setminmax`](#Python_BMP.mathlib.setminmax)
+### [`setminmax`](#setminmax)
 
 ```py
 def setminmax(val: numbers.Number, minval: numbers.Number, maxval: numbers.Number) -> numbers.Number:
@@ -10167,7 +10167,7 @@ or the value of val to maxval if val > maxval
         Number
 
 
-### [`setnewpalfromsourcebmp`](#Python_BMP.BITMAPlib.setnewpalfromsourcebmp)
+### [`setnewpalfromsourcebmp`](#setnewpalfromsourcebmp)
 
 ```py
 def setnewpalfromsourcebmp(sourcebmp: array.array, newbmp: array.array, similaritythreshold: float) -> list:
@@ -10197,7 +10197,7 @@ can have different bit depths)
         based on source bitmap
 
 
-### [`setRGBpal`](#Python_BMP.BITMAPlib.setRGBpal)
+### [`setRGBpal`](#setRGBpal)
 
 ```py
 def setRGBpal(bmp: array.array, c: int, r: int, g: int, b: int):
@@ -10217,7 +10217,7 @@ Sets the r,g,b values of color c in a bitmap
         byref modified unsigned byte array
 
 
-### [`showsimilarparts`](#Python_BMP.BITMAPlib.showsimilarparts)
+### [`showsimilarparts`](#showsimilarparts)
 
 ```py
 def showsimilarparts(inputfile1: str, inputfile2: str, diff_file: str):
@@ -10236,7 +10236,7 @@ Compares 2 files and saves the similar parts to a BMP
         new bitmap file
 
 
-### [`sortrecpoints`](#Python_BMP.primitives2D.sortrecpoints)
+### [`sortrecpoints`](#sortrecpoints)
 
 ```py
 def sortrecpoints(x1: int, y1: int, x2: int, y2: int):
@@ -10255,7 +10255,7 @@ Sorts the x and y values that sets a rectangular area
         x1 < x2 and y1 < y2
 
 
-### [`sphere2file`](#Python_BMP.BITMAPlib.sphere2file)
+### [`sphere2file`](#sphere2file)
 
 ```py
 def sphere2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, rgbfactors: list[float, float, float]):
@@ -10279,7 +10279,7 @@ Renders a sphere
         new bitmap file
 
 
-### [`sphere`](#Python_BMP.BITMAPlib.sphere)
+### [`sphere`](#sphere)
 
 ```py
 def sphere(bmp: array.array, x: int, y: int, r: int, rgbfactors: list[float, float, float]):
@@ -10302,7 +10302,7 @@ Draws a Rendered Sphere
         byref modified unsigned byte array
 
 
-### [`spherevertandsurface`](#Python_BMP.solids3D.spherevertandsurface)
+### [`spherevertandsurface`](#spherevertandsurface)
 
 ```py
 def spherevertandsurface(vcen: list[float, float, float], r: float, deganglestep: float) -> tuple:
@@ -10328,7 +10328,7 @@ Returns a list of sparse
         and Hello_Globe.py
 
 
-### [`spiralcontrolpointsvert`](#Python_BMP.primitives2D.spiralcontrolpointsvert)
+### [`spiralcontrolpointsvert`](#spiralcontrolpointsvert)
 
 ```py
 def spiralcontrolpointsvert(x: int, y: int, step: int, growthfactor: float, turns: int):
@@ -10352,7 +10352,7 @@ Returns a list of 2D vertices of a Square Spiral
         list[[x: int, y: int]]
 
 
-### [`spirographvert`](#Python_BMP.primitives2D.spirographvert)
+### [`spirographvert`](#spirographvert)
 
 ```py
 def spirographvert(x: int, y: int, r: int, l: float, k: float, delta: float, lim: float):
@@ -10377,7 +10377,7 @@ with an origin set at (x, y)
         [[x: int, y: int], ...]
 
 
-### [`subvect`](#Python_BMP.mathlib.subvect)
+### [`subvect`](#subvect)
 
 ```py
 def subvect(u: list[numbers.Number], v: list[numbers.Number]) -> list[numbers.Number]:
@@ -10392,7 +10392,7 @@ Subtracts vectors u and v by subtracting their components
         list of ints or floats
 
 
-### [`surfplot3Dvertandsurface`](#Python_BMP.solids3D.surfplot3Dvertandsurface)
+### [`surfplot3Dvertandsurface`](#surfplot3Dvertandsurface)
 
 ```py
 def surfplot3Dvertandsurface(x1: int, y1: int, x2: int, y2: int, step: int, fnxy: Callable) -> tuple:
@@ -10413,7 +10413,7 @@ Does a 3D surface plot of a
         see Hello_3D_surfaceplot.py
 
 
-### [`swapcolors`](#Python_BMP.BITMAPlib.swapcolors)
+### [`swapcolors`](#swapcolors)
 
 ```py
 def swapcolors(bmp: array.array, p1: list, p2: list):
@@ -10431,7 +10431,7 @@ Swaps the colors of two points in a BMP
         byref modified unsigned byte array
 
 
-### [`swapif`](#Python_BMP.conditionaltools.swapif)
+### [`swapif`](#swapif)
 
 ```py
 def swapif(val1: <built-in function any>, val2: <built-in function any>, boolcond: bool):
@@ -10451,7 +10451,7 @@ Swaps val1 and val2 if
         values depending on boolcond
 
 
-### [`swapxy`](#Python_BMP.mathlib.swapxy)
+### [`swapxy`](#swapxy)
 
 ```py
 def swapxy(v: list) -> list:
@@ -10466,7 +10466,7 @@ Swaps the first two values in a list
         list[y, x]
 
 
-### [`tetrahedravert`](#Python_BMP.solids3D.tetrahedravert)
+### [`tetrahedravert`](#tetrahedravert)
 
 ```py
 def tetrahedravert(x: float) -> list[list[float, float, float]]:
@@ -10484,7 +10484,7 @@ Returns a list of vertices
               z: float)
 
 
-### [`thickcircle`](#Python_BMP.BITMAPlib.thickcircle)
+### [`thickcircle`](#thickcircle)
 
 ```py
 def thickcircle(bmp: array.array, x: int, y: int, r: int, penradius: int, color: int):
@@ -10504,7 +10504,7 @@ Draws a Thick Circle
         byref modified unsigned byte array
 
 
-### [`thickellipserot`](#Python_BMP.BITMAPlib.thickellipserot)
+### [`thickellipserot`](#thickellipserot)
 
 ```py
 def thickellipserot(bmp: array.array, x: int, y: int, b: int, a: int, degrot: float, penradius: int, color: int):
@@ -10527,7 +10527,7 @@ Draws a Thick Ellipse
         unsigned byte array
 
 
-### [`thickencirclearea2file`](#Python_BMP.BITMAPlib.thickencirclearea2file)
+### [`thickencirclearea2file`](#thickencirclearea2file)
 
 ```py
 def thickencirclearea2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, rgbfactors: list[float, float, float]):
@@ -10548,7 +10548,7 @@ def thickencirclearea2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int
         new bitmap file
 
 
-### [`thickencirclearea`](#Python_BMP.BITMAPlib.thickencirclearea)
+### [`thickencirclearea`](#thickencirclearea)
 
 ```py
 def thickencirclearea(bmp: array.array, x: int, y: int, r: int, rgbfactors: list[float, float, float]):
@@ -10569,7 +10569,7 @@ Encircle area with a gradient
         byref modified unsigned byte array
 
 
-### [`thickplotpoly`](#Python_BMP.BITMAPlib.thickplotpoly)
+### [`thickplotpoly`](#thickplotpoly)
 
 ```py
 def thickplotpoly(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, color: int):
@@ -10589,7 +10589,7 @@ Draws a polygon of a given color and thickness
         byref modified unsigned byte array
 
 
-### [`thickroundline`](#Python_BMP.BITMAPlib.thickroundline)
+### [`thickroundline`](#thickroundline)
 
 ```py
 def thickroundline(bmp: array.array, p1: list, p2: list, penradius: int, color: int):
@@ -10610,7 +10610,7 @@ Draw a Thick Rounded Line
         byref modified unsigned byte array
 
 
-### [`thresholdadjcircregion2file`](#Python_BMP.BITMAPlib.thresholdadjcircregion2file)
+### [`thresholdadjcircregion2file`](#thresholdadjcircregion2file)
 
 ```py
 def thresholdadjcircregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, lumrange: list[int, int]):
@@ -10632,7 +10632,7 @@ Threshold adjustment to a circular region in a 24-bit BMP
         new bitmap file
 
 
-### [`thresholdadjcircregion`](#Python_BMP.BITMAPlib.thresholdadjcircregion)
+### [`thresholdadjcircregion`](#thresholdadjcircregion)
 
 ```py
 def thresholdadjcircregion(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int]):
@@ -10653,7 +10653,7 @@ Threshold adjustment to a circular area
         byref modified unsigned byte array
 
 
-### [`thresholdadjto24bitimage`](#Python_BMP.BITMAPlib.thresholdadjto24bitimage)
+### [`thresholdadjto24bitimage`](#thresholdadjto24bitimage)
 
 ```py
 def thresholdadjto24bitimage(bmp: array.array, lumrange: list[int, int]):
@@ -10672,7 +10672,7 @@ Threshold adjustment to a whole BMP
         byref modified unsigned byte array
 
 
-### [`thresholdadjto24bitregion`](#Python_BMP.BITMAPlib.thresholdadjto24bitregion)
+### [`thresholdadjto24bitregion`](#thresholdadjto24bitregion)
 
 ```py
 def thresholdadjto24bitregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int]):
@@ -10696,7 +10696,7 @@ Threshold adjustment to a rectangular area
         byref modified unsigned byte array
 
 
-### [`thresholdadjust2file`](#Python_BMP.BITMAPlib.thresholdadjust2file)
+### [`thresholdadjust2file`](#thresholdadjust2file)
 
 ```py
 def thresholdadjust2file(ExistingBMPfile: str, NewBMPfile: str, lumrange: list[int, int]):
@@ -10717,7 +10717,7 @@ Apply a threshold adjustment
         new bitmap file
 
 
-### [`thresholdadjust`](#Python_BMP.colors.thresholdadjust)
+### [`thresholdadjust`](#thresholdadjust)
 
 ```py
 def thresholdadjust(rgb: list[int, int, int], lumrange: list[int, int]) -> list[int, int, int]:
@@ -10744,7 +10744,7 @@ Apply a threshold adjustment
                   b: byte]
 
 
-### [`trans`](#Python_BMP.mathlib.trans)
+### [`trans`](#trans)
 
 ```py
 def trans(vlist: list[list[numbers.Number]], u: list[numbers.Number]) -> list[list[numbers.Number]]:
@@ -10761,7 +10761,7 @@ to all vectors in the list of vectors
         list of vectors
 
 
-### [`upgradeto24bitimage2file`](#Python_BMP.BITMAPlib.upgradeto24bitimage2file)
+### [`upgradeto24bitimage2file`](#upgradeto24bitimage2file)
 
 ```py
 def upgradeto24bitimage2file(ExistingBMPfile: str, NewBMPfile: str):
@@ -10779,7 +10779,7 @@ Upgrades a bitmap file to 24-bits
         new bitmap file
 
 
-### [`upgradeto24bitimage`](#Python_BMP.BITMAPlib.upgradeto24bitimage)
+### [`upgradeto24bitimage`](#upgradeto24bitimage)
 
 ```py
 def upgradeto24bitimage(bmp: array.array):
@@ -10795,7 +10795,7 @@ Upgrade an image to 24-bits
         byref modified unsigned byte array
 
 
-### [`userdef2Dcooordsys2screenxy`](#Python_BMP.BITMAPlib.userdef2Dcooordsys2screenxy)
+### [`userdef2Dcooordsys2screenxy`](#userdef2Dcooordsys2screenxy)
 
 ```py
 def userdef2Dcooordsys2screenxy(x: int, y: int, lstcooordinfo: list):
@@ -10822,7 +10822,7 @@ def userdef2Dcooordsys2screenxy(x: int, y: int, lstcooordinfo: list):
         [x: int, y: int] screen coordinates
 
 
-### [`vertBMPbitBLTget`](#Python_BMP.BITMAPlib.vertBMPbitBLTget)
+### [`vertBMPbitBLTget`](#vertBMPbitBLTget)
 
 ```py
 def vertBMPbitBLTget(bmp: array.array, x: int, y1: int, y2: int) -> array.array:
@@ -10840,7 +10840,7 @@ Gets vertical slice to a new array
         unsigned byte array
 
 
-### [`vertbrightnessgrad2circregion2file`](#Python_BMP.BITMAPlib.vertbrightnessgrad2circregion2file)
+### [`vertbrightnessgrad2circregion2file`](#vertbrightnessgrad2circregion2file)
 
 ```py
 def vertbrightnessgrad2circregion2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, lumrange: list[int, int]):
@@ -10866,7 +10866,7 @@ Vertical brightness gradient to a circular area
         new bitmap file
 
 
-### [`vertbrightnessgrad2circregion`](#Python_BMP.BITMAPlib.vertbrightnessgrad2circregion)
+### [`vertbrightnessgrad2circregion`](#vertbrightnessgrad2circregion)
 
 ```py
 def vertbrightnessgrad2circregion(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int]):
@@ -10888,7 +10888,7 @@ Vertical brightness gradient adjustment to a circular area
         byref modified unsigned byte array
 
 
-### [`verticalbrightnessgrad2file`](#Python_BMP.BITMAPlib.verticalbrightnessgrad2file)
+### [`verticalbrightnessgrad2file`](#verticalbrightnessgrad2file)
 
 ```py
 def verticalbrightnessgrad2file(ExistingBMPfile: str, NewBMPfile: str, lumrange: list[int, int]):
@@ -10910,7 +10910,7 @@ Applies a Vertical brightness gradient
         new bitmap file
 
 
-### [`verticalbrightnessgradregion2file`](#Python_BMP.BITMAPlib.verticalbrightnessgradregion2file)
+### [`verticalbrightnessgradregion2file`](#verticalbrightnessgradregion2file)
 
 ```py
 def verticalbrightnessgradregion2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int]):
@@ -10935,7 +10935,7 @@ Vertical brightness gradient to a rectangular area
         new bitmap file
 
 
-### [`verticalbrightnessgradto24bitimage`](#Python_BMP.BITMAPlib.verticalbrightnessgradto24bitimage)
+### [`verticalbrightnessgradto24bitimage`](#verticalbrightnessgradto24bitimage)
 
 ```py
 def verticalbrightnessgradto24bitimage(bmp: array.array, lumrange: list[int, int]):
@@ -10953,7 +10953,7 @@ Applies a vertical brightness gradient
         byref modified unsigned byte array
 
 
-### [`verticalbrightnessgradto24bitregion`](#Python_BMP.BITMAPlib.verticalbrightnessgradto24bitregion)
+### [`verticalbrightnessgradto24bitregion`](#verticalbrightnessgradto24bitregion)
 
 ```py
 def verticalbrightnessgradto24bitregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int]):
@@ -10977,7 +10977,7 @@ to a rectangular area in a 24-bit bitmap
         byref modified unsigned byte array
 
 
-### [`verticalvert`](#Python_BMP.primitives2D.verticalvert)
+### [`verticalvert`](#verticalvert)
 
 ```py
 def verticalvert(x: int, y1: int, y2: int, dy: int) -> list[list[int, int]]:
@@ -10997,7 +10997,7 @@ along a vertical line with int step dy
         [(x, y), ...]
 
 
-### [`vertline`](#Python_BMP.BITMAPlib.vertline)
+### [`vertline`](#vertline)
 
 ```py
 def vertline(bmp: array.array, x: int, y1: int, y2: int, color: int):
@@ -11018,7 +11018,7 @@ Draw a Vertical Line
         byref modified unsigned byte array
 
 
-### [`vertlinevert`](#Python_BMP.BITMAPlib.vertlinevert)
+### [`vertlinevert`](#vertlinevert)
 
 ```py
 def vertlinevert(bmp: array.array, vlist: list[list[int, int]], linelen: int, yadj: int, color: int):
@@ -11041,7 +11041,7 @@ Vertical line marks at vertices in vlist
         byref modified unsigned byte array
 
 
-### [`verttrans`](#Python_BMP.BITMAPlib.verttrans)
+### [`verttrans`](#verttrans)
 
 ```py
 def verttrans(bmp: array.array, trans: str):
@@ -11063,7 +11063,7 @@ Do vertical image transforms
         unsigned byte array
 
 
-### [`verttransformincircregion`](#Python_BMP.BITMAPlib.verttransformincircregion)
+### [`verttransformincircregion`](#verttransformincircregion)
 
 ```py
 def verttransformincircregion(bmp: array.array, x: int, y: int, r: int, trans: str):
@@ -11089,7 +11089,7 @@ at (x, y) and radius r
         byref modified unsigned byte array
 
 
-### [`verttransregion`](#Python_BMP.BITMAPlib.verttransregion)
+### [`verttransregion`](#verttransregion)
 
 ```py
 def verttransregion(bmp: array.array, x1: int, y1: int, x2: int, y2: int, trans: str):
@@ -11117,7 +11117,7 @@ Do vertical image transforms
         unsigned byte array
 
 
-### [`vmag`](#Python_BMP.mathlib.vmag)
+### [`vmag`](#vmag)
 
 ```py
 def vmag(v: list[float]) -> float:
@@ -11133,7 +11133,7 @@ of arbitrary dimension n equal to len(v)
         float
 
 
-### [`writeint`](#Python_BMP.inttools.writeint)
+### [`writeint`](#writeint)
 
 ```py
 def writeint(offset: int, cnt: int, arr: array.array, value: int):
@@ -11158,7 +11158,7 @@ Writes an integer value to an
         byref unsigned byte array
 
 
-### [`xorvect`](#Python_BMP.mathlib.xorvect)
+### [`xorvect`](#xorvect)
 
 ```py
 def xorvect(u: list[int], v: list[int]) -> list[int]:
@@ -11175,7 +11175,7 @@ two lists of ints
         list[int]
 
 
-### [`XYaxis`](#Python_BMP.BITMAPlib.XYaxis)
+### [`XYaxis`](#XYaxis)
 
 ```py
 def XYaxis(bmp: array.array, origin: list[int, int], steps: list[int, int], xylimits: list[int, int], xyvalstarts: list[numbers.Number, numbers.Number], xysteps: list[numbers.Number, numbers.Number], color: int, textcolor: int, showgrid: bool, gridcolor: int):
@@ -11214,7 +11214,7 @@ XY axis with tick marks and numbers
         unsigned byte array
 
 
-### [`xygrid`](#Python_BMP.BITMAPlib.xygrid)
+### [`xygrid`](#xygrid)
 
 ```py
 def xygrid(bmp: array.array, x1: int, y1: int, x2: int, y2: int, xysteps: list[int, int], color: int):
@@ -11237,7 +11237,7 @@ Draws a grid
         byref modified unsigned byte array
 
 
-### [`xygridvec`](#Python_BMP.BITMAPlib.xygridvec)
+### [`xygridvec`](#xygridvec)
 
 ```py
 def xygridvec(bmp: array.array, u: list[int, int], v: list[int, int], steps: list[int, int], gridcolor: int):
@@ -11259,7 +11259,7 @@ Grid using (x, y) point pairs u and v
         byref modified unsigned byte array
 
 
-### [`XYscatterplot`](#Python_BMP.BITMAPlib.XYscatterplot)
+### [`XYscatterplot`](#XYscatterplot)
 
 ```py
 def XYscatterplot(bmp: array.array, XYdata: list, XYcoordinfo: list, showLinearRegLine: bool, reglinecolor: int):
