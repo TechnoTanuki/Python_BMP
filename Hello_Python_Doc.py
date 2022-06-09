@@ -10,7 +10,7 @@ notice = """
 |   This graphics library outputs   |
 |   to a bitmap file.               |
  -----------------------------------
- Output to %s
+Output to %s
 """
 from Python_BMP.BITMAPlib import(
         getfuncmetastr as meta,
@@ -33,10 +33,13 @@ def savelist(mlist: list, filename: str):
 def main():
         edt = 'notepad' # change if Linux
         file = 'BitmapLib_Doc.py'
+        rootdir = path.dirname(__file__) # get path of this script
         print(f'{notice % (file)}')
         l = [meta(m[1]) for m in getmembers(m, isfunction)]
         l = sorted(l, key = str.lower)
         savelist(l, file)
+        print('Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, edt)) # tell user we are done
         ret = proc.call([edt, file])
 
 if __name__=="__main__":
