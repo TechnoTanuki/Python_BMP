@@ -1,7 +1,9 @@
 # Hello Graphics
 Check samples with Hello_something.py for sample code on how to do stuff
 * The code did a functional approach (no classes) ... dont add classes or I might refactor lmao
-* I have a lot of functions to document so please be patient this is a hobby lmao.
+
+# Public API
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLib_Doc.md
 
 # References
 
