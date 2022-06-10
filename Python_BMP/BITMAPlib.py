@@ -110,6 +110,7 @@ from .primitives2D import(
     iterparallelogram,
     iterspirograph,
     itersquircle,
+    itersuperellipse,
     iterlissajouscurve,
     itercircleinvolute,
     listinrecbnd,
@@ -121,6 +122,7 @@ from .primitives2D import(
     squirclevert,
     lissajouscurvevert,
     spiralcontrolpointsvert,
+    superellipsevert,
     verticalvert
     )
 

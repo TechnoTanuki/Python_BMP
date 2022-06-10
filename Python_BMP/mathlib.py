@@ -397,10 +397,10 @@ def intsetminmax(val: Number,
     return val
 
 
-def sign(intval: int) -> int:
-    """Returns an int depending on the sign of intval
+def sign(val: Number) -> int:
+    """Returns an int depending on the sign of val
     Args:
-        intval   : an int
+        val   : a Number
 
     Returns:
         Postive value ->  1
@@ -408,9 +408,9 @@ def sign(intval: int) -> int:
         Negative value-> -1
     """
     retval = 0
-    if intval > 0:
+    if val > 0:
         return 1
-    elif intval == 0:
+    elif val == 0:
         return 0
     else:
         return -1

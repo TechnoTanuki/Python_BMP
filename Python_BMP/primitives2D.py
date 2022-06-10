@@ -1386,3 +1386,46 @@ def squirclevert(x: int, y: int,
         [[x: int, y: int],...]
     """
     return list(itersquircle(x, y, r))
+
+
+def itersuperellipse(cx: int, cy: int,
+                      a: float, b: float,
+                      m: float, n: float) -> list[int, int]:
+    """Yields 2D points for a superellipse
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : major and minor axes
+        m, n   : exponents
+
+    Yields:
+        (x: int, y: int)
+    """
+    _2m = 2 / m
+    _2n = 2 / n
+    for i in range(360):
+        t = radians(i)
+        w = cos(t)
+        x = cx + int((abs(w) ** _2m) * a * sign(w))
+        w = sin(t)
+        y = cy + int((abs(w) ** _2n) * b * sign(w))
+        yield (x, y)
+
+
+def superellipsevert(cx: int, cy: int,
+                      a: int, b: int,
+                      m: float, n: float
+                ) -> list[list[int, int]]:
+    """Returns 2D points for a superellipse
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : major and minor axes
+        m, n   : exponents
+
+    Yields:
+        list of superellipse vertices
+        [(x: int, y: int),...]
+    """
+    return list(itersuperellipse(cx, cy,
+                             a, b, m, n))
