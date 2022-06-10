@@ -292,7 +292,7 @@ Apply a threshold adjustment
 ### [`arcvert`](#arcvert)
 
 ```py
-def arcvert(x: int, y: int, r: int, startdegangle: float, enddegangle: float):
+def arcvert(x: int, y: int, r: int, startdegangle: float, enddegangle: float) -> list[list[int, int]]:
 ```
 
 Returns a list[(int, int)] of 2D vertices
@@ -717,7 +717,7 @@ Draws a Circle
 ### [`circleinvolutevert`](#circleinvolutevert)
 
 ```py
-def circleinvolutevert(x: int, y: int, a: float, delta: float, lim: float):
+def circleinvolutevert(x: int, y: int, a: float, delta: float, lim: float) -> list[list[int, int]]:
 ```
 
 Returns (int, int) 2D vertices
@@ -1508,7 +1508,7 @@ Decorator to ensure that the 2nd,
 ### [`entirecircleisinboundary`](#entirecircleisinboundary)
 
 ```py
-def entirecircleisinboundary(x: int, y: int, minx: int, maxx: int, miny: int, maxy: int, r: int):
+def entirecircleisinboundary(x: int, y: int, minx: int, maxx: int, miny: int, maxy: int, r: int) -> bool:
 ```
 
 Checks if an entire circle
@@ -1531,7 +1531,7 @@ is within a rectagular area
 ### [`entireellipseisinboundary`](#entireellipseisinboundary)
 
 ```py
-def entireellipseisinboundary(x: int, y: int, minx: int, maxx: int, miny: int, maxy: int, b: int, a: int):
+def entireellipseisinboundary(x: int, y: int, minx: int, maxx: int, miny: int, maxy: int, b: int, a: int) -> bool:
 ```
 
 Checks if an entire ellipse
@@ -1624,7 +1624,7 @@ Enumerates the characters in a
 ### [`epicycloidvert`](#epicycloidvert)
 
 ```py
-def epicycloidvert(x: int, y: int, a: float, b: float, delta: float, lim: float):
+def epicycloidvert(x: int, y: int, a: float, b: float, delta: float, lim: float) -> list[list[int, int]]:
 ```
 
 Returns (int, int) 2D vertices
@@ -2501,7 +2501,7 @@ Flip the X and Y coordinates of a circular area
 ### [`flowervert`](#flowervert)
 
 ```py
-def flowervert(cx: int, cy: int, r: int, petals: int, angrot: float):
+def flowervert(cx: int, cy: int, r: int, petals: int, angrot: float) -> list[list[int, int]]:
 ```
 
 Returns a list of 2D points for a flower
@@ -3768,7 +3768,7 @@ a horizontal line with int step dx
 ### [`hypotrochoidvert`](#hypotrochoidvert)
 
 ```py
-def hypotrochoidvert(x: int, y: int, a: float, b: float, c: float, delta: float, lim: float):
+def hypotrochoidvert(x: int, y: int, a: float, b: float, c: float, delta: float, lim: float) -> list[list[int, int]]:
 ```
 
 Returns (int, int) 2D vertices
@@ -4407,7 +4407,7 @@ a circle with origin set at (x, y)
 ### [`itercircleinvolute`](#itercircleinvolute)
 
 ```py
-def itercircleinvolute(x: int, y: int, a: float, delta: float, lim: float):
+def itercircleinvolute(x: int, y: int, a: float, delta: float, lim: float) -> list[int, int]:
 ```
 
 Yields (int, int) 2D vertices
@@ -4516,7 +4516,7 @@ Scan a rectangular area and yield scan lines
 ### [`iterdrawvec`](#iterdrawvec)
 
 ```py
-def iterdrawvec(u: list, v: list, headsize: int):
+def iterdrawvec(u: list, v: list, headsize: int) -> list[list[int, int]]:
 ```
 
 Yields a vector (line segment with arrow head)
@@ -4554,7 +4554,7 @@ origin set at (x, y)
 ### [`iterellipsepart`](#iterellipsepart)
 
 ```py
-def iterellipsepart(b: int, a: int):
+def iterellipsepart(b: int, a: int) -> list[int, int]:
 ```
 
 Yields (int, int) 2D vertices along
@@ -4591,12 +4591,12 @@ set at (x, y) rotated by degrot degrees
 ### [`iterepicycloid`](#iterepicycloid)
 
 ```py
-def iterepicycloid(x: int, y: int, a: float, b: float, delta: float, lim: float):
+def iterepicycloid(x: int, y: int, a: float, b: float, delta: float, lim: float) -> list[int, int]:
 ```
 
 Yields (int, int) 2D vertices
 along a path defined by epicycloid
-traced by a circleof radius b which
+traced by a circle of radius b which
 rolls round a circle of radius a
 with an origin set at (x, y)
 
@@ -4616,7 +4616,7 @@ with an origin set at (x, y)
 ### [`iterflower`](#iterflower)
 
 ```py
-def iterflower(cx: int, cy: int, r: int, petals: int, angrot: float):
+def iterflower(cx: int, cy: int, r: int, petals: int, angrot: float) -> list[int, int]:
 ```
 
 Yields 2D points for a flower
@@ -4674,7 +4674,7 @@ Yields the neighboring pixels of point v
 ### [`iterhypotrochoid`](#iterhypotrochoid)
 
 ```py
-def iterhypotrochoid(x: int, y: int, a: float, b: float, c: float, delta: float, lim: float):
+def iterhypotrochoid(x: int, y: int, a: float, b: float, c: float, delta: float, lim: float) -> list[int, int]:
 ```
 
 Yields (int, int) 2D vertices
@@ -4841,7 +4841,7 @@ by endpoints p1 and p2
 ### [`iterlissajouscurve`](#iterlissajouscurve)
 
 ```py
-def iterlissajouscurve(x: int, y: int, a: float, b: float, c: float, d: float, e: float, delta: float, lim: float):
+def iterlissajouscurve(x: int, y: int, a: float, b: float, c: float, d: float, e: float, delta: float, lim: float) -> list[int, int]:
 ```
 
 Yields (int, int) 2D vertices
@@ -4904,7 +4904,7 @@ def iterparallelogram(p1: list[int, int], p2: list[int, int], p3: list[int, int]
 ### [`iterspirograph`](#iterspirograph)
 
 ```py
-def iterspirograph(x: int, y: int, r: int, l: float, k: float, delta: float, lim: float):
+def iterspirograph(x: int, y: int, r: int, l: float, k: float, delta: float, lim: float) -> list[int, int]:
 ```
 
 Yields (int, int) 2D vertices
@@ -4924,6 +4924,25 @@ set at (x, y)
         The vertices of an
         spirograph
         [[x: int, y: int], ...]
+
+
+### [`itersquircle`](#itersquircle)
+
+```py
+def itersquircle(x: int, y: int, r: int) -> list[int, int]:
+```
+
+Yields (int, int) 2D vertices along
+a path defined by radius r as it traces
+a squircle with origin set at (x, y)
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        r   : int radius
+    
+    Yields:
+        [x: int, y: int]
 
 
 ### [`line`](#line)
@@ -4969,7 +4988,7 @@ Draw a line in a bitmap
 ### [`lissajouscurvevert`](#lissajouscurvevert)
 
 ```py
-def lissajouscurvevert(x: int, y: int, a: float, b: float, c: float, d: float, e: float, delta: float, lim: float):
+def lissajouscurvevert(x: int, y: int, a: float, b: float, c: float, d: float, e: float, delta: float, lim: float) -> list[list[int, int]]:
 ```
 
 Returns (int, int) 2D vertices
@@ -8602,7 +8621,7 @@ Draws a Rectangle
 ### [`rectboundarycoords`](#rectboundarycoords)
 
 ```py
-def rectboundarycoords(vlist: list) -> list:
+def rectboundarycoords(vlist: list[list[int, int]]) -> list[list[int, int]]:
 ```
 
 Returns the rectangular bounds of a list of 2D vertices
@@ -9321,7 +9340,7 @@ Returns a list of sparse
 ### [`spiralcontrolpointsvert`](#spiralcontrolpointsvert)
 
 ```py
-def spiralcontrolpointsvert(x: int, y: int, step: int, growthfactor: float, turns: int):
+def spiralcontrolpointsvert(x: int, y: int, step: int, growthfactor: float, turns: int) -> list[list[int, int]]:
 ```
 
 Returns a list of 2D vertices of a Square Spiral
@@ -9345,7 +9364,7 @@ Returns a list of 2D vertices of a Square Spiral
 ### [`spirographvert`](#spirographvert)
 
 ```py
-def spirographvert(x: int, y: int, r: int, l: float, k: float, delta: float, lim: float):
+def spirographvert(x: int, y: int, r: int, l: float, k: float, delta: float, lim: float) -> list[list[int, int]]:
 ```
 
 Returns a list(int, int) of
@@ -9365,6 +9384,57 @@ with an origin set at (x, y)
         The vertices of an
         spirograph in a list
         [[x: int, y: int], ...]
+
+
+### [`squircle`](#squircle)
+
+```py
+def squircle(bmp: array.array, x: int, y: int, r: int, color: int):
+```
+
+Draws a Squircle an intermediate
+between a square and a circle.
+
+    The word "squircle" is a portmanteau
+    of the words "square" and "circle".
+    
+    Squircles have been applied in design
+    and optics.
+    
+    Args:
+        bmp     : unsigned byte array
+                  with bmp format
+        x, y, r : center (x,y)
+                  and radius r
+                  of the circle
+        color   : color of the circle
+        isfilled: toggles if the
+                  circle is filled
+                  True -> filled circle
+                  False -> circle outline
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`squirclevert`](#squirclevert)
+
+```py
+def squirclevert(x: int, y: int, r: int) -> list[list[int, int]]:
+```
+
+Return (int, int) 2D vertices along
+a path defined by radius r as it traces
+a squircle with origin set at (x, y)
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        r   : int radius
+    
+    Returns:
+        list of squircle vertices
+        [[x: int, y: int],...]
 
 
 ### [`subvect`](#subvect)

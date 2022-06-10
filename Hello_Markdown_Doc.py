@@ -68,7 +68,7 @@ def main():
                    key = str.lower)
         savelist("Python BMP Public API", filter(isPublic, l), files[0])
         savelist("Python BMP Internal API", filter(isPrivate, l), files[1])
-        print('Saved to %s\nAll done close brower to finish' % \
+        print('Saved to %s\nAll done close browser to finish' % \
                 (files)) # tell user we are done
         web.open_new(files[0])
         web.open_new(files[1])
