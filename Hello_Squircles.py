@@ -28,7 +28,7 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my = 400 # bitmap size y = x square bitmap
+        mx = my = 500 # bitmap size y = x square bitmap
         bmp = newBMP(mx, my, 4) #8 bit = 256 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         for r in range(1, 16): # increase the radius of the circle from 0 to x

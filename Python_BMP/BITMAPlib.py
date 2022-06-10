@@ -3205,8 +3205,7 @@ def squircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    for p in itersquircle(x, y, r):
-        plotxybit(bmp, p[0], p[1], color)
+    plotpoly(bmp, squirclevert(x, y, r), color)
 
 
 def thickcircle(bmp: array,

@@ -1341,33 +1341,8 @@ def itersquircle(x: int, y: int,
     Yields:
         [x: int, y: int]
     """
-    _sqrt2 = 1.41421356237
-    r1 = r >> 1
-    dx = dy =  int(r1 / _sqrt2)
-    d = (dx, dy)
-    for p in itercirclepart(r1):
-        yield from mirror1stquad(x, y,
-                        addvect(p, d))
-    d = int(r1 + r1 / _sqrt2)
-    _2d = d << 1
-    yp = y - d
-    x1 = x - dx
-    x2 = x + dx
-    y1 = y - dy
-    y2 = y + dy
-    orip = (x1, yp)
-    endp = (x2, yp)
-    _yp = yp + _2d
-    for p in iterline(orip, endp):
+    for p in itersuperellipse(x, y, r, r, 4, 4):
         yield p
-        yield (p[0], _yp)
-    xp = x - d
-    orip = (xp, y1)
-    endp = (xp, y2)
-    _xp = xp + _2d
-    for p in iterline(orip, endp):
-        yield p
-        yield (_xp, p[1])
 
 
 def squirclevert(x: int, y: int,
