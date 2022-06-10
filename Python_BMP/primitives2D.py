@@ -1352,6 +1352,7 @@ def itersquircle(x: int, y: int,
         p = addvect(p, d)
         yield from mirror1stquad(x, y, p)
     d = int(r1 + r1 / _sqrt2)
+    _2d = d + d
     yp = y - d
     x1 = x - dx
     x2 = x + dx
@@ -1359,23 +1360,17 @@ def itersquircle(x: int, y: int,
     y2 = y + dy
     orip = (x1, yp)
     endp = (x2, yp)
+    _yp = yp + _2d
     for p in iterline(orip, endp):
         yield p
-    yp = y + d
-    orip = (x1, yp)
-    endp = (x2, yp)
-    for p in iterline(orip, endp):
-        yield p
+        yield (p[0], _yp)
     xp = x - d
     orip = (xp, y1)
     endp = (xp, y2)
+    _xd = xp + _2d
     for p in iterline(orip, endp):
         yield p
-    xp = x + d
-    orip = (xp, y1)
-    endp = (xp, y2)
-    for p in iterline(orip, endp):
-        yield p
+        yield (_xd, p[1])
 
 
 def squirclevert(x: int, y: int,
