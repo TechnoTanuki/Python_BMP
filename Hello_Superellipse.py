@@ -1,5 +1,5 @@
 notice = """
-       Hello Octopetala Demo
+       Hello Superellipse Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -35,13 +35,12 @@ def main():
         file = f'Hello{f.__name__}.bmp' # file name
         r = 200
         for c in range(1, 16):
-            p(bmp, f(x, y,
-                  r,
-                  r,
-                  c,
-                  c),
-                  c)
-            r -= 8
+            e = c / 2 # exponent set to 1/2 of color
+            p(bmp, f(x, y, # center of superellipse
+                  r, r,  # major and minor axes a = b = r
+                  e, e), # exponents m = n = e
+                  c) # color
+            r -= 8 # decrease size
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
