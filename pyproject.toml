@@ -9,9 +9,9 @@ authors = [
 license = "MIT"
 readme = "README.md"
 python = "^3.7"
-homepage = https://github.com/TechnoTanuki/Python_BMP
-repository = https://github.com/TechnoTanuki/Python_BMP
-documentation = https://github.com/TechnoTanuki/Python_BMP
+homepage = "https://github.com/TechnoTanuki/Python_BMP"
+repository = "https://github.com/TechnoTanuki/Python_BMP"
+documentation = "https://github.com/TechnoTanuki/Python_BMP"
 
 [build-system]
 # Minimum requirements for the build system to execute.
