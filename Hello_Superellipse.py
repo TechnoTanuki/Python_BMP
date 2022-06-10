@@ -35,7 +35,7 @@ def main():
         file = f'Hello{f.__name__}.bmp' # file name
         r = 200
         for c in range(1, 16):
-            e = c / 2 # exponent set to 1/2 of color
+            e = c / 5 # exponent set to 1/5 of color
             p(bmp, f(x, y, # center of superellipse
                   r, r,  # major and minor axes a = b = r
                   e, e), # exponents m = n = e
