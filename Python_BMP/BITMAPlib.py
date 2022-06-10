@@ -3137,7 +3137,7 @@ def circle(bmp: array,
             color = int2BGRarr(color)
             if dobndcheck:
                 for p in itercircle(x, y, r):
-                    (px, py)  = p
+                    (px, py) = p
                     if isinBMPrectbnd(
                             bmp, px, py):
                         s = c(bmp, px, py)
