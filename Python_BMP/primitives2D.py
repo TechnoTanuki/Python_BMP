@@ -153,9 +153,9 @@ def itercirclepartvertlineedge(
         col += 1
 
 
-def iterline(p1: list[int,int],
-             p2: list[int,int]
-            ) -> list[int,int]:
+def iterline(p1: list[int, int],
+             p2: list[int, int]
+            ) -> list[int, int]:
     """Yields (int, int) 2D vertices
     along a line segment defined
     by endpoints p1 and p2
@@ -224,7 +224,7 @@ def lineseg(p1: list[int, int],
     return list(iterline(p1, p2))
 
 
-def iterellipsepart(b: int, a: int):
+def iterellipsepart(b: int, a: int) -> list[int, int]:
     """Yields (int, int) 2D vertices along
     a path defined by major and minor axes
     b and a as it traces one fourth of an
@@ -595,7 +595,7 @@ def circlevert(x: int, y: int, r: int
 
 def arcvert(x: int, y: int, r: int,
             startdegangle: float,
-            enddegangle: float):
+            enddegangle: float) -> list[list[int, int]]:
     """Returns a list[(int, int)] of 2D vertices
     along a path defined by radius r as it
     traces an arc with origin set at (x, y)
@@ -629,7 +629,7 @@ def arcvert(x: int, y: int, r: int,
 
 
 def rectboundarycoords(
-        vlist: list) -> list:
+        vlist: list[list[int, int]]) -> list[list[int, int]]:
     """Returns the rectangular bounds of a list of 2D vertices
 
     Args:
@@ -689,7 +689,7 @@ def itergetneighbors(v: list[int, int],
 def getneighborlist(
         v: list[int, int],
         mx: int, my: int,
-        includecenter: bool) -> list:
+        includecenter: bool) -> list[list[int, int]]:
     """Returns the neighboring pixels of point v
 
     Args:
@@ -710,7 +710,7 @@ def spiralcontrolpointsvert(
         x: int, y: int,
         step: int,
         growthfactor: float,
-        turns: int):
+        turns: int) -> list[list[int, int]] :
     """Returns a list of 2D vertices of a Square Spiral
 
     Args:
@@ -824,7 +824,7 @@ def entirecircleisinboundary(
         x: int, y: int,
         minx: int, maxx: int,
         miny: int, maxy: int,
-        r: int):
+        r: int) -> bool:
     """Checks if an entire circle
     is within a rectagular area
 
@@ -851,7 +851,7 @@ def entireellipseisinboundary(
         x: int, y: int,
         minx: int, maxx: int,
         miny: int, maxy: int,
-        b: int, a: int):
+        b: int, a: int) -> bool:
     """Checks if an entire ellipse
     is within a rectagular area
 
@@ -897,7 +897,8 @@ def ellipsevert(x: int, y: int,
 def iterspirograph(
         x: int, y:int, r: int,
         l: float, k: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[int, int]:
     """Yields (int, int) 2D vertices
     along a path defined by spirograph
     scaling factor r and dimensionless
@@ -933,7 +934,8 @@ def iterspirograph(
 def spirographvert(
         x: int, y: int, r: int,
         l: float, k: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[list[int, int]]:
     """Returns a list(int, int) of
     2D vertices along a path defined
     by a spirograph with scaling factor r
@@ -960,7 +962,8 @@ def iterlissajouscurve(
         x: int, y: int,
         a: float, b: float,
         c: float, d: float, e: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[int, int]:
     """Yields (int, int) 2D vertices
     along a path defined by lissajous
     curve axis scaling factors a and b
@@ -994,7 +997,8 @@ def lissajouscurvevert(
         a: float, b: float,
         c: float, d: float,
         e: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[list[int, int]]:
     """Returns (int, int) 2D vertices
     along a path defined by a lissajous curve
     axis scaling factors a and b and
@@ -1021,7 +1025,8 @@ def lissajouscurvevert(
 
 def itercircleinvolute(
         x: int, y: int, a: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[int, int]:
     """Yields (int, int) 2D vertices
     along a path defined by the involute
     of a circle with scaling factor a
@@ -1056,7 +1061,8 @@ def itercircleinvolute(
 
 def circleinvolutevert(
         x: int, y: int, a: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[list[int, int]]:
     """Returns (int, int) 2D vertices
     along a path defined by the involute
     of a circle with scaling factor a
@@ -1088,10 +1094,11 @@ def circleinvolutevert(
 def iterepicycloid(
         x: int, y: int,
         a: float, b: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[int, int]:
     """Yields (int, int) 2D vertices
     along a path defined by epicycloid
-    traced by a circleof radius b which
+    traced by a circle of radius b which
     rolls round a circle of radius a
     with an origin set at (x, y)
 
@@ -1123,7 +1130,8 @@ def iterepicycloid(
 def epicycloidvert(
         x: int, y: int,
         a: float, b: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[list[int, int]]:
     """Returns (int, int) 2D vertices
     along a path defined by epicycloid
     traced by a circle of radius b which
@@ -1149,7 +1157,8 @@ def epicycloidvert(
 def iterhypotrochoid(
         x: int, y: int,
         a: float, b: float, c: float,
-        delta: float, lim: float):
+        delta: float, lim: float
+        ) -> list[int, int]:
     """Yields (int, int) 2D vertices
     along a path defined by a hypotrochoid
     traced by a point from with distance c
@@ -1188,7 +1197,8 @@ def iterhypotrochoid(
 def hypotrochoidvert(
             x: int, y: int,
             a: float, b: float, c: float,
-            delta: float, lim: float):
+            delta: float, lim: float
+            ) -> list[list[int, int]]:
     """Returns (int, int) 2D vertices
     along a path defined by a hypotrochoid
     traced by a point with distance c from
@@ -1216,7 +1226,7 @@ def hypotrochoidvert(
 
 
 def iterflower(cx: int, cy: int, r :int,
-           petals: int, angrot: float):
+           petals: int, angrot: float)  -> list[int, int]:
     """Yields 2D points for a flower
 
     Args:
@@ -1240,7 +1250,7 @@ def iterflower(cx: int, cy: int, r :int,
         yield (x, y)
 
 
-def flowervert(cx: int, cy: int, r :int, petals: int, angrot: float):
+def flowervert(cx: int, cy: int, r :int, petals: int, angrot: float)  -> list[list[int, int]]:
     """Returns a list of 2D points for a flower
 
     Args:
@@ -1256,7 +1266,7 @@ def flowervert(cx: int, cy: int, r :int, petals: int, angrot: float):
                      petals, angrot))
 
 
-def iterdrawvec(u: list, v: list, headsize: int):
+def iterdrawvec(u: list, v: list, headsize: int)  -> list[list[int, int]]:
     """Yields a vector (line segment with arrow head)
 
     Args:
@@ -1315,3 +1325,52 @@ def iterdrawvec(u: list, v: list, headsize: int):
     else:
         for p in _hadd(v, hm, a1, a2):
             yield p
+
+
+def itersquircle(x: int, y: int,
+        r: int) -> list[int, int]:
+    """Yields (int, int) 2D vertices along
+    a path defined by radius r as it traces
+    a squircle with origin set at (x, y)
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        r   : int radius
+
+    Yields:
+        [x: int, y: int]
+    """
+    _sqrt2 = 1.41421356237
+    r >>= 1
+    dx = dy =  int(r / _sqrt2)
+    d = (dx, dy)
+    x1 = x + dx
+    y1 = y + dy
+    for p in itercirclepart(r):
+        addvect(p, d)
+        yield from mirror1stquad(x, y, p)
+    orip = (x, y)
+    endp = (x + dx, y)
+    for p in iterline(orip, endp):
+        yield from mirror1stquad(x, y, p)
+    endp = (x, y + dy)
+    for p in iterline(orip, endp):
+        yield from mirror1stquad(x, y, p)
+
+
+def squirclevert(x: int, y: int,
+        r: int) -> list[list[int, int]]:
+    """Return (int, int) 2D vertices along
+    a path defined by radius r as it traces
+    a squircle with origin set at (x, y)
+
+    Args:
+        x, y: int centerpoint
+                  coordinates
+        r   : int radius
+
+    Returns:
+        list of squircle vertices
+        [[x: int, y: int],...]
+    """
