@@ -1342,21 +1342,40 @@ def itersquircle(x: int, y: int,
         [x: int, y: int]
     """
     _sqrt2 = 1.41421356237
-    r >>= 1
-    dx = dy =  int(r / _sqrt2)
+
+    r1 = r >> 1
+    dx = dy =  int(r1 / _sqrt2)
     d = (dx, dy)
     x1 = x + dx
     y1 = y + dy
-    for p in itercirclepart(r):
-        addvect(p, d)
+    for p in itercirclepart(r1):
+        p = addvect(p, d)
         yield from mirror1stquad(x, y, p)
-    orip = (x, y)
-    endp = (x + dx, y)
+    d = int(r1 + r1 / _sqrt2)
+    yp = y - d
+    x1 = x - dx
+    x2 = x + dx
+    y1 = y - dy
+    y2 = y + dy
+    orip = (x1, yp)
+    endp = (x2, yp)
     for p in iterline(orip, endp):
-        yield from mirror1stquad(x, y, p)
-    endp = (x, y + dy)
+        yield p
+    yp = y + d
+    orip = (x1, yp)
+    endp = (x2, yp)
     for p in iterline(orip, endp):
-        yield from mirror1stquad(x, y, p)
+        yield p
+    xp = x - d
+    orip = (xp, y1)
+    endp = (xp, y2)
+    for p in iterline(orip, endp):
+        yield p
+    xp = x + d
+    orip = (xp, y1)
+    endp = (xp, y2)
+    for p in iterline(orip, endp):
+        yield p
 
 
 def squirclevert(x: int, y: int,
@@ -1374,3 +1393,4 @@ def squirclevert(x: int, y: int,
         list of squircle vertices
         [[x: int, y: int],...]
     """
+    return list(itersquircle(x, y, r))

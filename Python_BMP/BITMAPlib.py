@@ -109,6 +109,7 @@ from .primitives2D import(
     iterline,
     iterparallelogram,
     iterspirograph,
+    itersquircle,
     iterlissajouscurve,
     itercircleinvolute,
     listinrecbnd,
@@ -117,6 +118,7 @@ from .primitives2D import(
     regpolygonvert,
     sortrecpoints,
     spirographvert,
+    squirclevert,
     lissajouscurvevert,
     spiralcontrolpointsvert,
     verticalvert
@@ -3171,6 +3173,38 @@ def circle(bmp: array,
                         x, y, r):
                 plotxybit(bmp, p[0],
                         p[1], color)
+
+
+
+def squircle(bmp: array,
+        x: int, y: int, r: int,
+        color: int):
+    """Draws a Squircle an intermediate
+    between a square and a circle.
+
+    The word "squircle" is a portmanteau
+    of the words "square" and "circle".
+
+    Squircles have been applied in design
+    and optics.
+
+    Args:
+        bmp     : unsigned byte array
+                  with bmp format
+        x, y, r : center (x,y)
+                  and radius r
+                  of the circle
+        color   : color of the circle
+        isfilled: toggles if the
+                  circle is filled
+                  True -> filled circle
+                  False -> circle outline
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    for p in itersquircle(x, y, r):
+        plotxybit(bmp, p[0], p[1], color)
 
 
 def thickcircle(bmp: array,
