@@ -4945,6 +4945,23 @@ a squircle with origin set at (x, y)
         [x: int, y: int]
 
 
+### [`itersuperellipse`](#itersuperellipse)
+
+```py
+def itersuperellipse(cx: int, cy: int, a: float, b: float, m: float, n: float) -> list[int, int]:
+```
+
+Yields 2D points for a superellipse
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : major and minor axes
+        m, n   : exponents
+    
+    Yields:
+        (x: int, y: int)
+
+
 ### [`line`](#line)
 
 ```py
@@ -9450,6 +9467,24 @@ Subtracts vectors u and v by subtracting their components
     
     Returns:
         list of ints or floats
+
+
+### [`superellipsevert`](#superellipsevert)
+
+```py
+def superellipsevert(cx: int, cy: int, a: int, b: int, m: float, n: float) -> list[list[int, int]]:
+```
+
+Returns 2D points for a superellipse
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : major and minor axes
+        m, n   : exponents
+    
+    Yields:
+        list of superellipse vertices
+        [(x: int, y: int),...]
 
 
 ### [`surfplot3Dvertandsurface`](#surfplot3Dvertandsurface)
