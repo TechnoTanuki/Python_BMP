@@ -37,12 +37,13 @@ def main():
         d = 1/120 # angle increment
         lim = pi * 10 + d # angle limit
         color = 10
-        plotlines(bmp, f(x, y, # position the epicycloid
+        for c in range(1, 16):
+                plotlines(bmp, f(x, y, # position the epicycloid
                  300, # radius of fixed circle
                  200, # radius of rolling circle
-                 100, # distance from center of rolling circle
+                 100 - c * 8, # distance from center of rolling circle
                  d, lim),# angle step and limit
-                color) # connect the dots with lines
+                c) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
