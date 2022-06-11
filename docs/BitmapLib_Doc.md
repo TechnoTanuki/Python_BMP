@@ -2807,6 +2807,24 @@ Gamma correction to a circular area
         byref modified unsigned byte array
 
 
+### [`gearcurvevert`](#gearcurvevert)
+
+```py
+def gearcurvevert(cx: int, cy: int, a: int, b: int, n: int) -> list[list[int, int]]:
+```
+
+Returns list of 2D points for a gear curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : gear radius parameters
+        n      : number of gears
+    
+    Returns:
+        list of 2D vertices for a gear curve
+        [(x: int, y: int),...]
+
+
 ### [`genpiechartdata`](#genpiechartdata)
 
 ```py
@@ -4626,6 +4644,23 @@ Yields 2D points for a flower
                     and radius r
         petals    : number of petals
         angrot    : angle of rotation
+    
+    Yields:
+        (x: int, y: int)
+
+
+### [`itergearcurve`](#itergearcurve)
+
+```py
+def itergearcurve(cx: int, cy: int, a: int, b: int, n: int) -> list[int, int]:
+```
+
+Yields 2D points for a gear curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : gear radius parameters
+        n      : number of gears
     
     Yields:
         (x: int, y: int)
@@ -9482,7 +9517,7 @@ Returns 2D points for a superellipse
         a, b   : major and minor axes
         m, n   : exponents
     
-    Yields:
+    Returns:
         list of superellipse vertices
         [(x: int, y: int),...]
 
