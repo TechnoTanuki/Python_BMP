@@ -1,5 +1,5 @@
 notice = """
-       Hello Superellipse Demo
+        Hello Gear Curve Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
