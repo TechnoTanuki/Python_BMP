@@ -17,6 +17,7 @@
 from math import(
     sin,
     cos,
+    tanh,
     radians,
     comb
     )
@@ -1398,9 +1399,48 @@ def superellipsevert(cx: int, cy: int,
         a, b   : major and minor axes
         m, n   : exponents
 
-    Yields:
+    Returns:
         list of superellipse vertices
         [(x: int, y: int),...]
     """
     return list(itersuperellipse(cx, cy,
                              a, b, m, n))
+
+
+def itergearcurve(cx: int, cy: int,
+        a: int, b: int, n: int
+        ) -> list[int, int]:
+    """Yields 2D points for a gear curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : gear radius parameters
+        n      : number of gears
+
+    Yields:
+        (x: int, y: int)
+    """
+
+    for i in range(360):
+        t = radians(i)
+        r = a + b * tanh(b * sin(n * t))
+        x = cx + int(r * cos(t))
+        y = cy + int(r * sin(t))
+        yield (x, y)
+
+
+def gearcurvevert(cx: int, cy: int,
+        a: int, b: int, n: int
+        ) -> list[list[int, int]]:
+    """Returns list of 2D points for a gear curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a, b   : gear radius parameters
+        n      : number of gears
+
+    Returns:
+        list of 2D vertices for a gear curve
+        [(x: int, y: int),...]
+    """
+    return list(itergearcurve(cx, cy,a, b, n))
