@@ -1449,7 +1449,7 @@ def gearcurvevert(cx: int, cy: int,
 def hilbertvert(l: list,
                 u: list[int, int],
                 v: list[int, int, int, int],
-                n):
+                n: int):
     """Returns list of 2D points for a Hilbert curve
 
     Args:
