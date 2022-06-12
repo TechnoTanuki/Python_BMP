@@ -1476,8 +1476,8 @@ def hilbertvert(l: list,
         v = scalarmulvect(v, 0.5)
         (v0, v1, v2, v3) = v
         n -= 1
-        hilbertvert(l, u,
-                 (v2, v3, v0, v1), n)
+        w = (v2, v3, v0, v1)
+        hilbertvert(l, u, w, n)
         hilbertvert(l,
           addvect(u, (v0, v1)), v, n)
         hilbertvert(l,
@@ -1485,6 +1485,6 @@ def hilbertvert(l: list,
                                    v, n)
         hilbertvert(l,
           addvect(u, (v0 + i, v1 + j)),
-                 (-v2, -v3, -v0, -v1), n)
+                 scalarmulvect(w, -1), n)
 
 
