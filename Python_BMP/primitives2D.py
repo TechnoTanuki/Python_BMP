@@ -1477,7 +1477,7 @@ def hilbertvert(l: list,
         hilbertvert(l, u,
                  (v2, v3, v0, v1), n)
         hilbertvert(l,
-          addvect(u, (v0, v1)),v, n)
+          addvect(u, (v0, v1)), v, n)
         hilbertvert(l,
           addvect(u, (v0 + v2, v1 + v3)),
                                    v, n)
