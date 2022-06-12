@@ -35,7 +35,7 @@ def main():
         f(l, # list is returned byref by hilbertvert
         (0, 0), # origin point
         (511, 0, 0, 511), # set extents and orientation
-        5) # number of recursions
+        6) # number of recursions
         plotlines(bmp, l, 1) # plot the Hilbert curve
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
