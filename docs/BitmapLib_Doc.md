@@ -3535,6 +3535,26 @@ Returns a list of vertices
               z: float)
 
 
+### [`hilbertvert`](#hilbertvert)
+
+```py
+def hilbertvert(l: list, u: list[int, int], v: list[int, int, int, int], n) -> list[list[int, int]]:
+```
+
+Returns list of 2D points for a Hilbert curve
+
+    Args:
+        u: origin point (x: int, y: int)
+        v: sets orientation and extent
+           of the Hilbert Curve
+        n: number of recursions
+           or order of the curve
+    
+    Returns:
+        list of 2D vertices for a Hilbert curve
+        [(x: int, y: int),...]
+
+
 ### [`horibrightnessgrad2circregion2file`](#horibrightnessgrad2circregion2file)
 
 ```py
