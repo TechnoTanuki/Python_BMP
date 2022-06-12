@@ -90,6 +90,7 @@ from .primitives2D import(
     gearcurvevert,
     entirecircleisinboundary,
     entireellipseisinboundary,
+    hilbertvert,
     hypotrochoidvert,
     horizontalvert,
     isinrectbnd,

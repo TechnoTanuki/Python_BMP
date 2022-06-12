@@ -1444,3 +1444,45 @@ def gearcurvevert(cx: int, cy: int,
         [(x: int, y: int),...]
     """
     return list(itergearcurve(cx, cy,a, b, n))
+
+
+def hilbertvert(l: list,
+                u: list[int, int],
+                v: list[int, int, int, int],
+                n) -> list[list[int, int]]:
+    """Returns list of 2D points for a Hilbert curve
+
+    Args:
+        u: origin point (x: int, y: int)
+        v: sets orientation and extent
+           of the Hilbert Curve
+        n: number of recursions
+           or order of the curve
+
+    Returns:
+        list of 2D vertices for a Hilbert curve
+        [(x: int, y: int),...]
+    """
+    if n <= 0:
+        (v0, v1, v2, v3) = v
+        l += [roundvect(
+              addvect(u, ((v0 + v2) / 2,
+                          (v1 + v3) / 2)))]
+    else:
+        i = v[2]
+        j = v[3]
+        v = scalarmulvect(v, 0.5)
+        (v0, v1, v2, v3) = v
+        n -= 1
+        hilbertvert(l, u,
+                 (v2, v3, v0, v1), n)
+        hilbertvert(l,
+          addvect(u, (v0, v1)),v, n)
+        hilbertvert(l,
+          addvect(u, (v0 + v2, v1 + v3)),
+                                   v, n)
+        hilbertvert(l,
+          addvect(u, (v0 + i, v1 + j)),
+                 (-v2, -v3, -v0, -v1), n)
+
+
