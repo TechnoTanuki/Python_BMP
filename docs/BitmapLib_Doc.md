@@ -3538,12 +3538,13 @@ Returns a list of vertices
 ### [`hilbertvert`](#hilbertvert)
 
 ```py
-def hilbertvert(l: list, u: list[int, int], v: list[int, int, int, int], n) -> list[list[int, int]]:
+def hilbertvert(l: list, u: list[int, int], v: list[int, int, int, int], n: int):
 ```
 
 Returns list of 2D points for a Hilbert curve
 
     Args:
+        l: Empty list for return value
         u: origin point (x: int, y: int)
         v: sets orientation and extent
            of the Hilbert Curve
@@ -3551,7 +3552,8 @@ Returns list of 2D points for a Hilbert curve
            or order of the curve
     
     Returns:
-        list of 2D vertices for a Hilbert curve
+        byref list of 2D vertices for
+        a Hilbert curve
         [(x: int, y: int),...]
 
 
