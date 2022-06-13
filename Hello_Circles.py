@@ -31,7 +31,7 @@ def main():
         mx = my = 512 # bitmap size y = x square bitmap
         bmp = newBMP(mx, my, 8) #8 bit = 256 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        for r in range(x): # increase the radius of the circle from 0 to x
+        for r in range(10, 250, 8): # increase the radius of the circle from 0 to x
                 f(bmp, x, y, r, r, False) # draw circles
         #circle(bmp bytearray, x int, y int, r int, c int, isfilled bool)
         file = f'Hello{f.__name__}.bmp' # file name
