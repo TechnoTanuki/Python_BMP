@@ -1523,3 +1523,5 @@ def cornuspiralvert(cx: int, cy: int,
         [(x: int, y: int), ...]
     """
     return list(itercornuspiral(cx, cy, r))
+
+
