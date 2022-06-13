@@ -57,6 +57,7 @@ from .mathlib import(
     andvect,
     anglebetween2Dlines,
     centerpoint,
+    computerotvec,
     cosaffin,
     distance,
     enumbits,
@@ -84,6 +85,7 @@ from .primitives2D import(
     arcvert,
     bsplinevert,
     circleinvolutevert,
+    cornuspiralvert,
     ellipsevert,
     epicycloidvert,
     flowervert,
@@ -100,6 +102,7 @@ from .primitives2D import(
     itercirclepart,
     itercirclepartlineedge,
     itercirclepartvertlineedge,
+    itercornuspiral,
     iterdrawvec,
     iterellipse,
     iterellipsepart,
@@ -1759,7 +1762,7 @@ def line(bmp: array,
                 b = bmp[s]
                 mask = 1 << (7 - (p[0] % 8))
                 if color == 1:
-                    b |=  mask
+                    b ^=  mask
                 elif b & mask > 0:
                     b ^=  mask
                 bmp[s] = b

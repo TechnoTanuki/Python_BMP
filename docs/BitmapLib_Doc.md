@@ -999,6 +999,21 @@ Mix a byte luminosity value to
         int color val
 
 
+### [`computerotvec`](#computerotvec)
+
+```py
+def computerotvec(degrot: float) -> list[float, float]:
+```
+
+2D rotation vector based on angle degrot in degrees
+
+    Args:
+        degrot: rotation in degrees
+    
+    Returns:
+        [float, float] rotation vector
+
+
 ### [`conevertandsurface`](#conevertandsurface)
 
 ```py
@@ -1197,6 +1212,23 @@ a destination unsigned byte array
     Returns:
         byref modified destBMP
         (unsigned byte array)
+
+
+### [`cornuspiralvert`](#cornuspiralvert)
+
+```py
+def cornuspiralvert(cx: int, cy: int, r: int) -> list[list[int, int]]:
+```
+
+Returns 2D points for a cornu spiral
+
+    Args:
+        cx, cy : center (cx, cy)
+        r      : radius
+    
+    Returns:
+        list of vertices for a cornu spiral
+        [(x: int, y: int), ...]
 
 
 ### [`cosaffin`](#cosaffin)
@@ -4551,6 +4583,22 @@ Scan a rectangular area and yield scan lines
     Yields:
         unsigned byte array
         scanlines of the area
+
+
+### [`itercornuspiral`](#itercornuspiral)
+
+```py
+def itercornuspiral(cx: int, cy: int, r: int) -> list[int, int]:
+```
+
+Yields 2D points for a cornu spiral
+
+    Args:
+        cx, cy : center (cx, cy)
+        r      : radius
+    
+    Yields:
+        (x: int, y: int)
 
 
 ### [`iterdrawvec`](#iterdrawvec)

@@ -1488,3 +1488,41 @@ def hilbertvert(l: list,
                  scalarmulvect(w, -1), n)
 
 
+def itercornuspiral(cx: int, cy: int,
+        r: int) -> list[int, int]:
+    """Yields 2D points for a cornu spiral
+
+    Args:
+        cx, cy : center (cx, cy)
+        r      : radius
+
+    Yields:
+        (x: int, y: int)
+    """
+    Ex = 0
+    Ey = 0
+    c = 0.01745329251994329576923690768489
+    k = r * c
+    for i in range(360):
+        t = i * c
+        t *= t
+        Ex += k * cos(t) # do integration
+        Ey += k * sin(t)
+        x = cx + int(Ex)
+        y = cy + int(Ey)
+        yield (x, y)
+
+
+def cornuspiralvert(cx: int, cy: int,
+        r: int) -> list[list[int, int]]:
+    """Returns 2D points for a cornu spiral
+
+    Args:
+        cx, cy : center (cx, cy)
+        r      : radius
+
+    Returns:
+        list of vertices for a cornu spiral
+        [(x: int, y: int), ...]
+    """
+    return list(itercornuspiral(cx, cy, r))
