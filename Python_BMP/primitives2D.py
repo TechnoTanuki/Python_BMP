@@ -1424,9 +1424,8 @@ def itergearcurve(cx: int, cy: int,
     for i in range(360):
         t = radians(i)
         r = a + b * tanh(b * sin(n * t))
-        x = cx + int(r * cos(t))
-        y = cy + int(r * sin(t))
-        yield (x, y)
+        yield (cx + int(r * cos(t)),
+               cy + int(r * sin(t)))
 
 
 def gearcurvevert(cx: int, cy: int,
@@ -1499,18 +1498,16 @@ def itercornuspiral(cx: int, cy: int,
     Yields:
         (x: int, y: int)
     """
-    Ex = 0
-    Ey = 0
     c = 0.01745329251994329576923690768489
     k = r * c
+    x = cx
+    y = cy
     for i in range(360):
         t = i * c
         t *= t
-        Ex += k * cos(t) # do integration
-        Ey += k * sin(t)
-        x = cx + int(Ex)
-        y = cy + int(Ey)
-        yield (x, y)
+        x += k * cos(t) # do integration
+        y += k * sin(t)
+        yield (int(x), int(y))
 
 
 def cornuspiralvert(cx: int, cy: int,
