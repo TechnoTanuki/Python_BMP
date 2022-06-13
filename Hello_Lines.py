@@ -31,7 +31,7 @@ def main():
         bmp = newBMP(mx, my, 8) # 8 bit = 256 color
         (mx, my) = bottomrightcoord(bmp)
         my >>= 1
-        for y in range(0, my):
+        for y in range(0, my, 5):
                 l = y << 1
                 f(bmp, 0, l, mx, l, y) # line(bmp bytearray,x1 int,y1 int,x2 int, y2 int,color int) all unsigned
         file = f'Hello{f.__name__}.bmp' # file name
