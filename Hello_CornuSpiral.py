@@ -1,5 +1,5 @@
 notice = """
-      Hello Hilbert Curve Demo
+      Hello Cornu Spiral Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
