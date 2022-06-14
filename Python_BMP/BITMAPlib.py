@@ -5648,7 +5648,7 @@ def thickplotpoly(bmp: array,
 
 
 def gradthickplotpoly(bmp: array,
-        vertlist: list,
+        vertlist: list[list[Number, Number]],
         penradius: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float]):
@@ -5681,29 +5681,80 @@ def gradthickplotpoly(bmp: array,
         thickplotpoly(bmp, vertlist, i, c)
 
 
+def gradplotlines(bmp: array,
+        vertlist: list[list[Number, Number]] ,
+        penradius: int,
+        lumrange: list[int, int],
+        RGBfactors: list[float, float, float]):
+    """Draws connectes lines of a given gradient and thickness
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        vertlist  : [(x,y)...] the
+                    list of vertices
+        penradius : radius of pen
+        lumrange  : [byte,byte] range
+                    of the gradient
+        RGBfactors: [r, g, b] value
+                    range from
+                    0.0 to 1.0
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    lum1, lumrang = _rng2bsndel(lumrange)
+    for i in range(penradius, 0, -1):
+        c = colormix(int(
+                lum1 + (lumrang * i / penradius)),
+                RGBfactors)
+        if bmp[_bmclrbits] != 24:
+            c = matchRGBtopal(
+                int2RGBarr(c),
+                getallRGBpal(bmp))
+        plotlines(bmp, vertlist, c, i)
+
+
+
 def plotlines(bmp: array,
-        vertlist: list, color: int):
+        vertlist: list[list[Number, Number]],
+        color: int,
+        penradius: int = 1
+        ):
     """Draws connected lines defined by a list of vertices
 
     Args:
-        bmp     : unsigned byte array
-                  with bmp format
-        vertlist: [(x:uint,y:uint),...]
-                  list of vertices
-        color   : color of the lines
+        bmp      : unsigned byte array
+                   with bmp format
+        vertlist : [(x:uint,y:uint),...]
+                   list of vertices
+        color    : color of the lines
+        penradius: optional parameter
+                   for thick line
+
 
     Returns:
         byref modified unsigned byte array
     """
     vertcount = len(vertlist)
-    for i in range(vertcount):
-        if i > 0:
-            linevec(bmp, vertlist[i - 1],
-                         vertlist[i], color)
+    if penradius <= 1:
+        for i in range(vertcount):
+            if i > 0:
+                linevec(bmp,
+                    vertlist[i - 1],
+                    vertlist[i], color)
+    elif penradius >= 2:
+        for i in range(vertcount):
+            if i > 0:
+                thickroundline(bmp,
+                    vertlist[i - 1],
+                    vertlist[i],
+                    penradius, color)
 
 
 def plotpoly(bmp: array,
-        vertlist: list, color: int):
+        vertlist: list[list[Number, Number]],
+        color: int):
     """Draws a polygon defined by a list of vertices
 
     Args:
@@ -5721,7 +5772,8 @@ def plotpoly(bmp: array,
 
 
 def plotpolylist(bmp: array,
-        polylist: list, color: int):
+        polylist: list[list[Number, Number]],
+        color: int):
     """Draws a list of polygons of a given color
 
     Args:
