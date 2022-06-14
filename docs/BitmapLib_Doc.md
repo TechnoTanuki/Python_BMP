@@ -3415,6 +3415,30 @@ Ellipical gradient
         byref modified unsigned byte array
 
 
+### [`gradplotlines`](#gradplotlines)
+
+```py
+def gradplotlines(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+```
+
+Draws connectes lines of a given gradient and thickness
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        vertlist  : [(x,y)...] the
+                    list of vertices
+        penradius : radius of pen
+        lumrange  : [byte,byte] range
+                    of the gradient
+        RGBfactors: [r, g, b] value
+                    range from
+                    0.0 to 1.0
+    
+    Returns:
+        byref modified unsigned byte array
+
+
 ### [`gradthickcircle`](#gradthickcircle)
 
 ```py
@@ -3470,7 +3494,7 @@ Thick Ellipse with a Gradient fill
 ### [`gradthickplotpoly`](#gradthickplotpoly)
 
 ```py
-def gradthickplotpoly(bmp: array.array, vertlist: list, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+def gradthickplotpoly(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
 ```
 
 Draws a polygon of a given gradient and thickness
@@ -7673,17 +7697,20 @@ Draws an italic string vertically with dots
 ### [`plotlines`](#plotlines)
 
 ```py
-def plotlines(bmp: array.array, vertlist: list, color: int):
+def plotlines(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], color: int, penradius: int = 1):
 ```
 
 Draws connected lines defined by a list of vertices
 
     Args:
-        bmp     : unsigned byte array
-                  with bmp format
-        vertlist: [(x:uint,y:uint),...]
-                  list of vertices
-        color   : color of the lines
+        bmp      : unsigned byte array
+                   with bmp format
+        vertlist : [(x:uint,y:uint),...]
+                   list of vertices
+        color    : color of the lines
+        penradius: optional parameter
+                   for thick line
+    
     
     Returns:
         byref modified unsigned byte array
@@ -7692,7 +7719,7 @@ Draws connected lines defined by a list of vertices
 ### [`plotpoly`](#plotpoly)
 
 ```py
-def plotpoly(bmp: array.array, vertlist: list, color: int):
+def plotpoly(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], color: int):
 ```
 
 Draws a polygon defined by a list of vertices
@@ -7753,7 +7780,7 @@ def plotpolyfillist(bmp: array.array, sides: list[list[list[list]], list[list[fl
 ### [`plotpolylist`](#plotpolylist)
 
 ```py
-def plotpolylist(bmp: array.array, polylist: list, color: int):
+def plotpolylist(bmp: array.array, polylist: list[list[numbers.Number, numbers.Number]], color: int):
 ```
 
 Draws a list of polygons of a given color
