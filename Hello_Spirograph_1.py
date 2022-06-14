@@ -41,7 +41,7 @@ def main():
                   200, # control spirograph size
                   1, .3, # controls spirograph shape
                   d, lim), # angle step and limit
-                 color) # connect the dots with lines
+                 color, 5) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
