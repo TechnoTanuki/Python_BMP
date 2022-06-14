@@ -31,8 +31,10 @@ def main():
         mx = my = 512 # bitmap size
         bmp = newBMP(mx, my, 4) # 16 color
         file = f'Hello{f.__name__}.bmp' # file name
-        l = f(5, 5, 500) # cornuspiralvert(x, y, radius)
-        plotlines(bmp, l, 11) # plot the Cornu Spiral
+        for c in range (1, 3):
+                s = c << 1 + 2
+                l = f(s, s, 500 / c ) # cornuspiralvert(x, y, radius)
+                plotlines(bmp, l, 8 + c, 2 if c == 1 else 1) # plot the Cornu Spiral
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
