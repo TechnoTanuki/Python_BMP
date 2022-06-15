@@ -1525,3 +1525,37 @@ def cornuspiralvert(cx: int, cy: int,
     return list(itercornuspiral(cx, cy, r))
 
 
+def iterheartcurve(cx: int, cy: int,
+        s: int) -> list[int, int]:
+    """Yields 2D points for a heart curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        s      : size
+
+    Yields:
+        (x: int, y: int)
+    """
+    c = 0.01745329251994329576923690768489
+    for i in range(360):
+        t = i * c
+        x = 16 * (sin(t) ** 3)
+        y = 13 * cos(t) - 5 * cos(2 * t) \
+           - 2 * cos(3 * t) - cos(4 * t)
+        yield (cx + int(s * x),
+               cy - int(s * y))
+
+
+def heartcurvevert(cx: int, cy: int,
+        s: int) -> list[int, int]:
+    """Returns 2D points for a heart curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        s      : size
+
+    Returns:
+        list of 2D vertices for a heart curve
+        [(x: int, y: int), ...]
+    """
+    return list(iterheartcurve(cx, cy, s))
