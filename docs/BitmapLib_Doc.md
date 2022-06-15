@@ -3573,6 +3573,23 @@ List of 2d vertices as spheres of a given color
         unsigned byte array
 
 
+### [`heartcurvevert`](#heartcurvevert)
+
+```py
+def heartcurvevert(cx: int, cy: int, s: int) -> list[int, int]:
+```
+
+Returns 2D points for a heart curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        s      : size
+    
+    Returns:
+        list of 2D vertices for a heart curve
+        [(x: int, y: int), ...]
+
+
 ### [`hexahedravert`](#hexahedravert)
 
 ```py
@@ -4798,6 +4815,22 @@ Yields the neighboring pixels of point v
     
     Yields:
         [x: int, y: int]
+
+
+### [`iterheartcurve`](#iterheartcurve)
+
+```py
+def iterheartcurve(cx: int, cy: int, s: int) -> list[int, int]:
+```
+
+Yields 2D points for a heart curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        s      : size
+    
+    Yields:
+        (x: int, y: int)
 
 
 ### [`iterhypotrochoid`](#iterhypotrochoid)
