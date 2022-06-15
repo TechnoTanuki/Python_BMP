@@ -30,12 +30,12 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my = 400 # bitmap size
+        mx = my = 408 # bitmap size
         bmp = newBMP(mx, my, 4) # 16 color
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         file = f'Hello{f.__name__}.bmp' # file name
         d = 1/40 # angle increment
-        lim = pi * 20 + d # angle limit
+        lim = pi * 21 + d # angle limit
         color = 10
         plotlines(bmp,f(x, y, # position the circle involute
                  3, # control size of step
