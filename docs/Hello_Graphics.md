@@ -2,7 +2,7 @@
 Check samples with Hello_something.py for sample code on how to do stuff
 * The code did a functional approach (no classes) ... dont add classes or I might refactor lmao
 
-# API Documentation Generator
+# API Documentation Generator (run this to update Public and Internal API)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Markdown_Doc.py
 
 ## Public API
@@ -32,6 +32,8 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 **Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
 * mini math lib: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
+* parametric curves https://mathworld.wolfram.com/topics/Curves.html
+* moar curves https://mathcurve.com
 
 **Colors**
 * X11 color source: https://cgit.freedesktop.org/xorg/xserver/tree/os/oscolor.c
