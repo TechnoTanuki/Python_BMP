@@ -5,10 +5,10 @@ Check samples with Hello_something.py for sample code on how to do stuff
 # API Documentation Generator
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Markdown_Doc.py
 
-# Public API
+## Public API
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLib_Doc.md
 
-# Internal API
+## Internal API
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLibInternals_Doc.md
 
 # References
