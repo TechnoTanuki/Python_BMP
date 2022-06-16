@@ -2,6 +2,9 @@
 Check samples with Hello_something.py for sample code on how to do stuff
 * The code did a functional approach (no classes) ... dont add classes or I might refactor lmao
 
+# API Documentation Generator
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Markdown_Doc.py
+
 # Public API
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLib_Doc.md
 
