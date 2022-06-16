@@ -15,6 +15,7 @@
 
 from random import random
 from .primitives2D import sortrecpoints, iif, isinrectbnd
+from .mathlib import addvect, scalarmulvect
 
 def getIFSparams() -> dict:
     return {'fern':(((0, 0, 0, .16, 0, 0),
@@ -138,3 +139,46 @@ def itermandelbrot(
                  if c > maxiter:
                      break
             yield (x, y, c)
+
+
+
+def hilbertvert(l: list,
+                u: list[int, int],
+                v: list[int, int, int, int],
+                n: int):
+    """Returns list of 2D points for a Hilbert curve
+
+    Args:
+        l: Empty list for return value
+        u: origin point (x: int, y: int)
+        v: sets orientation and extent
+           of the Hilbert Curve
+        n: number of recursions
+           or order of the curve
+
+    Returns:
+        byref list of 2D vertices for
+        a Hilbert curve
+        [(x: int, y: int),...]
+    """
+    if n <= 0:
+        (v0, v1, v2, v3) = v
+        l += [roundvect(
+              addvect(u, ((v0 + v2) / 2,
+                          (v1 + v3) / 2)))]
+    else:
+        i = v[2]
+        j = v[3]
+        v = scalarmulvect(v, 0.5)
+        (v0, v1, v2, v3) = v
+        n -= 1
+        w = (v2, v3, v0, v1)
+        hilbertvert(l, u, w, n)
+        hilbertvert(l,
+          addvect(u, (v0, v1)), v, n)
+        hilbertvert(l,
+          addvect(u, (v0 + v2, v1 + v3)),
+                                   v, n)
+        hilbertvert(l,
+          addvect(u, (v0 + i, v1 + j)),
+                 scalarmulvect(w, -1), n)
