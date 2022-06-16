@@ -178,6 +178,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Epicycloid.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flower.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Octopetala.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GearCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HeartCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Superellipse.py
