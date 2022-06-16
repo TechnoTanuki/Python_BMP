@@ -31,23 +31,20 @@
 
 from array import array
 from math import(sin, cos, radians, pi)
-
 from random import random
 from typing import Callable
 from numbers import Number
-
 from .proctimer import functimer
 
-
 from .bmpconstants import(
-    bmpheaderid as _bmhdid,
-    bmpfilesize as _bmflsz,
-    bmphdrsize as _bmhdsz,
-    bmpcolorbits as _bmclrbits,
-    bmpx as _bmx,
-    bmpy as _bmy,
-    bmppal as _bmpal,
-    bmpheadersizedict as _getbmhdsz
+    bmpheaderid,
+    bmpfilesize,
+    bmphdrsize,
+    bmpcolorbits,
+    bmpx,
+    bmpy,
+    bmppal,
+    bmpheadersizedict
     )
 
 from .mathlib import(
@@ -66,8 +63,7 @@ from .mathlib import(
     LSMYint,
     mirror,
     polar2rectcoord2D,
-    range2baseanddelta
-        as _rng2bsndel,
+    range2baseanddelta,
     rotatebits,
     roundvect,
     setmax,
@@ -154,12 +150,9 @@ from .solids3D import(
 from .colors import(
     applybrightnessadjtoBGRbuf,
     applycolorfiltertoBGRbuf,
-    applygammaBGRbuf
-        as _gammaBGRbuf,
-    applymonochromefiltertoBGRbuf
-        as _monofltr2BGRbuf,
-    applythresholdadjtoBGRbuf
-        as _thresadj2BGRbuf,
+    applygammaBGRbuf,
+    applymonochromefiltertoBGRbuf,
+    applythresholdadjtoBGRbuf,
     bmpstdpal,
     bmpvalidcolorbits,
     brightnessadjust,
@@ -176,7 +169,7 @@ from .colors import(
     int2RGBlist,
     invertbitsinbuffer,
     isvalidcolorbit,
-    makeBGRbuf as _mkBGRbf,
+    makeBGRbuf,
     matchRGBtopal,
     monochrome,
     monochromefiltertoBGRbuf,
@@ -186,27 +179,21 @@ from .colors import(
     RGB2HSL,
     RGB2int,
     RGBfactors2RGB,
-    RGBfactorstoBaseandRange
-        as _RGBf2BasenRng,
+    RGBfactorstoBaseandRange,
     RGB2BGRarr,
     thresholdadjust
     )
 
 from .paramchecks import(
-    entirecircleinboundary as _encircbnd,
-    entirerectinboundary as _enrectbnd,
-    func24bitonly as _fn24bit,
-    func24bitonlyandentirecircleinboundary
-        as _fn24bitencircbnd,
-    func24bitonlyandentirerectinboundary
-        as _fn24bitenrectbnd,
-    func8and24bitonlyandentirecircleinboundary
-        as _fn8_24bitencircbnd,
-    func8and24bitonlyandentirerectinboundary
-        as _fn8_24bitenrectbnd,
-    intcircleparam as _intcircpar,
+    entirecircleinboundary,
+    entirerectinboundary,
+    func24bitonly,
+    func24bitonlyandentirecircleinboundary,
+    func24bitonlyandentirerectinboundary,
+    func8and24bitonlyandentirecircleinboundary,
+    func8and24bitonlyandentirerectinboundary,
+    intcircleparam,
     intcircleparam24bitonly
-        as _fn24bitintcircpar
     )
 
 
@@ -217,20 +204,15 @@ from .bufferflip import(
 
 from .chartools import(
     char2int,
-    enumletters as _enchr,
-    enumreverseletters as _enchrev
+    enumletters,
+    enumreverseletters
     )
 
-from .conditionaltools import(
-    iif, swapif)
+from .conditionaltools import iif, swapif
 
-from .dicttools import(
-    dict2descorderlist as _dsordlst)
+from .dicttools import dict2descorderlist
 
-from .fileutils import(
-    checklink as _filechk,
-    checklinks as _filechks
-    )
+from .fileutils import checklink, checklinks
 
 from .fonts import(
     font8x8, font8x14, getcharfont)
@@ -245,9 +227,9 @@ from .fractals import(
 
 from .inttools import(
     readint,
-    writeint as writeint,
-    int2buf as _in2bf,
-    buf2int as _bf2in
+    writeint,
+    int2buf,
+    buf2int
     )
 
 from .messages import sysmsg
@@ -255,11 +237,9 @@ from .messages import sysmsg
 from .funcmeta import getfuncmetastr
 
 from .bufresize import(
-    adjustxbufsize as _adjxbufsz,
-    resizebufNtimesbigger
-        as _rsbfNtmbig,
+    adjustxbufsize,
+    resizebufNtimesbigger,
     resizesmaller24bitbuf
-        as _rssm25btbf
     )
 
 from .charts import(
@@ -301,7 +281,7 @@ def _setx(bmp: array, xmax: int):
     Returns:
         byref modified unsigned byte array
     """
-    writeint(_bmx, 4, bmp, xmax)
+    writeint(bmpx, 4, bmp, xmax)
 
 
 def getmaxx(bmp: array) -> int:
@@ -314,7 +294,7 @@ def getmaxx(bmp: array) -> int:
     Returns:
         int value of x bmp dimension
     """
-    return readint(_bmx, 4, bmp)
+    return readint(bmpx, 4, bmp)
 
 
 def _sety(bmp: array, ymax: int):
@@ -328,7 +308,7 @@ def _sety(bmp: array, ymax: int):
     Returns:
         byref modified unsigned byte array
     """
-    writeint(_bmy, 4, bmp, ymax)
+    writeint(bmpy, 4, bmp, ymax)
 
 
 def getmaxy(bmp: array) -> int:
@@ -341,7 +321,7 @@ def getmaxy(bmp: array) -> int:
     Returns:
         int value of y bmp dimension
     """
-    return readint(_bmy, 4, bmp)
+    return readint(bmpy, 4, bmp)
 
 
 def getmaxxy(bmp: array) -> tuple:
@@ -354,8 +334,8 @@ def getmaxxy(bmp: array) -> tuple:
     Returns:
         tuple (x:int,y:int)
     """
-    return (readint(_bmx, 4, bmp),
-            readint(_bmy, 4, bmp))
+    return (readint(bmpx, 4, bmp),
+            readint(bmpy, 4, bmp))
 
 
 def bottomrightcoord(
@@ -369,8 +349,8 @@ def bottomrightcoord(
     Returns:
         tuple (x:int,y:int)
     """
-    return (readint(_bmx, 4, bmp) - 1,
-            readint(_bmy, 4, bmp) - 1)
+    return (readint(bmpx, 4, bmp) - 1,
+            readint(bmpy, 4, bmp) - 1)
 
 
 def centercoord(bmp: array) -> tuple:
@@ -383,8 +363,8 @@ def centercoord(bmp: array) -> tuple:
     Returns:
         tuple (x:int,y:int)
     """
-    return ((readint(_bmx, 4, bmp) -1) >> 1,
-            (readint(_bmy, 4, bmp) - 1) >> 1)
+    return ((readint(bmpx, 4, bmp) -1) >> 1,
+            (readint(bmpy, 4, bmp) - 1) >> 1)
 
 
 def isinBMPrectbnd(bmp: array,
@@ -402,8 +382,8 @@ def isinBMPrectbnd(bmp: array,
         True if within bounds
         False if out of bounds
     """
-    return (x < readint(_bmx, 4, bmp) and
-            y < readint(_bmy, 4, bmp)) and \
+    return (x < readint(bmpx, 4, bmp) and
+            y < readint(bmpy, 4, bmp)) and \
            (x > -1 and y > -1)
 
 
@@ -440,7 +420,7 @@ def _getclrbits(bmp: array) -> int:
         int value of bit depth
         (1, 4, 8, 24) bits
     """
-    return bmp[_bmclrbits]
+    return bmp[bmpcolorbits]
 
 
 def _xchrcnt(bmp: array) -> int:
@@ -455,8 +435,8 @@ def _xchrcnt(bmp: array) -> int:
         chars in a row (x dim)
     """
     return _xbytes(
-                readint(_bmx, 4, bmp),
-                    bmp[_bmclrbits])
+                readint(bmpx, 4, bmp),
+                    bmp[bmpcolorbits])
 
 
 def _setflsz(bmp: array, size: int):
@@ -473,7 +453,7 @@ def _setflsz(bmp: array, size: int):
         byref modified unsigned byte array
         with new file size
     """
-    writeint(_bmflsz, 8, bmp, size)
+    writeint(bmpfilesize, 8, bmp, size)
 
 
 def _flsz(bmp: array) -> int:
@@ -488,7 +468,7 @@ def _flsz(bmp: array) -> int:
         unsigned int value of size
         of the bmp header
     """
-    return readint(_bmflsz, 8, bmp)
+    return readint(bmpfilesize, 8, bmp)
 
 
 def _sethdsz(bmp: array, hdsize: int):
@@ -505,7 +485,7 @@ def _sethdsz(bmp: array, hdsize: int):
         byref modified byte array
         with new header size
     """
-    writeint(_bmhdsz, 4, bmp, hdsize)
+    writeint(bmphdrsize, 4, bmp, hdsize)
 
 
 def _hdsz(bmp: array) -> int:
@@ -518,7 +498,7 @@ def _hdsz(bmp: array) -> int:
     Returns:
         int value of header size
     """
-    return readint(_bmhdsz, 4, bmp)
+    return readint(bmphdrsize, 4, bmp)
 
 
 def getmaxcolors(bmp: array) -> int:
@@ -531,7 +511,7 @@ def getmaxcolors(bmp: array) -> int:
     Returns:
         int value
     """
-    return 1 << bmp[_bmclrbits]
+    return 1 << bmp[bmpcolorbits]
 
 
 def _24bmof(bmp: array,
@@ -549,8 +529,8 @@ def _24bmof(bmp: array,
         int value of offset to that data in byte array
     """
     return (x * 3) + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-        _xbytes(readint(_bmx, 4, bmp), 24))
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+        _xbytes(readint(bmpx, 4, bmp), 24))
 
 
 def _24bmofhd(bmp: array,
@@ -569,8 +549,8 @@ def _24bmofhd(bmp: array,
         int value of offset to that data in byte array
     """
     return (x * 3) + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-        _xbytes(readint(_bmx, 4, bmp), 24 )) + 54
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+        _xbytes(readint(bmpx, 4, bmp), 24 )) + 54
 
 
 def _8bmof(bmp: array,
@@ -590,8 +570,8 @@ def _8bmof(bmp: array,
         that data in byte array
     """
     return x + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-            _xbytes(readint(_bmx, 4, bmp), 8))
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+            _xbytes(readint(bmpx, 4, bmp), 8))
 
 
 def _8bmofhd(bmp: array,
@@ -613,8 +593,8 @@ def _8bmofhd(bmp: array,
         that data in byte array
     """
     return x + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-             _xbytes(readint(_bmx, 4, bmp), 8)) + \
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+             _xbytes(readint(bmpx, 4, bmp), 8)) + \
                  1078
 
 
@@ -634,8 +614,8 @@ def _4bmof(bmp: array,
         int value of offset to that data in byte array
     """
     return (x >> 1) + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-             _xbytes(readint(_bmx, 4, bmp), 4))
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+             _xbytes(readint(bmpx, 4, bmp), 4))
 
 
 def _1bmof(bmp: array,
@@ -654,8 +634,8 @@ def _1bmof(bmp: array,
         int value of offset to that data in byte array
     """
     return (x >> 3) + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-            _xbytes(readint(_bmx, 4, bmp), 1))
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+            _xbytes(readint(bmpx, 4, bmp), 1))
 
 
 def _4bmofhd(bmp: array,
@@ -676,8 +656,8 @@ def _4bmofhd(bmp: array,
         int value of offset to that data in byte array
     """
     return (x >> 1) + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-            _xbytes(readint(_bmx, 4, bmp), 4)) + \
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+            _xbytes(readint(bmpx, 4, bmp), 4)) + \
                 118
 
 
@@ -699,8 +679,8 @@ def _1bmofhd(bmp: array,
         int value of offset to that data in byte array
     """
     return (x >> 3) + \
-        ((readint(_bmy, 4, bmp) - y - 1) * \
-            _xbytes(readint(_bmx, 4, bmp), 1)) + \
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+            _xbytes(readint(bmpx, 4, bmp), 1)) + \
                 62
 
 
@@ -719,7 +699,7 @@ def _getBMoffhdfunc(bmp: array):
     return {24: _24bmofhd,
              8: _8bmofhd,
              4: _4bmofhd,
-             1: _1bmofhd}[bmp[_bmclrbits]]
+             1: _1bmofhd}[bmp[bmpcolorbits]]
 
 
 def _getBMofffunc(bmp: array):
@@ -737,7 +717,7 @@ def _getBMofffunc(bmp: array):
     return {24: _24bmof,
              8: _8bmof,
              4: _4bmof,
-             1: _1bmof}[bmp[_bmclrbits]]
+             1: _1bmof}[bmp[bmpcolorbits]]
 
 
 def _BMoffset(bmp: array,
@@ -784,9 +764,9 @@ def getmaxxyandbits(bmp: array) -> tuple:
     Returns:
         (x-dimension, y-dimension, bit depth)
     """
-    return (((readint(_bmx, 4, bmp),
-              readint(_bmy, 4, bmp)),
-              bmp[_bmclrbits]))
+    return (((readint(bmpx, 4, bmp),
+              readint(bmpy, 4, bmp)),
+              bmp[bmpcolorbits]))
 
 
 def _xbytes(x: int, bits: int) -> int:
@@ -852,7 +832,7 @@ def _getbmflsz(x: int, y: int,
         int value of file size
     """
     return _xbytes(x, bits) * y + \
-           _getbmhdsz[bits]
+           bmpheadersizedict[bits]
 
 
 def _bmmeta(x: int, y: int,
@@ -871,7 +851,7 @@ def _bmmeta(x: int, y: int,
         xdim, ydim, bitdepth)
     """
     return (_getbmflsz(x, y, bits),
-            _getbmhdsz[bits], x, y, bits)
+            bmpheadersizedict[bits], x, y, bits)
 
 
 def isdefaultpal(bmp: array) -> bool:
@@ -967,7 +947,7 @@ def getRGBpal(bmp: array,
     Returns:
         [R: byte, G: byte, B:byte]
     """
-    i= _bmpal + (c << 2)
+    i= bmppal + (c << 2)
     return [bmp[i + 2], bmp[i + 1], bmp[i]]
 
 
@@ -986,7 +966,7 @@ def setRGBpal(bmp: array, c: int,
     Returns:
         byref modified unsigned byte array
     """
-    s = _bmpal + (c << 2)
+    s = bmppal + (c << 2)
     bmp[s: s + 3] = RGB2BGRarr(r, g, b)
 
 
@@ -1009,7 +989,7 @@ def colorhistorgram(bmp: array) -> list:
             d.setdefault(c,1)
         else:
             d[c] += 1
-    return  _dsordlst(d)
+    return  dict2descorderlist(d)
 
 
 def makenewpalfromcolorhist(
@@ -1082,8 +1062,8 @@ def copyRGBpal(sourceBMP: array,
         (unsigned byte array)
     """
     l = _hdsz(sourceBMP)
-    destBMP[_bmpal: l] = \
-  sourceBMP[_bmpal: l]
+    destBMP[bmppal: l] = \
+  sourceBMP[bmppal: l]
 
 
 def _setmeta(bmpmeta: list) -> array:
@@ -1103,12 +1083,12 @@ def _setmeta(bmpmeta: list) -> array:
     [filesize, hdrsize, x, y, bits] = \
         bmpmeta
     bmp.frombytes(b'\x00' * (filesize))
-    bmp[0: 2] = _bmhdid
+    bmp[0: 2] = bmpheaderid
     _setflsz(bmp, filesize)
     _sethdsz(bmp, hdrsize)
     _setx(bmp, x)
     _sety(bmp, y)
-    bmp[_bmclrbits] = bits
+    bmp[bmpcolorbits] = bits
     bmp[14] = 40 #required
     if bits < 24:
         setbmppal(bmp,
@@ -1225,7 +1205,7 @@ def CopyBMPxydim2newBMP(bmp: array,
                   newbits)
 
 
-@_filechk
+@checklink
 def loadBMP(filename: str) -> array:
     """Load bitmap to a byte array
        (uncompressed bitmap only)
@@ -1336,7 +1316,7 @@ def vertBMPbitBLTget(bmp: array,
     Returns:
         unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     r = _xchrcnt(bmp)
     m = getmaxxy(bmp)
     c = _getBMoffhdfunc(bmp)
@@ -1347,7 +1327,7 @@ def vertBMPbitBLTget(bmp: array,
         s = c(bmp, x, y2)
         e = c(bmp, x, y1) + r
         if bits == 24:
-            return _mkBGRbf(bmp[s: e - 2: r],
+            return makeBGRbuf(bmp[s: e - 2: r],
                             bmp[s + 1: e - 1: r],
                             bmp[s + 2: e: r])
         else:
@@ -1374,7 +1354,7 @@ def _fnwithpar2vertslice(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     r = _xchrcnt(bmp)
     m = getmaxxy(bmp)
     c = _getBMoffhdfunc(bmp)
@@ -1422,7 +1402,7 @@ def plotRGBxybit(bmp: array,
         byref modified unsigned byte array
     """
     if isinBMPrectbnd(bmp, x, y):
-        if bmp[_bmclrbits] == 24:
+        if bmp[bmpcolorbits] == 24:
             offset = _24bmofhd(bmp, x, y)
             endoffset = offset + 3
             bmp[offset:endoffset] = \
@@ -1452,7 +1432,7 @@ def plotxybit(bmp: array,
     if not isinBMPrectbnd(bmp, x, y):
         return
     offset = _BMoffsethd(bmp, x, y)
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     if bits == 24:
         bmp[offset:offset + 3] = \
             int2BGRarr(c)
@@ -1494,7 +1474,7 @@ def getxybit(bmp: array,
     retval = 0
     if isinBMPrectbnd(bmp, x, y):
         offset = _BMoffsethd(bmp, x, y)
-        bits = bmp[_bmclrbits]
+        bits = bmp[bmpcolorbits]
         if bits == 1:
             mask = 7 - (x % 8)
             retval = \
@@ -1728,7 +1708,7 @@ def line(bmp: array,
     elif y1 == y2:
         horiline(bmp, y1, x1, x2, color)
     else:
-        bits = bmp[_bmclrbits]
+        bits = bmp[bmpcolorbits]
         p1 = (x1, y1)
         p2 = (x2, y2)
         c = _getBMoffhdfunc(bmp)
@@ -1783,7 +1763,7 @@ def horiline(bmp: array, y: int,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     m = getmaxxy(bmp)
     if isinrange(y, m[1], -1):
         x1, x2 = swapif(x1, x2, x1 > x2)
@@ -1840,7 +1820,7 @@ def vertline(bmp: array, x: int,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     if bits not in [24, 8]:
         y1 , y2 = \
             swapif(y1, y2, y1 > y2)
@@ -1902,7 +1882,7 @@ def fillbackgroundwithgrad(bmp: array,
         direction)
 
 
-@_fn8_24bitenrectbnd
+@func8and24bitonlyandentirerectinboundary
 def filledgradrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -1939,7 +1919,7 @@ def filledgradrect(bmp: array,
     dx = x2 - x1 + 1
     dy = y2 - y1 + 1
     base, lrange = \
-        _RGBf2BasenRng(lumrange, RGBfactors)
+        RGBfactorstoBaseandRange(lumrange, RGBfactors)
     if direction == 0:
         xlim = x2 + 1
         for x in range(x1, xlim):
@@ -1949,7 +1929,7 @@ def filledgradrect(bmp: array,
                     round(setminmax(base[1] + lrange[1] * f, 0, 255)),
                     round(setminmax(base[2] + lrange[2] * f, 0, 255))
                        )
-            if bmp[_bmclrbits] != 24:
+            if bmp[bmpcolorbits] != 24:
                 c = matchRGBtopal(
                         int2RGBarr(c),
                         getallRGBpal(bmp))
@@ -1963,14 +1943,14 @@ def filledgradrect(bmp: array,
                     round(setminmax(base[1] + lrange[1] * f, 0, 255)),
                     round(setminmax(base[2] + lrange[2] * f, 0, 255))
                        )
-            if bmp[_bmclrbits] != 24:
+            if bmp[bmpcolorbits] != 24:
                 c = matchRGBtopal(
                         int2RGBarr(c),
                         getallRGBpal(bmp))
             horiline(bmp, y, x1, x2, c)
 
 
-@_enrectbnd
+@entirerectinboundary
 def itercopyrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int) -> array:
@@ -1989,7 +1969,7 @@ def itercopyrect(bmp: array,
     """
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
-    bufsize = _adjxbufsz(bmp, x1, x2)
+    bufsize = adjustxbufsize(bmp, x1, x2)
     r = _xchrcnt(bmp)
     offset = _BMoffset(bmp, x1, y2)
     lim = _BMoffset(bmp, x2, y1) + r
@@ -2142,19 +2122,19 @@ def gradthickroundline(bmp: array,
         byref modified
         unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c=colormix(int(lum1 +
             (lumrang * i / penradius)),
             	RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c),
                     getallRGBpal(bmp))
         thickroundline(bmp, p1, p2, i, c)
 
 
-@_fn24bitintcircpar
+@intcircleparam24bitonly
 def _usenopar24btfn2circreg(bmp: array,
         x: int, y: int, r: int,
         func: Callable):
@@ -2207,7 +2187,7 @@ def _usenopar24btfn2circreg(bmp: array,
                 bmp[s1: e1] = func(bmp[s1: e1])
 
 
-@_fn24bitintcircpar
+@intcircleparam24bitonly
 def _use24btfn2circreg(bmp: array,
         x: int, y: int, r: int,
         func: Callable, funcparam):
@@ -2267,7 +2247,7 @@ def _use24btfn2circreg(bmp: array,
                     func(bmp[s1: e1], funcparam)
 
 
-@_encircbnd
+@entirecircleinboundary
 def copycircregion2buf(bmp: array,
         x: int, y: int,
         r: int) -> list:
@@ -2362,7 +2342,7 @@ def copycircregion(bmp: array,
       copycircregion2buf(bmp, x, y, r))
 
 
-@_intcircpar
+@intcircleparam
 def _usenoparfn2circreg(bmp: array,
         x: int, y: int, r: int,
         func: Callable):
@@ -2416,7 +2396,7 @@ def _usenoparfn2circreg(bmp: array,
                 bmp[s1: e1] = func(bmp[s1: e1])
 
 
-@_encircbnd
+@entirecircleinboundary
 def flipXYcircregion(bmp: array,
         x: int, y: int, r: int):
     """Flip the X and Y coordinates of a circular area
@@ -2430,7 +2410,7 @@ def flipXYcircregion(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     c = _getBMoffhdfunc(bmp)
     if bits not in [24, 8]:
         n = flipXY(bmp)
@@ -2484,7 +2464,7 @@ def fliphoricircregion(bmp: array,
         bmp, x, y, r, 'F')
 
 
-@_fn8_24bitencircbnd
+@func8and24bitonlyandentirecircleinboundary
 def horitransformincircregion(
         bmp: array,
         x: int, y: int, r: int,
@@ -2538,7 +2518,7 @@ def horitransformincircregion(
              'R': _24R,
              'L': _24L
              }
-        }[bmp[_bmclrbits]][trans]
+        }[bmp[bmpcolorbits]][trans]
 
     for v in itercirclepartvertlineedge(r):
         x1, x2 = mirror(x, v[0])
@@ -2606,7 +2586,7 @@ def flipvertcircregion(bmp: array,
         bmp, x, y, r, 'F')
 
 
-@_encircbnd
+@entirecircleinboundary
 def verttransformincircregion(
         bmp: array,
         x: int, y: int, r: int,
@@ -2765,7 +2745,7 @@ def mirrorbottomrightincircregion(
     mirrorbottomincircregion(bmp, x, y, r)
 
 
-@_fn24bitencircbnd
+@func24bitonlyandentirecircleinboundary
 def vertbrightnessgrad2circregion(
         bmp: array,
         x: int, y: int, r: int,
@@ -2803,7 +2783,7 @@ def vertbrightnessgrad2circregion(
         f(bmp[s1: e1], l1), f(bmp[s2: e2], l2)
 
 
-@_fn24bitencircbnd
+@func24bitonlyandentirecircleinboundary
 def horibrightnessgrad2circregion(
         bmp: array,
         x: int, y: int, r: int,
@@ -2837,7 +2817,7 @@ def horibrightnessgrad2circregion(
                 x2, y1, y2,
                 f, l + (x2 - b) * dl)
 
-@_intcircpar
+@intcircleparam
 def outlinecircregion(bmp: array,
         x: int, y: int, r: int):
     """Outlines a circular area
@@ -2852,7 +2832,7 @@ def outlinecircregion(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     c = _getBMoffhdfunc(bmp)
     if entirecircleisinboundary(
             x, y,
@@ -3063,7 +3043,7 @@ def filledcircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     if bits < 8:
         for v in itercirclepartlineedge(r):
             x1, x2 = mirror(x, v[0])
@@ -3134,7 +3114,7 @@ def circle(bmp: array,
                             color)
     else:
         m = getmaxxy(bmp)
-        bits = bmp[_bmclrbits]
+        bits = bmp[bmpcolorbits]
         c = _getBMoffhdfunc(bmp)
         dobndcheck = \
             not entirecircleisinboundary(
@@ -3257,11 +3237,11 @@ def gradthickcircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)), RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c), getallRGBpal(bmp))
         thickcircle(bmp, x, y, r, i, c)
@@ -3286,12 +3266,12 @@ def gradcircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(r - 1, 0, -1):
         c = colormix(
                 int(lum1 + (lumrang * i / r)),
                 RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c),
                     getallRGBpal(bmp))
@@ -3349,12 +3329,12 @@ def gradthickellipserot(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)),
                 RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c),
                     getallRGBpal(bmp))
@@ -3377,7 +3357,7 @@ def filledellipse(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     if bits < 8:
         for v in iterellipsepart(b, a):
             x1, x2 = mirror(x, v[0])
@@ -3452,7 +3432,7 @@ def ellipse(bmp: array,
             bmp, x, y, b, a, color)
     else:
         m = getmaxxy(bmp)
-        bits = bmp[_bmclrbits]
+        bits = bmp[bmpcolorbits]
         c = _getBMoffhdfunc(bmp)
         dobndcheck = not entireellipseisinboundary(
                             x, y, -1, m[0],
@@ -3502,7 +3482,7 @@ def gradellipse(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     r = max(a, b)
     a -= r
     b -= r
@@ -3510,7 +3490,7 @@ def gradellipse(bmp: array,
         c = colormix(
                 int(lum1 + (lumrang * i / r)),
                 RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c),
                     getallRGBpal(bmp))
@@ -3518,7 +3498,7 @@ def gradellipse(bmp: array,
         b + i, a + i, c, True)
 
 
-@_intcircpar
+@intcircleparam
 def drawarc(bmp: array,
         x: int, y: int, r: int,
         startdegangle: float,
@@ -3581,7 +3561,7 @@ def rectangle(bmp: array,
         recvert(x1, y1, x2, y2), color)
 
 
-@_enrectbnd
+@entirerectinboundary
 def filledrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int, color: int):
@@ -3600,7 +3580,7 @@ def filledrect(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     x1, y1, x2, y2 = sortrecpoints(
                         x1, y1, x2, y2)
     if bits not in [8, 24]:
@@ -4795,7 +4775,7 @@ def plotstring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchr,
+        color, fontbuf, enumletters,
         plot8bitpattern)
 
 
@@ -4831,7 +4811,7 @@ def plotitalicstring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchr,
+        color, fontbuf, enumletters,
         plotitalic8bitpattern)
 
 
@@ -4865,7 +4845,7 @@ def plotstringasdots(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchr,
+        color, fontbuf, enumletters,
         plot8bitpatternasdots)
 
 
@@ -4901,7 +4881,7 @@ def plotitalicstringasdots(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchr,
+        color, fontbuf, enumletters,
         plotitalic8bitpatternasdots)
 
 
@@ -4937,7 +4917,7 @@ def plotreverseditalicstringasdots(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchrev,
+        color, fontbuf, enumreverseletters,
         plotreverseditalic8bitpatternasdots)
 
 
@@ -4971,7 +4951,7 @@ def plotreverseditalicstring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchrev,
+        color, fontbuf, enumreverseletters,
         plotreverseditalic8bitpattern)
 
 
@@ -5006,7 +4986,7 @@ def plotstringupsidedown(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar, color,
-        fontbuf, _enchr,
+        fontbuf, enumletters,
         plot8bitpatternupsidedown)
 
 
@@ -5042,7 +5022,7 @@ def plotupsidedownitalicstring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchrev,
+        color, fontbuf, enumreverseletters,
         plotupsidedownitalic8bitpattern)
 
 
@@ -5078,7 +5058,7 @@ def plotupsidedownitalicstringasdots(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchrev,
+        color, fontbuf, enumreverseletters,
         plotupsidedownitalic8bitpatternasdots)
 
 
@@ -5113,7 +5093,7 @@ def plotstringupsidedownasdots(
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar, color,
-        fontbuf, _enchr,
+        fontbuf, enumletters,
         plot8bitpatternupsidedownasdots)
 
 
@@ -5148,7 +5128,7 @@ def plotreversestring(bmp: array,
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar,
-        color, fontbuf, _enchrev,
+        color, fontbuf, enumreverseletters,
         plotrotated8bitpattern)
 
 
@@ -5184,7 +5164,7 @@ def plotreversestringasdots(
     plotstringfunc(bmp, x, y, str2plot,
         scale, pixspace,
         spacebetweenchar, color,
-        fontbuf, _enchrev,
+        fontbuf, enumreverseletters,
         plotrotated8bitpatternwithdots)
 
 
@@ -5223,7 +5203,7 @@ def plotstringsidewayfn(bmp: array,
     xstep = (scale << 3 ) + spacebetweenchar
     ypixels = fontbuf[0]
     ystep = ypixels * scale + spacebetweenchar
-    for c in _enchr(str2plot):
+    for c in enumletters(str2plot):
         if c == '\n':
             x += ystep #we swap x and y since sideways
             y = oy
@@ -5414,7 +5394,7 @@ def plotstringverticalwithfn(
                 spacebetweenchar
     ystep = ypixels * scale + \
                 spacebetweenchar
-    for c in _enchr(str2plot):
+    for c in enumletters(str2plot):
         if c == '\n':
             x += xstep
             y = oy
@@ -5668,12 +5648,12 @@ def gradthickplotpoly(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)),
                 RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                 int2RGBarr(c),
                 getallRGBpal(bmp))
@@ -5702,12 +5682,12 @@ def gradplotlines(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(int(
                 lum1 + (lumrang * i / penradius)),
                 RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                 int2RGBarr(c),
                 getallRGBpal(bmp))
@@ -5820,7 +5800,7 @@ def plotpolyfillist(
             else colormix(127, RGBfactors)
         )
 
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c),
                     getallRGBpal(bmp))
@@ -5935,12 +5915,12 @@ def gradvert(bmp: array,
         byref modified
         unsigned byte array
     """
-    lum1, lumrang = _rng2bsndel(lumrange)
+    lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
         c = colormix(
             int(lum1 + (lumrang * i / penradius)),
                 RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
                     int2RGBarr(c),
                     getallRGBpal(bmp))
@@ -5948,7 +5928,7 @@ def gradvert(bmp: array,
             roundpen(bmp, point, i, c)
 
 
-@_enrectbnd
+@entirerectinboundary
 def xygrid(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -6432,7 +6412,7 @@ def getBGRpalbuf(bmp: array):
     Returns:
         unsigned byte array (BGR)
     """
-    return bmp[_bmpal: _hdsz(bmp)]
+    return bmp[bmppal: _hdsz(bmp)]
 
 
 def convertbufto24bit(buf: array,
@@ -6477,7 +6457,7 @@ def upgradeto24bitimage(bmp: array):
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     if bits == 24:
         print(sysmsg['is24bit'])
         nbmp = bmp
@@ -6527,7 +6507,7 @@ def iterimageRGB(bmp: array,
     maxoffset = len(b)
     x = 0
     mx = getmaxx(bmp)
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     padbytes = _pdbytes(mx, bits)
     if bits < 24:
         p = getallRGBpal(bmp)
@@ -6602,7 +6582,7 @@ def iterimagecolor(bmp: array,
     maxoffset = len(b)
     x = 0
     mx = getmaxx(bmp)
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     pb = _pdbytes(mx, bits)
     doff = 3 if bits == 24 else 1
     while offset < maxoffset:
@@ -6640,7 +6620,7 @@ def iterimagecolor(bmp: array,
         print(finishmsg)
 
 
-@_enrectbnd
+@entirerectinboundary
 def copyrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int) -> array:
@@ -6653,13 +6633,13 @@ def copyrect(bmp: array,
     Returns:
         custom unsigned byte array
     """
-    retval = array('B', [bmp[_bmclrbits]])
+    retval = array('B', [bmp[bmpcolorbits]])
     x1, y1, x2, y2 = \
        sortrecpoints(x1, y1, x2, y2)
-    retval += _in2bf(2, x2 - x1 + 2)
-    retval += _in2bf(2, y2 - y1 + 1)
-    retval += _in2bf(2,
-                _adjxbufsz(bmp, x1, x2))
+    retval += int2buf(2, x2 - x1 + 2)
+    retval += int2buf(2, y2 - y1 + 1)
+    retval += int2buf(2,
+                adjustxbufsize(bmp, x1, x2))
     for buf in itercopyrect(
                     bmp, x1, y1, x2, y2):
         retval += buf
@@ -6681,16 +6661,16 @@ def pasterect(bmp: array, buf: array,
     Returns:
         byref modified unsigned byte array
     """
-    if bmp[_bmclrbits] != buf[0]:
+    if bmp[bmpcolorbits] != buf[0]:
         print(sysmsg['bitsnotequal'])
     else:
-        x2 = x1 + _bf2in(buf[1: 3])
-        y2 = y1 + _bf2in(buf[3: 5])
+        x2 = x1 + buf2int(buf[1: 3])
+        y2 = y1 + buf2int(buf[3: 5])
         r = _xchrcnt(bmp)
         if listinBMPrecbnd(bmp, ((x1, y1),
                                 (x2, y2))):
             offset = _BMoffset(bmp, x1, y2)
-            br = _bf2in(buf[5: 7])
+            br = buf2int(buf[5: 7])
             startoff = 7
             endoff = br + 7
             bufsize = len(buf)
@@ -6720,8 +6700,8 @@ def convertselection2BMP(buf: array):
         print (sysmsg['invalidbuf'])
     else:
         bmp = newBMP(
-                _bf2in(buf[1: 3]) + 1,
-                _bf2in(buf[3: 5]) + 1,
+                buf2int(buf[1: 3]) + 1,
+                buf2int(buf[3: 5]) + 1,
                 bits)
         pasterect(bmp, buf, 0, 0)
     return bmp
@@ -6803,7 +6783,7 @@ def eraseeverynthhorizontalline(
         bmp, n, 0, 0)
 
 
-@_encircbnd
+@entirecircleinboundary
 def erasealternatehorizontallinesincircregion(
         bmp: array,
         x: int, y: int, r: int,
@@ -6879,7 +6859,7 @@ def eraseeverynthhorizontallineinccircregion(
         bmp, x, y, r, n, 0, 0)
 
 
-@_enrectbnd
+@entirerectinboundary
 def erasealternatehorizontallinesinregion(
         bmp: array,
         x1: int, y1: int,
@@ -6916,7 +6896,7 @@ def erasealternatehorizontallinesinregion(
     bytepat &= 0xff
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
-    bufsize = _adjxbufsz(bmp, x1, x2)
+    bufsize = adjustxbufsize(bmp, x1, x2)
     r = _xchrcnt(bmp)
     f = _getBMoffhdfunc(bmp)
     s1 = f(bmp, x1, y2)
@@ -7041,7 +7021,7 @@ def mirrorbottom(bmp: array):
     verttrans(bmp, 'B')
 
 
-@_enrectbnd
+@entirerectinboundary
 def verttransregion(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int, trans: str):
@@ -7083,7 +7063,7 @@ def verttransregion(bmp: array,
          'B': _B}[trans]
     x1, y1, x2, y2 = sortrecpoints(
                         x1, y1, x2, y2)
-    bufsize = _adjxbufsz(bmp, x1, x2)
+    bufsize = adjustxbufsize(bmp, x1, x2)
     r = _xchrcnt(bmp)
     c = _getBMoffhdfunc(bmp)
     s1 = c(bmp, x1, y2)
@@ -7158,7 +7138,7 @@ def mirrortopinregion(bmp: array,
     verttransregion(bmp, x1, y1,
                          x2, y2, 'T')
 
-@_enrectbnd
+@entirerectinboundary
 def fliphorzontalpixelbased(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int):
@@ -7191,7 +7171,7 @@ def fliphorzontalpixelbased(
         x2 -= 1
 
 
-@_enrectbnd
+@entirerectinboundary
 def fliphverticalalpixelbased(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int):
@@ -7222,7 +7202,7 @@ def fliphverticalalpixelbased(
         y2 -= 1
 
 
-@_enrectbnd
+@entirerectinboundary
 def horizontalbulkswap(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -7244,7 +7224,7 @@ def horizontalbulkswap(bmp: array,
     dx = {24: 1,
            8: 1,
            4: 2,
-           1: 8}[bmp[_bmclrbits]]
+           1: 8}[bmp[bmpcolorbits]]
     c = _getBMoffhdfunc(bmp)
     r = _xchrcnt(bmp)
     y1, y2 = swapif(y1, y2, y1 > y2)
@@ -7297,7 +7277,7 @@ def fliphorizontalregion(bmp: array,
         {24: _24,
           8: _8,
           4: _4,
-          1: _1}[bmp[_bmclrbits]])
+          1: _1}[bmp[bmpcolorbits]])
 
 
 def mirrorleftinregion(
@@ -7337,7 +7317,7 @@ def mirrorleftinregion(
         {24: _24,
           8: _8,
           4: _4,
-          1: _1}[bmp[_bmclrbits]])
+          1: _1}[bmp[bmpcolorbits]])
 
 
 def mirrorrightinregion(
@@ -7377,7 +7357,7 @@ def mirrorrightinregion(
         {24: _24,
           8: _8,
           4: _4,
-          1: _1}[bmp[_bmclrbits]])
+          1: _1}[bmp[bmpcolorbits]])
 
 
 def mirrorleft(bmp: array):
@@ -7616,7 +7596,7 @@ def flipXY(bmp: array):
     """
     mx = getmaxy(bmp)
     my = getmaxx(bmp)
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     nbmp = newBMP(mx, my, bits)
     if bits in [8, 24]:
         r = _xchrcnt(nbmp)
@@ -7640,7 +7620,7 @@ def flipXY(bmp: array):
     return nbmp
 
 
-@_enrectbnd
+@entirerectinboundary
 def itergetcolorfromrectregion(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int):
@@ -7670,7 +7650,7 @@ def itergetcolorfromrectregion(
         y += 1
 
 
-@_enrectbnd
+@entirerectinboundary
 def crop(bmp: array, x1: int, y1: int,
                      x2: int, y2: int):
     """Crops the image to a rectangular
@@ -7690,7 +7670,7 @@ def crop(bmp: array, x1: int, y1: int,
     """
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     nbmp = newBMP(x2 - x1 + 1,
                   y2 - y1 + 1, bits)
     if bits < 8:
@@ -7709,7 +7689,7 @@ def crop(bmp: array, x1: int, y1: int,
     return nbmp
 
 
-@_enrectbnd
+@entirerectinboundary
 def invertregion(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int):
@@ -7729,7 +7709,7 @@ def invertregion(
     """
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     if bits < 8:
         c = getmaxcolors(bmp) - 1
         for v in itergetcolorfromrectregion(
@@ -7769,7 +7749,7 @@ def monofilterto24bitregion(
     """
     _usebyrefnopar24bitfn2reg(
         bmp, x1, y1, x2, y2,
-        _monofltr2BGRbuf)
+        applymonochromefiltertoBGRbuf)
 
 
 def monofilterto24bitimage(bmp: array):
@@ -7826,7 +7806,7 @@ def resizeNtimesbigger(
     Returns:
         unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     (mx, my) = getmaxxy(bmp)
     nx = mx * n
     ny = my * n
@@ -7840,7 +7820,7 @@ def resizeNtimesbigger(
     r = _xchrcnt(nbmp)
     for buf in itercopyrect(bmp, 0, 0,
                         mx, my):
-        nbuf = _rsbfNtmbig(buf, n, bits)
+        nbuf = resizebufNtimesbigger(buf, n, bits)
         for _ in range(n):
             BMPbitBLTput(nbmp, offset, nbuf)
             offset += r
@@ -7953,7 +7933,7 @@ def thresholdadjto24bitregion(
         byref modified unsigned byte array
     """
     _use24bitfn2reg(bmp, x1, y1, x2, y2,
-        _thresadj2BGRbuf, lumrange)
+        applythresholdadjtoBGRbuf, lumrange)
 
 
 def thresholdadjcircregion(
@@ -7975,7 +7955,7 @@ def thresholdadjcircregion(
         byref modified unsigned byte array
     """
     _use24btfn2circreg(bmp, x, y, r,
-        _thresadj2BGRbuf, lumrange)
+        applythresholdadjtoBGRbuf, lumrange)
 
 
 def brightnesseadjto24bitimage(
@@ -8066,7 +8046,7 @@ def mandelbrot(bmp: array,
     mcolor = maxcolors - 1
     for (x, y, c) in itermandelbrot(x1, y1, x2, y2,
                              mandelparam, maxiter):
-        if bmp[_bmclrbits] == 24:
+        if bmp[bmpcolorbits] == 24:
             c = colormix(((255 - c) * 20) % 256,
                         RGBfactors)
         else:
@@ -8133,10 +8113,10 @@ def plotflower(bmp: array,
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
-    lum1, dlum = _rng2bsndel(lumrange)
+    lum1, dlum = range2baseanddelta(lumrange)
     for (x, y) in iterflower(cx, cy, r, petals, angrot):
         c = colormix(setmax(abs(int(lum1 + dlum * (distance([x, y], [cx, cy]) / r))),255), RGBfactors)
-        if bmp[_bmclrbits] != 24:
+        if bmp[bmpcolorbits] != 24:
             c = mcolor - c % maxcolors
         plotxybit(bmp, x, y, c)
 
@@ -8235,7 +8215,7 @@ def piechart(bmp: array,
     return [alist, big]
 
 
-@_fn24bitenrectbnd
+@func24bitonlyandentirerectinboundary
 def _usebyrefnopar24bitfn2reg(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int,
@@ -8266,7 +8246,7 @@ def _usebyrefnopar24bitfn2reg(
         offset += r
 
 
-@_fn24bitenrectbnd
+@func24bitonlyandentirerectinboundary
 def _usebyref24btfn2reg(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -8299,7 +8279,7 @@ def _usebyref24btfn2reg(bmp: array,
         offset += r
 
 
-@_fn24bitenrectbnd
+@func24bitonlyandentirerectinboundary
 def _use24bitfn2reg(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -8332,7 +8312,7 @@ def _use24bitfn2reg(bmp: array,
         offset += r
 
 
-@_fn24bitenrectbnd
+@func24bitonlyandentirerectinboundary
 def verticalbrightnessgradto24bitregion(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int,
@@ -8367,7 +8347,7 @@ def verticalbrightnessgradto24bitregion(
         lum += dlum
 
 
-@_fn24bitenrectbnd
+@func24bitonlyandentirerectinboundary
 def horizontalbrightnessgradto24bitregion(
         bmp: array, x1: int, y1: int,
                     x2: int, y2: int,
@@ -8405,7 +8385,7 @@ def horizontalbrightnessgradto24bitregion(
         l += dl
 
 
-@_fn24bitencircbnd
+@func24bitonlyandentirecircleinboundary
 def magnifyNtimescircregion(bmp: array,
         x: int, y: int, r: int, n: int):
     """Magnify a circular region in a bitmap file by int n
@@ -8434,7 +8414,7 @@ def magnifyNtimescircregion(bmp: array,
         b[c(b, x3, y3): c(b, x4, y3)], b[c(b, x3, y4): c(b, x4, y4)]
 
 
-@_fn24bitencircbnd
+@func24bitonlyandentirecircleinboundary
 def pixelizenxncircregion(bmp: array,
         x: int, y: int, r: int, n: int):
     """Pixelize a circular region in a BMP by n
@@ -8459,7 +8439,7 @@ def pixelizenxncircregion(bmp: array,
         b[c(b, x1, y1): c(b, x2, y1)], b[c(b, x1, y2): c(b, x2, y2)]
 
 
-@_fn24bit
+@func24bitonly
 def resizeNtimessmaller(
         bmp: array, n:int) -> array:
     """Resize a whole image int n times smaller
@@ -8472,7 +8452,7 @@ def resizeNtimessmaller(
     Returns:
         byref modified unsigned byte array
     """
-    bits = bmp[_bmclrbits]
+    bits = bmp[bmpcolorbits]
     nbmp = -1
     (mx, my) = getmaxxy(bmp)
     nx = mx // n
@@ -8491,8 +8471,8 @@ def resizeNtimessmaller(
         j = i % n
         bufl += [buf]
         if j == 0:
-            BMPbitBLTput(nbmp,
-                offset, _rssm25btbf(bufl))
+            BMPbitBLTput(nbmp, offset,
+            resizesmaller24bitbuf(bufl))
             offset += r
             bufl = []
             y += 1
@@ -8560,7 +8540,7 @@ def gammaadjto24bitregion(bmp: array,
     """
     _usebyref24btfn2reg(
         bmp, x1, y1, x2, y2,
-        _gammaBGRbuf, gamma)
+        applygammaBGRbuf, gamma)
 
 
 def gammaadjto24bitimage(
@@ -8580,7 +8560,7 @@ def gammaadjto24bitimage(
         getmaxy(bmp) - 1, gamma)
 
 
-@_enrectbnd
+@entirerectinboundary
 def _cmpimglines(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -8634,7 +8614,7 @@ def outline(bmp: array):
         getmaxy(bmp) - 1)
 
 
-@_intcircpar
+@intcircleparam
 def sphere(bmp: array,
         x: int, y: int, r: int,
         rgbfactors: list[float, float, float]):
@@ -8658,7 +8638,7 @@ def sphere(bmp: array,
         [255, 0], rgbfactors)
 
 
-@_intcircpar
+@intcircleparam
 def thickencirclearea(bmp: array,
         x: int, y: int, r: int,
         rgbfactors: list[float, float, float]):
@@ -8680,7 +8660,7 @@ def thickencirclearea(bmp: array,
         8, [255,0], rgbfactors)
 
 
-@_enrectbnd
+@entirerectinboundary
 def fern(bmp: array, x1: int, y1: int,
          x2: int, y2: int, color: int):
     """Draws an IFS fern fractal
@@ -8705,7 +8685,7 @@ def fern(bmp: array, x1: int, y1: int,
         color, 100000)
 
 
-@_filechk
+@checklink
 def _usebyreffnwithpar2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8738,7 +8718,7 @@ def _usebyreffnwithpar2regnsv(
      ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _use24btbyrefclrfn2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8765,7 +8745,7 @@ def _use24btbyrefclrfn2regnsv(
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
         func(bmp, x1, y1, x2, y2,
@@ -8776,7 +8756,7 @@ def _use24btbyrefclrfn2regnsv(
           ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usebyref24btfn2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8802,7 +8782,7 @@ def _usebyref24btfn2regnsv(
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
         func(bmp, x1, y1, x2, y2)
@@ -8812,7 +8792,7 @@ def _usebyref24btfn2regnsv(
         ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usebyreffn2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8845,7 +8825,7 @@ def _usebyreffn2regnsv(
       ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usefn2regsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8878,7 +8858,7 @@ def _usefn2regsv(
           ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usebyreffnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8904,7 +8884,7 @@ def _usebyreffnsv(
         ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usebyreffnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8917,7 +8897,7 @@ def _usebyreffnwithparnsv(
     ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usefnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8942,7 +8922,7 @@ def _usefnsv(
     ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _use24btfnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -8963,7 +8943,7 @@ def _use24btfnwithparnsv(
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
         saveBMP(NewBMPfile,
@@ -8973,7 +8953,7 @@ def _use24btfnwithparnsv(
           ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usefn2circreg(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -9003,7 +8983,7 @@ def _usefn2circreg(
          ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usefnwithpar2circreg(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -9037,7 +9017,7 @@ def _usefnwithpar2circreg(
             NewBMPfile))
 
 
-@_filechk
+@checklink
 def _use24btclrfntocircregion(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -9060,7 +9040,7 @@ def _use24btclrfntocircregion(
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
         func(bmp, x, y, r)
@@ -9070,7 +9050,7 @@ def _use24btclrfntocircregion(
             ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _use24btclrfnwithpar2circreg(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -9096,7 +9076,7 @@ def _use24btclrfnwithpar2circreg(
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
         func(bmp, x, y, r, funcparam)
@@ -9106,7 +9086,7 @@ def _use24btclrfnwithpar2circreg(
             ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _useclradjfn(ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable, funcparam):
@@ -9127,7 +9107,7 @@ def _useclradjfn(ExistingBMPfile: str,
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         setbmppal(bmp,[func(c, funcparam)
               for c in getallRGBpal(bmp)])
     else:
@@ -9156,7 +9136,7 @@ def _useclradjfn(ExistingBMPfile: str,
             ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _use24btclrfn(ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable, funcparam):
@@ -9179,7 +9159,7 @@ def _use24btclrfn(ExistingBMPfile: str,
     """
     bmp = loadBMP(ExistingBMPfile)
 
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
         func(bmp, funcparam)
@@ -9189,7 +9169,7 @@ def _use24btclrfn(ExistingBMPfile: str,
           ExistingBMPfile, NewBMPfile))
 
 
-@_filechk
+@checklink
 def _usenoparclradjfn(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -9209,7 +9189,7 @@ def _usenoparclradjfn(
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    if bmp[_bmclrbits] != 24:
+    if bmp[bmpcolorbits] != 24:
         setbmppal(bmp,
             [func(c) for c in getallRGBpal(bmp)])
     else:
@@ -9229,7 +9209,7 @@ def _usenoparclradjfn(
                              NewBMPfile))
 
 
-@_filechk
+@checklink
 def cropBMPandsave(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -9254,7 +9234,7 @@ def cropBMPandsave(
         crop)
 
 
-@_filechk
+@checklink
 def cropBMPandsaveusingrectbnd(
         ExistingBMPfile: str,
         NewBMPfile: str,
@@ -9284,7 +9264,7 @@ def cropBMPandsaveusingrectbnd(
         rectbnd[1][1] + 1, crop)
 
 
-@_filechks
+@checklinks
 def imagecomp(
         inputfile1: str,
         inputfile2: str,
@@ -9327,7 +9307,7 @@ def imagecomp(
         print(sysmsg['savdifffile'] % diff_file)
 
 
-@_filechk
+@checklink
 @functimer
 def reduce24bitimagebits(
         Existing24BMPfile: str,
@@ -9362,7 +9342,7 @@ def reduce24bitimagebits(
 
     """
     sbmp = loadBMP(Existing24BMPfile)
-    if sbmp[_bmclrbits] != 24:
+    if sbmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
         bmp = CopyBMPxydim2newBMP(
@@ -9390,7 +9370,7 @@ def reduce24bitimagebits(
                         NewBMPfile))
 
 
-@_filechk
+@checklink
 @functimer
 def imgregionbyRGB2file(
         ExistingBMPfile: str,
