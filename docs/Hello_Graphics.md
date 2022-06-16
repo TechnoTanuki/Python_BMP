@@ -117,12 +117,8 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BezierCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CornuSpiral.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GearCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HeartCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Exponential_Spiral_Gradient.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_1.py
 
 **3D and 3D shading effects**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_3D.py
@@ -178,7 +174,12 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flower.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GearCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HeartCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_1.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_2.py
 
 **Graphs**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_XYScatterplot.py
