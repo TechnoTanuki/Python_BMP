@@ -169,17 +169,24 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
 
-**Fractals and Math art**
+**Fractals**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
+
+
+**Parametric Curve Equations that look nice**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flower.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GearCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HeartCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
+
+
+**Spirographs**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_1.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_2.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_Record.py
 
 **Graphs**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_XYScatterplot.py
