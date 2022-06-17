@@ -15,7 +15,7 @@
 
 from random import random
 from .primitives2D import sortrecpoints, iif, isinrectbnd
-from .mathlib import addvect, scalarmulvect
+from .mathlib import addvect, scalarmulvect, roundvect
 
 def getIFSparams() -> dict:
     return {'fern':(((0, 0, 0, .16, 0, 0),
