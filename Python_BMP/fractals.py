@@ -14,6 +14,7 @@
 """
 
 from random import random
+from typing import Callable
 from .primitives2D import sortrecpoints, iif, isinrectbnd
 from .mathlib import addvect, scalarmulvect, roundvect
 
@@ -92,17 +93,52 @@ def iterIFS(
         if isinrectbnd(px, py, x1, y1, x2, y2):
           	  yield (px, py)
 
-def mandel(P: float, Q: float, maxiter: int):
-    c = xp = yp = Xsq = Ysq = 0
-    while (Xsq + Ysq) < 4:
-        yp = 2 * xp * yp + Q
-        xp = Xsq - Ysq + P
-        Xsq = xp * xp
-        Ysq = yp * yp
-        c += 1
-        if c > maxiter:
-            break
-    return c
+
+def mandel(P, Q, maxiter):
+    z = 0
+    c = complex(P, Q)
+    for i in range(maxiter):
+        z = z**2 + c
+        if abs(z) > 2:
+            return i
+    return maxiter
+
+
+def iterfractal(x1: int, y1: int,
+        x2: int, y2: int,
+        f: Callable,
+        fracparam: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        fracparam     : coordinates of fractal
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    (Pmax, Pmin, Qmax, Qmin) = \
+                 fracparam
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
+    dp = (Pmax - Pmin) / (x2 - x1)
+    dq = (Qmax - Qmin) / (y2 - y1)
+    for y in range(y1, y2):
+        Q = Qmin + (y - y1) * dq
+        for x in range(x1, x2):
+            P = Pmin + (x - x1) * dp
+            yield (x, y, f(P, Q, maxiter))
+
 
 def itermandelbrot(
         x1: int, y1: int,
@@ -127,17 +163,9 @@ def itermandelbrot(
     Yields:
         (x:int, y: int, c: int)
     """
-    (Pmax, Pmin, Qmax, Qmin) = \
-                 mandelparam
-    x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
-    dp = (Pmax - Pmin) / (x2 - x1)
-    dq = (Qmax - Qmin) / (y2 - y1)
-    for y in range(y1, y2):
-        Q = Qmin + (y - y1) * dq
-        for x in range(x1, x2):
-            P = Pmin + (x - x1) * dp
-            yield (x, y, mandel(P, Q, maxiter))
+    for p in iterfractal(x1, y1, x2, y2,
+          mandel, mandelparam, maxiter):
+        yield p
 
 
 def hilbertvert(l: list,
