@@ -1445,47 +1445,6 @@ def gearcurvevert(cx: int, cy: int,
     return list(itergearcurve(cx, cy,a, b, n))
 
 
-def hilbertvert(l: list,
-                u: list[int, int],
-                v: list[int, int, int, int],
-                n: int):
-    """Returns list of 2D points for a Hilbert curve
-
-    Args:
-        l: Empty list for return value
-        u: origin point (x: int, y: int)
-        v: sets orientation and extent
-           of the Hilbert Curve
-        n: number of recursions
-           or order of the curve
-
-    Returns:
-        byref list of 2D vertices for
-        a Hilbert curve
-        [(x: int, y: int),...]
-    """
-    if n <= 0:
-        (v0, v1, v2, v3) = v
-        l += [roundvect(
-              addvect(u, ((v0 + v2) / 2,
-                          (v1 + v3) / 2)))]
-    else:
-        i = v[2]
-        j = v[3]
-        v = scalarmulvect(v, 0.5)
-        (v0, v1, v2, v3) = v
-        n -= 1
-        w = (v2, v3, v0, v1)
-        hilbertvert(l, u, w, n)
-        hilbertvert(l,
-          addvect(u, (v0, v1)), v, n)
-        hilbertvert(l,
-          addvect(u, (v0 + v2, v1 + v3)),
-                                   v, n)
-        hilbertvert(l,
-          addvect(u, (v0 + i, v1 + j)),
-                 scalarmulvect(w, -1), n)
-
 
 def itercornuspiral(cx: int, cy: int,
         r: int) -> list[int, int]:
@@ -1559,3 +1518,47 @@ def heartcurvevert(cx: int, cy: int,
         [(x: int, y: int), ...]
     """
     return list(iterheartcurve(cx, cy, s))
+
+
+def itereggcurve(cx: int, cy: int,
+         a:int, b: float) -> list[int, int]:
+    """Yields 2D points for a egg curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a      : length of egg
+        b      : control egg shape
+
+    Yields:
+        (x: int, y: int)
+    """
+    sqrt2 = 1.4142135623730950488016887242097
+    p = 0.5
+    k = a - b
+    c = a >> 1
+    if k > 0:
+        k2 = k * k
+        _4b = 4 * b
+        for x in range(a):
+            y = int(((k - 2 * x + ((_4b * x + k) ** p).real) ** p).real * \
+                (x ** p).real / sqrt2)
+            if y > 0:
+                px = cx + x - c
+                yield (px, cy - y)
+                yield (px, cy + y)
+
+
+def eggcurvevert(cx: int, cy: int,
+         a:int, b: float) -> list[int, int]:
+    """Returns 2D points for a egg curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a      : length of egg
+        b      : control egg shape
+
+    Returns:
+        list of vertices for an egg curve
+        [(x: int, y: int), ...]
+    """
+    return list(itereggcurve(cx, cy, a, b))
