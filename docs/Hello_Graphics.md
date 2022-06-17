@@ -2,10 +2,13 @@
 Check samples with Hello_something.py for sample code on how to do stuff
 * The code did a functional approach (no classes) ... dont add classes or I might refactor lmao
 
-# Public API
+## API Documentation Generator (run this to update Public and Internal API)
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Markdown_Doc.py
+
+## Public API
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLib_Doc.md
 
-# Internal API
+## Internal API
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLibInternals_Doc.md
 
 # References
@@ -29,6 +32,8 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 **Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
 * mini math lib: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
+* parametric curves https://mathworld.wolfram.com/topics/Curves.html
+* moar curves https://mathcurve.com
 
 **Colors**
 * X11 color source: https://cgit.freedesktop.org/xorg/xserver/tree/os/oscolor.c
@@ -116,10 +121,10 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 **Curves and Spirals**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BezierCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_InvoluteofaCircle.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CornuSpiral.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Exponential_Spiral_Gradient.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_1.py
 
 **3D and 3D shading effects**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_3D.py
@@ -170,11 +175,30 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
 
-**Fractals and Math art**
+**Fractals**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
+
+**Parametric Curve Equations**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Epicycloid.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flower.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Octopetala.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GearCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HeartCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_LissajousCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Hypotrochoid.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Superellipse.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Squircles.py
+
+**Spirographs**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_1.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_2.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_Record.py
 
 **Graphs**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_XYScatterplot.py
