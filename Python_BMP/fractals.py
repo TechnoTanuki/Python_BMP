@@ -129,15 +129,15 @@ def itermandelbrot(
         Q = Qmin + (y - y1) * dq
         for x in range(x1, x2):
             P = Pmin + (x - x1) * dp
-            xp = yp = c= Xsq = Ysq = 0
+            xp = yp = c = Xsq = Ysq = 0
             while (Xsq + Ysq) < max_size:
-                 xp, yp = Xsq - Ysq + P, \
-                       2 * xp * yp + Q
-                 Xsq = xp * xp
-                 Ysq = yp * yp
-                 c += 1
-                 if c > maxiter:
-                     break
+                yp = 2 * xp * yp + Q
+                xp = Xsq - Ysq + P
+                Xsq = xp * xp
+                Ysq = yp * yp
+                c += 1
+                if c > maxiter:
+                    break
             yield (x, y, c)
 
 
