@@ -111,6 +111,7 @@ else:
             if any(file.parts[1 : 1 + len(sl)] == sl for sl in sd_prefixes)
             else file
         )
+        file.chmod(0o777)
         url: str = urlunparse(
             ParseResult(
                 scheme="file",
@@ -119,6 +120,28 @@ else:
                 params="",
                 query="",
                 fragment="",
+            )
+        )
+        print(
+            check_output(
+                [
+                    "am",
+                    "broadcast",
+                    "--user",
+                    "0",
+                    "-a",
+                    "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
+                    "-c",
+                    "android.intent.category.DEFAULT",
+                    "-t",
+                    "image/*",
+                    "--grant-read-uri-permission",
+                    "--grant-write-uri-permission",
+                    "--grant-persistable-uri-permission",
+                    "--grant-prefix-uri-permission",
+                    "-d",
+                    url,
+                ]
             )
         )
         print(
