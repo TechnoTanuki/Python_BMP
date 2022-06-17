@@ -34,7 +34,7 @@ def main():
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         file = f'Hello{f.__name__}.bmp' # file name
         x += 110
-        for c in range(16, 1, -1):
+        for c in range(16, 0, -1):
             l = f(x, y, # center
                   c * 40, 14)  # radius, egg factor
             p(bmp, l, c) # plot stuff
