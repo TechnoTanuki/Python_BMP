@@ -1540,8 +1540,10 @@ def itereggcurve(cx: int, cy: int,
         k2 = k * k
         _4b = 4 * b
         for x in range(a):
-            y = int(((k - 2 * x + ((_4b * x + k) ** p).real) ** p).real * \
-                (x ** p).real / sqrt2)
+            y = int(((k - 2 * x + \
+                      ((_4b * x + \
+            k) ** p).real) ** p).real * \
+            (x ** p).real / sqrt2)
             if y > 0:
                 px = cx + x - c
                 yield (px, cy - y)
