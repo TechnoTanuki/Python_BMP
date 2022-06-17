@@ -92,6 +92,17 @@ def iterIFS(
         if isinrectbnd(px, py, x1, y1, x2, y2):
           	  yield (px, py)
 
+def mandel(P: float, Q: float, maxiter: int):
+    c = xp = yp = Xsq = Ysq = 0
+    while (Xsq + Ysq) < 4:
+        yp = 2 * xp * yp + Q
+        xp = Xsq - Ysq + P
+        Xsq = xp * xp
+        Ysq = yp * yp
+        c += 1
+        if c > maxiter:
+            break
+    return c
 
 def itermandelbrot(
         x1: int, y1: int,
@@ -120,26 +131,13 @@ def itermandelbrot(
                  mandelparam
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
-    maxx = x2 - x1
-    maxy = y2 - y1
-    dp = (Pmax - Pmin) / maxx
-    dq = (Qmax - Qmin) / maxy
-    max_size = 4
+    dp = (Pmax - Pmin) / (x2 - x1)
+    dq = (Qmax - Qmin) / (y2 - y1)
     for y in range(y1, y2):
         Q = Qmin + (y - y1) * dq
         for x in range(x1, x2):
             P = Pmin + (x - x1) * dp
-            xp = yp = c = Xsq = Ysq = 0
-            while (Xsq + Ysq) < max_size:
-                yp = 2 * xp * yp + Q
-                xp = Xsq - Ysq + P
-                Xsq = xp * xp
-                Ysq = yp * yp
-                c += 1
-                if c > maxiter:
-                    break
-            yield (x, y, c)
-
+            yield (x, y, mandel(P, Q, maxiter))
 
 
 def hilbertvert(l: list,
