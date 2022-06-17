@@ -94,7 +94,19 @@ def iterIFS(
           	  yield (px, py)
 
 
-def mandel(P, Q, maxiter):
+def mandel(P: float, Q: float,
+        maxiter: int) -> int:
+    """Mandelbrot Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
     z = 0
     c = complex(P, Q)
     for i in range(maxiter):
@@ -106,17 +118,15 @@ def mandel(P, Q, maxiter):
 
 def iterfractal(x1: int, y1: int,
         x2: int, y2: int,
-        f: Callable,
+        func: Callable,
         fracparam: list[float, float, float, float],
         maxiter: int):
     """Yields a Fractal
 
     Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
+        func          : fractal function
         fracparam     : coordinates of fractal
         rgbfactors    : [r, b, g] values
                         range from
@@ -137,7 +147,7 @@ def iterfractal(x1: int, y1: int,
         Q = Qmin + (y - y1) * dq
         for x in range(x1, x2):
             P = Pmin + (x - x1) * dp
-            yield (x, y, f(P, Q, maxiter))
+            yield (x, y, func(P, Q, maxiter))
 
 
 def itermandelbrot(
@@ -148,9 +158,6 @@ def itermandelbrot(
     """Yields a Mandelbrot set
 
     Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
         mandelparam   : see fractals.py

@@ -1472,6 +1472,24 @@ Draws a vector (line segment with arrow head)
         byref modified unsigned byte array
 
 
+### [`eggcurvevert`](#eggcurvevert)
+
+```py
+def eggcurvevert(cx: int, cy: int, a: int, b: float) -> list[int, int]:
+```
+
+Returns 2D points for a egg curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a      : length of egg
+        b      : control egg shape
+    
+    Returns:
+        list of vertices for an egg curve
+        [(x: int, y: int), ...]
+
+
 ### [`ellipse`](#ellipse)
 
 ```py
@@ -4662,6 +4680,23 @@ Yields a vector (line segment with arrow head)
         ((x1: int, y1: int), (x2: int, y2: int))
 
 
+### [`itereggcurve`](#itereggcurve)
+
+```py
+def itereggcurve(cx: int, cy: int, a: int, b: float) -> list[int, int]:
+```
+
+Yields 2D points for a egg curve
+
+    Args:
+        cx, cy : center (cx, cy)
+        a      : length of egg
+        b      : control egg shape
+    
+    Yields:
+        (x: int, y: int)
+
+
 ### [`iterellipse`](#iterellipse)
 
 ```py
@@ -5036,9 +5071,6 @@ def itermandelbrot(x1: int, y1: int, x2: int, y2: int, mandelparam: list[float, 
 Yields a Mandelbrot set
 
     Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
         mandelparam   : see fractals.py
