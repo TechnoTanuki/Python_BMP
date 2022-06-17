@@ -228,7 +228,9 @@ from .fractals import(
     juliaparamdict,
     iterjulia,
     itermultibrot,
-    itermultijulia
+    itermultijulia,
+    tricornparamdict,
+    itertricorn
     )
 
 from .inttools import(
@@ -8118,7 +8120,7 @@ def mandelbrot(bmp: array,
                         to draw in
         mandelparam   : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -8150,7 +8152,7 @@ def multibrot(bmp: array,
         d             : power to raise z to
         mandelparam   : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -8180,7 +8182,7 @@ def julia(bmp: array,
                         to draw in
         juliaparam    : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -8212,7 +8214,7 @@ def multijulia(bmp: array,
         d             : power to raise z to
         juliaparam    : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -8223,6 +8225,36 @@ def multijulia(bmp: array,
     """
     plotmultifractal(bmp, x1, y1, x2, y2, d,
         itermultijulia, juliaparam,
+        RGBfactors, maxiter)
+
+
+def tricorn(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        tricornparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Tricorn set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        tricornparam  : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotfractal(bmp, x1, y1, x2, y2,
+        itertricorn, tricornparam,
         RGBfactors, maxiter)
 
 

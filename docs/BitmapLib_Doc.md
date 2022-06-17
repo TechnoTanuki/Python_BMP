@@ -5108,6 +5108,54 @@ Yields a Mandelbrot set
         (x:int, y: int, c: int)
 
 
+### [`itermultibrot`](#itermultibrot)
+
+```py
+def itermultibrot(x1: int, y1: int, x2: int, y2: int, d: float, mandelparam: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Multibrot set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        mandelparam   : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
+
+
+### [`itermultijulia`](#itermultijulia)
+
+```py
+def itermultijulia(x1: int, y1: int, x2: int, y2: int, d: float, juliaparam: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Multi julia set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        juliaparam    : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
+
+
 ### [`iterparallelogram`](#iterparallelogram)
 
 ```py
@@ -5180,6 +5228,29 @@ Yields 2D points for a superellipse
         (x: int, y: int)
 
 
+### [`itertricorn`](#itertricorn)
+
+```py
+def itertricorn(x1: int, y1: int, x2: int, y2: int, tricornparam: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Tricorn set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        triconparam   : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
+
+
 ### [`julia`](#julia)
 
 ```py
@@ -5196,7 +5267,7 @@ Draw a Julia set
                         to draw in
         juliaparam    : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -5484,7 +5555,7 @@ Draw a Mandelbrot set
                         to draw in
         mandelparam   : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -6657,6 +6728,60 @@ Applies a monochrome filter
     Returns:
         byref modified
         unsigned byte array
+
+
+### [`multibrot`](#multibrot)
+
+```py
+def multibrot(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, mandelparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multibrot set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        mandelparam   : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`multijulia`](#multijulia)
+
+```py
+def multijulia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multijulia set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        juliaparam    : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`newBMP`](#newBMP)
@@ -7864,6 +7989,33 @@ Draws connected lines defined by a list of vertices
         penradius: optional parameter
                    for thick line
     
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`plotmultifractal`](#plotmultifractal)
+
+```py
+def plotmultifractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multi Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
     
     Returns:
         byref modified unsigned byte array
@@ -10139,6 +10291,43 @@ to all vectors in the list of vectors
     
     Returns:
         list of vectors
+
+
+### [`tricorn`](#tricorn)
+
+```py
+def tricorn(bmp: array.array, x1: int, y1: int, x2: int, y2: int, tricornparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Tricorn set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        tricornparam  : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`tricornparamdict`](#tricornparamdict)
+
+```py
+def tricornparamdict() -> dict:
+```
+
+
+
+    
 
 
 ### [`upgradeto24bitimage2file`](#upgradeto24bitimage2file)

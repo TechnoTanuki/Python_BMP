@@ -59,6 +59,15 @@ def juliaparamdict() -> dict:
                'custom1':(-.5,-.7,-.5,-.7)}
 
 
+def tricornparamdict() -> dict:
+    return {'maxdefault':(1.75,-1.75,1.5,-1.5),
+              'maxeqdim':(1.75,-1.75,1.75,-1.75),
+            'middefault':(.75,-1.25,1.25,-1.25),
+            'mindefault':(.75,-.75,.5,-.5),
+              'mineqdim':(.5,-.5,.5,-.5),
+               'custom1':(-.5,-.7,-.5,-.7)}
+
+
 def iterIFS(
         IFStransparam: tuple,
         x1: int, y1: int,
@@ -143,6 +152,28 @@ def julia(P: float, Q: float,
     for i in range(maxiter):
         z = z**2 + c
         if (z * z.conjugate()).real > 4:
+            return i
+    return maxiter
+
+
+def tricorn(P: float, Q: float,
+        maxiter: int) -> int:
+    """Tricorn Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(0, 0)
+    c = complex(P, Q)
+    for i in range(maxiter):
+        z = z.conjugate()**2 + c
+        if abs(z) > 2:
             return i
     return maxiter
 
@@ -317,6 +348,32 @@ def iterjulia(
     """
     for p in iterfractal(x1, y1, x2, y2,
         julia, juliaparam, maxiter):
+        yield p
+
+
+def itertricorn(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        tricornparam: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Tricorn set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        triconparam   : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    for p in iterfractal(x1, y1, x2, y2,
+        tricorn, tricornparam, maxiter):
         yield p
 
 
