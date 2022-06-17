@@ -1,5 +1,5 @@
 notice = """
-        Julia Set Fractal Demo
+      Multibrot Set Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -14,8 +14,8 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         getX11RGBfactors,
-        julia as f,
-        juliaparamdict,
+        multibrot as f,
+        mandelparamdict as d,
         getfuncmetastr as meta,
         saveBMP
         )
@@ -31,10 +31,11 @@ def main():
         mx = my = 600 # square canvas
         bmp = newBMP(mx, my, 24) # RGB bitmap 500 x 500
         cf = getX11RGBfactors() #color info
-        juliapar = juliaparamdict() # common parameters
+        par = d() # get common parameters
         f(bmp, 0, 0, mx, my,
-          juliapar['maxeqdim'],
-          cf['gold'], 255)
+          5, # power of z
+          par['maxeqdim'], # location to plot
+          cf['cornflowerblue'], 255)
         file = f'hello{f.__name__}.bmp' # random file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

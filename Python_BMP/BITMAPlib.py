@@ -226,7 +226,8 @@ from .fractals import(
     mandelparamdict,
     itermandelbrot,
     juliaparamdict,
-    iterjulia
+    iterjulia,
+    itermultibrot
     )
 
 from .inttools import(
@@ -8051,7 +8052,47 @@ def plotfractal(bmp: array,
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
     for (x, y, c) in func(x1, y1, x2, y2,
-                             fracparam, maxiter):
+                          fracparam, maxiter):
+        if bmp[bmpcolorbits] == 24:
+            c = colormix(((255 - c) * 20) % 256,
+                        RGBfactors)
+        else:
+            c = mcolor - c % maxcolors
+        plotxybit(bmp, x, y, c)
+
+
+def plotmultifractal(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        func: Callable,
+        fracparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Multi Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    maxcolors = getmaxcolors(bmp)
+    mcolor = maxcolors - 1
+    for (x, y, c) in func(x1, y1, x2, y2, d,
+                          fracparam, maxiter):
         if bmp[bmpcolorbits] == 24:
             c = colormix(((255 - c) * 20) % 256,
                         RGBfactors)
@@ -8090,6 +8131,38 @@ def mandelbrot(bmp: array,
         RGBfactors, maxiter)
 
 
+def multibrot(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        mandelparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Multibrot set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        mandelparam   : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractal(bmp, x1, y1, x2, y2, d,
+        itermultibrot, mandelparam,
+        RGBfactors, maxiter)
+
+
 def julia(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -8117,6 +8190,36 @@ def julia(bmp: array,
     """
     plotfractal(bmp, x1, y1, x2, y2,
         iterjulia, juliaparam,
+        RGBfactors, maxiter)
+
+
+def tricorn(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        tricornparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Tricorn set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        tricornparam  : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotfractal(bmp, x1, y1, x2, y2,
+        itertricorn, tricornparam,
         RGBfactors, maxiter)
 
 
