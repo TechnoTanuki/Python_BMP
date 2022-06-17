@@ -33,6 +33,7 @@ def main():
         cf = getX11RGBfactors() #color info
         par = d() # get common parameters
         f(bmp, 0, 0, mx, my,
+          -0.744 +  0.148j,
           3, # power of z
           par['maxeqdim'], # location to plot
           cf['royalblue2'], 655)
