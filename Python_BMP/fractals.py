@@ -135,6 +135,7 @@ def mandel(P: float, Q: float,
 
 
 def julia(P: float, Q: float,
+        c: complex,
         maxiter: int) -> int:
     """Julia Function
 
@@ -148,7 +149,6 @@ def julia(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    c = complex(-0.744, 0.148)
     for i in range(maxiter):
         z = z**2 + c
         if (z * z.conjugate()).real > 4:
@@ -203,12 +203,14 @@ def multibrot(
 
 
 def multijulia(P: float, Q: float,
+        c: complex,
         d: float, maxiter: int) -> int:
     """Multijulia Function
 
     Args:
         P : real part as float
         Q : imaginary part as float
+        c : complex number
         d : exponent
         maxiter : when to break
                   color compute
@@ -217,7 +219,6 @@ def multijulia(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    c = complex(-0.744, 0.148)
     for i in range(maxiter):
         z = z**d + c
         if (z * z.conjugate()).real > 4:
@@ -322,6 +323,83 @@ def itermultifractal(
             yield (x, y, func(P, Q, d, maxiter))
 
 
+def iterfractalcomplexpar(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable,
+        c: complex,
+        fracparam: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Fractal with a complex number parameter
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        func          : fractal function
+        c             : complex number
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    (Pmax, Pmin, Qmax, Qmin) = \
+                 fracparam
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
+    dp = (Pmax - Pmin) / (x2 - x1)
+    dq = (Qmax - Qmin) / (y2 - y1)
+    for y in range(y1, y2):
+        Q = Qmin + (y - y1) * dq
+        for x in range(x1, x2):
+            P = Pmin + (x - x1) * dp
+            yield (x, y, func(P, Q, c, maxiter))
+
+
+def itermultifractalcomplexpar(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        d: float,
+        func: Callable,
+        fracparam: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Multi Fractal with a complex number parameter
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        func          : fractal function
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    (Pmax, Pmin, Qmax, Qmin) = \
+                 fracparam
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
+    dp = (Pmax - Pmin) / (x2 - x1)
+    dq = (Qmax - Qmin) / (y2 - y1)
+    for y in range(y1, y2):
+        Q = Qmin + (y - y1) * dq
+        for x in range(x1, x2):
+            P = Pmin + (x - x1) * dp
+            yield (x, y, func(P, Q, c, d, maxiter))
+
+
 def itermandelbrot(
         x1: int, y1: int,
         x2: int, y2: int,
@@ -351,6 +429,7 @@ def itermandelbrot(
 def iterjulia(
         x1: int, y1: int,
         x2: int, y2: int,
+        c: complex,
         juliaparam: list[float, float, float, float],
         maxiter: int):
     """Yields a Julia set
@@ -360,6 +439,7 @@ def iterjulia(
                         to draw in
         juliaparam    : coordinates in real
                         and imaginary plane
+        c             : complex number
         rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
@@ -369,8 +449,8 @@ def iterjulia(
     Yields:
         (x:int, y: int, c: int)
     """
-    for p in iterfractal(x1, y1, x2, y2,
-        julia, juliaparam, maxiter):
+    for p in iterfractalcomplexpar(x1, y1, x2, y2,
+        julia, c, juliaparam, maxiter):
         yield p
 
 
@@ -431,6 +511,7 @@ def itermultibrot(
 def itermultijulia(
         x1: int, y1: int,
         x2: int, y2: int,
+        c: complex,
         d: float,
         juliaparam: list[float, float, float, float],
         maxiter: int):
@@ -439,6 +520,7 @@ def itermultijulia(
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
+        c             : complex number
         d             : power to raise z to
         juliaparam    : coordinates in real
                         and imaginary plane
@@ -451,7 +533,7 @@ def itermultijulia(
     Yields:
         (x:int, y: int, c: int)
     """
-    for p in itermultifractal(x1, y1, x2, y2, d,
+    for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
         multijulia, juliaparam, maxiter):
         yield p
 

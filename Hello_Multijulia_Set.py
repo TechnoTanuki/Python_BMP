@@ -33,6 +33,7 @@ def main():
         cf = getX11RGBfactors() #color info
         par = d() # get common parameters
         f(bmp, 0, 0, mx, my,
+          -0.70176 - 0.3842j,
           5, # power of z
           par['maxeqdim'], # location to plot
           cf['darkseagreen1'], 255)

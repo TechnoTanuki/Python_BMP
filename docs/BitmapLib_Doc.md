@@ -5020,7 +5020,7 @@ Yields (r, g, b) information for the entire bitmap
 ### [`iterjulia`](#iterjulia)
 
 ```py
-def iterjulia(x1: int, y1: int, x2: int, y2: int, juliaparam: list[float, float, float, float], maxiter: int):
+def iterjulia(x1: int, y1: int, x2: int, y2: int, c: complex, juliaparam: list[float, float, float, float], maxiter: int):
 ```
 
 Yields a Julia set
@@ -5030,6 +5030,7 @@ Yields a Julia set
                         to draw in
         juliaparam    : coordinates in real
                         and imaginary plane
+        c             : complex number
         rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
@@ -5159,7 +5160,7 @@ Yields a Multicorn set
 ### [`itermultijulia`](#itermultijulia)
 
 ```py
-def itermultijulia(x1: int, y1: int, x2: int, y2: int, d: float, juliaparam: list[float, float, float, float], maxiter: int):
+def itermultijulia(x1: int, y1: int, x2: int, y2: int, c: complex, d: float, juliaparam: list[float, float, float, float], maxiter: int):
 ```
 
 Yields a Multijulia set
@@ -5167,6 +5168,7 @@ Yields a Multijulia set
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
+        c             : complex number
         d             : power to raise z to
         juliaparam    : coordinates in real
                         and imaginary plane
@@ -5278,7 +5280,7 @@ Yields a Tricorn set
 ### [`julia`](#julia)
 
 ```py
-def julia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def julia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Julia set
@@ -5289,6 +5291,7 @@ Draw a Julia set
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
+        c             : complex number
         juliaparam    : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
@@ -6811,7 +6814,7 @@ Draw a Multicorn set
 ### [`multijulia`](#multijulia)
 
 ```py
-def multijulia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def multijulia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Multijulia set
@@ -6822,6 +6825,7 @@ Draw a Multijulia set
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
+        c             : complex number
         d             : power to raise z to
         juliaparam    : coordinates in real
                         and imaginary plane
@@ -7597,7 +7601,34 @@ Draw a Fractal
                         to draw in
         fracparam     : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`plotfractalcomplexpar`](#plotfractalcomplexpar)
+
+```py
+def plotfractalcomplexpar(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Fractal with a complex parameter
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        c             : complex number
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -8062,7 +8093,35 @@ Draw a Multi Fractal
         d             : power to raise z to
         fracparam     : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`plotmultifractalcomplexpar`](#plotmultifractalcomplexpar)
+
+```py
+def plotmultifractalcomplexpar(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multi Fractal with a comnplex parameter
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break

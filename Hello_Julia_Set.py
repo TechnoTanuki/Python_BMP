@@ -33,8 +33,9 @@ def main():
         cf = getX11RGBfactors() #color info
         juliapar = juliaparamdict() # common parameters
         f(bmp, 0, 0, mx, my,
+          -0.70176 - 0.3842j,
           juliapar['maxeqdim'],
-          cf['gold'], 255)
+          cf['darkslategray1'], 255)
         file = f'hello{f.__name__}.bmp' # random file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

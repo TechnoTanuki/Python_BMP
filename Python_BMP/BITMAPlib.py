@@ -8044,7 +8044,7 @@ def plotfractal(bmp: array,
                         to draw in
         fracparam     : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -8063,6 +8063,46 @@ def plotfractal(bmp: array,
         else:
             c = mcolor - c % maxcolors
         plotxybit(bmp, x, y, c)
+
+
+def plotfractalcomplexpar(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        func: Callable,
+        fracparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Fractal with a complex parameter
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        c             : complex number
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    maxcolors = getmaxcolors(bmp)
+    mcolor = maxcolors - 1
+    for (x, y, cl) in func(x1, y1, x2, y2, c,
+                          fracparam, maxiter):
+        if bmp[bmpcolorbits] == 24:
+            cl = colormix(((255 - cl) * 20) % 256,
+                        RGBfactors)
+        else:
+            cl = mcolor - cl % maxcolors
+        plotxybit(bmp, x, y, cl)
 
 
 def plotmultifractal(bmp: array,
@@ -8084,7 +8124,7 @@ def plotmultifractal(bmp: array,
         d             : power to raise z to
         fracparam     : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -8103,6 +8143,48 @@ def plotmultifractal(bmp: array,
         else:
             c = mcolor - c % maxcolors
         plotxybit(bmp, x, y, c)
+
+
+def plotmultifractalcomplexpar(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        d: float,
+        func: Callable,
+        fracparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Multi Fractal with a comnplex parameter
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    maxcolors = getmaxcolors(bmp)
+    mcolor = maxcolors - 1
+    for (x, y, cl) in func(x1, y1, x2, y2, c, d,
+                          fracparam, maxiter):
+        if bmp[bmpcolorbits] == 24:
+            cl = colormix(((255 - cl) * 20) % 256,
+                        RGBfactors)
+        else:
+            cl = mcolor - cl % maxcolors
+        plotxybit(bmp, x, y, cl)
 
 
 def mandelbrot(bmp: array,
@@ -8170,6 +8252,7 @@ def multibrot(bmp: array,
 def julia(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
+        c: complex,
         juliaparam: list[float, float, float, float],
         RGBfactors: list[float, float, float],
         maxiter: int):
@@ -8181,6 +8264,7 @@ def julia(bmp: array,
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
+        c             : complex number
         juliaparam    : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
@@ -8192,7 +8276,7 @@ def julia(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotfractal(bmp, x1, y1, x2, y2,
+    plotfractalcomplexpar(bmp, x1, y1, x2, y2, c,
         iterjulia, juliaparam,
         RGBfactors, maxiter)
 
@@ -8200,6 +8284,7 @@ def julia(bmp: array,
 def multijulia(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
+        c: complex,
         d: float,
         juliaparam: list[float, float, float, float],
         RGBfactors: list[float, float, float],
@@ -8212,6 +8297,7 @@ def multijulia(bmp: array,
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
+        c             : complex number
         d             : power to raise z to
         juliaparam    : coordinates in real
                         and imaginary plane
@@ -8224,7 +8310,7 @@ def multijulia(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractal(bmp, x1, y1, x2, y2, d,
+    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
         itermultijulia, juliaparam,
         RGBfactors, maxiter)
 
