@@ -227,7 +227,8 @@ from .fractals import(
     itermandelbrot,
     juliaparamdict,
     iterjulia,
-    itermultibrot
+    itermultibrot,
+    itermultijulia
     )
 
 from .inttools import(
@@ -8193,13 +8194,14 @@ def julia(bmp: array,
         RGBfactors, maxiter)
 
 
-def tricorn(bmp: array,
+def multijulia(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
-        tricornparam: list[float, float, float, float],
+        d: float,
+        juliaparam: list[float, float, float, float],
         RGBfactors: list[float, float, float],
         maxiter: int):
-    """Draw a Tricorn set
+    """Draw a Multijulia set
 
     Args:
         bmp           : unsigned
@@ -8207,7 +8209,8 @@ def tricorn(bmp: array,
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
-        tricornparam  : coordinates in real
+        d             : power to raise z to
+        juliaparam    : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, b, g] values
                         range from
@@ -8218,8 +8221,8 @@ def tricorn(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotfractal(bmp, x1, y1, x2, y2,
-        itertricorn, tricornparam,
+    plotmultifractal(bmp, x1, y1, x2, y2, d,
+        itermultijulia, juliaparam,
         RGBfactors, maxiter)
 
 

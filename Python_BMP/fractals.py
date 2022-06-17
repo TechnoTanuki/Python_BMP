@@ -171,6 +171,29 @@ def multibrot(
     return maxiter
 
 
+def multijulia(P: float, Q: float,
+        d: float, maxiter: int) -> int:
+    """Multi Julia Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        d : exponent
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    c = complex(-0.744, 0.148)
+    for i in range(maxiter):
+        z = z**d + c
+        if (z * z.conjugate()).real > 4:
+            return i
+    return maxiter
+
+
 def iterfractal(
         x1: int, y1: int,
         x2: int, y2: int,
@@ -303,7 +326,7 @@ def itermultibrot(
         d: float,
         mandelparam: list[float, float, float, float],
         maxiter: int):
-    """Yields a Julia set
+    """Yields a Multibrot set
 
     Args:
         x1, y1, x2, y2: rectangular area
@@ -322,6 +345,34 @@ def itermultibrot(
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         multibrot, mandelparam, maxiter):
+        yield p
+
+
+def itermultijulia(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        juliaparam: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Multi julia set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        juliaparam    : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, d,
+        multijulia, juliaparam, maxiter):
         yield p
 
 
