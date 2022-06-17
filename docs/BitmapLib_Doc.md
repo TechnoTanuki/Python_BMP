@@ -5030,7 +5030,7 @@ Yields a Julia set
                         to draw in
         juliaparam    : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -5098,7 +5098,7 @@ Yields a Mandelbrot set
                         to draw in
         mandelparam   : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -5122,7 +5122,31 @@ Yields a Multibrot set
         d             : power to raise z to
         mandelparam   : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
+
+
+### [`itermulticorn`](#itermulticorn)
+
+```py
+def itermulticorn(x1: int, y1: int, x2: int, y2: int, d: float, tricornparam: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Multicorn set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        tricornparam  : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -5138,7 +5162,7 @@ Yields a Multibrot set
 def itermultijulia(x1: int, y1: int, x2: int, y2: int, d: float, juliaparam: list[float, float, float, float], maxiter: int):
 ```
 
-Yields a Multi julia set
+Yields a Multijulia set
 
     Args:
         x1, y1, x2, y2: rectangular area
@@ -5146,7 +5170,7 @@ Yields a Multi julia set
         d             : power to raise z to
         juliaparam    : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -5241,7 +5265,7 @@ Yields a Tricorn set
                         to draw in
         triconparam   : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, b, g] values
+        rgbfactors    : [r, g, b] values
                         range from
                         0.0 to 1.0
         maxiter       : when to break
@@ -6746,6 +6770,33 @@ Draw a Multibrot set
                         to draw in
         d             : power to raise z to
         mandelparam   : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`multicorn`](#multicorn)
+
+```py
+def multicorn(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, tricornparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multicorn set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        tricornparam  : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from

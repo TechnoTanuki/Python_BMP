@@ -230,7 +230,8 @@ from .fractals import(
     itermultibrot,
     itermultijulia,
     tricornparamdict,
-    itertricorn
+    itertricorn,
+    itermulticorn
     )
 
 from .inttools import(
@@ -8255,6 +8256,38 @@ def tricorn(bmp: array,
     """
     plotfractal(bmp, x1, y1, x2, y2,
         itertricorn, tricornparam,
+        RGBfactors, maxiter)
+
+
+def multicorn(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        tricornparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Multicorn set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        tricornparam  : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractal(bmp, x1, y1, x2, y2, d,
+        itermulticorn, tricornparam,
         RGBfactors, maxiter)
 
 
