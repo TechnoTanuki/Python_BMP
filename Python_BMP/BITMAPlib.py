@@ -224,7 +224,9 @@ from .fractals import(
     iterIFS,
     hilbertvert,
     mandelparamdict,
-    itermandelbrot
+    itermandelbrot,
+    juliaparamdict,
+    iterjulia
     )
 
 from .inttools import(
@@ -8020,6 +8022,44 @@ def verticalbrightnessgradto24bitimage(
         getmaxy(bmp) - 1, lumrange)
 
 
+def plotfractal(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable,
+        fracparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    maxcolors = getmaxcolors(bmp)
+    mcolor = maxcolors - 1
+    for (x, y, c) in func(x1, y1, x2, y2,
+                             fracparam, maxiter):
+        if bmp[bmpcolorbits] == 24:
+            c = colormix(((255 - c) * 20) % 256,
+                        RGBfactors)
+        else:
+            c = mcolor - c % maxcolors
+        plotxybit(bmp, x, y, c)
+
+
 def mandelbrot(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -8034,7 +8074,8 @@ def mandelbrot(bmp: array,
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
-        mandelparam   : see fractals.py
+        mandelparam   : coordinates in real
+                        and imaginary plane
         rgbfactors    : [r, b, g] values
                         range from
                         0.0 to 1.0
@@ -8044,16 +8085,39 @@ def mandelbrot(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    maxcolors = getmaxcolors(bmp)
-    mcolor = maxcolors - 1
-    for (x, y, c) in itermandelbrot(x1, y1, x2, y2,
-                             mandelparam, maxiter):
-        if bmp[bmpcolorbits] == 24:
-            c = colormix(((255 - c) * 20) % 256,
-                        RGBfactors)
-        else:
-            c = mcolor - c % maxcolors
-        plotxybit(bmp, x, y, c)
+    plotfractal(bmp, x1, y1, x2, y2,
+        itermandelbrot, mandelparam,
+        RGBfactors, maxiter)
+
+
+def julia(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        juliaparam: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Julia set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        juliaparam    : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotfractal(bmp, x1, y1, x2, y2,
+        iterjulia, juliaparam,
+        RGBfactors, maxiter)
 
 
 def IFS(bmp: array,

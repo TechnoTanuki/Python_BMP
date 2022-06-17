@@ -5017,6 +5017,29 @@ Yields (r, g, b) information for the entire bitmap
         ((x: int, y: int), (r: byte, g: byte, b: byte))
 
 
+### [`iterjulia`](#iterjulia)
+
+```py
+def iterjulia(x1: int, y1: int, x2: int, y2: int, juliaparam: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Julia set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        juliaparam    : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
+
+
 ### [`iterline`](#iterline)
 
 ```py
@@ -5073,7 +5096,8 @@ Yields a Mandelbrot set
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        mandelparam   : see fractals.py
+        mandelparam   : coordinates in real
+                        and imaginary plane
         rgbfactors    : [r, b, g] values
                         range from
                         0.0 to 1.0
@@ -5154,6 +5178,43 @@ Yields 2D points for a superellipse
     
     Yields:
         (x: int, y: int)
+
+
+### [`julia`](#julia)
+
+```py
+def julia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Julia set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        juliaparam    : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`juliaparamdict`](#juliaparamdict)
+
+```py
+def juliaparamdict() -> dict:
+```
+
+
+
+    
 
 
 ### [`line`](#line)
@@ -5421,7 +5482,8 @@ Draw a Mandelbrot set
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
-        mandelparam   : see fractals.py
+        mandelparam   : coordinates in real
+                        and imaginary plane
         rgbfactors    : [r, b, g] values
                         range from
                         0.0 to 1.0
@@ -7338,6 +7400,32 @@ Draw a flower
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`plotfractal`](#plotfractal)
+
+```py
+def plotfractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        fracparam     : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
     
     Returns:
         byref modified unsigned byte array

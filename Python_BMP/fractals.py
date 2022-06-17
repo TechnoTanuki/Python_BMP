@@ -50,6 +50,15 @@ def mandelparamdict() -> dict:
                'custom1':(-.5,-.7,-.5,-.7)}
 
 
+def juliaparamdict() -> dict:
+    return {'maxdefault':(1.75,-1.75,1.5,-1.5),
+              'maxeqdim':(1.75,-1.75,1.75,-1.75),
+            'middefault':(.75,-1.25,1.25,-1.25),
+            'mindefault':(.75,-.75,.5,-.5),
+              'mineqdim':(.5,-.5,.5,-.5),
+               'custom1':(-.5,-.7,-.5,-.7)}
+
+
 def iterIFS(
         IFStransparam: tuple,
         x1: int, y1: int,
@@ -116,6 +125,28 @@ def mandel(P: float, Q: float,
     return maxiter
 
 
+def julia(P: float, Q: float,
+        maxiter: int) -> int:
+    """Julia Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    c = complex(-0.744, 0.148)
+    for i in range(maxiter):
+        z = z**2 + c
+        if (z * z.conjugate()).real > 4:
+            return i
+    return maxiter
+
+
 def iterfractal(x1: int, y1: int,
         x2: int, y2: int,
         func: Callable,
@@ -127,7 +158,8 @@ def iterfractal(x1: int, y1: int,
         x1, y1, x2, y2: rectangular area
                         to draw in
         func          : fractal function
-        fracparam     : coordinates of fractal
+        fracparam     : coordinates in real
+                        and imaginary plane
         rgbfactors    : [r, b, g] values
                         range from
                         0.0 to 1.0
@@ -160,7 +192,8 @@ def itermandelbrot(
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        mandelparam   : see fractals.py
+        mandelparam   : coordinates in real
+                        and imaginary plane
         rgbfactors    : [r, b, g] values
                         range from
                         0.0 to 1.0
@@ -171,7 +204,33 @@ def itermandelbrot(
         (x:int, y: int, c: int)
     """
     for p in iterfractal(x1, y1, x2, y2,
-          mandel, mandelparam, maxiter):
+        mandel, mandelparam, maxiter):
+        yield p
+
+
+def iterjulia(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        juliaparam: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Julia set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        juliaparam    : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, b, g] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    for p in iterfractal(x1, y1, x2, y2,
+        julia, juliaparam, maxiter):
         yield p
 
 
