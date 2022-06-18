@@ -15,7 +15,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         getX11RGBfactors,
         multibrot as f,
-        mandelparamdict as d,
+        fractaldomainparamdict as d,
         getfuncmetastr as meta,
         saveBMP
         )
