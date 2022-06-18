@@ -15,7 +15,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         getX11RGBfactors,
         julia as f,
-        juliaparamdict,
+        fractaldomainparamdict,
         getfuncmetastr as meta,
         saveBMP
         )
@@ -29,9 +29,9 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 600 # square canvas
-        bmp = newBMP(mx, my, 24) # RGB bitmap 500 x 500
+        bmp = newBMP(mx, my, 24) # RGB bitmap 600 x 600
         cf = getX11RGBfactors() #color info
-        juliapar = juliaparamdict() # common parameters
+        juliapar = fractaldomainparamdict() # common parameters
         f(bmp, 0, 0, mx, my,
           -0.70176 - 0.3842j,
           juliapar['maxeqdim'],

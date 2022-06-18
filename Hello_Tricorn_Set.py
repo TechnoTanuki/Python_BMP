@@ -15,7 +15,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         getX11RGBfactors,
         tricorn as f,
-        tricornparamdict as par,
+        fractaldomainparamdict as par,
         getfuncmetastr as meta,
         saveBMP
         )
@@ -29,7 +29,7 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 600 # square canvas
-        bmp = newBMP(mx, my, 24) # RGB bitmap 500 x 500
+        bmp = newBMP(mx, my, 24) # RGB bitmap 600 x 600
         cf = getX11RGBfactors() #color info
         p = par() # common parameters
         f(bmp, 0, 0, mx, my,

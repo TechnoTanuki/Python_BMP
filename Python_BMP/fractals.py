@@ -41,31 +41,13 @@ def getIFSparams() -> dict:
                        (1/3, 2/3, 1, 1))}
 
 
-def mandelparamdict() -> dict:
-    return {'maxdefault':(1.75,-1.75,1.5,-1.5),
-              'maxeqdim':(1.75,-1.75,1.75,-1.75),
-            'middefault':(.75,-1.25,1.25,-1.25),
-            'mindefault':(.75,-.75,.5,-.5),
-              'mineqdim':(.5,-.5,.5,-.5),
-               'custom1':(-.5,-.7,-.5,-.7)}
-
-
-def juliaparamdict() -> dict:
-    return {'maxdefault':(1.75,-1.75,1.5,-1.5),
-              'maxeqdim':(1.75,-1.75,1.75,-1.75),
-            'middefault':(.75,-1.25,1.25,-1.25),
-            'mindefault':(.75,-.75,.5,-.5),
-              'mineqdim':(.5,-.5,.5,-.5),
-               'custom1':(-.5,-.7,-.5,-.7)}
-
-
-def tricornparamdict() -> dict:
-    return {'maxdefault':(1.75,-1.75,1.5,-1.5),
-              'maxeqdim':(1.75,-1.75,1.75,-1.75),
-            'middefault':(.75,-1.25,1.25,-1.25),
-            'mindefault':(.75,-.75,.5,-.5),
-              'mineqdim':(.5,-.5,.5,-.5),
-               'custom1':(-.5,-.7,-.5,-.7)}
+def fractaldomainparamdict() -> dict:
+    return {'maxdefault':(1.75, -1.75, 1.5, -1.5),
+              'maxeqdim':(1.75, -1.75, 1.75, -1.75),
+            'middefault':(.75, -1.25, 1.25, -1.25),
+            'mindefault':(.75, -.75, .5, -.5),
+              'mineqdim':(.5, -.5, .5, -.5),
+               'custom1':(-.5, -.7, -.5, -.7)}
 
 
 def iterIFS(
@@ -110,72 +92,6 @@ def iterIFS(
         py = int((dy - y * yscale + yoffset) + y1)
         if isinrectbnd(px, py, x1, y1, x2, y2):
           	  yield (px, py)
-
-
-def mandel(P: float, Q: float,
-        maxiter: int) -> int:
-    """Mandelbrot Function
-
-    Args:
-        P : real part as float
-        Q : imaginary part as float
-        maxiter : when to break
-                  color compute
-
-    Returns:
-        int
-    """
-    z = 0
-    c = complex(P, Q)
-    for i in range(maxiter):
-        z = z**2 + c
-        if abs(z) > 2:
-            return i
-    return maxiter
-
-
-def julia(P: float, Q: float,
-        c: complex,
-        maxiter: int) -> int:
-    """Julia Function
-
-    Args:
-        P : real part as float
-        Q : imaginary part as float
-        maxiter : when to break
-                  color compute
-
-    Returns:
-        int
-    """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = z**2 + c
-        if (z * z.conjugate()).real > 4:
-            return i
-    return maxiter
-
-
-def tricorn(P: float, Q: float,
-        maxiter: int) -> int:
-    """Tricorn Function
-
-    Args:
-        P : real part as float
-        Q : imaginary part as float
-        maxiter : when to break
-                  color compute
-
-    Returns:
-        int
-    """
-    z = complex(0, 0)
-    c = complex(P, Q)
-    for i in range(maxiter):
-        z = z.conjugate()**2 + c
-        if abs(z) > 2:
-            return i
-    return maxiter
 
 
 def multibrot(
@@ -249,42 +165,6 @@ def multicorn(P: float, Q: float,
     return maxiter
 
 
-def iterfractal(
-        x1: int, y1: int,
-        x2: int, y2: int,
-        func: Callable,
-        fracparam: list[float, float, float, float],
-        maxiter: int):
-    """Yields a Fractal
-
-    Args:
-        x1, y1, x2, y2: rectangular area
-                        to draw in
-        func          : fractal function
-        fracparam     : coordinates in real
-                        and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
-        maxiter       : when to break
-                        color compute
-
-    Yields:
-        (x:int, y: int, c: int)
-    """
-    (Pmax, Pmin, Qmax, Qmin) = \
-                 fracparam
-    x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
-    dp = (Pmax - Pmin) / (x2 - x1)
-    dq = (Qmax - Qmin) / (y2 - y1)
-    for y in range(y1, y2):
-        Q = Qmin + (y - y1) * dq
-        for x in range(x1, x2):
-            P = Pmin + (x - x1) * dp
-            yield (x, y, func(P, Q, maxiter))
-
-
 def itermultifractal(
         x1: int, y1: int,
         x2: int, y2: int,
@@ -321,44 +201,6 @@ def itermultifractal(
         for x in range(x1, x2):
             P = Pmin + (x - x1) * dp
             yield (x, y, func(P, Q, d, maxiter))
-
-
-def iterfractalcomplexpar(
-        x1: int, y1: int,
-        x2: int, y2: int,
-        func: Callable,
-        c: complex,
-        fracparam: list[float, float, float, float],
-        maxiter: int):
-    """Yields a Fractal with a complex number parameter
-
-    Args:
-        x1, y1, x2, y2: rectangular area
-                        to draw in
-        func          : fractal function
-        c             : complex number
-        fracparam     : coordinates in real
-                        and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
-        maxiter       : when to break
-                        color compute
-
-    Yields:
-        (x:int, y: int, c: int)
-    """
-    (Pmax, Pmin, Qmax, Qmin) = \
-                 fracparam
-    x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
-    dp = (Pmax - Pmin) / (x2 - x1)
-    dq = (Qmax - Qmin) / (y2 - y1)
-    for y in range(y1, y2):
-        Q = Qmin + (y - y1) * dq
-        for x in range(x1, x2):
-            P = Pmin + (x - x1) * dp
-            yield (x, y, func(P, Q, c, maxiter))
 
 
 def itermultifractalcomplexpar(
@@ -403,14 +245,14 @@ def itermultifractalcomplexpar(
 def itermandelbrot(
         x1: int, y1: int,
         x2: int, y2: int,
-        mandelparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Mandelbrot set
 
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        mandelparam   : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -421,8 +263,8 @@ def itermandelbrot(
     Yields:
         (x:int, y: int, c: int)
     """
-    for p in iterfractal(x1, y1, x2, y2,
-        mandel, mandelparam, maxiter):
+    for p in itermultifractal(x1, y1, x2, y2, 2,
+        multibrot, domain, maxiter):
         yield p
 
 
@@ -430,14 +272,14 @@ def iterjulia(
         x1: int, y1: int,
         x2: int, y2: int,
         c: complex,
-        juliaparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Julia set
 
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        juliaparam    : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         c             : complex number
         rgbfactors    : [r, g, b] values
@@ -449,22 +291,22 @@ def iterjulia(
     Yields:
         (x:int, y: int, c: int)
     """
-    for p in iterfractalcomplexpar(x1, y1, x2, y2,
-        julia, c, juliaparam, maxiter):
+    for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, 2,
+        multijulia, domain, maxiter):
         yield p
 
 
 def itertricorn(
         x1: int, y1: int,
         x2: int, y2: int,
-        tricornparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Tricorn set
 
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        triconparam   : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -475,8 +317,8 @@ def itertricorn(
     Yields:
         (x:int, y: int, c: int)
     """
-    for p in iterfractal(x1, y1, x2, y2,
-        tricorn, tricornparam, maxiter):
+    for p in itermultifractal(x1, y1, x2, y2, 2,
+        multicorn, domain, maxiter):
         yield p
 
 
@@ -513,7 +355,7 @@ def itermultijulia(
         x2: int, y2: int,
         c: complex,
         d: float,
-        juliaparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Multijulia set
 
@@ -522,7 +364,7 @@ def itermultijulia(
                         to draw in
         c             : complex number
         d             : power to raise z to
-        juliaparam    : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -534,7 +376,7 @@ def itermultijulia(
         (x:int, y: int, c: int)
     """
     for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
-        multijulia, juliaparam, maxiter):
+        multijulia, domain, maxiter):
         yield p
 
 
@@ -542,7 +384,7 @@ def itermulticorn(
         x1: int, y1: int,
         x2: int, y2: int,
         d: float,
-        tricornparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Multicorn set
 
@@ -550,7 +392,7 @@ def itermulticorn(
         x1, y1, x2, y2: rectangular area
                         to draw in
         d             : power to raise z to
-        tricornparam  : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -562,7 +404,7 @@ def itermulticorn(
         (x:int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
-        multicorn, tricornparam, maxiter):
+        multicorn, domain, maxiter):
         yield p
 
 

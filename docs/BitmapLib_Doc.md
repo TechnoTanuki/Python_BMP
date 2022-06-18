@@ -2566,6 +2566,17 @@ Returns a list of 2D points for a flower
         list[(x: int, y: int)]
 
 
+### [`fractaldomainparamdict`](#fractaldomainparamdict)
+
+```py
+def fractaldomainparamdict() -> dict:
+```
+
+
+
+    
+
+
 ### [`func24bitonly`](#func24bitonly)
 
 ```py
@@ -5020,7 +5031,7 @@ Yields (r, g, b) information for the entire bitmap
 ### [`iterjulia`](#iterjulia)
 
 ```py
-def iterjulia(x1: int, y1: int, x2: int, y2: int, c: complex, juliaparam: list[float, float, float, float], maxiter: int):
+def iterjulia(x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], maxiter: int):
 ```
 
 Yields a Julia set
@@ -5028,7 +5039,7 @@ Yields a Julia set
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        juliaparam    : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         c             : complex number
         rgbfactors    : [r, g, b] values
@@ -5089,7 +5100,7 @@ with an origin set at (x, y)
 ### [`itermandelbrot`](#itermandelbrot)
 
 ```py
-def itermandelbrot(x1: int, y1: int, x2: int, y2: int, mandelparam: list[float, float, float, float], maxiter: int):
+def itermandelbrot(x1: int, y1: int, x2: int, y2: int, domain: list[float, float, float, float], maxiter: int):
 ```
 
 Yields a Mandelbrot set
@@ -5097,7 +5108,7 @@ Yields a Mandelbrot set
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        mandelparam   : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -5136,7 +5147,7 @@ Yields a Multibrot set
 ### [`itermulticorn`](#itermulticorn)
 
 ```py
-def itermulticorn(x1: int, y1: int, x2: int, y2: int, d: float, tricornparam: list[float, float, float, float], maxiter: int):
+def itermulticorn(x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], maxiter: int):
 ```
 
 Yields a Multicorn set
@@ -5145,7 +5156,7 @@ Yields a Multicorn set
         x1, y1, x2, y2: rectangular area
                         to draw in
         d             : power to raise z to
-        tricornparam  : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -5160,7 +5171,7 @@ Yields a Multicorn set
 ### [`itermultijulia`](#itermultijulia)
 
 ```py
-def itermultijulia(x1: int, y1: int, x2: int, y2: int, c: complex, d: float, juliaparam: list[float, float, float, float], maxiter: int):
+def itermultijulia(x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], maxiter: int):
 ```
 
 Yields a Multijulia set
@@ -5170,7 +5181,7 @@ Yields a Multijulia set
                         to draw in
         c             : complex number
         d             : power to raise z to
-        juliaparam    : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -5257,7 +5268,7 @@ Yields 2D points for a superellipse
 ### [`itertricorn`](#itertricorn)
 
 ```py
-def itertricorn(x1: int, y1: int, x2: int, y2: int, tricornparam: list[float, float, float, float], maxiter: int):
+def itertricorn(x1: int, y1: int, x2: int, y2: int, domain: list[float, float, float, float], maxiter: int):
 ```
 
 Yields a Tricorn set
@@ -5265,7 +5276,7 @@ Yields a Tricorn set
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        triconparam   : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -5292,7 +5303,7 @@ Draw a Julia set
         x1, y1, x2, y2: rectangular area
                         to draw in
         c             : complex number
-        juliaparam    : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -5302,17 +5313,6 @@ Draw a Julia set
     
     Returns:
         byref modified unsigned byte array
-
-
-### [`juliaparamdict`](#juliaparamdict)
-
-```py
-def juliaparamdict() -> dict:
-```
-
-
-
-    
 
 
 ### [`line`](#line)
@@ -5569,7 +5569,7 @@ Creates a new palatte based on a color histogram
 ### [`mandelbrot`](#mandelbrot)
 
 ```py
-def mandelbrot(bmp: array.array, x1: int, y1: int, x2: int, y2: int, mandelparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def mandelbrot(bmp: array.array, x1: int, y1: int, x2: int, y2: int, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Mandelbrot set
@@ -5580,7 +5580,7 @@ Draw a Mandelbrot set
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
-        mandelparam   : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -5590,17 +5590,6 @@ Draw a Mandelbrot set
     
     Returns:
         byref modified unsigned byte array
-
-
-### [`mandelparamdict`](#mandelparamdict)
-
-```py
-def mandelparamdict() -> dict:
-```
-
-
-
-    
 
 
 ### [`matchRGBtopal`](#matchRGBtopal)
@@ -6760,7 +6749,7 @@ Applies a monochrome filter
 ### [`multibrot`](#multibrot)
 
 ```py
-def multibrot(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, mandelparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def multibrot(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Multibrot set
@@ -6772,7 +6761,7 @@ Draw a Multibrot set
         x1, y1, x2, y2: rectangular area
                         to draw in
         d             : power to raise z to
-        mandelparam   : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -6787,7 +6776,7 @@ Draw a Multibrot set
 ### [`multicorn`](#multicorn)
 
 ```py
-def multicorn(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, tricornparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def multicorn(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Multicorn set
@@ -6799,7 +6788,7 @@ Draw a Multicorn set
         x1, y1, x2, y2: rectangular area
                         to draw in
         d             : power to raise z to
-        tricornparam  : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -6814,7 +6803,7 @@ Draw a Multicorn set
 ### [`multijulia`](#multijulia)
 
 ```py
-def multijulia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def multijulia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Multijulia set
@@ -6827,7 +6816,7 @@ Draw a Multijulia set
                         to draw in
         c             : complex number
         d             : power to raise z to
-        juliaparam    : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -10406,7 +10395,7 @@ to all vectors in the list of vectors
 ### [`tricorn`](#tricorn)
 
 ```py
-def tricorn(bmp: array.array, x1: int, y1: int, x2: int, y2: int, tricornparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def tricorn(bmp: array.array, x1: int, y1: int, x2: int, y2: int, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Tricorn set
@@ -10417,7 +10406,7 @@ Draw a Tricorn set
                         with bmp format
         x1, y1, x2, y2: rectangular area
                         to draw in
-        tricornparam  : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -10427,17 +10416,6 @@ Draw a Tricorn set
     
     Returns:
         byref modified unsigned byte array
-
-
-### [`tricornparamdict`](#tricornparamdict)
-
-```py
-def tricornparamdict() -> dict:
-```
-
-
-
-    
 
 
 ### [`upgradeto24bitimage2file`](#upgradeto24bitimage2file)

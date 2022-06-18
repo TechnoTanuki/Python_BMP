@@ -68,7 +68,7 @@ from Python_BMP.BITMAPlib import(
         IFS,
         loadBMP,
         mandelbrot,
-        mandelparamdict,
+        fractaldomainparamdict,
         newBMP,
         octahedravert,
         pasterect,
@@ -284,7 +284,7 @@ def main():
                 hhmmsselaspedtime(starttime))
 
         starttime = _time_ns()
-        mandelpar = mandelparamdict()
+        mandelpar = fractaldomainparamdict()
         mandelbrot(bmp, 10, 600, 130, 735,
                 mandelpar['maxeqdim'],
                     cf['brightgreen'], 255)

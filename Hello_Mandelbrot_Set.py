@@ -15,7 +15,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         getX11RGBfactors,
         mandelbrot as f,
-        mandelparamdict,
+        fractaldomainparamdict,
         getfuncmetastr as meta,
         saveBMP
         )
@@ -28,10 +28,10 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        mx = my = 300 # square canvas
-        bmp = newBMP(mx, my, 24) # RGB bitmap 500 x 500
+        mx = my = 600 # square canvas
+        bmp = newBMP(mx, my, 24) # RGB bitmap 600 x 600
         cf = getX11RGBfactors() #color info
-        mandelpar = mandelparamdict() # common parameters
+        mandelpar = fractaldomainparamdict() # common parameters
         #mandelbrot(bmp,x1,y1,x2,y2,mandelpar[],RGBfactors,maxiter)
         f(bmp, 0, 0, mx, my,
           mandelpar['maxeqdim'],
