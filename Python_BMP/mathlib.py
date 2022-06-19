@@ -1429,8 +1429,8 @@ def newtonmethod(x0: Number,
     for i in range(maxiter):
         fx = f(x)
         # Checks for Overflow / Underflow
-        if abs(fx) > 10e10 or abs(fx) < 10e-14:
-            return null
+        #if abs(fx) > 10e10 or abs(fx) < 10e-14:
+        #    return null
         fpx = fprime(x)
         if fpx != 0:
             dx = fx / fpx
