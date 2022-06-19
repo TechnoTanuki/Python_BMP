@@ -8129,9 +8129,8 @@ def newtonsfractal(bmp: array,
                         (func, derivative func)
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactorslist: list of [r, g, b] values
-                        range from
-                        0.0 to 1.0
+        rgbfactorslist: [[r, g, b],...] values
+                        range from 0.0 to 1.0
         maxiter       : when to break
                         color compute
 
