@@ -33,11 +33,14 @@ def main():
         bmp = newBMP(mx, my, 24) # RGB bitmap 600 x 600
         cf = getX11RGBfactors() #color info
         par = d() # get common parameters
-        f(bmp, 0, 0, mx, my,
+        roots = f(bmp, 0, 0, mx, my,
           funcparamdict()[3],
           par['maxeqdim'],
           (cf['red'], cf['green'], cf['blue'])
           , 255)
+        print('Roots:')
+        for root in roots:
+                print(root)
         file = f'hello{f.__name__}.bmp' # random file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

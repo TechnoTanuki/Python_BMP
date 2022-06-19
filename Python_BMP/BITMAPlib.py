@@ -8116,7 +8116,7 @@ def newtonsfractal(bmp: array,
         d: list[Callable, Callable],
         domain: list[float, float, float, float],
         RGBfactorslist: list[list[float, float, float]],
-        maxiter: int):
+        maxiter: int) -> list:
     """Draw Newtons Fractal
 
     Args:
@@ -8137,6 +8137,7 @@ def newtonsfractal(bmp: array,
 
     Returns:
         byref modified unsigned byte array
+        list of roots
     """
     tol = 10e-3
     maxcolors = getmaxcolors(bmp)
@@ -8160,7 +8161,7 @@ def newtonsfractal(bmp: array,
             else:
                 c = mcolor - c % maxcolors
             plotxybit(bmp, x, y, c)
-    print (roots)
+    return roots
 
 
 def mandelbrot(bmp: array,
