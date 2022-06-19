@@ -8143,8 +8143,8 @@ def newtonsfractal(bmp: array,
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
     roots = []
-    for (x, y, r) in iternewtonsfractal(x1, y1, x2, y2, d,
-                          domain, maxiter):
+    for (x, y, r) in iternewtonsfractal(x1, y1,
+                     x2, y2, d, domain, maxiter):
         rt, c = r
         if rt != None:
             flag = False
@@ -8157,7 +8157,7 @@ def newtonsfractal(bmp: array,
                 roots.append(rt)
             if bmp[bmpcolorbits] == 24:
                 c = colormix(((255 - c) * 20) % 256,
-                            RGBfactorslist[roots.index(rt)])
+                    RGBfactorslist[roots.index(rt)])
             else:
                 c = mcolor - c % maxcolors
             plotxybit(bmp, x, y, c)
