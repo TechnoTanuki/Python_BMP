@@ -59,7 +59,8 @@ def funcparamdict() -> dict:
     return {
         3: (lambda z: z * z * z - 1.0, lambda z: 3.0 * (z * z)),
         4: (lambda z: z * z * z * z - 1.0, lambda z: 4.0 * (z * z * z)),
-        5: (lambda z: (z * z *z * z * z) - (z), lambda z: 5.0 * (z * z * z * z) - 1),
+        5: (lambda z: (z * z *z * z * z) - 1, lambda z: 5.0 * (z * z * z * z)),
+        5.1: (lambda z: (z * z *z * z * z) - (z), lambda z: 5.0 * (z * z * z * z) - 1),
         6: (lambda z: (z * z *z * z * z * z) - 1, lambda z: 6.0 * (z * z * z * z * z))
     }
 
