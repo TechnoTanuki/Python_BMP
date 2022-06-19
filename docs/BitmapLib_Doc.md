@@ -2687,6 +2687,17 @@ Decorator to restrict the
         caller function
 
 
+### [`funcparamdict`](#funcparamdict)
+
+```py
+def funcparamdict() -> dict:
+```
+
+
+
+    
+
+
 ### [`functimer`](#functimer)
 
 ```py
@@ -5193,6 +5204,30 @@ Yields a Multijulia set
         (x:int, y: int, c: int)
 
 
+### [`iternewtonsfractal`](#iternewtonsfractal)
+
+```py
+def iternewtonsfractal(x1: int, y1: int, x2: int, y2: int, d: list[typing.Callable, typing.Callable], domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields Netwons Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : function and derivative pair
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, (itercount: int, root: float))
+
+
 ### [`iterparallelogram`](#iterparallelogram)
 
 ```py
@@ -5291,7 +5326,7 @@ Yields a Tricorn set
 ### [`julia`](#julia)
 
 ```py
-def julia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, juliaparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def julia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Julia set
@@ -6846,6 +6881,35 @@ Creates a new in-memory bitmap
         unsigned byte array with bitmap layout
 
 
+### [`newtonsfractal`](#newtonsfractal)
+
+```py
+def newtonsfractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: list[typing.Callable, typing.Callable], domain: list[float, float, float, float], RGBfactorslist: list[list[float, float, float]], maxiter: int) -> list:
+```
+
+Draw Newtons Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : function pair
+                        (func, derivative func)
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactorslist: list of [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+        list of roots
+
+
 ### [`numbervert`](#numbervert)
 
 ```py
@@ -7574,59 +7638,6 @@ Draw a flower
         byref modified unsigned byte array
 
 
-### [`plotfractal`](#plotfractal)
-
-```py
-def plotfractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
-```
-
-Draw a Fractal
-
-    Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
-        x1, y1, x2, y2: rectangular area
-                        to draw in
-        fracparam     : coordinates in real
-                        and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
-        maxiter       : when to break
-                        color compute
-    
-    Returns:
-        byref modified unsigned byte array
-
-
-### [`plotfractalcomplexpar`](#plotfractalcomplexpar)
-
-```py
-def plotfractalcomplexpar(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
-```
-
-Draw a Fractal with a complex parameter
-
-    Args:
-        bmp           : unsigned
-                        byte array
-                        with bmp format
-        c             : complex number
-        x1, y1, x2, y2: rectangular area
-                        to draw in
-        fracparam     : coordinates in real
-                        and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
-        maxiter       : when to break
-                        color compute
-    
-    Returns:
-        byref modified unsigned byte array
-
-
 ### [`plotimgedges`](#plotimgedges)
 
 ```py
@@ -8068,7 +8079,7 @@ Draws connected lines defined by a list of vertices
 ### [`plotmultifractal`](#plotmultifractal)
 
 ```py
-def plotmultifractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def plotmultifractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, func: Callable, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
 Draw a Multi Fractal
@@ -8080,7 +8091,8 @@ Draw a Multi Fractal
         x1, y1, x2, y2: rectangular area
                         to draw in
         d             : power to raise z to
-        fracparam     : coordinates in real
+        func          : fractal function
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -8095,10 +8107,10 @@ Draw a Multi Fractal
 ### [`plotmultifractalcomplexpar`](#plotmultifractalcomplexpar)
 
 ```py
-def plotmultifractalcomplexpar(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, func: Callable, fracparam: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+def plotmultifractalcomplexpar(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, func: Callable, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
-Draw a Multi Fractal with a comnplex parameter
+Draw a Multifractal with a comnplex parameter
 
     Args:
         bmp           : unsigned
@@ -8108,7 +8120,8 @@ Draw a Multi Fractal with a comnplex parameter
                         to draw in
         c             : complex number
         d             : power to raise z to
-        fracparam     : coordinates in real
+        func          : fractal function
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
