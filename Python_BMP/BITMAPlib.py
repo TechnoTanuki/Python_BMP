@@ -198,7 +198,6 @@ from .paramchecks import(
     intcircleparam24bitonly
     )
 
-
 from .bufferflip import(
     flipnibbleinbuf,
     rotatebitsinbuf
@@ -229,7 +228,9 @@ from .fractals import(
     itermultijulia,
     fractaldomainparamdict,
     itertricorn,
-    itermulticorn
+    itermulticorn,
+    iternewtonsfractal,
+    funcparamdict
     )
 
 from .inttools import(
@@ -8030,7 +8031,7 @@ def plotmultifractal(bmp: array,
         x2: int, y2: int,
         d: float,
         func: Callable,
-        fracparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         RGBfactors: list[float, float, float],
         maxiter: int):
     """Draw a Multi Fractal
@@ -8042,7 +8043,8 @@ def plotmultifractal(bmp: array,
         x1, y1, x2, y2: rectangular area
                         to draw in
         d             : power to raise z to
-        fracparam     : coordinates in real
+        func          : fractal function
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -8056,7 +8058,7 @@ def plotmultifractal(bmp: array,
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
     for (x, y, c) in func(x1, y1, x2, y2, d,
-                          fracparam, maxiter):
+                          domain, maxiter):
         if bmp[bmpcolorbits] == 24:
             c = colormix(((255 - c) * 20) % 256,
                         RGBfactors)
@@ -8071,10 +8073,10 @@ def plotmultifractalcomplexpar(bmp: array,
         c: complex,
         d: float,
         func: Callable,
-        fracparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         RGBfactors: list[float, float, float],
         maxiter: int):
-    """Draw a Multi Fractal with a comnplex parameter
+    """Draw a Multifractal with a comnplex parameter
 
     Args:
         bmp           : unsigned
@@ -8084,7 +8086,8 @@ def plotmultifractalcomplexpar(bmp: array,
                         to draw in
         c             : complex number
         d             : power to raise z to
-        fracparam     : coordinates in real
+        func          : fractal function
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -8098,13 +8101,66 @@ def plotmultifractalcomplexpar(bmp: array,
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
     for (x, y, cl) in func(x1, y1, x2, y2, c, d,
-                          fracparam, maxiter):
+                           domain, maxiter):
         if bmp[bmpcolorbits] == 24:
             cl = colormix(((255 - cl) * 20) % 256,
                         RGBfactors)
         else:
             cl = mcolor - cl % maxcolors
         plotxybit(bmp, x, y, cl)
+
+
+def newtonsfractal(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: list[Callable, Callable],
+        domain: list[float, float, float, float],
+        RGBfactorslist: list[list[float, float, float]],
+        maxiter: int):
+    """Draw Newtons Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : function pair
+                        (func, derivative func)
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactorslist: list of [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    tol = 10e-3
+    maxcolors = getmaxcolors(bmp)
+    mcolor = maxcolors - 1
+    roots = []
+    for (x, y, r) in iternewtonsfractal(x1, y1, x2, y2, d,
+                          domain, maxiter):
+        rt, c = r
+        if rt != None:
+            flag = False
+            for tst_rt in roots:
+                if abs(tst_rt - rt) < tol:
+                    rt = tst_rt
+                    flag = True
+                    break
+            if not flag:
+                roots.append(rt)
+            if bmp[bmpcolorbits] == 24:
+                c = colormix(((255 - c) * 20) % 256,
+                            RGBfactorslist[roots.index(rt)])
+            else:
+                c = mcolor - c % maxcolors
+            plotxybit(bmp, x, y, c)
+    print (roots)
 
 
 def mandelbrot(bmp: array,

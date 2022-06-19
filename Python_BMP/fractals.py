@@ -16,7 +16,12 @@
 from random import random
 from typing import Callable
 from .primitives2D import sortrecpoints, iif, isinrectbnd
-from .mathlib import addvect, scalarmulvect, roundvect
+from .mathlib import (
+    addvect,
+    newtonmethod,
+    scalarmulvect,
+    roundvect
+    )
 
 def getIFSparams() -> dict:
     return {'fern':(((0, 0, 0, .16, 0, 0),
@@ -48,6 +53,13 @@ def fractaldomainparamdict() -> dict:
             'mindefault':(.75, -.75, .5, -.5),
               'mineqdim':(.5, -.5, .5, -.5),
                'custom1':(-.5, -.7, -.5, -.7)}
+
+
+def funcparamdict() -> dict:
+    return {
+        3: (lambda z: z * z * z - 1.0, lambda z: 3.0 * (z * z)),
+        5: (lambda z: (z*z*z*z*z) - (z), lambda z: 5.0 * (z*z*z*z) - 1)
+    }
 
 
 def iterIFS(
@@ -118,6 +130,24 @@ def multibrot(
     return maxiter
 
 
+def newton(P: float, Q: float,
+        d: float, maxiter: int) -> tuple:
+    """Newton Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        d : function and derivative pair
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        list[root, iteration]
+    """
+    f, fp =  d
+    return newtonmethod(complex(P, Q), f, fp, maxiter)
+
+
 def multijulia(P: float, Q: float,
         c: complex,
         d: float, maxiter: int) -> int:
@@ -168,18 +198,18 @@ def multicorn(P: float, Q: float,
 def itermultifractal(
         x1: int, y1: int,
         x2: int, y2: int,
-        d: float,
+        d: any,
         func: Callable,
-        fracparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Multi Fractal
 
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        d             : power to raise z to
+        d             : any paramater
         func          : fractal function
-        fracparam     : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -190,8 +220,7 @@ def itermultifractal(
     Yields:
         (x:int, y: int, c: int)
     """
-    (Pmax, Pmin, Qmax, Qmin) = \
-                 fracparam
+    (Pmax, Pmin, Qmax, Qmin) = domain
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
     dp = (Pmax - Pmin) / (x2 - x1)
@@ -209,7 +238,7 @@ def itermultifractalcomplexpar(
         c: complex,
         d: float,
         func: Callable,
-        fracparam: list[float, float, float, float],
+        domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Multi Fractal with a complex number parameter
 
@@ -218,7 +247,7 @@ def itermultifractalcomplexpar(
                         to draw in
         d             : power to raise z to
         func          : fractal function
-        fracparam     : coordinates in real
+        domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
                         range from
@@ -229,8 +258,7 @@ def itermultifractalcomplexpar(
     Yields:
         (x:int, y: int, c: int)
     """
-    (Pmax, Pmin, Qmax, Qmin) = \
-                 fracparam
+    (Pmax, Pmin, Qmax, Qmin) = domain
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
     dp = (Pmax - Pmin) / (x2 - x1)
@@ -448,3 +476,31 @@ def hilbertvert(l: list,
         hilbertvert(l,
           addvect(u, (v0 + i, v1 + j)),
                  scalarmulvect(w, -1), n)
+
+
+def iternewtonsfractal(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: list[Callable, Callable],
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields Netwons Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : function and derivative pair
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, (itercount: int, root: float))
+    """
+    for p in itermultifractal(x1, y1, x2, y2, d,
+        newton, domain, maxiter):
+        yield p

@@ -1403,3 +1403,40 @@ def delta(v: list[Number, Number]):
         delta of numbers
     """
     return (v[1] - v[0])
+
+
+def newtonmethod(x0: Number,
+            f: Callable,
+       fprime: Callable,
+      maxiter: int = 40,
+          tol: float = 1.e-8) -> tuple:
+    """The Newton method for finding roots
+
+    Args:
+        x0     : initial guess
+        f      : function
+        fprime : derivative of f
+        maxiter: maximum iterations
+        tol    : tolerance
+
+    Returns:
+        Returns the root and iter if found or
+        None if no convergence was reached
+
+    """
+    null = (None, None)
+    x = x0
+    for i in range(maxiter):
+        fx = f(x)
+        # Checks for Overflow / Underflow
+        if abs(fx) > 10e10 or abs(fx) < 10e-14:
+            return null
+        fpx = fprime(x)
+        if fpx != 0:
+            dx = fx / fpx
+        else:
+            return null
+        if abs(dx) < tol:
+            return (x, i)
+        x -= dx
+    return null
