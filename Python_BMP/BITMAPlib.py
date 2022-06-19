@@ -3286,6 +3286,40 @@ def gradcircle(bmp: array,
         thickcircle(bmp, x, y, i, 2, c)
 
 
+def orb(bmp: array,
+        x: int, y: int, r: int,
+        RGBfactors: list[float, float, float]):
+    """Draw a Glowy Orb
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y, r   : center (x, y)
+                    and radius r
+        rgbfactors: [r, g, b] range are
+                    from 0.0 to 1.0
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    j = r >> 1
+    c = colormix(255, RGBfactors)
+    if bmp[bmpcolorbits] != 24:
+        c = matchRGBtopal(
+                int2RGBarr(c),
+                getallRGBpal(bmp))
+    filledcircle(bmp, x, y, j, c)
+    for i in range(r - 1, j, -1):
+        c = colormix(
+                int(255 * (r - i) / j),
+                RGBfactors)
+        if bmp[bmpcolorbits] != 24:
+            c = matchRGBtopal(
+                    int2RGBarr(c),
+                    getallRGBpal(bmp))
+        thickcircle(bmp, x, y, i, 2, c)
+
+
 def thickellipserot(bmp: array,
         x: int, y: int,
         b: int, a: int, degrot: float,
