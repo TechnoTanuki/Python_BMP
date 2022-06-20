@@ -528,7 +528,8 @@ def iternewtonsfractal(
 
 
 def koch(u: list[float, float],
-         v: list[float, float]
+         v: list[float, float],
+         h: float = 0.28867513459481288225457439025098
          ) -> list[list[float, float],
                    list[float, float],
                    list[float, float]]:
@@ -537,13 +538,15 @@ def koch(u: list[float, float],
     Args:
         u: origin point (x, y)
         v: end point (x, y)
+        a: optional param to
+           control angle and height
 
     Returns:
         ((x1, y1), (x2, y2), (x3, y3))
     """
     d = subvect(v, u)
     e = scalarmulvect(d, 1/3)
-    d = scalarmulvect(d, 0.28867513459481288225457439025098)
+    d = scalarmulvect(d, h)
     return (addvect(u, e),
             addvect(scalarmulvect(addvect(u, v), 0.5),
                     (-d[1], d[0])),
