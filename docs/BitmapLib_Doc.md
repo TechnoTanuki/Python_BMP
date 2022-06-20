@@ -5210,7 +5210,7 @@ Yields a Multijulia set
 def iternewtonsfractal(x1: int, y1: int, x2: int, y2: int, d: list[typing.Callable, typing.Callable], domain: list[float, float, float, float], maxiter: int):
 ```
 
-Yields Netwons Fractal
+Yields Newtons Fractal
 
     Args:
         x1, y1, x2, y2: rectangular area
@@ -5348,6 +5348,25 @@ Draw a Julia set
     
     Returns:
         byref modified unsigned byte array
+
+
+### [`kochcurvevert`](#kochcurvevert)
+
+```py
+def kochcurvevert(u: list[int, int], v: list[int, int], n: int) -> list[list[float, float]]:
+```
+
+Returns list of 2D points for a Koch curve
+
+    Args:
+        u: origin point (x: int, y: int)
+        v: end point (x: int, y: int)
+        n: number of recursions
+           or order of the curve
+    
+    Returns:
+        list of 2D vertices for a Koch curve
+        [(x: int, y: int),...]
 
 
 ### [`line`](#line)
