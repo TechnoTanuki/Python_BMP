@@ -6938,6 +6938,26 @@ Returns a list of vertices
               z: float)
 
 
+### [`orb`](#orb)
+
+```py
+def orb(bmp: array.array, x: int, y: int, r: int, RGBfactors: list[float, float, float]):
+```
+
+Draw a Glowy Orb
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y, r   : center (x, y)
+                    and radius r
+        rgbfactors: [r, g, b] range are
+                    from 0.0 to 1.0
+    
+    Returns:
+        byref modified unsigned byte array
+
+
 ### [`outline2file`](#outline2file)
 
 ```py
