@@ -86,7 +86,7 @@ def iterIFS(
     """Yield 2D points for an Interated Function System Fractal
 
     Args:
-        IFStransparam   : see line 19
+        IFStransparam   : see line 26 of fractals.py
         x1, y1, x2, y2  : rectangular
                           region
                           to draw in
