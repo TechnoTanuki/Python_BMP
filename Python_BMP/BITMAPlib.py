@@ -230,7 +230,8 @@ from .fractals import(
     itertricorn,
     itermulticorn,
     iternewtonsfractal,
-    funcparamdict
+    funcparamdict,
+    kochcurvevert
     )
 
 from .inttools import(

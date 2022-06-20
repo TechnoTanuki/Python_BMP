@@ -18,6 +18,7 @@ from typing import Callable
 from .primitives2D import sortrecpoints, iif, isinrectbnd
 from .mathlib import (
     addvect,
+    subvect,
     newtonmethod,
     scalarmulvect,
     roundvect
@@ -498,7 +499,7 @@ def iternewtonsfractal(
         d: list[Callable, Callable],
         domain: list[float, float, float, float],
         maxiter: int):
-    """Yields Netwons Fractal
+    """Yields Newtons Fractal
 
     Args:
         x1, y1, x2, y2: rectangular area
@@ -518,3 +519,62 @@ def iternewtonsfractal(
     for p in itermultifractal(x1, y1, x2, y2, d,
         newton, domain, maxiter):
         yield p
+
+
+def koch(u: list[float, float],
+         v: list[float, float]
+         ) -> list[list[float, float],
+                   list[float, float],
+                   list[float, float]]:
+    """Returns new points for a Koch Curve
+
+    Args:
+        u: origin point (x, y)
+        v: end point (x, y)
+
+    Returns:
+        ((x1, y1), (x2, y2), (x3, y3))
+    """
+    d = subvect(v, u)
+    e = scalarmulvect(d, 1/3)
+    d = scalarmulvect(d, 0.28867513459481288225457439025098)
+    return (addvect(u, e),
+            addvect(scalarmulvect(addvect(u, v), 0.5),
+                    (-d[1], d[0])),
+            subvect(v, e)
+            )
+
+
+def kochcurvevert(u: list[int, int],
+                  v: list[int, int],
+                  n: int
+               ) -> list[list[float, float]]:
+    """Returns list of 2D points for a Koch curve
+
+    Args:
+        u: origin point (x: int, y: int)
+        v: end point (x: int, y: int)
+        n: number of recursions
+           or order of the curve
+
+    Returns:
+        list of 2D vertices for a Koch curve
+        [(x: int, y: int),...]
+    """
+    size = 4 ** n + 1
+    p = [(0, 0)] * size
+    p[0] =  u
+    p[-1] = v
+    size -= 1
+    l = size
+    for _ in range(n):
+        seg = size // l
+        for s in range(seg):
+            i = s * l
+            j = l >> 2
+            (p[i + j],
+             p[i + (l >> 1)],
+             p[i + (j * 3)]) = koch(p[i],
+                                    p[i + l])
+        l = j
+    return p
