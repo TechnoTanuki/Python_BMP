@@ -38,7 +38,7 @@ def main():
             l = f((0, y), # start point
                   (599, y), # end point
                   c) # order of Koch curve
-            print(l)
+            #print(l)
             p(bmp, l, 10 + c) # plot stuff
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
