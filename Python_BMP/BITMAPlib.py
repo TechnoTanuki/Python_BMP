@@ -5769,8 +5769,8 @@ def plotlines(bmp: array,
         for i in range(vertcount):
             if i > 0:
                 thickroundline(bmp,
-                    vertlist[i - 1],
-                    vertlist[i],
+                    roundvect(vertlist[i - 1]),
+                    roundvect(vertlist[i]),
                     penradius, color)
 
 

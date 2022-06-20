@@ -39,7 +39,7 @@ def main():
                   (599, y), # end point
                   c) # order of Koch curve
             #print(l)
-            p(bmp, l, 10 + c) # plot stuff
+            p(bmp, l, 10 + c, 5 - c ) # plot stuff
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
