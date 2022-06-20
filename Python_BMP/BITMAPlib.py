@@ -231,7 +231,8 @@ from .fractals import(
     itermulticorn,
     iternewtonsfractal,
     funcparamdict,
-    kochcurvevert
+    kochcurvevert,
+    kochsnowflakevert
     )
 
 from .inttools import(

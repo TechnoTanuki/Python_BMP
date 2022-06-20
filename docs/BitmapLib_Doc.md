@@ -5369,6 +5369,27 @@ Returns list of 2D points for a Koch curve
         [(x: int, y: int),...]
 
 
+### [`kochsnowflakevert`](#kochsnowflakevert)
+
+```py
+def kochsnowflakevert(x: int, y: int, r: int, angle: float, n: int) -> list[list[float, float]]:
+```
+
+Returns list of 2D points for a Koch snowflake
+
+    Args:
+        x, y : center coordinates
+        r    : radius
+        angle: rotation of snowflake
+               in degrees
+        n: number of recursions
+           or order of the curve
+    
+    Returns:
+        list of 2D vertices for a Koch snowflake
+        [(x: int, y: int),...]
+
+
 ### [`line`](#line)
 
 ```py

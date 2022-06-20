@@ -15,7 +15,13 @@
 
 from random import random
 from typing import Callable
-from .primitives2D import sortrecpoints, iif, isinrectbnd
+from .primitives2D import (
+    sortrecpoints,
+    iif,
+    isinrectbnd,
+    regpolygonvert
+    )
+
 from .mathlib import (
     addvect,
     subvect,
@@ -578,3 +584,28 @@ def kochcurvevert(u: list[int, int],
                                     p[i + l])
         l = j
     return p
+
+
+def kochsnowflakevert(
+    x: int, y: int, r: int,
+    angle: float, n: int
+    ) -> list[list[float, float]]:
+    """Returns list of 2D points for a Koch snowflake
+
+    Args:
+        x, y : center coordinates
+        r    : radius
+        angle: rotation of snowflake
+               in degrees
+        n: number of recursions
+           or order of the curve
+
+    Returns:
+        list of 2D vertices for a Koch snowflake
+        [(x: int, y: int),...]
+    """
+    (a, b, c) = regpolygonvert(x, y, r, 3, angle)
+    vertlist = kochcurvevert(a, b, n)
+    vertlist += kochcurvevert(b, c, n)
+    vertlist += kochcurvevert(c, a, n)
+    return vertlist
