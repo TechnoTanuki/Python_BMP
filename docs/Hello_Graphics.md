@@ -182,6 +182,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
