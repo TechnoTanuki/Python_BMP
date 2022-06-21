@@ -4768,8 +4768,7 @@ def plotstringfunc(bmp: array,
     ox = x
     xstep = (scale << 3) + \
                 spacebetweenchar
-    ypixels = fontbuf[0]
-    ystep = ypixels * scale + \
+    ystep = fontbuf[0] * scale + \
                 spacebetweenchar
     for c in orderfunc(str2plot):
         if c == '\n':
@@ -5245,8 +5244,7 @@ def plotstringsidewayfn(bmp: array,
         spacebetweenchar = 1
     oy = y
     xstep = (scale << 3 ) + spacebetweenchar
-    ypixels = fontbuf[0]
-    ystep = ypixels * scale + spacebetweenchar
+    ystep = fontbuf[0] * scale + spacebetweenchar
     for c in enumletters(str2plot):
         if c == '\n':
             x += ystep #we swap x and y since sideways
@@ -5425,7 +5423,7 @@ def plotstringverticalwithfn(
         color           : color of
                           the font
         fontbuf         : the font
-                         (see fonts.py)
+                          (see fonts.py)
 
     Returns:
         byref modified unsigned byte array
@@ -5433,10 +5431,9 @@ def plotstringverticalwithfn(
     if spacebetweenchar == 0:
         spacebetweenchar = 1
     oy = y
-    ypixels = fontbuf[0]
     xstep = (scale << 3) + \
                 spacebetweenchar
-    ystep = ypixels * scale + \
+    ystep = fontbuf[0] * scale + \
                 spacebetweenchar
     for c in enumletters(str2plot):
         if c == '\n':
