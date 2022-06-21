@@ -185,6 +185,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.3.py
