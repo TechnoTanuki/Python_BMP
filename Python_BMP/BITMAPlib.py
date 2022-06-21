@@ -6215,12 +6215,10 @@ def userdef2Dcooordsys2screenxy(
         [x: int, y: int] screen coordinates
 
     """
-    origin, steps, xylimits, xyvalstarts, xysteps = lstcooordinfo[0:5]
-    x = origin[0] + \
-        ((x - xyvalstarts[0]) / xysteps[0]) * steps[0]
-    y = origin[1] - \
-        ((y - xyvalstarts[1]) / xysteps[1]) * steps[1]
-    if x > xylimits[0] or y < xylimits[1]:
+    (xo, yo), (xs, ys), (xlim, ylim), (xvst, yvst), (xvstp, yvstp) = lstcooordinfo[0:5]
+    x = xo + ((x - xvst) / xvstp) * xs
+    y = yo - ((y - yvst) / yvstp) * ys
+    if x > xlim or y < ylim:
         x = -1
         y = -1
         print(sysmsg['regionoutofbounds'])
