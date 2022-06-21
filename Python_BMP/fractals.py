@@ -608,7 +608,6 @@ def kochsnowflakevert(
         [(x: int, y: int),...]
     """
     (a, b, c) = regpolygonvert(x, y, r, 3, angle)
-    vertlist = kochcurvevert(a, b, n)
-    vertlist += kochcurvevert(b, c, n)
-    vertlist += kochcurvevert(c, a, n)
-    return vertlist
+    return  kochcurvevert(a, b, n) + \
+            kochcurvevert(b, c, n) + \
+            kochcurvevert(c, a, n)
