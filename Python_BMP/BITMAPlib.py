@@ -5996,8 +5996,7 @@ def xygrid(bmp: array,
     """
     x1, y1, x2, y2 = sortrecpoints(
                         x1, y1, x2, y2)
-    xstep = xysteps[0]
-    ystep = xysteps[1]
+    xstep, ystep = xysteps
     for x in range(x1, x2, xstep):
         vertline(bmp, x, y1, y2, color)
     for y in range(y1, y2, ystep):
