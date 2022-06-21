@@ -186,6 +186,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
 
 **Parametric Curve Equations**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
