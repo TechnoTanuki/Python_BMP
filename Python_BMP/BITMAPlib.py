@@ -6215,11 +6215,7 @@ def userdef2Dcooordsys2screenxy(
         [x: int, y: int] screen coordinates
 
     """
-    origin = lstcooordinfo[0]
-    steps = lstcooordinfo[1]
-    xylimits = lstcooordinfo[2]
-    xyvalstarts = lstcooordinfo[3]
-    xysteps = lstcooordinfo[4]
+    origin, steps, xylimits, xyvalstarts, xysteps = lstcooordinfo[0:5]
     x = origin[0] + \
         ((x - xyvalstarts[0]) / xysteps[0]) * steps[0]
     y = origin[1] - \
