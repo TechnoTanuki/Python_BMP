@@ -5607,17 +5607,15 @@ def fillboundary(bmp: array,
         byref modified unsigned byte array
     """
     for y in bndfilldic:
-        yint = len(bndfilldic[y])
+        b =  bndfilldic[y]
+        yint = len(b)
         if yint == 1:
-            plotxybit(
-                bmp, bndfilldic[y][0], y,
-                color)
+            plotxybit(bmp, b[0], y, color)
         else:
             for j in range(1, yint):
-                x1 = bndfilldic[y][j - 1]
-                x2 = bndfilldic[y][j]
-                horiline(bmp, y,
-                  x1, x2, color)
+                x1 = b[j - 1]
+                x2 = b[j]
+                horiline(bmp, y, x1, x2, color)
 
 
 def plotpolyfill(bmp: array,
