@@ -108,18 +108,19 @@ def iterIFS(
     """
     x1, y1, x2, y2 = \
         sortrecpoints(x1, y1, x2, y2)
-    af = IFStransparam[0]
-    p = IFStransparam[1]
+    (af, p) = IFStransparam
     x = x1
     y = y1
     dy = y2 - y1
+    (p0, p1, p2) = p[0:3]
     for _ in range(maxiter):
         j = random()
-        t = af[iif(j < p[0], 0,
-               iif(j < p[1], 1,
-               iif(j < p[2], 2, 3)))]
-        nx = t[0] * x + t[1] * y + t[4]
-        y  = t[2] * x + t[3] * y + t[5]
+        (a, b, c, d, e, f) = \
+            af[iif(j < p0, 0,
+               iif(j < p1, 1,
+               iif(j < p2, 2, 3)))]
+        nx = a * x + b * y + e
+        y  = c * x + d * y + f
         x = nx
         px = int(x * xscale + xoffset + x1)
         py = int((dy - y * yscale + yoffset) + y1)
