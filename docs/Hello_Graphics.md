@@ -130,6 +130,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_3D.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_3D_surfaceplot.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Orb.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_DiscoBall.py
@@ -177,10 +178,25 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 **Fractals**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multibrot_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.3.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.3.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py
 
 **Parametric Curve Equations**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
@@ -189,6 +205,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Octopetala.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GearCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HeartCurve.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_EggCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_LissajousCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Hypotrochoid.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Superellipse.py
