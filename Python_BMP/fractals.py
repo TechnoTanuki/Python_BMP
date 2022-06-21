@@ -538,7 +538,7 @@ def koch(u: list[float, float],
     Args:
         u: origin point (x, y)
         v: end point (x, y)
-        a: optional param to
+        h: optional param to
            control angle and height
 
     Returns:
