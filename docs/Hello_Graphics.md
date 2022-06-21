@@ -179,6 +179,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multibrot_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
