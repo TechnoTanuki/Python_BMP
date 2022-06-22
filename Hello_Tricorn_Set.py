@@ -12,12 +12,10 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        newBMP,
         getX11RGBfactors,
-        tricorn as f,
+        savetricornfractal2file as f,
         fractaldomainparamdict as par,
         getfuncmetastr as meta,
-        saveBMP
         )
 
 import subprocess as proc
@@ -29,14 +27,12 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 600 # square canvas
-        bmp = newBMP(mx, my, 24) # RGB bitmap 600 x 600
         cf = getX11RGBfactors() #color info
         p = par() # common parameters
-        f(bmp, 0, 0, mx, my,
-          p['maxeqdim'], # location
-          cf['springgreen'], 255)
         file = f'hello{f.__name__}.bmp' # random file name
-        saveBMP(file, bmp) # save file
+        f(file, mx, my,
+          p['maxeqdim'], # location
+          cf['springgreen'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])

@@ -8442,6 +8442,43 @@ def plotflower(bmp: array,
         plotxybit(bmp, x, y, c)
 
 
+def savefractal2file(
+        file: str,
+        x: int, y: int,
+        f: Callable,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        f       : fractal function
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    f(bmp, 0, 0, x, y,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+
+
 @functimer
 def savemandelbrotfractal2file(
         file: str,
@@ -8472,10 +8509,14 @@ def savemandelbrotfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    mandelbrot(bmp, 0, 0, x, y,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractal2file(
+        file,
+        x, y,
+        mandelbrot,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
 
 
 @functimer
@@ -8514,6 +8555,46 @@ def savemultibrotfractal2file(
     multibrot(bmp, 0, 0, x, y, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
+
+
+@functimer
+def savetricornfractal2file(
+        file: str,
+        x: int, y: int,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Tricorn Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    savefractal2file(
+        file,
+        x, y,
+        tricorn,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
 
 
 @functimer
