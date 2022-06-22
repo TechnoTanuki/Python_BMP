@@ -8920,7 +8920,7 @@ Draws a string vertically using a function
         color           : color of
                           the font
         fontbuf         : the font
-                         (see fonts.py)
+                          (see fonts.py)
     
     Returns:
         byref modified unsigned byte array
@@ -9693,6 +9693,67 @@ Saves bitmap to file
                   a bitmap file
     Returns:
         A Bitmap File
+
+
+### [`savejuliafractal2file`](#savejuliafractal2file)
+
+```py
+def savejuliafractal2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Julia Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savemultijuliafractal2file`](#savemultijuliafractal2file)
+
+```py
+def savemultijuliafractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Multi Julia Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        d       : power too raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
 
 
 ### [`setBMP2monochrome`](#setBMP2monochrome)

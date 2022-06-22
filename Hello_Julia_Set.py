@@ -12,12 +12,10 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        newBMP,
         getX11RGBfactors,
         savejuliafractal2file as f,
         fractaldomainparamdict,
-        getfuncmetastr as meta,
-        saveBMP
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
