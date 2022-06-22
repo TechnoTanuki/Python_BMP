@@ -232,7 +232,8 @@ from .fractals import(
     iternewtonsfractal,
     funcparamdict,
     kochcurvevert,
-    kochsnowflakevert
+    kochsnowflakevert,
+    newton
     )
 
 from .inttools import(
@@ -8684,6 +8685,46 @@ def savemulticornfractal2file(
         maxiter)
 
 
+def savefractalwithparam2file(
+        file: str,
+        x: int, y: int,
+        f: Callable,
+        p: any,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Fractal with a parameter to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        f       : fractal function
+        p       : any
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    retval = f(bmp, 0, 0, x, y, p,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+    return retval
+
+
 @functimer
 def savejuliafractal2file(
         file: str,
@@ -8716,10 +8757,15 @@ def savejuliafractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    julia(bmp, 0, 0, x, y, c,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwithparam2file(
+        file,
+        x, y,
+        julia,
+        c,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
 
 
 @functimer
@@ -8760,6 +8806,50 @@ def savemultijuliafractal2file(
     multijulia(bmp, 0, 0, x, y, c, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
+
+
+@functimer
+def savenewtonsfractal2file(
+        file: str,
+        x: int, y: int,
+        d: list[Callable, Callable],
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Newtons Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : [function and,
+                  function derivative pair]
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    return savefractalwithparam2file(
+        file,
+        x, y,
+        newtonsfractal,
+        d,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
 
 
 def plotfilledflower(bmp: array,
