@@ -8442,6 +8442,39 @@ def plotflower(bmp: array,
         plotxybit(bmp, x, y, c)
 
 
+@functimer
+def savejuliafractal2file(
+        file: str,
+        x: int, y: int,
+        c: complex,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Julia Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    """
+    bmp = newBMP(x, y, bitdepth)
+    julia(bmp, 0, 0, x, y, c,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+
+
 def plotfilledflower(bmp: array,
         cx: int, cy: int, r: int,
         petals: float, angrot: float,

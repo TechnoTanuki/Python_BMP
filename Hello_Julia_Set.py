@@ -14,7 +14,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         getX11RGBfactors,
-        julia as f,
+        savejuliafractal2file as f,
         fractaldomainparamdict,
         getfuncmetastr as meta,
         saveBMP
@@ -29,15 +29,14 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 600 # square canvas
-        bmp = newBMP(mx, my, 24) # RGB bitmap 600 x 600
         cf = getX11RGBfactors() #color info
         juliapar = fractaldomainparamdict() # common parameters
-        f(bmp, 0, 0, mx, my,
-          -0.70176 - 0.3842j,
-          juliapar['maxeqdim'],
-          cf['darkslategray1'], 255)
         file = f'hello{f.__name__}.bmp' # random file name
-        saveBMP(file, bmp) # save file
+        f(file, # path to new file
+        mx, my, # size of file
+        -0.70176 - 0.3842j, # complex number
+        juliapar['maxeqdim'], # fractal domain
+        cf['darkslategray1']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])
