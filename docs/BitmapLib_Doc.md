@@ -6921,6 +6921,25 @@ Creates a new in-memory bitmap
         unsigned byte array with bitmap layout
 
 
+### [`newton`](#newton)
+
+```py
+def newton(P: float, Q: float, d: float, maxiter: int) -> tuple:
+```
+
+Newton Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        d : function and derivative pair
+        maxiter : when to break
+                  color compute
+    
+    Returns:
+        list[root, iteration]
+
+
 ### [`newtonsfractal`](#newtonsfractal)
 
 ```py
@@ -9725,6 +9744,37 @@ Saves a Fractal to a file
         a bitmap file
 
 
+### [`savefractalwithparam2file`](#savefractalwithparam2file)
+
+```py
+def savefractalwithparam2file(file: str, x: int, y: int, f: Callable, p: <built-in function any>, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Fractal with a parameter to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        f       : fractal function
+        p       : any
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savejuliafractal2file`](#savejuliafractal2file)
 
 ```py
@@ -9889,6 +9939,37 @@ Saves a Multi Julia Fractal to a file
         y       : height of bitmap
         c       : complex number
         d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savenewtonsfractal2file`](#savenewtonsfractal2file)
+
+```py
+def savenewtonsfractal2file(file: str, x: int, y: int, d: list[typing.Callable, typing.Callable], domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Newtons Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : [function and,
+                  function derivative pair]
         domain  : location in real and
                   imaginary plane
                   (minreal, maxreal,
