@@ -12,12 +12,10 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        newBMP,
         getX11RGBfactors,
-        mandelbrot as f,
+        savemandelbrotfractal2file as f,
         fractaldomainparamdict,
-        getfuncmetastr as meta,
-        saveBMP
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -29,15 +27,10 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 600 # square canvas
-        bmp = newBMP(mx, my, 24) # RGB bitmap 600 x 600
         cf = getX11RGBfactors() #color info
-        mandelpar = fractaldomainparamdict() # common parameters
-        #mandelbrot(bmp,x1,y1,x2,y2,mandelpar[],RGBfactors,maxiter)
-        f(bmp, 0, 0, mx, my,
-          mandelpar['maxeqdim'],
-          cf['deepskyblue'], 255)
+        d = fractaldomainparamdict() # common parameters
         file = f'hello{f.__name__}.bmp' # random file name
-        saveBMP(file, bmp) # save file
+        f(file, mx, my, d['maxeqdim'], cf['deepskyblue'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])

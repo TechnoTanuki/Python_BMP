@@ -9725,6 +9725,35 @@ Saves a Julia Fractal to a file
         a bitmap file
 
 
+### [`savemandelbrotfractal2file`](#savemandelbrotfractal2file)
+
+```py
+def savemandelbrotfractal2file(file: str, x: int, y: int, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Mandelbrot Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savemultijuliafractal2file`](#savemultijuliafractal2file)
 
 ```py
