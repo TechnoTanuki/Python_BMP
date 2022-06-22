@@ -50,7 +50,6 @@ from Python_BMP.BITMAPlib import(
         eraseeverynthhoriline2file,
         eraseeverynthhorilineinccircregion2file,
         eraseeverynthhorilineinregion2file,
-        fern2file,
         filledcircle2file,
         fliphoricircregion2file,
         fliphorizontal2file,
