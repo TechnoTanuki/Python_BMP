@@ -20,10 +20,10 @@ Close the MS Paint window to execute another script
 
 https://github.com/TechnoTanuki/Python_BMP/blob/main/test_picturemanipulation.py
 
-* Will generate 75 images one per function under test then compare it with previously generated images generated with the function under test (this might take a while)
+* Will generate 75 images (one per function under test) then compare it with previously generated images generated with the function under test (this might take a while)
 
 https://github.com/TechnoTanuki/Python_BMP/blob/main/test_escapetimefractals.py
-* Will generate 7 images one per function under test then compare it with previously generated images generated with the function under test (this might take a while)
+* Will generate 7 images (one per function under test) then compare it with previously generated images generated with the function under test (this might take a while)
 
 
 # VS Code Users
