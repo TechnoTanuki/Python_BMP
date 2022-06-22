@@ -8479,6 +8479,45 @@ def savefractal2file(
     saveBMP(file, bmp)
 
 
+def savemultifractal2file(
+        file: str,
+        x: int, y: int,
+        f: Callable,
+        d: float,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Multibrot Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        f       : fractal function
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    f(bmp, 0, 0, x, y, d,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+
+
 @functimer
 def savemandelbrotfractal2file(
         file: str,
@@ -8551,10 +8590,15 @@ def savemultibrotfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    multibrot(bmp, 0, 0, x, y, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savemultifractal2file(
+        file,
+        x, y,
+        multibrot,
+        d,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
 
 
 @functimer
@@ -8591,6 +8635,49 @@ def savetricornfractal2file(
         file,
         x, y,
         tricorn,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
+
+
+@functimer
+def savemulticornfractal2file(
+        file: str,
+        x: int, y: int,
+        d: float,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Multicorn Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    savemultifractal2file(
+        file,
+        x, y,
+        multicorn,
+        d,
         domain,
         rgbfactors,
         bitdepth,
