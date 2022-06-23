@@ -1,5 +1,5 @@
 notice = """
-         Hello Sphere Demo
+          Hello Orb Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
