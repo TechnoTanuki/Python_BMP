@@ -35,13 +35,14 @@ def main():
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         file = f'Hello{f.__name__}.bmp' # file name
         d = 1/120
-        lim = pi * 20 + d
         for c in range(1, 16):
+                lim = pi * 26 - c
                 plotlines(bmp,f(x, y, # center of spirograph
                   280 - c * 20, # size of spirograph
                   1, .015 * c, # ratios to control shape
                   d , lim), # angle step and limit
                   c) # connect the dots with lines
+                d *= 1.0714285714285714285714285714286
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
