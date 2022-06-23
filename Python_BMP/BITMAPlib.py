@@ -8852,6 +8852,52 @@ def savenewtonsfractal2file(
         maxiter)
 
 
+def savehilbertcurve2file(
+        file: str,
+        x: int,
+        y: int,
+        order: int,
+        bitdepth: int = 1,
+        color: int = 1,
+        backgroundcolor: int = 0,
+        penradius: int = 1,
+        orientation: int = 0
+        ):
+    """Saves a Hilbert Curve to a file
+
+    Args:
+        file     : full path to new file
+        x        : width of bitmap
+        y        : height of bitmap
+        order    : order of the curve
+        bitdepth : optional bit depth
+                   (1, 4, 8, 24)
+                   default = 1
+        color    : optional color
+                   default = 1
+        backgroundcolor: optional backgroundcolor
+                         default = 0
+        penradius: optional penradius
+                   default = 1
+        orientation: can be 0 or 1
+                     default = 1
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    x -= 1
+    y -= 1
+    if backgroundcolor > 0:
+        filledrect(bmp, 0, 0, x, y, backgroundcolor)
+    o =  (0, x, y, 0) if orientation == 1 \
+    else (x, 0, 0, y)
+    l = []
+    hilbertvert(l, (0, 0), o, order)
+    plotlines(bmp, l, color, penradius)
+    saveBMP(file, bmp)
+
+
 def plotfilledflower(bmp: array,
         cx: int, cy: int, r: int,
         petals: float, angrot: float,
