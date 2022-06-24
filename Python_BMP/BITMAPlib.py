@@ -8852,6 +8852,7 @@ def savenewtonsfractal2file(
         maxiter)
 
 
+@functimer
 def savehilbertcurve2file(
         file: str,
         x: int,
@@ -8898,6 +8899,7 @@ def savehilbertcurve2file(
     saveBMP(file, bmp)
 
 
+@functimer
 def savekochsnowflake2file(
         file: str,
         r: int,
