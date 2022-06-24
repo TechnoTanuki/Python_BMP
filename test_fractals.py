@@ -1,5 +1,5 @@
 notice = """
- Unit tests for escape time fractals
+ Unit tests for fractals
  for a Pure Python graphics library
  that saves to a bitmap
  -----------------------------------
@@ -47,6 +47,7 @@ from Python_BMP.BITMAPlib import(
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
+        savehilbertcurve2file as hilbert
         )
 
 
@@ -119,6 +120,32 @@ class TestFractal2filefunc(unittest.TestCase):
             funcparamdict()[3], d,
             (c['red'], c['green'], c['blue']))
             self.filecmp(file)
+
+
+class Testspacefillingcurve2filefunc(unittest.TestCase):
+
+        def filecmp(
+                self,
+                file:str):
+                bmp1 = loadBMP(f'{odir}{file}')
+                bmp2 = loadBMP(f'{sdir}{file}')
+                self.assertIsNotNone(bmp1)
+                self.assertIsNotNone(bmp2)
+                self.assertEqual(bmp1, bmp2)
+
+
+        def testmonohilbert6thorder(self):
+            file = "hilbert6.bmp"
+            hilbert(f'{odir}{file}', 512, 512, 6)
+            self.filecmp(file)
+
+
+        def test16colorhilber4thorder(self):
+            file = "hilbert4.bmp"
+            hilbert(f'{odir}{file}', 512, 512,
+            4, 4, 15, 2, 5, 1)
+            self.filecmp(file)
+
 
 
 if __name__ == "__main__":
