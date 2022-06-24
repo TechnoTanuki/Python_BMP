@@ -8916,6 +8916,8 @@ def savekochsnowflake2file(
         file     : full path to new file
         r        : radius of the snowflake
         order    : order of the curve
+        angle    : rotation of snowflake
+                   around center in degrees
         bitdepth : optional bit depth
                    (1, 4, 8, 24)
                    default = 1
@@ -8925,8 +8927,6 @@ def savekochsnowflake2file(
                          default = 0
         penradius: optional penradius
                    default = 1
-        orientation: can be 0 or 1
-                     default = 1
 
     Returns:
         a bitmap file

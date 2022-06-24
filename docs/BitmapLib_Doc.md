@@ -9775,6 +9775,35 @@ Saves a Fractal with a parameter to a file
         a bitmap file
 
 
+### [`savehilbertcurve2file`](#savehilbertcurve2file)
+
+```py
+def savehilbertcurve2file(file: str, x: int, y: int, order: int, bitdepth: int = 1, color: int = 1, backgroundcolor: int = 0, penradius: int = 1, orientation: int = 0):
+```
+
+Saves a Hilbert Curve to a file
+
+    Args:
+        file     : full path to new file
+        x        : width of bitmap
+        y        : height of bitmap
+        order    : order of the curve
+        bitdepth : optional bit depth
+                   (1, 4, 8, 24)
+                   default = 1
+        color    : optional color
+                   default = 1
+        backgroundcolor: optional backgroundcolor
+                         default = 0
+        penradius: optional penradius
+                   default = 1
+        orientation: can be 0 or 1
+                     default = 1
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savejuliafractal2file`](#savejuliafractal2file)
 
 ```py
@@ -9800,6 +9829,34 @@ Saves a Julia Fractal to a file
                   (1, 4, 8, 24) bits
         maxiter : optional parameter
                   to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savekochsnowflake2file`](#savekochsnowflake2file)
+
+```py
+def savekochsnowflake2file(file: str, r: int, order: int, angle: float = 0, bitdepth: int = 1, color: int = 1, backgroundcolor: int = 0, penradius: int = 1):
+```
+
+Saves a Koch snowflake to a file
+
+    Args:
+        file     : full path to new file
+        r        : radius of the snowflake
+        order    : order of the curve
+        angle    : rotation of snowflake
+                   around center in degrees
+        bitdepth : optional bit depth
+                   (1, 4, 8, 24)
+                   default = 1
+        color    : optional color
+                   default = 1
+        backgroundcolor: optional backgroundcolor
+                         default = 0
+        penradius: optional penradius
+                   default = 1
     
     Returns:
         a bitmap file
