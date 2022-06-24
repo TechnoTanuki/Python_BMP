@@ -122,18 +122,6 @@ class TestFractal2filefunc(unittest.TestCase):
             self.filecmp(file)
 
 
-class Testspacefillingcurve2filefunc(unittest.TestCase):
-
-        def filecmp(
-                self,
-                file:str):
-                bmp1 = loadBMP(f'{odir}{file}')
-                bmp2 = loadBMP(f'{sdir}{file}')
-                self.assertIsNotNone(bmp1)
-                self.assertIsNotNone(bmp2)
-                self.assertEqual(bmp1, bmp2)
-
-
         def testmonohilbert6thorder(self):
             file = "hilbert6.bmp"
             hilbert(f'{odir}{file}', 512, 512, 6)
@@ -145,7 +133,6 @@ class Testspacefillingcurve2filefunc(unittest.TestCase):
             hilbert(f'{odir}{file}', 512, 512,
             4, 4, 15, 2, 5, 1)
             self.filecmp(file)
-
 
 
 if __name__ == "__main__":
