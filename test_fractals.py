@@ -47,7 +47,8 @@ from Python_BMP.BITMAPlib import(
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
-        savehilbertcurve2file as hilbert
+        savehilbertcurve2file as hilbert,
+        savekochsnowflake2file as koch
         )
 
 
@@ -132,6 +133,18 @@ class TestFractal2filefunc(unittest.TestCase):
             file = "hilbert4.bmp"
             hilbert(f'{odir}{file}', 512, 512,
             4, 4, 15, 2, 5, 1)
+            self.filecmp(file)
+
+
+        def testkoch4thorder(self):
+            file = "koch4.bmp"
+            koch(f'{odir}{file}', 250, 4, 0, 4, 15, 2)
+            self.filecmp(file)
+
+
+        def testkoch3rdorderthick(self):
+            file = "koch3.bmp"
+            koch(f'{odir}{file}', 250, 3, 0, 4, 15, 2, 6)
             self.filecmp(file)
 
 

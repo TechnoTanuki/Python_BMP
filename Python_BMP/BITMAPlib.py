@@ -5655,12 +5655,12 @@ def thickplotpoly(bmp: array,
     for i in range(vertcount):
         if i > 0:
             thickroundline(bmp,
-                vertlist[i - 1],
-                vertlist[i],
+                roundvect(vertlist[i - 1]),
+                roundvect(vertlist[i]),
                 penradius, color)
     thickroundline(bmp,
-        vertlist[0],
-        vertlist[vertcount - 1],
+        roundvect(vertlist[0]),
+        roundvect(vertlist[vertcount - 1]),
         penradius, color)
 
 
@@ -8895,6 +8895,53 @@ def savehilbertcurve2file(
     l = []
     hilbertvert(l, (0, 0), o, order)
     plotlines(bmp, l, color, penradius)
+    saveBMP(file, bmp)
+
+
+def savekochsnowflake2file(
+        file: str,
+        r: int,
+        order: int,
+        angle: float = 0,
+        bitdepth: int = 1,
+        color: int = 1,
+        backgroundcolor: int = 0,
+        penradius: int = 1,
+        ):
+    """Saves a Koch snowflake to a file
+
+    Args:
+        file     : full path to new file
+        r        : radius of the snowflake
+        order    : order of the curve
+        bitdepth : optional bit depth
+                   (1, 4, 8, 24)
+                   default = 1
+        color    : optional color
+                   default = 1
+        backgroundcolor: optional backgroundcolor
+                         default = 0
+        penradius: optional penradius
+                   default = 1
+        orientation: can be 0 or 1
+                     default = 1
+
+    Returns:
+        a bitmap file
+    """
+    x = y = (r << 1) + (penradius << 1) + 2
+    bmp = newBMP(x, y, bitdepth)
+    x -= 1
+    y -= 1
+    if backgroundcolor > 0:
+        filledrect(bmp, 0, 0, x, y, backgroundcolor)
+    cx = x >> 1
+    cy = y >> 1
+    l = kochsnowflakevert(cx, cy, r, angle, order)
+    if penradius > 1:
+        thickplotpoly(bmp, l, penradius, color)
+    else:
+        plotpoly(bmp, l, color)
     saveBMP(file, bmp)
 
 
