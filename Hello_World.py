@@ -30,8 +30,10 @@ def main():
         instr = notice
         c = getX11colorname2RGBdict()
         file = f'Hello{f.__name__}.bmp' #file name
+        endmsg ='Saved to %s in %s\nAll done close %s to finish' % \
+                (file, rootdir, imgedt)
         f(file,
-          outstr, # random text
+          f'{outstr}\n{endmsg}', # random text
            2, # uint font size multiplier
            0, # uint space between pixels
            0, # uint default space between char
@@ -39,9 +41,7 @@ def main():
            font8x14,
            c['darkblue']
            )
-        print()
-        print('Saved to %s in %s\nAll done close %s to finish' % \
-                (file, rootdir, imgedt)) # tell user we are done
+        print(endmsg) # tell user we are done
         ret = proc.call([imgedt, file])
 
 if __name__=="__main__":
