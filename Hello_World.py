@@ -13,33 +13,33 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        newBMP,
-        plotstring as f,
+        plotstring2file as f,
         getX11colorname2RGBdict,
         font8x14,
         getfuncmetastr as meta,
-        saveBMP
         )
 
 import subprocess as proc
 from os import path
 
 def main():
-        print(f'{notice}\n{meta(f)}')
+        outstr=f'{notice}\n{meta(f)}'
+        print(outstr)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx, my = 600, 80 # bitmap size
-        bmp = newBMP(mx, my, 24) # RGB bitmap
+        instr = notice
         c = getX11colorname2RGBdict()
-        f(bmp, 35, 10, # position the text
-          'Hello World!!', # random text
-           5, # uint font size multiplier
-           1, # uint space between pixels
-           0, # uint default space between char
-           [c['orangered'], c['orange'], c['yellow']],
-           font8x14)
         file = f'Hello{f.__name__}.bmp' #file name
-        saveBMP(file, bmp)
+        f(file,
+          outstr, # random text
+           2, # uint font size multiplier
+           0, # uint space between pixels
+           0, # uint default space between char
+           c['white'],
+           font8x14,
+           c['darkblue']
+           )
+        print()
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])

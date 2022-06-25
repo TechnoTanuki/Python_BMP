@@ -4735,7 +4735,7 @@ def plotstringfunc(bmp: array,
         color: int, fontbuf: list,
         orderfunc: Callable,
         fontrenderfunc: Callable):
-    """Draws a string
+    """Draws a string using a function
 
     Args:
         bmp             : unsigned
@@ -4784,6 +4784,81 @@ def plotstringfunc(bmp: array,
             x += xstep
 
 
+def plotstringfunc2file(file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        orderfunc: Callable,
+        fontrenderfunc: Callable,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws a string using a function to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+            `             each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        orderfunc       : function that
+                          enumerates
+                          each char
+                          in the
+                          input string
+        fontrenderfunc  : function that
+                          renders the font
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    if spacebetweenchar == 0:
+        spacebetweenchar = 1
+    x = y = scale
+    ox = x
+    xstep = (scale << 3) + \
+                spacebetweenchar
+    ypix = fontbuf[0]
+    ystep = ypix * scale + \
+                spacebetweenchar
+    l = str2plot.replace('\t', '    ')
+    l = l.split('\n') \
+        if str2plot.find('\n') > -1 \
+        else [l]
+    mx = len(max(l, key = len)) * \
+              xstep + scale
+    my = (scale * (ypix + 1)) * len(l)
+    bmp = newBMP(mx, my, bitdepth)
+    if backgroundcolor > 0:
+        mx -= 1
+        my -= 1
+        filledrect(bmp, 0, 0, mx, my, backgroundcolor)
+    for c in orderfunc(str2plot):
+        if c == '\n':
+            y += ystep
+            x = ox
+        elif c == '\t':
+            x += xstep << 2
+        else:
+            fontrenderfunc(bmp, x, y,
+                getcharfont(fontbuf, c),
+                scale, pixspace, color)
+            x += xstep
+    saveBMP(file, bmp)
+
+
 def plotstring(bmp: array,
         x: int, y: int, str2plot: str,
         scale: int, pixspace: int,
@@ -4821,6 +4896,48 @@ def plotstring(bmp: array,
         spacebetweenchar,
         color, fontbuf, enumletters,
         plot8bitpattern)
+
+
+def plotstring2file(file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws a string using a function to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    plotstringfunc2file(
+        file, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        enumletters,
+        plot8bitpattern,
+        backgroundcolor,
+        bitdepth)
 
 
 def plotitalicstring(bmp: array,

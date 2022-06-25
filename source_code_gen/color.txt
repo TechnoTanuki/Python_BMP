@@ -91,7 +91,7 @@ darkslategray	47	79	79
 darkslategrey	47	79	79
 darkturquoise	0	206	209
 darkviolet	148	0	211
-darkblue	184	134	11
+darkblue	0	0	139
 darkgoldenrod1	255	185	15
 darkgoldenrod2	238	173	14
 darkgoldenrod3	205	149	12
