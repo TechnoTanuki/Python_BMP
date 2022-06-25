@@ -139,6 +139,7 @@ class TestFractal2filefunc(unittest.TestCase):
         def testkoch4thorder(self):
             file = "koch4.bmp"
             koch(f'{odir}{file}', 250, 4, 0, 4, 15, 2)
+            #koch(f'{odir}{file}', 250, 3)
             self.filecmp(file)
 
 

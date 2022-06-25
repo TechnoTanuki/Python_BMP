@@ -1461,10 +1461,11 @@ def plotxybit(bmp: array,
     elif bits == 1:
         b = bmp[offset]
         mask = 1 << (7 - (x % 8))
-        c = min(c, 1)
-        if c == 1:
+        c = 1 if c > 0 else 0
+        t = b & mask
+        if c == 1 and t == 0:
             b |= mask
-        elif b & mask > 0:
+        elif c == 0 and t > 0:
             b ^= mask
         bmp[offset] = b
 
@@ -1748,14 +1749,8 @@ def line(bmp: array,
             if color > 1:
                 color &= 0x1
             for p in iterline(p1, p2):
-                s = c(bmp, p[0], p[1])
-                b = bmp[s]
-                mask = 1 << (7 - (p[0] % 8))
-                if color == 1:
-                    b ^=  mask
-                elif b & mask > 0:
-                    b ^=  mask
-                bmp[s] = b
+                plotxybit(bmp,
+                    p[0], p[1], color)
 
 
 def horiline(bmp: array, y: int,
@@ -2099,8 +2094,8 @@ def thickroundline(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    for p in iterline(p1,p2):
-        circle(bmp, p[0], p[1],
+    for (x, y) in iterline(p1, p2):
+        circle(bmp, x, y,
         penradius, color, True)
 
 
