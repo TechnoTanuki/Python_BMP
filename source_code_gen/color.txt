@@ -5,7 +5,7 @@ antiquewhite1	250	235	215
 antiquewhite2	255	239	219
 antiquewhite3	238	223	204
 antiquewhite4	205	192	176
-aqua	139	131	120
+aqua	0	255	255
 aquamarine	0	255	255
 aquamarine1	127	255	212
 aquamarine2	127	255	212
