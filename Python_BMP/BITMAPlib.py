@@ -3125,16 +3125,15 @@ def circle(bmp: array,
         if bits == 24:
             color = int2BGRarr(color)
             if dobndcheck:
-                for p in itercircle(x, y, r):
-                    (px, py) = p
+                for (px, py) in itercircle(x, y, r):
                     if isinBMPrectbnd(
                             bmp, px, py):
                         s = c(bmp, px, py)
                         bmp[s: s + 3] = color
             else:
-                for p in itercirclepart(r):
-                    x1, x2 = mirror(x, p[0])
-                    y1, y2 = mirror(y, p[1])
+                for (px, py) in itercirclepart(r):
+                    x1, x2 = mirror(x, px)
+                    y1, y2 = mirror(y, py)
                     s1 = c(bmp, x1, y1)
                     s2 = c(bmp, x2, y2)
                     s3 = c(bmp, x1, y2)
@@ -3145,23 +3144,20 @@ def circle(bmp: array,
                     bmp[s4: s4 + 3] = color
         elif bits == 8:
             if dobndcheck:
-                for p in itercircle(x, y, r):
-                    (px, py) = p
+                for (px, py) in itercircle(x, y, r):
                     if isinBMPrectbnd(bmp, px, py):
                         bmp[c(bmp, px, py)] = color
             else:
-                for p in itercirclepart(r):
-                    x1, x2 = mirror(x, p[0])
-                    y1, y2 = mirror(y, p[1])
+                for (px, py) in itercirclepart(r):
+                    x1, x2 = mirror(x, px)
+                    y1, y2 = mirror(y, py)
                     bmp[c(bmp, x1, y1)] = \
                     bmp[c(bmp, x2, y2)] = \
                     bmp[c(bmp, x1, y2)] = \
                     bmp[c(bmp, x2, y1)] = color
         else:
-            for p in itercircle(
-                        x, y, r):
-                plotxybit(bmp, p[0],
-                        p[1], color)
+            for (px, py) in itercircle(x, y, r):
+                plotxybit(bmp, px, py, color)
 
 
 
