@@ -38,6 +38,7 @@ from os import path
 from Python_BMP.BITMAPlib import(
         loadBMP,
         plotstring2file,
+        plotstringasdots2file,
         getX11colorname2RGBdict,
         getcolorname2RGBdict,
         font8x8,
@@ -46,6 +47,7 @@ from Python_BMP.BITMAPlib import(
 
 
 rootdir = path.dirname(__file__)
+
 
 class TestFontfilefunc(unittest.TestCase):
 
@@ -61,9 +63,10 @@ tuvwxyz0123456789\'
 {}_*+-/=<>ABCDEFGHI
 JKLMNOPQRSTUVWXYZ"""
 
+
         def filecmp(
                 self,
-                file:str):
+                file: str):
                 bmp1 = loadBMP(f'{self.odir}{file}')
                 bmp2 = loadBMP(f'{self.sdir}{file}')
                 self.assertIsNotNone(bmp1)
@@ -77,6 +80,7 @@ JKLMNOPQRSTUVWXYZ"""
             self.teststr, 1, 0, 0,
             self.c['darkolivegreen1'], font8x14)
             self.filecmp(file)
+
 
         def test8x14x1font8bit(self):
             file = "8x8x1font8bitRGB.bmp"
@@ -113,6 +117,14 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
+        def test8x14xfontRGBasdotspxspace1(self):
+            file = "8x14x4fontRGBasdotspixspace1.bmp"
+            plotstringasdots2file(f'{self.odir}{file}',
+            self.teststr, 4, 1, 0,
+            self.c['darkolivegreen1'], font8x14)
+            self.filecmp(file)
+
+
         def test8x8x3fontpxspace1(self):
             file = "8x8x3fontRGBpxspace1.bmp"
             plotstring2file(f'{self.odir}{file}',
@@ -135,6 +147,20 @@ JKLMNOPQRSTUVWXYZ"""
             font8x8)
             self.filecmp(file)
 
+
+        def test8x8x4fontpxspace1asdotsrainbow(self):
+            file = "8x8x4fontRGBpxspace1asdotsrainbow.bmp"
+            plotstringasdots2file(f'{self.odir}{file}',
+            self.teststr, 4, 1, 0,
+            (self.c1['brightred'],
+             self.c1['brightorange'],
+             self.c1['brightyellow'],
+             self.c1['brightgreen'],
+             self.c1['cyan'],
+             self.c1['brightblue'],
+             self.c1['brightmagenta']),
+            font8x8)
+            self.filecmp(file)
 
 if __name__ == "__main__":
         print(notice)
