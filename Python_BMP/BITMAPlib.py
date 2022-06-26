@@ -1726,20 +1726,20 @@ def line(bmp: array,
         c = _getBMoffhdfunc(bmp)
         if bits == 24:
             buf = int2BGRarr(color)
-            for p in iterline(p1, p2):
-                s = c(bmp, p[0], p[1])
+            for (x, y) in iterline(p1, p2):
+                s = c(bmp, x, y)
                 bmp[s: s + 3] = buf
         elif bits ==  8:
             color &= 0xff
-            for p in iterline(p1, p2):
-                bmp[c(bmp, p[0], p[1])] = \
+            for (x, y) in iterline(p1, p2):
+                bmp[c(bmp, x, y)] = \
                     color
         elif bits == 4:
             if color > 15:
                 color &= 0xf
-            for p in iterline(p1, p2):
-                s = c(bmp, p[0], p[1])
-                if p[0] & 1 == 1:
+            for (x, y) in iterline(p1, p2):
+                s = c(bmp, x, y)
+                if x & 1 == 1:
                     bmp[s] = \
                         (bmp[s] & 0xf0) + color
                 else:
@@ -1748,9 +1748,8 @@ def line(bmp: array,
         elif bits == 1:
             if color > 1:
                 color &= 0x1
-            for p in iterline(p1, p2):
-                plotxybit(bmp,
-                    p[0], p[1], color)
+            for (x, y) in iterline(p1, p2):
+                plotxybit(bmp, x, y, color)
 
 
 def horiline(bmp: array, y: int,
