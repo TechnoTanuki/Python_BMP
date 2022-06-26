@@ -33,7 +33,6 @@ notice = """
 """
 import filecmp
 import unittest
-
 from os import path
 from Python_BMP.BITMAPlib import(
         loadBMP,
@@ -53,101 +52,103 @@ from Python_BMP.BITMAPlib import(
 
 
 rootdir = path.dirname(__file__)
-testimgdir = '/assets/fractals/'
-sdir = rootdir + testimgdir
-odir = f'{rootdir}/test_output/'
-c = getX11RGBfactors()
-d = fractaldomainparamdict()['maxeqdim']
+
 
 class TestFractal2filefunc(unittest.TestCase):
 
-        def filecmp(
-                self,
-                file:str):
-                bmp1 = loadBMP(f'{odir}{file}')
-                bmp2 = loadBMP(f'{sdir}{file}')
-                self.assertIsNotNone(bmp1)
-                self.assertIsNotNone(bmp2)
-                self.assertEqual(bmp1, bmp2)
+    testimgdir = '/assets/fractals/'
+    sdir = rootdir + testimgdir
+    odir = f'{rootdir}/test_output/'
+    c = getX11RGBfactors()
+    d = fractaldomainparamdict()['maxeqdim']
+    imag = -0.70176 - 0.3842j
 
 
-        def testsavemandelbrotfractal2file(self):
-            file = "mandelbrot.bmp"
-            mandel(f'{odir}{file}', 600, 600,
-            d, c['deepskyblue'])
-            self.filecmp(file)
+    def filecmp(self, file: str):
+        bmp1 = loadBMP(f'{self.odir}{file}')
+        bmp2 = loadBMP(f'{self.sdir}{file}')
+        self.assertIsNotNone(bmp1)
+        self.assertIsNotNone(bmp2)
+        self.assertEqual(bmp1, bmp2)
 
 
-        def testsavemultibrotfractal2file(self):
-            file = "multibrot.bmp"
-            multibrot(f'{odir}{file}', 600, 600,
-            5, d, c['cornflowerblue'])
-            self.filecmp(file)
+    def testsavemandelbrotfractal2file(self):
+        file = "mandelbrot.bmp"
+        mandel(f'{self.odir}{file}', 600, 600,
+        self.d, self.c['deepskyblue'])
+        self.filecmp(file)
 
 
-        def testsavejuliafractal2file(self):
-            file = "julia.bmp"
-            julia(f'{odir}{file}', 600, 600,
-            -0.70176 - 0.3842j, # complex number
-            d, c['darkslategray1'])
-            self.filecmp(file)
+    def testsavemultibrotfractal2file(self):
+        file = "multibrot.bmp"
+        multibrot(f'{self.odir}{file}', 600, 600,
+        5, self.d, self.c['cornflowerblue'])
+        self.filecmp(file)
 
 
-        def testsavemultijuliafractal2file(self):
-            file = "multijulia.bmp"
-            multijulia(f'{odir}{file}', 600, 600,
-            -0.70176 - 0.3842j, # complex nunber
-             5, d, c['darkseagreen1'])
-            self.filecmp(file)
+    def testsavejuliafractal2file(self):
+        file = "julia.bmp"
+        julia(f'{self.odir}{file}', 600, 600,
+        self.imag, # complex number
+        self.d, self.c['darkslategray1'])
+        self.filecmp(file)
 
 
-        def testsavetricornfractal2file(self):
-            file = "tricorn.bmp"
-            tricorn(f'{odir}{file}', 600, 600,
-            d, c['springgreen'])
-            self.filecmp(file)
+    def testsavemultijuliafractal2file(self):
+        file = "multijulia.bmp"
+        multijulia(f'{self.odir}{file}', 600, 600,
+        self.imag, # complex nunber
+        5, self.d, self.c['darkseagreen1'])
+        self.filecmp(file)
 
 
-        def testsavemulticornfractal2file(self):
-            file = "multicorn.bmp"
-            multicorn(f'{odir}{file}', 600, 600,
-            5, d, c['aquamarine'])
-            self.filecmp(file)
+    def testsavetricornfractal2file(self):
+        file = "tricorn.bmp"
+        tricorn(f'{self.odir}{file}', 600, 600,
+        self.d, self.c['springgreen'])
+        self.filecmp(file)
 
 
-        def testsavenewtonsfractal2file(self):
-            file = "newtons.bmp"
-            newton(f'{odir}{file}', 600, 600,
-            funcparamdict()[3], d,
-            (c['red'], c['green'], c['blue']))
-            self.filecmp(file)
+    def testsavemulticornfractal2file(self):
+        file = "multicorn.bmp"
+        multicorn(f'{self.odir}{file}', 600, 600,
+        5, self.d, self.c['aquamarine'])
+        self.filecmp(file)
 
 
-        def testmonohilbert6thorder(self):
-            file = "hilbert6.bmp"
-            hilbert(f'{odir}{file}', 512, 512, 6)
-            self.filecmp(file)
+    def testsavenewtonsfractal2file(self):
+        file = "newtons.bmp"
+        newton(f'{self.odir}{file}', 600, 600,
+        funcparamdict()[3], self.d,
+        (self.c['red'], self.c['green'], self.c['blue']))
+        self.filecmp(file)
 
 
-        def test16colorhilber4thorder(self):
-            file = "hilbert4.bmp"
-            hilbert(f'{odir}{file}', 512, 512,
-            4, 4, 15, 2, 5, 1)
-            self.filecmp(file)
+    def testmonohilbert6thorder(self):
+        file = "hilbert6.bmp"
+        hilbert(f'{self.odir}{file}', 512, 512, 6)
+        self.filecmp(file)
 
 
-        def testkoch4thorder(self):
-            file = "koch4.bmp"
-            koch(f'{odir}{file}', 250, 4, 0, 4, 15, 2)
-            #koch(f'{odir}{file}', 250, 3)
-            self.filecmp(file)
+    def test16colorhilber4thorder(self):
+        file = "hilbert4.bmp"
+        hilbert(f'{self.odir}{file}', 512, 512,
+        4, 4, 15, 2, 5, 1)
+        self.filecmp(file)
 
 
-        def testkoch3rdorderthick(self):
-            file = "koch3.bmp"
-            koch(f'{odir}{file}', 250, 3, 0, 4, 15, 2, 6)
-            self.filecmp(file)
+    def testkoch4thorder(self):
+        file = "koch4.bmp"
+        koch(f'{self.odir}{file}', 250, 4, 0, 4, 15, 2)
+        self.filecmp(file)
 
+
+    def testkoch3rdorderthick(self):
+        file = "koch3.bmp"
+        koch(f'{self.odir}{file}', 250, 3, 0, 4, 15, 2, 6)
+        self.filecmp(file)
+
+#koch(f'{odir}{file}', 250, 3)
 
 if __name__ == "__main__":
         print(notice)
