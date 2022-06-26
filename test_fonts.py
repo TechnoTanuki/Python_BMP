@@ -31,9 +31,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-import filecmp
 import unittest
-
 from os import path
 from Python_BMP.BITMAPlib import(
         loadBMP,
