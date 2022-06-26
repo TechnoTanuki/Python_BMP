@@ -39,6 +39,8 @@ from Python_BMP.BITMAPlib import(
         plotstringasdots2file,
         plotreversedstring2file,
         plotreversedstringasdots2file,
+        plotupsidedownstring2file,
+        plotupsidedownstringasdots2file,
         getX11colorname2RGBdict,
         getcolorname2RGBdict,
         font8x8,
@@ -82,9 +84,17 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
-        def test8x14x1font8bit(self):
+        def test8x14x1fontRGB(self):
             file = "8x8x1font8bitRGB.bmp"
             plotstring2file(f'{self.odir}{file}',
+            self.teststr, 1, 0, 0,
+            self.c['aqua'], font8x8)
+            self.filecmp(file)
+
+
+        def test8x14x1upsidedownfontRGB(self):
+            file = "8x8x1upsidedownfont8bitRGB.bmp"
+            plotupsidedownstring2file(f'{self.odir}{file}',
             self.teststr, 1, 0, 0,
             self.c['aqua'], font8x8)
             self.filecmp(file)
@@ -103,14 +113,18 @@ JKLMNOPQRSTUVWXYZ"""
 
         def test8x14x3fontasdotsRGB(self):
             file = "8x14x3fontasdotsRGB.bmp"
-            #plotstring2file(f'{self.odir}{file}',
-            #self.teststr, 3, 0, 0,
-            #14, font8x14, 0, 4)
             plotstringasdots2file(f'{self.odir}{file}',
             self.teststr, 3, 0, 0,
             self.c['green'], font8x14)
             self.filecmp(file)
 
+
+        def test8x14x3upsidedownfontasdotsRGB(self):
+            file = "8x14x3upsidedownfontasdotsRGB.bmp"
+            plotupsidedownstringasdots2file(f'{self.odir}{file}',
+            self.teststr, 3, 0, 0,
+            self.c['green'], font8x14)
+            self.filecmp(file)
 
         def test8x8x3font1bit(self):
             file = "8x8x3font1bit.bmp"
@@ -128,7 +142,7 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
-        def test8x14xfontRGBasdotspxspace1(self):
+        def test8x14x4fontRGBasdotspxspace1(self):
             file = "8x14x4fontRGBasdotspixspace1.bmp"
             plotstringasdots2file(f'{self.odir}{file}',
             self.teststr, 4, 1, 0,
@@ -202,6 +216,15 @@ JKLMNOPQRSTUVWXYZ"""
              self.c1['brightmagenta']),
             font8x8)
             self.filecmp(file)
+
+
+        def test8x14x3reversedfontRGBasdotspxspace1(self):
+            file = "8x14x3reversedfontRGBasdotspixspace1.bmp"
+            plotreversedstringasdots2file(f'{self.odir}{file}',
+            self.teststr, 4, 1, 0,
+            self.c['darkolivegreen1'], font8x14)
+            self.filecmp(file)
+
 
 if __name__ == "__main__":
         print(notice)

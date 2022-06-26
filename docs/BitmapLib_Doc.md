@@ -9219,6 +9219,68 @@ Draw an italic string upsidedown as dots
         byref modified unsigned byte array
 
 
+### [`plotupsidedownstring2file`](#plotupsidedownstring2file)
+
+```py
+def plotupsidedownstring2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws an upsidedown string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
+### [`plotupsidedownstringasdots2file`](#plotupsidedownstringasdots2file)
+
+```py
+def plotupsidedownstringasdots2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws an upsidedown string as Dots to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
 ### [`plotvecxypoint`](#plotvecxypoint)
 
 ```py
