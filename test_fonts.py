@@ -37,6 +37,8 @@ from Python_BMP.BITMAPlib import(
         loadBMP,
         plotstring2file,
         plotstringasdots2file,
+        plotreversedstring2file,
+        plotreversedstringasdots2file,
         getX11colorname2RGBdict,
         getcolorname2RGBdict,
         font8x8,
@@ -146,6 +148,36 @@ JKLMNOPQRSTUVWXYZ"""
             file = "8x8x4fontRGBpxspace1rainbow.bmp"
             plotstring2file(f'{self.odir}{file}',
             self.teststr, 4, 1, 0,
+            (self.c1['brightred'],
+             self.c1['brightorange'],
+             self.c1['brightyellow'],
+             self.c1['brightgreen'],
+             self.c1['cyan'],
+             self.c1['brightblue'],
+             self.c1['brightmagenta']),
+            font8x8)
+            self.filecmp(file)
+
+
+        def test8x8x4reversedfontpxspace1rainbow(self):
+            file = "8x8x4reversedfontRGBpxspace1rainbow.bmp"
+            plotreversedstring2file(f'{self.odir}{file}',
+            self.teststr, 4, 1, 0,
+            (self.c1['brightred'],
+             self.c1['brightorange'],
+             self.c1['brightyellow'],
+             self.c1['brightgreen'],
+             self.c1['cyan'],
+             self.c1['brightblue'],
+             self.c1['brightmagenta']),
+            font8x8)
+            self.filecmp(file)
+
+
+        def test8x8x2reversedfontrainbow(self):
+            file = "8x8x2reversedfontRGBrainbow.bmp"
+            plotreversedstring2file(f'{self.odir}{file}',
+            self.teststr, 2, 0, 0,
             (self.c1['brightred'],
              self.c1['brightorange'],
              self.c1['brightyellow'],

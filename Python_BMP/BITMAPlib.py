@@ -5039,6 +5039,90 @@ def plotstringasdots2file(file: str,
         bitdepth)
 
 
+def plotreversedstring2file(file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws a reversed string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    plotstringfunc2file(
+        file, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        enumreverseletters,
+        plot8bitpattern,
+        backgroundcolor,
+        bitdepth)
+
+
+def plotreversedstringasdots2file(file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws a reversed string as Dots to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    plotstringfunc2file(
+        file, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        enumreverseletters,
+        plot8bitpatternasdots,
+        backgroundcolor,
+        bitdepth)
+
+
 def plotitalicstringasdots(bmp: array,
         x: int, y: int, str2plot: str,
         scale: int, pixspace: int,

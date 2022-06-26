@@ -8402,6 +8402,68 @@ Draws a Reversed String as Italic dots
         byref modified unsigned byte array
 
 
+### [`plotreversedstring2file`](#plotreversedstring2file)
+
+```py
+def plotreversedstring2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws a reversed string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
+### [`plotreversedstringasdots2file`](#plotreversedstringasdots2file)
+
+```py
+def plotreversedstringasdots2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws a reversed string as Dots to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
 ### [`plotreversestring`](#plotreversestring)
 
 ```py
@@ -8607,6 +8669,37 @@ with a function
         byref modified unsigned byte array
 
 
+### [`plotstring2file`](#plotstring2file)
+
+```py
+def plotstring2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws a string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
 ### [`plotstring`](#plotstring)
 
 ```py
@@ -8641,6 +8734,37 @@ Draws a string
         byref modified unsigned byte array
 
 
+### [`plotstringasdots2file`](#plotstringasdots2file)
+
+```py
+def plotstringasdots2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws a string as Dots to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
 ### [`plotstringasdots`](#plotstringasdots)
 
 ```py
@@ -8670,13 +8794,51 @@ Draws a string as Dots
         byref modified unsigned byte array
 
 
+### [`plotstringfunc2file`](#plotstringfunc2file)
+
+```py
+def plotstringfunc2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, orderfunc: Callable, fontrenderfunc: Callable, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws a string using a function to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+            `             each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        orderfunc       : function that
+                          enumerates
+                          each char
+                          in the
+                          input string
+        fontrenderfunc  : function that
+                          renders the font
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
 ### [`plotstringfunc`](#plotstringfunc)
 
 ```py
 def plotstringfunc(bmp: array.array, x: int, y: int, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, orderfunc: Callable, fontrenderfunc: Callable):
 ```
 
-Draws a string
+Draws a string using a function
 
     Args:
         bmp             : unsigned
