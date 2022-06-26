@@ -94,6 +94,7 @@ JKLMNOPQRSTUVWXYZ"""
             self.c['green'], font8x14)
             self.filecmp(file)
 
+
         def test8x8x3font1bit(self):
             file = "8x8x3font1bit.bmp"
             plotstring2file(f'{self.odir}{file}',
@@ -102,7 +103,7 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
-        def test8x14x1fontRGBpxspace(self):
+        def test8x14xfontRGBpxspace1(self):
             file = "8x14x3fontRGBpixspace1.bmp"
             plotstring2file(f'{self.odir}{file}',
             self.teststr, 3, 1, 0,
@@ -118,7 +119,7 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
-        def test8x8x3fontpxspace1(self):
+        def test8x8x3fontpxspace1rainbow(self):
             file = "8x8x3fontRGBpxspace1rainbow.bmp"
             plotstring2file(f'{self.odir}{file}',
             self.teststr, 3, 1, 0,
