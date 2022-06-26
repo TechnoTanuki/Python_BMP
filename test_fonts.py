@@ -39,6 +39,7 @@ from Python_BMP.BITMAPlib import(
         loadBMP,
         plotstring2file,
         getX11colorname2RGBdict,
+        getcolorname2RGBdict,
         font8x8,
         font8x14
         )
@@ -52,6 +53,7 @@ class TestFontfilefunc(unittest.TestCase):
         sdir = rootdir + testimgdir
         odir = f'{rootdir}/test_output/'
         c = getX11colorname2RGBdict()
+        c1 = getcolorname2RGBdict()
         teststr = \
 """abcdefghijklmnopqrs
 tuvwxyz0123456789\'
@@ -119,17 +121,17 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
-        def test8x8x3fontpxspace1rainbow(self):
-            file = "8x8x3fontRGBpxspace1rainbow.bmp"
+        def test8x8x4fontpxspace1rainbow(self):
+            file = "8x8x4fontRGBpxspace1rainbow.bmp"
             plotstring2file(f'{self.odir}{file}',
-            self.teststr, 3, 1, 0,
-            (self.c['red'],
-             self.c['orange'],
-             self.c['yellow'],
-             self.c['green'],
-             self.c['cyan'],
-             self.c['blue'],
-             self.c['magenta']),
+            self.teststr, 4, 1, 0,
+            (self.c1['brightred'],
+             self.c1['brightorange'],
+             self.c1['brightyellow'],
+             self.c1['brightgreen'],
+             self.c1['cyan'],
+             self.c1['brightblue'],
+             self.c1['brightmagenta']),
             font8x8)
             self.filecmp(file)
 
