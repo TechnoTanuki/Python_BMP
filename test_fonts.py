@@ -99,6 +99,17 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
+        def test8x14x3fontasdotsRGB(self):
+            file = "8x14x3fontasdotsRGB.bmp"
+            #plotstring2file(f'{self.odir}{file}',
+            #self.teststr, 3, 0, 0,
+            #14, font8x14, 0, 4)
+            plotstringasdots2file(f'{self.odir}{file}',
+            self.teststr, 3, 0, 0,
+            self.c['green'], font8x14)
+            self.filecmp(file)
+
+
         def test8x8x3font1bit(self):
             file = "8x8x3font1bit.bmp"
             plotstring2file(f'{self.odir}{file}',
