@@ -1463,9 +1463,8 @@ def plotxybit(bmp: array,
         mask = 1 << (7 - (x % 8))
         c = 1 if c > 0 else 0
         t = b & mask
-        if c == 1 and t == 0:
-            b |= mask
-        elif c == 0 and t > 0:
+        if (c == 1 and t == 0) or \
+           (c == 0 and t == mask):
             b ^= mask
         bmp[offset] = b
 
