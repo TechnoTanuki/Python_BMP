@@ -2419,33 +2419,30 @@ def flipXYcircregion(bmp: array,
     c = _getBMoffhdfunc(bmp)
     if bits not in [24, 8]:
         n = flipXY(bmp)
-        for v in itercirclepartlineedge(r):
-            x3, x4 = mirror(y, v[0])
-            y3, y4 = mirror(x, v[1])
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x3, x4 = mirror(y, v0)
+            y3, y4 = mirror(x, v1)
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             bmp[c(bmp, x1, y1): c(bmp, x2, y1)] = \
               n[c(n, x3, y3): c(n, x4, y3)]
             bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = \
               n[c(n, x3, y4): c(n, x4, y4)]
     else:
         buf = []
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             x2 += 1
-            x3, x4 = mirror(x, v[1])
-            y3, y4 = mirror(y, v[0])
+            x3, x4 = mirror(x, v1)
+            y3, y4 = mirror(y, v0)
             buf += [[x1, y1, x2, y2,
                      vertBMPbitBLTget(
                       bmp, x3, y3, y4),
                      vertBMPbitBLTget(
                       bmp, x4, y3, y4)]]
         for b in buf:
-            x1 = b[0]
-            y1 = b[1]
-            x2 = b[2]
-            y2 = b[3]
+            x1, y1, x2, y2 = b[0: 4]
             bmp[c(bmp, x1, y1): c(bmp, x2, y1)] = b[4]
             bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = b[5]
 
