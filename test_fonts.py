@@ -218,8 +218,8 @@ JKLMNOPQRSTUVWXYZ"""
             self.filecmp(file)
 
 
-        def test8x14x3reversedfontRGBasdotspxspace1(self):
-            file = "8x14x3reversedfontRGBasdotspixspace1.bmp"
+        def test8x14x4reversedfontRGBasdotspxspace1(self):
+            file = "8x14x4reversedfontRGBasdotspixspace1.bmp"
             plotreversedstringasdots2file(f'{self.odir}{file}',
             self.teststr, 4, 1, 0,
             self.c['darkolivegreen1'], font8x14)
