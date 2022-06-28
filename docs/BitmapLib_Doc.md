@@ -7947,6 +7947,37 @@ Italic 8-bit pattern with a function
         byref modified unsigned byte array
 
 
+### [`plotitalicstring2file`](#plotitalicstring2file)
+
+```py
+def plotitalicstring2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws an italic string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
 ### [`plotitalicstring`](#plotitalicstring)
 
 ```py
@@ -7976,6 +8007,37 @@ Draws a string as Italic
     
     Returns:
         byref modified unsigned byte array
+
+
+### [`plotitalicstringasdots2file`](#plotitalicstringasdots2file)
+
+```py
+def plotitalicstringasdots2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws an italic string as Dots to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
 
 
 ### [`plotitalicstringasdots`](#plotitalicstringasdots)
@@ -8340,6 +8402,37 @@ Draws a 8-bit reversed italic pattern as dots
     
     Returns:
         byref modified unsigned byte array
+
+
+### [`plotreverseditalicstring2file`](#plotreverseditalicstring2file)
+
+```py
+def plotreverseditalicstring2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws a reversed italic string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
 
 
 ### [`plotreverseditalicstring`](#plotreverseditalicstring)
@@ -8809,7 +8902,7 @@ Draws a string using a function to a file
         scale           : control how big
                           the font is
         pixspace        : space between
-            `             each bit
+                          each bit
         spacebetweenchar: space between
                           the characters
         color           : color of the font
@@ -8850,7 +8943,7 @@ Draws a string using a function
         scale           : control how big
                           the font is
         pixspace        : space between
-            `             each bit
+                          each bit
         spacebetweenchar: space between
                           the characters
         color           : color of the font
