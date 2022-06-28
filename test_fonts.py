@@ -41,6 +41,7 @@ from Python_BMP.BITMAPlib import(
         plotreversedstringasdots2file,
         plotupsidedownstring2file,
         plotupsidedownstringasdots2file,
+        plotitalicstringasdots2file,
         plotitalicstring2file,
         getX11colorname2RGBdict,
         getcolorname2RGBdict,
@@ -242,6 +243,14 @@ JKLMNOPQRSTUVWXYZ"""
     def test8x14x4italicfontRGBpxspace1(self):
         file = "8x14x4italicfontRGBpxspace1.bmp"
         plotitalicstring2file(f'{self.odir}{file}',
+        self.teststr, 4, 1, 0,
+        self.c['darkolivegreen1'], font8x14)
+        self.filecmp(file)
+
+
+    def test8x14x4italicfontasdotsRGBpxspace1(self):
+        file = "8x14x4italicfontasdotRGBpxspace1.bmp"
+        plotitalicstringasdots2file(f'{self.odir}{file}',
         self.teststr, 4, 1, 0,
         self.c['darkolivegreen1'], font8x14)
         self.filecmp(file)

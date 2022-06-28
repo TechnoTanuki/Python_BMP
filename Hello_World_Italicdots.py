@@ -14,7 +14,7 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        plotitalicstringasdots as f,
+        plotitalicstringasdots2file as f,
         getcolorname2RGBdict,
         font8x14,
         getfuncmetastr as meta,
@@ -29,17 +29,13 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx, my = 700, 90 # bitmap size
-        bmp = newBMP(mx, my, 24) # RGB bitmap
-        f(bmp, 50, 10, # position the text
-          'Hello World!!', # random text
+        file = f'HelloWorld{f.__name__}.bmp' #file name
+        f(file,'Hello World!!', # random text
            6, # uint font size multiplier
            1, # uint space between pixels
            0, # uint default space between char
            getcolorname2RGBdict()['yellow'],
            font8x14)
-        file = f'HelloWorld{f.__name__}.bmp' #file name
-        saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
