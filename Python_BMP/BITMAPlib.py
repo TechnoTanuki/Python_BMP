@@ -3888,6 +3888,11 @@ def plotitalic8bitpatternwithfn(
     """
     inc = scale - 1 - pixspace
     i = scale >> 1
+    h = len(bitpattern)
+    if scale > 1:
+        x += (i * h)
+    else:
+        x += (h >> 1)
     if type(color) == int:
         for bits in bitpattern:
             ox = x
@@ -4370,14 +4375,14 @@ def plot8bitpatternupsidedownwithfn(
         byref modified unsigned byte array
     """
     inc = scale - 1 - pixspace
-    i = len(bitpattern)-1
+    i = len(bitpattern) - 1
     if type(color) == int:
         while i > -1:
             bits = bitpattern[i]
             ox = x
             mask = 128
             while mask > 0:
-                if (mask & bits)>0:
+                if (mask & bits) > 0:
                     if scale == 1 or inc <= 0:
                         plotxybit(bmp, x, y,
                             color)
@@ -4734,7 +4739,7 @@ def plotstringfunc(bmp: array,
         scale           : control how big
                           the font is
         pixspace        : space between
-            `             each bit
+                          each bit
         spacebetweenchar: space between
                           the characters
         color           : color of the font
@@ -4789,7 +4794,7 @@ def plotstringfunc2file(file: str,
         scale           : control how big
                           the font is
         pixspace        : space between
-            `             each bit
+                          each bit
         spacebetweenchar: space between
                           the characters
         color           : color of the font
@@ -4817,8 +4822,8 @@ def plotstringfunc2file(file: str,
     ox = x
     xstep = (scale << 3) + \
                 spacebetweenchar
-    ypix = fontbuf[0]
-    ystep = ypix * scale + \
+    h = fontbuf[0]
+    ystep = h * scale + \
                 spacebetweenchar
     l = str2plot.replace('\t', '    ')
     l = l.split('\n') \
@@ -4826,7 +4831,12 @@ def plotstringfunc2file(file: str,
         else [l]
     mx = len(max(l, key = len)) * \
               xstep + scale
-    my = (scale * (ypix + 1)) * len(l)
+    my = (scale * (h + 1)) * len(l)
+    if fontrenderfunc.__name__.find("italic") > 0:
+        if scale > 1:
+            mx += (h * (scale >> 1))
+        else:
+            mx += (h >> 1)
     bmp = newBMP(mx, my, bitdepth)
     if backgroundcolor > 0:
         mx -= 1
@@ -4961,6 +4971,48 @@ def plotitalicstring(bmp: array,
         spacebetweenchar,
         color, fontbuf, enumletters,
         plotitalic8bitpattern)
+
+
+def plotitalicstring2file(file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws an italic string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    plotstringfunc2file(
+        file, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        enumletters,
+        plotitalic8bitpattern,
+        backgroundcolor,
+        bitdepth)
 
 
 def plotstringasdots(bmp: array,
