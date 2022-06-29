@@ -8683,10 +8683,10 @@ Draws a 8-bit pattern with the bits rotated
         byref modified unsigned byte array
 
 
-### [`plotrotated8bitpatternwithdots`](#plotrotated8bitpatternwithdots)
+### [`plotrotated8bitpatternasdots`](#plotrotated8bitpatternasdots)
 
 ```py
-def plotrotated8bitpatternwithdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
+def plotrotated8bitpatternasdots(bmp: array.array, x: int, y: int, bitpattern: list, scale: int, pixspace: int, color: int):
 ```
 
 Draws a 8-bit pattern with the bits rotated
