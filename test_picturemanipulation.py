@@ -695,9 +695,7 @@ class Test2filefunc(unittest.TestCase):
                 p = self._filepaths(f'tanuki-edgebycolor{colorstr}.bmp')
                 imgregionbyRGB2file(
                         f'{self.sourcedir}tanuki.bmp',
-                        p[0],
-                        1,
-                        color,
+                        p[0], 1, color,
                         int2RGB(color),
                         120, True)
                 self.filecmp(*p)
@@ -707,16 +705,15 @@ class Test2filefunc(unittest.TestCase):
                 p = self._filepaths('earth-4bit.bmp')
                 reduce24bitimagebits(
                         f'{self.sourcedir}earth.bmp',
-                        p[0],
-                        4, 24,
-                        False)
+                        p[0], 4, 24, False)
                 self.filecmp(*p)
 
 
         def testautocropimg2file(self):
-                (newfile, reffile) = self._filepaths('flower-autocrop.bmp')
-                autocropimg2file(f'{self.sourcedir}flower.bmp', newfile, 64)
-                self.filecmp(reffile, newfile)
+                p = self._filepaths('flower-autocrop.bmp')
+                autocropimg2file(f'{self.sourcedir}flower.bmp',
+                                 p[0], 64)
+                self.filecmp(*p)
 
 
         def testbrightnessgradregion2file(self):
