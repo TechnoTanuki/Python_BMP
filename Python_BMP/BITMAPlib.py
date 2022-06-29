@@ -4861,6 +4861,93 @@ def plotstringfunc2file(file: str,
     saveBMP(file, bmp)
 
 
+def plotstringverticalwithfn2file(
+        file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        orderfunc: Callable,
+        fontrenderfunc: Callable,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws a string vertically using a function
+    to a new file
+
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        orderfunc       : function that
+                          enumerates
+                          each char
+                          in the
+                          input string
+        fontrenderfunc  : function that
+                          renders the font
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    if spacebetweenchar == 0:
+        spacebetweenchar = 1
+    h = fontbuf[0]
+    xstep = (scale << 3) + \
+                spacebetweenchar
+    ystep = h * scale + \
+                spacebetweenchar
+    x = y = scale
+    oy = y
+    xstep = (scale << 3) + \
+                spacebetweenchar
+    ystep = h * scale + \
+                spacebetweenchar
+    l = str2plot.replace('\t', '    ')
+    l = l.split('\n') \
+        if str2plot.find('\n') > -1 \
+        else [l]
+    mx = len(l) * xstep + scale
+    my = (scale * (h + 1)) * len(max(l, key = len))
+    if fontrenderfunc.__name__.find("italic") > 0:
+        if scale > 1:
+            mx += (h * (scale >> 1))
+        else:
+            mx += (h >> 1)
+    bmp = newBMP(mx, my, bitdepth)
+    if backgroundcolor > 0:
+        mx -= 1
+        my -= 1
+        filledrect(bmp, 0, 0, mx, my, backgroundcolor)
+    for c in orderfunc(str2plot):
+        if c == '\n':
+            x += xstep
+            y = oy
+        elif c == '\t':
+            y += ystep << 2
+        else:
+            fontrenderfunc(bmp, x, y,
+               getcharfont(fontbuf,c),
+               scale, pixspace, color)
+            y += ystep
+    saveBMP(file, bmp)
+
+
+
 def plotstring(bmp: array,
         x: int, y: int, str2plot: str,
         scale: int, pixspace: int,
@@ -4932,6 +5019,48 @@ def plotstring2file(file: str,
         new bitmap file
     """
     plotstringfunc2file(
+        file, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        enumletters,
+        plot8bitpattern,
+        backgroundcolor,
+        bitdepth)
+
+
+def plotverticalstring2file(file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws a string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    plotstringverticalwithfn2file(
         file, str2plot,
         scale, pixspace,
         spacebetweenchar,
