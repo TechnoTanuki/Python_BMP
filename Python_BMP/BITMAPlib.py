@@ -4321,7 +4321,7 @@ def plotrotated8bitpattern(
                 x + inc, y + inc, color))
 
 
-def plotrotated8bitpatternwithdots(
+def plotrotated8bitpatternasdots(
         bmp: array, x: int, y: int,
         bitpattern: list, scale: int,
         pixspace: int, color: int):
@@ -5254,7 +5254,7 @@ def plotreversedstringasdots2file(file: str,
         spacebetweenchar,
         color, fontbuf,
         enumreverseletters,
-        plot8bitpatternasdots,
+        plotrotated8bitpatternasdots,
         backgroundcolor,
         bitdepth)
 
@@ -5659,7 +5659,7 @@ def plotreversestringasdots(
         scale, pixspace,
         spacebetweenchar, color,
         fontbuf, enumreverseletters,
-        plotrotated8bitpatternwithdots)
+        plotrotated8bitpatternasdots)
 
 
 def plotstringsidewayfn(bmp: array,
