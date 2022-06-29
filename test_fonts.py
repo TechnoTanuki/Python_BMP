@@ -31,6 +31,8 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
+from array import array
+from typing import Callable
 import unittest
 from os import path
 from Python_BMP.BITMAPlib import(
@@ -61,12 +63,44 @@ class TestFontfilefunc(unittest.TestCase):
     odir = f'{rootdir}/test_output/'
     c = getX11colorname2RGBdict()
     c1 = getcolorname2RGBdict()
-    teststr = \
-"""abcdefghijklmnopqrs
+    teststr = """abcdefghijklmnopqrs
 tuvwxyz0123456789\'
 ":;.,?!~`@#$%^&()[]
 {}_*+-/=<>ABCDEFGHI
 JKLMNOPQRSTUVWXYZ"""
+    rainbow = (c1['brightred'],
+              c1['brightorange'],
+              c1['brightyellow'],
+              c1['brightgreen'],
+              c1['cyan'],
+              c1['brightblue'],
+              c1['brightmagenta'])
+
+
+    def genname(self,
+                fn: Callable,
+              font: array,
+             color: int,
+              size: int,
+          pixspace: int,
+  spacebetweenchar: int,
+   backgroundcolor: int = 0,
+              bits: int = 24) -> str:
+        return f'8x{font[0]}x{size}px{pixspace}cs{spacebetweenchar}{bits}bit{fn.__name__}bc{backgroundcolor}c{color if type(color) == int else "multi"}'
+
+
+    def dofontfunc(self,
+                fn: Callable,
+              font: array,
+             color: int,
+              size: int,
+          pixspace: int,
+  spacebetweenchar: int,
+  backgroundcolor: int = 0,
+             bits: int = 24):
+        file = f'{self.genname(fn, font, color, size, pixspace, spacebetweenchar, backgroundcolor, bits)}.bmp'
+        fn(f'{self.odir}{file}', self.teststr, size, pixspace, spacebetweenchar,color, font, backgroundcolor, bits)
+        self.filecmp(file)
 
 
     def filecmp(self, file: str):
@@ -77,192 +111,53 @@ JKLMNOPQRSTUVWXYZ"""
         self.assertEqual(bmp1, bmp2)
 
 
-    def test8x14x1fontRGB(self):
-        file = "8x14x1fontRGB.bmp"
-        plotstring2file(f'{self.odir}{file}',
-        self.teststr, 1, 0, 0,
-        self.c['darkolivegreen1'], font8x14)
-        self.filecmp(file)
+    testcases = (
+    #0
+    (plotstring2file, font8x8, c['aqua'], 1, 0, 0),
+    #1
+    (plotstring2file, font8x8, 1, 3, 0, 0, 0, 1),
+    #2
+    (plotstring2file, font8x8, c['aqua'], 3, 1, 0),
+    #3
+    (plotstring2file, font8x14, c['darkolivegreen1'], 1, 0, 0),
+    #4
+    (plotstring2file, font8x14, c['green'], 3, 0, 0),
+    #5
+    (plotstring2file, font8x14, c['darkolivegreen1'], 3, 1, 0),
+    #6
+    (plotitalicstring2file, font8x8, rainbow, 4, 1, 0),
+    #7
+    (plotreversedstring2file, font8x8, c['aqua'], 1, 0, 0),
+    #8
+    (plotupsidedownstring2file, font8x8, c['aqua'], 1, 0, 0),
+    #9
+    (plotstringasdots2file, font8x8, rainbow, 4, 1, 0),
+    #10
+    (plotstringasdots2file, font8x14, c['darkolivegreen1'], 4, 1, 0),
+    #11
+    (plotreversedstringasdots2file, font8x14,  c['darkolivegreen1'], 4, 1, 0),
+    #12
+    (plotupsidedownstringasdots2file, font8x14, c['green'], 3, 0, 0),
+    #13
+    (plotitalicstringasdots2file, font8x14, c['darkolivegreen1'], 4, 1, 0),
+    #14
+    (plotreverseditalicstring2file, font8x14, c['yellow'], 1, 0, 0),
+    )
 
-
-    def test8x14x1fontRGB(self):
-        file = "8x8x1font8bitRGB.bmp"
-        plotstring2file(f'{self.odir}{file}',
-        self.teststr, 1, 0, 0,
-        self.c['aqua'], font8x8)
-        self.filecmp(file)
-
-
-    def test8x14x1upsidedownfontRGB(self):
-        file = "8x8x1upsidedownfont8bitRGB.bmp"
-        plotupsidedownstring2file(f'{self.odir}{file}',
-        self.teststr, 1, 0, 0,
-        self.c['aqua'], font8x8)
-        self.filecmp(file)
-
-
-    def test8x14x3fontRGB(self):
-        file = "8x14x3fontRGB.bmp"
-        plotstring2file(f'{self.odir}{file}',
-        self.teststr, 3, 0, 0,
-        self.c['green'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x14x3fontasdotsRGB(self):
-        file = "8x14x3fontasdotsRGB.bmp"
-        plotstringasdots2file(f'{self.odir}{file}',
-        self.teststr, 3, 0, 0,
-        self.c['green'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x14x3upsidedownfontasdotsRGB(self):
-        file = "8x14x3upsidedownfontasdotsRGB.bmp"
-        plotupsidedownstringasdots2file(f'{self.odir}{file}',
-        self.teststr, 3, 0, 0,
-        self.c['green'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x8x3font1bit(self):
-        file = "8x8x3font1bit.bmp"
-        plotstring2file(f'{self.odir}{file}',
-        self.teststr, 3, 0, 0,
-        1, font8x8, 0, 1)
-        self.filecmp(file)
-
-
-    def test8x14xfontRGBpxspace1(self):
-        file = "8x14x3fontRGBpixspace1.bmp"
-        plotstring2file(f'{self.odir}{file}',
-        self.teststr, 3, 1, 0,
-        self.c['darkolivegreen1'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x14x4fontRGBasdotspxspace1(self):
-        file = "8x14x4fontRGBasdotspixspace1.bmp"
-        plotstringasdots2file(f'{self.odir}{file}',
-        self.teststr, 4, 1, 0,
-        self.c['darkolivegreen1'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x8x3fontpxspace1(self):
-        file = "8x8x3fontRGBpxspace1.bmp"
-        plotstring2file(f'{self.odir}{file}',
-        self.teststr, 3, 1, 0,
-        self.c['aqua'], font8x8)
-        self.filecmp(file)
-
-
-    def test8x8x4fontpxspace1rainbow(self):
-        file = "8x8x4fontRGBpxspace1rainbow.bmp"
-        plotstring2file(f'{self.odir}{file}',
-        self.teststr, 4, 1, 0,
-        (self.c1['brightred'],
-         self.c1['brightorange'],
-         self.c1['brightyellow'],
-         self.c1['brightgreen'],
-         self.c1['cyan'],
-         self.c1['brightblue'],
-         self.c1['brightmagenta']),
-        font8x8)
-        self.filecmp(file)
-
-
-    def test8x8x4reversedfontpxspace1rainbow(self):
-        file = "8x8x4reversedfontRGBpxspace1rainbow.bmp"
-        plotreversedstring2file(f'{self.odir}{file}',
-        self.teststr, 4, 1, 0,
-        (self.c1['brightred'],
-         self.c1['brightorange'],
-         self.c1['brightyellow'],
-         self.c1['brightgreen'],
-         self.c1['cyan'],
-         self.c1['brightblue'],
-         self.c1['brightmagenta']),
-        font8x8)
-        self.filecmp(file)
-
-
-    def test8x8x2reversedfontrainbow(self):
-        file = "8x8x2reversedfontRGBrainbow.bmp"
-        plotreversedstring2file(f'{self.odir}{file}',
-        self.teststr, 2, 0, 0,
-        (self.c1['brightred'],
-         self.c1['brightorange'],
-         self.c1['brightyellow'],
-         self.c1['brightgreen'],
-         self.c1['cyan'],
-         self.c1['brightblue'],
-         self.c1['brightmagenta']),
-        font8x8)
-        self.filecmp(file)
-
-
-    def test8x8x4fontpxspace1asdotsrainbow(self):
-        file = "8x8x4fontRGBpxspace1asdotsrainbow.bmp"
-        plotstringasdots2file(f'{self.odir}{file}',
-        self.teststr, 4, 1, 0,
-        (self.c1['brightred'],
-         self.c1['brightorange'],
-         self.c1['brightyellow'],
-         self.c1['brightgreen'],
-         self.c1['cyan'],
-         self.c1['brightblue'],
-         self.c1['brightmagenta']),
-        font8x8)
-        self.filecmp(file)
-
-
-    def test8x14x4reversedfontRGBasdotspxspace1(self):
-        file = "8x14x4reversedfontRGBasdotspixspace1.bmp"
-        plotreversedstringasdots2file(f'{self.odir}{file}',
-        self.teststr, 4, 1, 0,
-        self.c['darkolivegreen1'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x14x2italicfontRGB(self):
-        file = "8x14x2italicfontRGB.bmp"
-        plotitalicstring2file(f'{self.odir}{file}',
-        self.teststr, 2, 0, 0,
-        self.c['darkolivegreen1'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x14x1italicfontRGB(self):
-        file = "8x14x1italicfontRGB.bmp"
-        plotitalicstring2file(f'{self.odir}{file}',
-        self.teststr, 1, 0, 0,
-        self.c['aqua'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x8x1reverseditalicfontRGB(self):
-        file = "8x8x1revereseditalicfontRGB.bmp"
-        plotreverseditalicstring2file(f'{self.odir}{file}',
-        self.teststr, 1, 0, 0,
-        self.c['yellow'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x14x4italicfontRGBpxspace1(self):
-        file = "8x14x4italicfontRGBpxspace1.bmp"
-        plotitalicstring2file(f'{self.odir}{file}',
-        self.teststr, 4, 1, 0,
-        self.c['darkolivegreen1'], font8x14)
-        self.filecmp(file)
-
-
-    def test8x14x4italicfontasdotsRGBpxspace1(self):
-        file = "8x14x4italicfontasdotRGBpxspace1.bmp"
-        plotitalicstringasdots2file(f'{self.odir}{file}',
-        self.teststr, 4, 1, 0,
-        self.c['darkolivegreen1'], font8x14)
-        self.filecmp(file)
+    def test0(self): self.dofontfunc(*self.testcases[0])
+    def test1(self): self.dofontfunc(*self.testcases[1])
+    def test2(self): self.dofontfunc(*self.testcases[2])
+    def test3(self): self.dofontfunc(*self.testcases[3])
+    def test4(self): self.dofontfunc(*self.testcases[4])
+    def test5(self): self.dofontfunc(*self.testcases[5])
+    def test6(self): self.dofontfunc(*self.testcases[6])
+    def test7(self): self.dofontfunc(*self.testcases[7])
+    def test8(self): self.dofontfunc(*self.testcases[8])
+    def test9(self): self.dofontfunc(*self.testcases[9])
+    def test10(self): self.dofontfunc(*self.testcases[10])
+    def test11(self): self.dofontfunc(*self.testcases[11])
+    def test12(self): self.dofontfunc(*self.testcases[12])
+    def test14(self): self.dofontfunc(*self.testcases[13])
 
 
 if __name__ == "__main__":
