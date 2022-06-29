@@ -3759,6 +3759,11 @@ def plotrotateditalic8bitpatternwithfn(
     """
     inc = scale - 1 - pixspace
     i = scale >> 1
+    h = len(bitpattern)
+    if scale > 1:
+        x += (i * h)
+    else:
+        x += (h >> 1)
     if type(color) == int:
         for bits in bitpattern:
             ox = x

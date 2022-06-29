@@ -157,7 +157,8 @@ JKLMNOPQRSTUVWXYZ"""
     def test10(self): self.dofontfunc(*self.testcases[10])
     def test11(self): self.dofontfunc(*self.testcases[11])
     def test12(self): self.dofontfunc(*self.testcases[12])
-    def test14(self): self.dofontfunc(*self.testcases[13])
+    def test12(self): self.dofontfunc(*self.testcases[13])
+    def test14(self): self.dofontfunc(*self.testcases[14])
 
 
 if __name__ == "__main__":
