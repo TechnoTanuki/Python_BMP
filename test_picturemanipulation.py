@@ -126,17 +126,21 @@ rootdir = path.dirname(__file__)
 class Test2filefunc(unittest.TestCase):
 
         testimgdir ='/assets/test_images/'
-        sdir = rootdir + testimgdir
-        odir = f'{rootdir}/test_output/'
-        ofile = f'{sdir}raccoon.bmp'
+        sourcedir = rootdir + testimgdir
+        outputdir = f'{rootdir}/test_output/'
+        ofile = f'{sourcedir}raccoon.bmp'
 
         cf = getRGBfactors()
         c = getcolorname2RGBdict()
         c1 = getX11colorname2RGBdict()
+        cred = c['red']
+        cyellow = c['yellow']
+        cfcyan = cf['cyan']
+        cfyellow = cf['yellow']
 
-
-        def _d(self, od: str, sd: str, fl: str) -> tuple:
-                return (od + fl, sd + fl)
+        def _filepaths(self, filename: str) -> list[str, str]:
+                return (f'{self.outputdir}{filename}',
+                        f'{self.sourcedir}{filename}')
 
 
         def filecmp(
@@ -152,10 +156,9 @@ class Test2filefunc(unittest.TestCase):
 
         def dotestfullimg(self,
                 filename: str, func: Callable):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir,filename)
-                func(self.ofile, newfile)
-                self.filecmp(reffile, newfile)
+                p = self._filepaths(filename)
+                func(self.ofile, p[0])
+                self.filecmp(*p)
 
 
         def dotestfullimgwithparam(
@@ -163,10 +166,9 @@ class Test2filefunc(unittest.TestCase):
                 filename: str,
                 func: Callable,
                 funcparam):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir,filename)
-                func(self.ofile, newfile, funcparam)
-                self.filecmp(reffile, newfile)
+                p = self._filepaths(filename)
+                func(self.ofile, p[0], funcparam)
+                self.filecmp(*p)
 
 
         def dotestrectregion(
@@ -175,10 +177,9 @@ class Test2filefunc(unittest.TestCase):
                 func: Callable,
                 x1: int, y1: int,
                 x2: int, y2: int):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir,filename)
-                func(self.ofile, newfile, x1, y1, x2, y2)
-                self.filecmp(reffile, newfile)
+                p = self._filepaths(filename)
+                func(self.ofile, p[0], x1, y1, x2, y2)
+                self.filecmp(*p)
 
 
         def dotestrectregionwithparam(
@@ -188,11 +189,10 @@ class Test2filefunc(unittest.TestCase):
                 x1: int, y1: int,
                 x2: int, y2: int,
                 funcparam):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir,filename)
-                func(self.ofile, newfile,
+                p = self._filepaths(filename)
+                func(self.ofile, p[0],
                         x1, y1, x2, y2, funcparam)
-                self.filecmp(reffile, newfile)
+                self.filecmp(*p)
 
 
         def dotestcircregion(
@@ -200,10 +200,9 @@ class Test2filefunc(unittest.TestCase):
                 filename: str,
                 func: Callable,
                 x: int, y:int, r:int):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir,filename)
-                func(self.ofile, newfile, x, y, r)
-                self.filecmp(reffile, newfile)
+                p = self._filepaths(filename)
+                func(self.ofile, p[0], x, y, r)
+                self.filecmp(*p)
 
 
         def dotestcircregionwithparam(
@@ -212,11 +211,10 @@ class Test2filefunc(unittest.TestCase):
                 func: Callable,
                 x: int, y: int, r: int,
                 funcparam):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir,filename)
-                func(self.ofile, newfile,
+                p = self._filepaths(filename)
+                func(self.ofile, p[0],
                      x, y, r, funcparam)
-                self.filecmp(reffile, newfile)
+                self.filecmp(*p)
 
 
         def testmirrortop2file(self):
@@ -430,7 +428,7 @@ class Test2filefunc(unittest.TestCase):
         def testcolorfilter2file(self):
                 self.dotestfullimgwithparam(
                         'raccoon-cyanfilter.bmp',
-                        colorfilter2file, self.cf['cyan'])
+                        colorfilter2file, self.cfcyan)
 
 
         def testadjustbrightness2file(self):
@@ -462,14 +460,14 @@ class Test2filefunc(unittest.TestCase):
                 self.dotestrectregionwithparam(
                         'raccoon-rectangle.bmp',
                         rectangle2file,
-                        250, 60, 860, 666, self.c['red'])
+                        250, 60, 860, 666, self.cred)
 
 
         def testcolorfilterinregion2file(self):
                 self.dotestrectregionwithparam(
                         'raccoon-cyanfilteregion.bmp',
                         colorfilterinregion2file,
-                        250, 60, 860, 666, self.cf['cyan'])
+                        250, 60, 860, 666, self.cfcyan)
 
 
         def testhorizontalbrightnessgradregion2file(self):
@@ -546,13 +544,13 @@ class Test2filefunc(unittest.TestCase):
                 self.dotestcircregionwithparam(
                         'raccoon-yellowcircregion.bmp',
                         colorfiltercircregion2file,
-                        500, 300, 300, self.cf['yellow'])
+                        500, 300, 300, self.cfyellow)
 
         def testcircle2file(self):
                 self.dotestcircregionwithparam(
                         'raccoon-thinredcircle.bmp',
                         circle2file,
-                        500, 300, 280, self.c['red'])
+                        500, 300, 280, self.cred)
 
         def testthresholdadjcircregion2file(self):
                 self.dotestcircregionwithparam(
@@ -618,21 +616,21 @@ class Test2filefunc(unittest.TestCase):
                 self.dotestcircregionwithparam(
                         'raccoon-sphere.bmp',
                         sphere2file,
-                        120, 170, 100, self.cf['cyan'])
+                        120, 170, 100, self.cfcyan)
 
 
         def testthickencirclearea2file(self):
                 self.dotestcircregionwithparam(
                         'raccoon-thickencirclearea.bmp',
                         thickencirclearea2file,
-                        500, 300, 280, self.cf['yellow'])
+                        500, 300, 280, self.cfyellow)
 
 
         def testfilledcircle2file(self):
                 self.dotestcircregionwithparam(
                         'raccoon-filledcircle.bmp',
                         filledcircle2file,
-                        120, 170, 100, self.c['yellow'])
+                        120, 170, 100, self.cyellow)
 
 
         def testmirrortopincircregion2file(self):
@@ -694,37 +692,31 @@ class Test2filefunc(unittest.TestCase):
         def testimgregionbyRGB2file(self):
                 colorstr = 'gray'
                 color = self.c1[colorstr]
-                (newfile, reffile) = \
-                        self._d(self.odir, self.sdir,
-                          f'tanuki-edgebycolor{colorstr}.bmp')
+                p = self._filepaths(f'tanuki-edgebycolor{colorstr}.bmp')
                 imgregionbyRGB2file(
-                        f'{self.sdir}tanuki.bmp',
-                        newfile,
+                        f'{self.sourcedir}tanuki.bmp',
+                        p[0],
                         1,
                         color,
                         int2RGB(color),
                         120, True)
-                self.filecmp(reffile,
-                             newfile)
+                self.filecmp(*p)
 
 
         def testreduce24bitimagebits(self):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir, 'earth-4bit.bmp')
+                p = self._filepaths('earth-4bit.bmp')
                 reduce24bitimagebits(
-                        f'{self.sdir}earth.bmp',
-                        newfile,
+                        f'{self.sourcedir}earth.bmp',
+                        p[0],
                         4, 24,
                         False)
-                self.filecmp(reffile,
-                             newfile)
+                self.filecmp(*p)
 
 
         def testautocropimg2file(self):
-                (newfile, reffile) = \
-                self._d(self.odir, self.sdir, 'flower-autocrop.bmp')
-                autocropimg2file(f'{self.sdir}flower.bmp', newfile, 64)
-                self.filecmp(reffile,newfile)
+                (newfile, reffile) = self._filepaths('flower-autocrop.bmp')
+                autocropimg2file(f'{self.sourcedir}flower.bmp', newfile, 64)
+                self.filecmp(reffile, newfile)
 
 
         def testbrightnessgradregion2file(self):
