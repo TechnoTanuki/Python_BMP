@@ -73,21 +73,21 @@ class TestFractal2filefunc(unittest.TestCase):
 
     def testsavemandelbrotfractal2file(self):
         file = "mandelbrot.bmp"
-        mandel(f'{self.odir}{file}', 300, 300,
+        mandel(f'{self.odir}{file}', 256, 256,
         self.d, self.c['deepskyblue'])
         self.filecmp(file)
 
 
     def testsavemultibrotfractal2file(self):
         file = "multibrot.bmp"
-        multibrot(f'{self.odir}{file}', 300, 300,
+        multibrot(f'{self.odir}{file}', 256, 256,
         5, self.d, self.c['cornflowerblue'])
         self.filecmp(file)
 
 
     def testsavejuliafractal2file(self):
         file = "julia.bmp"
-        julia(f'{self.odir}{file}', 300, 300,
+        julia(f'{self.odir}{file}', 256, 256,
         self.imag, # complex number
         self.d, self.c['darkslategray1'])
         self.filecmp(file)
@@ -95,7 +95,7 @@ class TestFractal2filefunc(unittest.TestCase):
 
     def testsavemultijuliafractal2file(self):
         file = "multijulia.bmp"
-        multijulia(f'{self.odir}{file}', 300, 300,
+        multijulia(f'{self.odir}{file}', 256, 256,
         self.imag, # complex nunber
         5, self.d, self.c['darkseagreen1'])
         self.filecmp(file)
@@ -103,21 +103,21 @@ class TestFractal2filefunc(unittest.TestCase):
 
     def testsavetricornfractal2file(self):
         file = "tricorn.bmp"
-        tricorn(f'{self.odir}{file}', 300, 300,
+        tricorn(f'{self.odir}{file}', 256, 256,
         self.d, self.c['springgreen'])
         self.filecmp(file)
 
 
     def testsavemulticornfractal2file(self):
         file = "multicorn.bmp"
-        multicorn(f'{self.odir}{file}', 300, 300,
+        multicorn(f'{self.odir}{file}', 256, 256,
         5, self.d, self.c['aquamarine'])
         self.filecmp(file)
 
 
     def testsavenewtonsfractal2file(self):
         file = "newtons.bmp"
-        newton(f'{self.odir}{file}', 300, 300,
+        newton(f'{self.odir}{file}', 256, 256,
         funcparamdict()[3], self.d,
         (self.c['red'], self.c['green'], self.c['blue']))
         self.filecmp(file)
