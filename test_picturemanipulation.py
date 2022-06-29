@@ -706,9 +706,9 @@ class Test2filefunc(unittest.TestCase):
 
         def testreduce24bitimagebits(self):
                 (newfile, reffile) = \
-                self._d(self.odir, self.sdir, 'raccoon-4bit.bmp')
+                self._d(self.odir, self.sdir, 'tanuki-4bit.bmp')
                 reduce24bitimagebits(
-                        self.ofile,
+                        f'{self.sdir}tanuki.bmp',
                         newfile,
                         4, 24,
                         False)
