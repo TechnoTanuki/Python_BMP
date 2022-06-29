@@ -5052,7 +5052,7 @@ def plotreverseditalicstring2file(file: str,
         spacebetweenchar,
         color, fontbuf,
         enumreverseletters,
-        plotitalic8bitpattern,
+        plotreverseditalic8bitpattern,
         backgroundcolor,
         bitdepth)
 
@@ -5212,7 +5212,7 @@ def plotreversedstring2file(file: str,
         spacebetweenchar,
         color, fontbuf,
         enumreverseletters,
-        plot8bitpattern,
+        plotrotated8bitpattern,
         backgroundcolor,
         bitdepth)
 
