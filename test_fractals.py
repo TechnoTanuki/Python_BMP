@@ -18,15 +18,6 @@ notice = """
 | code in current form or with any  |
 | modifications.                    |
 |-----------------------------------|
-|   Contact primary author          |
-|   if you plan to use this         |
-|   in a commercial product at      |
-|   joelalcarez1975@gmail.com       |
-|-----------------------------------|
-|   Educational or hobby use is     |
-|   highly encouraged...            |
-|   have fun coding !               |
-|-----------------------------------|
 |   This graphics library outputs   |
 |   to a bitmap file.               |
  -----------------------------------
