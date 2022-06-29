@@ -115,7 +115,8 @@ from Python_BMP.BITMAPlib import(
         upgradeto24bitimage2file,
         vertbrightnessgrad2circregion2file,
         verticalbrightnessgrad2file,
-        verticalbrightnessgradregion2file
+        verticalbrightnessgradregion2file,
+        getX11colorname2RGBdict
         )
 
 
@@ -131,6 +132,7 @@ class Test2filefunc(unittest.TestCase):
 
         cf = getRGBfactors()
         c = getcolorname2RGBdict()
+        c1 = getX11colorname2RGBdict()
 
 
         def _d(self, od: str, sd: str, fl: str) -> tuple:
@@ -690,15 +692,17 @@ class Test2filefunc(unittest.TestCase):
 
 
         def testimgregionbyRGB2file(self):
+                colorstr = 'gray'
+                color = self.c1[colorstr]
                 (newfile, reffile) = \
                         self._d(self.odir, self.sdir,
-                          'raccoon-edgebycolorbrown.bmp')
+                          f'tanuki-edgebycolor{colorstr}.bmp')
                 imgregionbyRGB2file(
-                        self.ofile,
+                        f'{self.sdir}tanuki.bmp',
                         newfile,
                         1,
-                        self.c['brown'],
-                        int2RGB(self.c['brown']),
+                        color,
+                        int2RGB(color),
                         120, True)
                 self.filecmp(reffile,
                              newfile)
