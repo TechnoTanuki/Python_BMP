@@ -56,96 +56,104 @@ rootdir = path.dirname(__file__)
 class TestFractal2filefunc(unittest.TestCase):
 
     testimgdir = '/assets/fractals/'
-    sdir = rootdir + testimgdir
-    odir = f'{rootdir}/test_output/'
+    sourcedir = rootdir + testimgdir
+    outputdir = f'{rootdir}/test_output/'
     c = getX11RGBfactors()
-    d = fractaldomainparamdict()['maxeqdim']
+    domain = fractaldomainparamdict()['maxeqdim']
     imag = -0.70176 - 0.3842j
 
 
-    def filecmp(self, file: str):
-        bmp1 = loadBMP(f'{self.odir}{file}')
-        bmp2 = loadBMP(f'{self.sdir}{file}')
-        self.assertIsNotNone(bmp1)
-        self.assertIsNotNone(bmp2)
-        self.assertEqual(bmp1, bmp2)
+    def _filepaths(self, filename: str) -> list[str, str]:
+            return (f'{self.outputdir}{filename}',
+                    f'{self.sourcedir}{filename}')
+
+
+    def filecmp(
+            self,
+            filename1: str,
+            filename2: str):
+            bmp1 = loadBMP(filename1)
+            bmp2 = loadBMP(filename2)
+            self.assertIsNotNone(bmp1)
+            self.assertIsNotNone(bmp2)
+            self.assertEqual(bmp1, bmp2)
 
 
     def testsavemandelbrotfractal2file(self):
-        file = "mandelbrot.bmp"
-        mandel(f'{self.odir}{file}', 256, 256,
-        self.d, self.c['deepskyblue'])
-        self.filecmp(file)
+        p = self._filepaths("mandelbrot.bmp")
+        mandel(p[0], 256, 256,
+        self.domain, self.c['deepskyblue'])
+        self.filecmp(*p)
 
 
     def testsavemultibrotfractal2file(self):
-        file = "multibrot.bmp"
-        multibrot(f'{self.odir}{file}', 256, 256,
-        5, self.d, self.c['cornflowerblue'])
-        self.filecmp(file)
+        p = self._filepaths("multibrot.bmp")
+        multibrot(p[0], 256, 256,
+        5, self.domain, self.c['cornflowerblue'])
+        self.filecmp(*p)
 
 
     def testsavejuliafractal2file(self):
-        file = "julia.bmp"
-        julia(f'{self.odir}{file}', 256, 256,
+        p = self._filepaths("julia.bmp")
+        julia(p[0], 256, 256,
         self.imag, # complex number
-        self.d, self.c['darkslategray1'])
-        self.filecmp(file)
+        self.domain, self.c['darkslategray1'])
+        self.filecmp(*p)
 
 
     def testsavemultijuliafractal2file(self):
-        file = "multijulia.bmp"
-        multijulia(f'{self.odir}{file}', 256, 256,
+        p = self._filepaths("multijulia.bmp")
+        multijulia(p[0], 256, 256,
         self.imag, # complex nunber
-        5, self.d, self.c['darkseagreen1'])
-        self.filecmp(file)
+        5, self.domain, self.c['darkseagreen1'])
+        self.filecmp(*p)
 
 
     def testsavetricornfractal2file(self):
-        file = "tricorn.bmp"
-        tricorn(f'{self.odir}{file}', 256, 256,
-        self.d, self.c['springgreen'])
-        self.filecmp(file)
+        p = self._filepaths("tricorn.bmp")
+        tricorn(p[0], 256, 256,
+        self.domain, self.c['springgreen'])
+        self.filecmp(*p)
 
 
     def testsavemulticornfractal2file(self):
-        file = "multicorn.bmp"
-        multicorn(f'{self.odir}{file}', 256, 256,
-        5, self.d, self.c['aquamarine'])
-        self.filecmp(file)
+        p = self._filepaths("multicorn.bmp")
+        multicorn(p[0], 256, 256,
+        5, self.domain, self.c['aquamarine'])
+        self.filecmp(*p)
 
 
     def testsavenewtonsfractal2file(self):
-        file = "newtons.bmp"
-        newton(f'{self.odir}{file}', 256, 256,
-        funcparamdict()[3], self.d,
+        p = self._filepaths("newtons.bmp")
+        newton(p[0], 256, 256,
+        funcparamdict()[3], self.domain,
         (self.c['red'], self.c['green'], self.c['blue']))
-        self.filecmp(file)
+        self.filecmp(*p)
 
 
     def testmonohilbert6thorder(self):
-        file = "hilbert6.bmp"
-        hilbert(f'{self.odir}{file}', 512, 512, 6)
-        self.filecmp(file)
+        p = self._filepaths("hilbert6.bmp")
+        hilbert(p[0], 512, 512, 6)
+        self.filecmp(*p)
 
 
     def test16colorhilber4thorder(self):
-        file = "hilbert4.bmp"
-        hilbert(f'{self.odir}{file}', 512, 512,
+        p = self._filepaths("hilbert4.bmp")
+        hilbert(p[0], 512, 512,
         4, 4, 15, 2, 5, 1)
-        self.filecmp(file)
+        self.filecmp(*p)
 
 
     def testkoch4thorder(self):
-        file = "koch4.bmp"
-        koch(f'{self.odir}{file}', 250, 4, 0, 4, 15, 2)
-        self.filecmp(file)
+        p = self._filepaths("koch4.bmp")
+        koch(p[0], 250, 4, 0, 4, 15, 2)
+        self.filecmp(*p)
 
 
     def testkoch3rdorderthick(self):
-        file = "koch3.bmp"
-        koch(f'{self.odir}{file}', 250, 3, 0, 4, 15, 2, 6)
-        self.filecmp(file)
+        p = self._filepaths("koch3.bmp")
+        koch(p[0], 250, 3, 0, 4, 15, 2, 6)
+        self.filecmp(*p)
 
 
 
