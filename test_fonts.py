@@ -18,15 +18,6 @@ notice = """
 | code in current form or with any  |
 | modifications.                    |
 |-----------------------------------|
-|   Contact primary author          |
-|   if you plan to use this         |
-|   in a commercial product at      |
-|   joelalcarez1975@gmail.com       |
-|-----------------------------------|
-|   Educational or hobby use is     |
-|   highly encouraged...            |
-|   have fun coding !               |
-|-----------------------------------|
 |   This graphics library outputs   |
 |   to a bitmap file.               |
  -----------------------------------
@@ -59,8 +50,8 @@ rootdir = path.dirname(__file__)
 class TestFontfilefunc(unittest.TestCase):
 
     testimgdir = '/assets/fonts/'
-    sdir = rootdir + testimgdir
-    odir = f'{rootdir}/test_output/'
+    sourcedir = rootdir + testimgdir
+    outputdir = f'{rootdir}/test_output/'
     c = getX11colorname2RGBdict()
     c1 = getcolorname2RGBdict()
     teststr = """abcdefghijklmnopqrs
@@ -69,12 +60,12 @@ tuvwxyz0123456789\'
 {}_*+-/=<>ABCDEFGHI
 JKLMNOPQRSTUVWXYZ"""
     rainbow = (c1['brightred'],
-              c1['brightorange'],
-              c1['brightyellow'],
-              c1['brightgreen'],
-              c1['cyan'],
-              c1['brightblue'],
-              c1['brightmagenta'])
+               c1['brightorange'],
+               c1['brightyellow'],
+               c1['brightgreen'],
+               c1['cyan'],
+               c1['brightblue'],
+               c1['brightmagenta'])
 
 
     def genname(self,
@@ -96,20 +87,25 @@ JKLMNOPQRSTUVWXYZ"""
               size: int,
           pixspace: int,
   spacebetweenchar: int,
-  backgroundcolor: int = 0,
-             bits: int = 24):
-        file = f'{self.genname(fn, font, color, size, pixspace, spacebetweenchar, backgroundcolor, bits)}.bmp'
-        fn(f'{self.odir}{file}', self.teststr, size, pixspace, spacebetweenchar,color, font, backgroundcolor, bits)
-        self.filecmp(file)
+   backgroundcolor: int = 0,
+              bits: int = 24):
+        p = self._filepaths(f'{self.genname(fn, font, color, size, pixspace, spacebetweenchar, backgroundcolor, bits)}.bmp')
+        fn(p[0], self.teststr, size, pixspace, spacebetweenchar,color, font, backgroundcolor, bits)
+        self.filecmp(*p)
 
 
-    def filecmp(self, file: str):
-        bmp1 = loadBMP(f'{self.odir}{file}')
-        bmp2 = loadBMP(f'{self.sdir}{file}')
-        self.assertIsNotNone(bmp1)
-        self.assertIsNotNone(bmp2)
-        self.assertEqual(bmp1, bmp2)
+    def _filepaths(self, filename: str) -> list[str, str]:
+            return (f'{self.outputdir}{filename}',
+                    f'{self.sourcedir}{filename}')
 
+
+    def filecmp(self, filename1: str,
+                      filename2: str):
+            bmp1 = loadBMP(filename1)
+            bmp2 = loadBMP(filename2)
+            self.assertIsNotNone(bmp1)
+            self.assertIsNotNone(bmp2)
+            self.assertEqual(bmp1, bmp2)
 
     testcases = (
     #0
