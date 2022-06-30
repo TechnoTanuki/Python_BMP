@@ -24,7 +24,7 @@ Close the MS Paint window to execute another script
 
 [![Fractals](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fractals.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fonts.py
+[![Text](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fonts/8x8x4px1cs024bitplotitalicstring2filebc0cmulti.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fonts.py)
 
 * Will generate images (one per function under test) then compare it with previously generated images generated with the function under test (this might take a while)
 
