@@ -26,7 +26,7 @@ def main():
         print(notice)
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = newBMP(3200,700,24) #load earth to memory
+        bmp = newBMP(3200, 700, 24) # new24 bit bmp
         c = getX11colorname2RGBdict() #friendly color names 2 rgb
         y = 2
         x = 2
