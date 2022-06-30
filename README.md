@@ -22,7 +22,8 @@ Close the MS Paint window to execute another script
 
 [![Picmanip](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-flipXYcircregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_picturemanipulation.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fractals.py
+[![Fractals](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fractals.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fonts.py
 
 * Will generate images (one per function under test) then compare it with previously generated images generated with the function under test (this might take a while)
