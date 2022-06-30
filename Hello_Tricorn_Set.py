@@ -16,8 +16,6 @@ from Python_BMP.BITMAPlib import(
         savetricornfractal2file as f,
         fractaldomainparamdict as par,
         getfuncmetastr as meta,
-        newBMP,
-        saveBMP
         )
 
 import subprocess as proc
@@ -33,8 +31,6 @@ def main():
         cf = getX11RGBfactors() #color info
         p = par() # common parameters
         file = f'hello{f.__name__}.bmp' # random file name
-        bmp = newBMP(600, 600, 24)
-        saveBMP(file, bmp)
         f(file, mx, my,
           p['maxeqdim'], # location
           cf['springgreen'])
