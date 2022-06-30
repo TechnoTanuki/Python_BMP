@@ -414,9 +414,9 @@ def listinBMPrecbnd(bmp: array,
         True if within bounds
         False if out of bounds
     """
-    for v in xylist:
+    for (x, y) in xylist:
         if isinBMPrectbnd(
-            bmp, v[0],v[1]) == False:
+            bmp, x, y) == False:
             break
     return True
 
@@ -1507,7 +1507,7 @@ def getxybit(bmp: array,
 
 
 def getRGBxybitvec(bmp: array,
-        v:list) -> list:
+        v: list) -> list:
     """Gets the RGB of a pixel at (x,y) in a BMP
 
     Args:
@@ -1603,8 +1603,8 @@ def plotvecxypoint(bmp: array,
         byref modified
         unsigned byte array
     """
-    v = roundvect(v)
-    plotxybit(bmp, v[0], v[1], c)
+    (x, y) = roundvect(v)
+    plotxybit(bmp, x, y, c)
 
 
 def plotRGBxybitvec(bmp: array,
@@ -2041,10 +2041,9 @@ def filledparallelogram(bmp: array,
     Returns:
         byref unsigned modified byte array
     """
-    for v in iterparallelogram(
+    for (u, v) in iterparallelogram(
                 p1, p2, p3):
-        linevec(bmp, v[0],
-                     v[1], color)
+        linevec(bmp, u, v, color)
 
 
 def drawvec(bmp: array,
@@ -3024,9 +3023,8 @@ def circlevec(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    v = roundvect(v)
-    circle(bmp, v[0], v[1],
-        r, color, isfilled)
+    (x, y) = roundvect(v)
+    circle(bmp, x, y, r, color, isfilled)
 
 
 def filledcircle(bmp: array,
@@ -6776,11 +6774,8 @@ def vertlinevert(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    for v in vlist:
-        vertline(bmp, v[0],
-                      v[1],
-                      v[1] + linelen + yadj,
-                      color)
+    for (x, y) in vlist:
+        vertline(bmp, x, y, y + linelen + yadj, color)
 
 
 def horilinevert(bmp: array,
@@ -6804,11 +6799,8 @@ def horilinevert(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    for v in vlist:
-        horiline(bmp, v[1],
-                      v[0],
-                      v[0] + linelen + xadj,
-                      color)
+    for (x, y) in vlist:
+        horiline(bmp, y, x, x + linelen + xadj, color)
 
 
 def XYaxis(bmp: array,
