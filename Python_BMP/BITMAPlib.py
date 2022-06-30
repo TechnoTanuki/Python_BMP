@@ -7307,7 +7307,6 @@ def iterimagecolor(bmp: array,
     """
     if waitmsg != '':
         print(waitmsg)
-    r = _xchrcnt(bmp)
     y = getmaxy(bmp) - 1
     offset = 0
     b = getBMPimgbytes(bmp)
