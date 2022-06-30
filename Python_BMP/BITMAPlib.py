@@ -1251,7 +1251,7 @@ def loadBMP(filename: str) -> array:
 
 def ensurePaintWrapperInPath():
     """
-	Ensure that the parent directory containing 
+	Ensure that the parent directory containing
     the 'mspaint' wrapper is in the
     PATH environment var.
     """
@@ -1790,20 +1790,17 @@ def horiline(bmp: array, y: int,
         byref modified unsigned byte array
     """
     bits = bmp[bmpcolorbits]
-    m = getmaxxy(bmp)
-    if isinrange(y, m[1], -1):
+    (mx, my) = getmaxxy(bmp)
+    if isinrange(y, my, -1):
         x1, x2 = swapif(x1, x2, x1 > x2)
         x1 = setmin(x1, 0)
-        x2 = setmax(x2, m[0] - 1)
+        x2 = setmax(x2, mx - 1)
         dx = x2 - x1 + 1
         s = _BMoffsethd(bmp, x1, y)
         if bits == 24:
             e = s + (dx * 3)
-            rgb=int2RGBlist(color)
-            bmp[s:e] = \
-                array('B', [rgb[2],
-                            rgb[1],
-                            rgb[0]] * dx)
+            (r, g, b)= int2RGBlist(color)
+            bmp[s: e] = array('B', [b, g, r] * dx)
         elif bits == 8:
             e = s + dx
             color &= 0xff
