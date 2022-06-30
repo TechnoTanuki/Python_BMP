@@ -379,7 +379,7 @@ def centercoord(bmp: array) -> tuple:
     Returns:
         tuple (x:int,y:int)
     """
-    return ((readint(bmpx, 4, bmp) -1) >> 1,
+    return ((readint(bmpx, 4, bmp) - 1) >> 1,
             (readint(bmpy, 4, bmp) - 1) >> 1)
 
 
