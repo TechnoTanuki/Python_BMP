@@ -172,11 +172,15 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![MirrorTop](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortop.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Top.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopRight.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
+[![MirrorTopLeft](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortopleft.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py)
+
+[![MirrorTopRight](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortopright.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopRight.py)
+
+[![MirrorBottom](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrorbottom.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py)
+
+[![MirrorBottomLeft](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrorbottomleft.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py)
+
+[![MirrorBottomRight](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrorbottomright.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py)
 
 **Fractals (the images are links to sample code)**
 
