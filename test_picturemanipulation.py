@@ -68,6 +68,7 @@ from Python_BMP.BITMAPlib import(
         horizontalbrightnessgradregion2file,
         imgregionbyRGB2file,
         int2RGB,
+        invertbits2file,
         invertbitsincircregion2file,
         invertregion2file,
         loadBMP,
@@ -287,6 +288,12 @@ class Test2filefunc(unittest.TestCase):
                 self.dotestfullimg(
                         'raccoon-fliphorizontal.bmp',
                         fliphorizontal2file)
+
+
+        def testinvertbits2file(self):
+                self.dotestfullimg(
+                        'raccoon-invertbits.bmp',
+                        invertbits2file)
 
 
         def testflipverticalregion2file(self):
