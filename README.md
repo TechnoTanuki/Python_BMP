@@ -18,9 +18,10 @@ Run Features_Speedtest.py
 * It should generate a bitmap and open MS Paint under windows to show output... 
 Close the MS Paint window to execute another script
 
-# Unit tests
+# Unit tests (images are links to test)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/test_picturemanipulation.py
+[![Picmanip](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-flipXYcircregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_picturemanipulation.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fractals.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fonts.py
 
