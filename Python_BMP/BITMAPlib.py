@@ -5028,7 +5028,7 @@ def plotverticalstring2file(file: str,
         color: int, fontbuf: list,
         backgroundcolor: int = 0,
         bitdepth: int = 24):
-    """Draws a string to a file
+    """Draws a vertical string to a file
 
     Args:
         file            : new file
@@ -5131,6 +5131,48 @@ def plotitalicstring2file(file: str,
         new bitmap file
     """
     plotstringfunc2file(
+        file, str2plot,
+        scale, pixspace,
+        spacebetweenchar,
+        color, fontbuf,
+        enumletters,
+        plotitalic8bitpattern,
+        backgroundcolor,
+        bitdepth)
+
+
+def plotverticalitalicstring2file(file: str,
+        str2plot: str,
+        scale: int, pixspace: int,
+        spacebetweenchar: int,
+        color: int, fontbuf: list,
+        backgroundcolor: int = 0,
+        bitdepth: int = 24):
+    """Draws a vertical italic string to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+
+    Returns:
+        new bitmap file
+    """
+    plotstringverticalwithfn2file(
         file, str2plot,
         scale, pixspace,
         spacebetweenchar,
