@@ -143,7 +143,7 @@ class TestFractal2filefunc(unittest.TestCase):
 
     def testkoch3rdorderthick(self):
         p = self._filepaths("koch3.bmp")
-        koch(p[0], 250, 3, 0, 4, 15, 2, 6)
+        koch(p[0], 123, 3, 0, 4, 15, 2, 3)
         self.filecmp(*p)
 
 
