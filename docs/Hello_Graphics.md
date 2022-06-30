@@ -168,9 +168,9 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Horizontal.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py
 
-**Mirror**
+**Mirror (the images are links to sample code)**
 
-[![MirrorTop](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortop.bmp)]([https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Top.py)
+[![MirrorTop](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortop.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Top.py)
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopRight.py
