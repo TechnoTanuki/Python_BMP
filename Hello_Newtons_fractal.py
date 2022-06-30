@@ -17,8 +17,6 @@ from Python_BMP.BITMAPlib import(
         funcparamdict,
         fractaldomainparamdict,
         getfuncmetastr as meta,
-        newBMP,
-        saveBMP
         )
 
 import subprocess as proc
@@ -33,8 +31,6 @@ def main():
         mx = my = 600 # square canvas
         cf = getX11RGBfactors() #color info
         file = f'hello{f.__name__}.bmp' # random file name
-        bmp = newBMP(600, 600, 24)
-        saveBMP(file, bmp)
         roots = f(file, mx, my,
           funcparamdict()[3],
           fractaldomainparamdict()['maxeqdim'],
