@@ -7023,14 +7023,14 @@ def iterimagedgevert(
     Yields:
         (x: int, y: int)
     """
-    m = getmaxxy(bmp)
-    for v in iterimageRGB(bmp,
+    (mx, my) = getmaxxy(bmp)
+    for (v0, v1) in iterimageRGB(bmp,
                 sysmsg['edgedetect'],
                 '*' , sysmsg['done']):
         for u in itergetneighbors(
-                    v[0], m[0], m[1], False):
+                    v0, mx, my, False):
             if distance(
-                    getRGBxybitvec(bmp, u), v[1]) > \
+                    getRGBxybitvec(bmp, u), v1) > \
                         similaritythreshold:
                 yield u
                 break
