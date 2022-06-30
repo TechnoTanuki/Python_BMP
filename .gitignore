@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 test_output/
+Hello*.bmp
 
