@@ -7168,7 +7168,7 @@ def convertbufto24bit(buf: array,
             s = b << 2
             retval += bgrpalbuf[s: s + 3]
         elif bits == 4:
-            s1, s2 = divmod(b,16)
+            s1, s2 = divmod(b, 16)
             s1 <<= 2
             s2 <<= 2
             retval += bgrpalbuf[s1: s1 + 3] + \
@@ -7233,7 +7233,6 @@ def iterimageRGB(bmp: array,
     """
     if waitmsg != '':
         print(waitmsg)
-    r = _xchrcnt(bmp)
     y = getmaxy(bmp) - 1
     offset = 0
     b = getBMPimgbytes(bmp)
