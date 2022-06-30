@@ -190,8 +190,12 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Multicorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multicorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py
+[![Newtons](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/newtons.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py)
+
+https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py
+https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
+https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
@@ -200,8 +204,8 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.3.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
+
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
 
