@@ -16,20 +16,25 @@ from Python_BMP.BITMAPlib import(
         savemultibrotfractal2file as f,
         fractaldomainparamdict,
         getfuncmetastr as meta,
+        newBMP,
+        saveBMP
         )
 
 import subprocess as proc
 from os import path
+import sys
 
 
 def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
-        rootdir = path.dirname(__file__) #get path of running script
+        rootdir = path.dirname(path.abspath(sys.argv[0])) #get path of running script
         mx = my = 600 # square canvas
         cf = getX11RGBfactors() #color info
         par = fractaldomainparamdict() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
+        bmp = newBMP(600, 600, 24)
+        saveBMP(file, bmp)
         f(file, mx, my,
           5, # power of z
           par['maxeqdim'], # location to plot
