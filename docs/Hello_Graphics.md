@@ -178,10 +178,12 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 **Fractals**
 
-![Mandelbrot]/assets/fractals/mandelbrot.bmp
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multibrot_Set.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py
+[![Mandelbrot](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/mandelbrot.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py)
+
+[![Multibrot](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multibrot.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multibrot_Set.py)
+
+[![Julia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/julia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py
