@@ -130,8 +130,8 @@ class TestFractal2filefunc(unittest.TestCase):
 
     def test16colorhilber4thorder(self):
         p = self._filepaths("hilbert4.bmp")
-        hilbert(p[0], 512, 512,
-        4, 4, 15, 2, 5, 1)
+        hilbert(p[0], 256, 256,
+        4, 4, 15, 2, 3, 1)
         self.filecmp(*p)
 
 
