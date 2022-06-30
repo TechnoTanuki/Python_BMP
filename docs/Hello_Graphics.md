@@ -176,7 +176,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
 
-**Fractals**
+**Fractals (the images are links to sample code)**
 
 [![Mandelbrot](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/mandelbrot.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py)
 
