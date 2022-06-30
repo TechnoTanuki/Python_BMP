@@ -1852,13 +1852,13 @@ def vertline(bmp: array, x: int,
             plotxybit(bmp, x, y, color)
     else:
         r = _xchrcnt(bmp)
-        m = getmaxxy(bmp)
+        (mx, my) = getmaxxy(bmp)
         c = _getBMoffhdfunc(bmp)
-        if isinrange(x, m[0], -1):
+        if isinrange(x, mx, -1):
             y1, y2 = \
                 swapif(y1, y2, y1 > y2)
-            y1 = setmin(y1,0)
-            y2 = setmax(y2,m[1]-1)
+            y1 = setmin(y1, 0)
+            y2 = setmax(y2, my - 1)
             dy = y2 - y1 + 1
             rgb = int2RGBlist(color)
             s = c(bmp, x, y2)
@@ -1900,7 +1900,7 @@ def fillbackgroundwithgrad(bmp: array,
     """
     filledgradrect(bmp, 0, 0,
         getmaxx(bmp) - 1,
-        getmaxy(bmp) -1,
+        getmaxy(bmp) - 1,
         lumrange, RGBfactors,
         direction)
 
@@ -1941,16 +1941,16 @@ def filledgradrect(bmp: array,
         sortrecpoints(x1, y1, x2, y2)
     dx = x2 - x1 + 1
     dy = y2 - y1 + 1
-    base, lrange = \
+    (br, bg, bb), (lr, lg, lb) = \
         RGBfactorstoBaseandRange(lumrange, RGBfactors)
     if direction == 0:
         xlim = x2 + 1
         for x in range(x1, xlim):
             f = x / dx
             c = RGB2int(
-                    round(setminmax(base[0] + lrange[0] * f, 0, 255)),
-                    round(setminmax(base[1] + lrange[1] * f, 0, 255)),
-                    round(setminmax(base[2] + lrange[2] * f, 0, 255))
+                    round(setminmax(br + lr * f, 0, 255)),
+                    round(setminmax(bg + lg * f, 0, 255)),
+                    round(setminmax(bb + lb * f, 0, 255))
                        )
             if bmp[bmpcolorbits] != 24:
                 c = matchRGBtopal(
@@ -1962,9 +1962,9 @@ def filledgradrect(bmp: array,
         for y in range(y1, ylim):
             f = y / dy
             c = RGB2int(
-                    round(setminmax(base[0] + lrange[0] * f, 0, 255)),
-                    round(setminmax(base[1] + lrange[1] * f, 0, 255)),
-                    round(setminmax(base[2] + lrange[2] * f, 0, 255))
+                    round(setminmax(br + lr * f, 0, 255)),
+                    round(setminmax(bg + lg * f, 0, 255)),
+                    round(setminmax(bb + lb * f, 0, 255))
                        )
             if bmp[bmpcolorbits] != 24:
                 c = matchRGBtopal(
