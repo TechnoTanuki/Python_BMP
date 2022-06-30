@@ -188,7 +188,8 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Tricorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/tricorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py
+[!Multicorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multicorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
