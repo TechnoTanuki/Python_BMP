@@ -39,7 +39,7 @@ Installation:
 """
 from subprocess import CalledProcessError, check_output
 from pathlib import Path
-from sys import argv, exit, platform, stderr
+from sys import argv, exit, modules, platform, stderr
 from urllib.parse import ParseResult, urlunparse
 
 # The path tp the file we want to open
@@ -64,6 +64,15 @@ def determine_file(*argv) -> Path:
         return f
     print(f"No file specified and no {glob} " f"found in {Path.cwd()!s}", file=stderr)
     exit(1)
+
+def is_in_pytest():
+    return any(
+        k in modules for k in (
+            "doctest",
+            "py.test",
+            "unittest",
+        )
+    )
 
 
 file: Path = determine_file(argv)
@@ -111,69 +120,78 @@ else:
             if any(file.parts[1 : 1 + len(sl)] == sl for sl in sd_prefixes)
             else file
         )
-        file.chmod(0o777)
-        url: str = urlunparse(
-            ParseResult(
-                scheme="file",
-                netloc="",
-                path=file.as_posix(),
-                params="",
-                query="",
-                fragment="",
+        if not file.exists():
+            print(
+                "File does not exist: "
+                f"{str(file)!r} "
+                f"from {str(Path.cwd())!r}",
+                file=stderr
             )
-        )
-        print(
-            check_output(
-                [
-                    "am",
-                    "broadcast",
-                    "--user",
-                    "0",
-                    "-a",
-                    "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
-                    "-c",
-                    "android.intent.category.DEFAULT",
-                    "-t",
-                    "image/*",
-                    "--grant-read-uri-permission",
-                    "--grant-write-uri-permission",
-                    "--grant-persistable-uri-permission",
-                    "--grant-prefix-uri-permission",
-                    "-d",
-                    url,
-                ]
+        if not is_in_pytest():
+            file.chmod(0o777)
+            url: str = urlunparse(
+                ParseResult(
+                    scheme="file",
+                    netloc="",
+                    path=file.as_posix(),
+                    params="",
+                    query="",
+                    fragment="",
+                )
             )
-        )
-        print(
-            check_output(
-                [
-                    "am",
-                    "start",
-                    "--user",
-                    "0",
-                    "-a",
-                    "android.intent.action.VIEW",
-                    "-c",
-                    "android.intent.category.DEFAULT",
-                    "-t",
-                    "image/*",
-                    "--grant-read-uri-permission",
-                    "--grant-write-uri-permission",
-                    "--grant-persistable-uri-permission",
-                    "--grant-prefix-uri-permission",
-                    "-d",
-                    url,
-                ]
+            print(
+                check_output(
+                    [
+                        "am",
+                        "broadcast",
+                        "--user",
+                        "0",
+                        "-a",
+                        "android.intent.action.MEDIA_SCANNER_SCAN_FILE",
+                        "-c",
+                        "android.intent.category.DEFAULT",
+                        "-t",
+                        "image/*",
+                        "--grant-read-uri-permission",
+                        "--grant-write-uri-permission",
+                        "--grant-persistable-uri-permission",
+                        "--grant-prefix-uri-permission",
+                        "-d",
+                        url,
+                    ]
+                )
             )
-        )
+            print(
+                check_output(
+                    [
+                        "am",
+                        "start",
+                        "--user",
+                        "0",
+                        "-a",
+                        "android.intent.action.VIEW",
+                        "-c",
+                        "android.intent.category.DEFAULT",
+                        "-t",
+                        "image/*",
+                        "--grant-read-uri-permission",
+                        "--grant-write-uri-permission",
+                        "--grant-persistable-uri-permission",
+                        "--grant-prefix-uri-permission",
+                        "-d",
+                        url,
+                    ]
+                )
+            )
     else:
         # Linux, Mac
-        print(
-            check_output(
-                [
-                    "open" if platform == "darwin" else "xdg-open",
-                    file.absolute().as_posix(),
-                ],
-                shell=False,
+        if not is_in_pytest():
+            print(
+                check_output(
+                    [
+                        "open" if platform == "darwin" else "xdg-open",
+                        file.absolute().as_posix(),
+                    ],
+                    shell=False,
+                )
             )
-        )
