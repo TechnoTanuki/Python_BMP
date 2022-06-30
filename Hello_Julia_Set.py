@@ -16,8 +16,6 @@ from Python_BMP.BITMAPlib import(
         savejuliafractal2file as f,
         fractaldomainparamdict,
         getfuncmetastr as meta,
-        newBMP,
-        saveBMP
         )
 
 import subprocess as proc
@@ -33,8 +31,6 @@ def main():
         cf = getX11RGBfactors() #color info
         juliapar = fractaldomainparamdict() # common parameters
         file = f'hello{f.__name__}.bmp' # random file name
-        bmp = newBMP(600, 600, 24)
-        saveBMP(file, bmp)
         f(file, # path to new file
         mx, my, # size of file
         -0.70176 - 0.3842j, # complex number
