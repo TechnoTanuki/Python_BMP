@@ -39,6 +39,7 @@ from Python_BMP.BITMAPlib import(
         plotreverseditalicstring2file,
         plotverticalitalicstring2file,
         plotverticalstring2file,
+        plotverticalstringasdots2file,
         getX11colorname2RGBdict,
         getcolorname2RGBdict,
         font8x8,
@@ -153,8 +154,9 @@ JKLMNOPQRSTUVWXYZ"""
     #17
     (plotverticalitalicstring2file, font8x14, orange, 1, 0, 0),
     #18
-    (plotverticalitalicstring2file, font8x8, yellow, 3, 1, 0)
-
+    (plotverticalitalicstring2file, font8x8, yellow, 3, 1, 0),
+    #19
+    (plotverticalstringasdots2file, font8x14, orange, 4, 1, 0)
 
     )
 
@@ -177,7 +179,7 @@ JKLMNOPQRSTUVWXYZ"""
     def test16(self): self.dofontfunc(*self.testcases[16])
     def test17(self): self.dofontfunc(*self.testcases[17])
     def test18(self): self.dofontfunc(*self.testcases[18])
-
+    def test19(self): self.dofontfunc(*self.testcases[19])
 
 if __name__ == "__main__":
     print(notice)
