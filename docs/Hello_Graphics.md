@@ -163,7 +163,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Smaller_by_n.py
 
-**Flip/Rotate**
+**Flip/Rotate (the images are links to sample code)**
 
 [![FlipVertical](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-flipvertical.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py)
 
