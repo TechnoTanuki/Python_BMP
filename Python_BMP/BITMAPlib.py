@@ -29,8 +29,12 @@
  -----------------------------------
 """
 
+from . import shims
 from array import array
 from math import(sin, cos, radians, pi)
+from os import environ
+from os.path import pathsep
+from pathlib import Path
 from random import random
 from typing import Callable
 from numbers import Number
@@ -1245,6 +1249,21 @@ def loadBMP(filename: str) -> array:
     return a
 
 
+def ensurePaintWrapperInPath():
+    """
+	Ensure that the parent directory containing 
+    the 'mspaint' wrapper is in the
+    PATH environment var.
+    """
+    # Directory containing `mspaint`
+    d: Path = Path(__file__).parent.parent
+    d_abs = str(d.absolute())
+    entries = environ.get("PATH", "").split(pathsep)
+    if d_abs not in entries:
+        entries.insert(0, d_abs)
+        environ["PATH"] = pathsep.join(entries)
+
+
 def saveBMP(filename: str, bmp: array):
     """Saves bitmap to file
 
@@ -1257,6 +1276,7 @@ def saveBMP(filename: str, bmp: array):
     Returns:
         A Bitmap File
     """
+    ensurePaintWrapperInPath()
     with open(filename, 'wb') as f:
         f.write(bmp)
         f.close()
