@@ -15,8 +15,6 @@ notice = """
 from Python_BMP.BITMAPlib import(
         savehilbertcurve2file as f,
         getfuncmetastr as meta,
-        newBMP,
-        saveBMP
         )
 
 import subprocess as proc
@@ -30,8 +28,6 @@ def main():
         rootdir = path.dirname(path.abspath(sys.argv[0])) # get path of this script
         mx = my = 512 # bitmap size
         file = f'Hello{f.__name__}.bmp' # file name
-        bmp = newBMP(600, 600, 24)
-        saveBMP(file, bmp)
         f(file, mx, my, 6)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
