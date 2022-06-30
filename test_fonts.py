@@ -108,41 +108,47 @@ JKLMNOPQRSTUVWXYZ"""
             self.assertIsNotNone(bmp2)
             self.assertEqual(bmp1, bmp2)
 
+    aqua = c['aqua']
+    darkolive = c['darkolivegreen1']
+    orange = c['orange']
+    green =  c['green']
+    yellow = c['yellow']
+
     testcases = (
     #0
-    (plotstring2file, font8x8, c['aqua'], 1, 0, 0),
+    (plotstring2file, font8x8, aqua, 1, 0, 0),
     #1
     (plotstring2file, font8x8, 1, 3, 0, 0, 0, 1),
     #2
-    (plotstring2file, font8x8, c['aqua'], 3, 1, 0),
+    (plotstring2file, font8x8, aqua, 3, 1, 0),
     #3
-    (plotstring2file, font8x14, c['darkolivegreen1'], 1, 0, 0),
+    (plotstring2file, font8x14, darkolive, 1, 0, 0),
     #4
-    (plotstring2file, font8x14, c['green'], 3, 0, 0),
+    (plotstring2file, font8x14, green, 3, 0, 0),
     #5
-    (plotstring2file, font8x14, c['darkolivegreen1'], 3, 1, 0),
+    (plotstring2file, font8x14, darkolive, 3, 1, 0),
     #6
     (plotitalicstring2file, font8x8, rainbow, 4, 1, 0),
     #7
-    (plotreversedstring2file, font8x8, c['aqua'], 1, 0, 0),
+    (plotreversedstring2file, font8x8, aqua, 1, 0, 0),
     #8
-    (plotupsidedownstring2file, font8x8, c['aqua'], 1, 0, 0),
+    (plotupsidedownstring2file, font8x8, aqua, 1, 0, 0),
     #9
     (plotstringasdots2file, font8x8, rainbow, 4, 1, 0),
     #10
-    (plotstringasdots2file, font8x14, c['darkolivegreen1'], 4, 1, 0),
+    (plotstringasdots2file, font8x14, darkolive, 4, 1, 0),
     #11
-    (plotreversedstringasdots2file, font8x14,  c['darkolivegreen1'], 4, 1, 0),
+    (plotreversedstringasdots2file, font8x14, darkolive, 4, 1, 0),
     #12
-    (plotupsidedownstringasdots2file, font8x14, c['green'], 3, 0, 0),
+    (plotupsidedownstringasdots2file, font8x14, green, 3, 0, 0),
     #13
-    (plotitalicstringasdots2file, font8x14, c['darkolivegreen1'], 4, 1, 0),
+    (plotitalicstringasdots2file, font8x14, darkolive, 4, 1, 0),
     #14
-    (plotreverseditalicstring2file, font8x14, c['yellow'], 1, 0, 0),
+    (plotreverseditalicstring2file, font8x14, yellow, 1, 0, 0),
     #15
-    (plotverticalstring2file, font8x8, c['orange'], 1, 0, 0),
+    (plotverticalstring2file, font8x8, orange, 1, 0, 0),
     #16
-    (plotverticalstring2file, font8x8, c['orange'], 3, 1, 0)
+    (plotverticalstring2file, font8x8, orange, 3, 1, 0)
     )
 
     def test0(self): self.dofontfunc(*self.testcases[0])
