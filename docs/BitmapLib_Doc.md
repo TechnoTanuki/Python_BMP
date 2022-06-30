@@ -1014,6 +1014,21 @@ def computerotvec(degrot: float) -> list[float, float]:
         [float, float] rotation vector
 
 
+### [`computetextrowandcolcnt`](#computetextrowandcolcnt)
+
+```py
+def computetextrowandcolcnt(text: str) -> list[int, int]:
+```
+
+Returns row and col counts of a multiline text
+
+    Args:
+        single of multiline text (string)
+    
+    Returns:
+        [row: int, col: int]
+
+
 ### [`conevertandsurface`](#conevertandsurface)
 
 ```py

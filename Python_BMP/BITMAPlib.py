@@ -259,6 +259,7 @@ from .charts import(
     )
 
 from .textgraphics import(
+    computetextrowandcolcnt,
     plotbitsastext,
     plot8bitpatternastext
     )
@@ -4830,13 +4831,9 @@ def plotstringfunc2file(file: str,
     h = fontbuf[0]
     ystep = h * scale + \
                 spacebetweenchar
-    l = str2plot.replace('\t', '    ')
-    l = l.split('\n') \
-        if str2plot.find('\n') > -1 \
-        else [l]
-    mx = len(max(l, key = len)) * \
-              xstep + scale
-    my = (scale * (h + 1)) * len(l)
+    (row, col) = computetextrowandcolcnt(str2plot)
+    mx = row * xstep + scale
+    my = col * (scale * (h + 1))
     if fontrenderfunc.__name__.find("italic") > 0:
         if scale > 1:
             mx += (h * (scale >> 1))
@@ -4917,12 +4914,9 @@ def plotstringverticalwithfn2file(
                 spacebetweenchar
     ystep = h * scale + \
                 spacebetweenchar
-    l = str2plot.replace('\t', '    ')
-    l = l.split('\n') \
-        if str2plot.find('\n') > -1 \
-        else [l]
-    mx = len(l) * xstep + scale
-    my = (scale * (h + 1)) * len(max(l, key = len))
+    (row, col) = computetextrowandcolcnt(str2plot)
+    mx = col * xstep + scale
+    my = row * (scale * (h + 1))
     if fontrenderfunc.__name__.find("italic") > 0:
         if scale > 1:
             mx += (h * (scale >> 1))

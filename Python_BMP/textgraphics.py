@@ -14,6 +14,22 @@
 """
 
 
+def computetextrowandcolcnt(text: str) -> list[int, int]:
+    """Returns row and col counts of a multiline text
+
+    Args:
+        single of multiline text (string)
+
+    Returns:
+        [row: int, col: int]
+    """
+    l = text.replace('\t', '    ')
+    l = l.split('\n') \
+        if text.find('\n') > -1 \
+        else [l]
+    return [len(max(l, key = len)), len(l)]
+
+
 def plotbitsastext(bits: int):
     """Outputs the bits of byte to
         console
