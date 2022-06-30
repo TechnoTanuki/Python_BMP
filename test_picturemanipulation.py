@@ -53,6 +53,7 @@ from Python_BMP.BITMAPlib import(
         filledcircle2file,
         fliphoricircregion2file,
         fliphorizontal2file,
+        flipvertical2file,
         fliphorizontalregion2file,
         flipvertcircregion2file,
         flipverticalregion2file,
@@ -288,6 +289,12 @@ class Test2filefunc(unittest.TestCase):
                 self.dotestfullimg(
                         'raccoon-fliphorizontal.bmp',
                         fliphorizontal2file)
+
+
+        def testflipvertical2file(self):
+                self.dotestfullimg(
+                        'raccoon-flipvertical.bmp',
+                        flipvertical2file)
 
 
         def testinvertbits2file(self):
