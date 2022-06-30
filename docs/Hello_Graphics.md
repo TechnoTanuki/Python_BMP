@@ -194,7 +194,8 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Koch](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/koch3.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py)
 
-https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
+[![Hilbert](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert6.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py)
+
 https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
