@@ -1,3 +1,5 @@
+[![AppID](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/Hello_GithubID.png)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py)
+
 # Hello Graphics
 Check samples with Hello_something.py for sample code on how to do stuff
 * The code did a functional approach (no classes) ... dont add classes or I might refactor lmao
@@ -47,9 +49,6 @@ If there is demand for it I could in theory write a book based on this project l
 * Gerald L. Bradley, Karl J. Smith. Multivariable Calculus (1999). 2nd Edition, Prentice Hall
 
 # Fully commented sample code list below
-
-**Github Social Media Image**
-https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 **Hello World Meme**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
