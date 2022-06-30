@@ -184,7 +184,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Julia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/julia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py)
 
-[![Multijulia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp))](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py)
+[![Multijulia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py)
 
 [![Tricorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/tricorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py)
 
