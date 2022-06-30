@@ -33,8 +33,6 @@ def main():
         cf = getX11RGBfactors() #color info
         par = d() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
-        bmp = newBMP(600, 600, 24)
-        saveBMP(file, bmp)
         f(file, mx, my, # file and bitmap size
           -0.70176 - 0.3842j, # complex nunber
           5, # power of z
