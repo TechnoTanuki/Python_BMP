@@ -176,7 +176,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py
 
-**Fractals**
+**Fractals (the images are links to sample code)**
 
 [![Mandelbrot](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/mandelbrot.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py)
 
@@ -184,11 +184,20 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Julia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/julia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py
+[![Multijulia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp))](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py)
+
+[![Tricorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/tricorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py)
+
+[![Multicorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multicorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py)
+
+[![Newtons](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/newtons.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py)
+
+[![Koch](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/koch3.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py)
+
+https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
+https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.py
@@ -196,11 +205,11 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.3.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
+
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py
+
 
 **Parametric Curve Equations**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
