@@ -196,9 +196,8 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Hilbert](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert6.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py)
 
-https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
+[![Hilbert](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.py
@@ -206,11 +205,9 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.3.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
-
-
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
-
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
 
 **Parametric Curve Equations**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
