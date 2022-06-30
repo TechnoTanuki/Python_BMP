@@ -9483,6 +9483,37 @@ Draws a vertical italic string to a file
         new bitmap file
 
 
+### [`plotverticalitalicstringasdots2file`](#plotverticalitalicstringasdots2file)
+
+```py
+def plotverticalitalicstringasdots2file(file: str, str2plot: str, scale: int, pixspace: int, spacebetweenchar: int, color: int, fontbuf: list, backgroundcolor: int = 0, bitdepth: int = 24):
+```
+
+Draws a vertical italic string as Dots to a file
+
+    Args:
+        file            : new file
+                          draw the string
+        str2plot        : string to draw
+        scale           : control how big
+                          the font is
+        pixspace        : space between
+                          each bit
+        spacebetweenchar: space between
+                          the characters
+        color           : color of the font
+        fontbuf         : the font
+                          (see fonts.py)
+        backgroundcolor : optional background color
+                          (default = 0)
+        bitdepth        : optional bitdepth
+                          of bitmap default = 24
+                          (1, 4, 8, 24) bits
+    
+    Returns:
+        new bitmap file
+
+
 ### [`plotverticalstring2file`](#plotverticalstring2file)
 
 ```py
