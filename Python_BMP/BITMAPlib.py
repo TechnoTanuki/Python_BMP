@@ -4832,8 +4832,9 @@ def plotstringfunc2file(file: str,
     ystep = h * scale + \
                 spacebetweenchar
     (row, col) = computetextrowandcolcnt(str2plot)
-    mx = row * xstep + scale
-    my = col * (scale * (h + 1))
+    pad = (scale << 1)
+    mx = row * xstep + pad
+    my = col * ystep + pad
     if fontrenderfunc.__name__.find("italic") > 0:
         if scale > 1:
             mx += (h * (scale >> 1))
