@@ -124,7 +124,7 @@ class TestFractal2filefunc(unittest.TestCase):
 
     def testmonohilbert6thorder(self):
         p = self._filepaths("hilbert6.bmp")
-        hilbert(p[0], 512, 512, 6)
+        hilbert(p[0], 256, 256, 6)
         self.filecmp(*p)
 
 
