@@ -7255,7 +7255,7 @@ def iterimageRGB(bmp: array,
     while offset < maxoffset:
         if bits == 1:
             c = b[offset]
-            for bit in range(7, - 1, -1):
+            for bit in range(7, -1, -1):
                 if x < mx:
                     yield ((x, y), p[(c & 1 << bit) >> bit])
                 x += 1
