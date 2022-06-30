@@ -4911,13 +4911,10 @@ def plotstringverticalwithfn2file(
                 spacebetweenchar
     x = y = scale
     oy = y
-    xstep = (scale << 3) + \
-                spacebetweenchar
-    ystep = h * scale + \
-                spacebetweenchar
     (row, col) = computetextrowandcolcnt(str2plot)
-    mx = col * xstep + scale
-    my = row * (scale * (h + 1))
+    pad = scale << 1
+    mx = col * xstep + pad
+    my = row * ystep + pad
     if fontrenderfunc.__name__.find("italic") > 0:
         if scale > 1:
             mx += (h * (scale >> 1))
