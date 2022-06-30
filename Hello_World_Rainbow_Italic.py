@@ -17,18 +17,23 @@ from Python_BMP.BITMAPlib import(
         getcolorname2RGBdict,
         font8x8,
         getfuncmetastr as meta,
+        newBMP,
+        saveBMP
         )
 
 import subprocess as proc
 from os import path
+import sys
 
 
 def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
-        rootdir = path.dirname(__file__) # get path of this script
+        rootdir = path.dirname(path.abspath(sys.argv[0])) # get path of this script
         c = getcolorname2RGBdict()
         file = f'HelloWorldRainbow{f.__name__}.bmp' #file name
+        bmp = newBMP(600, 600, 24)
+        saveBMP(file, bmp)
         f(file, 'Hello World!!', # random text
            7, # uint font size multiplier
            1, # uint space between pixels
