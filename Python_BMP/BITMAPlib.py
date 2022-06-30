@@ -3479,35 +3479,32 @@ def ellipse(bmp: array,
         filledellipse(
             bmp, x, y, b, a, color)
     else:
-        m = getmaxxy(bmp)
+        (mx, my) = getmaxxy(bmp)
         bits = bmp[bmpcolorbits]
         c = _getBMoffhdfunc(bmp)
         dobndcheck = not entireellipseisinboundary(
-                            x, y, -1, m[0],
-                                  -1, m[1], b, a)
+                            x, y, -1, mx,
+                                  -1, my, b, a)
         if bits == 24:
-            color=int2BGRarr(color)
-            for p in iterellipse(x, y, b, a):
+            color = int2BGRarr(color)
+            for (px, py) in iterellipse(x, y, b, a):
                 if dobndcheck:
-                    (px, py) = p
                     if isinBMPrectbnd(bmp, px, py):
                         s = c(bmp, px, py)
                         bmp[s: s + 3] = color
                 else:
-                    s = c(bmp, p[0], p[1])
+                    s = c(bmp, px, py)
                     bmp[s:s + 3] = color
         elif bits == 8:
-            for p in iterellipse(x, y, b, a):
+            for (px, py) in iterellipse(x, y, b, a):
                 if dobndcheck:
-                    (px, py) = p
-                    if isinBMPrectbnd(bmp,px,py):
+                    if isinBMPrectbnd(bmp, px, py):
                         bmp[c(bmp, px, py)] = color
                 else:
-                    bmp[c(bmp, p[0], p[1])] = color
+                    bmp[c(bmp, px, py)] = color
         else:
-            for p in iterellipse(x, y, b, a):
-                plotxybit(bmp, p[0],
-                        p[1], color)
+            for (px, py) in iterellipse(x, y, b, a):
+                plotxybit(bmp, px, py, color)
 
 
 def gradellipse(bmp: array,
@@ -3534,7 +3531,7 @@ def gradellipse(bmp: array,
     r = max(a, b)
     a -= r
     b -= r
-    for i in range(r,0,-1):
+    for i in range(r, 0, -1):
         c = colormix(
                 int(lum1 + (lumrang * i / r)),
                 RGBfactors)
