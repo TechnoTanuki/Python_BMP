@@ -184,7 +184,7 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Julia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/julia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py)
 
-[![Multijulia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp))](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py)
+[![Multijulia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py)
 
 [![Tricorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/tricorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py)
 
@@ -194,9 +194,9 @@ https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py
 
 [![Koch](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/koch3.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py)
 
-[![Hilbert](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert6.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py)
+[![Hilbert6](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert6.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py)
 
-[![Hilbert](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py)
+[![Hilbert4](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py)
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
