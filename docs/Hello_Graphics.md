@@ -214,13 +214,15 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Newtons](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/newtons.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py)
 
+[![Newtons4](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/newtons4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py)
+
 [![Koch](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/koch3.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py)
 
 [![Hilbert6](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert6.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py)
 
 [![Hilbert4](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.3.py
