@@ -52,7 +52,7 @@ class TestFractal2filefunc(unittest.TestCase):
     c = getX11RGBfactors()
     domain = fractaldomainparamdict()['maxeqdim']
     imag = -0.70176 - 0.3842j
-
+    fdict = funcparamdict()
 
     def _filepaths(self, filename: str) -> list[str, str]:
             return (f'{self.outputdir}{filename}',
@@ -117,8 +117,21 @@ class TestFractal2filefunc(unittest.TestCase):
     def testsavenewtonsfractal2file(self):
         p = self._filepaths("newtons.bmp")
         newton(p[0], 256, 256,
-        funcparamdict()[3], self.domain,
-        (self.c['red'], self.c['green'], self.c['blue']))
+        self.fdict[3], self.domain,
+        (self.c['red'],
+         self.c['green'],
+         self.c['blue']))
+        self.filecmp(*p)
+
+
+    def testsavenewtonsfractal4_2file(self):
+        p = self._filepaths("newtons4.bmp")
+        newton(p[0], 256, 256,
+        self.fdict[4], self.domain,
+        (self.c['red'],
+         self.c['yellow'],
+         self.c['green'],
+         self.c['blue']))
         self.filecmp(*p)
 
 
