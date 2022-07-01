@@ -165,7 +165,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![VerticalBrightnessGradient](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-verticalbrightnessgrad.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py
+[![TVScanline](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-eraseeverynthhoriline.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Mono_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
