@@ -61,6 +61,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_sideway.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_vertical.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
 
 **Named colors**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
@@ -90,10 +91,6 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledRectangle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Mono_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py
 
 **Regular Polygons**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Regular_Polygon.py
@@ -142,16 +139,6 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron_Outline.py
 
-**Image and Color Processing**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py
 
 **Downscale or Upscale Color Encoding in Bits**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_8bitBMP_Downscale.py
@@ -161,6 +148,21 @@ If there is demand for it I could in theory write a book based on this project l
 **Resize**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Smaller_by_n.py
+
+**Image and Color Processing**
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BrightnessAdj.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Mono_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py
+
 
 **Flip/Rotate (the images are links to sample code)**
 
