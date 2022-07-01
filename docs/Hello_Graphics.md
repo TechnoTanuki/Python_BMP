@@ -172,7 +172,8 @@ If there is demand for it I could in theory write a book based on this project l
 [![RectColorFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-cyanfilteregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py)
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py
+
+[![RectGammaAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-gammaadjtoregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py)
 
 
 **Flip/Rotate (the images are links to sample code)**
