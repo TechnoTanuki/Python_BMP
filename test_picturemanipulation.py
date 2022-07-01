@@ -723,6 +723,14 @@ class Test2filefunc(unittest.TestCase):
                 self.filecmp(*p)
 
 
+        def testupgradeto24bitimage(self):
+                p = self._filepaths('earth-4bit-to-24bit.bmp')
+                upgradeto24bitimage2file(
+                        f'{self.sourcedir}earth-4bit.bmp',
+                        p[0])
+                self.filecmp(*p)
+
+
         def testautocropimg2file(self):
                 p = self._filepaths('flower-autocrop.bmp')
                 autocropimg2file(f'{self.sourcedir}flower.bmp',
