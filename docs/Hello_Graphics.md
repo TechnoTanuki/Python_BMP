@@ -61,6 +61,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_sideway.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_vertical.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
 
 **Named colors**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
@@ -90,10 +91,6 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledRectangle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Mono_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py
 
 **Regular Polygons**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Regular_Polygon.py
@@ -142,16 +139,6 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron_Outline.py
 
-**Image and Color Processing**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py
 
 **Downscale or Upscale Color Encoding in Bits**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_8bitBMP_Downscale.py
@@ -161,6 +148,33 @@ If there is demand for it I could in theory write a book based on this project l
 **Resize**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Smaller_by_n.py
+
+**Image and Color Processing (the images are links to sample code)**
+
+[![Invertbits](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-invertbits.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py)
+
+[![Monofilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-monochrome.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py)
+
+[![Colorfilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-cyanfilter.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py)
+
+[![BrightAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-adjustbrightness.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BrightnessAdj.py)
+
+[![GammaAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-gammaadj.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py)
+
+[![Outline](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-outline.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py)
+
+[![VerticalBrightnessGradient](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-verticalbrightnessgrad.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py)
+
+[![TVScanline](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-eraseeverynthhoriline.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py)
+
+[![RectMonoFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-monofilterinregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Mono_Filter.py)
+
+[![RectColorFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-cyanfilteregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py)
+
+[![RectBrightnessAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-adjustbrightnessinregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py)
+
+[![RectGammaAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-gammaadjtoregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py)
+
 
 **Flip/Rotate (the images are links to sample code)**
 
