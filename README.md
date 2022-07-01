@@ -1,3 +1,5 @@
+[![AppID](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/Hello_GithubID.png)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py)
+
 # Python_BMP
 A pure Python 2D/3D graphics library that outputs to windows bitmap format
 * Developed and tested using Python 3.7.3 and 3.10.4
@@ -16,11 +18,13 @@ Run Features_Speedtest.py
 * It should generate a bitmap and open MS Paint under windows to show output... 
 Close the MS Paint window to execute another script
 
-# Unit tests
+# Unit tests (images are links to test)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/test_picturemanipulation.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fractals.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fonts.py
+[![Picmanip](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-flipXYcircregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_picturemanipulation.py)
+
+[![Fractals](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fractals.py)
+
+[![Text](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fonts/8x8x4px1cs024bitplotitalicstring2filebc0cmulti.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fonts.py)
 
 * Will generate images (one per function under test) then compare it with previously generated images generated with the function under test (this might take a while)
 
