@@ -149,7 +149,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Smaller_by_n.py
 
-**Image and Color Processing**
+**Image and Color Processing (the images are links to sample code)**
 
 [![Invertbits](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-invertbits.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py)
 
