@@ -150,7 +150,10 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Smaller_by_n.py
 
 **Image and Color Processing**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py
+
+[![Invertbits](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-invertbits.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py)
+
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BrightnessAdj.py
