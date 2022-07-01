@@ -153,8 +153,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Invertbits](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-invertbits.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py)
 
+[![Mono](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-monochrome.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BrightnessAdj.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py
