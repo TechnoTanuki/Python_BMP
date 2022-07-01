@@ -169,7 +169,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![RectMonoFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-monofilterinregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Mono_Filter.py)
 
-[![RectColorFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-cyanfilteregion.bmp)[(https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py)
+[![RectColorFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-cyanfilteregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py)
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py
