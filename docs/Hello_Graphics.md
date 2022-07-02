@@ -136,37 +136,38 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_1bitBMP_Downscale.py
 
 **Resize**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Larger_by_n.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Resize_Smaller_by_n.py
+* ![Resize Larger](../Hello_Resize_Larger_by_n.py)
+* ![Resize Smaller](../Hello_Resize_Smaller_by_n.py)
 
 **Image and Color Processing (the images are links to sample code)**
 
-[![Invertbits](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-invertbits.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Invert_Colors.py)
+[![Invertbits](../assets/test_images/raccoon-invertbits.bmp)](../Hello_Invert_Colors.py)
 
-[![Monofilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-monochrome.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Monochrome.py)
+[![Monofilter](../assets/test_images/raccoon-monochrome.bmp)](../Hello_Monochrome.py)
 
-[![Colorfilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-cyanfilter.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Color_Filter.py)
+[![Colorfilter](../assets/test_images/raccoon-cyanfilter.bmp)](../Hello_Color_Filter.py)
 
-[![BrightAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-adjustbrightness.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BrightnessAdj.py)
+[![BrightAdj](../assets/test_images/raccoon-adjustbrightness.bmp)](../Hello_BrightnessAdj.py)
 
-[![GammaAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-gammaadj.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GammaAdj.py)
+[![GammaAdj](../assets/test_images/raccoon-gammaadj.bmp)](../Hello_GammaAdj.py)
 
-[![Outline](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-outline.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Outline.py)
+[![Outline](../assets/test_images/raccoon-outline.bmp)](../Hello_Outline.py)
 
-[![VerticalBrightnessGradient](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-verticalbrightnessgrad.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vertical_Brightness_Gradient.py)
+[![VerticalBrightnessGradient](../assets/test_images/raccoon-verticalbrightnessgrad.bmp)](../Hello_Vertical_Brightness_Gradient.py)
 
-[![TVScanline](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-eraseeverynthhoriline.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_TV_Scanlines.py)
+[![TVScanline](../assets/test_images/raccoon-eraseeverynthhoriline.bmp)](../Hello_TV_Scanlines.py)
 
-[![RectMonoFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-monofilterinregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Mono_Filter.py)
+[![RectMonoFilter](../test_images/raccoon-monofilterinregion.bmp)](../Hello_Rectangular_Mono_Filter.py)
 
-[![RectColorFilter](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-cyanfilteregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_Color_Filter.py)
+[![RectColorFilter](../assets/test_images/raccoon-cyanfilteregion.bmp)](../Hello_Rectangular_Color_Filter.py)
 
-[![RectBrightnessAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-adjustbrightnessinregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_BrightnessAdj.py)
+[![RectBrightnessAdj](../assets/test_images/raccoon-adjustbrightnessinregion.bmp)](../Hello_Rectangular_BrightnessAdj.py)
 
-[![RectGammaAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-gammaadjtoregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py)
+[![RectGammaAdj](../assets/test_images/raccoon-gammaadjtoregion.bmp)](../Hello_Rectangular_GammaAdj.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
+[!Pixel Blur](../assets/test_images/raccoon-pixelizenx.bmp)](../Hello_Pixellate_the_Earth.py)
+
+* ![Circular Color Filter](../Hello_Circular_Color_Filter.py)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
