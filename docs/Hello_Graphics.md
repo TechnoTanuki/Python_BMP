@@ -174,8 +174,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Pixel Blur Circular Region](../assets/test_images/raccoon-pixelizenxncircregion.bmp)](../Hello_Circular_Pixellate.py)
 
-(../Hello_Circular_Region_BrightnessAdj.py)
-(../Hello_Circular_Region_GammaAdj.py)
+[![Circular Region Brightness Adj](../assets/test_images/raccoon-brightnessadjcircregion.bmp)](../Hello_Circular_Region_BrightnessAdj.py)
+
+[![Circular Region Gamma Adj]()](../Hello_Circular_Region_GammaAdj.py)
 
 
 **Flip/Rotate (the images are links to sample code)**
