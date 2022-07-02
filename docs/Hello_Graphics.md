@@ -4,12 +4,11 @@
 Check samples with Hello_something.py for sample code on how to do stuff
 * The code did a functional approach (no classes) ... dont add classes or I might refactor lmao
 
-## API Documentation Generator (run this to update Public and Internal API)
-* ![Hello_Markdown_Doc.py](../Hello_Markdown_Doc.py)
+## ![API Documentation Generator](../Hello_Markdown_Doc.py)
 
 ## ![Public API](BitmapLib_Doc.md)
 
-## [Internal API](BitmapLibInternals_Doc.md)
+## ![Internal API](BitmapLibInternals_Doc.md)
 
 # References
 
