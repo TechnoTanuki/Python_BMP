@@ -169,14 +169,13 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Circular Color Filter](../assets/test_images/raccoon-yellowcircregion.bmp)](../Hello_Circular_Color_Filter.py)
 
-
 [![Circular Mono Filter](../assets/test_images/raccoon-monochromecircregion.bmp)](../Hello_Circular_Mono_Filter.py)
 
 [![Pixel Blur Circular Region](../assets/test_images/raccoon-pixelizenxncircregion.bmp)](../Hello_Circular_Pixellate.py)
 
 [![Circular Region Brightness Adj](../assets/test_images/raccoon-brightnessadjcircregion.bmp)](../Hello_Circular_Region_BrightnessAdj.py)
 
-[![Circular Region Gamma Adj]()](../Hello_Circular_Region_GammaAdj.py)
+[![Circular Region Gamma Adj](../assets/test_images/raccoon-gammacorrectcircregion.bmp)](../Hello_Circular_Region_GammaAdj.py)
 
 
 **Flip/Rotate (the images are links to sample code)**
