@@ -167,7 +167,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Pixel Blur](../assets/test_images/raccoon-pixelizenx.bmp)](../Hello_Pixellate_the_Earth.py)
 
-* ![Circular Color Filter](../Hello_Circular_Color_Filter.py)
+[![Circular Color Filter](../assets/test_images/raccoon-yellowcircregion.bmp)](../Hello_Circular_Color_Filter.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
@@ -176,49 +177,49 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Flip/Rotate (the images are links to sample code)**
 
-[![FlipVertical](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-flipvertical.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Vertical.py)
+[![FlipVertical](../assets/test_images/raccoon-flipvertical.bmp)](../Hello_Flip_Vertical.py)
 
-[![FlipHorizontal](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-fliphorizontal.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flip_Horizontal.py)
+[![FlipHorizontal](../assets/test_images/raccoon-fliphorizontal.bmp)](../Hello_Flip_Horizontal.py)
 
-[![FlipHorizontal](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-flipXY.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FlipXY.py)
+[![FlipHorizontal](../assets/test_images/raccoon-flipXY.bmp)](../Hello_FlipXY.py)
 
 **Mirror (the images are links to sample code)**
 
-[![MirrorTop](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortop.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Top.py)
+[![MirrorTop](../assets/test_images/raccoon-mirrortop.bmp)](../Hello_Mirror_Top.py)
 
-[![MirrorTopLeft](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortopleft.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopLeft.py)
+[![MirrorTopLeft](../assets/test_images/raccoon-mirrortopleft.bmp)](../Hello_Mirror_TopLeft.py)
 
-[![MirrorTopRight](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrortopright.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_TopRight.py)
+[![MirrorTopRight](../assets/test_images/raccoon-mirrortopright.bmp)](../Hello_Mirror_TopRight.py)
 
-[![MirrorBottom](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrorbottom.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_Bottom.py)
+[![MirrorBottom](../assets/test_images/raccoon-mirrorbottom.bmp)](../Hello_Mirror_Bottom.py)
 
-[![MirrorBottomLeft](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrorbottomleft.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomLeft.py)
+[![MirrorBottomLeft](../assets/test_images/raccoon-mirrorbottomleft.bmp)](../Hello_Mirror_BottomLeft.py)
 
-[![MirrorBottomRight](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-mirrorbottomright.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mirror_BottomRight.py)
+[![MirrorBottomRight](../assets/test_images/raccoon-mirrorbottomright.bmp)](../Hello_Mirror_BottomRight.py)
 
 **Fractals (the images are links to sample code)**
 
-[![Mandelbrot](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/mandelbrot.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Mandelbrot_Set.py)
+[![Mandelbrot](../assets/fractals/mandelbrot.bmp)](../Hello_Mandelbrot_Set.py)
 
-[![Multibrot](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multibrot.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multibrot_Set.py)
+[![Multibrot](../assets/fractals/multibrot.bmp)](../Hello_Multibrot_Set.py)
 
-[![Julia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/julia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Julia_Set.py)
+[![Julia](../assets/fractals/julia.bmp)](../Hello_Julia_Set.py)
 
-[![Multijulia](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multijulia_Set.py)
+[![Multijulia](../assets/fractals/multijulia.bmp)](../Hello_Multijulia_Set.py)
 
-[![Tricorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/tricorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tricorn_Set.py)
+[![Tricorn](../assets/fractals/tricorn.bmp)](../Hello_Tricorn_Set.py)
 
-[![Multicorn](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multicorn.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Multicorn_Set.py)
+[![Multicorn](../assets/fractals/multicorn.bmp)](../Hello_Multicorn_Set.py)
 
-[![Newtons](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/newtons.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal.py)
+[![Newtons](../assets/fractals/newtons.bmp)](../Hello_Newtons_fractal.py)
 
-[![Newtons4](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/newtons4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.py)
+[![Newtons4](../assets/fractals/newtons4.bmp)](../Hello_Newtons_fractal4.py)
 
-[![Koch](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/koch3.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochSnowflake.py)
+[![Koch](../assets/fractals/koch3.bmp)](../Hello_KochSnowflake.py)
 
-[![Hilbert6](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert6.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HilbertCurve.py)
+[![Hilbert6](../assets/fractals/hilbert6.bmp)](../Hello_HilbertCurve.py)
 
-[![Hilbert4](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py)
+[![Hilbert4](../assets/fractals/hilbert4.bmp)](../Hello_ThickHilbertCurve.py)
 
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4_1.py
