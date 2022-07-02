@@ -165,7 +165,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![RectGammaAdj](../assets/test_images/raccoon-gammaadjtoregion.bmp)](../Hello_Rectangular_GammaAdj.py)
 
-[!Pixel Blur](../assets/test_images/raccoon-pixelizenx.bmp)](../Hello_Pixellate_the_Earth.py)
+[![Pixel Blur](../assets/test_images/raccoon-pixelizenx.bmp)](../Hello_Pixellate_the_Earth.py)
 
 * ![Circular Color Filter](../Hello_Circular_Color_Filter.py)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
