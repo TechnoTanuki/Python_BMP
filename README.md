@@ -10,13 +10,11 @@ A pure Python 2D/3D graphics library that outputs to windows bitmap format
 Run Hello_somestring_here.py
 
 This will show minimum code to accomplish certain tasks
-* Hello_Darkness.py (my old friend) is minimum template 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Darkness.py
+* ![Hello_Darkness.py](/Hello_Darkness.py) (my old friend) is a minimum template 
 
-Run Features_Speedtest.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Features_Speedtest.py
+Run ![Features_Speedtest.py](/Features_Speedtest.py)
 * It should generate a bitmap and open MS Paint under windows to show output... 
-Close the MS Paint window to execute another script
+* Close the MS Paint window to execute another script
 
 # Unit tests (images are links to test)
 
