@@ -23,14 +23,14 @@ Check samples with Hello_something.py for sample code on how to do stuff
 * https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
 * https://en.wikipedia.org/wiki/B-spline
 * https://en.wikipedia.org/wiki/B%C3%A9zier_curve
-* see: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/primitives2D.py
-* fonts ground up: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/fonts.py
+* see: ![2D Graphics Primitives](../Python_BMP/primitives2D.py)
+* ![BitFonts ground up](../Python_BMP/fonts.py)
 
 **3D entities to onscreen 2D:** https://www.evl.uic.edu/luc/488/slides/class7.pdf
-* predefined 3D entities: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/solids3D.py 
+* ![predefined 3D entities](../Python_BMP/solids3D.py)
 
 **Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
-* mini math lib: https://github.com/TechnoTanuki/Python_BMP/blob/main/Python_BMP/mathlib.py
+* ![mini math lib](../Python_BMP/mathlib.py)
 * parametric curves https://mathworld.wolfram.com/topics/Curves.html
 * moar curves https://mathcurve.com
 
@@ -47,18 +47,16 @@ If there is demand for it I could in theory write a book based on this project l
 
 # Fully commented sample code list below
 
-**Hello World Meme**
+**Text and Fonts**
 * ![Hello_Earth.py](../Hello_Earth.py)
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Vertical_text.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_reversed.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_sideway.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_World_Dots_vertical.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
+* ![Reverse text](../Hello_Earth_Reverse_text.py)
+* ![Sideways text](../Hello_Earth_Sideways_text.py)
+* ![Upsidedown text](../Hello_Earth_Upsidedown_text.py)
+* ![Vertical text](../Hello_Earth_Vertical_text.py)
+* ![Dot Font](../Hello_World_Dots.py)
+* ![Dot_Font Reversed](../Hello_World_Dots_reversed.py)
+* ![Dot Fot Sideways](../Hello_World_Dots_sideway.py)
+* ![Dot Font Vertical](../Hello_World_Dots_vertical.py)
 
 **Named colors**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
@@ -172,6 +170,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![RectGammaAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-gammaadjtoregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py)
 
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
 
 **Flip/Rotate (the images are links to sample code)**
 
