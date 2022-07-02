@@ -7,11 +7,9 @@ Check samples with Hello_something.py for sample code on how to do stuff
 ## API Documentation Generator (run this to update Public and Internal API)
 * ![Hello_Markdown_Doc.py](../Hello_Markdown_Doc.py)
 
-## Public API
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLib_Doc.md
+## ![Public API](BitmapLib_Doc.md)
 
-## Internal API
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLibInternals_Doc.md
+## [Internal API](BitmapLibInternals_Doc.md)
 
 # References
 
@@ -51,7 +49,7 @@ If there is demand for it I could in theory write a book based on this project l
 # Fully commented sample code list below
 
 **Hello World Meme**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth.py
+* ![Hello_Earth.py](../Hello_Earth.py)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Reverse_text.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Sideways_text.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Earth_Upsidedown_text.py
