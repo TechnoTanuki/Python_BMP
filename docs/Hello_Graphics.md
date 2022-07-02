@@ -97,11 +97,6 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
 
 **Ellipse**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
@@ -171,6 +166,12 @@ If there is demand for it I could in theory write a book based on this project l
 [![RectGammaAdj](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-gammaadjtoregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangular_GammaAdj.py)
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Pixellate_the_Earth.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Color_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Mono_Filter.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
+
 
 **Flip/Rotate (the images are links to sample code)**
 
