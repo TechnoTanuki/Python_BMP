@@ -18,11 +18,11 @@ Run ![Features_Speedtest.py](/Features_Speedtest.py)
 
 # Unit tests (images are links to test)
 
-[![Picmanip](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/test_images/raccoon-flipXYcircregion.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_picturemanipulation.py)
+[![Picmanip](/assets/test_images/raccoon-flipXYcircregion.bmp)](/test_picturemanipulation.py)
 
-[![Fractals](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/multijulia.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fractals.py)
+[![Fractals](/assets/fractals/multijulia.bmp)](/test_fractals.py)
 
-[![Text](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fonts/8x8x4px1cs024bitplotitalicstring2filebc0cmulti.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/test_fonts.py)
+[![Text](/assets/fonts/8x8x4px1cs024bitplotitalicstring2filebc0cmulti.bmp)](/test_fonts.py)
 
 * Will generate images (one per function under test) then compare it with previously generated images generated with the function under test (this might take a while)
 
