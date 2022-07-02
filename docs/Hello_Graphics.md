@@ -223,11 +223,11 @@ If there is demand for it I could in theory write a book based on this project l
 [![Hilbert4](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/fractals/hilbert4.bmp)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickHilbertCurve.py)
 
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4.1.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4_1.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.3.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5_3.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.3.py
+* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6_3.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
