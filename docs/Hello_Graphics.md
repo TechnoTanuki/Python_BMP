@@ -172,9 +172,10 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Circular Mono Filter](../assets/test_images/raccoon-monochromecircregion.bmp)](../Hello_Circular_Mono_Filter.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Pixellate.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_BrightnessAdj.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Region_GammaAdj.py
+[![Pixel Blur Circular Region](../assets/test_images/raccoon-pixelizenxncircregion.bmp)](../Hello_Circular_Pixellate.py)
+
+(../Hello_Circular_Region_BrightnessAdj.py)
+(../Hello_Circular_Region_GammaAdj.py)
 
 
 **Flip/Rotate (the images are links to sample code)**
