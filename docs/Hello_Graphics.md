@@ -1,4 +1,4 @@
-[![AppID](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/Hello_GithubID.png)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py)
+[![AppID](../assets/Hello_GithubID.png)](../Hello_APP_Github_ID.py)
 
 # Hello Graphics
 Check samples with Hello_something.py for sample code on how to do stuff
