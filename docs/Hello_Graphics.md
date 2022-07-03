@@ -111,18 +111,18 @@ If there is demand for it I could in theory write a book based on this project l
 ![Thick Gradient Circle](../Hello_Thick_Gradient_Circle.py)
 
 **Ellipse**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledEllipse.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Elliptical_Gradient.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Ellipse_Rotated.py
+* ![Ellipse](../Hello_Ellipse.py)
+* ![Filled Ellipse](../Hello_FilledEllipse.py)
+* ![Ellipical Gardient](../Hello_Elliptical_Gradient.py)
+* ![Thick Rotated Gradient Ellipse](../Hello_Thick_Gradient_Ellipse_Rotated.py)
 
 **Curves and Spirals**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_BezierCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Bspline.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_InvoluteofaCircle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CornuSpiral.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Exponential_Spiral_Gradient.py
+* ![Bezier Curve](../Hello_BezierCurve.py)
+* ![Bspline](../Hello_Bspline.py)
+* ![Involute of a Circle](../Hello_InvoluteofaCircle.py)
+* ![Cornu Spiral](../Hello_CornuSpiral.py)
+* ![Square Spiral](../Hello_SquareSpiral.py)
+* ![Thick Expponential Gradient Spiral](../Hello_Thick_Exponential_Spiral_Gradient.py)
 
 **3D and 3D shading effects (Images are links to sample code)**
 
@@ -132,24 +132,23 @@ If there is demand for it I could in theory write a book based on this project l
 
 * ![3D](../Hello_3D.py)
 * ![Surface Plot](../Hello_3D_surfaceplot.py)
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Orb.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_DiscoBall.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Coin.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cone.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Tetrahedron.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cube.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Octahedron.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Decahedron.py
-
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron_Outline.py
+* ![Orb](../Hello_Orb.py)
+* ![Benzene](../Hello_Benzene.py)
+* ![Globe](../Hello_Globe.py)
+* ![Discoball](../Hello_DiscoBall.py)
+* ![Coin](../Hello_Coin.py)
+* ![Cone](../Hello_Cone.py)
+* ![Tetrahedron](../Hello_Tetrahedron.py)
+* ![Cube](../Hello_Cube.py)
+* ![Octahedron](../Hello_Octahedron.py)
+* ![Decahedron](../Hello_Decahedron.py)
+* ![Icosahedron Outline](../Hello_Icosahedron_Outline.py)
 
 
 **Downscale or Upscale Color Encoding in Bits**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_8bitBMP_Downscale.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_4bitBMP_Downscale.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_1bitBMP_Downscale.py
+* ![24 bits to 8 bits](../Hello_8bitBMP_Downscale.py)
+* ![24 bits to 4 bits](../Hello_4bitBMP_Downscale.py)
+* ![24 bits to 1 bit](../Hello_1bitBMP_Downscale.py)
 
 **Resize**
 * ![Resize Larger](../Hello_Resize_Larger_by_n.py)
@@ -198,7 +197,6 @@ If there is demand for it I could in theory write a book based on this project l
 ![Save Selection](../Hello_Save_Selection.py)
 
 ![Copy_Paste](../Hello_Copy_Paste_Earth.py)
-
 
 
 
