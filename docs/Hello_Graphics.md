@@ -87,10 +87,11 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
-**Rectangle**
+**Rectangle (images are links to sample code)**
 [![Rectangle](..assets/test_images/raccoon-rectangle.bmp)](../Hello_Rectangle.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledRectangle.py
+[![FilledRectangle](../Hello_FilledRectangle.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
 
 **Regular Polygons**
@@ -98,11 +99,15 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Regular_Polygon.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Gradient_Thick_Regular_Polygon.py
 
-**Circle** 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
+**Circle (images are links to sample code** 
+
+![Circle](../Hello_Circles.py)
+
+[![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
+
+[![Thick Circle](../Hello_Thick_Circle.py)
+
+[![Thick Gradient Circle](../Hello_Thick_Gradient_Circle.py)
 
 **Ellipse**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
