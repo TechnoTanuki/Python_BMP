@@ -1550,6 +1550,19 @@ an ellipse with origin set at (x, y)
         [[x: int, y: int], ...]
 
 
+### [`ensurePaintWrapperInPath`](#ensurePaintWrapperInPath)
+
+```py
+def ensurePaintWrapperInPath():
+```
+
+    Ensure that the parent directory containing
+the 'mspaint' wrapper is in the
+PATH environment var.
+
+    
+
+
 ### [`entirecircleinboundary`](#entirecircleinboundary)
 
 ```py
@@ -2140,6 +2153,27 @@ Creates a filled parallelogram defined by 3 points
     
     Returns:
         byref unsigned modified byte array
+
+
+### [`filledrect2file`](#filledrect2file)
+
+```py
+def filledrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, color: int):
+```
+
+Draws a Filled Rectangle
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular region
+        color          : color of rectangle
+    
+    Returns:
+        new bitmap file
 
 
 ### [`filledrect`](#filledrect)

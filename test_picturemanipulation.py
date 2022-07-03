@@ -51,6 +51,7 @@ from Python_BMP.BITMAPlib import(
         eraseeverynthhorilineinccircregion2file,
         eraseeverynthhorilineinregion2file,
         filledcircle2file,
+        filledrect2file,
         fliphoricircregion2file,
         fliphorizontal2file,
         flipvertical2file,
@@ -475,6 +476,13 @@ class Test2filefunc(unittest.TestCase):
                         'raccoon-rectangle.bmp',
                         rectangle2file,
                         250, 60, 860, 666, self.cred)
+
+
+        def testfilledrect2file(self):
+                self.dotestrectregionwithparam(
+                        'raccoon-filledrectangle.bmp',
+                        filledrect2file,
+                        250, 60, 860, 666, self.cyellow)
 
 
         def testcolorfilterinregion2file(self):

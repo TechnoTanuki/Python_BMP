@@ -11883,6 +11883,33 @@ def rectangle2file(
 
 
 @functimer
+def filledrect2file(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        color: int):
+    """Draws a Filled Rectangle
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular region
+        color          : color of rectangle
+
+    Returns:
+        new bitmap file
+    """
+    _usebyreffnwithpar2regnsv(
+        ExistingBMPfile, NewBMPfile,
+        x1, y1, x2, y2, filledrect,
+        color)
+
+
+@functimer
 def fern2file(ExistingBMPfile: str,
         NewBMPfile: str,
         x1: int, y1: int,
