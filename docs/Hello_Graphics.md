@@ -89,16 +89,16 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Rectangle (images are links to sample code)**
 
-[![Rectangle](..assets/test_images/raccoon-rectangle.bmp)](../Hello_Rectangle.py)
+[![Rectangle](../assets/test_images/raccoon-rectangle.bmp)](../Hello_Rectangle.py)
 
-[![Filled Rectangle](..assets/test_images/raccoon-filledrectangle.bmp)](../Hello_FilledRectangle.py)
+[![Filled Rectangle](../assets/test_images/raccoon-filledrectangle.bmp)](../Hello_FilledRectangle.py)
 
 [![Filled Gradient Rectangle](../Hello_FilledGradRect.py)
 
 **Regular Polygons**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Regular_Polygon.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Regular_Polygon.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Gradient_Thick_Regular_Polygon.py
+![Regular Polygon](../Hello_Regular_Polygon.py)
+![Thick Regular Polygon](../Hello_Thick_Regular_Polygon.py)
+![Gradient Thick Regular Polygon](../Hello_Gradient_Thick_Regular_Polygon.py)
 
 **Circle (images are links to sample code** 
 
@@ -193,11 +193,13 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Circular Region Gamma Adj](../assets/test_images/raccoon-gammacorrectcircregion.bmp)](../Hello_Circular_Region_GammaAdj.py)
 
+![Crop](../assets/test_images/raccoon-cropregion.bmp)](../Hello_Crop_Earth.py)
+
 ![Save Selection](../Hello_Save_Selection.py)
 
 ![Copy_Paste](../Hello_Copy_Paste_Earth.py)
 
-![Crop](../Hello_Crop_Earth.py)
+
 
 
 **Flip/Rotate (the images are links to sample code)**
