@@ -81,11 +81,6 @@ If there is demand for it I could in theory write a book based on this project l
 * ![Radial Multichannel Gradient](../Hello_RadialMultichannel_Gradients.py)
 * ![Non Linear Radial Multichannel Gradient](../Hello_NonLinearRadialMultichannel_Gradients.py)
 
-**Copy/Paste and Save Selection**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Copy_Paste_Earth.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Crop_Earth.py
-
 **Line**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
@@ -123,9 +118,10 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Exponential_Spiral_Gradient.py
 
 **3D and 3D shading effects**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_3D.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_3D_surfaceplot.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Sphere.py
+* ![3D](../Hello_3D.py)
+* ![Surface Plot](../Hello_3D_surfaceplot.py)
+
+[![Sphere](raccoon-sphere.bmp)](../Hello_Sphere.py)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Orb.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
@@ -186,6 +182,12 @@ If there is demand for it I could in theory write a book based on this project l
 [![Circular Region Brightness Adj](../assets/test_images/raccoon-brightnessadjcircregion.bmp)](../Hello_Circular_Region_BrightnessAdj.py)
 
 [![Circular Region Gamma Adj](../assets/test_images/raccoon-gammacorrectcircregion.bmp)](../Hello_Circular_Region_GammaAdj.py)
+
+![Save Selection](../Hello_Save_Selection.py)
+
+![Copy_Paste](../Hello_Copy_Paste_Earth.py)
+
+![Crop](../Hello_Crop_Earth.py)
 
 
 **Flip/Rotate (the images are links to sample code)**
