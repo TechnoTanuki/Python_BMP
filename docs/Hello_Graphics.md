@@ -117,13 +117,14 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Exponential_Spiral_Gradient.py
 
-**3D and 3D shading effects**
-* ![3D](../Hello_3D.py)
-* ![Surface Plot](../Hello_3D_surfaceplot.py)
+**3D and 3D shading effects (Images are links to sample code)**
 
-[![Sphere](../assets/test_images/racoon-sphere.bmp)](../Hello_Sphere.py)
+[![Sphere](../assets/test_images/raccoon-sphere.bmp)](../Hello_Sphere.py)
+
 [![Icoahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
 
+* ![3D](../Hello_3D.py)
+* ![Surface Plot](../Hello_3D_surfaceplot.py)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Orb.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
