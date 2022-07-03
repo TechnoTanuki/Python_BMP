@@ -47,14 +47,14 @@ If there is demand for it I could in theory write a book based on this project l
 
 # Fully commented sample code list below
 
-**Text and Fonts**
+**Text and Fonts (images are links to sample code)**
 * ![Hello_Earth.py](../Hello_Earth.py)
 * ![Reverse text](../Hello_Earth_Reverse_text.py)
 * ![Sideways text](../Hello_Earth_Sideways_text.py)
 * ![Upsidedown text](../Hello_Earth_Upsidedown_text.py)
 * ![Vertical text](../Hello_Earth_Vertical_text.py)
 * ![Dot Font](../Hello_World_Dots.py)
-* ![Dot_Font Reversed](../Hello_World_Dots_reversed.py)
+* [![Dot_Font Reversed](../assets/fonts/8x14x4px1cs024bitplotreversedstringasdots2filebc0c13303664.bmp)](../Hello_World_Dots_reversed.py)
 * ![Dot Fot Sideways](../Hello_World_Dots_sideway.py)
 * ![Dot Font Vertical](../Hello_World_Dots_vertical.py)
 
