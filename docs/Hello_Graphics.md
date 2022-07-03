@@ -88,11 +88,12 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
 **Rectangle (images are links to sample code)**
+
 [![Rectangle](..assets/test_images/raccoon-rectangle.bmp)](../Hello_Rectangle.py)
 
-[![FilledRectangle](..assets/test_images/raccoon-filledrectangle.bmp)](../Hello_FilledRectangle.py)
+[![Filled Rectangle](..assets/test_images/raccoon-filledrectangle.bmp)](../Hello_FilledRectangle.py)
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
+[![Filled Gradient Rectangle](../Hello_FilledGradRect.py)
 
 **Regular Polygons**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Regular_Polygon.py
@@ -103,7 +104,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 ![Circle](../Hello_Circles.py)
 
-![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
+[![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
 
 ![Thick Circle](../Hello_Thick_Circle.py)
 
