@@ -53,12 +53,15 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Reverse text](../assets/fonts/8x8x1px0cs024bitplotreversedstring2filebc0c65535.bmp)](../Hello_Earth_Reverse_text.py)
 
-* ![Sideways text](../Hello_Earth_Sideways_text.py)
-* ![Upsidedown text](../Hello_Earth_Upsidedown_text.py)
-* ![Vertical text](../Hello_Earth_Vertical_text.py)
-* ![Dot Font](../Hello_World_Dots.py)
+![Sideways text](../Hello_Earth_Sideways_text.py)
 
-* [![Dot_Font Reversed](../assets/fonts/8x14x4px1cs024bitplotreversedstringasdots2filebc0c13303664.bmp)](../Hello_World_Dots_reversed.py)
+[![Upsidedown text](../assets/fonts/8x8x1px0cs024bitplotupsidedownstring2filebc0c65535.bmp)](../Hello_Earth_Upsidedown_text.py)
+
+[![Vertical text](../assets/fonts/8x8x1px0cs024bitplotverticalstring2filebc0c16753920.bmp)](../Hello_Earth_Vertical_text.py)
+
+[![Dot Font](../assets/fonts/8x14x4px1cs024bitplotstringasdots2filebc0c13303664.bmp)](../Hello_World_Dots.py)
+
+[![Dot_Font Reversed](../assets/fonts/8x14x4px1cs024bitplotreversedstringasdots2filebc0c13303664.bmp)](../Hello_World_Dots_reversed.py)
 
 [![Dot Font Vertical](../assets/fonts/8x14x4px1cs024bitplotverticalstringasdots2filebc0c16753920.bmp)](../Hello_World_Dots_vertical.py)
 
@@ -67,9 +70,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 
 **Named colors**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_X11ColorNames.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_XKCDColorNames.py
+![Named Colors](../Hello_ColorNames.py)
+![X11 Colors](../Hello_X11ColorNames.py)
+![XKCD Colors](../Hello_XKCDColorNames.py)
 
 **Full Gradient Background**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Linear_Gradient.py
