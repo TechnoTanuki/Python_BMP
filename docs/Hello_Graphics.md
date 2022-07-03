@@ -65,7 +65,6 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Dot Font Vertical](../assets/fonts/8x14x4px1cs024bitplotverticalstringasdots2filebc0c16753920.bmp)](../Hello_World_Dots_vertical.py)
 
-
 ![Dot Fot Sideways](../Hello_World_Dots_sideway.py)
 
 
@@ -75,12 +74,12 @@ If there is demand for it I could in theory write a book based on this project l
 * ![XKCD Colors](../Hello_XKCDColorNames.py)
 
 **Full Gradient Background**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Linear_Gradient.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circular_Gradient.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Radial_Gradients.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_NonLinearRadial_Gradients.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_RadialMultichannel_Gradients.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_NonLinearRadialMultichannel_Gradients.py
+* ![Linear Gradient](../Hello_Linear_Gradient.py)
+* ![Circular Gradient](../Hello_Circular_Gradient.py)
+* ![Radial Gradient](../Hello_Radial_Gradients.py)
+* ![Non Linear Radial Gradient](../Hello_NonLinearRadial_Gradients.py)
+* ![Radial Multichannel Gradient](../Hello_RadialMultichannel_Gradients.py)
+* ![Non Linear Radial Multichannel Gradient](../Hello_NonLinearRadialMultichannel_Gradients.py)
 
 **Copy/Paste and Save Selection**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Save_Selection.py
