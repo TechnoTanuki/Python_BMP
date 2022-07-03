@@ -54,9 +54,14 @@ If there is demand for it I could in theory write a book based on this project l
 * ![Upsidedown text](../Hello_Earth_Upsidedown_text.py)
 * ![Vertical text](../Hello_Earth_Vertical_text.py)
 * ![Dot Font](../Hello_World_Dots.py)
+
 * [![Dot_Font Reversed](../assets/fonts/8x14x4px1cs024bitplotreversedstringasdots2filebc0c13303664.bmp)](../Hello_World_Dots_reversed.py)
-* ![Dot Fot Sideways](../Hello_World_Dots_sideway.py)
-* [![Dot Font Vertical](../assets/fonts/8x14x4px1cs024bitplotverticalstringasdots2filebc0c16753920)](../Hello_World_Dots_vertical.py)
+
+[![Dot Font Vertical](../assets/fonts/8x14x4px1cs024bitplotverticalstringasdots2filebc0c16753920.bmp)](../Hello_World_Dots_vertical.py)
+
+
+![Dot Fot Sideways](../Hello_World_Dots_sideway.py)
+
 
 **Named colors**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ColorNames.py
