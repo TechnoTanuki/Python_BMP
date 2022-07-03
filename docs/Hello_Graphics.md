@@ -88,7 +88,8 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
 **Rectangle**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangle.py
+[![Rectangle](..assets/test_images/raccoon-rectangle.bmp)](../Hello_Rectangle.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledRectangle.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
 
