@@ -90,7 +90,7 @@ If there is demand for it I could in theory write a book based on this project l
 **Rectangle (images are links to sample code)**
 [![Rectangle](..assets/test_images/raccoon-rectangle.bmp)](../Hello_Rectangle.py)
 
-[![FilledRectangle](../Hello_FilledRectangle.py)
+![FilledRectangle](../Hello_FilledRectangle.py)
 
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
 
@@ -103,11 +103,11 @@ If there is demand for it I could in theory write a book based on this project l
 
 ![Circle](../Hello_Circles.py)
 
-[![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
+![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
 
-[![Thick Circle](../Hello_Thick_Circle.py)
+![Thick Circle](../Hello_Thick_Circle.py)
 
-[![Thick Gradient Circle](../Hello_Thick_Gradient_Circle.py)
+![Thick Gradient Circle](../Hello_Thick_Gradient_Circle.py)
 
 **Ellipse**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
