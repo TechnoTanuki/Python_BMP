@@ -121,7 +121,9 @@ If there is demand for it I could in theory write a book based on this project l
 * ![3D](../Hello_3D.py)
 * ![Surface Plot](../Hello_3D_surfaceplot.py)
 
-[![Sphere](raccoon-sphere.bmp)](../Hello_Sphere.py)
+[![Sphere](../assets/test_images/racoon-sphere.bmp)](../Hello_Sphere.py)
+[![Icoahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Orb.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
@@ -132,7 +134,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cube.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Octahedron.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Decahedron.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron.py
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron_Outline.py
 
 
