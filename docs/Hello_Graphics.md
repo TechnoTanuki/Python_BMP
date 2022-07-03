@@ -87,9 +87,11 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
 
-**Rectangle**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Rectangle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledRectangle.py
+**Rectangle (images are links to sample code)**
+[![Rectangle](..assets/test_images/raccoon-rectangle.bmp)](../Hello_Rectangle.py)
+
+![FilledRectangle](../Hello_FilledRectangle.py)
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledGradRect.py
 
 **Regular Polygons**
@@ -97,11 +99,15 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Regular_Polygon.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Gradient_Thick_Regular_Polygon.py
 
-**Circle** 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Circles.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_FilledCircle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Circle.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Gradient_Circle.py
+**Circle (images are links to sample code** 
+
+![Circle](../Hello_Circles.py)
+
+![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
+
+![Thick Circle](../Hello_Thick_Circle.py)
+
+![Thick Gradient Circle](../Hello_Thick_Gradient_Circle.py)
 
 **Ellipse**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Ellipse.py
@@ -117,11 +123,14 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_SquareSpiral.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Exponential_Spiral_Gradient.py
 
-**3D and 3D shading effects**
+**3D and 3D shading effects (Images are links to sample code)**
+
+[![Sphere](../assets/test_images/raccoon-sphere.bmp)](../Hello_Sphere.py)
+
+[![Icoahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
+
 * ![3D](../Hello_3D.py)
 * ![Surface Plot](../Hello_3D_surfaceplot.py)
-
-[![Sphere](raccoon-sphere.bmp)](../Hello_Sphere.py)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Orb.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Benzene.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Globe.py
@@ -132,7 +141,7 @@ If there is demand for it I could in theory write a book based on this project l
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cube.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Octahedron.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Decahedron.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron.py
+
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Icosahedron_Outline.py
 
 
