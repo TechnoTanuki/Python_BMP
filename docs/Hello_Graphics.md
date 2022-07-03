@@ -51,7 +51,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Text Demo](../assets/fonts/8x14x3px1cs024bitplotstring2filebc0c13303664.bmp)](../Hello_Earth.py)
 
-[![Reverse text](../assets/fonts/8x8x1px0cs024bitplotreversedstring2filebc0c65535.bmp)(../Hello_Earth_Reverse_text.py)
+[![Reverse text](../assets/fonts/8x8x1px0cs024bitplotreversedstring2filebc0c65535.bmp)](../Hello_Earth_Reverse_text.py)
 
 * ![Sideways text](../Hello_Earth_Sideways_text.py)
 * ![Upsidedown text](../Hello_Earth_Upsidedown_text.py)
