@@ -93,7 +93,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Filled Rectangle](../assets/test_images/raccoon-filledrectangle.bmp)](../Hello_FilledRectangle.py)
 
-[![Filled Gradient Rectangle](../Hello_FilledGradRect.py)
+![Filled Gradient Rectangle](../Hello_FilledGradRect.py)
 
 **Regular Polygons**
 ![Regular Polygon](../Hello_Regular_Polygon.py)
