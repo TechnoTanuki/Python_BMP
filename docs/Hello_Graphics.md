@@ -157,7 +157,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![TVScanline](../assets/test_images/raccoon-eraseeverynthhoriline.bmp)](../Hello_TV_Scanlines.py)
 
-[![RectMonoFilter](../test_images/raccoon-monofilterinregion.bmp)](../Hello_Rectangular_Mono_Filter.py)
+[![RectMonoFilter](../assets/test_images/raccoon-monofilterinregion.bmp)](../Hello_Rectangular_Mono_Filter.py)
 
 [![RectColorFilter](../assets/test_images/raccoon-cyanfilteregion.bmp)](../Hello_Rectangular_Color_Filter.py)
 
