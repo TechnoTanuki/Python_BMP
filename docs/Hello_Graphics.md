@@ -70,9 +70,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 
 **Named colors**
-![Named Colors](../Hello_ColorNames.py)
-![X11 Colors](../Hello_X11ColorNames.py)
-![XKCD Colors](../Hello_XKCDColorNames.py)
+* ![Named Colors](../Hello_ColorNames.py)
+* ![X11 Colors](../Hello_X11ColorNames.py)
+* ![XKCD Colors](../Hello_XKCDColorNames.py)
 
 **Full Gradient Background**
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Linear_Gradient.py
