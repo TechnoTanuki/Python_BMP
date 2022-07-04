@@ -247,13 +247,13 @@ If there is demand for it I could in theory write a book based on this project l
 [![Hilbert4](../assets/fractals/hilbert4.bmp)](../Hello_ThickHilbertCurve.py)
 
 
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal4_1.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal5_3.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Newtons_fractal6_3.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Fern.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_ThickGradHilbertCurve.py
+* ![Newtons Fractal 4.1](../Hello_Newtons_fractal4_1.py)
+* ![Newtons Fractal 5](../Hello_Newtons_fractal5.py)
+* ![Newtons Fractal 5.3]( ../Hello_Newtons_fractal5_3.py)
+* ![Newtons Fractal 6](../Hello_Newtons_fractal6.py)
+* ![Newtons Fractal 6.3](../Hello_Newtons_fractal6_3.py)
+* ![Fern](../Hello_Fern.py)
+* ![Thick Gradient Hilbert Curve](../Hello_ThickGradHilbertCurve.py)
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
 * https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
 
