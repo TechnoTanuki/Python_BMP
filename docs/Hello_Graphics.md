@@ -192,7 +192,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Circular Region Gamma Adj](../assets/test_images/raccoon-gammacorrectcircregion.bmp)](../Hello_Circular_Region_GammaAdj.py)
 
-![Crop](../assets/test_images/raccoon-cropregion.bmp)](../Hello_Crop_Earth.py)
+[![Crop](../assets/test_images/raccoon-cropregion.bmp)](../Hello_Crop_Earth.py)
 
 ![Save Selection](../Hello_Save_Selection.py)
 
