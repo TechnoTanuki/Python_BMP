@@ -102,7 +102,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Circle (images are links to sample code** 
 
-![Circle](../Hello_Circles.py)
+[![Circle](../assets/text_images/raccoon-thinredcircle.bmp)](../Hello_Circles.py)
 
 [![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
 
