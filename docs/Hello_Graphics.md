@@ -82,10 +82,10 @@ If there is demand for it I could in theory write a book based on this project l
 * ![Non Linear Radial Multichannel Gradient](../Hello_NonLinearRadialMultichannel_Gradients.py)
 
 **Line**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Lines.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Vector.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Line.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Thick_Round_Gradient_Line.py
+* ![Line](../Hello_Lines.py)
+* ![Vector](../Hello_Vector.py)
+* ![Thick Rounded Line](../Hello_Thick_Round_Line.py)
+* ![Thick Rounded Gradient Line](../Hello_Thick_Round_Gradient_Line.py)
 
 **Rectangle (images are links to sample code)**
 
@@ -254,27 +254,27 @@ If there is demand for it I could in theory write a book based on this project l
 * ![Newtons Fractal 6.3](../Hello_Newtons_fractal6_3.py)
 * ![Fern](../Hello_Fern.py)
 * ![Thick Gradient Hilbert Curve](../Hello_ThickGradHilbertCurve.py)
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_KochCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_CatPaws.py
+* [!Koch Curve](../Hello_KochCurve.py)
+* [!Cat Paws](../Hello_CatPaws.py)
 
 **Parametric Curve Equations**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Cardioid.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Epicycloid.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Flower.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Octopetala.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_GearCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_HeartCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_EggCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_LissajousCurve.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Hypotrochoid.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Superellipse.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Squircles.py
+* ![Cardioid](../Hello_Cardioid.py)
+* ![Epicycloid](../Hello_Epicycloid.py)
+* ![Flower](/Hello_Flower.py)
+* ![Octopetala](../Hello_Octopetala.py)
+* ![Gear Curve](../Hello_GearCurve.py)
+* ![Heart Curve](../Hello_HeartCurve.py)
+* ![Egg Curve](../main/Hello_EggCurve.py)
+* ![Lissajous Curve](../Hello_LissajousCurve.py)
+* ![Hypotrochoid](../Hello_Hypotrochoid.py)
+* ![Superellipse](../Hello_Superellipse.py)
+* ![Squircles](../Hello_Squircles.py)
 
 **Spirographs**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_1.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_2.py
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Spirograph_Record.py
+* ![Hello_Spirograph.py](../Hello_Spirograph.py)
+* ![Hello_Spirograph_1.py](../Hello_Spirograph_1.py)
+* ![Hello_Spirograph_2.py](../Hello_Spirograph_2.py)
+* ![Hello_Spirograph_Record.py](../Hello_Spirograph_Record.py)
 
 **Graphs**
-* https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_XYScatterplot.py
+* ![XY Scatterplot](../Hello_XYScatterplot.py)
