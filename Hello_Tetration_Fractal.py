@@ -31,7 +31,7 @@ def main():
         lim = 2 << 30
         f(file, 300, 300, lim,
           [1, 3, -1, 1], # location to plot
-          [], 8)
+          [], 4)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])
