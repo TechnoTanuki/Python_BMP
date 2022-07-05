@@ -30,8 +30,9 @@ def main():
         cf = getX11RGBfactors() #color info
         par = fractaldomainparamdict() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
-        f(file, 300, 300, 7625597484987,
-          [0,7,0,7], # location to plot
+        lim = 2 << 60
+        f(file, 300, 300, lim,
+          [0, 14, -7, 7], # location to plot
           cf['cornflowerblue'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
