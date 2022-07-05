@@ -100,7 +100,7 @@ If there is demand for it I could in theory write a book based on this project l
 ![Thick Regular Polygon](../Hello_Thick_Regular_Polygon.py)
 ![Gradient Thick Regular Polygon](../Hello_Gradient_Thick_Regular_Polygon.py)
 
-**Circle (images are links to sample code** 
+**Circle (images are links to sample code)** 
 
 [![Circle](../assets/test_images/raccoon-thinredcircle.bmp)](../Hello_Circles.py)
 
