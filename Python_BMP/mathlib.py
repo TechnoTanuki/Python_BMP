@@ -1440,3 +1440,18 @@ def newtonmethod(x0: Number,
             return (x, i)
         x -= dx
     return null
+
+
+def Tetration(x: Number, n: Number) -> Number:
+    """ Tetration by recursion
+
+    Args
+        x: base
+        n: exponent
+
+    Returns:
+        number
+    """
+    if n == 0:
+        return 1
+    return x ** Tetration(x, n-1)

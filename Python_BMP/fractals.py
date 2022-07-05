@@ -128,6 +128,31 @@ def iterIFS(
           	  yield (px, py)
 
 
+def tetrationfn(P: float, Q: float,
+        d: float, maxiter: int) -> int:
+    """Tetration Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        d : Threshold
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        try:
+            z **= z
+            if abs(z) > d:
+                return i
+        except OverflowError:
+            return i
+    return maxiter
+
+
 def multibrot(
         P: float, Q: float,
         d: float, maxiter: int) -> int:
@@ -397,6 +422,34 @@ def itermultibrot(
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         multibrot, mandelparam, maxiter):
+        yield p
+
+
+def itertetration(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Multibrot set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : threshold
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, d,
+        tetrationfn, domain, maxiter):
         yield p
 
 

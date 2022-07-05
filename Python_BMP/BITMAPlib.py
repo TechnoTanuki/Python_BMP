@@ -234,6 +234,7 @@ from .fractals import(
     itertricorn,
     itermulticorn,
     iternewtonsfractal,
+    itertetration,
     funcparamdict,
     kochcurvevert,
     kochsnowflakevert,
@@ -8954,6 +8955,81 @@ def multibrot(bmp: array,
         RGBfactors, maxiter)
 
 
+def tetrationfractal(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        domain: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Tetration Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : threshold
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractal(bmp, x1, y1, x2, y2, d,
+        itertetration, domain,
+        RGBfactors, maxiter)
+
+
+@functimer
+def savetetrationfractal2file(
+        file: str,
+        x: int, y: int,
+        d: float,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Tetration Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : threshold
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    savemultifractal2file(
+        file,
+        x, y,
+        tetrationfractal,
+        d,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
+
+
 def julia(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -9195,7 +9271,7 @@ def savemultifractal2file(
         rgbfactors: list[float, float, float],
         bitdepth: int = 24,
         maxiter: int = 255):
-    """Saves a Multibrot Fractal to a file
+    """Saves a Multi Fractal to a file
 
     Args:
         file    : full path to new file
