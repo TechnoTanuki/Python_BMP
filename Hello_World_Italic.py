@@ -16,9 +16,7 @@ from Python_BMP.BITMAPlib import(
         plotitalicstring2file as f,
         getcolorname2RGBdict,
         font8x14,
-        getfuncmetastr as meta,
-        newBMP,
-        saveBMP
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -29,10 +27,8 @@ import sys
 def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
-        rootdir = path.dirname(path.abspath(sys.argv[0])) # get path of this script
+        rootdir = path.dirname(__file__) # get path of this script
         file = f'HelloWorld{f.__name__}.bmp' #file name
-        bmp = newBMP(600, 600, 24)
-        saveBMP(file, bmp)
         mx, my = 600, 80 # bitmap size
         f(file, "Hello Worldy !!!",
            5, # uint font size multiplier

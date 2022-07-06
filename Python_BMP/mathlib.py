@@ -1470,5 +1470,35 @@ def sincomplex(z: Complex) -> Complex:
     """
     a = z.real
     b = z.imag
-    return complex(sin(a)*cosh(b), cos(a)*sinh(b))
+    return complex(sin(a) * cosh(b),
+                   cos(a) * sinh(b))
 
+
+def abscomplex(z: Complex) -> Complex:
+    """Absolute value of a complex number
+
+    Args
+        z: Complex number
+
+    Returns:
+        Complex number
+    """
+    a = z.real
+    b = z.imag
+    return complex(abs(z.real),
+                   abs(z.imag))
+
+
+def sinhcomplex(z: Complex) -> Complex:
+    """Hyperbolic Sine of a complex number
+
+    Args
+        z: Complex number
+
+    Returns:
+        Complex number
+    """
+    a = z.real
+    b = z.imag
+    return complex(sinh(a) * cosh(b),
+                   cosh(a) * sinh(b))
