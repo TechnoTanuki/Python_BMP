@@ -12,7 +12,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 # References
 
-**The Basics:** https://github.com/TechnoTanuki/Python_BMP#readme
+**![Readme](../README.md)**
 
 **Functional Progamming in Python:** https://machinelearningmastery.com/functional-programming-in-python/
 
