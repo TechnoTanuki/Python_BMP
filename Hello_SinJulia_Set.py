@@ -34,7 +34,7 @@ def main():
         mx, my, # size of file
         0.984808 + 0.173648j, # complex number
         juliapar['maxeqdim'], # fractal domain
-        cf['darkslategray1']) # color
+        cf['gold']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])
