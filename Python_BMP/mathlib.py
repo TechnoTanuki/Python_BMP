@@ -1488,17 +1488,4 @@ def abscomplex(z: Complex) -> Complex:
     return complex(abs(z.real),
                    abs(z.imag))
 
-
-def sinhcomplex(z: Complex) -> Complex:
-    """Hyperbolic Sine of a complex number
-
-    Args
-        z: Complex number
-
-    Returns:
-        Complex number
-    """
-    a = z.real
-    b = z.imag
-    return complex(sinh(a) * cosh(b),
-                   cosh(a) * sinh(b))
+def fft():
