@@ -245,6 +245,8 @@ If there is demand for it I could in theory write a book based on this project l
 [![Hilbert6](../assets/fractals/hilbert6.bmp)](../Hello_HilbertCurve.py)
 
 [![Hilbert4](../assets/fractals/hilbert4.bmp)](../Hello_ThickHilbertCurve.py)
+ 
+[![Fern](../assets/Hellofern.bmp)](../Hello_Fern.py) 
 
 
 * ![Newtons Fractal 4.1](../Hello_Newtons_fractal4_1.py)
@@ -252,15 +254,16 @@ If there is demand for it I could in theory write a book based on this project l
 * ![Newtons Fractal 5.3]( ../Hello_Newtons_fractal5_3.py)
 * ![Newtons Fractal 6](../Hello_Newtons_fractal6.py)
 * ![Newtons Fractal 6.3](../Hello_Newtons_fractal6_3.py)
-* ![Fern](../Hello_Fern.py)
 * ![Thick Gradient Hilbert Curve](../Hello_ThickGradHilbertCurve.py)
 * ![Koch Curve](../Hello_KochCurve.py)
 * ![Cat Paws](../Hello_CatPaws.py)
 
-**Parametric Curve Equations**
+**Parametric Curve Equations (images are links to sample code)**
+
+[![Flower](../assets/flower.bmp)](/Hello_Flower.py)
+
 * ![Cardioid](../Hello_Cardioid.py)
 * ![Epicycloid](../Hello_Epicycloid.py)
-* ![Flower](/Hello_Flower.py)
 * ![Octopetala](../Hello_Octopetala.py)
 * ![Gear Curve](../Hello_GearCurve.py)
 * ![Heart Curve](../Hello_HeartCurve.py)
