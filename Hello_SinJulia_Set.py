@@ -1,5 +1,5 @@
 notice = """
-        Julia Set Fractal Demo
+    Sin(z) Julia Set Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
