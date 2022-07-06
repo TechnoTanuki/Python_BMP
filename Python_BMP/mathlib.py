@@ -1488,4 +1488,3 @@ def abscomplex(z: Complex) -> Complex:
     return complex(abs(z.real),
                    abs(z.imag))
 
-def fft():
