@@ -20,14 +20,16 @@ from math import(
     acos,
     atan,
     cos,
+    cosh,
     degrees,
     pi,
     radians,
     sin,
+    sinh,
     sqrt
     )
 
-from numbers import Number
+from numbers import Complex, Number
 from random import randint
 from functools import reduce
 from typing import Callable
@@ -1455,3 +1457,18 @@ def Tetration(x: Number, n: Number) -> Number:
     if n == 0:
         return 1
     return x ** Tetration(x, n-1)
+
+
+def sincomplex(z: Complex) -> Complex:
+    """Sine of a complex number
+
+    Args
+        z: Complex number
+
+    Returns:
+        Complex number
+    """
+    a = z.real
+    b = z.imag
+    return complex(sin(a)*cosh(b), cos(a)*sinh(b))
+

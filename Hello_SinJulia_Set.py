@@ -1,5 +1,5 @@
 notice = """
-        Tetration Fractal Demo
+        Julia Set Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -12,7 +12,8 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        savetetrationfractal2file as f,
+        getX11RGBfactors,
+        savesinjulia2file as f,
         fractaldomainparamdict,
         getfuncmetastr as meta,
         )
@@ -25,11 +26,15 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
+        mx = my = 600 # square canvas
+        cf = getX11RGBfactors() #color info
+        juliapar = fractaldomainparamdict() # common parameters
         file = f'hello{f.__name__}.bmp' # random file name
-        lim = 2 << 30
-        f(file, 300, 300, lim,
-          [1, 2.5, -.75, .75], # location to plot
-          [], 4)
+        f(file, # path to new file
+        mx, my, # size of file
+        0.984808 + 0.173648j, # complex number
+        juliapar['maxeqdim'], # fractal domain
+        cf['darkslategray1']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])

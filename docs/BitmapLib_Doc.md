@@ -5288,6 +5288,30 @@ def iterparallelogram(p1: list[int, int], p2: list[int, int], p3: list[int, int]
     
 
 
+### [`itersinjulia`](#itersinjulia)
+
+```py
+def itersinjulia(x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Sin(z) Julia Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : Complex Number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
+
+
 ### [`iterspirograph`](#iterspirograph)
 
 ```py
@@ -5347,6 +5371,30 @@ Yields 2D points for a superellipse
     
     Yields:
         (x: int, y: int)
+
+
+### [`itertetration`](#itertetration)
+
+```py
+def itertetration(x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Tetration Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : threshold
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
 
 
 ### [`itertricorn`](#itertricorn)
@@ -10487,7 +10535,7 @@ Saves a Multicorn Fractal to a file
 def savemultifractal2file(file: str, x: int, y: int, f: Callable, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
 ```
 
-Saves a Multibrot Fractal to a file
+Saves a Multi Fractal to a file
 
     Args:
         file    : full path to new file
@@ -10557,6 +10605,66 @@ Saves a Newtons Fractal to a file
         y       : height of bitmap
         d       : [function and,
                   function derivative pair]
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savesinjulia2file`](#savesinjulia2file)
+
+```py
+def savesinjulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Sin(z) Julia Set to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savetetrationfractal2file`](#savetetrationfractal2file)
+
+```py
+def savetetrationfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Tetration Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : threshold
         domain  : location in real and
                   imaginary plane
                   (minreal, maxreal,
@@ -10776,6 +10884,33 @@ Compares 2 files and saves the similar parts to a BMP
     
     Returns:
         new bitmap file
+
+
+### [`sinjulia`](#sinjulia)
+
+```py
+def sinjulia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Sin(z) Julia Set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`sortrecpoints`](#sortrecpoints)
@@ -11093,6 +11228,33 @@ Returns a list of vertices
         list (x: float,
               y: float,
               z: float)
+
+
+### [`tetrationfractal`](#tetrationfractal)
+
+```py
+def tetrationfractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Tetration Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : threshold
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`thickcircle`](#thickcircle)

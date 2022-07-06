@@ -26,6 +26,7 @@ from .mathlib import (
     addvect,
     subvect,
     newtonmethod,
+    sincomplex,
     scalarmulvect,
     roundvect
     )
@@ -149,6 +150,28 @@ def tetrationfn(P: float, Q: float,
             if abs(z) > d:
                 return i
         except OverflowError:
+            return i
+    return maxiter
+
+
+def sinjulia(P: float, Q: float,
+        c: complex, maxiter: int) -> int:
+    """Sin(z) Julia  Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        c : complex number
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        z = c * sincomplex(z)
+        if abs(z) > 2:
             return i
     return maxiter
 
@@ -431,7 +454,7 @@ def itertetration(
         d: float,
         domain: list[float, float, float, float],
         maxiter: int):
-    """Yields a Multibrot set
+    """Yields a Tetration Fractal
 
     Args:
         x1, y1, x2, y2: rectangular area
@@ -451,6 +474,35 @@ def itertetration(
     for p in itermultifractal(x1, y1, x2, y2, d,
         tetrationfn, domain, maxiter):
         yield p
+
+
+def itersinjulia(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Sin(z) Julia Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : Complex Number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, c,
+        sinjulia, domain, maxiter):
+        yield p
+
 
 
 def itermultijulia(
