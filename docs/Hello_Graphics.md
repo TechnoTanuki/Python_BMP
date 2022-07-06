@@ -254,8 +254,8 @@ If there is demand for it I could in theory write a book based on this project l
 * ![Newtons Fractal 6.3](../Hello_Newtons_fractal6_3.py)
 * ![Fern](../Hello_Fern.py)
 * ![Thick Gradient Hilbert Curve](../Hello_ThickGradHilbertCurve.py)
-* [!Koch Curve](../Hello_KochCurve.py)
-* [!Cat Paws](../Hello_CatPaws.py)
+* ![Koch Curve](../Hello_KochCurve.py)
+* ![Cat Paws](../Hello_CatPaws.py)
 
 **Parametric Curve Equations**
 * ![Cardioid](../Hello_Cardioid.py)
