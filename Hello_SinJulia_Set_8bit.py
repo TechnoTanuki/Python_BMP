@@ -26,7 +26,7 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        mx = my = 600 # square canvas
+        mx = my = 300 # square canvas
         juliapar = fractaldomainparamdict() # common parameters
         file = f'hello 8 bit{f.__name__}.bmp' # random file name
         f(file, # path to new file
