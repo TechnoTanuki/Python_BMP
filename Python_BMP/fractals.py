@@ -22,11 +22,14 @@ from .primitives2D import (
     regpolygonvert
     )
 
+from cmath import (
+    sin
+)
+
 from .mathlib import (
     addvect,
     subvect,
     newtonmethod,
-    sincomplex,
     scalarmulvect,
     roundvect
     )
@@ -170,7 +173,7 @@ def sinjulia(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z = c * sincomplex(z)
+        z = c * sin(z)
         if abs(z) > 2:
             return i
     return maxiter
