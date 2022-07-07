@@ -31,6 +31,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 **Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
 * ![mini math lib](../Python_BMP/mathlib.py)
+* fractals http://paulbourke.net/fractals/
 * parametric curves https://mathworld.wolfram.com/topics/Curves.html
 * moar curves https://mathcurve.com
 
@@ -246,7 +247,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Hilbert4](../assets/fractals/hilbert4.bmp)](../Hello_ThickHilbertCurve.py)
  
-[![Fern](../assets/Hellofern.bmp)](../Hello_Fern.py) 
+[![Fern](../assets/fern.bmp)](../Hello_Fern.py) 
 
 
 * ![Newtons Fractal 4.1](../Hello_Newtons_fractal4_1.py)
