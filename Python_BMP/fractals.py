@@ -23,7 +23,8 @@ from .primitives2D import (
     )
 
 from cmath import (
-    sin
+    sin,
+    cos
 )
 
 from .mathlib import (
@@ -174,6 +175,28 @@ def sinjulia(P: float, Q: float,
     z = complex(P, Q)
     for i in range(maxiter):
         z = c * sin(z)
+        if abs(z) > 2:
+            return i
+    return maxiter
+
+
+def cosjulia(P: float, Q: float,
+        c: complex, maxiter: int) -> int:
+    """Cos(z) Julia  Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        c : complex number
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        z = c * cos(z)
         if abs(z) > 2:
             return i
     return maxiter
@@ -504,6 +527,34 @@ def itersinjulia(
     """
     for p in itermultifractal(x1, y1, x2, y2, c,
         sinjulia, domain, maxiter):
+        yield p
+
+
+def itercosjulia(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Cos(z) Julia Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : Complex Number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, c,
+        cosjulia, domain, maxiter):
         yield p
 
 
