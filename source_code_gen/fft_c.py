@@ -26,8 +26,8 @@ def fft(v: list[complex], n: int, tmp: list[complex]):
             _2k = k << 1
             ve[k] = v[_2k]
             vo[k] = v[_2k + 1]
-        fft(ve, halfn, v )
-        fft(vo, halfn, v )
+        fft(ve, halfn, v)
+        fft(vo, halfn, v)
         for m in range(0, halfn):
             a = _2pi * m / n
             w = complex(cos(a), -sin(a)) * vo[m]
@@ -57,8 +57,8 @@ def ifft(v: list[complex], n: int,  tmp: list[complex]):
             _2k = k << 1
             ve[k] = v[_2k]
             vo[k] = v[_2k + 1]
-        ifft(ve, halfn, v )
-        ifft(vo, halfn, v )
+        ifft(ve, halfn, v)
+        ifft(vo, halfn, v)
         for m in range(0, halfn):
             a = _2pi * m / n
             w = complex(cos(a), sin(a)) * vo[m]
