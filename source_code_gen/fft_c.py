@@ -87,10 +87,15 @@ def main():
     ifft(v, N, scratch)
     print("iFFT", v, N)
 
+
+    v1con = [x.conjugate() for x in v1]
     print("Orig", v1, N)
     fft(v1, N, scratch)
+
+    fft(v1con, N, scratch)
     print(" FFT", v1, N)
     ifft(v1, N, scratch)
     print("iFFT", v1, N)
+    print("iFFTvcon", v1con, N)
 
 main()
