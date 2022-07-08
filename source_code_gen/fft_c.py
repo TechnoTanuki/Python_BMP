@@ -2,9 +2,6 @@
 
 
 from math import sin, cos, pi
-q = 3
-N = 1 << q
-_2pi = 2 * pi
 
 """
    fft(v,N):
@@ -29,8 +26,8 @@ def fft(v: list[complex], n: int, tmp: list[complex]):
             _2k = k << 1
             ve[k] = v[_2k]
             vo[k] = v[_2k + 1]
-        fft( ve, halfn, v )
-        fft( vo, halfn, v )
+        fft(ve, halfn, v )
+        fft(vo, halfn, v )
         for m in range(0, halfn):
             a = _2pi * m / n
             w = complex(cos(a), -sin(a)) * vo[m]
@@ -60,14 +57,19 @@ def ifft(v: list[complex], n: int,  tmp: list[complex]):
             _2k = k << 1
             ve[k] = v[_2k]
             vo[k] = v[_2k + 1]
-        ifft( ve, halfn, v )
-        ifft( vo, halfn, v )
+        ifft(ve, halfn, v )
+        ifft(vo, halfn, v )
         for m in range(0, halfn):
             a = _2pi * m / n
             w = complex(cos(a), sin(a)) * vo[m]
             vm = ve[m]
             v[m] = vm + w
             v[m + halfn] = vm - w
+
+
+q = 3
+N = 1 << q
+_2pi = 2 * pi
 
 
 def main():
@@ -82,13 +84,13 @@ def main():
     print("Orig", v, N)
     fft(v, N, scratch)
     print(" FFT", v, N)
-    ifft( v, N, scratch)
+    ifft(v, N, scratch)
     print("iFFT", v, N)
 
     print("Orig", v1, N)
-    fft( v1, N, scratch)
+    fft(v1, N, scratch)
     print(" FFT", v1, N)
-    ifft( v1, N, scratch)
+    ifft(v1, N, scratch)
     print("iFFT", v1, N)
 
 main()
