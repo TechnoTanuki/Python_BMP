@@ -1459,48 +1459,4 @@ def Tetration(x: Number, n: Number) -> Number:
     return x ** Tetration(x, n-1)
 
 
-def sincomplex(z: Complex) -> Complex:
-    """Sine of a complex number
-
-    Args
-        z: Complex number
-
-    Returns:
-        Complex number
-    """
-    a = z.real
-    b = z.imag
-    return complex(sin(a) * cosh(b),
-                   cos(a) * sinh(b))
-
-
-def coscomplex(z: Complex) -> Complex:
-    """Cosine of a complex number
-
-    Args
-        z: Complex number
-
-    Returns:
-        Complex number
-    """
-    a = z.real
-    b = z.imag
-    return complex(cos(a) * cosh(b),
-                   -sin(a) * sinh(b))
-
-
-def abscomplex(z: Complex) -> Complex:
-    """Absolute value of a complex number
-
-    Args
-        z: Complex number
-
-    Returns:
-        Complex number
-    """
-    a = z.real
-    b = z.imag
-    return complex(abs(z.real),
-                   abs(z.imag))
-
 
