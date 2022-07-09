@@ -24,13 +24,13 @@ def applyfft(fn, v: list[complex], n: int, tmp: list[complex]):
         l = n >> 1
         vo = [0] * l
         ve = [0] * l
-        for k in range(0, l):
+        for k in range(l):
             _2k = k << 1
             ve[k] = v[_2k]
             vo[k] = v[_2k + 1]
         applyfft(fn, ve, l, v)
         applyfft(fn, vo, l, v)
-        for m in range(0, l):
+        for m in range(l):
             w = fn(_2pi * m / n) * vo[m]
             vm = ve[m]
             v[m] = vm + w
@@ -99,5 +99,7 @@ def main():
     print("iFFT", v1, N)
     applyfft(fft, v1con, N, scratch)
     print("iFFTvcon", v1con, N)
+
+
 
 main()
