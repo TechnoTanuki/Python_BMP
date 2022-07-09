@@ -16,24 +16,25 @@ from math import sin, cos, pi
    [8]   Let v[m] = ve[m] + w*vo[m]
    [9]   Let v[m+N/2] = ve[m] - w*vo[m]
 """
+fft = lambda a: complex(cos(a), -sin(a))
+ifft = lambda a: complex(cos(a), sin(a))
 
-def fft(v: list[complex], n: int, tmp: list[complex]):
+def applyfft(fn, v: list[complex], n: int, tmp: list[complex]):
     if n > 1:
-        halfn = n >> 1
-        vo = [0] * halfn
-        ve = [0] * halfn
-        for k in range(0, halfn):
+        l = n >> 1
+        vo = [0] * l
+        ve = [0] * l
+        for k in range(0, l):
             _2k = k << 1
             ve[k] = v[_2k]
             vo[k] = v[_2k + 1]
-        fft(ve, halfn, v)
-        fft(vo, halfn, v)
-        for m in range(0, halfn):
-            a = _2pi * m / n
-            w = complex(cos(a), -sin(a)) * vo[m]
+        applyfft(fn, ve, l, v)
+        applyfft(fn, vo, l, v)
+        for m in range(0, l):
+            w = fn(_2pi * m / n) * vo[m]
             vm = ve[m]
             v[m] = vm + w
-            v[m + halfn] = vm - w
+            v[m + l] = vm - w
 
 """
    [0] If N==1 then return.
@@ -48,7 +49,7 @@ def fft(v: list[complex], n: int, tmp: list[complex]):
    [9]   Let v[m+N/2] = ve[m] - w*vo[m]
  */
 """
-def ifft(v: list[complex], n: int,  tmp: list[complex]):
+""" def ifft(v: list[complex], n: int,  tmp: list[complex]):
     if n > 1:
         halfn = n >> 1
         vo = [0] * halfn
@@ -65,7 +66,7 @@ def ifft(v: list[complex], n: int,  tmp: list[complex]):
             vm = ve[m]
             v[m] = vm + w
             v[m + halfn] = vm - w
-
+ """
 
 q = 3
 N = 1 << q
@@ -80,15 +81,15 @@ def main():
         a = _2pi * k / N
         v[k] = complex(0.125*cos(a), 0.125*sin(a))
         v1[k] = complex(0.3*cos(a), -0.3*sin(a))
-
+    
     print("Orig", v, N)
-    fft(v, N, scratch)
+    applyfft(fft,v, N, scratch)
     print(" FFT", v, N)
-    ifft(v, N, scratch)
+    applyfft(ifft, v, N, scratch)
     print("iFFT", v, N)
 
 
-    v1con = [x.conjugate() for x in v1]
+    """ v1con = [x.conjugate() for x in v1]
     print("Orig", v1, N)
     fft(v1, N, scratch)
 
@@ -97,5 +98,5 @@ def main():
     ifft(v1, N, scratch)
     print("iFFT", v1, N)
     print("iFFTvcon", v1con, N)
-
+ """
 main()
