@@ -16,8 +16,8 @@ from math import sin, cos, pi
    [8]   Let v[m] = ve[m] + w*vo[m]
    [9]   Let v[m+N/2] = ve[m] - w*vo[m]
 """
-fft = lambda a: complex(cos(a), -sin(a))
-ifft = lambda a: complex(cos(a), sin(a))
+fftfn = lambda a: complex(cos(a), -sin(a))
+ifftfn = lambda a: complex(cos(a), sin(a))
 
 def applyfft(fn, v: list[complex], n: int, tmp: list[complex]):
     if n > 1:
@@ -35,6 +35,13 @@ def applyfft(fn, v: list[complex], n: int, tmp: list[complex]):
             vm = ve[m]
             v[m] = vm + w
             v[m + l] = vm - w
+
+def fft(v: list[complex], n: int, tmp: list[complex]):
+    applyfft(fftfn, v, n, tmp)
+
+def ifft(v: list[complex], n: int, tmp: list[complex]):
+    applyfft(ifftfn, v, n, tmp)
+
 
 """
    [0] If N==1 then return.
@@ -81,23 +88,22 @@ def main():
         a = _2pi * k / N
         v[k] = complex(0.125*cos(a), 0.125*sin(a))
         v1[k] = complex(0.3*cos(a), -0.3*sin(a))
-    
+
     print("Orig", v, N)
-    applyfft(fft,v, N, scratch)
+    fft(v, N, scratch)
     print(" FFT", v, N)
-    applyfft(ifft, v, N, scratch)
+    ifft(v, N, scratch)
     print("iFFT", v, N)
 
 
     v1con = [x.conjugate() for x in v1]
     print("Orig", v1, N)
-    applyfft(fft,v1, N, scratch)
-
+    fft(v1, N, scratch)
 
     print(" FFT", v1, N)
-    applyfft(ifft,v1, N, scratch)
+    ifft(v1, N, scratch)
     print("iFFT", v1, N)
-    applyfft(fft, v1con, N, scratch)
+    fft(v1con, N, scratch)
     print("iFFTvcon", v1con, N)
 
 
