@@ -2,6 +2,7 @@
 
 
 from math import sin, cos, pi
+from cmath import exp
 
 """
    fft(v,N):
@@ -16,8 +17,11 @@ from math import sin, cos, pi
    [8]   Let v[m] = ve[m] + w*vo[m]
    [9]   Let v[m+N/2] = ve[m] - w*vo[m]
 """
-fftfn = lambda a: complex(cos(a), -sin(a))
-ifftfn = lambda a: complex(cos(a), sin(a))
+""" fftfn = lambda a: complex(cos(a), -sin(a))
+ifftfn = lambda a: complex(cos(a), sin(a)) """
+
+fftfn = lambda a: exp(a * -1j)
+ifftfn = lambda a: exp(a * 1j)
 
 def applyfft(fn, v: list[complex], n: int, tmp: list[complex]):
     if n > 1:
@@ -36,44 +40,13 @@ def applyfft(fn, v: list[complex], n: int, tmp: list[complex]):
             v[m] = vm + w
             v[m + l] = vm - w
 
+
 def fft(v: list[complex], n: int, tmp: list[complex]):
     applyfft(fftfn, v, n, tmp)
 
 def ifft(v: list[complex], n: int, tmp: list[complex]):
     applyfft(ifftfn, v, n, tmp)
 
-
-"""
-   [0] If N==1 then return.
-   [1] For k = 0 to N/2-1, let ve[k] = v[2*k]
-   [2] Compute ifft(ve, N/2);
-   [3] For k = 0 to N/2-1, let vo[k] = v[2*k+1]
-   [4] Compute ifft(vo, N/2);
-   [5] For m = 0 to N/2-1, do [6] through [9]
-   [6]   Let w.re = cos(2*PI*m/N)
-   [7]   Let w.im = sin(2*PI*m/N)
-   [8]   Let v[m] = ve[m] + w*vo[m]
-   [9]   Let v[m+N/2] = ve[m] - w*vo[m]
- */
-"""
-""" def ifft(v: list[complex], n: int,  tmp: list[complex]):
-    if n > 1:
-        halfn = n >> 1
-        vo = [0] * halfn
-        ve = [0] * halfn
-        for k in range(0, halfn):
-            _2k = k << 1
-            ve[k] = v[_2k]
-            vo[k] = v[_2k + 1]
-        ifft(ve, halfn, v)
-        ifft(vo, halfn, v)
-        for m in range(0, halfn):
-            a = _2pi * m / n
-            w = complex(cos(a), sin(a)) * vo[m]
-            vm = ve[m]
-            v[m] = vm + w
-            v[m + halfn] = vm - w
- """
 
 q = 3
 N = 1 << q
@@ -89,13 +62,13 @@ def main():
         v[k] = complex(0.125*cos(a), 0.125*sin(a))
         v1[k] = complex(0.3*cos(a), -0.3*sin(a))
 
-    print("Orig", v, N)
+    print("Orig", v)
     fft(v, N, scratch)
-    print(" FFT", v, N)
+    print(" FFT", v)
     ifft(v, N, scratch)
-    print("iFFT", v, N)
+    print("iFFT", v)
 
-
+"""
     v1con = [x.conjugate() for x in v1]
     print("Orig", v1, N)
     fft(v1, N, scratch)
@@ -105,7 +78,7 @@ def main():
     print("iFFT", v1, N)
     fft(v1con, N, scratch)
     print("iFFTvcon", v1con, N)
-
+"""
 
 
 main()
