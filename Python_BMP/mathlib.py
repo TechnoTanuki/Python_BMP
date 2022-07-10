@@ -35,6 +35,7 @@ from functools import reduce
 from typing import Callable
 from .conditionaltools import iif
 
+_2pi = 2 * pi
 
 def setmaxvec(
         vlist: list[Number],
@@ -1459,6 +1460,33 @@ def Tetration(x: Number, n: Number) -> Number:
     return x ** Tetration(x, n-1)
 
 
+fftfn = lambda a: complex(cos(a), -sin(a))
+ifftfn = lambda a: complex(cos(a), sin(a))
+
+def applyfft(fn, v: list[complex], n: int, tmp: list[complex]):
+    if n > 1:
+        l = n >> 1
+        vo = [0] * l
+        ve = [0] * l
+        for k in range(l):
+            _2k = k << 1
+            ve[k] = v[_2k]
+            vo[k] = v[_2k + 1]
+        applyfft(fn, ve, l, v)
+        applyfft(fn, vo, l, v)
+        for m in range(l):
+            w = fn(_2pi * m / n) * vo[m]
+            vm = ve[m]
+            v[m] = vm + w
+            v[m + l] = vm - w
+
+
+def fft(v: list[complex], n: int, tmp: list[complex]):
+    applyfft(fftfn, v, n, tmp)
+
+
+def ifft(v: list[complex], n: int, tmp: list[complex]):
+    applyfft(ifftfn, v, n, tmp)
 
 
 
