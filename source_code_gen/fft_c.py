@@ -42,11 +42,11 @@ def applyfft(fn, v: list[complex], tmp: list[complex]):
             v[m + l] = vm - w
 
 
-def fft(v: list[complex], tmp: list[complex]):
-    applyfft(fftfn, v, tmp)
+def fft(v: list[complex]):
+    applyfft(fftfn, v, [])
 
-def ifft(v: list[complex], tmp: list[complex]):
-    applyfft(ifftfn, v, tmp)
+def ifft(v: list[complex]):
+    applyfft(ifftfn, v, [])
 
 
 q = 3
@@ -64,9 +64,9 @@ def main():
         v1[k] = complex(0.3*cos(a), -0.3*sin(a))
 
     print("Orig", v)
-    fft(v, scratch)
+    fft(v)
     print(" FFT", v)
-    ifft(v, scratch)
+    ifft(v)
     print("iFFT", v)
 
 """
