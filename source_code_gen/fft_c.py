@@ -23,7 +23,7 @@ ifftfn = lambda a: complex(cos(a), sin(a)) """
 fftfn = lambda a: exp(a * -1j)
 ifftfn = lambda a: exp(a * 1j)
 
-def applyfft(fn, v: list[complex], tmp: list[complex]):
+def applyfft(fn, v: list[complex], tmp: list = []):
     n = len(v)
     if n > 1:
         l = n >> 1
@@ -43,10 +43,10 @@ def applyfft(fn, v: list[complex], tmp: list[complex]):
 
 
 def fft(v: list[complex]):
-    applyfft(fftfn, v, [])
+    applyfft(fftfn, v)
 
 def ifft(v: list[complex]):
-    applyfft(ifftfn, v, [])
+    applyfft(ifftfn, v)
 
 
 q = 3
