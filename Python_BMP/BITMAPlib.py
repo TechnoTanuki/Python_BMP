@@ -10135,7 +10135,7 @@ def horizontalbrightnessgradto24bitregion(
     xlim = x2 + 1
     f =  applybrightnessadjtoBGRbuf
     l = lumrange[0]
-    dl = (lumrange[1] - lumrange[0]) / (x2 - x1)
+    dl = delta(lumrange) / (x2 - x1)
     for x in range(x1, xlim):
         s = c(bmp, x, y2)
         e = c(bmp, x, y1)
@@ -10164,11 +10164,11 @@ def magnifyNtimescircregion(bmp: array,
     ny = y * n
     b = resizeNtimesbigger(bmp, n)
     c = _BMoffsethd
-    for v in itercirclepartlineedge(r):
-        x1, x2 = mirror(x, v[0])
-        y1, y2 = mirror(y, v[1])
-        x3, x4 = mirror(nx, v[0])
-        y3, y4 = mirror(ny, v[1])
+    for (v0, v1) in itercirclepartlineedge(r):
+        x1, x2 = mirror(x, v0)
+        y1, y2 = mirror(y, v1)
+        x3, x4 = mirror(nx, v0)
+        y3, y4 = mirror(ny, v1)
         bmp[c(bmp, x1, y1): c(bmp, x2, y1)], bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = \
         b[c(b, x3, y3): c(b, x4, y3)], b[c(b, x3, y4): c(b, x4, y4)]
 
@@ -10191,9 +10191,9 @@ def pixelizenxncircregion(bmp: array,
     """
     b = pixelizenxn(bmp, n)
     c = _BMoffsethd
-    for v in itercirclepartlineedge(r):
-        x1, x2 = mirror(x, v[0])
-        y1, y2 = mirror(y, v[1])
+    for (v0, v1) in itercirclepartlineedge(r):
+        x1, x2 = mirror(x, v0)
+        y1, y2 = mirror(y, v1)
         bmp[c(bmp, x1, y1): c(bmp, x2, y1)], bmp[c(bmp, x1, y2): c(bmp,x2,y2)]= \
         b[c(b, x1, y1): c(b, x2, y1)], b[c(b, x1, y2): c(b, x2, y2)]
 
