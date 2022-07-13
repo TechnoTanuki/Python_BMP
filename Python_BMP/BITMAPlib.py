@@ -10849,7 +10849,7 @@ def _use24btclrfnwithpar2circreg(
 def _useclradjfn(ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable, funcparam):
-    """Apply a user provided color adjustmen function
+    """Apply a user provided color adjustment function
     to an existing bitmap
 
     Args:
