@@ -59,6 +59,7 @@ from .mathlib import(
     centerpoint,
     computerotvec,
     cosaffin,
+    delta,
     distance,
     enumbits,
     intscalarmulvect,
@@ -2327,9 +2328,9 @@ def pastecirularbuf(bmp: array,
                 getmaxx(bmp), -1,
                 getmaxy(bmp), r):
             if _getclrbits(bmp) == circbuf[0]:
-                for i, v in enumerate(itercirclepartlineedge(r), start=2):
-                    x1, x2 = mirror(x, v[0])
-                    y1, y2 = mirror(y, v[1])
+                for i, (v0, v1) in enumerate(itercirclepartlineedge(r), start=2):
+                    x1, x2 = mirror(x, v0)
+                    y1, y2 = mirror(y, v1)
                     bmp[c(bmp, x1, y1): c(bmp, x2, y1)] = \
                         circbuf[i][0]
                     bmp[c(bmp, x1, y2): c(bmp, x2, y2)] = \
@@ -2393,9 +2394,9 @@ def _usenoparfn2circreg(bmp: array,
     if entirecircleisinboundary(
             x, y, -1, getmaxx(bmp),
                   -1, getmaxy(bmp), r):
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             s1 = c(bmp, x1, y1)
             e1 = c(bmp, x2, y1)
             s2 = c(bmp, x1, y2)
@@ -2406,9 +2407,9 @@ def _usenoparfn2circreg(bmp: array,
     else:
         xmax = getmaxx(bmp)
         ymax = getmaxy(bmp)
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             x1 = setmin(x1, 0)
             x2 = setmax(x2, xmax - 1)
             if isinrange(y2, ymax, -1):
@@ -2647,9 +2648,9 @@ def verttransformincircregion(
          'F' : _F}[trans]
 
     c=_getBMoffhdfunc(bmp)
-    for v in itercirclepartlineedge(r):
-        x1, x2 = mirror(x, v[0])
-        y1, y2 = mirror(y, v[1])
+    for (v0, v1) in itercirclepartlineedge(r):
+        x1, x2 = mirror(x, v0)
+        y1, y2 = mirror(y, v1)
         s1 = c(bmp, x1, y1)
         e1 = c(bmp, x2, y1)
         s2 = c(bmp, x1, y2)
@@ -2790,11 +2791,11 @@ def vertbrightnessgrad2circregion(
     c = _getBMoffhdfunc(bmp)
     f =  applybrightnessadjtoBGRbuf
     l = lumrange[0]
-    dl = (lumrange[1] - l) / (2 * r)
+    dl = delta(lumrange) / (2 * r)
     b = y - r
-    for v in itercirclepartlineedge(r):
-        x1, x2 = mirror(x, v[0])
-        y1, y2 = mirror(y, v[1])
+    for (v0, v1) in itercirclepartlineedge(r):
+        x1, x2 = mirror(x, v0)
+        y1, y2 = mirror(y, v1)
         l1 = l + (y1 - b) * dl
         l2 = l + (y2 - b) * dl
         s1 = c(bmp, x1, y1)
@@ -2826,11 +2827,11 @@ def horibrightnessgrad2circregion(
     """
     f =  applybrightnessadjtoBGRbuf
     l = lumrange[0]
-    dl = (lumrange[1] - lumrange[0]) / (2 * r)
+    dl = delta(lumrange) / (2 * r)
     b = x - r
-    for v in itercirclepartvertlineedge(r):
-        x1, x2 = mirror(x, v[0])
-        y1, y2 = mirror(y, v[1])
+    for (v0, v1)  in itercirclepartvertlineedge(r):
+        x1, x2 = mirror(x, v0)
+        y1, y2 = mirror(y, v1)
         _fnwithpar2vertslice(bmp,
             x1, y1, y2,
             f, l + (x1 - b) * dl)
@@ -2860,9 +2861,9 @@ def outlinecircregion(bmp: array,
             x, y,
             -1, getmaxx(bmp),
             -1, getmaxy(bmp), r):
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             s1 = c(bmp, x1, y1)
             e1 = c(bmp, x2, y1)
             s2 = c(bmp, x1, y2)
@@ -2889,9 +2890,9 @@ def outlinecircregion(bmp: array,
                           bmp[s2 + 1: e2 + 1]))
     else:
         (xmax, ymax) = getmaxxy(bmp)
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             x1 = setmin(x1, 0)
             x2 = setmax(x2, xmax - 1)
             if isinrange(y2, ymax, -1):
@@ -3066,18 +3067,18 @@ def filledcircle(bmp: array,
     """
     bits = bmp[bmpcolorbits]
     if bits < 8:
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             horiline(bmp, y1, x1, x2, color)
             horiline(bmp, y2, x1, x2, color)
     else:
         (xmax, ymax) = getmaxxy(bmp)
         xmax -= 1
         if bits == 24:
-            for v in itercirclepartlineedge(r):
-                x1, x2 = mirror(x, v[0])
-                y1, y2 = mirror(y, v[1])
+            for (v0, v1) in itercirclepartlineedge(r):
+                x1, x2 = mirror(x, v0)
+                y1, y2 = mirror(y, v1)
                 x1 = setmin(x1, 0)
                 x2 = setmax(x2, xmax)
                 dx = x2 - x1 + 1
@@ -3093,9 +3094,9 @@ def filledcircle(bmp: array,
                     s = _24bmofhd(bmp, x1, y1)
                     bmp[s: s+ lbuf] = colorbuf
         elif bits == 8:
-            for v in itercirclepartlineedge(r):
-                x1, x2 = mirror(x, v[0])
-                y1, y2 = mirror(y, v[1])
+            for (v0, v1) in itercirclepartlineedge(r):
+                x1, x2 = mirror(x, v0)
+                y1, y2 = mirror(y, v1)
                 x1 = setmin(x1, 0)
                 x2 = setmax(x2, xmax)
                 dx = x2 - x1 + 1
@@ -3226,8 +3227,8 @@ def thickcircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    for p in itercircle(x, y, r):
-        circle(bmp, p[0], p[1],
+    for (p0, p1) in itercircle(x, y, r):
+        circle(bmp, p0, p1,
         penradius, color, True)
 
 
@@ -3349,9 +3350,9 @@ def thickellipserot(bmp: array,
         byref modified
         unsigned byte array
     """
-    for p in iterellipserot(x, y,
+    for (p0, p1) in iterellipserot(x, y,
                 b, a, degrot):
-        circle(bmp, p[0], p[1],
+        circle(bmp, p0, p1,
             penradius, color, True)
 
 
@@ -3410,49 +3411,47 @@ def filledellipse(bmp: array,
     """
     bits = bmp[bmpcolorbits]
     if bits < 8:
-        for v in iterellipsepart(b, a):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in iterellipsepart(b, a):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             horiline(
                 bmp, y1, x1, x2, color)
             horiline(
                 bmp, y2, x1, x2, color)
     else:
-        m = getmaxxy(bmp)
+        (mx, my) = getmaxxy(bmp)
         if bits == 24:
-            for v in iterellipsepart(b, a):
-                x1, x2 = mirror(x, v[0])
-                y1, y2 = mirror(y, v[1])
+            for (v0, v1) in iterellipsepart(b, a):
+                x1, x2 = mirror(x, v0)
+                y1, y2 = mirror(y, v1)
                 x1 = setmin(x1, 0)
-                x2 = setmax(x2, m[0] - 1)
+                x2 = setmax(x2, mx - 1)
                 dx = x2 - x1 + 1
-                ymax = m[1]
                 rgb = int2RGBlist(color)
                 colorbuf = \
                  array('B', [rgb[2],
                              rgb[1],
                              rgb[0]] * dx)
                 lbuf = dx * 3
-                if isinrange(y2, ymax, -1):
+                if isinrange(y2, my, -1):
                     s = _24bmofhd(bmp, x1, y2)
                     bmp[s: s + lbuf] = colorbuf
-                if isinrange(y1, ymax, -1):
+                if isinrange(y1, my, -1):
                     s = _24bmofhd(bmp, x1, y1)
                     bmp[s: s + lbuf] = colorbuf
         elif bits == 8:
-            for v in iterellipsepart(b, a):
-                x1, x2 = mirror(x, v[0])
-                y1, y2 = mirror(y, v[1])
+            for (v0, v1) in iterellipsepart(b, a):
+                x1, x2 = mirror(x, v0)
+                y1, y2 = mirror(y, v1)
                 x1 = setmin(x1, 0)
-                x2 = setmax(x2, m[0]-1)
+                x2 = setmax(x2, mx - 1)
                 dx = x2 - x1 + 1
-                ymax = m[1]
                 colorbuf = \
                     array('B', [color & 0xff] * dx)
-                if isinrange(y2, ymax, -1):
+                if isinrange(y2, my, -1):
                     s = _8bmofhd(bmp, x1, y2)
                     bmp[s: s + dx] = colorbuf
-                if isinrange(y1, ymax, -1):
+                if isinrange(y1, my, -1):
                     s = _8bmofhd(bmp, x1, y1)
                     bmp[s: s + dx] = colorbuf
 
