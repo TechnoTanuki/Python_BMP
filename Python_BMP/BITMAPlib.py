@@ -2184,9 +2184,9 @@ def _usenopar24btfn2circreg(bmp: array,
             x, y, - 1,
             getmaxx(bmp), -1,
             getmaxy(bmp), r):
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             s1 = c(bmp, x1, y1)
             e1 = c(bmp, x2, y1)
             s2 = c(bmp, x1, y2)
@@ -2197,9 +2197,9 @@ def _usenopar24btfn2circreg(bmp: array,
     else:
         xmax = getmaxx(bmp)
         ymax = getmaxy(bmp)
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             x1 = setmin(x1, 0)
             x2 = setmax(x2, xmax - 1)
             if isinrange(y2, ymax, -1):
@@ -2240,9 +2240,9 @@ def _use24btfn2circreg(bmp: array,
             x, y, -1,
             getmaxx(bmp), -1,
             getmaxy(bmp), r):
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             s1 = c(bmp, x1, y1)
             e1 = c(bmp, x2, y1)
             s2 = c(bmp, x1, y2)
@@ -2255,9 +2255,9 @@ def _use24btfn2circreg(bmp: array,
     else:
         xmax = getmaxx(bmp)
         ymax = getmaxy(bmp)
-        for v in itercirclepartlineedge(r):
-            x1, x2 = mirror(x, v[0])
-            y1, y2 = mirror(y, v[1])
+        for (v0, v1) in itercirclepartlineedge(r):
+            x1, x2 = mirror(x, v0)
+            y1, y2 = mirror(y, v1)
             x1 = setmin(x1, 0)
             x2 = setmax(x2, xmax - 1)
             if isinrange(y2, ymax, -1):
@@ -2292,9 +2292,9 @@ def copycircregion2buf(bmp: array,
     """
     copybuf = [_getclrbits(bmp), r]
     c = _getBMoffhdfunc(bmp)
-    for v in itercirclepartlineedge(r):
-        x1, x2 = mirror(x, v[0])
-        y1, y2 = mirror(y, v[1])
+    for (v0, v1) in itercirclepartlineedge(r):
+        x1, x2 = mirror(x, v0)
+        y1, y2 = mirror(y, v1)
         copybuf += [[bmp[c(bmp, x1, y1): c(bmp, x2, y1)],
                      bmp[c(bmp, x1, y2): c(bmp, x2, y2)]]]
     return copybuf
