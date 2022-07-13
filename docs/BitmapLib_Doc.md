@@ -1424,6 +1424,21 @@ Returns a list of vertices
               z: float)
 
 
+### [`delta`](#delta)
+
+```py
+def delta(v: list[numbers.Number, numbers.Number]):
+```
+
+Gets the delta from a list of two numbers
+
+    Args:
+        v: list[Number, Number]
+    
+    Returns:
+        delta of numbers
+
+
 ### [`dict2descorderlist`](#dict2descorderlist)
 
 ```py
