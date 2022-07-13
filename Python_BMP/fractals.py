@@ -321,10 +321,10 @@ def itermultifractal(
         sortrecpoints(x1, y1, x2, y2)
     dp = (Pmax - Pmin) / (x2 - x1)
     dq = (Qmax - Qmin) / (y2 - y1)
-    for y in range(y1, y2):
-        Q = Qmin + (y - y1) * dq
-        for x in range(x1, x2):
-            P = Pmin + (x - x1) * dp
+    xPmapping = [(Pmin + (x - x1) * dp, x) for x in range(x1, x2)]
+    yQmapping = [(Qmin + (y - y1) * dq, y) for y in range(y1, y2)]
+    for (Q, y) in yQmapping:
+        for (P, x) in xPmapping:
             yield (x, y, func(P, Q, d, maxiter))
 
 
@@ -359,10 +359,10 @@ def itermultifractalcomplexpar(
         sortrecpoints(x1, y1, x2, y2)
     dp = (Pmax - Pmin) / (x2 - x1)
     dq = (Qmax - Qmin) / (y2 - y1)
-    for y in range(y1, y2):
-        Q = Qmin + (y - y1) * dq
-        for x in range(x1, x2):
-            P = Pmin + (x - x1) * dp
+    xPmapping = [(Pmin + (x - x1) * dp, x) for x in range(x1, x2)]
+    yQmapping = [(Qmin + (y - y1) * dq, y) for y in range(y1, y2)]
+    for (Q, y) in yQmapping:
+        for (P, x) in xPmapping:
             yield (x, y, func(P, Q, c, d, maxiter))
 
 
