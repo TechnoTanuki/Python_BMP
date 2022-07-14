@@ -1463,16 +1463,19 @@ def Tetration(x: Number, n: Number) -> Number:
 fftfn = lambda a: exp(a * -1j)
 ifftfn = lambda a: exp(a * 1j)
 
+
 def applyfft(fn, v: list[complex], tmp: list = []):
+    """
+    A recursive implementation of
+    the 1D Cooley-Tukey FFT, the
+    input should have a length of
+    power of 2.
+    """
     n = len(v)
     if n > 1:
         l = n >> 1
-        vo = [0] * l
-        ve = [0] * l
-        for k in range(l):
-            _2k = k << 1
-            ve[k] = v[_2k]
-            vo[k] = v[_2k + 1]
+        ve = v[::2]
+        vo = v[1::2]
         applyfft(fn, ve, v)
         applyfft(fn, vo, v)
         for m in range(l):
@@ -1483,11 +1486,22 @@ def applyfft(fn, v: list[complex], tmp: list = []):
 
 
 def fft(v: list[complex]):
+    """
+    A recursive implementation of
+    the 1D Cooley-Tukey FFT, the
+    input should have a length of
+    power of 2.
+    """
     applyfft(fftfn, v)
 
+
 def ifft(v: list[complex]):
+    """
+    A recursive implementation of
+    the 1D Cooley-Tukey FFT, the
+    input should have a length of
+    power of 2.
+    """
     applyfft(ifftfn, v)
-
-
 
 
