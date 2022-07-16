@@ -690,8 +690,7 @@ def vmag(v: list[float]) -> float:
     Returns:
         float
     """
-    s = sum(i * i for i in v)
-    return sqrt(s)
+    return sqrt(sum(i * i for i in v))
 
 
 def distance(u: list[float],
