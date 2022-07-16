@@ -2151,7 +2151,7 @@ def gradthickroundline(bmp: array,
     """
     lum1, lumrang = range2baseanddelta(lumrange)
     for i in range(penradius, 0, -1):
-        c=colormix(int(lum1 +
+        c = colormix(int(lum1 +
             (lumrang * i / penradius)),
             	RGBfactors)
         if bmp[bmpcolorbits] != 24:
