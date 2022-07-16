@@ -237,7 +237,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Multicorn](../assets/fractals/multicorn.bmp)](../Hello_Multicorn_Set.py)
 
-[![Lambda](../assets/fractals/lambda.bmp))](../Hello_Lambdafractal.py)
+[![Lambda](../assets/fractals/lambda.bmp)](../Hello_Lambdafractal.py)
 
 [![Newtons](../assets/fractals/newtons.bmp)](../Hello_Newtons_fractal.py)
 
