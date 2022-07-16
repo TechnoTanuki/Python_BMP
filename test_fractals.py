@@ -134,7 +134,7 @@ class TestFractal2filefunc(unittest.TestCase):
         self.filecmp(*p)
 
 
-    def testsavenewtonsfractal4_2file(self):
+    def testsavenewtonsfractal4file(self):
         p = self._filepaths("newtons4.bmp")
         newton(p[0], 256, 256,
         self.fdict[4], self.domain,
