@@ -25,10 +25,12 @@ notice = """
 import unittest
 from os import path
 from Python_BMP.BITMAPlib import(
+        lambdafractal,
         loadBMP,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
         savejuliafractal2file as julia,
+        savelambdafractal2file as lambdafractal,
         savemultijuliafractal2file as multijulia,
         savetricornfractal2file as tricorn,
         savemulticornfractal2file as multicorn,
@@ -89,6 +91,14 @@ class TestFractal2filefunc(unittest.TestCase):
         julia(p[0], 256, 256,
         self.imag, # complex number
         self.domain, self.c['darkslategray1'])
+        self.filecmp(*p)
+
+
+    def testsavelambdafractal2file(self):
+        p = self._filepaths("lambda.bmp")
+        lambdafractal(p[0], 256, 256,
+        0.85 - 0.6j, # complex number
+        [-.5, .5, -.5, .5], self.c['gold'])
         self.filecmp(*p)
 
 

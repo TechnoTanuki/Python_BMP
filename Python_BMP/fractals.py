@@ -182,7 +182,7 @@ def sinjulia(P: float, Q: float,
 
 def cosjulia(P: float, Q: float,
         c: complex, maxiter: int) -> int:
-    """Cos(z) Julia  Function
+    """Cos(z) Julia Function
 
     Args:
         P : real part as float
@@ -197,6 +197,28 @@ def cosjulia(P: float, Q: float,
     z = complex(P, Q)
     for i in range(maxiter):
         z = c * cos(z)
+        if abs(z) > 2:
+            return i
+    return maxiter
+
+
+def lambdafn(P: float, Q: float,
+        c: complex, maxiter: int) -> int:
+    """Lambda fractal Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        c : complex number
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        z = c * z * (1 - z)
         if abs(z) > 2:
             return i
     return maxiter
@@ -571,6 +593,34 @@ def itercosjulia(
     """
     for p in itermultifractal(x1, y1, x2, y2, c,
         cosjulia, domain, maxiter):
+        yield p
+
+
+def iterlamdbafractal(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Lambda Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : Complex Number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x:int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, c,
+        lambdafn, domain, maxiter):
         yield p
 
 

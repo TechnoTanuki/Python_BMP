@@ -5178,6 +5178,30 @@ Yields a Julia set
         (x:int, y: int, c: int)
 
 
+### [`iterlamdbafractal`](#iterlamdbafractal)
+
+```py
+def iterlamdbafractal(x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Lambda Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : Complex Number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x:int, y: int, c: int)
+
+
 ### [`iterline`](#iterline)
 
 ```py
@@ -5551,6 +5575,33 @@ Returns list of 2D points for a Koch snowflake
     Returns:
         list of 2D vertices for a Koch snowflake
         [(x: int, y: int),...]
+
+
+### [`lambdafractal`](#lambdafractal)
+
+```py
+def lambdafractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Lambda Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`line`](#line)
@@ -10531,6 +10582,36 @@ Saves a Koch snowflake to a file
                          default = 0
         penradius: optional penradius
                    default = 1
+    
+    Returns:
+        a bitmap file
+
+
+### [`savelambdafractal2file`](#savelambdafractal2file)
+
+```py
+def savelambdafractal2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Lambda fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
     
     Returns:
         a bitmap file
