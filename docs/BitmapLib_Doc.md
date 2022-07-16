@@ -4794,7 +4794,7 @@ Yields a Cos(z) Julia Fractal
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`iterdrawvec`](#iterdrawvec)
@@ -5175,7 +5175,7 @@ Yields a Julia set
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`iterlamdbafractal`](#iterlamdbafractal)
@@ -5199,7 +5199,7 @@ Yields a Lambda Fractal
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`iterline`](#iterline)
@@ -5267,7 +5267,7 @@ Yields a Mandelbrot set
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`itermultibrot`](#itermultibrot)
@@ -5291,7 +5291,7 @@ Yields a Multibrot set
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`itermulticorn`](#itermulticorn)
@@ -5315,7 +5315,7 @@ Yields a Multicorn set
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`itermultijulia`](#itermultijulia)
@@ -5340,7 +5340,7 @@ Yields a Multijulia set
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`iternewtonsfractal`](#iternewtonsfractal)
@@ -5364,7 +5364,7 @@ Yields Newtons Fractal
                         color compute
     
     Yields:
-        (x:int, y: int, (itercount: int, root: float))
+        (x: int, y: int, (itercount: int, root: float))
 
 
 ### [`iterparallelogram`](#iterparallelogram)
@@ -5399,7 +5399,7 @@ Yields a Sin(z) Julia Fractal
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`iterspirograph`](#iterspirograph)
@@ -5484,7 +5484,7 @@ Yields a Tetration Fractal
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`itertricorn`](#itertricorn)
@@ -5507,7 +5507,7 @@ Yields a Tricorn set
                         color compute
     
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
 
 
 ### [`julia`](#julia)

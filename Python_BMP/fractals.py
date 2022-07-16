@@ -365,7 +365,7 @@ def itermultifractal(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     mp = mapfractaldomain2screencoords(x1, y1, x2, y2, domain)
     for ((P, x), (Q, y)) in product(*mp):
@@ -396,7 +396,7 @@ def itermultifractalcomplexpar(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     mp = mapfractaldomain2screencoords(x1, y1, x2, y2, domain)
     for ((P, x), (Q, y)) in product(*mp):
@@ -422,7 +422,7 @@ def itermandelbrot(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, 2,
         multibrot, domain, maxiter):
@@ -450,7 +450,7 @@ def iterjulia(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, 2,
         multijulia, domain, maxiter):
@@ -476,7 +476,7 @@ def itertricorn(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, 2,
         multicorn, domain, maxiter):
@@ -504,7 +504,7 @@ def itermultibrot(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         multibrot, mandelparam, maxiter):
@@ -532,7 +532,7 @@ def itertetration(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         tetrationfn, domain, maxiter):
@@ -560,7 +560,7 @@ def itersinjulia(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, c,
         sinjulia, domain, maxiter):
@@ -588,7 +588,7 @@ def itercosjulia(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, c,
         cosjulia, domain, maxiter):
@@ -616,7 +616,7 @@ def iterlamdbafractal(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, c,
         lambdafn, domain, maxiter):
@@ -646,7 +646,7 @@ def itermultijulia(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
         multijulia, domain, maxiter):
@@ -674,7 +674,7 @@ def itermulticorn(
                         color compute
 
     Yields:
-        (x:int, y: int, c: int)
+        (x: int, y: int, c: int)
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         multicorn, domain, maxiter):
@@ -744,7 +744,7 @@ def iternewtonsfractal(
                         color compute
 
     Yields:
-        (x:int, y: int, (itercount: int, root: float))
+        (x: int, y: int, (itercount: int, root: float))
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         newton, domain, maxiter):
