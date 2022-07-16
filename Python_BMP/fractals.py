@@ -304,6 +304,11 @@ def mapfractaldomain2screencoords(
                         to draw in
         domain        : coordinates in real
                         and imaginary plane
+    Returns:
+        Coordinate system mapping between screen
+        and the complex plane (P -> real,  Q -> imag)
+        [[(P: float, x: int), ...],
+         [(Q: float, y: int), ...]]
     """
     (Pmax, Pmin, Qmax, Qmin) = domain
     x1, y1, x2, y2 = \
