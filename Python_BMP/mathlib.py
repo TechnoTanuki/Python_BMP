@@ -633,7 +633,7 @@ def crossprod3d(
                     where x is
                     crossprod
     """
-    x = y = z= 0
+    x = y = z = 0
     if len(u) == 3 and len(v) == 3:
         x = u[1] * v[2] - u[2] * v[1]
         y = u[2] * v[0] - u[0] * v[2]

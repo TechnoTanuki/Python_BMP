@@ -244,6 +244,7 @@ def newton(P: float, Q: float,
     return newtonmethod(complex(P, Q), f, fp, maxiter)
 
 
+
 def multijulia(P: float, Q: float,
         c: complex,
         d: float, maxiter: int) -> int:
@@ -291,6 +292,29 @@ def multicorn(P: float, Q: float,
     return maxiter
 
 
+def mapfractaldomain2screencoords(
+    x1: int, y1: int,
+    x2: int, y2: int,
+    domain: list[float, float, float, float]
+    ) ->list[list, list]:
+    """Returns coordinate mapping between the complex plane
+    and screen coordinates
+
+    Args:
+        x1, y1, x2, y2: rectangular screen area
+                        to draw in
+        domain        : coordinates in real
+                        and imaginary plane
+    """
+    (Pmax, Pmin, Qmax, Qmin) = domain
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
+    dp = (Pmax - Pmin) / (x2 - x1)
+    dq = (Qmax - Qmin) / (y2 - y1)
+    return [[(Pmin + (x - x1) * dp, x) for x in range(x1, x2)],
+            [(Qmin + (y - y1) * dq, y) for y in range(y1, y2)]]
+
+
 def itermultifractal(
         x1: int, y1: int,
         x2: int, y2: int,
@@ -316,15 +340,9 @@ def itermultifractal(
     Yields:
         (x:int, y: int, c: int)
     """
-    (Pmax, Pmin, Qmax, Qmin) = domain
-    x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
-    dp = (Pmax - Pmin) / (x2 - x1)
-    dq = (Qmax - Qmin) / (y2 - y1)
-    xPmapping = [(Pmin + (x - x1) * dp, x) for x in range(x1, x2)]
-    yQmapping = [(Qmin + (y - y1) * dq, y) for y in range(y1, y2)]
-    for (Q, y) in yQmapping:
-        for (P, x) in xPmapping:
+    (xP, yQ) = mapfractaldomain2screencoords(x1, y1, x2, y2, domain)
+    for (Q, y) in yQ:
+        for (P, x) in xP:
             yield (x, y, func(P, Q, d, maxiter))
 
 
@@ -354,15 +372,9 @@ def itermultifractalcomplexpar(
     Yields:
         (x:int, y: int, c: int)
     """
-    (Pmax, Pmin, Qmax, Qmin) = domain
-    x1, y1, x2, y2 = \
-        sortrecpoints(x1, y1, x2, y2)
-    dp = (Pmax - Pmin) / (x2 - x1)
-    dq = (Qmax - Qmin) / (y2 - y1)
-    xPmapping = [(Pmin + (x - x1) * dp, x) for x in range(x1, x2)]
-    yQmapping = [(Qmin + (y - y1) * dq, y) for y in range(y1, y2)]
-    for (Q, y) in yQmapping:
-        for (P, x) in xPmapping:
+    (xP, yQ) = mapfractaldomain2screencoords(x1, y1, x2, y2, domain)
+    for (Q, y) in yQ:
+        for (P, x) in xP:
             yield (x, y, func(P, Q, c, d, maxiter))
 
 
