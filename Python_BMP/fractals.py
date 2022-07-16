@@ -244,7 +244,6 @@ def newton(P: float, Q: float,
     return newtonmethod(complex(P, Q), f, fp, maxiter)
 
 
-
 def multijulia(P: float, Q: float,
         c: complex,
         d: float, maxiter: int) -> int:
