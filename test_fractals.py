@@ -32,6 +32,7 @@ from Python_BMP.BITMAPlib import(
         savejuliafractal2file as julia,
         savelambdafractal2file as lambdafractal,
         savemultijuliafractal2file as multijulia,
+        savespiraljulia2file as spiraljulia,
         savetricornfractal2file as tricorn,
         savemulticornfractal2file as multicorn,
         savenewtonsfractal2file as newton,
@@ -91,6 +92,14 @@ class TestFractal2filefunc(unittest.TestCase):
         julia(p[0], 256, 256,
         self.imag, # complex number
         self.domain, self.c['darkslategray1'])
+        self.filecmp(*p)
+
+
+    def testsavespiralfractal2file(self):
+        p = self._filepaths("spiraljulia.bmp")
+        spiraljulia(p[0], 256, 256,
+        2.2 + 0.33j, # complex number
+        self.domain, self.c['greenyellow'])
         self.filecmp(*p)
 
 

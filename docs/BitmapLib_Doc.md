@@ -5402,6 +5402,30 @@ Yields a Sin(z) Julia Fractal
         (x: int, y: int, c: int)
 
 
+### [`iterspiraljulia`](#iterspiraljulia)
+
+```py
+def iterspiraljulia(x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Spiral Julia Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : Complex Number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`iterspirograph`](#iterspirograph)
 
 ```py
@@ -10829,6 +10853,36 @@ Saves a Sin(z) Julia Set to a file
         a bitmap file
 
 
+### [`savespiraljulia2file`](#savespiraljulia2file)
+
+```py
+def savespiraljulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Spiral Julia Set to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savetetrationfractal2file`](#savetetrationfractal2file)
 
 ```py
@@ -11204,6 +11258,33 @@ Returns a list of 2D vertices of a Square Spiral
     Returns:
         list of vertices of the spiral
         list[[x: int, y: int]]
+
+
+### [`spiraljulia`](#spiraljulia)
+
+```py
+def spiraljulia(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Spiral Julia Set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`spirographvert`](#spirographvert)
