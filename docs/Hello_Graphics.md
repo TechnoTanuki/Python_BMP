@@ -233,7 +233,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Multijulia](../assets/fractals/multijulia.bmp)](../Hello_Multijulia_Set.py)
 
-[![SpiralJulia](..assets/fractals/spiraljulia.bmp)](../Hello_SpiralJulia_Set.py)
+[![SpiralJulia](../assets/fractals/spiraljulia.bmp)](../Hello_SpiralJulia_Set.py)
 
 [![Tricorn](../assets/fractals/tricorn.bmp)](../Hello_Tricorn_Set.py)
 
