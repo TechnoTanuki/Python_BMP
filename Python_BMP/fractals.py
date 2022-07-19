@@ -354,7 +354,7 @@ def multicorn(P: float, Q: float,
     return maxiter
 
 
-def mapfractaldomain2screencoords(
+def mapfractaldomain(
     x1: int, y1: int,
     x2: int, y2: int,
     domain: list[float, float, float, float]
@@ -407,7 +407,7 @@ def itermultifractal(
     Yields:
         (x: int, y: int, c: int)
     """
-    mp = mapfractaldomain2screencoords(x1, y1, x2, y2, domain)
+    mp = mapfractaldomain(x1, y1, x2, y2, domain)
     for ((P, x), (Q, y)) in product(*mp):
         yield (x, y, func(P, Q, d, maxiter))
 
@@ -438,7 +438,7 @@ def itermultifractalcomplexpar(
     Yields:
         (x: int, y: int, c: int)
     """
-    mp = mapfractaldomain2screencoords(x1, y1, x2, y2, domain)
+    mp = mapfractaldomain(x1, y1, x2, y2, domain)
     for ((P, x), (Q, y)) in product(*mp):
             yield (x, y, func(P, Q, c, d, maxiter))
 
