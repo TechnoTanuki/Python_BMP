@@ -27,8 +27,10 @@ from os import path
 from Python_BMP.BITMAPlib import(
         lambdafractal,
         loadBMP,
+        multicircle,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
+        savemulticirclefractal2file as multicircle,
         savejuliafractal2file as julia,
         savelambdafractal2file as lambdafractal,
         savemultijuliafractal2file as multijulia,
@@ -84,6 +86,13 @@ class TestFractal2filefunc(unittest.TestCase):
         p = self._filepaths("multibrot.bmp")
         multibrot(p[0], 256, 256,
         5, self.domain, self.c['cornflowerblue'])
+        self.filecmp(*p)
+
+
+    def testsavemulticirclefractal2file(self):
+        p = self._filepaths("multicircle.bmp")
+        multicircle(p[0], 256, 256,
+        2.5, [-20, 20, -20, 20], self.c['royalblue'])
         self.filecmp(*p)
 
 

@@ -5294,6 +5294,29 @@ Yields a Multibrot set
         (x: int, y: int, c: int)
 
 
+### [`itermulticircle`](#itermulticircle)
+
+```py
+def itermulticircle(x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Multicircle set
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : color limit
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`itermulticorn`](#itermulticorn)
 
 ```py
@@ -7066,6 +7089,33 @@ def multibrot(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, do
 ```
 
 Draw a Multibrot set
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`multicircle`](#multicircle)
+
+```py
+def multicircle(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multicircle set
 
     Args:
         bmp           : unsigned
@@ -10677,6 +10727,36 @@ def savemultibrotfractal2file(file: str, x: int, y: int, d: float, domain: list[
 ```
 
 Saves a Multibrot Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savemulticirclefractal2file`](#savemulticirclefractal2file)
+
+```py
+def savemulticirclefractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Multicircle Fractal to a file
 
     Args:
         file    : full path to new file
