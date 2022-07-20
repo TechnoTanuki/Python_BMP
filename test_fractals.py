@@ -38,6 +38,7 @@ from Python_BMP.BITMAPlib import(
         savetricornfractal2file as tricorn,
         savemulticornfractal2file as multicorn,
         savenewtonsfractal2file as newton,
+        savexorfractal2file as xorfractal,
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
@@ -139,6 +140,13 @@ class TestFractal2filefunc(unittest.TestCase):
         p = self._filepaths("multicorn.bmp")
         multicorn(p[0], 256, 256,
         5, self.domain, self.c['aquamarine'])
+        self.filecmp(*p)
+
+
+    def testsavexorfractal2file(self):
+        p = self._filepaths("xor.bmp")
+        xorfractal(p[0], 256, 256,
+        97, [-200, 200, -200, 200], [], 8)
         self.filecmp(*p)
 
 

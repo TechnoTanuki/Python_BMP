@@ -5557,6 +5557,30 @@ Yields a Tricorn set
         (x: int, y: int, c: int)
 
 
+### [`iterxorfractal`](#iterxorfractal)
+
+```py
+def iterxorfractal(x1: int, y1: int, x2: int, y2: int, d: int, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Xor Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : int modulo
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`julia`](#julia)
 
 ```py
@@ -7115,7 +7139,7 @@ Draw a Multibrot set
 def multicircle(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
-Draw a Multicircle set
+Draw a Multicircle fractal
 
     Args:
         bmp           : unsigned
@@ -11022,6 +11046,36 @@ Saves a Tricorn Fractal to a file
         a bitmap file
 
 
+### [`savexorfractal2file`](#savexorfractal2file)
+
+```py
+def savexorfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Xor Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : int modulo
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
 ### [`setBMP2monochrome`](#setBMP2monochrome)
 
 ```py
@@ -12293,6 +12347,33 @@ Writes an integer value to an
     
     Returns:
         byref unsigned byte array
+
+
+### [`xorfractal`](#xorfractal)
+
+```py
+def xorfractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Xor fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : int modulo
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`xorvect`](#xorvect)
