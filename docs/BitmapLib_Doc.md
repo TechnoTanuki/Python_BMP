@@ -7756,7 +7756,7 @@ Outputs the bits of a list
         bitpattern: list of bytes
         onechar   : char to display
                     if bit is 1
-        zeropchar : char to display
+        zerochar : char to display
                     if bit is 0
     
     Returns:
