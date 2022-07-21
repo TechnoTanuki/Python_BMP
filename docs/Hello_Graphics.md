@@ -254,6 +254,8 @@ If there is demand for it I could in theory write a book based on this project l
 [![Hilbert4](../assets/fractals/hilbert4.bmp)](../Hello_ThickHilbertCurve.py)
 
 [![Xor](../assets/fractals/xor.bmp)](../Hello_Xorfractal.py)
+
+[![Xordiv](../assets/fractals/xordiv.bmp)](../Hello_Xordivfractal.py)
  
 [![Fern](../assets/fern.bmp)](../Hello_Fern.py)
 
