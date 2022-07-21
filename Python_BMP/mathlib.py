@@ -32,6 +32,7 @@ from math import(
 from numbers import Complex, Number
 from random import randint
 from functools import reduce
+from tkinter import S
 from typing import Callable
 from .conditionaltools import iif
 
@@ -1504,3 +1505,21 @@ def ifft(v: list[complex]):
     applyfft(ifftfn, v)
 
 
+def normvec(v: list[Number]) -> list[float]:
+    """Normalize a vector
+
+    To normalize a vector is to take a vector of
+    any length and, keeping it pointing in the
+    same direction, change its length to 1,
+    turning it into what is called a unit vector.
+
+    It describes a vector's direction without
+    regard to its length.
+
+    Args
+        v: a list of Numbers
+
+    Returns:
+        a unit vector (list of floats)
+    """
+    return scalarmulvect(v, (1 / vmag(v)))
