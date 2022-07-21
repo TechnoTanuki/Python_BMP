@@ -306,6 +306,24 @@ def xorfn(
     return ((int(P) ^ int(Q)) % d) % maxiter
 
 
+def xordivfn(
+        P: int, Q: int,
+        d: int, maxiter: int) -> int:
+    """Xor Function with integer div
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        d : int div
+        maxiter : color limit
+
+    Returns:
+        int
+    """
+    return ((int(P) ^ int(Q)) // d) % maxiter
+
+
+
 def newton(P: float, Q: float,
         d: float, maxiter: int) -> tuple:
     """Newton Function
@@ -649,6 +667,34 @@ def iterxorfractal(
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         xorfn, domain, maxiter):
+        yield p
+
+
+def iterxordivfractal(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: int,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Xor int div Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : int div
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x: int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, d,
+        xordivfn, domain, maxiter):
         yield p
 
 

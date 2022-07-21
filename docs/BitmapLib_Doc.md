@@ -5557,6 +5557,30 @@ Yields a Tricorn set
         (x: int, y: int, c: int)
 
 
+### [`iterxordivfractal`](#iterxordivfractal)
+
+```py
+def iterxordivfractal(x1: int, y1: int, x2: int, y2: int, d: int, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Xor int div Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : int div
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`iterxorfractal`](#iterxorfractal)
 
 ```py
@@ -11046,6 +11070,36 @@ Saves a Tricorn Fractal to a file
         a bitmap file
 
 
+### [`savexordivfractal2file`](#savexordivfractal2file)
+
+```py
+def savexordivfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Xor int div Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : int div
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savexorfractal2file`](#savexorfractal2file)
 
 ```py
@@ -12347,6 +12401,33 @@ Writes an integer value to an
     
     Returns:
         byref unsigned byte array
+
+
+### [`xordivfractal`](#xordivfractal)
+
+```py
+def xordivfractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Xor int div fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : int div
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`xorfractal`](#xorfractal)
