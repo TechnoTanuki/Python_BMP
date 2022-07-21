@@ -231,6 +231,26 @@ def scalarmulvect(
     return [s * scalarval for s in v]
 
 
+def scalardivvect(
+            v: list[Number],
+         scalarval: Number
+          ) -> list[Number]:
+    """Scales a vector by dividing with a scalar value (float)
+    all the components of the vector or a list of numbers
+
+    Args:
+        v        : the vector or
+                   a list of
+                   ints or floats
+        scalarval: scalar value
+                   (float or int)
+
+    Returns:
+        list of ints or floats
+    """
+    return [s / scalarval for s in v]
+
+
 def intscalarmulvect(vec: list[Number],
                     scalarval: Number
                     ) -> list[int]:
@@ -1445,7 +1465,7 @@ def newtonmethod(x0: Number,
     return null
 
 
-def Tetration(x: Number, n: Number) -> Number:
+def tetration(x: Number, n: Number) -> Number:
     """ Tetration by recursion
 
     Args
@@ -1457,19 +1477,27 @@ def Tetration(x: Number, n: Number) -> Number:
     """
     if n == 0:
         return 1
-    return x ** Tetration(x, n-1)
+    return x ** tetration(x, n-1)
 
 
 fftfn = lambda a: exp(a * -1j)
 ifftfn = lambda a: exp(a * 1j)
 
 
-def applyfft(fn, v: list[complex], tmp: list = []):
+def applyfft(fn : Callable, v: list[complex], tmp: list = []):
     """
     A recursive implementation of
     the 1D Cooley-Tukey FFT, the
     input should have a length of
     power of 2.
+
+    Args:
+       fn: function
+        v: vector or list of complex numbers
+      tmp: optional buffer (list)
+
+    Returns:
+        vector or list of complex numbers
     """
     n = len(v)
     if n > 1:
@@ -1487,20 +1515,36 @@ def applyfft(fn, v: list[complex], tmp: list = []):
 
 def fft(v: list[complex]):
     """
+    FFT
+
     A recursive implementation of
     the 1D Cooley-Tukey FFT, the
     input should have a length of
     power of 2.
+
+    Args:
+        v: vector or list of complex number
+
+    Returns:
+        vector or list of complex numbers
     """
     applyfft(fftfn, v)
 
 
 def ifft(v: list[complex]):
     """
+    Inverse FFT
+
     A recursive implementation of
     the 1D Cooley-Tukey FFT, the
     input should have a length of
     power of 2.
+
+    Args:
+        v: vector or list of complex numbers
+
+    Returns:
+        vector or list of complex numbers
     """
     applyfft(ifftfn, v)
 
@@ -1522,4 +1566,4 @@ def normvec(v: list[Number]) -> list[float]:
     Returns:
         a unit vector (list of floats)
     """
-    return scalarmulvect(v, (1 / vmag(v)))
+    return scalardivvect(v, vmag(v))
