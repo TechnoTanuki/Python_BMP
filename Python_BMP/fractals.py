@@ -290,7 +290,7 @@ def multicircle(
 
 
 def xorfn(
-        P: int, Q: int,
+        P: float, Q: float,
         d: int, maxiter: int) -> int:
     """Xor Function
 
@@ -307,7 +307,7 @@ def xorfn(
 
 
 def xordivfn(
-        P: int, Q: int,
+        P: float, Q: float,
         d: int, maxiter: int) -> int:
     """Xor Function with integer div
 
