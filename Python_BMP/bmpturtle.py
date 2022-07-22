@@ -18,15 +18,7 @@ _cmd = 3
 _default_state = [0, 0, 0 , []]
 _state = [0, 0, 0, []]
 
-def position():
-    return _state[0:2]
-
-
-def heading():
-    return _state[_h]
-
-@logaction
-def goto(x, y = None):
+def _goto(x, y = None):
     if len(x) == 2 and type(x) == list:
          _state[0:2] = x
     else:
@@ -35,13 +27,25 @@ def goto(x, y = None):
         else:
             _state[_x] = x
 
+@logaction
+def position():
+    return _state[0:2]
 
+@logaction
+def heading():
+    return _state[_h]
+
+@logaction
+def goto(x, y = None):
+    _goto(x, y)
+
+@logaction
 def setpos(x, y = None):
-    goto(x, y)
+    _goto(x, y)
 
-
+@logaction
 def setposition(x, y = None):
-    goto(x, y)
+    _goto(x, y)
 
 @logaction
 def setx(x):
@@ -55,14 +59,13 @@ def setx(y):
 def setheading(to_angle):
     _state[_h] = to_angle
 
-
+@logaction
 def seth(to_angle):
-    setheading(to_angle)
+    _state[_h] = to_angle
 
 @logaction
 def home():
     _state = _default_state
-    _state[_cmd] += [f'home()']
 
 @logaction
 def circle(radius, extent=None, steps=None):
@@ -81,9 +84,21 @@ def undo():
 def towards(x, y=None):
     if len(x) == 2 and type(x) == list:
          (x0, y0) = _state[0:2]
+         #todo compute angle
     else:
         if type(y) == Number:
             (x0, y0) = _state[0:2]
         else:
             x0 = _state[_x]
 
+@logaction
+def xcor():
+    return _state[_x]
+
+@logaction
+def ycor():
+    return _state[_y]
+
+@logaction
+def heading():
+    return _state[_h]
