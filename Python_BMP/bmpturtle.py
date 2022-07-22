@@ -1,4 +1,5 @@
-
+from turtle import distance
+from .mathlib import (subvect, vmag)
 import inspect
 import functools
 from typing import Number
@@ -83,8 +84,7 @@ def undo():
 @logaction
 def towards(x, y=None):
     if len(x) == 2 and type(x) == list:
-         (x0, y0) = _state[0:2]
-         #todo compute angle
+         (x0, y0) = x[0:2]
     else:
         if type(y) == Number:
             (x0, y0) = _state[0:2]
