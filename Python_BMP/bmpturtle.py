@@ -1,7 +1,8 @@
 
 import functools
 from typing import Number
-from math import degrees as deg, radians as rad, pi
+from math import degrees as deg, radians as rad, pi, cos, sin
+
 
 def logaction(f):
     @functools.wraps(f)
@@ -14,6 +15,8 @@ _loc = 0
 _h = 1
 _au = 2
 _pen = 3
+_pendown = 0
+_pensize = 1
 _cmd = 4
 
 _default_state = [complex(0, 0), 0 ,'d', [True, 1], []]
@@ -156,34 +159,53 @@ def pendown():
 
 @logaction
 def pd():
-    _state[_pen][0] =  True
+    _state[_pen][_pendown] =  True
 
 
 @logaction
 def down():
-    _state[_pen][0] =  True
+    _state[_pen][_pendown] =  True
 
 
 @logaction
 def penup():
-    _state[_pen][0] =  False
+    _state[_pen][_pendown] =  False
 
 
 @logaction
 def pu():
-    _state[_pen][0] =  False
+    _state[_pen][_pendown] =  False
 
 
 @logaction
 def up():
-    _state[_pen][0] =  False
+    _state[_pen][_pendown] =  False
 
 
 @logaction
 def pensize(width=None):
     if type(width) == int or type(width) == float:
-        _state[_pen][1] = width
-    return _state[_pen][1]
+        _state[_pen][_pensize] = width
+    return _state[_pen][_pensize]
+
+@logaction
+def forward(dist):
+    _state[_loc] += complex(cos(_state[_h])*dist, sin(_state[_h])*dist)
+
+@logaction
+def fw(dist):
+    _state[_loc] += complex(cos(_state[_h])*dist, sin(_state[_h])*dist)
+
+
+def backward(dist):
+    _state[_loc] -= complex(cos(_state[_h])*dist, sin(_state[_h])*dist)
+
+@logaction
+def bw(dist):
+    _state[_loc] -= complex(cos(_state[_h])*dist, sin(_state[_h])*dist)
+
+
+
 
 def printactions():
     print(_state[_cmd])
