@@ -1,7 +1,7 @@
 
 import functools
 from typing import Number
-from math import degrees, radians
+from math import degrees as deg, radians as rad, pi
 
 def logaction(f):
     @functools.wraps(f)
@@ -9,12 +9,16 @@ def logaction(f):
         _state[_cmd] += [f'{f.__name__}({args})']
         return f(*args, **kwargs)
     return wrapper
-
+_2pi = 2 * pi
 _p = 0
 _h = 1
 _cmd = 2
-_default_state = [complex(0, 0), 0 , []]
-_state = [complex(0, 0), 0, []]
+_au = 3
+_pen = 4
+
+
+_default_state = [complex(0, 0), 0 , [] ,'d', [True, 1]]
+_state = _default_state
 
 def _goto(x, y = None):
     if len(x) == 2 and type(x) == list:
@@ -63,12 +67,11 @@ def setx(y):
 
 @logaction
 def setheading(to_angle):
-    _state[_h] = to_angle
-
+    _state[_h] = rad(to_angle) if _state[_au] == 'd' else to_angle
 
 @logaction
 def seth(to_angle):
-    _state[_h] = to_angle
+    _state[_h] = rad(to_angle) if _state[_au] == 'd' else to_angle
 
 
 @logaction
@@ -101,7 +104,10 @@ def towards(x, y=None):
         else:
             p = (x, _state[_p].imag)
     d = p - _state[_p]
-    return degrees(d.phase)
+    phase = d.phase
+    _state[_h] = phase
+    h = phase if _state[_au] == 'R' else deg(phase)
+    return h
 
 
 @logaction
@@ -116,7 +122,7 @@ def ycor():
 
 @logaction
 def heading():
-    return _state[_h]
+    return  degrees(_state[_h]) if _state[_au] == 'd' else _state[_h]
 
 
 @logaction
@@ -130,4 +136,49 @@ def distance(x, y=None):
             p = (x, _state[_p].imag)
     d = p - _state[_p]
     return abs(d)
+
+
+@logaction
+def degrees(fullcircle=360.0):
+    if fullcircle == 360.0:
+        _state[_au] == 'd'
+    else :
+        _state[_au] == fullcircle
+
+
+@logaction
+def radians():
+    _state[_au] == 'r'
+
+
+@logaction
+def pendown():
+    _state[_pen][0] =  True
+
+
+@logaction
+def pd():
+    _state[_pen][0] =  True
+
+
+@logaction
+def down():
+    _state[_pen][0] =  True
+
+
+@logaction
+def penup():
+    _state[_pen][0] =  False
+
+
+@logaction
+def pu():
+    _state[_pen][0] =  False
+
+
+@logaction
+def up():
+    _state[_pen][0] =  False
+
+
 
