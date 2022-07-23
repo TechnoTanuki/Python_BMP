@@ -6,33 +6,32 @@ from math import degrees as deg, radians as rad, pi
 def logaction(f):
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
-        _state[_cmd] += [f'{f.__name__}({args})']
+        _state[_cmd] += [f'{f.__name__}({args}{kwargs})']
         return f(*args, **kwargs)
     return wrapper
 _2pi = 2 * pi
-_p = 0
+_loc = 0
 _h = 1
-_cmd = 2
-_au = 3
-_pen = 4
+_au = 2
+_pen = 3
+_cmd = 4
 
-
-_default_state = [complex(0, 0), 0 , [] ,'d', [True, 1]]
+_default_state = [complex(0, 0), 0 ,'d', [True, 1], []]
 _state = _default_state
 
 def _goto(x, y = None):
     if len(x) == 2 and type(x) == list:
-         _state[_p] = complex(x[0], x[1])
+         _state[_loc] = complex(x[0], x[1])
     else:
         if type(y) == Number:
-            _state[_p] = complex(x, y)
+            _state[_loc] = complex(x, y)
         else:
-            _state[_p].real = x
+            _state[_loc].real = x
 
 
 @logaction
 def position():
-    return (_state[_p].real, _state[_p].imag)
+    return (_state[_loc].real, _state[_loc].imag)
 
 
 @logaction
@@ -57,12 +56,12 @@ def setposition(x, y = None):
 
 @logaction
 def setx(x):
-    _state[_p].real = x
+    _state[_loc].real = x
 
 
 @logaction
 def setx(y):
-    _state[_p].imag = y
+    _state[_loc].imag = y
 
 
 @logaction
@@ -102,8 +101,8 @@ def towards(x, y=None):
         if type(y) == Number:
             p = complex(x, y)
         else:
-            p = (x, _state[_p].imag)
-    d = p - _state[_p]
+            p = (x, _state[_loc].imag)
+    d = p - _state[_loc]
     phase = d.phase
     _state[_h] = phase
     h = phase if _state[_au] == 'R' else deg(phase)
@@ -112,18 +111,17 @@ def towards(x, y=None):
 
 @logaction
 def xcor():
-    return _state[_p].real
+    return _state[_loc].real
 
 
 @logaction
 def ycor():
-    return _state[_p].imag
+    return _state[_loc].imag
 
 
 @logaction
 def heading():
     return  degrees(_state[_h]) if _state[_au] == 'd' else _state[_h]
-
 
 @logaction
 def distance(x, y=None):
@@ -133,8 +131,8 @@ def distance(x, y=None):
         if type(y) == Number:
             p = complex(x, y)
         else:
-            p = (x, _state[_p].imag)
-    d = p - _state[_p]
+            p = (x, _state[_loc].imag)
+    d = p - _state[_loc]
     return abs(d)
 
 
@@ -181,4 +179,11 @@ def up():
     _state[_pen][0] =  False
 
 
+@logaction
+def pensize(width=None):
+    if type(width) == int or type(width) == float:
+        _state[_pen][1] = width
+    return _state[_pen][1]
 
+def printactions():
+    print(_state[_cmd])
