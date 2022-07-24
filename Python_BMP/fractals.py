@@ -432,8 +432,9 @@ def marekdragon(P: float, Q: float,
         int
     """
     z = complex(P, Q)
+    c = exp(_2pij * d)
     for i in range(maxiter):
-        z = (exp(_2pij * d) + z) * z
+        z = (c + z) * z
         if abs(z) > 2:
             return i
     return maxiter
