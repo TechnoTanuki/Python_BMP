@@ -34,7 +34,8 @@ from .mathlib import (
     subvect,
     newtonmethod,
     scalarmulvect,
-    roundvect
+    roundvect,
+    sign
     )
 
 def getIFSparams() -> dict:
@@ -384,6 +385,28 @@ def multicorn(P: float, Q: float,
     c = complex(P, Q)
     for i in range(maxiter):
         z = z.conjugate()**d + c
+        if abs(z) > 2:
+            return i
+    return maxiter
+
+
+def barnsleytree(P: float, Q: float,
+        d: complex, maxiter: int) -> int:
+    """Barnsley Tree Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        d : complex number
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        z = d * (z - sign(z.real))
         if abs(z) > 2:
             return i
     return maxiter
@@ -865,6 +888,34 @@ def itermulticorn(
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         multicorn, domain, maxiter):
+        yield p
+
+
+def iterbarnsleytree(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Barnsley Tree Fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x: int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, d,
+        barnsleytree, domain, maxiter):
         yield p
 
 

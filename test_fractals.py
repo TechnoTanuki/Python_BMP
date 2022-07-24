@@ -28,6 +28,7 @@ from Python_BMP.BITMAPlib import(
         lambdafractal,
         loadBMP,
         multicircle,
+        savebarnsleytreefractal2file as barnsleytree,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
         savemulticirclefractal2file as multicircle,
@@ -141,6 +142,15 @@ class TestFractal2filefunc(unittest.TestCase):
         p = self._filepaths("multicorn.bmp")
         multicorn(p[0], 256, 256,
         5, self.domain, self.c['aquamarine'])
+        self.filecmp(*p)
+
+
+    def testsavebarnsleytreefractal2file(self):
+        p = self._filepaths("barnsleytree.bmp")
+        barnsleytree(p[0], 256, 256,
+          0.6 + 1.1j, # complex number
+          [-1.5, 1.5, -1.5, 1.5], # location to plot
+          self.c['yellowgreen'])
         self.filecmp(*p)
 
 

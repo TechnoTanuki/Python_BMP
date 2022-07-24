@@ -227,6 +227,7 @@ from .fractals import(
     getIFSparams,
     iterIFS,
     hilbertvert,
+    iterbarnsleytree,
     itermandelbrot,
     iterjulia,
     itersinjulia,
@@ -9646,6 +9647,38 @@ def multicorn(bmp: array,
         RGBfactors, maxiter)
 
 
+def barnsleytree(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: complex,
+        domain: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Barnsley Tree Fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : complex number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractal(bmp, x1, y1, x2, y2, d,
+        iterbarnsleytree, domain,
+        RGBfactors, maxiter)
+
+
 def IFS(bmp: array,
         IFStransparam: tuple,
         x1: int, y1: int,
@@ -9992,6 +10025,49 @@ def savemulticornfractal2file(
         file,
         x, y,
         multicorn,
+        d,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
+
+
+@functimer
+def savebarnsleytreefractal2file(
+        file: str,
+        x: int, y: int,
+        d: complex,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Barnsley Tree Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        d       : complex number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    savemultifractal2file(
+        file,
+        x, y,
+        barnsleytree,
         d,
         domain,
         rgbfactors,
