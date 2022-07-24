@@ -1,5 +1,5 @@
 notice = """
-      Barnsley Tree Fractal Demo
+      Marek Dragon Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -13,7 +13,7 @@ notice = """
 """
 from Python_BMP.BITMAPlib import(
         getX11RGBfactors,
-        savebarnsleytreefractal2file as f,
+        savemarekdragon2file as f,
         fractaldomainparamdict as d,
         getfuncmetastr as meta,
         )
@@ -32,8 +32,8 @@ def main():
         par = d() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my,
-          0.6 + 1.1j, # complex number
-          [-1.5, 1.5, -1.5, 1.5], # location to plot
+          0.040884634, # irrational number
+          [-2, 1, -1.5, 1.5], # location to plot
           cf['yellowgreen'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
