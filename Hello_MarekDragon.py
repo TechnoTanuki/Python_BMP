@@ -33,8 +33,8 @@ def main():
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my,
           0.040884634, # irrational number
-          [-2, 1, -1.5, 1.5], # location to plot
-          cf['yellowgreen'])
+          [-1.5, .5, -1.25, 1], # location to plot
+          [], 8) #cf['yellowgreen']
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])
