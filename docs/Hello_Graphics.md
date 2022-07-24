@@ -247,6 +247,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Newtons4](../assets/fractals/newtons4.bmp)](../Hello_Newtons_fractal4.py)
 
+[![BarnsleyTree](../assets/fractals/barnsleytree.bmp)](../Hello_BarnsleyTree.py)
+
 [![Koch](../assets/fractals/koch3.bmp)](../Hello_KochSnowflake.py)
 
 [![Hilbert6](../assets/fractals/hilbert6.bmp)](../Hello_HilbertCurve.py)
