@@ -32,7 +32,6 @@ from math import(
 from numbers import Complex, Number
 from random import randint
 from functools import reduce
-from tkinter import S
 from typing import Callable
 from .conditionaltools import iif
 
