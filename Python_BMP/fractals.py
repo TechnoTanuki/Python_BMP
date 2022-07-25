@@ -432,9 +432,8 @@ def marekdragon(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    c = exp(_2pij * d)
     for i in range(maxiter):
-        z *= (c + z)
+        z *= (d + z)
         if abs(z) > 2:
             return i
     return maxiter
@@ -970,6 +969,7 @@ def itermarekdragon(
     Yields:
         (x: int, y: int, c: int)
     """
+    d =  exp(_2pij * d)
     for p in itermultifractal(x1, y1, x2, y2, d,
         marekdragon, domain, maxiter):
         yield p
