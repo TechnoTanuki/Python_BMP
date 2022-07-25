@@ -1478,7 +1478,9 @@ def plotxybit(bmp: array,
     if bits == 24:
         offset = _24bmofhd(bmp, x, y)
         bmp[offset: offset + 3] = \
-            int2BGRarr(c)
+            array('B', [c & 0xff,
+                      (c >> 8) & 0xff,
+                       c >> 16])
     elif bits == 8:
         bmp[_8bmofhd(bmp, x, y)] = c & 0xff
     elif bits == 4:
