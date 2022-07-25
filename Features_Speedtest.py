@@ -398,7 +398,7 @@ def main():
                 hhmmsselaspedtime(starttime))
 
         starttime = _time_ns()
-        file = 'test.bmp' # some random filename
+        file = 'Hello_speedtest.bmp' # some random filename
         saveBMP(file, bmp) # dump byte array to file
         print('Saved ' + file + ' in ',
         hhmmsselaspedtime(starttime))
