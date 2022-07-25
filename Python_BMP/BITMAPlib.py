@@ -1476,15 +1476,23 @@ def plotxybit(bmp: array,
         return
     bits = bmp[bmpcolorbits]
     if bits == 24:
-        offset = _24bmofhd(bmp, x, y)
+        offset = (x * 3) + \
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+        _xbytes(readint(bmpx, 4, bmp), 24 )) + 54
         bmp[offset: offset + 3] = \
             array('B', [c & 0xff,
                       (c >> 8) & 0xff,
                        c >> 16])
     elif bits == 8:
-        bmp[_8bmofhd(bmp, x, y)] = c & 0xff
+        bmp[x + \
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+             _xbytes(readint(bmpx, 4, bmp), 8)) + \
+                 1078] = c & 0xff
     elif bits == 4:
-        offset = _4bmofhd(bmp, x, y)
+        offset = (x >> 1) + \
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+            _xbytes(readint(bmpx, 4, bmp), 4)) + \
+                118
         c &= 0xf
         if x & 1 == 1:
             bmp[offset] = \
@@ -1493,7 +1501,10 @@ def plotxybit(bmp: array,
             bmp[offset] = \
                 (c << 4) + (bmp[offset] & 0xf)
     elif bits == 1:
-        offset = _1bmofhd(bmp, x, y)
+        offset = (x >> 3) + \
+        ((readint(bmpy, 4, bmp) - y - 1) * \
+            _xbytes(readint(bmpx, 4, bmp), 1)) + \
+                62
         b = bmp[offset]
         mask = 1 << (7 - (x % 8))
         c = 1 if c > 0 else 0
