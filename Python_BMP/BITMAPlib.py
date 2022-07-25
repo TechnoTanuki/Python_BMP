@@ -1474,7 +1474,7 @@ def plotxybit(bmp: array,
     """
     if not isinBMPrectbnd(bmp, x, y):
         return
-    offset = _BMoffsethd(bmp, x, y)
+    offset = _getBMoffhdfunc(bmp)(bmp, x, y)
     bits = bmp[bmpcolorbits]
     if bits == 24:
         bmp[offset:offset + 3] = \
