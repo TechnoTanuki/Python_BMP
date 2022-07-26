@@ -1592,7 +1592,7 @@ def histogram2Dcomplex(
     qbinsize = (qmax - qmin) / qbins
     h = [[0 for i in range(pbins)] for j in range(qbins)]
     for z in v:
-        h[int(z.real / pbinsize)][int(z.imag / qbinsize)] += 1
+        h[int(z.imag / qbinsize)][int(z.real / pbinsize)] += 1
     return h
 
 

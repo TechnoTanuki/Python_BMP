@@ -22,10 +22,9 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        mx = my = 256 # square canvas
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, # path to new file
-        mx, my, # size of file
+        256, 256, # size of file
         24, # bit depth
         0.85, 0.9, 0.4, 7.7, # constants (float)
         100000 # number of iterations
