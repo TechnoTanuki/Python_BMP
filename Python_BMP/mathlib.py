@@ -583,7 +583,7 @@ def coefvar(v: list[Number]) -> float:
     around the mean.
 
     It is also known as (RSD) or relative standard deviation
-    and is defined as the ratio of the standard deviation 
+    and is defined as the ratio of the standard deviation
     to the mean
 
     Args:

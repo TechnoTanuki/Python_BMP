@@ -636,7 +636,6 @@ def itermultibrot(
         yield p
 
 
-
 def itermulticircle(
         x1: int, y1: int,
         x2: int, y2: int,
@@ -1129,3 +1128,28 @@ def kochsnowflakevert(
     return  kochcurvevert(a, b, n) + \
             kochcurvevert(b, c, n) + \
             kochcurvevert(c, a, n)
+
+
+def ikedaattractor(
+        a: float,
+        b: float,
+        k: float,
+        p: float,
+        n: int) -> list[complex]:
+    """Returns list of complex numbers for an Ikeda Attractor
+
+    Args:
+        a, b, k ,p: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of complex numbers for an Ikeda Attractor
+        [z: complex,...]
+    """
+    h = []
+    z = complex(0, 0)
+    for i in range(n):
+        z = a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z))))
+        h += [z]
+    return h
+
