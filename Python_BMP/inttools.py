@@ -38,8 +38,7 @@ def writeint(offset: int, cnt: int,
     """
     j = cnt - 1
     for i in range(j):
-        b = value & 0xff
-        arr[offset + i] = b
+        arr[offset + i] = value & 0xff
         value = value >> 8
 
 
