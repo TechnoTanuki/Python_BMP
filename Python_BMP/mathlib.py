@@ -1598,3 +1598,5 @@ def histogram2Dcomplex(
     return h
 
 
+def ravel2d(v:list [list[any]]) -> list[any]:
+    return [i for sv in v for i in sv]

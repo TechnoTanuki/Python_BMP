@@ -11,7 +11,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.mathlib import getcomplexdomainbounds, histogram2Dcomplex
+from Python_BMP.mathlib import getcomplexdomainbounds, histogram2Dcomplex, ravel2d
 from Python_BMP.fractals import ikedaattractor
 import subprocess as proc
 from os import path
@@ -23,6 +23,8 @@ def main():
     print (domain)
     h = histogram2Dcomplex(d, 5, 3)
     print(h)
+    fh = ravel2d(h)
+    print(fh)
 
 if __name__=="__main__":
         main()
