@@ -1581,3 +1581,20 @@ def getcomplexdomainbounds(v: list[Complex]) -> list[float, float, float, float]
     p = [z.real for z in v]
     q = [z.imag for z in v]
     return (min(p), max(p), min(q), max(q))
+
+
+def histogram2Dcomplex(
+        v: list[Complex],
+        pbins: int,
+        qbins: int):
+    (pmin, pmax, qmin, qmax) = getcomplexdomainbounds(v)
+    pbinsize = (pmax - pmin) / pbins
+    qbinsize = (qmax - qmin) / qbins
+    h = [[0] * pbins] * qbins
+    for z in v:
+        p = int(z.real / pbinsize)
+        q = int(z.imag / qbinsize)
+        h[q][p] += 1
+    return h
+
+
