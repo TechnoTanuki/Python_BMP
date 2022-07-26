@@ -1566,3 +1566,18 @@ def normvec(v: list[Number]) -> list[float]:
         a unit vector (list of floats)
     """
     return scalardivvect(v, vmag(v))
+
+
+def getcomplexdomainbounds(v: list[Complex]) -> list[float, float, float, float]:
+    """Get the bounds of a list of complex numbers
+    in the complex plane
+
+    Args
+        v: a list of complex numbers
+
+    Returns:
+        (float: minreal, float: maxreal, float: minimag, float: maximag)
+    """
+    p = [z.real for z in v]
+    q = [z.imag for z in v]
+    return (min(p), max(p), min(q), max(q))
