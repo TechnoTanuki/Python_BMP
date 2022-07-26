@@ -78,7 +78,10 @@ from .mathlib import(
     swapxy,
     trans,
     vmag,
-    xorvect
+    xorvect,
+    getcomplexdomainbounds,
+    histogram2Dcomplex,
+    ravel2d
     )
 
 from .primitives2D import(
@@ -248,7 +251,8 @@ from .fractals import(
     funcparamdict,
     kochcurvevert,
     kochsnowflakevert,
-    newton
+    newton,
+    ikedaattractorlist,
     )
 
 from .inttools import(
@@ -10918,6 +10922,62 @@ def outline(bmp: array):
     outlineregion(bmp, 0, 0,
         getmaxx(bmp) - 1,
         getmaxy(bmp) - 1)
+
+
+def ikedaattractor(
+        x: int,
+        y: int,
+        bits: int,
+        a: float,
+        b: float,
+        k: float,
+        p: float,
+        n: int):
+    """Draws an Ikeda Attractor
+
+    Args:
+        x, y          : int dimensions of bmp
+        bits          : int bit depth
+        a, b, k, p: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        byref unsigned byte array
+    """
+    h = histogram2Dcomplex(ikedaattractorlist(a, b, k, p, n), x, y)
+    fh = ravel2d(h)
+    minval = min(fh)
+    bmp = newBMP(x, y, bits)
+    f = (getmaxcolors(bmp) - 1)/ (max(fh) - minval)
+    for q in range(y):
+        for p in range(x):
+            plotxybit(bmp, p, q, int((h[q][p] - minval) * f))
+    return bmp
+
+
+@functimer
+def saveikedaattractor2file(
+        file: str,
+        x: int,
+        y: int,
+        bits: int,
+        a: float,
+        b: float,
+        k: float,
+        p: float,
+        n: int):
+    """Draws an Ikeda Attractor
+
+    Args:
+        x, y          : int dimensions of bmp
+        bits          : int bit depth
+        a, b, k, p: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, ikedaattractor(x, y, bits, a, b, k, p, n))
 
 
 @intcircleparam

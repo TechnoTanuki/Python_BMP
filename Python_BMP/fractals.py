@@ -1130,7 +1130,7 @@ def kochsnowflakevert(
             kochcurvevert(c, a, n)
 
 
-def ikedaattractor(
+def ikedaattractorlist(
         a: float,
         b: float,
         k: float,
@@ -1139,7 +1139,7 @@ def ikedaattractor(
     """Returns list of complex numbers for an Ikeda Attractor
 
     Args:
-        a, b, k ,p: float coefficients
+        a, b, k, p: float coefficients
         n: number of terms to compute
 
     Returns:

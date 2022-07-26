@@ -1590,7 +1590,7 @@ def histogram2Dcomplex(
     (pmin, pmax, qmin, qmax) = getcomplexdomainbounds(v)
     pbinsize = (pmax - pmin) / pbins
     qbinsize = (qmax - qmin) / qbins
-    h = [[0] * pbins] * qbins
+    h = [[0 for i in range(pbins)] for j in range(qbins)]
     for z in v:
         p = int(z.real / pbinsize)
         q = int(z.imag / qbinsize)
