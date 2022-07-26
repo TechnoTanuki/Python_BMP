@@ -32,6 +32,7 @@ from Python_BMP.BITMAPlib import(
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
         savemulticirclefractal2file as multicircle,
+        saveikedaattractor2file as ikedaattractor,
         savejuliafractal2file as julia,
         savelambdafractal2file as lambdafractal,
         savemultijuliafractal2file as multijulia,
@@ -213,6 +214,16 @@ class TestFractal2filefunc(unittest.TestCase):
         koch(p[0], 123, 3, 0, 4, 15, 2, 3)
         self.filecmp(*p)
 
+
+    def testikedaattractor(self):
+        p = self._filepaths("ikedaattractor.bmp")
+        ikedaattractor(p[0], # path to new file
+        256, 256, # size of file
+        24, # bit depth
+        0.85, 0.9, 0.4, 7.7, # constants (float)
+        100000 # number of iterations
+        )
+        self.filecmp(*p)
 
 
 if __name__ == "__main__":
