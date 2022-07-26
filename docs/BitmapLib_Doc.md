@@ -3134,6 +3134,22 @@ def getcolorname2RGBdict() -> dict:
     
 
 
+### [`getcomplexdomainbounds`](#getcomplexdomainbounds)
+
+```py
+def getcomplexdomainbounds(v: list[numbers.Complex]) -> list[float, float, float, float]:
+```
+
+Get the bounds of a list of complex numbers
+in the complex plane
+
+    Args
+        v: a list of complex numbers
+    
+    Returns:
+        (float: minreal, float: maxreal, float: minimag, float: maximag)
+
+
 ### [`getdatalisttotal`](#getdatalisttotal)
 
 ```py
@@ -3788,6 +3804,17 @@ Returns list of 2D points for a Hilbert curve
         [(x: int, y: int),...]
 
 
+### [`histogram2Dcomplex`](#histogram2Dcomplex)
+
+```py
+def histogram2Dcomplex(v: list[numbers.Complex], pbins: int, qbins: int):
+```
+
+
+
+    
+
+
 ### [`horibrightnessgrad2circregion2file`](#horibrightnessgrad2circregion2file)
 
 ```py
@@ -4135,6 +4162,41 @@ Returns trueval if
     
     Returns:
         a value depending on boolcond
+
+
+### [`ikedaattractor`](#ikedaattractor)
+
+```py
+def ikedaattractor(x: int, y: int, bits: int, a: float, b: float, k: float, p: float, n: int):
+```
+
+Draws an Ikeda Attractor
+
+    Args:
+        x, y          : int dimensions of bmp
+        bits          : int bit depth
+        a, b, k, p: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`ikedaattractorlist`](#ikedaattractorlist)
+
+```py
+def ikedaattractorlist(a: float, b: float, k: float, p: float, n: int) -> list[complex]:
+```
+
+Returns list of complex numbers for an Ikeda Attractor
+
+    Args:
+        a, b, k, p: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        list of complex numbers for an Ikeda Attractor
+        [z: complex,...]
 
 
 ### [`imagecomp`](#imagecomp)
@@ -10117,6 +10179,17 @@ Gets the base and range values in a list of numbers
         in lst_range
 
 
+### [`ravel2d`](#ravel2d)
+
+```py
+def ravel2d(v: list[list[any]]) -> list[any]:
+```
+
+
+
+    
+
+
 ### [`readint`](#readint)
 
 ```py
@@ -10778,6 +10851,24 @@ Saves a Hilbert Curve to a file
                    default = 1
         orientation: can be 0 or 1
                      default = 1
+    
+    Returns:
+        a bitmap file
+
+
+### [`saveikedaattractor2file`](#saveikedaattractor2file)
+
+```py
+def saveikedaattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, k: float, p: float, n: int):
+```
+
+Draws an Ikeda Attractor
+
+    Args:
+        x, y          : int dimensions of bmp
+        bits          : int bit depth
+        a, b, k, p: float coefficients
+        n: number of terms to compute
     
     Returns:
         a bitmap file
