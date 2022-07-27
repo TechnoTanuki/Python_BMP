@@ -13,7 +13,6 @@
  -----------------------------------
 """
 
-from itertools import product
 from random import random
 from typing import Callable
 from .primitives2D import (
@@ -492,9 +491,10 @@ def itermultifractal(
     Yields:
         (x: int, y: int, c: int)
     """
-    mp = mapfractaldomain(x1, y1, x2, y2, domain)
-    for ((P, x), (Q, y)) in product(*mp):
-        yield (x, y, func(P, Q, d, maxiter))
+    (mp, mq) = mapfractaldomain(x1, y1, x2, y2, domain)
+    for (Q, y) in mq:
+        for (P, x) in mp:
+            yield (x, y, func(P, Q, d, maxiter))
 
 
 def itermultifractalcomplexpar(
@@ -523,8 +523,9 @@ def itermultifractalcomplexpar(
     Yields:
         (x: int, y: int, c: int)
     """
-    mp = mapfractaldomain(x1, y1, x2, y2, domain)
-    for ((P, x), (Q, y)) in product(*mp):
+    (mp, mq) = mapfractaldomain(x1, y1, x2, y2, domain)
+    for (Q, y) in mq:
+        for (P, x) in mp:
             yield (x, y, func(P, Q, c, d, maxiter))
 
 
