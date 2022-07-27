@@ -1171,8 +1171,5 @@ def ikedaattractorlist(
         list of complex numbers for an Ikeda Attractor
         [z: complex,...]
     """
-    h = []
     z = complex(0, 0)
-    for i in range(n):
-        h += [z := a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z))))]
-    return h
+    return [z := a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z)))) for _ in range(n)]
