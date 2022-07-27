@@ -1154,3 +1154,25 @@ def ikedaattractorlist(
         h += [z]
     return h
 
+
+def ikedaattractorlist(
+        a: float,
+        b: float,
+        k: float,
+        p: float,
+        n: int) -> list[complex]:
+    """Returns list of complex numbers for an Ikeda Attractor
+
+    Args:
+        a, b, k, p: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of complex numbers for an Ikeda Attractor
+        [z: complex,...]
+    """
+    h = []
+    z = complex(0, 0)
+    for i in range(n):
+        h += [z := a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z))))]
+    return h
