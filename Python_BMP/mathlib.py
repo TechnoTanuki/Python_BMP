@@ -1583,10 +1583,23 @@ def getcomplexdomainbounds(v: list[Complex]) -> list[float, float, float, float]
     return (min(p), max(p), min(q), max(q))
 
 
+def initmatrix(i: int, j: int, initval: any = 0):
+    """Creates a matrix with  i rows and j columns
+
+    Args
+        i: int rows of the matrix
+        j: int cols of the matrix
+
+    Returns:
+        [[x: int:, x1: int, ...], ...]
+    """
+    return  [[initval for i in range(i)] for j in range(j)]
+
+
 def histogram2Dcomplex(
         v: list[Complex],
         pbins: int,
-        qbins: int):
+        qbins: int) -> list[list[int]]:
     """Computes the histogram of a list of points
     in the complex plane centered at 0, 0
 
@@ -1599,7 +1612,7 @@ def histogram2Dcomplex(
     (pmin, pmax, qmin, qmax) = getcomplexdomainbounds(v)
     pbinsize = (pmax - pmin) / (pbins - 1)
     qbinsize = (qmax - qmin) / (qbins - 1)
-    h = [[0 for i in range(pbins)] for j in range(qbins)]
+    h = initmatrix(pbins, qbins)
     for z in v:
         h[int((z.imag - qmin)/ qbinsize)][int((z.real - pmin)/ pbinsize)] += 1
     return h
