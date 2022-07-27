@@ -1587,11 +1587,18 @@ def histogram2Dcomplex(
         v: list[Complex],
         pbins: int,
         qbins: int):
+    """Computes the histogram of a list of points
+    in the complex plane centered at 0, 0
+
+    Args
+        v: a list of complex numbers
+
+    Returns:
+        [[x: int:, x1: int, ...], ...]
+    """
     (pmin, pmax, qmin, qmax) = getcomplexdomainbounds(v)
-    prange = pmax - pmin
-    qrange = qmax - qmin
-    pbinsize = prange / (pbins - 1)
-    qbinsize = qrange / (qbins - 1)
+    pbinsize = (pmax - pmin) / (pbins - 1)
+    qbinsize = (qmax - qmin) / (qbins - 1)
     h = [[0 for i in range(pbins)] for j in range(qbins)]
     for z in v:
         h[int((z.imag - qmin)/ qbinsize)][int((z.real - pmin)/ pbinsize)] += 1
@@ -1599,4 +1606,12 @@ def histogram2Dcomplex(
 
 
 def ravel2d(v:list [list[any]]) -> list[any]:
+    """Flatten a nested list
+
+    Args
+        v: [[x: any:, x1: any, ...], ...]
+
+    Returns:
+        [x: any:, x1: any, ...]
+    """
     return [i for sv in v for i in sv]

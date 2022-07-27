@@ -3810,9 +3810,14 @@ Returns list of 2D points for a Hilbert curve
 def histogram2Dcomplex(v: list[numbers.Complex], pbins: int, qbins: int):
 ```
 
+Computes the histogram of a list of points
+in the complex plane centered at 0, 0
 
-
+    Args
+        v: a list of complex numbers
     
+    Returns:
+        [[x: int:, x1: int, ...], ...]
 
 
 ### [`horibrightnessgrad2circregion2file`](#horibrightnessgrad2circregion2file)
@@ -10185,9 +10190,13 @@ Gets the base and range values in a list of numbers
 def ravel2d(v: list[list[any]]) -> list[any]:
 ```
 
+Flatten a nested list
 
-
+    Args
+        v: [[x: any:, x1: any, ...], ...]
     
+    Returns:
+        [x: any:, x1: any, ...]
 
 
 ### [`readint`](#readint)
