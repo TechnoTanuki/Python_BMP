@@ -23,8 +23,8 @@ from .primitives2D import (
     )
 
 from math import (
-    sin as msin,
-    cos as mcos
+    sin as sine,
+    cos as cosine
 )
 
 from cmath import (
@@ -1197,5 +1197,5 @@ def svenssonringattractorlist(
         [z: complex,...]
     """
     x = y = 0
-    return [complex(*[ax := a * x, by := b * y, x := d * msin(ax) - msin(by),
-             y := c * mcos(ax) + mcos(by)][::-2]) for _ in range(n)]
+    return [complex(*[ax := a * x, by := b * y, x := d * sine(ax) - sine(by),
+             y := c * cosine(ax) + cosine(by)][::-2]) for _ in range(n)]
