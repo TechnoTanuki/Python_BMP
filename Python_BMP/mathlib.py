@@ -1282,7 +1282,7 @@ def bitmaskvect(v: list[int],
     Returns:
         list[int]
     """
-    return [b & bitmask for b in v ]
+    return [b & bitmask for b in v]
 
 
 def orvect(u: list[int],

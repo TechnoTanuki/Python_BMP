@@ -1185,17 +1185,17 @@ def svenssonringattractorlist(
         b: float,
         c: float,
         d: float,
-        n: int) -> list[list[float, float]]:
-    """Returns list of xy coordinates for a Svensson ring
+        n: int) -> list[complex]:
+    """Returns list of complex numbers for a Svensson ring
 
     Args:
         a, b, c, d: float coefficients
         n: number of terms to compute
 
     Returns:
-        list of numbers for a Svensson ring
-        [[x: float, y: float],...]
+        list of complex numbers for a Svensson ring
+        [z: complex,...]
     """
     x = y = 0
-    return [[ax := a * x, by := b * y, x := d * msin(ax) - msin(by),
-             y := c * mcos(ax) + mcos(by)][::-2] for _ in range(n)]
+    return [complex(*[ax := a * x, by := b * y, x := d * msin(ax) - msin(by),
+             y := c * mcos(ax) + mcos(by)][::-2]) for _ in range(n)]
