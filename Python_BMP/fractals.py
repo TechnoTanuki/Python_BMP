@@ -22,6 +22,11 @@ from .primitives2D import (
     regpolygonvert
     )
 
+from math import (
+    sin as msin,
+    cos as mcos
+)
+
 from cmath import (
     sin,
     cos,
@@ -1173,3 +1178,24 @@ def ikedaattractorlist(
     """
     z = complex(0, 0)
     return [z := a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z)))) for _ in range(n)]
+
+
+def svenssonringattractorlist(
+        a: float,
+        b: float,
+        c: float,
+        d: float,
+        n: int) -> list[list[float, float]]:
+    """Returns list of xy coordinates for a Svensson ring
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of numbers for a Svensson ring
+        [[x: float, y: float],...]
+    """
+    x = y = 0
+    return [[ax := a * x, by := b * y, x := d * msin(ax) - msin(by),
+             y := c * mcos(ax) + mcos(by)][::-2] for _ in range(n)]
