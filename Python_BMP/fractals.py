@@ -1180,13 +1180,13 @@ def ikedaattractorlist(
     return [z := a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z)))) for _ in range(n)]
 
 
-def svenssonringattractorlist(
+def nattractorlist(
         a: float,
         b: float,
         c: float,
         d: float,
         n: int) -> list[complex]:
-    """Returns list of complex numbers for a Svensson ring
+    """Returns list of complex numbers for a n attractor
 
     Args:
         a, b, c, d: float coefficients
@@ -1197,5 +1197,5 @@ def svenssonringattractorlist(
         [z: complex,...]
     """
     x = y = 0
-    return [complex(*[ax := a * x, by := b * y, x := d * sine(ax) - sine(by),
-             y := c * cosine(ax) + cosine(by)][::-2]) for _ in range(n)]
+    return [[x := a * sine(a * y) + b * cosine(b * x),
+             y := c * sine(c * x) + d * cosine(d * y)] for _ in range(n)]

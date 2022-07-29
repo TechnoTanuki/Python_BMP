@@ -3196,6 +3196,21 @@ Gets the default luminosity
         luminosity ranges
 
 
+### [`getdomainbounds`](#getdomainbounds)
+
+```py
+def getdomainbounds(v: list[list[float, float]]) -> list[float, float, float, float]:
+```
+
+Get the bounds of a list of xy coordinate pairs
+
+    Args
+        v: a list of [x, y]
+    
+    Returns:
+        (float: minreal, float: maxreal, float: minimag, float: maximag)
+
+
 ### [`getfuncmetastr`](#getfuncmetastr)
 
 ```py
@@ -3804,10 +3819,25 @@ Returns list of 2D points for a Hilbert curve
         [(x: int, y: int),...]
 
 
+### [`histogram2D`](#histogram2D)
+
+```py
+def histogram2D(v: list[float, float], xbins: int, ybins: int) -> list[list[int]]:
+```
+
+Computes the histogram of a list of x, y points
+
+    Args
+        v: a list of xy pairs
+    
+    Returns:
+        [[c: int:, c1: int, ...], ...]
+
+
 ### [`histogram2Dcomplex`](#histogram2Dcomplex)
 
 ```py
-def histogram2Dcomplex(v: list[numbers.Complex], pbins: int, qbins: int):
+def histogram2Dcomplex(v: list[numbers.Complex], pbins: int, qbins: int) -> list[list[int]]:
 ```
 
 Computes the histogram of a list of points
@@ -3817,7 +3847,7 @@ in the complex plane centered at 0, 0
         v: a list of complex numbers
     
     Returns:
-        [[x: int:, x1: int, ...], ...]
+        [[c: int:, c1: int, ...], ...]
 
 
 ### [`horibrightnessgrad2circregion2file`](#horibrightnessgrad2circregion2file)
@@ -4178,8 +4208,8 @@ def ikedaattractor(x: int, y: int, bits: int, a: float, b: float, k: float, p: f
 Draws an Ikeda Attractor
 
     Args:
-        x, y          : int dimensions of bmp
-        bits          : int bit depth
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
         a, b, k, p: float coefficients
         n: number of terms to compute
     
@@ -4275,6 +4305,22 @@ Gets an image region by rgb in a bitmap file
     
     Returns:
         new bitmap file
+
+
+### [`initmatrix`](#initmatrix)
+
+```py
+def initmatrix(i: int, j: int, initval: <built-in function any> = 0):
+```
+
+Creates a matrix with  i rows and j columns
+
+    Args
+        i: int rows of the matrix
+        j: int cols of the matrix
+    
+    Returns:
+        [[c: int:, c1: int, ...], ...]
 
 
 ### [`int2BGRarr`](#int2BGRarr)
@@ -7408,6 +7454,41 @@ Draw a Multijulia set
         byref modified unsigned byte array
 
 
+### [`nattractor`](#nattractor)
+
+```py
+def nattractor(x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Svensson Ring Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`nattractorlist`](#nattractorlist)
+
+```py
+def nattractorlist(a: float, b: float, c: float, d: float, n: int) -> list[complex]:
+```
+
+Returns list of complex numbers for a n attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        list of complex numbers for a Svensson ring
+        [z: complex,...]
+
+
 ### [`newBMP`](#newBMP)
 
 ```py
@@ -8108,6 +8189,40 @@ def plot8bitpatternwithfn(bmp: array.array, x: int, y: int, bitpattern: list, sc
     
     Returns:
         byref modified unsigned byte array
+
+
+### [`plotattractor`](#plotattractor)
+
+```py
+def plotattractor(v: list[complex], x: int, y: int, bits: int):
+```
+
+Draws an Attractor from a list of x, y pairs
+
+    Args:
+        v   : list of complex numbers
+        x, y: int dimensions of bmp
+        bits: int bit depth
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`plotattractorcomplex`](#plotattractorcomplex)
+
+```py
+def plotattractorcomplex(v: list[complex], x: int, y: int, bits: int):
+```
+
+Draws an Attractor from a list of Complex Numbers
+
+    Args:
+        v   : list of complex numbers
+        x, y: int dimensions of bmp
+        bits: int bit depth
+    
+    Returns:
+        byref unsigned byte array
 
 
 ### [`plotbitsastext`](#plotbitsastext)
@@ -10184,10 +10299,10 @@ Gets the base and range values in a list of numbers
         in lst_range
 
 
-### [`ravel2d`](#ravel2d)
+### [`ravel2D`](#ravel2D)
 
 ```py
-def ravel2d(v: list[list[any]]) -> list[any]:
+def ravel2D(v: list[list[any]]) -> list[any]:
 ```
 
 Flatten a nested list
@@ -10874,8 +10989,8 @@ def saveikedaattractor2file(file: str, x: int, y: int, bits: int, a: float, b: f
 Draws an Ikeda Attractor
 
     Args:
-        x, y          : int dimensions of bmp
-        bits          : int bit depth
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
         a, b, k, p: float coefficients
         n: number of terms to compute
     
@@ -11238,6 +11353,24 @@ Saves a Sin(z) Julia Set to a file
                   (1, 4, 8, 24) bits
         maxiter : optional parameter
                   to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savesnattractor2file`](#savesnattractor2file)
+
+```py
+def savesnattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a N Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
     
     Returns:
         a bitmap file

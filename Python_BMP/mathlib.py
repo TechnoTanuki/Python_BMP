@@ -1583,6 +1583,20 @@ def getcomplexdomainbounds(v: list[Complex]) -> list[float, float, float, float]
     return (min(p), max(p), min(q), max(q))
 
 
+def getdomainbounds(v: list[list[float, float]]) -> list[float, float, float, float]:
+    """Get the bounds of a list of xy coordinate pairs
+
+    Args
+        v: a list of [x, y]
+
+    Returns:
+        (float: minreal, float: maxreal, float: minimag, float: maximag)
+    """
+    p = [z[0] for z in v]
+    q = [z[1] for z in v]
+    return (min(p), max(p), min(q), max(q))
+
+
 def initmatrix(i: int, j: int, initval: any = 0):
     """Creates a matrix with  i rows and j columns
 
@@ -1591,9 +1605,30 @@ def initmatrix(i: int, j: int, initval: any = 0):
         j: int cols of the matrix
 
     Returns:
-        [[x: int:, x1: int, ...], ...]
+        [[c: int:, c1: int, ...], ...]
     """
     return  [[initval for i in range(i)] for j in range(j)]
+
+
+def histogram2D(
+        v: list[float, float],
+        xbins: int,
+        ybins: int) -> list[list[int]]:
+    """Computes the histogram of a list of x, y points
+
+    Args
+        v: a list of xy pairs
+
+    Returns:
+        [[c: int:, c1: int, ...], ...]
+    """
+    (xmin, xmax, ymin, ymax) = getdomainbounds(v)
+    xbinsize = (xmax - xmin) / (xbins - 1)
+    ybinsize = (ymax - ymin) / (ybins - 1)
+    h = initmatrix(xbins, ybins)
+    for z in v:
+        h[int((z[1] - ymin) / ybinsize)][int((z[0] - xmin) / xbinsize)] += 1
+    return h
 
 
 def histogram2Dcomplex(
@@ -1607,7 +1642,7 @@ def histogram2Dcomplex(
         v: a list of complex numbers
 
     Returns:
-        [[x: int:, x1: int, ...], ...]
+        [[c: int:, c1: int, ...], ...]
     """
     (pmin, pmax, qmin, qmax) = getcomplexdomainbounds(v)
     pbinsize = (pmax - pmin) / (pbins - 1)
@@ -1618,7 +1653,7 @@ def histogram2Dcomplex(
     return h
 
 
-def ravel2d(v:list [list[any]]) -> list[any]:
+def ravel2D(v:list [list[any]]) -> list[any]:
     """Flatten a nested list
 
     Args

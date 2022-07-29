@@ -79,9 +79,12 @@ from .mathlib import(
     trans,
     vmag,
     xorvect,
+    initmatrix,
+    getdomainbounds,
     getcomplexdomainbounds,
     histogram2Dcomplex,
-    ravel2d
+    histogram2D,
+    ravel2D
     )
 
 from .primitives2D import(
@@ -253,6 +256,7 @@ from .fractals import(
     kochsnowflakevert,
     newton,
     ikedaattractorlist,
+    nattractorlist
     )
 
 from .inttools import(
@@ -978,7 +982,7 @@ def getRGBpal(bmp: array,
     Returns:
         [R: byte, G: byte, B:byte]
     """
-    i= bmppal + (c << 2)
+    i = bmppal + (c << 2)
     return [bmp[i + 2], bmp[i + 1], bmp[i]]
 
 
@@ -10924,11 +10928,9 @@ def outline(bmp: array):
         getmaxy(bmp) - 1)
 
 
-def plotattractor(
+def plotattractorcomplex(
         v: list[complex],
-        x: int,
-        y: int,
-        bits: int):
+        x: int, y: int, bits: int):
     """Draws an Attractor from a list of Complex Numbers
 
     Args:
@@ -10940,7 +10942,31 @@ def plotattractor(
         byref unsigned byte array
     """
     h = histogram2Dcomplex(v, x, y)
-    fh = ravel2d(h)
+    fh = ravel2D(h)
+    minval = min(fh)
+    bmp = newBMP(x, y, bits)
+    f = (getmaxcolors(bmp) - 1)/ (max(fh) - minval)
+    for q in range(y):
+        for p in range(x):
+            plotxybit(bmp, p, q, int((h[q][p] - minval) * f))
+    return bmp
+
+
+def plotattractor(
+        v: list[complex],
+        x: int, y: int, bits: int):
+    """Draws an Attractor from a list of x, y pairs
+
+    Args:
+        v   : list of complex numbers
+        x, y: int dimensions of bmp
+        bits: int bit depth
+
+    Returns:
+        byref unsigned byte array
+    """
+    h = histogram2D(v, x, y)
+    fh = ravel2D(h)
     minval = min(fh)
     bmp = newBMP(x, y, bits)
     f = (getmaxcolors(bmp) - 1)/ (max(fh) - minval)
@@ -10951,44 +10977,55 @@ def plotattractor(
 
 
 def ikedaattractor(
-        x: int,
-        y: int,
-        bits: int,
-        a: float,
-        b: float,
-        k: float,
-        p: float,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        k: float, p: float,
         n: int):
     """Draws an Ikeda Attractor
 
     Args:
-        x, y          : int dimensions of bmp
-        bits          : int bit depth
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
         a, b, k, p: float coefficients
         n: number of terms to compute
 
     Returns:
         byref unsigned byte array
     """
-    return plotattractor(ikedaattractorlist(a, b, k, p, n), x, y, bits)
+    return plotattractorcomplex(ikedaattractorlist(a, b, k, p, n), x, y, bits)
+
+
+def nattractor(
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a Svensson Ring Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        byref unsigned byte array
+    """
+    return plotattractor(nattractorlist(a, b, c, d, n), x, y, bits)
 
 
 @functimer
 def saveikedaattractor2file(
         file: str,
-        x: int,
-        y: int,
-        bits: int,
-        a: float,
-        b: float,
-        k: float,
-        p: float,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        k: float, p: float,
         n: int):
     """Draws an Ikeda Attractor
 
     Args:
-        x, y          : int dimensions of bmp
-        bits          : int bit depth
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
         a, b, k, p: float coefficients
         n: number of terms to compute
 
@@ -10996,6 +11033,27 @@ def saveikedaattractor2file(
         a bitmap file
     """
     saveBMP(file, ikedaattractor(x, y, bits, a, b, k, p, n))
+
+
+@functimer
+def savesnattractor2file(
+        file: str,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a N Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, nattractor(x, y, bits, a, b, c, d, n))
 
 
 @intcircleparam
