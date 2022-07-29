@@ -40,6 +40,7 @@ from Python_BMP.BITMAPlib import(
         savetricornfractal2file as tricorn,
         savemulticornfractal2file as multicorn,
         savenewtonsfractal2file as newton,
+        savesnattractor2file as nattractor,
         savexorfractal2file as xorfractal,
         savexordivfractal2file as xordivfractal,
         funcparamdict,
@@ -218,10 +219,21 @@ class TestFractal2filefunc(unittest.TestCase):
     def testikedaattractor(self):
         p = self._filepaths("ikedaattractor.bmp")
         ikedaattractor(p[0], # path to new file
-        256, 256, # size of file
+        256, 256, # size of file x, y
         24, # bit depth
         0.85, 0.9, 0.4, 7.7, # constants (float)
         100000 # number of iterations
+        )
+        self.filecmp(*p)
+
+
+    def testnattractor(self):
+        p = self._filepaths("nattractor.bmp")
+        nattractor(p[0], # path to new file
+        256, 256, # size of file x, y
+        24, # bit depth
+         1.641, -1.902, 1.316, 1.525,# constants (float)
+        50000 # number of iterations
         )
         self.filecmp(*p)
 
