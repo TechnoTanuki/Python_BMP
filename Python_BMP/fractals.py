@@ -1161,10 +1161,8 @@ def ikedaattractorlist(
 
 
 def ikedaattractorlist(
-        a: float,
-        b: float,
-        k: float,
-        p: float,
+        a: float, b: float,
+        k: float, p: float,
         n: int) -> list[complex]:
     """Returns list of complex numbers for an Ikeda Attractor
 
@@ -1181,10 +1179,27 @@ def ikedaattractorlist(
 
 
 def nattractorlist(
-        a: float,
-        b: float,
-        c: float,
-        d: float,
+        a: float, b: float,
+        c: float, d: float,
+        n: int) -> list[complex]:
+    """Returns list of [x,y] coordinate pairs for a n attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of x,y pairs for a n attractor
+        [[x: float, y: float],...]
+    """
+    x = y = 0
+    return [[x := a * sine(a * y) + b * cosine(b * x),
+             y := c * sine(c * x) + d * cosine(d * y)] for _ in range(n)]
+
+
+def nattractorlist(
+        a: float, b: float,
+        c: float, d: float,
         n: int) -> list[complex]:
     """Returns list of [x,y] coordinate pairs for a n attractor
 
