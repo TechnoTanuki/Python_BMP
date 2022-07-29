@@ -15,7 +15,6 @@ from Python_BMP.BITMAPlib import(
     savegumowskimiraattractor2file as f,
     getfuncmetastr as meta)
 
-from Python_BMP.fractals import gumowskimiraattractorlist as g
 import subprocess as proc
 from os import path
 
