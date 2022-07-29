@@ -1186,7 +1186,7 @@ def nattractorlist(
         c: float,
         d: float,
         n: int) -> list[complex]:
-    """Returns list of complex numbers for a n attractor
+    """Returns list of [x,y] coordinate pairs for a n attractor
 
     Args:
         a, b, c, d: float coefficients
