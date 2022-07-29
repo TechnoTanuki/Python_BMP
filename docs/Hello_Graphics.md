@@ -251,6 +251,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Ikedaattractor](../assets/fractals/ikedaattractor.bmp)](../Hello_Ikedaattractor.py)
 
+[![nattractor](../assets/fractals/nattractor.bmp)](../Hello_nattractor.py)
+
 [![Koch](../assets/fractals/koch3.bmp)](../Hello_KochSnowflake.py)
 
 [![Hilbert6](../assets/fractals/hilbert6.bmp)](../Hello_HilbertCurve.py)
