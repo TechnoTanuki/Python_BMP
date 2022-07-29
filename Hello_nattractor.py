@@ -26,8 +26,7 @@ def main():
         f(file, # path to new file
         256, 256, # size of file
         24, # bit depth
-         1.641, -1.902, 1.316, 1.525
-  ,# constants (float)
+         1.641, -1.902, 1.316, 1.525,# constants (float)
         50000 # number of iterations
         )
         print('Saved to %s in %s\nAll done close %s to finish' % \
