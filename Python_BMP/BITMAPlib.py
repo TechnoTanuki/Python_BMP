@@ -10924,6 +10924,32 @@ def outline(bmp: array):
         getmaxy(bmp) - 1)
 
 
+def plotattractor(
+        v: list[complex],
+        x: int,
+        y: int,
+        bits: int):
+    """Draws an Attractor from a list of Complex Numbers
+
+    Args:
+        v   : list of complex numbers
+        x, y: int dimensions of bmp
+        bits: int bit depth
+
+    Returns:
+        byref unsigned byte array
+    """
+    h = histogram2Dcomplex(v, x, y)
+    fh = ravel2d(h)
+    minval = min(fh)
+    bmp = newBMP(x, y, bits)
+    f = (getmaxcolors(bmp) - 1)/ (max(fh) - minval)
+    for q in range(y):
+        for p in range(x):
+            plotxybit(bmp, p, q, int((h[q][p] - minval) * f))
+    return bmp
+
+
 def ikedaattractor(
         x: int,
         y: int,
@@ -10944,15 +10970,7 @@ def ikedaattractor(
     Returns:
         byref unsigned byte array
     """
-    h = histogram2Dcomplex(ikedaattractorlist(a, b, k, p, n), x, y)
-    fh = ravel2d(h)
-    minval = min(fh)
-    bmp = newBMP(x, y, bits)
-    f = (getmaxcolors(bmp) - 1)/ (max(fh) - minval)
-    for q in range(y):
-        for p in range(x):
-            plotxybit(bmp, p, q, int((h[q][p] - minval) * f))
-    return bmp
+    return plotattractor(ikedaattractorlist(a, b, k, p, n), x, y, bits)
 
 
 @functimer
