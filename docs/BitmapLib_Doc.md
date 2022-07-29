@@ -3762,6 +3762,42 @@ List of 2d vertices as spheres of a given color
         unsigned byte array
 
 
+### [`gumowskimiraattractor`](#gumowskimiraattractor)
+
+```py
+def gumowskimiraattractor(x: int, y: int, bits: int, a: float, b: float, n: int):
+```
+
+Draws a Gumowski-Mira Attractor
+
+    Args:
+        x, y: int dimensions of bmp
+        bits: int bit depth
+        a, b: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`gumowskimiraattractorlist`](#gumowskimiraattractorlist)
+
+```py
+def gumowskimiraattractorlist(a: float, b: float, n: int) -> list[list[float, float]]:
+```
+
+Returns list of [x,y] coordinate pairs for a
+Gumowski-Mira attractor
+
+    Args:
+        a, b: float coefficients
+        n   : number of terms to compute
+    
+    Returns:
+        list of x,y pairs for a n attractor
+        [[x: float, y: float],...]
+
+
 ### [`heartcurvevert`](#heartcurvevert)
 
 ```py
@@ -7460,7 +7496,7 @@ Draw a Multijulia set
 def nattractor(x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
 ```
 
-Draws a Svensson Ring Attractor
+Draws a N Attractor
 
     Args:
         x, y      : int dimensions of bmp
@@ -7475,7 +7511,7 @@ Draws a Svensson Ring Attractor
 ### [`nattractorlist`](#nattractorlist)
 
 ```py
-def nattractorlist(a: float, b: float, c: float, d: float, n: int) -> list[complex]:
+def nattractorlist(a: float, b: float, c: float, d: float, n: int) -> list[list[float, float]]:
 ```
 
 Returns list of [x,y] coordinate pairs for a n attractor
@@ -10951,6 +10987,24 @@ Saves a Fractal with a parameter to a file
         a bitmap file
 
 
+### [`savegumowskimiraattractor2file`](#savegumowskimiraattractor2file)
+
+```py
+def savegumowskimiraattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, n: int):
+```
+
+Draws a Gumowski-Mira attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savehilbertcurve2file`](#savehilbertcurve2file)
 
 ```py
@@ -10986,7 +11040,7 @@ Saves a Hilbert Curve to a file
 def saveikedaattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, k: float, p: float, n: int):
 ```
 
-Draws an Ikeda Attractor
+Draws an Ikeda Attractor to file
 
     Args:
         x, y      : int dimensions of bmp
@@ -11364,7 +11418,7 @@ Saves a Sin(z) Julia Set to a file
 def savesnattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
 ```
 
-Draws a N Attractor
+Draws a N Attractor to file
 
     Args:
         x, y      : int dimensions of bmp

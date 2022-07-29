@@ -1195,3 +1195,28 @@ def nattractorlist(
     x = y = 0
     return [[x := a * sine(a * y) + b * cosine(b * x),
              y := c * sine(c * x) + d * cosine(d * y)] for _ in range(n)]
+
+
+def gumowskimiraattractorlist(
+        a: float, b: float,
+        n: int) -> list[list[float, float]]:
+    """Returns list of [x,y] coordinate pairs for a
+    Gumowski-Mira attractor
+
+    Args:
+        a, b: float coefficients
+        n   : number of terms to compute
+
+    Returns:
+        list of x,y pairs for a n attractor
+        [[x: float, y: float],...]
+    """
+    x = b
+    y = a
+    f = lambda x: a * x + (2 * (1 - a)) * x * x * ((1 + x * x) ** -2)
+    g = f(x)
+    v = []
+    for _ in range(n):
+        z = x
+        v += [[x := b * y + g, y := (g := f(x)) - z]]
+    return v

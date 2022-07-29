@@ -256,7 +256,8 @@ from .fractals import(
     kochsnowflakevert,
     newton,
     ikedaattractorlist,
-    nattractorlist
+    nattractorlist,
+    gumowskimiraattractorlist
     )
 
 from .inttools import(
@@ -11000,7 +11001,7 @@ def nattractor(
         a: float, b: float,
         c: float, d: float,
         n: int):
-    """Draws a Svensson Ring Attractor
+    """Draws a N Attractor
 
     Args:
         x, y      : int dimensions of bmp
@@ -11014,6 +11015,24 @@ def nattractor(
     return plotattractor(nattractorlist(a, b, c, d, n), x, y, bits)
 
 
+def gumowskimiraattractor(
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        n: int):
+    """Draws a Gumowski-Mira Attractor
+
+    Args:
+        x, y: int dimensions of bmp
+        bits: int bit depth
+        a, b: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        byref unsigned byte array
+    """
+    return plotattractor(gumowskimiraattractorlist(a, b, n), x, y, bits)
+
+
 @functimer
 def saveikedaattractor2file(
         file: str,
@@ -11021,7 +11040,7 @@ def saveikedaattractor2file(
         a: float, b: float,
         k: float, p: float,
         n: int):
-    """Draws an Ikeda Attractor
+    """Draws an Ikeda Attractor to file
 
     Args:
         x, y      : int dimensions of bmp
@@ -11036,13 +11055,33 @@ def saveikedaattractor2file(
 
 
 @functimer
+def savegumowskimiraattractor2file(
+        file: str,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        n: int):
+    """Draws a Gumowski-Mira attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, gumowskimiraattractor(x, y, bits, a, b, n))
+
+
+@functimer
 def savesnattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
         c: float, d: float,
         n: int):
-    """Draws a N Attractor
+    """Draws a N Attractor to file
 
     Args:
         x, y      : int dimensions of bmp

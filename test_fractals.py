@@ -43,6 +43,7 @@ from Python_BMP.BITMAPlib import(
         savesnattractor2file as nattractor,
         savexorfractal2file as xorfractal,
         savexordivfractal2file as xordivfractal,
+        savegumowskimiraattractor2file as  gumowskimiraattractor,
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
@@ -233,6 +234,16 @@ class TestFractal2filefunc(unittest.TestCase):
         256, 256, # size of file x, y
         24, # bit depth
          1.641, -1.902, 1.316, 1.525,# constants (float)
+        50000 # number of iterations
+        )
+        self.filecmp(*p)
+
+    def testgumowskimiraattractor(self):
+        p = self._filepaths("gumowskimiraattractor.bmp")
+        gumowskimiraattractor(p[0], # path to new file
+        256, 256, # size of file
+        24, # bit depth
+        .34, 1,# constants (float)
         50000 # number of iterations
         )
         self.filecmp(*p)
