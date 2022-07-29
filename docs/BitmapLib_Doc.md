@@ -7485,8 +7485,8 @@ Returns list of complex numbers for a n attractor
         n: number of terms to compute
     
     Returns:
-        list of complex numbers for a Svensson ring
-        [z: complex,...]
+        list of x,y pairs for a n attractor
+        [[x: float, y: float],...]
 
 
 ### [`newBMP`](#newBMP)
