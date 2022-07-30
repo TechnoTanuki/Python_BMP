@@ -1208,7 +1208,7 @@ def gumowskimiraattractorlist(
         n   : number of terms to compute
 
     Returns:
-        list of x,y pairs for a n attractor
+        list of x,y pairs for a Gumowski-Mira attractor
         [[x: float, y: float],...]
     """
     x = b
