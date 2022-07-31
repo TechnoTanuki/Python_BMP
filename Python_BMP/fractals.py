@@ -162,8 +162,7 @@ def tetrationfn(P: float, Q: float,
     z = complex(P, Q)
     for i in range(maxiter):
         try:
-            z **= z
-            if abs(z) > d:
+            if abs(z := z**z) > d:
                 return i
         except OverflowError:
             return i
