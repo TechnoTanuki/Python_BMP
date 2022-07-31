@@ -186,8 +186,7 @@ def sinjulia(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z = c * sin(z)
-        if abs(z) > 2:
+        if abs(z := c * sin(z)) > 2:
             return i
     return maxiter
 
@@ -208,8 +207,7 @@ def cosjulia(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z = c * cos(z)
-        if abs(z) > 2:
+        if abs(z := c * cos(z)) > 2:
             return i
     return maxiter
 
@@ -230,8 +228,7 @@ def spiraljulia(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z = tan(z*z + c)
-        if abs(z) > 2:
+        if abs(z := tan(z*z + c)) > 2:
             return i
     return maxiter
 
@@ -252,8 +249,7 @@ def lambdafn(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z = c * z * (1 - z)
-        if abs(z) > 2:
+        if abs(z := c * z * (1 - z)) > 2:
             return i
     return maxiter
 
@@ -276,8 +272,7 @@ def multibrot(
     z = 0
     c = complex(P, Q)
     for i in range(maxiter):
-        z = z**d + c
-        if abs(z) > 2:
+        if abs(z := z**d + c) > 2:
             return i
     return maxiter
 
@@ -348,8 +343,7 @@ def newton(P: float, Q: float,
     Returns:
         list[root, iteration]
     """
-    f, fp =  d
-    return newtonmethod(complex(P, Q), f, fp, maxiter)
+    return newtonmethod(complex(P, Q), f := d[0], fp := d[1], maxiter)
 
 
 def multijulia(P: float, Q: float,
@@ -393,8 +387,7 @@ def multicorn(P: float, Q: float,
     z = complex(0, 0)
     c = complex(P, Q)
     for i in range(maxiter):
-        z = z.conjugate()**d + c
-        if abs(z) > 2:
+        if abs(z := z.conjugate()**d + c) > 2:
             return i
     return maxiter
 
@@ -415,8 +408,7 @@ def barnsleytree(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z = d * (z - sign(z.real))
-        if abs(z) > 2:
+        if abs(z := d * (z - sign(z.real))) > 2:
             return i
     return maxiter
 
