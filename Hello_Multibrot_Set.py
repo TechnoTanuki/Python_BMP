@@ -27,7 +27,7 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(path.abspath(sys.argv[0])) #get path of running script
-        mx = my = 600 # square canvas
+        mx = my = 256 # square canvas
         cf = getX11RGBfactors() #color info
         par = fractaldomainparamdict() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
