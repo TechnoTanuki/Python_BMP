@@ -3794,7 +3794,7 @@ Gumowski-Mira attractor
         n   : number of terms to compute
     
     Returns:
-        list of x,y pairs for a n attractor
+        list of x,y pairs for a Gumowski-Mira attractor
         [[x: float, y: float],...]
 
 
@@ -10996,9 +10996,9 @@ def savegumowskimiraattractor2file(file: str, x: int, y: int, bits: int, a: floa
 Draws a Gumowski-Mira attractor to file
 
     Args:
-        x, y      : int dimensions of bmp
-        bits      : int bit depth
-        a, b, c, d: float coefficients
+        x, y: int dimensions of bmp
+        bits: int bit depth
+        a, b: float coefficients
         n: number of terms to compute
     
     Returns:

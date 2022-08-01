@@ -11063,9 +11063,9 @@ def savegumowskimiraattractor2file(
     """Draws a Gumowski-Mira attractor to file
 
     Args:
-        x, y      : int dimensions of bmp
-        bits      : int bit depth
-        a, b, c, d: float coefficients
+        x, y: int dimensions of bmp
+        bits: int bit depth
+        a, b: float coefficients
         n: number of terms to compute
 
     Returns:
