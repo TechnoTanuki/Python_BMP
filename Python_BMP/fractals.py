@@ -965,7 +965,7 @@ def itermarekdragon(
     Yields:
         (x: int, y: int, c: int)
     """
-    d =  exp(_2pij * d)
+    d = exp(_2pij * d)
     for p in itermultifractal(x1, y1, x2, y2, d,
         marekdragon, domain, maxiter):
         yield p
@@ -1143,12 +1143,8 @@ def ikedaattractorlist(
         list of complex numbers for an Ikeda Attractor
         [z: complex,...]
     """
-    h = []
     z = complex(0, 0)
-    for i in range(n):
-        z = a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z))))
-        h += [z]
-    return h
+    return [z := a + b * z * exp(1j * k - (1j * p / (1 + abs(z * z)))) for _ in range(n)]
 
 
 def ikedaattractorlist(
