@@ -455,8 +455,7 @@ def marekdragon(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z *= (d + z)
-        if abs(z) > 2:
+        if abs(z := z * (d + z)) > 2:
             return i
     return maxiter
 
