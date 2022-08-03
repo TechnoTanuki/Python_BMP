@@ -5494,6 +5494,31 @@ Yields a Marek Dragon Fractal
         (x: int, y: int, c: int)
 
 
+### [`itermultibiomorphvariant`](#itermultibiomorphvariant)
+
+```py
+def itermultibiomorphvariant(x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Multi Biomorph Variant fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`itermultibrot`](#itermultibrot)
 
 ```py
@@ -7379,6 +7404,34 @@ Applies a monochrome filter
     Returns:
         byref modified
         unsigned byte array
+
+
+### [`multibiomorphvariant`](#multibiomorphvariant)
+
+```py
+def multibiomorphvariant(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multi Biomorph Variant fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`multibrot`](#multibrot)
@@ -11182,6 +11235,37 @@ Saves a Marek Dragon Fractal to a file
         x       : width of bitmap
         y       : height of bitmap
         d       : irrational number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savemultibiomorphvariantfractal2file`](#savemultibiomorphvariantfractal2file)
+
+```py
+def savemultibiomorphvariantfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Multi Biomorph Variant Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        d       : power to raise z to
         domain  : location in real and
                   imaginary plane
                   (minreal, maxreal,
