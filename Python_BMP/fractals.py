@@ -1238,8 +1238,8 @@ def gumowskimiraattractorlist(
     y = a
     f = lambda x: a * x + (2 * (1 - a)) * x * x * ((1 + x * x) ** -2)
     g = f(x)
-    v = [[0,0]] * n
+    v = [(0,0)] * n
     for i in range(n):
         z = x
-        v[i] = [x := b * y + g, y := (g := f(x)) - z]
+        v[i] = (x := b * y + g, y := (g := f(x)) - z)
     return v
