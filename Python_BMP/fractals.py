@@ -327,7 +327,6 @@ def xordivfn(
     return ((int(P) ^ int(Q)) // d) % maxiter
 
 
-
 def newton(P: float, Q: float,
         d: float, maxiter: int) -> tuple:
     """Newton Function
