@@ -972,7 +972,7 @@ def itermulticorn(
 def iterbarnsleytree(
         x1: int, y1: int,
         x2: int, y2: int,
-        d: float,
+        d: complex,
         domain: list[float, float, float, float],
         maxiter: int):
     """Yields a Barnsley Tree Fractal
@@ -980,7 +980,7 @@ def iterbarnsleytree(
     Args:
         x1, y1, x2, y2: rectangular area
                         to draw in
-        d             : power to raise z to
+        d             : a complex number
         domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
