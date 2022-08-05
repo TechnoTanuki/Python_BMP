@@ -24,7 +24,8 @@ from .primitives2D import (
 
 from math import (
     sin as sine,
-    cos as cosine
+    cos as cosine,
+    floor
 )
 
 from cmath import (
