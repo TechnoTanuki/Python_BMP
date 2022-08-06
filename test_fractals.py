@@ -49,6 +49,7 @@ from Python_BMP.BITMAPlib import(
         savesinjulia2file as sinjulia,
         savecosjulia2file as cosjulia,
         savetetrationfractal2file as tetration,
+        savemarekdragon2file as marekdragon,
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
@@ -298,6 +299,12 @@ class TestFractal2filefunc(unittest.TestCase):
     def testtetrationfractal(self):
         p = self._filepaths("tetration.bmp")
         tetration(p[0], 256, 256, 16, [1, 2.5, -.75, .75], [], 4)
+        self.filecmp(*p)
+
+
+    def testmarekdragon(self):
+        p = self._filepaths("marekdragon.bmp")
+        marekdragon(p[0], 256, 256, 0.040884634, [-1.5, .5, -1.25, 1], self.c['yellowgreen'])
         self.filecmp(*p)
 
 

@@ -470,7 +470,7 @@ def barnsleytree(P: float, Q: float,
 
 
 def marekdragon(P: float, Q: float,
-        d: float, maxiter: int) -> int:
+        d: float, maxiter: int, lim: int = 65) -> int:
     """Marek Dragon Function
 
     Args:
@@ -484,9 +484,12 @@ def marekdragon(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    for i in range(maxiter):
-        if abs(z := z * (d + z)) > 2:
-            return i
+    s = 0
+    for i in range(lim):
+        z *= d + z
+        s += abs(z.imag)
+        if s > lim:
+            return i % maxiter
     return maxiter
 
 
