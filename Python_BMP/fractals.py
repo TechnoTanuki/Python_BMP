@@ -194,7 +194,8 @@ def sinjulia(P: float, Q: float,
 
 
 def cosjulia(P: float, Q: float,
-        c: complex, maxiter: int) -> int:
+        c: complex, maxiter: int,
+        lim: int = 50) -> int:
     """Cos(z) Julia Function
 
     Args:
@@ -208,9 +209,10 @@ def cosjulia(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    for i in range(maxiter):
-        if abs(z := c * cos(z)) > 2:
-            return i
+    s = 0
+    for i in range(lim):
+        if abs(s := s + (z := c * cos(z)).imag) > lim:
+            return i % maxiter
     return maxiter
 
 

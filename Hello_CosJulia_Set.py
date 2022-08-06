@@ -26,15 +26,15 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        mx = my = 300 # square canvas
+        mx = my = 256 # square canvas
         cf = getX11RGBfactors() #color info
         juliapar = fractaldomainparamdict() # common parameters
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, # path to new file
         mx, my, # size of file
-        0.984808 + 0.873648j, # complex number
+        1 + 1j, # complex number
         juliapar['maxeqdim'], # fractal domain
-        cf['gold']) # color
+        cf['aqua']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])

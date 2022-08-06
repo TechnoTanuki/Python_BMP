@@ -47,6 +47,7 @@ from Python_BMP.BITMAPlib import(
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
+        savecosjulia2file as cosjulia,
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
@@ -272,13 +273,23 @@ class TestFractal2filefunc(unittest.TestCase):
         self.filecmp(*p)
 
 
-    def testsinjuilafractal(self):
+    def testsinjuliafractal(self):
         p = self._filepaths("sinjulia.bmp")
         sinjulia(p[0], # path to new file
         256, 256, # size of file
         1 + 1j, # complex number
         self.domain, # fractal domain
         self.c['gold']) # color
+        self.filecmp(*p)
+
+
+    def testcosjuliafractal(self):
+        p = self._filepaths("cosjulia.bmp")
+        cosjulia(p[0], # path to new file
+        256, 256, # size of file
+        1 + 1j, # complex number
+        self.domain, # fractal domain
+        self.c['aqua']) # color
         self.filecmp(*p)
 
 
