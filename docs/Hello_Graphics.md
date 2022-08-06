@@ -260,6 +260,9 @@ If there is demand for it I could in theory write a book based on this project l
 [![n-gon](../assets/fractals/ngonfractal.bmp)](../Hello_ngonfractal.py)
 
 
+[![sinJulia](../assets/fractals/sinjulia.bmp)](../Hello_SinJulia_Set.py)
+
+
 [![Koch](../assets/fractals/koch3.bmp)](../Hello_KochSnowflake.py)
 
 [![Hilbert6](../assets/fractals/hilbert6.bmp)](../Hello_HilbertCurve.py)

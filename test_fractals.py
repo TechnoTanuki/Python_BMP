@@ -46,6 +46,7 @@ from Python_BMP.BITMAPlib import(
         savegumowskimiraattractor2file as  gumowskimiraattractor,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
+        savesinjulia2file as sinjulia,
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
@@ -268,6 +269,16 @@ class TestFractal2filefunc(unittest.TestCase):
           7, # sides
           [-1.2, 1.2, -1.2, 1.2], # location to plot
           self.c['yellowgreen']) # color
+        self.filecmp(*p)
+
+
+    def testsinjuilafractal(self):
+        p = self._filepaths("sinjulia.bmp")
+        sinjulia(p[0], # path to new file
+        256, 256, # size of file
+        1 + 1j, # complex number
+        self.domain, # fractal domain
+        self.c['gold']) # color
         self.filecmp(*p)
 
 
