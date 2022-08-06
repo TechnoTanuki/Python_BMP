@@ -257,6 +257,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Biomorph variant](../assets/fractals/biomorphvariant.bmp)](../Hello_MultiBiomorphvariantfractal.py)
 
+[![n-gon](../assets/fractals/ngonfractal.bmp)](../Hello_ngonfractal.py)
+
+
 [![Koch](../assets/fractals/koch3.bmp)](../Hello_KochSnowflake.py)
 
 [![Hilbert6](../assets/fractals/hilbert6.bmp)](../Hello_HilbertCurve.py)
@@ -266,7 +269,7 @@ If there is demand for it I could in theory write a book based on this project l
 [![Xor](../assets/fractals/xor.bmp)](../Hello_Xorfractal.py)
 
 [![Xordiv](../assets/fractals/xordiv.bmp)](../Hello_Xordivfractal.py)
- 
+
 [![Fern](../assets/fern.bmp)](../Hello_Fern.py)
 
 
