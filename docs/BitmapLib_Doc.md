@@ -5639,6 +5639,31 @@ Yields Newtons Fractal
         (x: int, y: int, (itercount: int, root: float))
 
 
+### [`iterngonfractal`](#iterngonfractal)
+
+```py
+def iterngonfractal(x1: int, y1: int, x2: int, y2: int, c: float, n: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a n-gon fracta;l
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : float constant
+        n             : floatexponent (sides)
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`iterparallelogram`](#iterparallelogram)
 
 ```py
@@ -7641,6 +7666,34 @@ Draw Newtons Fractal
     Returns:
         byref modified unsigned byte array
         list of roots
+
+
+### [`ngonfractal`](#ngonfractal)
+
+```py
+def ngonfractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: float, n: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a N-gon fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : float constant
+        n             : float exponent (sides)
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
 
 
 ### [`numbervert`](#numbervert)
@@ -11449,6 +11502,37 @@ Saves a Newtons Fractal to a file
         y       : height of bitmap
         d       : [function and,
                   function derivative pair]
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savengonfractal2file`](#savengonfractal2file)
+
+```py
+def savengonfractal2file(file: str, x: int, y: int, c: float, n: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Multi Julia Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : float constant
+        n       : float exponent (sides)
         domain  : location in real and
                   imaginary plane
                   (minreal, maxreal,

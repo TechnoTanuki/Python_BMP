@@ -45,6 +45,7 @@ from Python_BMP.BITMAPlib import(
         savexordivfractal2file as xordivfractal,
         savegumowskimiraattractor2file as  gumowskimiraattractor,
         savemultibiomorphvariantfractal2file as biomorphvariant,
+        savengonfractal2file as ngonfractal,
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
@@ -257,6 +258,16 @@ class TestFractal2filefunc(unittest.TestCase):
         5, # power of z
         self.domain, # location to plot
         self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testngonfractal(self):
+        p = self._filepaths("ngonfractal.bmp")
+        ngonfractal(p[0], 256, 256, # file and bitmap size
+          -(1.7/5), # float pararm
+          7, # sides
+          [-1.2, 1.2, -1.2, 1.2], # location to plot
+          self.c['yellowgreen']) # color
         self.filecmp(*p)
 
 

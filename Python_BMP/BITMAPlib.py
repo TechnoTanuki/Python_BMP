@@ -259,7 +259,8 @@ from .fractals import(
     ikedaattractorlist,
     nattractorlist,
     gumowskimiraattractorlist,
-    itermultibiomorphvariant
+    itermultibiomorphvariant,
+    iterngonfractal
     )
 
 from .inttools import(
@@ -9611,6 +9612,40 @@ def multijulia(bmp: array,
         RGBfactors, maxiter)
 
 
+def ngonfractal(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: float,
+        n: float,
+        domain: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a N-gon fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : float constant
+        n             : float exponent (sides)
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, n,
+        iterngonfractal, domain,
+        RGBfactors, maxiter)
+
+
 def multibiomorphvariant(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -10329,6 +10364,46 @@ def savemultijuliafractal2file(
     """
     bmp = newBMP(x, y, bitdepth)
     multijulia(bmp, 0, 0, x, y, c, d,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+
+
+@functimer
+def savengonfractal2file(
+        file: str,
+        x: int, y: int,
+        c: float,
+        n: float,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Multi Julia Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : float constant
+        n       : float exponent (sides)
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    ngonfractal(bmp, 0, 0, x, y, c, n,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
 

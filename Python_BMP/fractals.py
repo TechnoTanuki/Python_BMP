@@ -396,6 +396,33 @@ def multibiomorphvariant(P: float, Q: float,
     return maxiter
 
 
+def ngonfunc(P: float, Q: float,
+        c: float,
+        n: float, maxiter: int) -> int:
+    """n-gon Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        c : float constant
+        n : float exponent (sides)
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        try:
+            z = (z**n + c) / z
+            if abs(z).real > 2:
+                return i
+        except ZeroDivisionError:
+            return i
+    return maxiter
+
+
 def multicorn(P: float, Q: float,
         d: float, maxiter: int) -> int:
     """Multicorn Function
@@ -909,6 +936,36 @@ def itermultijulia(
     """
     for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
         multijulia, domain, maxiter):
+        yield p
+
+
+def iterngonfractal(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: float,
+        n: float,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a n-gon fracta;l
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : float constant
+        n             : floatexponent (sides)
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x: int, y: int, c: int)
+    """
+    for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, n,
+        ngonfunc, domain, maxiter):
         yield p
 
 

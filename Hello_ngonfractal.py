@@ -1,5 +1,5 @@
 notice = """
-      Multijulia Set Fractal Demo
+        N-gon Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -13,7 +13,7 @@ notice = """
 """
 from Python_BMP.BITMAPlib import(
         getX11RGBfactors,
-        savemultijuliafractal2file as f,
+        savengonfractal2file as f,
         fractaldomainparamdict as d,
         getfuncmetastr as meta,
         )
@@ -31,10 +31,10 @@ def main():
         par = d() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my, # file and bitmap size
-          -0.70176 - 0.3842j, # complex nunber
-          5, # power of z
-          par['maxeqdim'], # location to plot
-          cf['darkseagreen1']) # color
+          -(1.7/5), # float pararm
+          7, # sides
+          [-1.2, 1.2, -1.2, 1.2], # location to plot
+          cf['yellowgreen']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])
