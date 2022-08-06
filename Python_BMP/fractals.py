@@ -414,11 +414,9 @@ def ngonfunc(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        try:
-            z = (z**n + c) / z
-            if abs(z).real > 2:
-                return i
-        except ZeroDivisionError:
+        if z == 0 + 0j:
+            return i
+        if abs(z := (z**n + c) / z) > 2:
             return i
     return maxiter
 
