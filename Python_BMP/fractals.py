@@ -171,7 +171,8 @@ def tetrationfn(P: float, Q: float,
 
 
 def sinjulia(P: float, Q: float,
-        c: complex, maxiter: int) -> int:
+        c: complex, maxiter: int,
+        lim: int = 50) -> int:
     """Sin(z) Julia  Function
 
     Args:
@@ -185,9 +186,10 @@ def sinjulia(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    for i in range(maxiter):
-        if abs(z := c * sin(z)) > 2:
-            return i
+    s = 0
+    for i in range(lim):
+        if abs(s := s + (z := c * sin(z)).imag) > lim:
+            return i % maxiter
     return maxiter
 
 
