@@ -266,6 +266,9 @@ If there is demand for it I could in theory write a book based on this project l
 [![cosJulia](../assets/fractals/cosjulia.bmp)](../Hello_CosJulia_Set.py)
 
 
+[![tetration](../assets/fractals/tetration.bmp)](../Hello_Tetration_Fractal.py)
+
+
 [![Koch](../assets/fractals/koch3.bmp)](../Hello_KochSnowflake.py)
 
 [![Hilbert6](../assets/fractals/hilbert6.bmp)](../Hello_HilbertCurve.py)

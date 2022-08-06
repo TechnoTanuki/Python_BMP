@@ -147,13 +147,13 @@ def iterIFS(
 
 
 def tetrationfn(P: float, Q: float,
-        d: float, maxiter: int) -> int:
+        d: int, maxiter: int) -> int:
     """Tetration Function
 
     Args:
         P : real part as float
         Q : imaginary part as float
-        d : Threshold
+        d : int Threshold
         maxiter : when to break
                   color compute
 
@@ -161,12 +161,13 @@ def tetrationfn(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    for i in range(maxiter):
+    y = 0
+    for i in range(d):
         try:
-            if abs(z := z**z) > d:
-                return i
+            if abs(y := y + (z := z**z).imag) > d:
+                return i % maxiter
         except OverflowError:
-            return i
+            return i % maxiter
     return maxiter
 
 

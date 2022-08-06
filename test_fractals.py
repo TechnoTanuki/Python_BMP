@@ -48,11 +48,13 @@ from Python_BMP.BITMAPlib import(
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
         savecosjulia2file as cosjulia,
+        savetetrationfractal2file as tetration,
         funcparamdict,
         getX11RGBfactors,
         fractaldomainparamdict,
         savehilbertcurve2file as hilbert,
-        savekochsnowflake2file as koch
+        savekochsnowflake2file as koch,
+        tetrationfractal
         )
 
 
@@ -290,6 +292,12 @@ class TestFractal2filefunc(unittest.TestCase):
         1 + 1j, # complex number
         self.domain, # fractal domain
         self.c['aqua']) # color
+        self.filecmp(*p)
+
+
+    def testtetrationfractal(self):
+        p = self._filepaths("tetration.bmp")
+        tetration(p[0], 256, 256, 16, [1, 2.5, -.75, .75], [], 4)
         self.filecmp(*p)
 
 

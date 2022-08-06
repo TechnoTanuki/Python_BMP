@@ -12,8 +12,8 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
+        getX11RGBfactors,
         savetetrationfractal2file as f,
-        fractaldomainparamdict,
         getfuncmetastr as meta,
         )
 
@@ -26,8 +26,9 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
         file = f'hello{f.__name__}.bmp' # random file name
-        lim = 2 << 30
-        f(file, 300, 300, lim,
+        lim = 16
+        cf = getX11RGBfactors() #color info
+        f(file, 256, 256, lim,
           [1, 2.5, -.75, .75], # location to plot
           [], 4)
         print('Saved to %s in %s\nAll done close %s to finish' % \
