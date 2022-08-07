@@ -11168,6 +11168,7 @@ def nattractor(
 
 def gumowskimiraattractor(
         x: int, y: int, bits: int,
+        ox: float, oy: float,
         a: float, b: float,
         n: int):
     """Draws a Gumowski-Mira Attractor
@@ -11175,13 +11176,20 @@ def gumowskimiraattractor(
     Args:
         x, y: int dimensions of bmp
         bits: int bit depth
+        ox, oy: starting coordinates
         a, b: float coefficients
         n: number of terms to compute
+
+    ox and oy -> any floating point
+    value between -20 and +20
+
+    The a and b -> any floating point
+    value between -1 and +1.
 
     Returns:
         byref unsigned byte array
     """
-    return plotattractor(gumowskimiraattractorlist(a, b, n), x, y, bits)
+    return plotattractor(gumowskimiraattractorlist(ox, oy, a, b, n), x, y, bits)
 
 
 @functimer
@@ -11209,6 +11217,7 @@ def saveikedaattractor2file(
 def savegumowskimiraattractor2file(
         file: str,
         x: int, y: int, bits: int,
+        ox: float, oy: float,
         a: float, b: float,
         n: int):
     """Draws a Gumowski-Mira attractor to file
@@ -11216,13 +11225,20 @@ def savegumowskimiraattractor2file(
     Args:
         x, y: int dimensions of bmp
         bits: int bit depth
+        ox, oy: starting coordinates
         a, b: float coefficients
         n: number of terms to compute
+
+    ox and oy -> any floating point
+    value between -20 and +20
+
+    The a and b -> any floating point
+    value between -1 and +1.
 
     Returns:
         a bitmap file
     """
-    saveBMP(file, gumowskimiraattractor(x, y, bits, a, b, n))
+    saveBMP(file, gumowskimiraattractor(x, y, bits, ox, oy, a, b, n))
 
 
 @functimer

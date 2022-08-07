@@ -250,7 +250,7 @@ class TestFractal2filefunc(unittest.TestCase):
         gumowskimiraattractor(p[0], # path to new file
         256, 256, # size of file
         24, # bit depth
-        .34, 1,# constants (float)
+        1, .34, .34, 1,# constants (float)
         50000 # number of iterations
         )
         self.filecmp(*p)

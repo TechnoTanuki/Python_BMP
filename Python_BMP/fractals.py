@@ -1284,21 +1284,27 @@ def nattractorlist(
 
 
 def gumowskimiraattractorlist(
+        x: float, y: float,
         a: float, b: float,
         n: int) -> list[list[float, float]]:
     """Returns list of [x,y] coordinate pairs for a
     Gumowski-Mira attractor
 
     Args:
+        x, y: starting coordinates
         a, b: float coefficients
         n   : number of terms to compute
+
+    ox and oy -> any floating point
+    value between -20 and +20
+
+    The a and b -> any floating point
+    value between -1 and +1.
 
     Returns:
         list of x,y pairs for a Gumowski-Mira attractor
         [[x: float, y: float],...]
     """
-    x = b
-    y = a
     k = 2 * (1 - a)
     f = lambda x: a * x + k * x * x * (1 + x * x) ** -2
     g = f(x)
