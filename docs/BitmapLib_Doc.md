@@ -3765,7 +3765,7 @@ List of 2d vertices as spheres of a given color
 ### [`gumowskimiraattractor`](#gumowskimiraattractor)
 
 ```py
-def gumowskimiraattractor(x: int, y: int, bits: int, a: float, b: float, n: int):
+def gumowskimiraattractor(x: int, y: int, bits: int, ox: float, oy: float, a: float, b: float, n: int):
 ```
 
 Draws a Gumowski-Mira Attractor
@@ -3773,8 +3773,15 @@ Draws a Gumowski-Mira Attractor
     Args:
         x, y: int dimensions of bmp
         bits: int bit depth
+        ox, oy: starting coordinates
         a, b: float coefficients
         n: number of terms to compute
+    
+    ox and oy -> any floating point
+    value between -20 and +20
+    
+    The a and b -> any floating point
+    value between -1 and +1.
     
     Returns:
         byref unsigned byte array
@@ -3783,15 +3790,22 @@ Draws a Gumowski-Mira Attractor
 ### [`gumowskimiraattractorlist`](#gumowskimiraattractorlist)
 
 ```py
-def gumowskimiraattractorlist(a: float, b: float, n: int) -> list[list[float, float]]:
+def gumowskimiraattractorlist(x: float, y: float, a: float, b: float, n: int) -> list[list[float, float]]:
 ```
 
 Returns list of [x,y] coordinate pairs for a
 Gumowski-Mira attractor
 
     Args:
+        x, y: starting coordinates
         a, b: float coefficients
         n   : number of terms to compute
+    
+    ox and oy -> any floating point
+    value between -20 and +20
+    
+    The a and b -> any floating point
+    value between -1 and +1.
     
     Returns:
         list of x,y pairs for a Gumowski-Mira attractor
@@ -11096,7 +11110,7 @@ Saves a Fractal with a parameter to a file
 ### [`savegumowskimiraattractor2file`](#savegumowskimiraattractor2file)
 
 ```py
-def savegumowskimiraattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, n: int):
+def savegumowskimiraattractor2file(file: str, x: int, y: int, bits: int, ox: float, oy: float, a: float, b: float, n: int):
 ```
 
 Draws a Gumowski-Mira attractor to file
@@ -11104,8 +11118,15 @@ Draws a Gumowski-Mira attractor to file
     Args:
         x, y: int dimensions of bmp
         bits: int bit depth
+        ox, oy: starting coordinates
         a, b: float coefficients
         n: number of terms to compute
+    
+    ox and oy -> any floating point
+    value between -20 and +20
+    
+    The a and b -> any floating point
+    value between -1 and +1.
     
     Returns:
         a bitmap file
