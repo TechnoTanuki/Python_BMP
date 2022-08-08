@@ -11105,7 +11105,7 @@ def plotattractorcomplex(
 
 
 def plotattractor(
-        v: list[complex],
+        v: list[list[float, float]],
         x: int, y: int, bits: int):
     """Draws an Attractor from a list of x, y pairs
 
