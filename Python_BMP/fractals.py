@@ -476,7 +476,7 @@ def marekdragon(P: float, Q: float,
     Args:
         P : real part as float
         Q : imaginary part as float
-        d : complex number
+        d : float
         maxiter : when to break
                   color compute
 
