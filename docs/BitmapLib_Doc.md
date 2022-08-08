@@ -5659,7 +5659,7 @@ Yields Newtons Fractal
 def iterngonfractal(x1: int, y1: int, x2: int, y2: int, c: float, n: float, domain: list[float, float, float, float], maxiter: int):
 ```
 
-Yields a n-gon fracta;l
+Yields a n-gon fractal
 
     Args:
         x1, y1, x2, y2: rectangular area
