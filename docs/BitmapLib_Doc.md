@@ -8350,13 +8350,13 @@ def plot8bitpatternwithfn(bmp: array.array, x: int, y: int, bitpattern: list, sc
 ### [`plotattractor`](#plotattractor)
 
 ```py
-def plotattractor(v: list[complex], x: int, y: int, bits: int):
+def plotattractor(v: list[list[float, float]], x: int, y: int, bits: int):
 ```
 
 Draws an Attractor from a list of x, y pairs
 
     Args:
-        v   : list of complex numbers
+        v   : list of [x, y] coordinate pairs
         x, y: int dimensions of bmp
         bits: int bit depth
     

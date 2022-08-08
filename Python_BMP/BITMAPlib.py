@@ -11110,7 +11110,7 @@ def plotattractor(
     """Draws an Attractor from a list of x, y pairs
 
     Args:
-        v   : list of complex numbers
+        v   : list of [x, y] coordinate pairs
         x, y: int dimensions of bmp
         bits: int bit depth
 
