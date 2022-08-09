@@ -251,7 +251,11 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Ikedaattractor](../assets/fractals/ikedaattractor.bmp)](../Hello_Ikedaattractor.py)
 
-[![Gumowski-Mira](../assets/fractals/gumowskimiraattractor.bmp)](../Hello_Gumowski-Mira_attractor.py)
+[![Gumowski-Mira](../assets/fractals/gumowskimiraattractor.bmp)](../Hello_Gumowski-Mira_attractor_1.py)
+
+
+[![Gumowski-Mira1](../assets/gumowskimiraattractor.bmp)](../Hello_Gumowski-Mira_attractor.py)
+
 
 [![nattractor](../assets/fractals/nattractor.bmp)](../Hello_nattractor.py)
 
