@@ -1333,7 +1333,6 @@ def peterdejongattractorlist(
     x = y = 0
     v = [(0,0)] * n
     for i in range(n):
-         v[i] = (sine(a*y) - cosine(b*x),
-                 sine(c*x) - cosine(d*y))
-         (x, y) = v[i]
+         (x, y) = v[i] = (sine(a*y) - cosine(b*x),
+                          sine(c*x) - cosine(d*y))
     return v
