@@ -1313,3 +1313,27 @@ def gumowskimiraattractorlist(
         z = x
         v[i] = (x := b * y + g, y := (g := f(x)) - z)
     return v
+
+
+def peterdejongattractorlist(
+        a: float, b: float,
+        c: float, d: float,
+        n: int) -> list[list[float, float]]:
+    """Returns list of [x,y] coordinate pairs for a
+    Peter de Jong Attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of x,y pairs for a n attractor
+        [[x: float, y: float],...]
+    """
+    x = y = 0
+    v = [(0,0)] * n
+    for i in range(n):
+         v[i] = (sine(a*y) - cosine(b*x),
+                 sine(c*x) - cosine(d*y))
+         (x, y) = v[i]
+    return v

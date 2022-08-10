@@ -7935,6 +7935,42 @@ Projects 3D points to 2D and
         tuple (list, list)
 
 
+### [`peterdejongattractor`](#peterdejongattractor)
+
+```py
+def peterdejongattractor(x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Peter de Jong Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`peterdejongattractorlist`](#peterdejongattractorlist)
+
+```py
+def peterdejongattractorlist(a: float, b: float, c: float, d: float, n: int) -> list[list[float, float]]:
+```
+
+Returns list of [x,y] coordinate pairs for a
+Peter de Jong Attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        list of x,y pairs for a n attractor
+        [[x: float, y: float],...]
+
+
 ### [`piechart`](#piechart)
 
 ```py
@@ -11608,6 +11644,24 @@ def savesnattractor2file(file: str, x: int, y: int, bits: int, a: float, b: floa
 ```
 
 Draws a N Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
+### [`savespeterdejongattractor2file`](#savespeterdejongattractor2file)
+
+```py
+def savespeterdejongattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Peter de Jong Attractor to file
 
     Args:
         x, y      : int dimensions of bmp

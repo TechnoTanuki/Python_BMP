@@ -55,7 +55,7 @@ from Python_BMP.BITMAPlib import(
         fractaldomainparamdict,
         savehilbertcurve2file as hilbert,
         savekochsnowflake2file as koch,
-        tetrationfractal
+        savespeterdejongattractor2file as peterdejong
         )
 
 
@@ -307,6 +307,14 @@ class TestFractal2filefunc(unittest.TestCase):
         marekdragon(p[0], 256, 256, 0.040884634, [-1.5, .5, -1.25, 1], self.c['yellowgreen'])
         self.filecmp(*p)
 
+    def testpeterdejong(self):
+        p = self._filepaths("peterdejong.bmp")
+        peterdejong(p[0], 256, 256, # size of file
+        24, # bit depth
+        1.641, 1.902, .316, 1.525,# constants (float)
+        220000 # number of iterations
+        )
+        self.filecmp(*p)
 
 if __name__ == "__main__":
         print(notice)

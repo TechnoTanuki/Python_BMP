@@ -260,6 +260,7 @@ from .fractals import(
     nattractorlist,
     gumowskimiraattractorlist,
     itermultibiomorphvariant,
+    peterdejongattractorlist,
     iterngonfractal
     )
 
@@ -11166,6 +11167,25 @@ def nattractor(
     return plotattractor(nattractorlist(a, b, c, d, n), x, y, bits)
 
 
+def peterdejongattractor(
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a Peter de Jong Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        byref unsigned byte array
+    """
+    return plotattractor(peterdejongattractorlist(a, b, c, d, n), x, y, bits)
+
+
 def gumowskimiraattractor(
         x: int, y: int, bits: int,
         ox: float, oy: float,
@@ -11260,6 +11280,27 @@ def savesnattractor2file(
         a bitmap file
     """
     saveBMP(file, nattractor(x, y, bits, a, b, c, d, n))
+
+
+@functimer
+def savespeterdejongattractor2file(
+        file: str,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a Peter de Jong Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, peterdejongattractor(x, y, bits, a, b, c, d, n))
 
 
 @intcircleparam
