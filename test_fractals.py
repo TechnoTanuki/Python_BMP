@@ -40,7 +40,7 @@ from Python_BMP.BITMAPlib import(
         savetricornfractal2file as tricorn,
         savemulticornfractal2file as multicorn,
         savenewtonsfractal2file as newton,
-        savesnattractor2file as nattractor,
+        savenattractor2file as nattractor,
         savexorfractal2file as xorfractal,
         savexordivfractal2file as xordivfractal,
         savegumowskimiraattractor2file as  gumowskimiraattractor,
@@ -306,6 +306,7 @@ class TestFractal2filefunc(unittest.TestCase):
         p = self._filepaths("marekdragon.bmp")
         marekdragon(p[0], 256, 256, 0.040884634, [-1.5, .5, -1.25, 1], self.c['yellowgreen'])
         self.filecmp(*p)
+
 
     def testpeterdejong(self):
         p = self._filepaths("peterdejong.bmp")

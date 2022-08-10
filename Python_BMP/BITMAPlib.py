@@ -11262,7 +11262,7 @@ def savegumowskimiraattractor2file(
 
 
 @functimer
-def savesnattractor2file(
+def savenattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,

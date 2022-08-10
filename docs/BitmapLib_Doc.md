@@ -11545,6 +11545,24 @@ Saves a Multi Julia Fractal to a file
         a bitmap file
 
 
+### [`savenattractor2file`](#savenattractor2file)
+
+```py
+def savenattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a N Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savenewtonsfractal2file`](#savenewtonsfractal2file)
 
 ```py
@@ -11632,24 +11650,6 @@ Saves a Sin(z) Julia Set to a file
                   (1, 4, 8, 24) bits
         maxiter : optional parameter
                   to set maximum iteration
-    
-    Returns:
-        a bitmap file
-
-
-### [`savesnattractor2file`](#savesnattractor2file)
-
-```py
-def savesnattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
-```
-
-Draws a N Attractor to file
-
-    Args:
-        x, y      : int dimensions of bmp
-        bits      : int bit depth
-        a, b, c, d: float coefficients
-        n: number of terms to compute
     
     Returns:
         a bitmap file

@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-    savesnattractor2file as f,
+    savenattractor2file as f,
     getfuncmetastr as meta)
 import subprocess as proc
 from os import path
