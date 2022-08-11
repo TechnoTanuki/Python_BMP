@@ -1327,7 +1327,7 @@ def peterdejongattractorlist(
         n: number of terms to compute
 
     Returns:
-        list of x,y pairs for a n attractor
+        list of x,y pairs for a Peter de Jong Attractor
         [[x: float, y: float],...]
     """
     x = y = 0
@@ -1335,4 +1335,27 @@ def peterdejongattractorlist(
     for i in range(n):
          (x, y) = v[i] = (sine(a * y) - cosine(b * x),
                           sine(c * x) - cosine(d * y))
+    return v
+
+
+def cliffordattractorlist(
+        a: float, b: float,
+        c: float, d: float,
+        n: int) -> list[list[float, float]]:
+    """Returns list of [x,y] coordinate pairs for a
+    Clifford Attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of x,y pairs for a Clifford Attractor
+        [[x: float, y: float],...]
+    """
+    x = y = 0
+    v = [(0,0)] * n
+    for i in range(n):
+         (x, y) = v[i] = (sine(a * y) + c * cosine(a * x),
+                          sine(b * x) + d * cosine(b * y))
     return v

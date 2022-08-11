@@ -795,6 +795,42 @@ Draws a circle
         byref modified unsigned byte array
 
 
+### [`cliffordattractor`](#cliffordattractor)
+
+```py
+def cliffordattractor(x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Clifford Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`cliffordattractorlist`](#cliffordattractorlist)
+
+```py
+def cliffordattractorlist(a: float, b: float, c: float, d: float, n: int) -> list[list[float, float]]:
+```
+
+Returns list of [x,y] coordinate pairs for a
+Clifford Attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        list of x,y pairs for a Clifford Attractor
+        [[x: float, y: float],...]
+
+
 ### [`colorfilter2file`](#colorfilter2file)
 
 ```py
@@ -7967,7 +8003,7 @@ Peter de Jong Attractor
         n: number of terms to compute
     
     Returns:
-        list of x,y pairs for a n attractor
+        list of x,y pairs for a Peter de Jong Attractor
         [[x: float, y: float],...]
 
 
@@ -11052,6 +11088,24 @@ Saves bitmap to file
         A Bitmap File
 
 
+### [`savecliffordattractor2file`](#savecliffordattractor2file)
+
+```py
+def savecliffordattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Clifford Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savecosjulia2file`](#savecosjulia2file)
 
 ```py
@@ -11625,6 +11679,24 @@ Saves a Multi Julia Fractal to a file
         a bitmap file
 
 
+### [`savepeterdejongattractor2file`](#savepeterdejongattractor2file)
+
+```py
+def savepeterdejongattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Peter de Jong Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savesinjulia2file`](#savesinjulia2file)
 
 ```py
@@ -11650,24 +11722,6 @@ Saves a Sin(z) Julia Set to a file
                   (1, 4, 8, 24) bits
         maxiter : optional parameter
                   to set maximum iteration
-    
-    Returns:
-        a bitmap file
-
-
-### [`savespeterdejongattractor2file`](#savespeterdejongattractor2file)
-
-```py
-def savespeterdejongattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
-```
-
-Draws a Peter de Jong Attractor to file
-
-    Args:
-        x, y      : int dimensions of bmp
-        bits      : int bit depth
-        a, b, c, d: float coefficients
-        n: number of terms to compute
     
     Returns:
         a bitmap file

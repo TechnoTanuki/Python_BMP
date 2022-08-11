@@ -29,6 +29,7 @@ from Python_BMP.BITMAPlib import(
         loadBMP,
         multicircle,
         savebarnsleytreefractal2file as barnsleytree,
+        savecliffordattractor2file,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
         savemulticirclefractal2file as multicircle,
@@ -55,7 +56,8 @@ from Python_BMP.BITMAPlib import(
         fractaldomainparamdict,
         savehilbertcurve2file as hilbert,
         savekochsnowflake2file as koch,
-        savespeterdejongattractor2file as peterdejong
+        savepeterdejongattractor2file as peterdejong,
+        savecliffordattractor2file as clifford
         )
 
 
@@ -316,6 +318,18 @@ class TestFractal2filefunc(unittest.TestCase):
         220000 # number of iterations
         )
         self.filecmp(*p)
+
+
+    def testcliford(self):
+        p = self._filepaths("cliffordattractor.bmp")
+        clifford(p[0], # path to new file
+        256, 256, # size of file
+        24, # bit depth
+        -1.7, 1.3, -.1, -1.2, # constants (float)
+        80060 # number of iterations
+        )
+        self.filecmp(*p)
+
 
 if __name__ == "__main__":
         print(notice)

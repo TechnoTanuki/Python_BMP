@@ -261,6 +261,7 @@ from .fractals import(
     gumowskimiraattractorlist,
     itermultibiomorphvariant,
     peterdejongattractorlist,
+    cliffordattractorlist,
     iterngonfractal
     )
 
@@ -11186,6 +11187,25 @@ def peterdejongattractor(
     return plotattractor(peterdejongattractorlist(a, b, c, d, n), x, y, bits)
 
 
+def cliffordattractor(
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a Clifford Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        byref unsigned byte array
+    """
+    return plotattractor(cliffordattractorlist(a, b, c, d, n), x, y, bits)
+
+
 def gumowskimiraattractor(
         x: int, y: int, bits: int,
         ox: float, oy: float,
@@ -11283,7 +11303,7 @@ def savenattractor2file(
 
 
 @functimer
-def savespeterdejongattractor2file(
+def savepeterdejongattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
@@ -11301,6 +11321,27 @@ def savespeterdejongattractor2file(
         a bitmap file
     """
     saveBMP(file, peterdejongattractor(x, y, bits, a, b, c, d, n))
+
+
+@functimer
+def savecliffordattractor2file(
+        file: str,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a Clifford Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, cliffordattractor(x, y, bits, a, b, c, d, n))
 
 
 @intcircleparam
