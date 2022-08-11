@@ -394,7 +394,7 @@ def multibiomorphvariant(P: float, Q: float,
         int
     """
     z = complex(P, Q)
-    for i in range(maxiter):
+    for _ in range(maxiter):
         z = z**d + c
         if abs(z.real) > a or abs(z.imag) > a:
             return abs(z)
