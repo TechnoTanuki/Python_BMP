@@ -262,6 +262,7 @@ from .fractals import(
     itermultibiomorphvariant,
     peterdejongattractorlist,
     cliffordattractorlist,
+    wallpaperattractorlist,
     iterngonfractal
     )
 
@@ -11187,6 +11188,25 @@ def peterdejongattractor(
     return plotattractor(peterdejongattractorlist(a, b, c, d, n), x, y, bits)
 
 
+def wallpaperattractor(
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float,
+        n: int):
+    """Draws a Wallpaper Attractor
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        a, b, c: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        byref unsigned byte array
+    """
+    return plotattractor(wallpaperattractorlist(a, b, c, n), x, y, bits)
+
+
 def cliffordattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
@@ -11321,6 +11341,27 @@ def savepeterdejongattractor2file(
         a bitmap file
     """
     saveBMP(file, peterdejongattractor(x, y, bits, a, b, c, d, n))
+
+
+@functimer
+def savewallpaperattractor2file(
+        file: str,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float,
+        n: int):
+    """Draws a Wallpaper Attractor to file
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        a, b, c: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, wallpaperattractor(x, y, bits, a, b, c, n))
 
 
 @functimer

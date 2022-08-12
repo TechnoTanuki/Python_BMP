@@ -11816,6 +11816,24 @@ Saves a Tricorn Fractal to a file
         a bitmap file
 
 
+### [`savewallpaperattractor2file`](#savewallpaperattractor2file)
+
+```py
+def savewallpaperattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, n: int):
+```
+
+Draws a Wallpaper Attractor to file
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        a, b, c: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savexordivfractal2file`](#savexordivfractal2file)
 
 ```py
@@ -13122,6 +13140,42 @@ of arbitrary dimension n equal to len(v)
     
     Returns:
         float
+
+
+### [`wallpaperattractor`](#wallpaperattractor)
+
+```py
+def wallpaperattractor(x: int, y: int, bits: int, a: float, b: float, c: float, n: int):
+```
+
+Draws a Wallpaper Attractor
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        a, b, c: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`wallpaperattractorlist`](#wallpaperattractorlist)
+
+```py
+def wallpaperattractorlist(a: float, b: float, c: float, n: int) -> list[list[float, float]]:
+```
+
+Returns list of [x,y] coordinate pairs for a
+Wallpaper Attractor
+
+    Args:
+        a, b, c: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        list of x,y pairs for a Wallpaper Attractor
+        [[x: float, y: float],...]
 
 
 ### [`writeint`](#writeint)

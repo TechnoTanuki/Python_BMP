@@ -1359,3 +1359,25 @@ def cliffordattractorlist(
          (x, y) = v[i] = (sine(a * y) + c * cosine(a * x),
                           sine(b * x) + d * cosine(b * y))
     return v
+
+
+def wallpaperattractorlist(
+        a: float, b: float,
+        c: float,
+        n: int) -> list[list[float, float]]:
+    """Returns list of [x,y] coordinate pairs for a
+    Wallpaper Attractor
+
+    Args:
+        a, b, c: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of x,y pairs for a Wallpaper Attractor
+        [[x: float, y: float],...]
+    """
+    x = y = 0
+    v = [(0,0)] * n
+    for i in range(n):
+         (x, y) = v[i] = (y - sign(x) * (abs(b * x - c) ** .5), a - x)
+    return v

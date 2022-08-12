@@ -262,8 +262,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![peterdejongattractor](../assets/fractals/peterdejong.bmp)](../Hello_PeterdeJongAttractor.py)
 
-
 [![cliffordattractor](../assets/fractals/cliffordattractor.bmp)](../Hello_CliffordAttractor.py)
+
+[![wallpaperattractor](../assets/fractals/wallpaperattractor.bmp)](../Hello_WallpaperAttractor.py)
 
 [![Biomorph variant](../assets/fractals/biomorphvariant.bmp)](../Hello_MultiBiomorphvariantfractal.py)
 
