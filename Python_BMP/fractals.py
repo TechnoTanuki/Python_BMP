@@ -1311,7 +1311,8 @@ def gumowskimiraattractorlist(
     v = [(0,0)] * n
     for i in range(n):
         z = x
-        v[i] = (x := b * y + g, y := (g := f(x)) - z)
+        v[i] = (x := b * y + g,
+                y := (g := f(x)) - z)
     return v
 
 
@@ -1333,8 +1334,9 @@ def peterdejongattractorlist(
     x = y = 0
     v = [(0,0)] * n
     for i in range(n):
-         (x, y) = v[i] = (sine(a * y) - cosine(b * x),
-                          sine(c * x) - cosine(d * y))
+         (x, y) = v[i] = \
+         (sine(a * y) - cosine(b * x),
+          sine(c * x) - cosine(d * y))
     return v
 
 
@@ -1356,8 +1358,9 @@ def cliffordattractorlist(
     x = y = 0
     v = [(0,0)] * n
     for i in range(n):
-         (x, y) = v[i] = (sine(a * y) + c * cosine(a * x),
-                          sine(b * x) + d * cosine(b * y))
+         (x, y) = v[i] = \
+         (sine(a * y) + c * cosine(a * x),
+          sine(b * x) + d * cosine(b * y))
     return v
 
 
@@ -1379,5 +1382,7 @@ def wallpaperattractorlist(
     x = y = 0
     v = [(0,0)] * n
     for i in range(n):
-         (x, y) = v[i] = (y - sign(x) * (abs(b * x - c) ** .5), a - x)
+         (x, y) = v[i] = \
+         (y - sign(x) * (abs(b * x - c) ** .5),
+          a - x)
     return v
