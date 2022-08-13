@@ -25,7 +25,7 @@ from .primitives2D import (
 from math import (
     sin as sine,
     cos as cosine,
-    floor
+    pi
 )
 
 from cmath import (
@@ -34,8 +34,6 @@ from cmath import (
     tan,
     exp
 )
-
-from math import pi
 
 from .mathlib import (
     addvect,
