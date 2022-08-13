@@ -263,6 +263,7 @@ from .fractals import(
     peterdejongattractorlist,
     cliffordattractorlist,
     wallpaperattractorlist,
+    fractaldreamattractorlist,
     iterngonfractal
     )
 
@@ -11226,6 +11227,32 @@ def cliffordattractor(
     return plotattractor(cliffordattractorlist(a, b, c, d, n), x, y, bits)
 
 
+def fractaldreamattractor(
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a Fractal Dream Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+        a and b are floating point values
+        between -3 and +3
+
+        c and d are floating point values
+        between -0.5 and +1.5
+
+    Returns:
+        byref unsigned byte array
+    """
+    return plotattractor(fractaldreamattractorlist(a, b, c, d, n), x, y, bits)
+
+
+
 def gumowskimiraattractor(
         x: int, y: int, bits: int,
         ox: float, oy: float,
@@ -11383,6 +11410,33 @@ def savecliffordattractor2file(
         a bitmap file
     """
     saveBMP(file, cliffordattractor(x, y, bits, a, b, c, d, n))
+
+
+@functimer
+def savefractaldreamattractor2file(
+        file: str,
+        x: int, y: int, bits: int,
+        a: float, b: float,
+        c: float, d: float,
+        n: int):
+    """Draws a Fractal Dream Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+        a and b are floating point values
+        between -3 and +3
+
+        c and d are floating point values
+        between -0.5 and +1.5
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, fractaldreamattractor(x, y, bits, a, b, c, d, n))
 
 
 @intcircleparam

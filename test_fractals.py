@@ -25,6 +25,7 @@ notice = """
 import unittest
 from os import path
 from Python_BMP.BITMAPlib import(
+        fractaldreamattractor,
         lambdafractal,
         loadBMP,
         multicircle,
@@ -59,7 +60,8 @@ from Python_BMP.BITMAPlib import(
         savekochsnowflake2file as koch,
         savepeterdejongattractor2file as peterdejong,
         savecliffordattractor2file as clifford,
-        savewallpaperattractor2file as wallpaper
+        savewallpaperattractor2file as wallpaper,
+        savefractaldreamattractor2file as fractaldream
         )
 
 
@@ -340,6 +342,17 @@ class TestFractal2filefunc(unittest.TestCase):
         24, # bit depth
         1.441, 1.802, -.316,# constants (float)
         500000 # number of iterations
+        )
+        self.filecmp(*p)
+
+
+    def testfractaldreamattractor(self):
+        p = self._filepaths("fractaldreamattractor.bmp")
+        fractaldream(p[0], # path to new file
+        256, 256, # size of file
+        24, # bit depth
+        -0.966918, 2.879879, 0.765145, 0.744728, # constants (float)
+        88800 # number of iterations
         )
         self.filecmp(*p)
 

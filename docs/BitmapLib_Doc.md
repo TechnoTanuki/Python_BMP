@@ -2731,6 +2731,54 @@ def fractaldomainparamdict() -> dict:
     
 
 
+### [`fractaldreamattractor`](#fractaldreamattractor)
+
+```py
+def fractaldreamattractor(x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Fractal Dream Attractor
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+        a and b are floating point values
+        between -3 and +3
+    
+        c and d are floating point values
+        between -0.5 and +1.5
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`fractaldreamattractorlist`](#fractaldreamattractorlist)
+
+```py
+def fractaldreamattractorlist(a: float, b: float, c: float, d: float, n: int) -> list[list[float, float]]:
+```
+
+Returns list of [x,y] coordinate pairs for a
+Fractal Dream Attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+        a and b are floating point values
+        between -3 and +3
+    
+        c and d are floating point values
+        between -0.5 and +1.5
+    
+    Returns:
+        list of x,y pairs for a Fractal Dream Attractor
+        [[x: float, y: float],...]
+
+
 ### [`func24bitonly`](#func24bitonly)
 
 ```py
@@ -11161,6 +11209,30 @@ Saves a Fractal to a file
                   (1, 4, 8, 24) bits
         maxiter : optional parameter
                   to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savefractaldreamattractor2file`](#savefractaldreamattractor2file)
+
+```py
+def savefractaldreamattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, d: float, n: int):
+```
+
+Draws a Fractal Dream Attractor to file
+
+    Args:
+        x, y      : int dimensions of bmp
+        bits      : int bit depth
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+    
+        a and b are floating point values
+        between -3 and +3
+    
+        c and d are floating point values
+        between -0.5 and +1.5
     
     Returns:
         a bitmap file

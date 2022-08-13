@@ -1362,6 +1362,36 @@ def cliffordattractorlist(
     return v
 
 
+def fractaldreamattractorlist(
+        a: float, b: float,
+        c: float, d: float,
+        n: int) -> list[list[float, float]]:
+    """Returns list of [x,y] coordinate pairs for a
+    Fractal Dream Attractor
+
+    Args:
+        a, b, c, d: float coefficients
+        n: number of terms to compute
+
+        a and b are floating point values
+        between -3 and +3
+
+        c and d are floating point values
+        between -0.5 and +1.5
+
+    Returns:
+        list of x,y pairs for a Fractal Dream Attractor
+        [[x: float, y: float],...]
+    """
+    x = y = 0.1
+    v = [(0,0)] * n
+    for i in range(n):
+         (x, y) = v[i] = \
+         (sine(b * y) + c * sine(b * x),
+          sine(a * x) + d * sine(a * y))
+    return v
+
+
 def wallpaperattractorlist(
         a: float, b: float,
         c: float,

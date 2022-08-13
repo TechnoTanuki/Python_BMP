@@ -32,6 +32,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 **Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
 * ![mini math lib](../Python_BMP/mathlib.py)
 * fractals http://paulbourke.net/fractals/
+* 2D Strange attractors https://softologyblog.wordpress.com/2017/03/04/2d-strange-attractors/
 * parametric curves https://mathworld.wolfram.com/topics/Curves.html
 * moar curves https://mathcurve.com
 
@@ -263,6 +264,8 @@ If there is demand for it I could in theory write a book based on this project l
 [![peterdejongattractor](../assets/fractals/peterdejong.bmp)](../Hello_PeterdeJongAttractor.py)
 
 [![cliffordattractor](../assets/fractals/cliffordattractor.bmp)](../Hello_CliffordAttractor.py)
+
+[![fractaldream](../assets/fractals/fractaldreamattractor.bmp)](../Hello_FractalDreamAttractor.py)
 
 [![wallpaperattractor](../assets/fractals/wallpaperattractor.bmp)](../Hello_WallpaperAttractor.py)
 
