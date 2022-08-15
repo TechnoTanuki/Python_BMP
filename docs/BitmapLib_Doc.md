@@ -11895,7 +11895,7 @@ Draws a Symmetric Icon Attractor to file
         x, y   : int dimensions of bmp
         bits   : int bit depth
         ox, oy: float starting coordinates
-        a, b, c, g, o, l: float coefficients
+        a, b, g, o, l: float coefficients
         d: int degree
         n: number of terms to compute
     
@@ -12562,7 +12562,7 @@ Draws a Symmetric Icon Attractor
         x, y   : int dimensions of bmp
         bits   : int bit depth
         ox, oy: float starting coordinates
-        a, b, c, g, o, l: float coefficients
+        a, b, g, o, l: float coefficients
         d: int degree
         n: number of terms to compute
     
@@ -12581,7 +12581,7 @@ Symmetric Icon Attractor
 
     Args:
         x, y: float starting coordinates
-        a, b, c, g, o, l: float coefficients
+        a, b, g, o, l: float coefficients
         d: int degree
         n: number of terms to compute
     

@@ -1428,7 +1428,7 @@ def symmetriciconattractorlist(
 
     Args:
         x, y: float starting coordinates
-        a, b, c, g, o, l: float coefficients
+        a, b, g, o, l: float coefficients
         d: int degree
         n: number of terms to compute
 

@@ -11222,7 +11222,7 @@ def symmetriciconattractor(
         x, y   : int dimensions of bmp
         bits   : int bit depth
         ox, oy: float starting coordinates
-        a, b, c, g, o, l: float coefficients
+        a, b, g, o, l: float coefficients
         d: int degree
         n: number of terms to compute
 
@@ -11430,7 +11430,7 @@ def savesymmetriciconattractor2file(
         x, y   : int dimensions of bmp
         bits   : int bit depth
         ox, oy: float starting coordinates
-        a, b, c, g, o, l: float coefficients
+        a, b, g, o, l: float coefficients
         d: int degree
         n: number of terms to compute
 
