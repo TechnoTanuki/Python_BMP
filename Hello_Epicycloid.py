@@ -38,7 +38,6 @@ def main():
         lim = pi * 10 + d # angle limit
         color = 10
         for c in range(1, 16):
-                j = c * 8
                 plotlines(bmp, f(x, y, # position the epicycloid
                  160 / c, # radius of fixed circle
                  100 / c, # radius of rolling circle
