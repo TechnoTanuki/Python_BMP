@@ -1,4 +1,7 @@
 graft assets
 graft docs
+graft Python_BMP
+graft tests
+graft test_output
 prune source_code_gen
 global-exclude *.py[cod]
