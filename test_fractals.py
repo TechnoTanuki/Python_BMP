@@ -46,6 +46,7 @@ from Python_BMP.BITMAPlib import(
         savexorfractal2file as xorfractal,
         savexordivfractal2file as xordivfractal,
         savegumowskimiraattractor2file as  gumowskimiraattractor,
+        savemultibiomorphfractal2file as biomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
@@ -268,6 +269,16 @@ class TestFractal2filefunc(unittest.TestCase):
         1 + 1j, # complex nunber
         5, # power of z
         self.domain, # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testbiomorph(self):
+        p = self._filepaths("biomorph.bmp")
+        biomorph(p[0], 256, 256, # file and bitmap size
+        1 + 1j, # complex nunber
+        5, # power of z
+        [-2.5, 2.5, -2.5, 2.5], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 

@@ -268,6 +268,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![SymmetricIconattractor](../assets/fractals/symmetriciconattractor.bmp)](../Hello_Symmetric_Icon_Attractor.py)
 
+[![Biomorph](../assets/fractals/biomorph.bmp)](../Hello_MultiBiomorphfractal.py)
 
 [![Biomorph variant](../assets/fractals/biomorphvariant.bmp)](../Hello_MultiBiomorphvariantfractal.py)
 
