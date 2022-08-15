@@ -16,8 +16,6 @@ from Python_BMP.BITMAPlib import(
         savemultibiomorphvariantfractal2file as f,
         fractaldomainparamdict as d,
         getfuncmetastr as meta,
-        newBMP,
-        saveBMP
         )
 
 import subprocess as proc
