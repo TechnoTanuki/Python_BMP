@@ -12573,7 +12573,7 @@ Draws a Symmetric Icon Attractor
 ### [`symmetriciconattractorlist`](#symmetriciconattractorlist)
 
 ```py
-def symmetriciconattractorlist(x: float, y: float, a: float, b: float, g: float, o: float, l: float, d: int, n: int):
+def symmetriciconattractorlist(x: float, y: float, a: float, b: float, g: float, o: float, l: float, d: int, n: int) -> list[list[float, float]]:
 ```
 
 Returns list of [x,y] coordinate pairs for a

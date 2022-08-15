@@ -1422,7 +1422,7 @@ def symmetriciconattractorlist(
     g: float, o: float,
     l: float,
     d: int,
-    n: int):
+    n: int) -> list[list[float, float]]:
     """Returns list of [x,y] coordinate pairs for a
     Symmetric Icon Attractor
 
