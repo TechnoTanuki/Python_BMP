@@ -266,6 +266,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Hopalongattractor](../assets/fractals/hopalongattractor.bmp)](../Hello_HopalongAttractor.py)
 
+[![SymmetricIconattractor](../assets/fractals/symmetriciconattractor.bmp)](../Hello_Symmetric_Icon_Attractor.py)
+
+
 [![Biomorph variant](../assets/fractals/biomorphvariant.bmp)](../Hello_MultiBiomorphvariantfractal.py)
 
 [![n-gon](../assets/fractals/ngonfractal.bmp)](../Hello_ngonfractal.py)

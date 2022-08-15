@@ -264,6 +264,7 @@ from .fractals import(
     cliffordattractorlist,
     hopalongattractorlist,
     fractaldreamattractorlist,
+    symmetriciconattractorlist,
     iterngonfractal
     )
 
@@ -11208,6 +11209,29 @@ def hopalongattractor(
     return plotattractor(hopalongattractorlist(a, b, c, n), x, y, bits)
 
 
+def symmetriciconattractor(
+        x: int, y: int, bits: int,
+        ox: float, oy: float,
+        a: float, b : float, g: float,
+        o: float, l: float,
+        d: int,
+        n: int):
+    """Draws a Symmetric Icon Attractor
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        ox, oy: float starting coordinates
+        a, b, c, g, o, l: float coefficients
+        d: int degree
+        n: number of terms to compute
+
+    Returns:
+        byref unsigned byte array
+    """
+    return plotattractor(symmetriciconattractorlist(ox, oy, a, b, g, o, l, d, n), x, y, bits)
+
+
 def cliffordattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
@@ -11389,6 +11413,31 @@ def savehopalongattractor2file(
         a bitmap file
     """
     saveBMP(file, hopalongattractor(x, y, bits, a, b, c, n))
+
+
+@functimer
+def savesymmetriciconattractor2file(
+        file: str,
+        x: int, y: int, bits: int,
+        ox: float, oy: float,
+        a: float, b : float, g: float,
+        o: float, l: float,
+        d: int,
+        n: int):
+    """Draws a Symmetric Icon Attractor to file
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        ox, oy: float starting coordinates
+        a, b, c, g, o, l: float coefficients
+        d: int degree
+        n: number of terms to compute
+
+    Returns:
+        a bitmap file
+    """
+    saveBMP(file, symmetriciconattractor(x, y, bits, ox, oy, a, b, g, o, l, d, n))
 
 
 @functimer

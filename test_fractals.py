@@ -60,7 +60,8 @@ from Python_BMP.BITMAPlib import(
         savepeterdejongattractor2file as peterdejong,
         savecliffordattractor2file as clifford,
         savehopalongattractor2file as hopalong,
-        savefractaldreamattractor2file as fractaldream
+        savefractaldreamattractor2file as fractaldream,
+        savesymmetriciconattractor2file as symicon
         )
 
 
@@ -354,6 +355,18 @@ class TestFractal2filefunc(unittest.TestCase):
         88800 # number of iterations
         )
         self.filecmp(*p)
+
+
+    def testsymmetriciconattractor(self):
+        p = self._filepaths("symmetriciconattractor.bmp")
+        symicon(p[0], # path to new file
+        256, 256, # size of file
+        24, # bit depth
+        0.01, 0.01, 1.0, -0.1, 0.167, 0.0, -2.08, 7,# constants (float)
+        30100 # number of iterations
+        )
+        self.filecmp(*p)
+
 
 if __name__ == "__main__":
         print(notice)

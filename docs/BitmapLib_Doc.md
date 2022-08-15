@@ -11883,6 +11883,26 @@ Saves a Spiral Julia Set to a file
         a bitmap file
 
 
+### [`savesymmetriciconattractor2file`](#savesymmetriciconattractor2file)
+
+```py
+def savesymmetriciconattractor2file(file: str, x: int, y: int, bits: int, ox: float, oy: float, a: float, b: float, g: float, o: float, l: float, d: int, n: int):
+```
+
+Draws a Symmetric Icon Attractor to file
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        ox, oy: float starting coordinates
+        a, b, c, g, o, l: float coefficients
+        d: int degree
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savetetrationfractal2file`](#savetetrationfractal2file)
 
 ```py
@@ -12528,6 +12548,46 @@ Swaps the first two values in a list
     
     Returns:
         list[y, x]
+
+
+### [`symmetriciconattractor`](#symmetriciconattractor)
+
+```py
+def symmetriciconattractor(x: int, y: int, bits: int, ox: float, oy: float, a: float, b: float, g: float, o: float, l: float, d: int, n: int):
+```
+
+Draws a Symmetric Icon Attractor
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        ox, oy: float starting coordinates
+        a, b, c, g, o, l: float coefficients
+        d: int degree
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`symmetriciconattractorlist`](#symmetriciconattractorlist)
+
+```py
+def symmetriciconattractorlist(x: float, y: float, a: float, b: float, g: float, o: float, l: float, d: int, n: int):
+```
+
+Returns list of [x,y] coordinate pairs for a
+Symmetric Icon Attractor
+
+    Args:
+        x, y: float starting coordinates
+        a, b, c, g, o, l: float coefficients
+        d: int degree
+        n: number of terms to compute
+    
+    Returns:
+        list of x,y pairs for a Symmetric Icon Attractor
+        [[x: float, y: float],...]
 
 
 ### [`tetrahedravert`](#tetrahedravert)

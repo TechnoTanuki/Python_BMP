@@ -1414,3 +1414,38 @@ def hopalongattractorlist(
          (y - sign(x) * (abs(b * x - c) ** .5),
           a - x)
     return v
+
+
+def symmetriciconattractorlist(
+    x: float, y: float,
+    a: float, b : float,
+    g: float, o: float,
+    l: float,
+    d: int,
+    n: int):
+    """Returns list of [x,y] coordinate pairs for a
+    Symmetric Icon Attractor
+
+    Args:
+        x, y: float starting coordinates
+        a, b, c, g, o, l: float coefficients
+        d: int degree
+        n: number of terms to compute
+
+    Returns:
+        list of x,y pairs for a Symmetric Icon Attractor
+        [[x: float, y: float],...]
+    """
+    v = [(0,0)] * n
+    d -= 1
+    for i in range(n):
+        p = a * (x * x + y * y) + l
+        r, j = x, y
+        for _ in range(1, d):
+            r , j = \
+            r * x - j * y, j * x + r * y
+        p += b * (x * r - y * j)
+        (x, y) = v[i] = \
+        (p * x + g * r - o * y,
+         p * y - g * j + o * x)
+    return v
