@@ -262,7 +262,7 @@ from .fractals import(
     itermultibiomorphvariant,
     peterdejongattractorlist,
     cliffordattractorlist,
-    wallpaperattractorlist,
+    hopalongattractorlist,
     fractaldreamattractorlist,
     iterngonfractal
     )
@@ -11189,12 +11189,12 @@ def peterdejongattractor(
     return plotattractor(peterdejongattractorlist(a, b, c, d, n), x, y, bits)
 
 
-def wallpaperattractor(
+def hopalongattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
         c: float,
         n: int):
-    """Draws a Wallpaper Attractor
+    """Draws a Hopalong Attractor
 
     Args:
         x, y   : int dimensions of bmp
@@ -11205,7 +11205,7 @@ def wallpaperattractor(
     Returns:
         byref unsigned byte array
     """
-    return plotattractor(wallpaperattractorlist(a, b, c, n), x, y, bits)
+    return plotattractor(hopalongattractorlist(a, b, c, n), x, y, bits)
 
 
 def cliffordattractor(
@@ -11371,13 +11371,13 @@ def savepeterdejongattractor2file(
 
 
 @functimer
-def savewallpaperattractor2file(
+def savehopalongattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
         c: float,
         n: int):
-    """Draws a Wallpaper Attractor to file
+    """Draws a Hopalong Attractor to file
 
     Args:
         x, y   : int dimensions of bmp
@@ -11388,7 +11388,7 @@ def savewallpaperattractor2file(
     Returns:
         a bitmap file
     """
-    saveBMP(file, wallpaperattractor(x, y, bits, a, b, c, n))
+    saveBMP(file, hopalongattractor(x, y, bits, a, b, c, n))
 
 
 @functimer

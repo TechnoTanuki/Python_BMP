@@ -1392,19 +1392,19 @@ def fractaldreamattractorlist(
     return v
 
 
-def wallpaperattractorlist(
+def hopalongattractorlist(
         a: float, b: float,
         c: float,
         n: int) -> list[list[float, float]]:
     """Returns list of [x,y] coordinate pairs for a
-    Wallpaper Attractor
+    Hopalong Attractor
 
     Args:
         a, b, c: float coefficients
         n: number of terms to compute
 
     Returns:
-        list of x,y pairs for a Wallpaper Attractor
+        list of x,y pairs for a Hopalong Attractor
         [[x: float, y: float],...]
     """
     x = y = 0

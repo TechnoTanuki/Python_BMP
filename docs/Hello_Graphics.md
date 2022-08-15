@@ -254,12 +254,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Gumowski-Mira](../assets/fractals/gumowskimiraattractor.bmp)](../Hello_Gumowski-Mira_attractor_1.py)
 
-
 [![Gumowski-Mira1](../assets/gumowskimiraattractor.bmp)](../Hello_Gumowski-Mira_attractor.py)
 
-
 [![nattractor](../assets/fractals/nattractor.bmp)](../Hello_nattractor.py)
-
 
 [![peterdejongattractor](../assets/fractals/peterdejong.bmp)](../Hello_PeterdeJongAttractor.py)
 
@@ -267,7 +264,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![fractaldream](../assets/fractals/fractaldreamattractor.bmp)](../Hello_FractalDreamAttractor.py)
 
-[![wallpaperattractor](../assets/fractals/wallpaperattractor.bmp)](../Hello_WallpaperAttractor.py)
+[![Hopalongattractor](../assets/fractals/hopalongattractor.bmp)](../Hello_HopalongAttractor.py)
 
 [![Biomorph variant](../assets/fractals/biomorphvariant.bmp)](../Hello_MultiBiomorphvariantfractal.py)
 

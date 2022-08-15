@@ -43,7 +43,6 @@ from Python_BMP.BITMAPlib import(
         savemulticornfractal2file as multicorn,
         savenewtonsfractal2file as newton,
         savenattractor2file as nattractor,
-        savewallpaperattractor2file,
         savexorfractal2file as xorfractal,
         savexordivfractal2file as xordivfractal,
         savegumowskimiraattractor2file as  gumowskimiraattractor,
@@ -60,7 +59,7 @@ from Python_BMP.BITMAPlib import(
         savekochsnowflake2file as koch,
         savepeterdejongattractor2file as peterdejong,
         savecliffordattractor2file as clifford,
-        savewallpaperattractor2file as wallpaper,
+        savehopalongattractor2file as hopalong,
         savefractaldreamattractor2file as fractaldream
         )
 
@@ -335,9 +334,9 @@ class TestFractal2filefunc(unittest.TestCase):
         self.filecmp(*p)
 
 
-    def testwallpaper(self):
-        p = self._filepaths("wallpaperattractor.bmp")
-        wallpaper(p[0], # path to new file
+    def testhopalong(self):
+        p = self._filepaths("hopalongattractor.bmp")
+        hopalong(p[0], # path to new file
         256, 256, # size of file
         24, # bit depth
         1.441, 1.802, -.316,# constants (float)

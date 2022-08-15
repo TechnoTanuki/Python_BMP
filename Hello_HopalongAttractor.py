@@ -1,5 +1,5 @@
 notice = """
-      Wallpaper Attractor Demo
+      Hopalong Attractor Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-    savewallpaperattractor2file as f,
+    savehopalongattractor2file as f,
     getfuncmetastr as meta)
 import subprocess as proc
 from os import path

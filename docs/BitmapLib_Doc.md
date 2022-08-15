@@ -3984,6 +3984,42 @@ in the complex plane centered at 0, 0
         [[c: int:, c1: int, ...], ...]
 
 
+### [`hopalongattractor`](#hopalongattractor)
+
+```py
+def hopalongattractor(x: int, y: int, bits: int, a: float, b: float, c: float, n: int):
+```
+
+Draws a Hopalong Attractor
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        a, b, c: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`hopalongattractorlist`](#hopalongattractorlist)
+
+```py
+def hopalongattractorlist(a: float, b: float, c: float, n: int) -> list[list[float, float]]:
+```
+
+Returns list of [x,y] coordinate pairs for a
+Hopalong Attractor
+
+    Args:
+        a, b, c: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        list of x,y pairs for a Hopalong Attractor
+        [[x: float, y: float],...]
+
+
 ### [`horibrightnessgrad2circregion2file`](#horibrightnessgrad2circregion2file)
 
 ```py
@@ -11323,6 +11359,24 @@ Saves a Hilbert Curve to a file
         a bitmap file
 
 
+### [`savehopalongattractor2file`](#savehopalongattractor2file)
+
+```py
+def savehopalongattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, n: int):
+```
+
+Draws a Hopalong Attractor to file
+
+    Args:
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        a, b, c: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        a bitmap file
+
+
 ### [`saveikedaattractor2file`](#saveikedaattractor2file)
 
 ```py
@@ -11883,24 +11937,6 @@ Saves a Tricorn Fractal to a file
                   (1, 4, 8, 24) bits
         maxiter : optional parameter
                   to set maximum iteration
-    
-    Returns:
-        a bitmap file
-
-
-### [`savewallpaperattractor2file`](#savewallpaperattractor2file)
-
-```py
-def savewallpaperattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, c: float, n: int):
-```
-
-Draws a Wallpaper Attractor to file
-
-    Args:
-        x, y   : int dimensions of bmp
-        bits   : int bit depth
-        a, b, c: float coefficients
-        n: number of terms to compute
     
     Returns:
         a bitmap file
@@ -13212,42 +13248,6 @@ of arbitrary dimension n equal to len(v)
     
     Returns:
         float
-
-
-### [`wallpaperattractor`](#wallpaperattractor)
-
-```py
-def wallpaperattractor(x: int, y: int, bits: int, a: float, b: float, c: float, n: int):
-```
-
-Draws a Wallpaper Attractor
-
-    Args:
-        x, y   : int dimensions of bmp
-        bits   : int bit depth
-        a, b, c: float coefficients
-        n: number of terms to compute
-    
-    Returns:
-        byref unsigned byte array
-
-
-### [`wallpaperattractorlist`](#wallpaperattractorlist)
-
-```py
-def wallpaperattractorlist(a: float, b: float, c: float, n: int) -> list[list[float, float]]:
-```
-
-Returns list of [x,y] coordinate pairs for a
-Wallpaper Attractor
-
-    Args:
-        a, b, c: float coefficients
-        n: number of terms to compute
-    
-    Returns:
-        list of x,y pairs for a Wallpaper Attractor
-        [[x: float, y: float],...]
 
 
 ### [`writeint`](#writeint)
