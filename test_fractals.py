@@ -49,6 +49,7 @@ from Python_BMP.BITMAPlib import(
         savemultibiomorphfractal2file as biomorph,
         savemultisinbiomorphfractal2file as sinbiomorph,
         savemultitanbiomorphfractal2file as tanbiomorph,
+        savemultiexpbiomorphfractal2file as expbiomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
@@ -268,7 +269,7 @@ class TestFractal2filefunc(unittest.TestCase):
     def testbiomorphvariant(self):
         p = self._filepaths("biomorphvariant.bmp")
         biomorphvariant(p[0], 256, 256, # file and bitmap size
-        1 + 1j, # complex nunber
+        1 + 1j, # complex number
         5, # power of z
         self.domain, # location to plot
         self.c['darkseagreen1']) # color
@@ -288,9 +289,19 @@ class TestFractal2filefunc(unittest.TestCase):
     def testsinbiomorph(self):
         p = self._filepaths("sinbiomorph.bmp")
         sinbiomorph(p[0], 256, 256, # file and bitmap size
-        .8 + .9j, # complex nunber
+        .8 + .9j, # complex number
         2, # power of z
         [-5, 5, -5, 5], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testexpbiomorph(self):
+        p = self._filepaths("expbiomorph.bmp")
+        expbiomorph(p[0], 256, 256, # file and bitmap size
+        .1 + .9j, # complex number
+        5, # power of z
+        [-2, 2, -2, 2], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
@@ -298,7 +309,7 @@ class TestFractal2filefunc(unittest.TestCase):
     def testtanbiomorph(self):
         p = self._filepaths("tanbiomorph.bmp")
         tanbiomorph(p[0], 256, 256, # file and bitmap size
-        .8 + .9j, # complex nunber
+        .8 + .9j, # complex number
         3, # power of z
         [-2.5, 2.5, -2.5, 2.5], # location to plot
         self.c['darkseagreen1']) # color

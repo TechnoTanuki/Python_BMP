@@ -32,7 +32,7 @@ def main():
         par = d() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my, # file and bitmap size
-          .8 + .9j, # complex nunber
+          .8 + .9j, # complex number
           2, # power of z
           [-5, 5, -5, 5], # location to plot
           cf['darkseagreen1']) # color

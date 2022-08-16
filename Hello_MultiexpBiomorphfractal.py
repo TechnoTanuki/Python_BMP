@@ -1,5 +1,5 @@
 notice = """
-Multi tan(z) Biomorph  Fractal Demo
+Multi exp(z) Biomorph  Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -13,7 +13,7 @@ Multi tan(z) Biomorph  Fractal Demo
 """
 from Python_BMP.BITMAPlib import(
         getX11RGBfactors,
-        savemultitanbiomorphfractal2file as f,
+        savemultiexpbiomorphfractal2file as f,
         fractaldomainparamdict as d,
         getfuncmetastr as meta,
         )
@@ -32,9 +32,9 @@ def main():
         par = d() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my, # file and bitmap size
-          .8 + .9j, # complex number
-          3, # power of z
-          [-2.5, 2.5, -2.5, 2.5], # location to plot
+          .1 + .9j, # complex number
+          5, # power of z
+          [-2, 2, -2, 2], # location to plot
           cf['darkseagreen1']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
