@@ -49,6 +49,7 @@ from Python_BMP.BITMAPlib import(
         savemultitanbiomorphfractal2file as tanbiomorph,
         savemultiexpbiomorphfractal2file as expbiomorph,
         savemultisinhbiomorphfractal2file as sinhbiomorph,
+        savemultitanhbiomorphfractal2file as tanhbiomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
@@ -304,6 +305,7 @@ class TestFractal2filefunc(unittest.TestCase):
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
+
     def testexpbiomorph(self):
         p = self._filepaths("expbiomorph.bmp")
         expbiomorph(p[0], 256, 256, # file and bitmap size
@@ -320,6 +322,16 @@ class TestFractal2filefunc(unittest.TestCase):
         .8 + .9j, # complex number
         3, # power of z
         [-2.5, 2.5, -2.5, 2.5], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testtanhbiomorph(self):
+        p = self._filepaths("tanhbiomorph.bmp")
+        tanhbiomorph(p[0], 256, 256, # file and bitmap size
+        .3 + .8j, # complex number
+        3, # power of z
+        [-1.9, 1.9, -1.9, 1.9], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
@@ -356,13 +368,15 @@ class TestFractal2filefunc(unittest.TestCase):
 
     def testtetrationfractal(self):
         p = self._filepaths("tetration.bmp")
-        tetration(p[0], 256, 256, 16, [1, 2.5, -.75, .75], [], 4)
+        tetration(p[0], 256, 256, 16,
+        [1, 2.5, -.75, .75], [], 4)
         self.filecmp(*p)
 
 
     def testmarekdragon(self):
         p = self._filepaths("marekdragon.bmp")
-        marekdragon(p[0], 256, 256, 0.040884634, [-1.5, .5, -1.25, 1], self.c['yellowgreen'])
+        marekdragon(p[0], 256, 256, 0.040884634,
+        [-1.5, .5, -1.25, 1], self.c['yellowgreen'])
         self.filecmp(*p)
 
 
