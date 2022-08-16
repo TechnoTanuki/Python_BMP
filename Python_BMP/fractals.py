@@ -32,7 +32,8 @@ from cmath import (
     sin,
     cos,
     tan,
-    exp
+    exp,
+    sinh
 )
 
 from .mathlib import (
@@ -423,6 +424,35 @@ def multisinbiomorph(P: float, Q: float,
     z = complex(P, Q)
     for i in range(maxiter):
         z = sin(z) + z**d + c
+        if abs(z.real) > a and abs(z.imag) > a:
+            return i
+        if abs(z.real) > a or abs(z.imag) > a:
+            return maxiter
+    return maxiter
+
+
+def multisinhbiomorph(P: float, Q: float,
+        c: complex,
+        d: float,
+        maxiter: int,
+        a: float = 5) -> int:
+    """Multi Sinh(z) Biomorph Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        c : complex number
+        d : exponent
+        maxiter : when to break
+                  color compute
+        a : optional limit as float
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        z = sinh(z) + z**d + c
         if abs(z.real) > a and abs(z.imag) > a:
             return i
         if abs(z.real) > a or abs(z.imag) > a:
@@ -1176,6 +1206,36 @@ def itermultisinbiomorph(
     """
     for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
         multisinbiomorph, domain, maxiter):
+        yield p
+
+
+def itermultisinhbiomorph(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        d: float,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Sinh(z) Multi Biomorph fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x: int, y: int, c: int)
+    """
+    for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
+        multisinhbiomorph, domain, maxiter):
         yield p
 
 

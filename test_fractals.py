@@ -25,12 +25,10 @@ notice = """
 import unittest
 from os import path
 from Python_BMP.BITMAPlib import(
-        fractaldreamattractor,
         lambdafractal,
         loadBMP,
         multicircle,
         savebarnsleytreefractal2file as barnsleytree,
-        savecliffordattractor2file,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
         savemulticirclefractal2file as multicircle,
@@ -45,11 +43,12 @@ from Python_BMP.BITMAPlib import(
         savenattractor2file as nattractor,
         savexorfractal2file as xorfractal,
         savexordivfractal2file as xordivfractal,
-        savegumowskimiraattractor2file as  gumowskimiraattractor,
+        savegumowskimiraattractor2file as gumowskimiraattractor,
         savemultibiomorphfractal2file as biomorph,
         savemultisinbiomorphfractal2file as sinbiomorph,
         savemultitanbiomorphfractal2file as tanbiomorph,
         savemultiexpbiomorphfractal2file as expbiomorph,
+        savemultisinhbiomorphfractal2file as sinhbiomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
@@ -295,6 +294,15 @@ class TestFractal2filefunc(unittest.TestCase):
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
+
+    def testsinhbiomorph(self):
+        p = self._filepaths("sinhbiomorph.bmp")
+        sinhbiomorph(p[0], 256, 256, # file and bitmap size
+        .8 + .9j, # complex number
+        5, # power of z
+        [-1.25, 1.25, -1.25, 1.25], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
 
     def testexpbiomorph(self):
         p = self._filepaths("expbiomorph.bmp")
