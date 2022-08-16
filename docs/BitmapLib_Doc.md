@@ -5799,6 +5799,31 @@ Yields a Sin(z) Multi Biomorph fractal
         (x: int, y: int, c: int)
 
 
+### [`itermultitanbiomorph`](#itermultitanbiomorph)
+
+```py
+def itermultitanbiomorph(x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Tan(z) Multi Biomorph fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`iternewtonsfractal`](#iternewtonsfractal)
 
 ```py
@@ -7787,6 +7812,34 @@ def multisinbiomorph(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: co
 ```
 
 Draw a Multi sin(z) Biomorph fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`multitanbiomorph`](#multitanbiomorph)
+
+```py
+def multitanbiomorph(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multi tan(z) Biomorph fractal
 
     Args:
         bmp           : unsigned
@@ -11850,6 +11903,37 @@ def savemultisinbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: f
 ```
 
 Saves a Multi sin(z) Biomorph Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savemultitanbiomorphfractal2file`](#savemultitanbiomorphfractal2file)
+
+```py
+def savemultitanbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Multi tan(z) Biomorph Fractal to a file
 
     Args:
         file    : full path to new file

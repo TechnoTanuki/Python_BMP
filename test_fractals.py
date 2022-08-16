@@ -48,6 +48,7 @@ from Python_BMP.BITMAPlib import(
         savegumowskimiraattractor2file as  gumowskimiraattractor,
         savemultibiomorphfractal2file as biomorph,
         savemultisinbiomorphfractal2file as sinbiomorph,
+        savemultitanbiomorphfractal2file as tanbiomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
@@ -290,6 +291,16 @@ class TestFractal2filefunc(unittest.TestCase):
         .8 + .9j, # complex nunber
         2, # power of z
         [-5, 5, -5, 5], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testtanbiomorph(self):
+        p = self._filepaths("tanbiomorph.bmp")
+        tanbiomorph(p[0], 256, 256, # file and bitmap size
+        .8 + .9j, # complex nunber
+        3, # power of z
+        [-2.5, 2.5, -2.5, 2.5], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
