@@ -50,6 +50,7 @@ from Python_BMP.BITMAPlib import(
         savemultitanbiomorphfractal2file as tanbiomorph,
         savemultiexpbiomorphfractal2file as expbiomorph,
         savemultisinhbiomorphfractal2file as sinhbiomorph,
+        savemulticoshbiomorphfractal2file as coshbiomorph,
         savemultitanhbiomorphfractal2file as tanhbiomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
@@ -303,6 +304,16 @@ class TestFractal2filefunc(unittest.TestCase):
         .4 + .9j, # complex number
         3, # power of z
         [-1.7, 1.7, -1.7, 1.7], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testcoshbiomorph(self):
+        p = self._filepaths("coshbiomorph.bmp")
+        coshbiomorph(p[0], 256, 256, # file and bitmap size
+        .6 + .2j, # complex number
+        2, # power of z
+        [-2.8, 2.8, -2.8, 2.8], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 

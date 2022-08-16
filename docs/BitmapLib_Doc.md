@@ -5774,6 +5774,31 @@ Yields a Cos(z) Multi Biomorph fractal
         (x: int, y: int, c: int)
 
 
+### [`itermulticoshbiomorph`](#itermulticoshbiomorph)
+
+```py
+def itermulticoshbiomorph(x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Cosh(z) Multi Biomorph fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`itermultiexpbiomorph`](#itermultiexpbiomorph)
 
 ```py
@@ -7884,6 +7909,34 @@ def multicosbiomorph(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: co
 ```
 
 Draw a Multi cos(z) Biomorph fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`multicoshbiomorph`](#multicoshbiomorph)
+
+```py
+def multicoshbiomorph(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multi cosh(z) Biomorph fractal
 
     Args:
         bmp           : unsigned
@@ -12053,6 +12106,37 @@ def savemulticosbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: f
 ```
 
 Saves a Multi cos(z) Biomorph Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savemulticoshbiomorphfractal2file`](#savemulticoshbiomorphfractal2file)
+
+```py
+def savemulticoshbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Multi cosh(z) Biomorph Fractal to a file
 
     Args:
         file    : full path to new file

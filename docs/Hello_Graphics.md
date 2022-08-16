@@ -29,7 +29,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 **3D entities to onscreen 2D:** https://www.evl.uic.edu/luc/488/slides/class7.pdf
 * ![predefined 3D entities](../Python_BMP/solids3D.py)
 
-**Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html 
+**Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html
 * ![mini math lib](../Python_BMP/mathlib.py)
 * fractals http://paulbourke.net/fractals/
 * 2D Strange attractors https://softologyblog.wordpress.com/2017/03/04/2d-strange-attractors/
@@ -39,7 +39,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 **Colors**
 * X11 color source: https://cgit.freedesktop.org/xorg/xserver/tree/os/oscolor.c
 * XKCD color source:  https://xkcd.com/color/rgb/
- 
+
 If there is demand for it I could in theory write a book based on this project lmao.
 
 **Books:**
@@ -102,7 +102,7 @@ If there is demand for it I could in theory write a book based on this project l
 ![Thick Regular Polygon](../Hello_Thick_Regular_Polygon.py)
 ![Gradient Thick Regular Polygon](../Hello_Gradient_Thick_Regular_Polygon.py)
 
-**Circle (images are links to sample code)** 
+**Circle (images are links to sample code)**
 
 [![Circle](../assets/test_images/raccoon-thinredcircle.bmp)](../Hello_Circles.py)
 
@@ -277,6 +277,8 @@ If there is demand for it I could in theory write a book based on this project l
 [![TanBiomorph](../assets/fractals/tanbiomorph.bmp)](../Hello_MultiTanBiomorphfractal.py)
 
 [![SinhBiomorph](../assets/fractals/sinhbiomorph.bmp)](../Hello_MultiSinhBiomorphfractal.py)
+
+[![CoshBiomorph](../assets/fractals/coshbiomorph.bmp)](../Hello_MultiCoshBiomorphfractal.py)
 
 [![TanhBiomorph](../assets/fractals/tanhbiomorph.bmp)](../Hello_MultiTanhBiomorphfractal.py)
 

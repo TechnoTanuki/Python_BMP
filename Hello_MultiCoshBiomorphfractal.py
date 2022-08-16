@@ -1,5 +1,5 @@
 notice = """
-Multi tanh(z) Biomorph  Fractal Demo
+Multi cosh(z) Biomorph  Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -13,7 +13,7 @@ Multi tanh(z) Biomorph  Fractal Demo
 """
 from Python_BMP.BITMAPlib import(
         getX11RGBfactors,
-        savemultitanhbiomorphfractal2file as f,
+        savemulticoshbiomorphfractal2file as f,
         fractaldomainparamdict as d,
         getfuncmetastr as meta,
         )
@@ -31,9 +31,9 @@ def main():
         par = d() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my, # file and bitmap size
-          .3 + .8j, # complex number
-          3, # power of z
-          [-1.9, 1.9, -1.9, 1.9], # location to plot
+          .6 + .2j, # complex number
+          2, # power of z
+          [-2.8, 2.8, -2.8, 2.8], # location to plot
           cf['darkseagreen1']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
