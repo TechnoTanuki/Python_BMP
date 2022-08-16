@@ -272,6 +272,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![SinBiomorph](../assets/fractals/sinbiomorph.bmp)](../Hello_MultiSinBiomorphfractal.py)
 
+[![CosBiomorph](../assets/fractals/cosbiomorph.bmp)](../Hello_MultiCosBiomorphfractal.py)
+
 [![TanBiomorph](../assets/fractals/tanbiomorph.bmp)](../Hello_MultiTanBiomorphfractal.py)
 
 [![SinhBiomorph](../assets/fractals/sinhbiomorph.bmp)](../Hello_MultiSinhBiomorphfractal.py)
@@ -284,16 +286,13 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![n-gon](../assets/fractals/ngonfractal.bmp)](../Hello_ngonfractal.py)
 
-
 [![sinJulia](../assets/fractals/sinjulia.bmp)](../Hello_SinJulia_Set.py)
-
 
 [![cosJulia](../assets/fractals/cosjulia.bmp)](../Hello_CosJulia_Set.py)
 
 [![marekdragon](../assets/fractals/marekdragon.bmp)](../Hello_MarekDragon.py)
 
 [![tetration](../assets/fractals/tetration.bmp)](../Hello_Tetration_Fractal.py)
-
 
 [![Koch](../assets/fractals/koch3.bmp)](../Hello_KochSnowflake.py)
 

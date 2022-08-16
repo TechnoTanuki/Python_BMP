@@ -256,6 +256,7 @@ from .fractals import(
     kochsnowflakevert,
     itermultibiomorph,
     itermultisinbiomorph,
+    itermulticosbiomorph,
     itermultitanbiomorph,
     itermultiexpbiomorph,
     itermultisinhbiomorph,
@@ -9757,6 +9758,40 @@ def multisinbiomorph(bmp: array,
         RGBfactors, maxiter)
 
 
+def multicosbiomorph(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        d: float,
+        domain: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Multi cos(z) Biomorph fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+        itermulticosbiomorph, domain,
+        RGBfactors, maxiter)
+
+
 def multisinhbiomorph(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -10737,6 +10772,46 @@ def savemultisinbiomorphfractal2file(
     """
     bmp = newBMP(x, y, bitdepth)
     multisinbiomorph(bmp, 0, 0, x, y, c, d,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+
+
+@functimer
+def savemulticosbiomorphfractal2file(
+        file: str,
+        x: int, y: int,
+        c: complex,
+        d: float,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Multi cos(z) Biomorph Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    multicosbiomorph(bmp, 0, 0, x, y, c, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
 

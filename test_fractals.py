@@ -46,6 +46,7 @@ from Python_BMP.BITMAPlib import(
         savegumowskimiraattractor2file as gumowskimiraattractor,
         savemultibiomorphfractal2file as biomorph,
         savemultisinbiomorphfractal2file as sinbiomorph,
+        savemulticosbiomorphfractal2file as cosbiomorph,
         savemultitanbiomorphfractal2file as tanbiomorph,
         savemultiexpbiomorphfractal2file as expbiomorph,
         savemultisinhbiomorphfractal2file as sinhbiomorph,
@@ -292,6 +293,16 @@ class TestFractal2filefunc(unittest.TestCase):
         .8 + .9j, # complex number
         2, # power of z
         [-5, 5, -5, 5], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testcosbiomorph(self):
+        p = self._filepaths("cosbiomorph.bmp")
+        cosbiomorph(p[0], 256, 256, # file and bitmap size
+        .4 + .9j, # complex number
+        3, # power of z
+        [-1.7, 1.7, -1.7, 1.7], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
