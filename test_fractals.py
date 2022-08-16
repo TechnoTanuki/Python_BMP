@@ -47,6 +47,7 @@ from Python_BMP.BITMAPlib import(
         savexordivfractal2file as xordivfractal,
         savegumowskimiraattractor2file as  gumowskimiraattractor,
         savemultibiomorphfractal2file as biomorph,
+        savemultisinbiomorphfractal2file as sinbiomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
@@ -279,6 +280,16 @@ class TestFractal2filefunc(unittest.TestCase):
         1 + 1j, # complex nunber
         5, # power of z
         [-2.5, 2.5, -2.5, 2.5], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testsinbiomorph(self):
+        p = self._filepaths("sinbiomorph.bmp")
+        sinbiomorph(p[0], 256, 256, # file and bitmap size
+        .8 + .9j, # complex nunber
+        2, # power of z
+        [-5, 5, -5, 5], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
