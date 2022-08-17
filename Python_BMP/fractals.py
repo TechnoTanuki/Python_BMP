@@ -607,6 +607,35 @@ def multiexpbiomorph(P: float, Q: float,
     return maxiter
 
 
+def multi2ndtetrationbiomorph(P: float, Q: float,
+        c: complex,
+        d: float,
+        maxiter: int,
+        a: float = 5) -> int:
+    """Multi 2nd Tetration Biomorph Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        c : complex number
+        d : exponent
+        maxiter : when to break
+                  color compute
+        a : optional limit as float
+
+    Returns:
+        int
+    """
+    z = complex(P, Q)
+    for i in range(maxiter):
+        z = z**z + z**d + c
+        if abs(z.real) > a and abs(z.imag) > a:
+            return i
+        if abs(z.real) > a or abs(z.imag) > a:
+            return maxiter
+    return maxiter
+
+
 def multibiomorphvariant(P: float, Q: float,
         c: complex,
         d: float,
@@ -1475,6 +1504,36 @@ def itermultiexpbiomorph(
     """
     for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
         multiexpbiomorph, domain, maxiter):
+        yield p
+
+
+def itermulti2ndtetrationbiomorph(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        d: float,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a 2nd Tetration Multi Biomorph fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Yields:
+        (x: int, y: int, c: int)
+    """
+    for p in itermultifractalcomplexpar(x1, y1, x2, y2, c, d,
+        multi2ndtetrationbiomorph, domain, maxiter):
         yield p
 
 

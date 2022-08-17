@@ -52,6 +52,7 @@ from Python_BMP.BITMAPlib import(
         savemultisinhbiomorphfractal2file as sinhbiomorph,
         savemulticoshbiomorphfractal2file as coshbiomorph,
         savemultitanhbiomorphfractal2file as tanhbiomorph,
+        savemulti2ndtetrationbiomorphfractal2file as tetration2biomorph,
         savemultibiomorphvariantfractal2file as biomorphvariant,
         savengonfractal2file as ngonfractal,
         savesinjulia2file as sinjulia,
@@ -333,6 +334,16 @@ class TestFractal2filefunc(unittest.TestCase):
         expbiomorph(p[0], 256, 256, # file and bitmap size
         .1 + .9j, # complex number
         5, # power of z
+        [-2, 2, -2, 2], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testtetration2biomorph(self):
+        p = self._filepaths("2ndtetrationbiomorph.bmp")
+        tetration2biomorph(p[0], 256, 256, # file and bitmap size
+        .1 + .9j, # complex number
+        4, # power of z
         [-2, 2, -2, 2], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)

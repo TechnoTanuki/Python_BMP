@@ -262,6 +262,7 @@ from .fractals import(
     itermultisinhbiomorph,
     itermulticoshbiomorph,
     itermultitanhbiomorph,
+    itermulti2ndtetrationbiomorph,
     ikedaattractorlist,
     nattractorlist,
     gumowskimiraattractorlist,
@@ -9895,6 +9896,40 @@ def multiexpbiomorph(bmp: array,
         RGBfactors, maxiter)
 
 
+def multi2ndtetrationbiomorph(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        c: complex,
+        d: float,
+        domain: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw a Multi 2nd Tetration Biomorph fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+        itermulti2ndtetrationbiomorph, domain,
+        RGBfactors, maxiter)
+
+
 def multitanbiomorph(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -10967,6 +11002,46 @@ def savemultiexpbiomorphfractal2file(
     """
     bmp = newBMP(x, y, bitdepth)
     multiexpbiomorph(bmp, 0, 0, x, y, c, d,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+
+
+@functimer
+def savemulti2ndtetrationbiomorphfractal2file(
+        file: str,
+        x: int, y: int,
+        c: complex,
+        d: float,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Multi 2nd Tetration Biomorph Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    multi2ndtetrationbiomorph(bmp, 0, 0, x, y, c, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
 

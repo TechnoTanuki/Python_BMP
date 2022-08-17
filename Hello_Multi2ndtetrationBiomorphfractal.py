@@ -1,5 +1,5 @@
 notice = """
-Multi exp(z) Biomorph  Fractal Demo
+Multi 2nd Tetration Biomorph Fractal
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -13,7 +13,7 @@ Multi exp(z) Biomorph  Fractal Demo
 """
 from Python_BMP.BITMAPlib import(
         getX11RGBfactors,
-        savemultiexpbiomorphfractal2file as f,
+        savemulti2ndtetrationbiomorphfractal2file as f,
         fractaldomainparamdict as d,
         getfuncmetastr as meta,
         )
@@ -32,7 +32,7 @@ def main():
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my, # file and bitmap size
           .1 + .9j, # complex number
-          5, # power of z
+          4, # power of z
           [-2, 2, -2, 2], # location to plot
           cf['darkseagreen1']) # color
         print('Saved to %s in %s\nAll done close %s to finish' % \
