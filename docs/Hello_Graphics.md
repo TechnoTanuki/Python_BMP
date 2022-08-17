@@ -284,6 +284,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![expBiomorph](../assets/fractals/expbiomorph.bmp)](../Hello_MultiexpBiomorphfractal.py)
 
+[![2ndTetrationBiomorph](../assets/fractals/2ndtetrationbiomorph.bmp)](../Hello_Multi2ndtetrationBiomorphfractal.py)
+
 [![Biomorph variant](../assets/fractals/biomorphvariant.bmp)](../Hello_MultiBiomorphvariantfractal.py)
 
 [![n-gon](../assets/fractals/ngonfractal.bmp)](../Hello_ngonfractal.py)
