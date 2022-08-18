@@ -1976,10 +1976,8 @@ def symmetriciconattractorlist(
     for i in range(n):
         zd = z ** d
         z = (a * abs(z * z.conjugate()) + l + \
-             b * (x * zd.real - y * zd.imag)) * z + \
+             b * (z.real * zd.real - z.imag * zd.imag)) * z + \
             (g * zd).conjugate() - \
                o * z.conjugate() * 1j
-        (x, y) = v[i] = \
-        (z.real,
-         z.imag)
+        v[i] = (z.real, z.imag)
     return v
