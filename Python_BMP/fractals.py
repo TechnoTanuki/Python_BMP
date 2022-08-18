@@ -1976,9 +1976,8 @@ def symmetriciconattractorlist(
     for i in range(n):
         zd = z ** d
         p = a * abs(z * z.conjugate()) + l
-        r, j  = zd.real, zd.imag
-        p += b * (x * r - y * j)
-        z = p * z + (g * zd).conjugate() - o * z.conjugate() * j
+        p += b * (x * zd.real - y * zd.imag)
+        z = p * z + (g * zd).conjugate() - o * z.conjugate() * 1j
         (x, y) = v[i] = \
         (z.real,
          z.imag)
