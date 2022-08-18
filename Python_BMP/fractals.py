@@ -1975,9 +1975,10 @@ def symmetriciconattractorlist(
     z = complex(x, y)
     for i in range(n):
         zd = z ** d
-        p = a * abs(z * z.conjugate()) + l
-        p += b * (x * zd.real - y * zd.imag)
-        z = p * z + (g * zd).conjugate() - o * z.conjugate() * 1j
+        z = (a * abs(z * z.conjugate()) + l + \
+             b * (x * zd.real - y * zd.imag)) * z + \
+            (g * zd).conjugate() - \
+               o * z.conjugate() * 1j
         (x, y) = v[i] = \
         (z.real,
          z.imag)
