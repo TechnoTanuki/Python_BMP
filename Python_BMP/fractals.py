@@ -1972,14 +1972,14 @@ def symmetriciconattractorlist(
     """
     v = [(0,0)] * n
     d -= 1
+    z = complex(x, y)
     for i in range(n):
-        z = complex(x, y)
         zd = z ** d
         p = a * abs(z * z.conjugate()) + l
         r, j  = zd.real, zd.imag
         p += b * (x * r - y * j)
-        w = p * z + (g * zd).conjugate()
+        z = p * z + (g * zd).conjugate() - o * z.conjugate() * j
         (x, y) = v[i] = \
-        (w.real - o * y,
-         w.imag - o * x)
+        (z.real,
+         z.imag)
     return v
