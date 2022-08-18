@@ -28,7 +28,7 @@ def main():
         24, # bit depth
         0.01, 0.01, 1.0, -0.1, 0.167, 0.0, -2.08,# constants (float)
         7, # degree int
-        30100 # number of iterations
+        75100 # number of iterations
         )
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened

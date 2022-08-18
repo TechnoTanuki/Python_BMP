@@ -1974,10 +1974,8 @@ def symmetriciconattractorlist(
     d -= 1
     for i in range(n):
         p = a * (x * x + y * y) + l
-        r, j = x, y
-        for _ in range(1, d):
-            r , j = \
-            r * x - j * y, j * x + r * y
+        z = complex(x, y) ** d
+        r, j  = z.real, z.imag
         p += b * (x * r - y * j)
         (x, y) = v[i] = \
         (p * x + g * r - o * y,
