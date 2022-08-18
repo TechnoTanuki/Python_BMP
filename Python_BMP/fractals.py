@@ -1956,8 +1956,8 @@ def symmetriciconattractorlist(
     g: float, o: float,
     l: float,
     d: int,
-    n: int) -> list[list[float, float]]:
-    """Returns list of [x,y] coordinate pairs for a
+    n: int) -> list[complex]:
+    """Returns list of complex numbers for a
     Symmetric Icon Attractor
 
     Args:
@@ -1967,17 +1967,16 @@ def symmetriciconattractorlist(
         n: number of terms to compute
 
     Returns:
-        list of x,y pairs for a Symmetric Icon Attractor
-        [[x: float, y: float],...]
+        list of complex number for a Symmetric Icon Attractor
+        [z: complex]
     """
     v = [(0,0)] * n
     d -= 1
     z = complex(x, y)
     for i in range(n):
         zd = z ** d
-        z = (a * abs(z * z.conjugate()) + l + \
+        v[i] = z = (a * abs(z * z.conjugate()) + l + \
              b * (z.real * zd.real - z.imag * zd.imag)) * z + \
             (g * zd).conjugate() - \
                o * z.conjugate() * 1j
-        v[i] = (z.real, z.imag)
     return v

@@ -11902,7 +11902,7 @@ def symmetriciconattractor(
     Returns:
         byref unsigned byte array
     """
-    return plotattractor(symmetriciconattractorlist(ox, oy, a, b, g, o, l, d, n), x, y, bits)
+    return plotattractorcomplex(symmetriciconattractorlist(ox, oy, a, b, g, o, l, d, n), x, y, bits)
 
 
 def cliffordattractor(
