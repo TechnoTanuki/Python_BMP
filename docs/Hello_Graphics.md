@@ -286,6 +286,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![2ndTetrationBiomorph](../assets/fractals/2ndtetrationbiomorph.bmp)](../Hello_Multi2ndtetrationBiomorphfractal.py)
 
+[![zconjugateBiomorph](../assets/fractals/zconjugatebiomorph.bmp)](../Hello_MultizconjugateBiomorphfractal.py)
+
 [![Biomorph variant](../assets/fractals/biomorphvariant.bmp)](../Hello_MultiBiomorphvariantfractal.py)
 
 [![n-gon](../assets/fractals/ngonfractal.bmp)](../Hello_ngonfractal.py)
