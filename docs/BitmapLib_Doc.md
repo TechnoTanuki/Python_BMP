@@ -13310,10 +13310,10 @@ Draws a Symmetric Icon Attractor
 ### [`symmetriciconattractorlist`](#symmetriciconattractorlist)
 
 ```py
-def symmetriciconattractorlist(x: float, y: float, a: float, b: float, g: float, o: float, l: float, d: int, n: int) -> list[list[float, float]]:
+def symmetriciconattractorlist(x: float, y: float, a: float, b: float, g: float, o: float, l: float, d: int, n: int) -> list[complex]:
 ```
 
-Returns list of [x,y] coordinate pairs for a
+Returns list of complex numbers for a
 Symmetric Icon Attractor
 
     Args:
@@ -13323,8 +13323,8 @@ Symmetric Icon Attractor
         n: number of terms to compute
     
     Returns:
-        list of x,y pairs for a Symmetric Icon Attractor
-        [[x: float, y: float],...]
+        list of complex number for a Symmetric Icon Attractor
+        [z: complex]
 
 
 ### [`tetrahedravert`](#tetrahedravert)
