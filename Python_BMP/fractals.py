@@ -25,7 +25,6 @@ from .primitives2D import (
 from math import (
     sin as sine,
     cos as cosine,
-    pi
 )
 
 from cmath import (
@@ -35,7 +34,8 @@ from cmath import (
     exp,
     sinh,
     cosh,
-    tanh
+    tanh,
+    tau
 )
 
 from .mathlib import (
@@ -47,7 +47,7 @@ from .mathlib import (
     sign
     )
 
-_2pij = 2 * pi * 1j
+_2pij = tau * 1j
 
 def getIFSparams() -> dict:
     return {'fern':(((0, 0, 0, .16, 0, 0),
