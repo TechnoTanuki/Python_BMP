@@ -5733,7 +5733,7 @@ Yields a Multibrot set
 def itermulticircle(x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], maxiter: int):
 ```
 
-Yields a Multicircle set
+Yields a Multicircle fractal
 
     Args:
         x1, y1, x2, y2: rectangular area
@@ -5844,6 +5844,29 @@ Yields a exp(z) Multi Biomorph fractal
                         0.0 to 1.0
         maxiter       : when to break
                         color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
+### [`itermultihyperbola`](#itermultihyperbola)
+
+```py
+def itermultihyperbola(x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Multihyperbola fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : color limit
     
     Yields:
         (x: int, y: int, c: int)
@@ -8051,6 +8074,33 @@ Draw a Multi exp(z) Biomorph fractal
         x1, y1, x2, y2: rectangular area
                         to draw in
         c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`multihyperbola`](#multihyperbola)
+
+```py
+def multihyperbola(bmp: array.array, x1: int, y1: int, x2: int, y2: int, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multihyperbola fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
@@ -12342,6 +12392,36 @@ Saves a Multi Fractal to a file
         x       : width of bitmap
         y       : height of bitmap
         f       : fractal function
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savemultihyperbolafractal2file`](#savemultihyperbolafractal2file)
+
+```py
+def savemultihyperbolafractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Multihyperbola Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
         d       : power to raise z to
         domain  : location in real and
                   imaginary plane

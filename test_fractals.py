@@ -25,13 +25,12 @@ notice = """
 import unittest
 from os import path
 from Python_BMP.BITMAPlib import(
-        lambdafractal,
         loadBMP,
-        multicircle,
         savebarnsleytreefractal2file as barnsleytree,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
         savemulticirclefractal2file as multicircle,
+        savemultihyperbolafractal2file as multihyperbola,
         saveikedaattractor2file as ikedaattractor,
         savejuliafractal2file as julia,
         savelambdafractal2file as lambdafractal,
@@ -120,6 +119,14 @@ class TestFractal2filefunc(unittest.TestCase):
         p = self._filepaths("multicircle.bmp")
         multicircle(p[0], 256, 256,
         2.5, [-20, 20, -20, 20], self.c['royalblue'])
+        self.filecmp(*p)
+
+
+    def testsavemultihyperbolafractal2file(self):
+        p = self._filepaths("multihyperbola.bmp")
+        multihyperbola(p[0], 256, 256, 2,
+        [-32, 32, -32, 32], # location to plot
+        self.c['gold'])
         self.filecmp(*p)
 
 
