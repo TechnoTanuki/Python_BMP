@@ -2033,9 +2033,10 @@ def symmetriciconattractorlist(
     d -= 1
     z = complex(x, y)
     for i in range(n):
-        zd = z ** d
-        zc = z.conjugate()
-        v[i] = z = (a * abs(z * zc) + l + \
-             b * (z.real * zd.real - z.imag * zd.imag)) * z + \
-            (g * zd).conjugate() - o * zc * 1j
+        p = z ** d
+        c = z.conjugate()
+        v[i] = z = (a * abs(z * c) + l + \
+        b * (z.real * p.real - \
+             z.imag * p.imag)) * z + \
+        (g * p).conjugate() - o * c * 1j
     return v
