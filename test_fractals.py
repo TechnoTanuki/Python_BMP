@@ -28,6 +28,7 @@ from Python_BMP.BITMAPlib import(
         loadBMP,
         saveastroidfractal2file as astroid,
         savebarnsleytreefractal2file as barnsleytree,
+        savelemniscatefractal2file as lemniscate,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
         savemulticirclefractal2file as multicircle,
@@ -504,6 +505,16 @@ class TestFractal2filefunc(unittest.TestCase):
         2,
         [-3, 3, -3, 3], # location to plot
         self.c['greenyellow'])
+        self.filecmp(*p)
+
+
+    def testlemniscate(self):
+        p = self._filepaths("lemniscate.bmp")
+        lemniscate(p[0], # path to new file
+        256, 256, # size of file
+        1.77,
+        [-6, 6, -6, 6], # location to plot
+        self.c['gold'])
         self.filecmp(*p)
 
 

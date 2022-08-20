@@ -248,6 +248,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Astroid](../assets/fractals/astroid.bmp)](../Hello_Astroidfractal.py)
 
+[![Lemniscate](../assets/fractals/lemniscate.bmp)](../Hello_Lemniscatefractal.py)
+
 [![Lambda](../assets/fractals/lambda.bmp)](../Hello_Lambdafractal.py)
 
 [![Newtons](../assets/fractals/newtons.bmp)](../Hello_Newtons_fractal.py)

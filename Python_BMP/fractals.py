@@ -354,6 +354,26 @@ def astroid(
     return abs((P + Q - r) ** 3 + 27 * P * Q * r) % maxiter
 
 
+def lemniscate(
+        P: float, Q: float,
+        r: float, maxiter: int) -> int:
+    """Lemniscate Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        r : radius
+        maxiter : color limit
+
+    Returns:
+        int
+    """
+    r *= r
+    P *= P
+    Q *= Q
+    return abs((P + Q) ** 2 - 2 * r * (P - Q)) % maxiter
+
+
 def xorfn(
         P: float, Q: float,
         d: int, maxiter: int) -> int:
@@ -1142,6 +1162,33 @@ def iterastroid(
     """
     for p in itermultifractal(x1, y1, x2, y2, r,
         astroid, domain, maxiter):
+        yield p
+
+
+def iterlemniscate(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        r: float,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Lemniscate fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        r             : radius
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : color limit
+
+    Yields:
+        (x: int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, r,
+        lemniscate, domain, maxiter):
         yield p
 
 

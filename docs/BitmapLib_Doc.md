@@ -5562,6 +5562,29 @@ Yields a Lambda Fractal
         (x: int, y: int, c: int)
 
 
+### [`iterlemniscate`](#iterlemniscate)
+
+```py
+def iterlemniscate(x1: int, y1: int, x2: int, y2: int, r: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Lemniscate fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        r             : radius
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : color limit
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`iterline`](#iterline)
 
 ```py
@@ -6394,6 +6417,33 @@ Draw a Lambda Fractal
         x1, y1, x2, y2: rectangular area
                         to draw in
         c             : complex number
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`lemniscatefractal`](#lemniscatefractal)
+
+```py
+def lemniscatefractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, r: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw an Lemniscate fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        r             : radius
         domain        : coordinates in real
                         and imaginary plane
         rgbfactors    : [r, g, b] values
@@ -12110,6 +12160,36 @@ Saves a Lambda fractal to a file
         x       : width of bitmap
         y       : height of bitmap
         c       : complex number
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savelemniscatefractal2file`](#savelemniscatefractal2file)
+
+```py
+def savelemniscatefractal2file(file: str, x: int, y: int, r: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves an Lemniscate Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        r       : radius
         domain  : location in real and
                   imaginary plane
                   (minreal, maxreal,
