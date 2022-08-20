@@ -31,6 +31,7 @@ from Python_BMP.BITMAPlib import(
         savemultibrotfractal2file as multibrot,
         savemulticirclefractal2file as multicircle,
         savemultihyperbolafractal2file as multihyperbola,
+        savemultisuperellipsefractal2file as multisuperellipse,
         saveikedaattractor2file as ikedaattractor,
         savejuliafractal2file as julia,
         savelambdafractal2file as lambdafractal,
@@ -126,6 +127,14 @@ class TestFractal2filefunc(unittest.TestCase):
         p = self._filepaths("multihyperbola.bmp")
         multihyperbola(p[0], 256, 256, 2,
         [-32, 32, -32, 32], # location to plot
+        self.c['gold'])
+        self.filecmp(*p)
+
+
+    def testsavemultisuperellipsefractal2file(self):
+        p = self._filepaths("multisuperellipse.bmp")
+        multisuperellipse(p[0], 256, 256, 4,
+        [-5, 5, -5, 5], # location to plot
         self.c['gold'])
         self.filecmp(*p)
 
@@ -265,6 +274,7 @@ class TestFractal2filefunc(unittest.TestCase):
         50000 # number of iterations
         )
         self.filecmp(*p)
+
 
     def testgumowskimiraattractor(self):
         p = self._filepaths("gumowskimiraattractor.bmp")

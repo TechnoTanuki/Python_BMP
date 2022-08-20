@@ -317,6 +317,23 @@ def multihyperbola(
     return abs(P**d - Q**d) % maxiter
 
 
+def multisuperellipse(
+        P: float, Q: float,
+        d: float, maxiter: int) -> int:
+    """Multisuperellipse Function
+
+    Args:
+        P : real part as float
+        Q : imaginary part as float
+        d : exponent
+        maxiter : color limit
+
+    Returns:
+        int
+    """
+    return abs(P**d + Q**d) % maxiter
+
+
 def xorfn(
         P: float, Q: float,
         d: int, maxiter: int) -> int:
@@ -1051,6 +1068,33 @@ def itermultihyperbola(
     """
     for p in itermultifractal(x1, y1, x2, y2, d,
         multihyperbola, domain, maxiter):
+        yield p
+
+
+def itermultisuperellipse(
+        x1: int, y1: int,
+        x2: int, y2: int,
+        d: float,
+        domain: list[float, float, float, float],
+        maxiter: int):
+    """Yields a Multisuperellipse fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : color limit
+
+    Yields:
+        (x: int, y: int, c: int)
+    """
+    for p in itermultifractal(x1, y1, x2, y2, d,
+        multisuperellipse, domain, maxiter):
         yield p
 
 

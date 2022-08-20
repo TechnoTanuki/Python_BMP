@@ -1,5 +1,5 @@
 notice = """
-     Multihyperbola Fractal Demo
+   Multisuperellipse Fractal Demo
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -13,8 +13,7 @@ notice = """
 """
 from Python_BMP.BITMAPlib import(
         getX11RGBfactors,
-        savemultihyperbolafractal2file as f,
-        fractaldomainparamdict,
+        savemultisuperellipsefractal2file as f,
         getfuncmetastr as meta,
         )
 
@@ -28,12 +27,11 @@ def main():
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 256 # square canvas
         cf = getX11RGBfactors() #color info
-        par = fractaldomainparamdict() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
         f(file, mx, my,
-        2,
-        [-32, 32, -32, 32], # location to plot
-          cf['gold'])
+        4,
+        [-5, 5, -5, 5], # location to plot
+        cf['gold'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])

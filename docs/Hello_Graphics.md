@@ -244,6 +244,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Multihyperbola](../assets/fractals/multihyperbola.bmp)](../Hello_Multihyperbola.py)
 
+[![Multisuperellipse](../assets/fractals/multisuperellipse.bmp)](../Hello_Multisuperellipse.py)
+
 [![Lambda](../assets/fractals/lambda.bmp)](../Hello_Lambdafractal.py)
 
 [![Newtons](../assets/fractals/newtons.bmp)](../Hello_Newtons_fractal.py)
