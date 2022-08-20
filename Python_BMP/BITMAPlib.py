@@ -9139,7 +9139,7 @@ def lemniscatefractal(bmp: array,
         domain: list[float, float, float, float],
         RGBfactors: list[float, float, float],
         maxiter: int):
-    """Draw an Lemniscate fractal
+    """Draw a Lemniscate fractal
 
     Args:
         bmp           : unsigned
@@ -10696,7 +10696,7 @@ def savelemniscatefractal2file(
         rgbfactors: list[float, float, float],
         bitdepth: int = 24,
         maxiter: int = 255):
-    """Saves an Lemniscate Fractal to a file
+    """Saves a Lemniscate Fractal to a file
 
     Args:
         file    : full path to new file

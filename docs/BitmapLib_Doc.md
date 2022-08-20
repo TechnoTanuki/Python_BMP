@@ -6435,7 +6435,7 @@ Draw a Lambda Fractal
 def lemniscatefractal(bmp: array.array, x1: int, y1: int, x2: int, y2: int, r: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
-Draw an Lemniscate fractal
+Draw a Lemniscate fractal
 
     Args:
         bmp           : unsigned
@@ -12183,7 +12183,7 @@ Saves a Lambda fractal to a file
 def savelemniscatefractal2file(file: str, x: int, y: int, r: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
 ```
 
-Saves an Lemniscate Fractal to a file
+Saves a Lemniscate Fractal to a file
 
     Args:
         file    : full path to new file
