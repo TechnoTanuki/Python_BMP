@@ -26,6 +26,7 @@ import unittest
 from os import path
 from Python_BMP.BITMAPlib import(
         loadBMP,
+        saveastroidfractal2file as astroid,
         savebarnsleytreefractal2file as barnsleytree,
         savemandelbrotfractal2file as mandel,
         savemultibrotfractal2file as multibrot,
@@ -493,6 +494,16 @@ class TestFractal2filefunc(unittest.TestCase):
         7, # degree int
         75100 # number of iterations
         )
+        self.filecmp(*p)
+
+
+    def testastroid(self):
+        p = self._filepaths("astroid.bmp")
+        astroid(p[0], # path to new file
+        256, 256, # size of file
+        2,
+        [-3, 3, -3, 3], # location to plot
+        self.c['greenyellow'])
         self.filecmp(*p)
 
 

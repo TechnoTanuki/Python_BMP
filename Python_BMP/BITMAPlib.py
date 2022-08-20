@@ -234,8 +234,7 @@ from .fractals import(
     iterIFS,
     hilbertvert,
     iterbarnsleytree,
-    itermandelbrot,
-    iterjulia,
+    iterastroid,
     itersinjulia,
     itercosjulia,
     iterlamdbafractal,
@@ -9100,6 +9099,41 @@ def multisuperellipse(bmp: array,
         RGBfactors, maxiter)
 
 
+def astroidfractal(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        r: float,
+        domain: list[float, float, float, float],
+        RGBfactors: list[float, float, float],
+        maxiter: int):
+    """Draw an Astroid fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        r             : radius
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    plotmultifractal(bmp, x1, y1, x2, y2, r,
+        iterastroid, domain,
+        RGBfactors, maxiter)
+
+
+
+
+
 def xorfractal(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -10574,6 +10608,49 @@ def savemultisuperellipsefractal2file(
         x, y,
         multisuperellipse,
         d,
+        domain,
+        rgbfactors,
+        bitdepth,
+        maxiter)
+
+
+@functimer
+def saveastroidfractal2file(
+        file: str,
+        x: int, y: int,
+        r: float,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves an Astroid Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        r       : radius
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    savemultifractal2file(
+        file,
+        x, y,
+        astroidfractal,
+        r,
         domain,
         rgbfactors,
         bitdepth,
