@@ -8845,7 +8845,7 @@ def plotmultifractal(bmp: array,
         elif bmp[bmpcolorbits] == 8 and len(RGBfactors) == 3:
             c = (255 - c) * 20 % 256
         else:
-            c = mcolor - c % maxcolors
+            c = (mcolor - c) % maxcolors
         plotxybit(bmp, x, y, c)
 
 
@@ -8858,7 +8858,7 @@ def plotmultifractalcomplexpar(bmp: array,
         domain: list[float, float, float, float],
         RGBfactors: list[float, float, float],
         maxiter: int):
-    """Draw a Multifractal with a comnplex parameter
+    """Draw a Multifractal with a complex parameter
 
     Args:
         bmp           : unsigned
@@ -8882,14 +8882,16 @@ def plotmultifractalcomplexpar(bmp: array,
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
-    for (x, y, cl) in func(x1, y1, x2, y2, c, d,
+    for (x, y, v) in func(x1, y1, x2, y2, c, d,
                            domain, maxiter):
         if bmp[bmpcolorbits] == 24:
-            cl = colormix(((255 - cl) * 20) % 256,
+            v = colormix(((255 - v) * 20) % 256,
                         RGBfactors)
+        elif bmp[bmpcolorbits] == 8 and len(RGBfactors) == 3:
+            v = (255 - v) * 20 % 256
         else:
-            cl = mcolor - cl % maxcolors
-        plotxybit(bmp, x, y, cl)
+            v = (mcolor - v) % maxcolors
+        plotxybit(bmp, x, y, v)
 
 
 def newtonsfractal(bmp: array,
@@ -10939,6 +10941,9 @@ def savefractalwithparam2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     retval = f(bmp, 0, 0, x, y, p,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -10952,7 +10957,7 @@ def savejuliafractal2file(
         c: complex,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Julia Fractal to a file
 
