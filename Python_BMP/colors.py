@@ -412,6 +412,44 @@ def monochromepal(
              for c in range(0, 256, inc)]
 
 
+def monoshiftablepal(
+        bits: int,
+        rgbfactors: list[float,
+                         float,
+                         float],
+        mult: int = 1,
+        shift: int = 0,
+               ) -> list[list[int,
+                              int,
+                              int]]:
+    """Returns an adjustable monochrome palette
+        based on bit depth bits and rgbfactors
+
+    Args:
+        bits      : bit depth
+                    (1, 4, 8)
+        mult      : value multiplier
+        shift     : value shift
+        rgbfactors: color values
+                    0.0 to 1.0
+                    [r: float,
+                     g: float,
+                     b: float]
+
+    Returns:
+      a palette as
+      list[list[r: int, g: int, b int]]
+    """
+    inc = (256 >> bits) + \
+        iif(bits == 4, 1,
+        iif(bits == 1, 127, 0))
+
+    return [[round(rgbfactors[0] * j),
+             round(rgbfactors[1] * j),
+             round(rgbfactors[2] * j)]
+             for j in [(c * mult + shift) % 255 for c in range(0, 255, inc)]]
+
+
 def monochrome(rgb: list[int, int, int]
                ) -> list[int, int, int]:
     """Returns a monochrome color
