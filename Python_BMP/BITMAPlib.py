@@ -9400,7 +9400,7 @@ def savelambdafractal2file(
         c: complex,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Lambda fractal to a file
 
@@ -9572,7 +9572,7 @@ def savesinjulia2file(
         c: complex,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Sin(z) Julia Set to a file
 
@@ -9615,7 +9615,7 @@ def savespiraljulia2file(
         c: complex,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Spiral Julia Set to a file
 
@@ -9658,7 +9658,7 @@ def savecosjulia2file(
         c: complex,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Cos(z) Julia Set to a file
 
