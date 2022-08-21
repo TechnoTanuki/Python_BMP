@@ -187,6 +187,7 @@ from .colors import(
     monochrome,
     monochromefiltertoBGRbuf,
     monochromepal,
+    monoshiftablepal,
     probplotRGBto1bit,
     RGB2BGRbuf,
     RGB2HSL,
@@ -8841,6 +8842,8 @@ def plotmultifractal(bmp: array,
         if bmp[bmpcolorbits] == 24:
             c = colormix(((255 - c) * 20) % 256,
                         RGBfactors)
+        elif bmp[bmpcolorbits] == 8 and len(RGBfactors) == 3:
+            c = (255 - c) * 20 % 256
         else:
             c = mcolor - c % maxcolors
         plotxybit(bmp, x, y, c)
@@ -10427,6 +10430,9 @@ def savemultifractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     f(bmp, 0, 0, x, y, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -10651,7 +10657,7 @@ def saveastroidfractal2file(
         r: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves an Astroid Fractal to a file
 
