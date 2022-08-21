@@ -10474,13 +10474,10 @@ def savemandelbrotfractal2file(
         a bitmap file
     """
     savefractal2file(
-        file,
-        x, y,
+        file, x, y,
         mandelbrot,
-        domain,
-        rgbfactors,
-        bitdepth,
-        maxiter)
+        domain, rgbfactors,
+        bitdepth, maxiter)
 
 
 @functimer
@@ -10516,13 +10513,10 @@ def savemultibrotfractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         multibrot,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10559,13 +10553,10 @@ def savemulticirclefractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         multicircle,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10602,13 +10593,10 @@ def savemultihyperbolafractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         multihyperbola,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10645,13 +10633,10 @@ def savemultisuperellipsefractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         multisuperellipse,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10688,13 +10673,10 @@ def saveastroidfractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         astroidfractal,
-        r,
-        domain,
-        rgbfactors,
-        bitdepth,
+        r, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10731,13 +10713,10 @@ def savelemniscatefractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         lemniscatefractal,
-        r,
-        domain,
-        rgbfactors,
-        bitdepth,
+        r, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10772,13 +10751,10 @@ def savetricornfractal2file(
         a bitmap file
     """
     savefractal2file(
-        file,
-        x, y,
+        file, x, y,
         tricorn,
-        domain,
-        rgbfactors,
-        bitdepth,
-        maxiter)
+        domain, rgbfactors,
+        bitdepth, maxiter)
 
 
 @functimer
@@ -10814,13 +10790,10 @@ def savemulticornfractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         multicorn,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10857,13 +10830,10 @@ def savebarnsleytreefractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         barnsleytree,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -10953,6 +10923,50 @@ def savefractalwithparam2file(
     return retval
 
 
+def savefractalwith2param2file(
+        file: str,
+        x: int, y: int,
+        f: Callable,
+        p1: any,
+        p2: any,
+        domain: list[float, float, float, float],
+        rgbfactors: list[float, float, float],
+        bitdepth: int = 24,
+        maxiter: int = 255):
+    """Saves a Fractal with two parameters to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        f       : fractal function
+        p1, p1  : any (param1, param2)
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+
+    Returns:
+        a bitmap file
+    """
+    bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
+    retval = f(bmp, 0, 0, x, y, p1, p2,
+    domain, rgbfactors, maxiter)
+    saveBMP(file, bmp)
+    return retval
+
+
 @functimer
 def savejuliafractal2file(
         file: str,
@@ -10985,14 +10999,9 @@ def savejuliafractal2file(
     Returns:
         a bitmap file
     """
-    savefractalwithparam2file(
-        file,
-        x, y,
+    savefractalwithparam2file(file, x, y,
         julia,
-        c,
-        domain,
-        rgbfactors,
-        bitdepth,
+        c, domain, rgbfactors, bitdepth,
         maxiter)
 
 
@@ -11030,13 +11039,10 @@ def savemultijuliafractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multijulia(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multijulia,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11073,13 +11079,10 @@ def savengonfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    ngonfractal(bmp, 0, 0, x, y, c, n,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    ngonfractal,
+    c, n, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11116,13 +11119,10 @@ def savemultibiomorphvariantfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multibiomorphvariant(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multibiomorphvariant,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11159,13 +11159,10 @@ def savemultibiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multibiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multibiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11202,13 +11199,10 @@ def savemultisinbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multisinbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multisinbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11245,13 +11239,10 @@ def savemulticosbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multicosbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multicosbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11288,13 +11279,10 @@ def savemulticoshbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multicoshbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multicoshbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11331,13 +11319,10 @@ def savemultisinhbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multisinhbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multisinhbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11374,13 +11359,10 @@ def savemultiexpbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multiexpbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multiexpbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11417,13 +11399,10 @@ def savemulti2ndtetrationbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multi2ndtetrationbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multi2ndtetrationbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11460,13 +11439,10 @@ def savemultizconjugatebiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multizconjugatebiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multizconjugatebiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11503,13 +11479,10 @@ def savemultitanbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multitanbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multitanbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11546,13 +11519,10 @@ def savemultitanhbiomorphfractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2monochrome(bmp, rgbfactors)
-    multitanhbiomorph(bmp, 0, 0, x, y, c, d,
-    domain, rgbfactors, maxiter)
-    saveBMP(file, bmp)
+    savefractalwith2param2file(file, x, y,
+    multitanhbiomorph,
+    c, d, domain, rgbfactors, bitdepth,
+    maxiter)
 
 
 @functimer
@@ -11589,14 +11559,10 @@ def savenewtonsfractal2file(
         a bitmap file
     """
     return savefractalwithparam2file(
-        file,
-        x, y,
+        file, x, y,
         newtonsfractal,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
-        maxiter)
+        d, domain, rgbfactors,
+        bitdepth, maxiter)
 
 
 @functimer
