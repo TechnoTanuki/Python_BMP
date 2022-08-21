@@ -314,7 +314,7 @@ def multihyperbola(
     Returns:
         int
     """
-    return abs(P**d - Q**d) % maxiter
+    return round(abs(P**d - Q**d)) % maxiter
 
 
 def multisuperellipse(
