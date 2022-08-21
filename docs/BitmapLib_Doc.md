@@ -11912,7 +11912,7 @@ Draws a Clifford Attractor to file
 ### [`savecosjulia2file`](#savecosjulia2file)
 
 ```py
-def savecosjulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savecosjulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Cos(z) Julia Set to a file
@@ -11988,6 +11988,37 @@ Draws a Fractal Dream Attractor to file
     
         c and d are floating point values
         between -0.5 and +1.5
+    
+    Returns:
+        a bitmap file
+
+
+### [`savefractalwith2param2file`](#savefractalwith2param2file)
+
+```py
+def savefractalwith2param2file(file: str, x: int, y: int, f: Callable, p1: <built-in function any>, p2: <built-in function any>, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+```
+
+Saves a Fractal with two parameters to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        f       : fractal function
+        p1, p1  : any (param1, param2)
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
     
     Returns:
         a bitmap file
@@ -12175,7 +12206,7 @@ Saves a Koch snowflake to a file
 ### [`savelambdafractal2file`](#savelambdafractal2file)
 
 ```py
-def savelambdafractal2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savelambdafractal2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Lambda fractal to a file
@@ -12294,7 +12325,7 @@ Saves a Marek Dragon Fractal to a file
 ### [`savemulti2ndtetrationbiomorphfractal2file`](#savemulti2ndtetrationbiomorphfractal2file)
 
 ```py
-def savemulti2ndtetrationbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemulti2ndtetrationbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi 2nd Tetration Biomorph Fractal to a file
@@ -12325,7 +12356,7 @@ Saves a Multi 2nd Tetration Biomorph Fractal to a file
 ### [`savemultibiomorphfractal2file`](#savemultibiomorphfractal2file)
 
 ```py
-def savemultibiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultibiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi Biomorph Fractal to a file
@@ -12356,7 +12387,7 @@ Saves a Multi Biomorph Fractal to a file
 ### [`savemultibiomorphvariantfractal2file`](#savemultibiomorphvariantfractal2file)
 
 ```py
-def savemultibiomorphvariantfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultibiomorphvariantfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi Biomorph Variant Fractal to a file
@@ -12477,7 +12508,7 @@ Saves a Multicorn Fractal to a file
 ### [`savemulticosbiomorphfractal2file`](#savemulticosbiomorphfractal2file)
 
 ```py
-def savemulticosbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemulticosbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi cos(z) Biomorph Fractal to a file
@@ -12508,7 +12539,7 @@ Saves a Multi cos(z) Biomorph Fractal to a file
 ### [`savemulticoshbiomorphfractal2file`](#savemulticoshbiomorphfractal2file)
 
 ```py
-def savemulticoshbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemulticoshbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi cosh(z) Biomorph Fractal to a file
@@ -12539,7 +12570,7 @@ Saves a Multi cosh(z) Biomorph Fractal to a file
 ### [`savemultiexpbiomorphfractal2file`](#savemultiexpbiomorphfractal2file)
 
 ```py
-def savemultiexpbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultiexpbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi exp(z) Biomorph Fractal to a file
@@ -12662,7 +12693,7 @@ Saves a Multi Julia Fractal to a file
 ### [`savemultisinbiomorphfractal2file`](#savemultisinbiomorphfractal2file)
 
 ```py
-def savemultisinbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultisinbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi sin(z) Biomorph Fractal to a file
@@ -12693,7 +12724,7 @@ Saves a Multi sin(z) Biomorph Fractal to a file
 ### [`savemultisinhbiomorphfractal2file`](#savemultisinhbiomorphfractal2file)
 
 ```py
-def savemultisinhbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultisinhbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi sinh(z) Biomorph Fractal to a file
@@ -12754,7 +12785,7 @@ Saves a Multisuperellipse Fractal to a file
 ### [`savemultitanbiomorphfractal2file`](#savemultitanbiomorphfractal2file)
 
 ```py
-def savemultitanbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultitanbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi tan(z) Biomorph Fractal to a file
@@ -12785,7 +12816,7 @@ Saves a Multi tan(z) Biomorph Fractal to a file
 ### [`savemultitanhbiomorphfractal2file`](#savemultitanhbiomorphfractal2file)
 
 ```py
-def savemultitanhbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultitanhbiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi tanh(z) Biomorph Fractal to a file
@@ -12816,7 +12847,7 @@ Saves a Multi tanh(z) Biomorph Fractal to a file
 ### [`savemultizconjugatebiomorphfractal2file`](#savemultizconjugatebiomorphfractal2file)
 
 ```py
-def savemultizconjugatebiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultizconjugatebiomorphfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi z conjugate Biomorph Fractal to a file
@@ -12945,7 +12976,7 @@ Draws a Peter de Jong Attractor to file
 ### [`savesinjulia2file`](#savesinjulia2file)
 
 ```py
-def savesinjulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savesinjulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Sin(z) Julia Set to a file
@@ -12975,7 +13006,7 @@ Saves a Sin(z) Julia Set to a file
 ### [`savespiraljulia2file`](#savespiraljulia2file)
 
 ```py
-def savespiraljulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savespiraljulia2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Spiral Julia Set to a file
