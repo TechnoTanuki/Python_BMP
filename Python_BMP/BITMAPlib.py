@@ -10393,6 +10393,9 @@ def savefractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     f(bmp, 0, 0, x, y,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -10446,7 +10449,7 @@ def savemandelbrotfractal2file(
         x: int, y: int,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Mandelbrot Fractal to a file
 
