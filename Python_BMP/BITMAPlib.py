@@ -9469,13 +9469,10 @@ def savetetrationfractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         tetrationfractal,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -9512,13 +9509,10 @@ def savexorfractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         xorfractal,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -9555,13 +9549,10 @@ def savexordivfractal2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         xordivfractal,
-        d,
-        domain,
-        rgbfactors,
-        bitdepth,
+        d, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -9598,13 +9589,10 @@ def savesinjulia2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         sinjulia,
-        c,
-        domain,
-        rgbfactors,
-        bitdepth,
+        c, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -9641,13 +9629,10 @@ def savespiraljulia2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         spiraljulia,
-        c,
-        domain,
-        rgbfactors,
-        bitdepth,
+        c, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -9684,13 +9669,10 @@ def savecosjulia2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         cosjulia,
-        c,
-        domain,
-        rgbfactors,
-        bitdepth,
+        c, domain,
+        rgbfactors, bitdepth,
         maxiter)
 
 
@@ -9721,7 +9703,8 @@ def julia(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, 2,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, 2,
         itermultijulia, domain,
         RGBfactors, maxiter)
 
@@ -9755,7 +9738,8 @@ def multijulia(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultijulia, domain,
         RGBfactors, maxiter)
 
@@ -9789,7 +9773,8 @@ def ngonfractal(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, n,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, n,
         iterngonfractal, domain,
         RGBfactors, maxiter)
 
@@ -9823,7 +9808,8 @@ def multibiomorphvariant(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultibiomorphvariant, domain,
         RGBfactors, maxiter)
 
@@ -9857,7 +9843,8 @@ def multibiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultibiomorph, domain,
         RGBfactors, maxiter)
 
@@ -9891,7 +9878,8 @@ def multisinbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultisinbiomorph, domain,
         RGBfactors, maxiter)
 
@@ -9925,7 +9913,8 @@ def multicosbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermulticosbiomorph, domain,
         RGBfactors, maxiter)
 
@@ -9959,7 +9948,8 @@ def multicoshbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermulticoshbiomorph, domain,
         RGBfactors, maxiter)
 
@@ -9993,7 +9983,8 @@ def multisinhbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultisinhbiomorph, domain,
         RGBfactors, maxiter)
 
@@ -10027,7 +10018,8 @@ def multiexpbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultiexpbiomorph, domain,
         RGBfactors, maxiter)
 
@@ -10061,9 +10053,10 @@ def multi2ndtetrationbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
-        itermulti2ndtetrationbiomorph, domain,
-        RGBfactors, maxiter)
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
+        itermulti2ndtetrationbiomorph,
+        domain, RGBfactors, maxiter)
 
 
 def multizconjugatebiomorph(bmp: array,
@@ -10095,7 +10088,8 @@ def multizconjugatebiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultizconjugatebiomorph, domain,
         RGBfactors, maxiter)
 
@@ -10129,7 +10123,8 @@ def multitanbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultitanbiomorph, domain,
         RGBfactors, maxiter)
 
@@ -10163,7 +10158,8 @@ def multitanhbiomorph(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractalcomplexpar(bmp, x1, y1, x2, y2, c, d,
+    plotmultifractalcomplexpar(
+        bmp, x1, y1, x2, y2, c, d,
         itermultitanhbiomorph, domain,
         RGBfactors, maxiter)
 
@@ -10193,7 +10189,8 @@ def tricorn(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractal(bmp, x1, y1, x2, y2, 2,
+    plotmultifractal(
+        bmp, x1, y1, x2, y2, 2,
         itermulticorn, domain,
         RGBfactors, maxiter)
 
@@ -10225,7 +10222,8 @@ def multicorn(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractal(bmp, x1, y1, x2, y2, d,
+    plotmultifractal(
+        bmp, x1, y1, x2, y2, d,
         itermulticorn, domain,
         RGBfactors, maxiter)
 
@@ -10257,7 +10255,8 @@ def barnsleytree(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractal(bmp, x1, y1, x2, y2, d,
+    plotmultifractal(
+        bmp, x1, y1, x2, y2, d,
         iterbarnsleytree, domain,
         RGBfactors, maxiter)
 
@@ -10289,7 +10288,8 @@ def marekdragon(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    plotmultifractal(bmp, x1, y1, x2, y2, d,
+    plotmultifractal(
+        bmp, x1, y1, x2, y2, d,
         itermarekdragon, domain,
         RGBfactors, maxiter)
 
