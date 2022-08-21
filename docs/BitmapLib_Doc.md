@@ -7914,6 +7914,31 @@ Applies a monochrome filter
         unsigned byte array
 
 
+### [`monoshiftablepal`](#monoshiftablepal)
+
+```py
+def monoshiftablepal(bits: int, rgbfactors: list[float, float, float], mult: int = 1, shift: int = 0) -> list[list[int, int, int]]:
+```
+
+Returns an adjustable monochrome palette
+    based on bit depth bits and rgbfactors
+
+    Args:
+        bits      : bit depth
+                    (1, 4, 8)
+        mult      : value multiplier
+        shift     : value shift
+        rgbfactors: color values
+                    0.0 to 1.0
+                    [r: float,
+                     g: float,
+                     b: float]
+    
+    Returns:
+      a palette as
+      list[list[r: int, g: int, b int]]
+
+
 ### [`multi2ndtetrationbiomorph`](#multi2ndtetrationbiomorph)
 
 ```py
@@ -9846,7 +9871,7 @@ Draw a Multi Fractal
 def plotmultifractalcomplexpar(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, func: Callable, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
 ```
 
-Draw a Multifractal with a comnplex parameter
+Draw a Multifractal with a complex parameter
 
     Args:
         bmp           : unsigned
@@ -11791,7 +11816,7 @@ Rounds off the components of a vector
 ### [`saveastroidfractal2file`](#saveastroidfractal2file)
 
 ```py
-def saveastroidfractal2file(file: str, x: int, y: int, r: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def saveastroidfractal2file(file: str, x: int, y: int, r: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves an Astroid Fractal to a file
@@ -11821,7 +11846,7 @@ Saves an Astroid Fractal to a file
 ### [`savebarnsleytreefractal2file`](#savebarnsleytreefractal2file)
 
 ```py
-def savebarnsleytreefractal2file(file: str, x: int, y: int, d: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savebarnsleytreefractal2file(file: str, x: int, y: int, d: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Barnsley Tree Fractal to a file
@@ -12092,7 +12117,7 @@ Draws an Ikeda Attractor to file
 ### [`savejuliafractal2file`](#savejuliafractal2file)
 
 ```py
-def savejuliafractal2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savejuliafractal2file(file: str, x: int, y: int, c: complex, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Julia Fractal to a file
@@ -12180,7 +12205,7 @@ Saves a Lambda fractal to a file
 ### [`savelemniscatefractal2file`](#savelemniscatefractal2file)
 
 ```py
-def savelemniscatefractal2file(file: str, x: int, y: int, r: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savelemniscatefractal2file(file: str, x: int, y: int, r: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Lemniscate Fractal to a file
@@ -12210,7 +12235,7 @@ Saves a Lemniscate Fractal to a file
 ### [`savemandelbrotfractal2file`](#savemandelbrotfractal2file)
 
 ```py
-def savemandelbrotfractal2file(file: str, x: int, y: int, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemandelbrotfractal2file(file: str, x: int, y: int, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Mandelbrot Fractal to a file
@@ -12239,7 +12264,7 @@ Saves a Mandelbrot Fractal to a file
 ### [`savemarekdragon2file`](#savemarekdragon2file)
 
 ```py
-def savemarekdragon2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemarekdragon2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Marek Dragon Fractal to a file
@@ -12362,7 +12387,7 @@ Saves a Multi Biomorph Variant Fractal to a file
 ### [`savemultibrotfractal2file`](#savemultibrotfractal2file)
 
 ```py
-def savemultibrotfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultibrotfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multibrot Fractal to a file
@@ -12392,7 +12417,7 @@ Saves a Multibrot Fractal to a file
 ### [`savemulticirclefractal2file`](#savemulticirclefractal2file)
 
 ```py
-def savemulticirclefractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemulticirclefractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multicircle Fractal to a file
@@ -12422,7 +12447,7 @@ Saves a Multicircle Fractal to a file
 ### [`savemulticornfractal2file`](#savemulticornfractal2file)
 
 ```py
-def savemulticornfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemulticornfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multicorn Fractal to a file
@@ -12576,7 +12601,7 @@ Saves a Multi Fractal to a file
 ### [`savemultihyperbolafractal2file`](#savemultihyperbolafractal2file)
 
 ```py
-def savemultihyperbolafractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultihyperbolafractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multihyperbola Fractal to a file
@@ -12606,7 +12631,7 @@ Saves a Multihyperbola Fractal to a file
 ### [`savemultijuliafractal2file`](#savemultijuliafractal2file)
 
 ```py
-def savemultijuliafractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savemultijuliafractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Multi Julia Fractal to a file
@@ -12871,10 +12896,10 @@ Saves a Newtons Fractal to a file
 ### [`savengonfractal2file`](#savengonfractal2file)
 
 ```py
-def savengonfractal2file(file: str, x: int, y: int, c: float, n: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savengonfractal2file(file: str, x: int, y: int, c: float, n: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
-Saves a Multi Julia Fractal to a file
+Saves a n gon Fractal to a file
 
     Args:
         file    : full path to new file
@@ -13030,7 +13055,7 @@ Saves a Tetration Fractal to a file
 ### [`savetricornfractal2file`](#savetricornfractal2file)
 
 ```py
-def savetricornfractal2file(file: str, x: int, y: int, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savetricornfractal2file(file: str, x: int, y: int, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Tricorn Fractal to a file

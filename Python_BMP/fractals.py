@@ -297,7 +297,7 @@ def multicircle(
     Returns:
         int
     """
-    return abs(complex(P, Q)**d) % maxiter
+    return round(abs(complex(P, Q)**d)) % maxiter
 
 
 def multihyperbola(
@@ -762,7 +762,7 @@ def multibiomorphvariant(P: float, Q: float,
     for _ in range(maxiter):
         z = z**d + c
         if abs(z.real) > a or abs(z.imag) > a:
-            return abs(z)
+            return round(abs(z)) % maxiter
     return maxiter
 
 

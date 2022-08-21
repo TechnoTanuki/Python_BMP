@@ -10490,7 +10490,7 @@ def savemultibrotfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multibrot Fractal to a file
 
@@ -10533,7 +10533,7 @@ def savemulticirclefractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multicircle Fractal to a file
 
@@ -10576,7 +10576,7 @@ def savemultihyperbolafractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multihyperbola Fractal to a file
 
@@ -10705,7 +10705,7 @@ def savelemniscatefractal2file(
         r: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Lemniscate Fractal to a file
 
@@ -10747,7 +10747,7 @@ def savetricornfractal2file(
         x: int, y: int,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Tricorn Fractal to a file
 
@@ -10788,7 +10788,7 @@ def savemulticornfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multicorn Fractal to a file
 
@@ -10831,7 +10831,7 @@ def savebarnsleytreefractal2file(
         d: complex,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Barnsley Tree Fractal to a file
 
@@ -10874,7 +10874,7 @@ def savemarekdragon2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Marek Dragon Fractal to a file
 
@@ -11004,7 +11004,7 @@ def savemultijuliafractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multi Julia Fractal to a file
 
@@ -11031,6 +11031,9 @@ def savemultijuliafractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     multijulia(bmp, 0, 0, x, y, c, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -11044,9 +11047,9 @@ def savengonfractal2file(
         n: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
-    """Saves a Multi Julia Fractal to a file
+    """Saves a n gon Fractal to a file
 
     Args:
         file    : full path to new file
@@ -11071,6 +11074,9 @@ def savengonfractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     ngonfractal(bmp, 0, 0, x, y, c, n,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -11084,7 +11090,7 @@ def savemultibiomorphvariantfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multi Biomorph Variant Fractal to a file
 
@@ -11111,6 +11117,9 @@ def savemultibiomorphvariantfractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     multibiomorphvariant(bmp, 0, 0, x, y, c, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -11124,7 +11133,7 @@ def savemultibiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multi Biomorph Fractal to a file
 
@@ -11151,6 +11160,9 @@ def savemultibiomorphfractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     multibiomorph(bmp, 0, 0, x, y, c, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -11164,7 +11176,7 @@ def savemultisinbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 8,
         maxiter: int = 255):
     """Saves a Multi sin(z) Biomorph Fractal to a file
 
@@ -11191,6 +11203,9 @@ def savemultisinbiomorphfractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2monochrome(bmp, rgbfactors)
     multisinbiomorph(bmp, 0, 0, x, y, c, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
