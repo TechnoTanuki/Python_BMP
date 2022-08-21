@@ -351,7 +351,7 @@ def astroid(
     P *= P
     Q *= Q
     r *= r
-    return abs((P + Q - r) ** 3 + 27 * P * Q * r) % maxiter
+    return round(abs((P + Q - r) ** 3 + 27 * P * Q * r)) % maxiter
 
 
 def lemniscate(
