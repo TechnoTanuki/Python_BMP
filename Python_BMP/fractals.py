@@ -371,7 +371,7 @@ def lemniscate(
     r *= r
     P *= P
     Q *= Q
-    return abs((P + Q) ** 2 - 2 * r * (P - Q)) % maxiter
+    return int(abs((P + Q) ** 2 - 2 * r * (P - Q))) % maxiter
 
 
 def xorfn(
