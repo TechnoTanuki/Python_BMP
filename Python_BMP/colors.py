@@ -878,8 +878,8 @@ def applybrightnessadjtoBGRbuf(
         holding brightness adjusted
         BGR data
     """
-    return array('B',setminmaxvec(addvect(buf,
-            intscalarmulvect(buf, percentadj / 100)), 0, 255))
+    return array('B',setminmaxvec(
+            intscalarmulvect(buf, 1 + (percentadj / 100)), 0, 255))
 
 
 def applythresholdadjtoBGRbuf(
