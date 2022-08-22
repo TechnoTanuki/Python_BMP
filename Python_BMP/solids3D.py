@@ -237,7 +237,6 @@ def icosahedvertandsurface(
     pts1 = floatregpolygonvert(
                 0, 0, x, 5, 36)
     z = sqrt((distance(pts[0], pts[1]) ** 2 - x**2))
-
     z1 = 2 * x - z
     return [[[0, 0, -z]] + \
              adddimz(pts, 0) + \
@@ -315,6 +314,7 @@ def perspective(
     ((sroll, croll),
     (spitch, cpitch),
     (syaw, cyaw)) = rotvec
+    (dx, dy, dz) = dispvec
     for p in vlist:
         (px, py, pz) = p
         x1 = -cyaw * px - syaw * pz
@@ -323,9 +323,9 @@ def perspective(
         x = croll * x1 + sroll * py
         y = spitch * z1 + cpitch * y1
         z = cpitch * z1 - spitch * y1
-        x += dispvec[0]
-        y += dispvec[1]
-        z += dispvec[2]
+        x += dx
+        y += dy
+        z += dz
         rotvlist.append([x, y, z])
         projvlist.append([-d * x / z,
                           -d * y / z])
