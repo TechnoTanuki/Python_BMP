@@ -434,9 +434,10 @@ def gensides(
     polylist = []
     normlist = []
     for sidepts in sides:
-        u = plist[sidepts[0]]
-        v = plist[sidepts[1]]
-        w = plist[sidepts[2]]
+        (s0, s1, s2) = sidepts[0:3]
+        u = plist[s0]
+        v = plist[s1]
+        w = plist[s2]
         if surfacetest(u, v, w) <= 0:
             polylist.append(
                 trans(
