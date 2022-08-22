@@ -906,7 +906,7 @@ def applythresholdadjtoBGRbuf(
     lummax = lumrange[1] & 0xff
     m = len(buf)
     for i in range(0, m, 3):
-        lum = max(buf[i:i+3])
+        lum = max(buf[i: i + 3])
         f = 1
         if lummin > lummax:
             lummin, lummax = lummax, lummin
@@ -916,9 +916,11 @@ def applythresholdadjtoBGRbuf(
             if lum > lummax:
                 f = lummax / lum
         if f != 1:
+            j = i + 1
+            k = i + 2
             buf[i] = int(f * buf[i])
-            buf[i + 1] = int(f * buf[i + 1])
-            buf[i + 2] = int(f * buf[i + 2])
+            buf[j] = int(f * buf[j])
+            buf[k] = int(f * buf[k])
     return buf
 
 
