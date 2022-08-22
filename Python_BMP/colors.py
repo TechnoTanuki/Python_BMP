@@ -567,9 +567,9 @@ def brightnessadjust(
         a brightness adjusted color as
         [r: byte, g: byte, b: byte]
     """
-    c = RGBtoRGBfactorsandlum(rgb)
-    return setminmaxvec(RGBfactors2RGB(c[0],
-     c[1] + c[1] * (percentadj / 100)),
+    (c0, c1) = RGBtoRGBfactorsandlum(rgb)
+    return setminmaxvec(RGBfactors2RGB(c0,
+     c1 * (1 + (percentadj / 100))),
      0, 255)
 
 
