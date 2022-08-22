@@ -597,14 +597,12 @@ def thresholdadjust(
                   g: byte,
                   b: byte]
     """
-    c = RGBtoRGBfactorsandlum(rgb)
-    lumrange = intsetminmaxvec(lumrange, 0, 255)
-    if  lumrange[0] > lumrange[1]:
-        lumrange[1],  lumrange[0] = \
-        lumrange[0],  lumrange[1]
-    return RGBfactors2RGB(c[0],
-                setminmax(c[1],lumrange[0],
-                               lumrange[1]))
+    (c0, c1) = RGBtoRGBfactorsandlum(rgb)
+    (l0, l1) = intsetminmaxvec(lumrange, 0, 255)
+    if  l0 > l1:
+        l1, l0 = l0, l1
+    return RGBfactors2RGB(c0,
+                setminmax(c1, l0, l1))
 
 
 def colorfilter(
