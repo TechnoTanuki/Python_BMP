@@ -406,9 +406,10 @@ def monochromepal(
     inc = (256 >> bits) + \
         iif(bits == 4, 1,
         iif(bits == 1, 127, 0))
-    return [[round(rgbfactors[0] * c),
-             round(rgbfactors[1] * c),
-             round(rgbfactors[2] * c)]
+    (r, g, b) = rgbfactors
+    return [[round(r * c),
+             round(g * c),
+             round(b * c)]
              for c in range(0, 256, inc)]
 
 
@@ -443,10 +444,10 @@ def monoshiftablepal(
     inc = (256 >> bits) + \
         iif(bits == 4, 1,
         iif(bits == 1, 127, 0))
-
-    return [[round(rgbfactors[0] * j),
-             round(rgbfactors[1] * j),
-             round(rgbfactors[2] * j)]
+    (r, g, b) = rgbfactors
+    return [[round(r * j),
+             round(g * j),
+             round(b * j)]
              for j in [(c * mult + shift) % 256 for c in range(0, 255, inc)]]
 
 
@@ -482,10 +483,10 @@ def monoinverseshiftablepal(
     inc = (256 >> bits) + \
         iif(bits == 4, 1,
         iif(bits == 1, 127, 0))
-
-    return [[round(rgbfactors[0] * j),
-             round(rgbfactors[1] * j),
-             round(rgbfactors[2] * j)]
+    (r, g, b) = rgbfactors
+    return [[round(r * j),
+             round(g * j),
+             round(b * j)]
              for j in [((255 - c) * mult + shift) % 256 for c in range(0, 255, inc)]]
 
 
