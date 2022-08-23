@@ -448,7 +448,7 @@ def monoshiftablepal(
     return [[round(r * j),
              round(g * j),
              round(b * j)]
-             for j in [(c * mult + shift) % 256 for c in range(0, 255, inc)]]
+             for j in [(c * mult + shift) % 256 for c in range(0, 256, inc)]]
 
 
 def monoinverseshiftablepal(
@@ -487,7 +487,7 @@ def monoinverseshiftablepal(
     return [[round(r * j),
              round(g * j),
              round(b * j)]
-             for j in [((255 - c) * mult + shift) % 256 for c in range(0, 255, inc)]]
+             for j in [((255 - c) * mult + shift) % 256 for c in range(0, 256, inc)]]
 
 
 
