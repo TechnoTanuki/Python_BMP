@@ -8860,12 +8860,13 @@ def plotmultifractal(bmp: array,
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
+    bits = bmp[bmpcolorbits]
     for (x, y, c) in func(x1, y1, x2, y2, d,
                           domain, maxiter):
-        if bmp[bmpcolorbits] == 24:
+        if bits == 24:
             c = colormix(((255 - c) * 20) % 256,
                         RGBfactors)
-        elif bmp[bmpcolorbits] == 8 and len(RGBfactors) == 3:
+        elif bits in (8, 4) and len(RGBfactors) == 3:
             pass
         else:
             c = (mcolor - c) % maxcolors
@@ -8905,12 +8906,13 @@ def plotmultifractalcomplexpar(bmp: array,
     """
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
+    bits = bmp[bmpcolorbits]
     for (x, y, v) in func(x1, y1, x2, y2, c, d,
                            domain, maxiter):
-        if bmp[bmpcolorbits] == 24:
+        if bits == 24:
             v = colormix(((255 - v) * 20) % 256,
                         RGBfactors)
-        elif bmp[bmpcolorbits] == 8 and len(RGBfactors) == 3:
+        elif bits in (8, 4) and len(RGBfactors) == 3:
             pass
         else:
             v = (mcolor - v) % maxcolors
