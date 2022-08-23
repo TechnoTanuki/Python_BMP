@@ -10416,9 +10416,8 @@ def savefractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2invshiftedmonochrome(bmp, rgbfactors)
+    if bitdepth < 24 and len(rgbfactors) == 3:
+        setBMP2invshiftedmonochrome(bmp, rgbfactors)
     f(bmp, 0, 0, x, y,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -10458,9 +10457,8 @@ def savemultifractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-            setBMP2invshiftedmonochrome(bmp, rgbfactors)
+    if bitdepth < 24 and len(rgbfactors) == 3:
+        setBMP2invshiftedmonochrome(bmp, rgbfactors)
     f(bmp, 0, 0, x, y, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -10937,9 +10935,8 @@ def savefractalwithparam2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        if len(rgbfactors) == 3:
-             setBMP2invshiftedmonochrome(bmp, rgbfactors)
+    if bitdepth < 24 and len(rgbfactors) == 3:
+        setBMP2invshiftedmonochrome(bmp, rgbfactors)
     retval = f(bmp, 0, 0, x, y, p,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
