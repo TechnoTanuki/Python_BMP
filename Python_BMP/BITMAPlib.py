@@ -1023,7 +1023,7 @@ def setRGBpal(bmp: array, c: int,
         byref modified unsigned byte array
     """
     s = bmppal + (c << 2)
-    bmp[s: s + 3] = RGB2BGRarr(r, g, b)
+    bmp[s: s + 3] = array('B', [b, g, r])
 
 
 def colorhistorgram(bmp: array) -> list:
