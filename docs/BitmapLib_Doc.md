@@ -7914,6 +7914,32 @@ Applies a monochrome filter
         unsigned byte array
 
 
+### [`monoinverseshiftableBGRpal`](#monoinverseshiftableBGRpal)
+
+```py
+def monoinverseshiftableBGRpal(bits: int, rgbfactors: list[float, float, float], mult: int = 1, shift: int = 0) -> list[list[int, int, int]]:
+```
+
+Returns an adjustable BGR monochrome palette
+    with reversed brightness
+    based on bit depth bits and rgbfactors
+
+    Args:
+        bits      : bit depth
+                    (1, 4, 8)
+        mult      : value multiplier
+        shift     : value shift
+        rgbfactors: color values
+                    0.0 to 1.0
+                    [r: float,
+                     g: float,
+                     b: float]
+    
+    Returns:
+      a palette as
+      list[list[r: int, g: int, b int]]
+
+
 ### [`monoinverseshiftablepal`](#monoinverseshiftablepal)
 
 ```py
@@ -13269,6 +13295,26 @@ Sets the RGB palette of a bitmap
         pallist: [(r: byte,
                    g: byte,
                    b: byte), ...]
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`setbmppalwithBGRlist`](#setbmppalwithBGRlist)
+
+```py
+def setbmppalwithBGRlist(bmp: array.array, bgrpallist: list):
+```
+
+Sets the RGB palette of a bitmap
+with a BGR list
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+        bgrpallist: [(b: byte,
+                      g: byte,
+                      r: byte), ...]
     
     Returns:
         byref modified unsigned byte array

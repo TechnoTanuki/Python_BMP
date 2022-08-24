@@ -189,6 +189,7 @@ from .colors import(
     monochromepal,
     monoshiftablepal,
     monoinverseshiftablepal,
+    monoinverseshiftableBGRpal,
     probplotRGBto1bit,
     RGB2BGRbuf,
     RGB2HSL,
@@ -974,6 +975,28 @@ def setbmppal(bmp: array,
                               p[2])
 
 
+def setbmppalwithBGRlist(bmp: array,
+        bgrpallist: list):
+    """Sets the RGB palette of a bitmap
+    with a BGR list
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+        bgrpallist: [(b: byte,
+                      g: byte,
+                      r: byte), ...]
+
+    Returns:
+        byref modified unsigned byte array
+    """
+
+    if len(bgrpallist) == getmaxcolors(bmp):
+        for c, p in enumerate(bgrpallist):
+            s = bmppal + (c << 2)
+            bmp[s: s + 3] = array('B', p)
+
+
 def getallRGBpal(
         bmp: array
         ) -> list[list[int, int, int]]:
@@ -1242,9 +1265,9 @@ def setBMP2invshiftedmonochrome(bmp: array,
         list of modified RGB values
         byref modified byte array
     """
-    newpal = monoinverseshiftablepal(
+    newpal = monoinverseshiftableBGRpal(
            _getclrbits(bmp), RGBfactors, mult, shift)
-    setbmppal(bmp, newpal)
+    setbmppalwithBGRlist(bmp, newpal)
     return newpal
 
 
