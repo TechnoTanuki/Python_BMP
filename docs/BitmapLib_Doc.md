@@ -7914,6 +7914,32 @@ Applies a monochrome filter
         unsigned byte array
 
 
+### [`monoinverseshiftablepal`](#monoinverseshiftablepal)
+
+```py
+def monoinverseshiftablepal(bits: int, rgbfactors: list[float, float, float], mult: int = 1, shift: int = 0) -> list[list[int, int, int]]:
+```
+
+Returns an adjustable monochrome palette
+    with reversed brightness
+    based on bit depth bits and rgbfactors
+
+    Args:
+        bits      : bit depth
+                    (1, 4, 8)
+        mult      : value multiplier
+        shift     : value shift
+        rgbfactors: color values
+                    0.0 to 1.0
+                    [r: float,
+                     g: float,
+                     b: float]
+    
+    Returns:
+      a palette as
+      list[list[r: int, g: int, b int]]
+
+
 ### [`monoshiftablepal`](#monoshiftablepal)
 
 ```py
@@ -11942,7 +11968,7 @@ Saves a Cos(z) Julia Set to a file
 ### [`savefractal2file`](#savefractal2file)
 
 ```py
-def savefractal2file(file: str, x: int, y: int, f: Callable, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savefractal2file(file: str, x: int, y: int, f: Callable, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
 ```
 
 Saves a Fractal to a file
@@ -13170,6 +13196,26 @@ Saves a Xor Fractal to a file
     
     Returns:
         a bitmap file
+
+
+### [`setBMP2invshiftedmonochrome`](#setBMP2invshiftedmonochrome)
+
+```py
+def setBMP2invshiftedmonochrome(bmp: array.array, RGBfactors: list[float, float, float], mult: int = 20, shift: int = 0) -> list:
+```
+
+Sets a bitmap to use a monochrome palette
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        RGBfactors: (r, g, b)
+                    all values range
+                    from 0.0 to 1.0
+    
+    Returns:
+        list of modified RGB values
+        byref modified byte array
 
 
 ### [`setBMP2monochrome`](#setBMP2monochrome)

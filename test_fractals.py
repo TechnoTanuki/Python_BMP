@@ -419,6 +419,16 @@ class TestFractal2filefunc(unittest.TestCase):
         self.filecmp(*p)
 
 
+    def testsinjulia4bitfractal(self):
+        p = self._filepaths("sinjulia4bit.bmp")
+        sinjulia(p[0], # path to new file
+        256, 256, # size of file
+        1 + 1j, # complex number
+        self.domain, # fractal domain
+        self.c['yellowgreen'], 4) # color
+        self.filecmp(*p)
+
+
     def testcosjuliafractal(self):
         p = self._filepaths("cosjulia.bmp")
         cosjulia(p[0], # path to new file
