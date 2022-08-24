@@ -310,7 +310,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![marekdragon](../assets/fractals/marekdragon.bmp)](../Hello_MarekDragon.py)
 
-[![marekdragon4bit](../assets/fractals/marekdragon4bot.bmp)](../Hello_MarekDragon_4bit.py)
+[![marekdragon4bit](../assets/fractals/marekdragon4bit.bmp)](../Hello_MarekDragon_4bit.py)
 
 [![tetration](../assets/fractals/tetration.bmp)](../Hello_Tetration_Fractal.py)
 
