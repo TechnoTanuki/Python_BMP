@@ -302,13 +302,15 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![sinJulia](../assets/fractals/sinjulia.bmp)](../Hello_SinJulia_Set.py)
 
-[![sinJulia](../assets/fractals/sinjulia4bit.bmp)](../Hello_SinJulia_Set_4bit.py)
+[![sinJulia4bit](../assets/fractals/sinjulia4bit.bmp)](../Hello_SinJulia_Set_4bit.py)
 
-[![sinJulia](../assets/fractals/sinjulia1bit.bmp)](../Hello_SinJulia_Set_1bit.py)
+[![sinJulia1bit](../assets/fractals/sinjulia1bit.bmp)](../Hello_SinJulia_Set_1bit.py)
 
 [![cosJulia](../assets/fractals/cosjulia.bmp)](../Hello_CosJulia_Set.py)
 
 [![marekdragon](../assets/fractals/marekdragon.bmp)](../Hello_MarekDragon.py)
+
+[![marekdragon4bit](../assets/fractals/marekdragon4bot.bmp)](../Hello_MarekDragon_4bit.py)
 
 [![tetration](../assets/fractals/tetration.bmp)](../Hello_Tetration_Fractal.py)
 

@@ -463,6 +463,13 @@ class TestFractal2filefunc(unittest.TestCase):
         self.filecmp(*p)
 
 
+    def test4bitmarekdragon(self):
+        p = self._filepaths("marekdragon4bit.bmp")
+        marekdragon(p[0], 256, 256, 0.040884634,
+        [-1.5, .5, -1.25, 1], self.c['yellowgreen'], 4)
+        self.filecmp(*p)
+
+
     def testpeterdejong(self):
         p = self._filepaths("peterdejong.bmp")
         peterdejong(p[0], 256, 256, # size of file
