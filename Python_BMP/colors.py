@@ -107,9 +107,10 @@ def colormix(lum: int,
     Returns:
         int color val
     """
-    return RGB2int(int(RGBfactors[0] * lum),
-                   int(RGBfactors[1] * lum),
-                   int(RGBfactors[2] * lum))
+    (r, g, b) = RGBfactors
+    return RGB2int(int(r * lum),
+                   int(g * lum),
+                   int(b * lum))
 
 
 def int2RGB(i: int):
