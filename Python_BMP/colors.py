@@ -1041,10 +1041,7 @@ def makeBGRbuf(bbuf: array,
         unsigned byte array
         holding BGR data
     """
-    buf = []
-    for b, g, r in zip(bbuf, gbuf, rbuf):
-        buf += [b, g, r]
-    return array('B', buf)
+    return array('B', ravel2D([[b, g, r] for b, g, r in zip(bbuf, gbuf, rbuf)]))
 
 
 def RGB2HSL(r: int, g: int, b: int
