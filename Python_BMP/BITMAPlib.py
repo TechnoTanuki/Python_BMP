@@ -970,10 +970,8 @@ def setbmppal(bmp: array,
         byref modified unsigned byte array
     """
     if len(pallist) == getmaxcolors(bmp):
-        for c, p in enumerate(pallist):
-            setRGBpal(bmp, c, p[0],
-                              p[1],
-                              p[2])
+        for c, (r, g, b) in enumerate(pallist):
+            setRGBpal(bmp, c, r, g, b)
 
 
 def setbmppalwithBGRlist(bmp: array,
