@@ -7914,6 +7914,32 @@ Applies a monochrome filter
         unsigned byte array
 
 
+### [`monoinverseshiftableBGRApal`](#monoinverseshiftableBGRApal)
+
+```py
+def monoinverseshiftableBGRApal(bits: int, rgbfactors: list[float, float, float], mult: int = 1, shift: int = 0) -> list[list[int, int, int]]:
+```
+
+Returns an adjustable BGRA monochrome palette
+    with reversed brightness
+    based on bit depth bits and rgbfactors
+
+    Args:
+        bits      : bit depth
+                    (1, 4, 8)
+        mult      : value multiplier
+        shift     : value shift
+        rgbfactors: color values
+                    0.0 to 1.0
+                    [r: float,
+                     g: float,
+                     b: float]
+    
+    Returns:
+      a palette as
+      list[list[b: int, g: int, r: int, a: int = 0]]
+
+
 ### [`monoinverseshiftableBGRpal`](#monoinverseshiftableBGRpal)
 
 ```py
@@ -7937,7 +7963,7 @@ Returns an adjustable BGR monochrome palette
     
     Returns:
       a palette as
-      list[list[r: int, g: int, b int]]
+      list[list[b: int, g: int, r: int]]
 
 
 ### [`monoinverseshiftablepal`](#monoinverseshiftablepal)
@@ -7963,7 +7989,7 @@ Returns an adjustable monochrome palette
     
     Returns:
       a palette as
-      list[list[r: int, g: int, b int]]
+      list[list[r: int, g: int, b: int]]
 
 
 ### [`monoshiftablepal`](#monoshiftablepal)
@@ -13295,6 +13321,27 @@ Sets the RGB palette of a bitmap
         pallist: [(r: byte,
                    g: byte,
                    b: byte), ...]
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`setbmppalwithBGRAlist`](#setbmppalwithBGRAlist)
+
+```py
+def setbmppalwithBGRAlist(bmp: array.array, bgrapallist: list):
+```
+
+Sets the RGB palette of a bitmap
+with a BGRA list
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+        bgrpallist: [(b: byte,
+                      g: byte,
+                      r: byte,
+                      a: byte), ...]
     
     Returns:
         byref modified unsigned byte array

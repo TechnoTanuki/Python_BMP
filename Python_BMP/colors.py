@@ -478,7 +478,7 @@ def monoinverseshiftablepal(
 
     Returns:
       a palette as
-      list[list[r: int, g: int, b int]]
+      list[list[r: int, g: int, b: int]]
     """
     inc = (256 >> bits) + \
         iif(bits == 4, 1,
@@ -517,7 +517,7 @@ def monoinverseshiftableBGRpal(
 
     Returns:
       a palette as
-      list[list[r: int, g: int, b int]]
+      list[list[b: int, g: int, r: int]]
     """
     inc = (256 >> bits) + \
         iif(bits == 4, 1,
@@ -526,6 +526,46 @@ def monoinverseshiftableBGRpal(
     return [[round(b * j),
              round(g * j),
              round(r * j)]
+             for j in [((255 - c) * mult + shift) % 256 for c in range(0, 256, inc)]]
+
+
+def monoinverseshiftableBGRApal(
+        bits: int,
+        rgbfactors: list[float,
+                         float,
+                         float],
+        mult: int = 1,
+        shift: int = 0,
+               ) -> list[list[int,
+                              int,
+                              int]]:
+    """Returns an adjustable BGRA monochrome palette
+        with reversed brightness
+        based on bit depth bits and rgbfactors
+
+    Args:
+        bits      : bit depth
+                    (1, 4, 8)
+        mult      : value multiplier
+        shift     : value shift
+        rgbfactors: color values
+                    0.0 to 1.0
+                    [r: float,
+                     g: float,
+                     b: float]
+
+    Returns:
+      a palette as
+      list[list[b: int, g: int, r: int, a: int = 0]]
+    """
+    inc = (256 >> bits) + \
+        iif(bits == 4, 1,
+        iif(bits == 1, 127, 0))
+    (r, g, b) = rgbfactors
+    return [[round(b * j),
+             round(g * j),
+             round(r * j),
+             0]
              for j in [((255 - c) * mult + shift) % 256 for c in range(0, 256, inc)]]
 
 
