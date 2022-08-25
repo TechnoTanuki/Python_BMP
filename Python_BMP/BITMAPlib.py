@@ -8913,15 +8913,16 @@ def plotmultifractal(bmp: array,
     for (x, y, c) in func(x1, y1, x2, y2, d,
                           domain, maxiter):
         if bits == 24:
-            c = colormix(((255 - c) * 20) % 256,
-                        RGBfactors)
+            plotxybit(bmp, x, y,
+            colormix(((255 - c) * 20) % 256,
+                        RGBfactors))
         elif bits in (8, 4) and len(RGBfactors) == 3:
-            pass
+            plotxybit(bmp, x, y, c)
         elif bits == 1:
-            c %= maxcolors
+            plotxybit(bmp, x, y, c % maxcolors)
         else:
-            c = (mcolor - c) % maxcolors
-        plotxybit(bmp, x, y, c)
+            plotxybit(bmp, x, y, (mcolor - c) % maxcolors)
+
 
 
 def plotmultifractalcomplexpar(bmp: array,
@@ -8961,15 +8962,16 @@ def plotmultifractalcomplexpar(bmp: array,
     for (x, y, v) in func(x1, y1, x2, y2, c, d,
                            domain, maxiter):
         if bits == 24:
-            v = colormix(((255 - v) * 20) % 256,
-                        RGBfactors)
+            plotxybit(bmp, x, y,
+            colormix(((255 - v) * 20) % 256,
+                        RGBfactors))
         elif bits in (8, 4) and len(RGBfactors) == 3:
-            pass
+            plotxybit(bmp, x, y, v)
         elif bits == 1:
-            v %= maxcolors
+            plotxybit(bmp, x, y, v % maxcolors)
         else:
-            v = (mcolor - v) % maxcolors
-        plotxybit(bmp, x, y, v)
+            plotxybit(bmp, x, y, (mcolor - v) % maxcolors)
+
 
 
 def newtonsfractal(bmp: array,
