@@ -731,14 +731,18 @@ def applymonochromefiltertoBGRbuf(
         holding mono BGR data
     """
     m = len(buf)
-    buf[0 : m - 2 : 3] = buf[1 : m - 1 : 3] = buf[2:m:3] = array(
+    buf[0 : m - 2 : 3] = \
+    buf[1 : m - 1 : 3] = \
+    buf[2 : m     : 3] = array(
         'B',
         [
             int((b + g + r) / 3)
             for b, g, r in zip(
-                buf[: m - 2 : 3], buf[1 : m - 1 : 3], buf[2:m:3]
+                buf[  : m - 2 : 3],
+                buf[1 : m - 1 : 3],
+                buf[2 : m     : 3]
             )
-        ],
+        ]
     )
 
 
