@@ -29,6 +29,7 @@ from .mathlib import(
     intsetminmaxvec,
     mean,
     mulvect,
+    ravel2D,
     roundvect,
     scalarmulvect,
     setminmax,
@@ -789,10 +790,11 @@ def applycolorfiltertoBGRbuf(
         holding color BGR data
     """
     m = len(buf) - 1
-    buf[0 : m - 2 : 3], buf[1 : m - 1 : 3], buf[2:m:3] = (
-        array('B', intscalarmulvect(buf[: m - 2 : 3], rgbfactors[2])),
-        array('B', intscalarmulvect(buf[1 : m - 1 : 3], rgbfactors[1])),
-        array('B', intscalarmulvect(buf[2:m:3], rgbfactors[0])),
+    (r, g, b) = rgbfactors
+    buf[0 : m - 2 : 3], buf[1 : m - 1 : 3], buf[2: m: 3] = (
+    array('B', intscalarmulvect(buf[  : m - 2 : 3], b)),
+    array('B', intscalarmulvect(buf[1 : m - 1 : 3], g)),
+    array('B', intscalarmulvect(buf[2 : m     : 3], r)),
     )
 
 
