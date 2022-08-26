@@ -1547,11 +1547,9 @@ def plotRGBxybit(bmp: array,
     if isinBMPrectbnd(bmp, x, y):
         if bmp[bmpcolorbits] == 24:
             offset = _24bmofhd(bmp, x, y)
-            endoffset = offset + 3
-            bmp[offset:endoffset] = \
-                array('B', [rgb[2],
-                            rgb[1],
-                            rgb[0]])
+            (r, g, b) = rgb
+            bmp[offset: offset + 3] = \
+                array('B', [b, g, r])
         else:
             plotxybit(bmp,
                 x, y, matchRGBtopal(rgb,
