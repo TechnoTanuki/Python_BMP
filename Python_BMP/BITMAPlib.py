@@ -1638,8 +1638,8 @@ def getxybit(bmp: array,
             retval = bmp[offset]
         elif bits == 24:
             retval = \
-                RGB2int(bmp[offset+2],
-                        bmp[offset+1],
+                RGB2int(bmp[offset + 2],
+                        bmp[offset + 1],
                         bmp[offset])
     else:
         retval = -1
@@ -1684,7 +1684,7 @@ def getRGBxybit(bmp: array,
             i = _24bmofhd(bmp, x, y)
             retval = [bmp[i + 2],
                       bmp[i + 1],
-                      bmp[i]]
+                      bmp[i    ]]
         else:
             retval = getRGBpal(bmp,
                         getxybit(bmp, x, y))
