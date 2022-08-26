@@ -8908,17 +8908,23 @@ def plotmultifractal(bmp: array,
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
     bits = bmp[bmpcolorbits]
-    for (x, y, c) in func(x1, y1, x2, y2, d,
+    if bits == 24:
+        for (x, y, c) in func(x1, y1, x2, y2, d,
                           domain, maxiter):
-        if bits == 24:
             plotxybit(bmp, x, y,
             colormix(((255 - c) * 20) % 256,
                         RGBfactors))
-        elif bits in (8, 4) and len(RGBfactors) == 3:
+    elif bits in (8, 4) and len(RGBfactors) == 3:
+        for (x, y, c) in func(x1, y1, x2, y2, d,
+                          domain, maxiter):
             plotxybit(bmp, x, y, c)
-        elif bits == 1:
+    elif bits == 1:
+        for (x, y, c) in func(x1, y1, x2, y2, d,
+                          domain, maxiter):
             plotxybit(bmp, x, y, c % maxcolors)
-        else:
+    else:
+        for (x, y, c) in func(x1, y1, x2, y2, d,
+                          domain, maxiter):
             plotxybit(bmp, x, y, (mcolor - c) % maxcolors)
 
 
@@ -8957,17 +8963,23 @@ def plotmultifractalcomplexpar(bmp: array,
     maxcolors = getmaxcolors(bmp)
     mcolor = maxcolors - 1
     bits = bmp[bmpcolorbits]
-    for (x, y, v) in func(x1, y1, x2, y2, c, d,
+    if bits == 24:
+        for (x, y, v) in func(x1, y1, x2, y2, c, d,
                            domain, maxiter):
-        if bits == 24:
             plotxybit(bmp, x, y,
             colormix(((255 - v) * 20) % 256,
                         RGBfactors))
-        elif bits in (8, 4) and len(RGBfactors) == 3:
+    elif bits in (8, 4) and len(RGBfactors) == 3:
+        for (x, y, v) in func(x1, y1, x2, y2, c, d,
+                           domain, maxiter):
             plotxybit(bmp, x, y, v)
-        elif bits == 1:
+    elif bits == 1:
+        for (x, y, v) in func(x1, y1, x2, y2, c, d,
+                           domain, maxiter):
             plotxybit(bmp, x, y, v % maxcolors)
-        else:
+    else:
+        for (x, y, v) in func(x1, y1, x2, y2, c, d,
+                           domain, maxiter):
             plotxybit(bmp, x, y, (mcolor - v) % maxcolors)
 
 
