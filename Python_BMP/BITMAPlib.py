@@ -11219,7 +11219,7 @@ def savemultibiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi Biomorph Fractal to a file
 
@@ -11259,7 +11259,7 @@ def savemultisinbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi sin(z) Biomorph Fractal to a file
 
@@ -11299,7 +11299,7 @@ def savemulticosbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi cos(z) Biomorph Fractal to a file
 
@@ -11339,7 +11339,7 @@ def savemulticoshbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi cosh(z) Biomorph Fractal to a file
 
@@ -11379,7 +11379,7 @@ def savemultisinhbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi sinh(z) Biomorph Fractal to a file
 
@@ -11419,7 +11419,7 @@ def savemultiexpbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi exp(z) Biomorph Fractal to a file
 
@@ -11459,7 +11459,7 @@ def savemulti2ndtetrationbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi 2nd Tetration Biomorph Fractal to a file
 
@@ -11499,7 +11499,7 @@ def savemultizconjugatebiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi z conjugate Biomorph Fractal to a file
 
@@ -11539,7 +11539,7 @@ def savemultitanbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi tan(z) Biomorph Fractal to a file
 
@@ -11579,7 +11579,7 @@ def savemultitanhbiomorphfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 8,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Multi tanh(z) Biomorph Fractal to a file
 
