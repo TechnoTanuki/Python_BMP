@@ -1015,12 +1015,9 @@ def setbmppalwithBGRAlist(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-
     if len(bgrapallist) == getmaxcolors(bmp):
         p = ravel2D(bgrapallist)
-        l = len(p)
-        bmp[bmppal: bmppal + l] = array('B', p)
-
+        bmp[bmppal: bmppal + len(p)] = array('B', p)
 
 
 def getallRGBpal(
