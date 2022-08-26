@@ -1467,9 +1467,9 @@ def vertBMPbitBLTget(bmp: array,
         s = c(bmp, x, y2)
         e = c(bmp, x, y1) + r
         if bits == 24:
-            return makeBGRbuf(bmp[s: e - 2: r],
-                            bmp[s + 1: e - 1: r],
-                            bmp[s + 2: e: r])
+            return makeBGRbuf(bmp[s    : e - 2: r],
+                              bmp[s + 1: e - 1: r],
+                              bmp[s + 2: e    : r])
         else:
             return bmp[s: e: r]
     else:
@@ -1496,12 +1496,12 @@ def _fnwithpar2vertslice(bmp: array,
     """
     bits = bmp[bmpcolorbits]
     r = _xchrcnt(bmp)
-    m = getmaxxy(bmp)
+    (mx, my) = getmaxxy(bmp)
     c = _getBMoffhdfunc(bmp)
-    if isinrange(x, m[0], -1):
+    if isinrange(x, mx, -1):
         y1, y2 = swapif(y1, y2, y1 > y2)
         y1 = setmin(y1, 0)
-        y2 = setmax(y2, m[1] - 1)
+        y2 = setmax(y2, my - 1)
         s = c(bmp, x, y2)
         e = c(bmp, x, y1) + r
         if bits == 24:
