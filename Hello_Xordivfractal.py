@@ -14,6 +14,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         savexordivfractal2file as f,
         fractaldomainparamdict,
+        getX11RGBfactors,
         getfuncmetastr as meta,
         )
 
@@ -28,10 +29,11 @@ def main():
         mx = my = 256 # square canvas
         par = fractaldomainparamdict() # get common parameters
         file = f'hello{f.__name__}.bmp' # random file name
+        cf = getX11RGBfactors() #color info
         f(file, mx, my,
           13, #
         [-200, 200, -200, 200], # location to plot
-          [], 8)
+          cf['royalblue'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])

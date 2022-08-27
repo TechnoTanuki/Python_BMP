@@ -206,7 +206,8 @@ class TestFractal2filefunc(unittest.TestCase):
     def testsavexordivfractal2file(self):
         p = self._filepaths("xordiv.bmp")
         xordivfractal(p[0], 256, 256,
-        13, [-200, 200, -200, 200], [], 8)
+        13, [-200, 200, -200, 200],
+        self.c['royalblue'])
         self.filecmp(*p)
 
 
