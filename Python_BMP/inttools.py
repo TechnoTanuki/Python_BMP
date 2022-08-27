@@ -43,7 +43,7 @@ def writeint(offset: int, cnt: int,
 
 
 def readint(offset: int, cnt: int,
-                 arr: int) -> int:
+                 arr: array) -> int:
     """Reads an integer value in an
         unsigned byte array
 
