@@ -3251,13 +3251,13 @@ def circle(bmp: array,
         filledcircle(bmp, x, y, r,
                             color)
     else:
-        m = getmaxxy(bmp)
+        (mx, my) = getmaxxy(bmp)
         bits = bmp[bmpcolorbits]
         c = _getBMoffhdfunc(bmp)
         dobndcheck = \
             not entirecircleisinboundary(
-                    x, y, -1, m[0],
-                          -1, m[1], r)
+                    x, y, -1, mx,
+                          -1, my, r)
         if bits == 24:
             color = int2BGRarr(color)
             if dobndcheck:
