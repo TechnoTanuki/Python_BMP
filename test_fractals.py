@@ -121,7 +121,7 @@ class TestFractal2filefunc(unittest.TestCase):
     def testsavemulticirclefractal2file(self):
         p = self._filepaths("multicircle.bmp")
         multicircle(p[0], 256, 256,
-        2.5, [-20, 20, -20, 20], self.c['royalblue'])
+        2.5, [-20, 20, -20, 20], self.c['gold'])
         self.filecmp(*p)
 
 

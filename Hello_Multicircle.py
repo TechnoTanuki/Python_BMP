@@ -33,7 +33,7 @@ def main():
         f(file, mx, my,
           2.5, # power of z
         [-20, 20, -20, 20], # location to plot
-          cf['cornflowerblue'])
+          cf['gold'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])
