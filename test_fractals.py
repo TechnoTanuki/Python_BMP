@@ -452,7 +452,7 @@ class TestFractal2filefunc(unittest.TestCase):
     def testtetrationfractal(self):
         p = self._filepaths("tetration.bmp")
         tetration(p[0], 256, 256, 16,
-        [1, 2.5, -.75, .75], [], 4)
+        [1, 2.5, -.75, .75], self.c['yellowgreen'])
         self.filecmp(*p)
 
 

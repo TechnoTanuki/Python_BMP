@@ -30,7 +30,7 @@ def main():
         cf = getX11RGBfactors() #color info
         f(file, 256, 256, lim,
           [1, 2.5, -.75, .75], # location to plot
-          [], 4)
+          cf['yellowgreen'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])

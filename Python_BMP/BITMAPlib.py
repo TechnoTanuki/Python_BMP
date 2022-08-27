@@ -9530,7 +9530,7 @@ def savetetrationfractal2file(
         d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
-        bitdepth: int = 24,
+        bitdepth: int = 4,
         maxiter: int = 255):
     """Saves a Tetration Fractal to a file
 
