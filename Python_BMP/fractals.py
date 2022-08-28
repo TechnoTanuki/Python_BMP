@@ -1950,14 +1950,17 @@ def koch(u: list[float, float],
     Returns:
         ((x1, y1), (x2, y2), (x3, y3))
     """
-    d = subvect(v, u)
-    e = scalarmulvect(d, 1/3)
-    d = scalarmulvect(d, h)
-    return (addvect(u, e),
-            addvect(scalarmulvect(addvect(u, v), 0.5),
-                    (-d[1], d[0])),
-            subvect(v, e)
-            )
+    v = complex(*v)
+    u = complex(*u)
+    d = v - u
+    e = d * 1/3
+    d *= h
+    d = (u + v) / 2 + (d * 1j)
+    u += e
+    v -= e
+    return ([u.real, u.imag],
+            [d.real, d.imag],
+            [v.real, v.imag])
 
 
 def kochcurvevert(u: list[int, int],
