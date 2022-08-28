@@ -1246,9 +1246,8 @@ def iterflower(cx: int, cy: int, r :int,
         ang = radians(a / petals)
         f = (cos(p * ang) ** 2) * r
         rang = ang + angrot
-        x = int(cx - f * sin(rang))
-        y = int(cy - f * cos(rang))
-        yield (x, y)
+        yield (int(cx - f * sin(rang)),
+               int(cy - f * cos(rang)))
 
 
 def flowervert(cx: int, cy: int, r :int, petals: int, angrot: float)  -> list[list[int, int]]:
