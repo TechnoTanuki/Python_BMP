@@ -1244,10 +1244,10 @@ def iterflower(cx: int, cy: int, r :int,
     angrot = radians(angrot)
     for a in range(angmax):
         ang = radians(a / petals)
-        f = cos(p * ang) ** 2
+        f = (cos(p * ang) ** 2) * r
         rang = ang + angrot
-        x = int(cx - r * sin(rang) *f)
-        y = int(cy - r * cos(rang) *f)
+        x = int(cx - f * sin(rang))
+        y = int(cy - f * cos(rang))
         yield (x, y)
 
 
