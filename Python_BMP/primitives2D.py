@@ -48,6 +48,7 @@ from .mathlib import (
     vmag
     )
 
+from cmath import rect
 
 def itercirclepart(r: int
        ) -> list[int, int]:
@@ -1291,41 +1292,35 @@ def iterdrawvec(u: list, v: list, headsize: int)  -> list[list[int, int]]:
     yield (u, v)
 
     def _hadd(v, hm, a1, a2):
-        yield (v, roundvect(addvect(v,
-        polar2rectcoord2D([hm, a1]))))
-        yield (v, roundvect(addvect(v,
-        polar2rectcoord2D([hm, a2]))))
+        w = complex(*v)
+        p = w + rect(hm , a1)
+        q = w + rect(hm , a2)
+        return (p, q)
 
     def _hsub(v, hm, a1, a2):
-        yield (v, roundvect(subvect(v,
-        polar2rectcoord2D([hm, a1]))))
-        yield (v, roundvect(subvect(v,
-        polar2rectcoord2D([hm, a2]))))
+        w = complex(*v)
+        p = w - rect(hm , a1)
+        q = w - rect(hm , a2)
+        return (p, q)
 
     if u[0] < v[0] and u[1] < v[1]:
-        for p in _hsub(v, hm, a1, a2):
-            yield p
+        (p, q) = _hsub(v, hm, a1, a2)
     elif u[0] > v[0] and u[1] > v[1]:
-        for p in _hadd(v, hm, a1, a2):
-            yield p
+        (p, q) = _hadd(v, hm, a1, a2)
     elif v[1] == u[1] and u[0] < v[0]:
-        for p in _hsub(v, hm, a1, a2):
-            yield p
+        (p, q) = _hsub(v, hm, a1, a2)
     elif v[1] == u[1] and u[0] > v[0]:
-        for p in _hadd(v, hm, a1, a2):
-            yield p
+        (p, q) = _hadd(v, hm, a1, a2)
     elif v[0] == u[0] and u[1] > v[1]:
-        for p in _hsub(v, hm, a1, a2):
-            yield p
+        (p, q) = _hsub(v, hm, a1, a2)
     elif v[0] == u[0] and u[1] < v[1]:
-        for p in _hadd(v, hm, a1, a2):
-            yield p
+        (p, q) = _hadd(v, hm, a1, a2)
     elif u[0] < v[0] and u[1] > v[1]:
-        for p in _hsub(v, hm, a1, a2):
-            yield p
+        (p, q) = _hsub(v, hm, a1, a2)
     else:
-        for p in _hadd(v, hm, a1, a2):
-            yield p
+        (p, q) = _hadd(v, hm, a1, a2)
+    yield (v, [round(p.real), round(p.imag)])
+    yield (v, [round(q.real), round(q.imag)])
 
 
 def itersquircle(x: int, y: int,
