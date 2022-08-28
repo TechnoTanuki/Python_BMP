@@ -1293,15 +1293,13 @@ def iterdrawvec(u: list, v: list, headsize: int)  -> list[list[int, int]]:
 
     def _hadd(v, hm, a1, a2):
         w = complex(*v)
-        p = w + rect(hm , a1)
-        q = w + rect(hm , a2)
-        return (p, q)
+        return (w + rect(hm, a1),
+                w + rect(hm, a2))
 
     def _hsub(v, hm, a1, a2):
         w = complex(*v)
-        p = w - rect(hm , a1)
-        q = w - rect(hm , a2)
-        return (p, q)
+        return (w - rect(hm, a1),
+                w - rect(hm, a2))
 
     if u[0] < v[0] and u[1] < v[1]:
         (p, q) = _hsub(v, hm, a1, a2)
@@ -1319,8 +1317,8 @@ def iterdrawvec(u: list, v: list, headsize: int)  -> list[list[int, int]]:
         (p, q) = _hsub(v, hm, a1, a2)
     else:
         (p, q) = _hadd(v, hm, a1, a2)
-    yield (v, [round(p.real), round(p.imag)])
-    yield (v, [round(q.real), round(q.imag)])
+    yield (v, (round(p.real), round(p.imag)))
+    yield (v, (round(q.real), round(q.imag)))
 
 
 def itersquircle(x: int, y: int,
