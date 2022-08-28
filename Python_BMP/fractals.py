@@ -1953,7 +1953,7 @@ def koch(u: list[float, float],
     v = complex(*v)
     u = complex(*u)
     d = v - u
-    e = d * 1/3
+    e = d / 3
     d *= h
     d = (u + v) / 2 + (d * 1j)
     u += e
