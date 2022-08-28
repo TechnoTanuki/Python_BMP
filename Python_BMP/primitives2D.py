@@ -36,7 +36,6 @@ from .mathlib import (
     isinrange,
     mirror1stquad,
     pivotlist,
-    polar2rectcoord2D,
     rect2polarcoord2Dwithcenter,
     rotvec2D,
     roundvect,
