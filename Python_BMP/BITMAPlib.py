@@ -8911,7 +8911,11 @@ def plotmultifractal(bmp: array,
             plotxybit(bmp, x, y,
             colormix(((255 - c) * 20) % 256,
                         RGBfactors))
-    elif bits in (8, 4) and len(RGBfactors) == 3:
+    elif bits == 8 and len(RGBfactors) == 3:
+        for (x, y, c) in func(x1, y1, x2, y2, d,
+                          domain, maxiter):
+            bmp[_8bmofhd(bmp, x, y)] = c
+    elif bits == 4 and len(RGBfactors) == 3:
         for (x, y, c) in func(x1, y1, x2, y2, d,
                           domain, maxiter):
             plotxybit(bmp, x, y, c)
@@ -8966,9 +8970,13 @@ def plotmultifractalcomplexpar(bmp: array,
             plotxybit(bmp, x, y,
             colormix(((255 - v) * 20) % 256,
                         RGBfactors))
-    elif bits in (8, 4) and len(RGBfactors) == 3:
+    elif bits == 8 and len(RGBfactors) == 3:
         for (x, y, v) in func(x1, y1, x2, y2, c, d,
-                           domain, maxiter):
+                          domain, maxiter):
+            bmp[_8bmofhd(bmp, x, y)] = v
+    elif bits == 4 and len(RGBfactors) == 3:
+        for (x, y, v) in func(x1, y1, x2, y2, c, d,
+                          domain, maxiter):
             plotxybit(bmp, x, y, v)
     elif bits == 1:
         for (x, y, v) in func(x1, y1, x2, y2, c, d,
