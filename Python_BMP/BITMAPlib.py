@@ -8929,7 +8929,6 @@ def plotmultifractal(bmp: array,
             plotxybit(bmp, x, y, (mcolor - c) % maxcolors)
 
 
-
 def plotmultifractalcomplexpar(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
@@ -8986,7 +8985,6 @@ def plotmultifractalcomplexpar(bmp: array,
         for (x, y, v) in func(x1, y1, x2, y2, c, d,
                            domain, maxiter):
             plotxybit(bmp, x, y, (mcolor - v) % maxcolors)
-
 
 
 def newtonsfractal(bmp: array,
