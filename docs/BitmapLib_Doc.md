@@ -1047,10 +1047,10 @@ Apply a color filter to a
         holding color BGR data
 
 
-### [`colorhistorgram`](#colorhistorgram)
+### [`colorhistogram`](#colorhistogram)
 
 ```py
-def colorhistorgram(bmp: array.array) -> list:
+def colorhistogram(bmp: array.array) -> list:
 ```
 
 Creates a color histogram
@@ -8760,6 +8760,21 @@ Outines a rectangular region in a BMP
         byref modified unsigned byte array
 
 
+### [`palshift`](#palshift)
+
+```py
+def palshift(bmp: array.array):
+```
+
+Returns a palette shifted bitmap
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+    Returns:
+        byref modified unsigned byte array
+
+
 ### [`pastecirularbuf`](#pastecirularbuf)
 
 ```py
@@ -13134,7 +13149,7 @@ Draws a Symmetric Icon Attractor to file
 ### [`savetetrationfractal2file`](#savetetrationfractal2file)
 
 ```py
-def savetetrationfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 24, maxiter: int = 255):
+def savetetrationfractal2file(file: str, x: int, y: int, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 4, maxiter: int = 255):
 ```
 
 Saves a Tetration Fractal to a file

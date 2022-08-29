@@ -1072,7 +1072,23 @@ def setRGBpal(bmp: array, c: int,
     bmp[s: s + 3] = array('B', [b, g, r])
 
 
-def colorhistorgram(bmp: array) -> list:
+def palshift(bmp: array):
+    """Returns a palette shifted bitmap
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+    Returns:
+        byref modified unsigned byte array
+    """
+    s = bmppal
+    n = getmaxcolors(bmp)
+    l = (l - 1) * 4
+    bmp[s: s + 4    ], bmp[s: s + l        ] = \
+    bmp[s: s + n * 4], bmp[s + 4: s + l + 4]
+
+
+def colorhistogram(bmp: array) -> list:
     """Creates a color histogram
 
     Args:
@@ -1225,7 +1241,7 @@ def setnewpalfromsourcebmp(
         based on source bitmap
     """
     newpal = makenewpalfromcolorhist(
-        colorhistorgram(sourcebmp),
+        colorhistogram(sourcebmp),
         getmaxcolors(newbmp),
         similaritythreshold)
     setbmppal(newbmp, newpal)
