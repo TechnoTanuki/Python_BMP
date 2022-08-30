@@ -1084,12 +1084,9 @@ def palshift(bmp: array):
     Returns:
         byref modified unsigned byte array
     """
-    s = bmppal
-    n = getmaxcolors(bmp)
-    l = (n - 1) * 4
-    e = s + l
-    bmp[e: e + 4], bmp[s: e] = \
-    bmp[s: s + 4], bmp[s + 4: e + 4]
+    e = (getmaxcolors(bmp) - 1) * 4 + bmppal
+    bmp[e: e + 4], bmp[bmppal: e] = \
+    bmp[bmppal: bmppal + 4], bmp[bmppal + 4: e + 4]
 
 
 def colorhistogram(bmp: array) -> list:
