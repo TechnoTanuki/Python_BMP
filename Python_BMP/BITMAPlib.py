@@ -32,7 +32,7 @@
 from . import shims
 from array import array
 from math import(sin, cos, radians, pi)
-from os import environ
+from os import TMP_MAX, environ
 from os.path import pathsep
 from pathlib import Path
 from random import random
@@ -1087,9 +1087,9 @@ def palshift(bmp: array):
     """
     s = bmppal
     n = getmaxcolors(bmp)
-    l = (l - 1) * 4
-    bmp[s: s + 4    ], bmp[s    : s + l    ] = \
-    bmp[s: s + n * 4], bmp[s + 4: s + l + 4]
+    l = (n - 1) * 4
+    e = s + l
+    bmp[e: e + 4], bmp[s: e] = bmp[s: s + 4], bmp[s + 4: e + 4]
 
 
 def colorhistogram(bmp: array) -> list:
@@ -13713,7 +13713,7 @@ def palshift2file(
     Returns:
         new bitmap file
     """
-    _usefnsv(ExistingBMPfile,
+    _usebyreffnsv(ExistingBMPfile,
         NewBMPfile, palshift)
 
 
