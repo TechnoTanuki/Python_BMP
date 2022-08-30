@@ -13699,6 +13699,25 @@ def flipXY2file(
 
 
 @functimer
+def palshift2file(
+        ExistingBMPfile: str,
+        NewBMPfile: str):
+    """Shifts the palette of a 4 or 8 bit bitmap
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+
+    Returns:
+        new bitmap file
+    """
+    _usefnsv(ExistingBMPfile,
+        NewBMPfile, palshift)
+
+
+@functimer
 def flipverticalregion2file(
         ExistingBMPfile: str,
         NewBMPfile: str,
