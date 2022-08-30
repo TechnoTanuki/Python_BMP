@@ -1077,7 +1077,7 @@ def setRGBpal(bmp: array, c: int,
 @func4and8bitonly
 def palshift(bmp: array):
     """Returns a palette shifted bitmap
-       
+
 
     Args:
         bmp    : unsigned byte array
@@ -1088,7 +1088,7 @@ def palshift(bmp: array):
     s = bmppal
     n = getmaxcolors(bmp)
     l = (l - 1) * 4
-    bmp[s: s + 4    ], bmp[s: s + l        ] = \
+    bmp[s: s + 4    ], bmp[s    : s + l    ] = \
     bmp[s: s + n * 4], bmp[s + 4: s + l + 4]
 
 
@@ -8270,7 +8270,7 @@ def mirrorright(bmp: array):
 
 
 def mirrortopleftinregion(
-        bmp:array, x1: int, y1: int,
+        bmp: array, x1: int, y1: int,
                    x2: int, y2: int):
     """Mirrors the top-left of a
         rectangular region defined by
