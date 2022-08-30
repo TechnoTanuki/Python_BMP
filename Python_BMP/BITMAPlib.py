@@ -1078,7 +1078,6 @@ def setRGBpal(bmp: array, c: int,
 def palshift(bmp: array):
     """Returns a palette shifted bitmap
 
-
     Args:
         bmp    : unsigned byte array
                  with bmp format
