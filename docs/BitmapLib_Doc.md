@@ -2869,6 +2869,42 @@ Decorator to restrict the
         caller function
 
 
+### [`func4and8bitonly`](#func4and8bitonly)
+
+```py
+def func4and8bitonly(func):
+```
+
+Decorator to restrict the
+    use of this function to
+    only 4-bit or 8-bit bitmaps
+    (1st parameter)
+
+    Args:
+        function(bmp:array,...)
+    
+    Returns:
+        caller function
+
+
+### [`func8and24bitonly`](#func8and24bitonly)
+
+```py
+def func8and24bitonly(func):
+```
+
+Decorator to restrict the
+    use of this function to
+    only 24-bit or 8-bit bitmaps
+    (1st parameter)
+
+    Args:
+        function(bmp:array,...)
+    
+    Returns:
+        caller function
+
+
 ### [`func8and24bitonlyandentirecircleinboundary`](#func8and24bitonlyandentirecircleinboundary)
 
 ```py
@@ -8768,6 +8804,7 @@ def palshift(bmp: array.array):
 
 Returns a palette shifted bitmap
 
+    
     Args:
         bmp    : unsigned byte array
                  with bmp format

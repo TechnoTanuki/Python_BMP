@@ -12883,7 +12883,7 @@ def _usefn2regsv(
         x1: int, y1: int,
         x2: int, y2: int,
         func: Callable):
-    """Apply a function withno parameters to a
+    """Apply a function with no parameters to a
     rectangular area and save
 
     Args:
