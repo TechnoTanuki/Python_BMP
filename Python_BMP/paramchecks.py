@@ -236,6 +236,27 @@ def func8and24bitonly(func):
     return(callf)
 
 
+def func4and8bitonly(func):
+    """Decorator to restrict the
+        use of this function to
+        only 4-bit or 8-bit bitmaps
+        (1st parameter)
+
+    Args:
+        function(bmp:array,...)
+
+    Returns:
+        caller function
+    """
+    @wraps(func)
+    def callf(*args, **kwargs):
+        if args[0][bmpcolorbits] not in [4, 8]:
+            print(sysmsg['not4or8bit'])
+        else:
+            return(func(*args, **kwargs))
+    return(callf)
+
+
 def func8and24bitonlyandentirerectinboundary(func):
     """Decorator to restrict the
         use of this functiom to only

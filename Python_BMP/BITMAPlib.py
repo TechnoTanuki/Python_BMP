@@ -207,6 +207,8 @@ from .paramchecks import(
     func24bitonly,
     func24bitonlyandentirecircleinboundary,
     func24bitonlyandentirerectinboundary,
+    func8and24bitonly,
+    func4and8bitonly,
     func8and24bitonlyandentirecircleinboundary,
     func8and24bitonlyandentirerectinboundary,
     intcircleparam,
@@ -1072,8 +1074,10 @@ def setRGBpal(bmp: array, c: int,
     bmp[s: s + 3] = array('B', [b, g, r])
 
 
+@func4and8bitonly
 def palshift(bmp: array):
     """Returns a palette shifted bitmap
+       
 
     Args:
         bmp    : unsigned byte array
