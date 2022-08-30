@@ -4,7 +4,7 @@ conftest.py - builtin classes generics shim for python < 3.9
 from sys import version_info
 
 if version_info < (3, 9):
-    # For each of the following types, add a 
+    # For each of the following types, add a
     # new class function called `__class_getitem__`.
     # This is called when the type is subscripted,
     # such as in:
