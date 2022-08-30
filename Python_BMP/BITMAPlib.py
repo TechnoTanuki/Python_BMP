@@ -1089,7 +1089,8 @@ def palshift(bmp: array):
     n = getmaxcolors(bmp)
     l = (n - 1) * 4
     e = s + l
-    bmp[e: e + 4], bmp[s: e] = bmp[s: s + 4], bmp[s + 4: e + 4]
+    bmp[e: e + 4], bmp[s: e] = \
+    bmp[s: s + 4], bmp[s + 4: e + 4]
 
 
 def colorhistogram(bmp: array) -> list:
