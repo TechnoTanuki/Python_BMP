@@ -26,6 +26,7 @@ import unittest
 from os import path
 from Python_BMP.BITMAPlib import(
         loadBMP,
+        palshift2file,
         saveastroidfractal2file as astroid,
         savebarnsleytreefractal2file as barnsleytree,
         savelemniscatefractal2file as lemniscate,
@@ -71,7 +72,8 @@ from Python_BMP.BITMAPlib import(
         savecliffordattractor2file as clifford,
         savehopalongattractor2file as hopalong,
         savefractaldreamattractor2file as fractaldream,
-        savesymmetriciconattractor2file as symicon
+        savesymmetriciconattractor2file as symicon,
+        palshift2file
         )
 
 
@@ -543,6 +545,13 @@ class TestFractal2filefunc(unittest.TestCase):
         1.77,
         [-6, 6, -6, 6], # location to plot
         self.c['gold'])
+        self.filecmp(*p)
+
+
+    def testpalshift2file(self):
+        p = self._filepaths("palshiftbiomorph.bmp")
+        s = f'{self.sourcedir}biomorph.bmp'
+        palshift2file(s, p[0])
         self.filecmp(*p)
 
 
