@@ -1094,6 +1094,23 @@ def palshift(bmp: array, shift: int = 1):
     bmp[bmppal: p], bmp[p: q]
 
 
+@func4and8bitonly
+def itercolorcycle(bmp: array):
+    """Yields a palette shifted bitmaps
+    for a full color cycle
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+    Returns:
+        byref modified unsigned byte array
+    """
+    m = getmaxcolors(bmp)
+    for _ in range(m):
+        palshift(bmp)
+        yield bmp
+
+
 def colorhistogram(bmp: array) -> list:
     """Creates a color histogram
 
