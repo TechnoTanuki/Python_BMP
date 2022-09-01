@@ -1075,7 +1075,7 @@ def setRGBpal(bmp: array, c: int,
 
 
 @func4and8bitonly
-def palshift(bmp: array):
+def palshift(bmp: array, shift: int = 1):
     """Returns a palette shifted bitmap
 
     Args:
@@ -1084,9 +1084,14 @@ def palshift(bmp: array):
     Returns:
         byref modified unsigned byte array
     """
-    e = (getmaxcolors(bmp) - 1) * 4 + bmppal
-    bmp[e: e + 4], bmp[bmppal: e] = \
-    bmp[bmppal: bmppal + 4], bmp[bmppal + 4: e + 4]
+    m = getmaxcolors(bmp)
+    shift = abs(shift) % m
+    e = (m - shift) * 4 + bmppal
+    shift *= 4
+    p = bmppal + shift
+    q = e + shift
+    bmp[e: q], bmp[bmppal: e] = \
+    bmp[bmppal: p], bmp[p: q]
 
 
 def colorhistogram(bmp: array) -> list:
@@ -12936,7 +12941,8 @@ def _usebyreffnsv(
 def _usebyreffnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
-        func: Callable, funcparam):
+        func: Callable,
+        funcparam: any):
     """Apply a by-ref function with parameter and save
 
     Args:
@@ -12946,6 +12952,7 @@ def _usebyreffnwithparnsv(
                          save changes in
         func           : user defined
                          function
+        funcparam      : function parameter
 
     Returns:
         new bitmap file
@@ -13711,7 +13718,8 @@ def flipXY2file(
 @functimer
 def palshift2file(
         ExistingBMPfile: str,
-        NewBMPfile: str):
+        NewBMPfile: str,
+        shift: int = 1):
     """Shifts the palette of a 4 or 8 bit bitmap
 
     Args:
@@ -13719,12 +13727,14 @@ def palshift2file(
                          existing file
         NewBMPfile     : New file to
                          save changes in
+        shift          : int shift value
+                         (default = 1)
 
     Returns:
         new bitmap file
     """
-    _usebyreffnsv(ExistingBMPfile,
-        NewBMPfile, palshift)
+    _usebyreffnwithparnsv(ExistingBMPfile,
+        NewBMPfile, palshift, shift)
 
 
 @functimer

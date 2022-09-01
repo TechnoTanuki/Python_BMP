@@ -27,7 +27,7 @@ def main():
         rootdir = path.dirname(__file__) # get path of this script
         file = f'Hello{f.__name__}.bmp' # file name
         f(f'{rootdir}/assets/fractals/biomorph.bmp',
-          file)
+          file, 4)
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
