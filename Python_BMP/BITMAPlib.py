@@ -1098,6 +1098,7 @@ def palshift(bmp: array, shift: int = 1):
 def itercolorcycle(bmp: array):
     """Yields a palette shifted bitmaps
     for a full color cycle
+    (4 and 8 bit BMP only)
 
     Args:
         bmp    : unsigned byte array
