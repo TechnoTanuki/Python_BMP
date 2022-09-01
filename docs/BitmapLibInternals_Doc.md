@@ -768,9 +768,18 @@ to a rectangular area and save
 def _usebyreffnwithparnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable, funcparam):
 ```
 
+Apply a by-ref function with parameter and save
 
-
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
     
+    Returns:
+        new bitmap file
 
 
 ### [`_usebyrefnopar24bitfn2reg`](#_usebyrefnopar24bitfn2reg)

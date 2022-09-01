@@ -12937,6 +12937,19 @@ def _usebyreffnwithparnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         func: Callable, funcparam):
+    """Apply a by-ref function with parameter and save
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
+
+    Returns:
+        new bitmap file
+    """
     bmp = loadBMP(ExistingBMPfile)
     func(bmp, funcparam)
     saveBMP(NewBMPfile, bmp)

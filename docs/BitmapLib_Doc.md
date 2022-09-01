@@ -8796,6 +8796,24 @@ Outines a rectangular region in a BMP
         byref modified unsigned byte array
 
 
+### [`palshift2file`](#palshift2file)
+
+```py
+def palshift2file(ExistingBMPfile: str, NewBMPfile: str):
+```
+
+Shifts the palette of a 4 or 8 bit bitmap
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+    
+    Returns:
+        new bitmap file
+
+
 ### [`palshift`](#palshift)
 
 ```py
@@ -8804,7 +8822,6 @@ def palshift(bmp: array.array):
 
 Returns a palette shifted bitmap
 
-    
     Args:
         bmp    : unsigned byte array
                  with bmp format
