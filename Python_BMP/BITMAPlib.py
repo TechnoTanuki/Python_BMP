@@ -32,7 +32,7 @@
 from . import shims
 from array import array
 from math import(sin, cos, radians, pi)
-from os import TMP_MAX, environ
+from os import TMP_MAX, environ, getcwd, mkdir
 from os.path import pathsep
 from pathlib import Path
 from random import random
@@ -13006,6 +13006,41 @@ def _usefnsv(
     print(sysmsg['savefunc'] %
     (func.__name__ ,
     ExistingBMPfile, NewBMPfile))
+
+
+@checklink
+def _usefndirsv(
+        ExistingBMPfile: str,
+        NewDir: str,
+        func: Callable,
+        overwritedir: bool = False):
+    """Apply a function with no parameters and save
+    images to a directory
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
+
+    Returns:
+        new bitmap files in a new directory
+    """
+    obmp = loadBMP(ExistingBMPfile)
+    cwd = getcwd()
+    try:
+        mkdir(NewDir)
+    except FileExistsError:
+        if not overwritedir:
+            raise FileExistsError
+    for (i, bmp) in enumerate(func(obmp)):
+        NewBMPfile = '{cwd}/{NewDir}/f{i}.bmp'
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savefunc'] %
+        (func.__name__ ,
+        ExistingBMPfile, NewBMPfile))
 
 
 @checklink
