@@ -33,6 +33,7 @@ sysmsg={'notBMP':'Error: Not a BMP file!',
         'savecircfunc':'Saved modifications in applying %s(%s,%s,%s) to %s in %s',
         'savecircfuncwithparam':'Saved modifications in applying %s(%s,%s,%s,%s) to %s in %s',
         'notrect':'Error: Region is not rectangular!',
-        'filedirnotexist':'Error: File or dirextory does not exist!',
+        'filedirnotexist':'Error: File or directory does not exist!',
+        'filedirexist':'Error: File or directory exist!',
         'filenotexist':'Error: Not a file or file does not exist!',
         'inttypereq':'Error: Parameter(s) must be int'}
