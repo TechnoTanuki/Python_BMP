@@ -13036,7 +13036,7 @@ def _usefndirsv(
         if not overwritedir:
             raise FileExistsError
     for (i, bmp) in enumerate(func(obmp)):
-        NewBMPfile = '{cwd}/{NewDir}/f{i}.bmp'
+        NewBMPfile = f'{cwd}/{NewDir}/f{i}.bmp'
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savefunc'] %
         (func.__name__ ,
