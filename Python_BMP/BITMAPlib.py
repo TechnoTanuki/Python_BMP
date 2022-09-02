@@ -1106,7 +1106,8 @@ def itercolorcycle(bmp: array):
     Returns:
         byref modified unsigned byte array
     """
-    m = getmaxcolors(bmp)
+    m = getmaxcolors(bmp) - 1
+    yield bmp
     for _ in range(m):
         palshift(bmp)
         yield bmp
