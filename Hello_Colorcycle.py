@@ -23,7 +23,6 @@ from os import path, chdir
 
 def main():
         print(f'{notice}\n{meta(f)}')
-        imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         file = f'Hello{f.__name__}.bmp' # file name
         chdir("assets")
