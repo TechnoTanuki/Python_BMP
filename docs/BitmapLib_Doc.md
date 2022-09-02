@@ -858,6 +858,24 @@ Clifford Attractor
         [[x: float, y: float],...]
 
 
+### [`colorcycle2dir`](#colorcycle2dir)
+
+```py
+def colorcycle2dir(ExistingBMPfile: str, NewDir: str, overwritedir: bool = False):
+```
+
+Saves to a directory
+palette shifted bitmaps
+for a full color cycle
+(4 and 8 bit BMP only)
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+    Returns:
+        Bitmap files in specified directory
+
+
 ### [`colorfilter2file`](#colorfilter2file)
 
 ```py
@@ -5157,6 +5175,23 @@ and other tasks involving circular areas
         [x: int, y: int]
 
 
+### [`itercolorcycle`](#itercolorcycle)
+
+```py
+def itercolorcycle(bmp: array.array):
+```
+
+Yields a palette shifted bitmaps
+for a full color cycle
+(4 and 8 bit BMP only)
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+    Returns:
+        byref modified unsigned byte array
+
+
 ### [`itercopyrect`](#itercopyrect)
 
 ```py
@@ -8799,7 +8834,7 @@ Outines a rectangular region in a BMP
 ### [`palshift2file`](#palshift2file)
 
 ```py
-def palshift2file(ExistingBMPfile: str, NewBMPfile: str):
+def palshift2file(ExistingBMPfile: str, NewBMPfile: str, shift: int = 1):
 ```
 
 Shifts the palette of a 4 or 8 bit bitmap
@@ -8809,6 +8844,8 @@ Shifts the palette of a 4 or 8 bit bitmap
                          existing file
         NewBMPfile     : New file to
                          save changes in
+        shift          : int shift value
+                         (default = 1)
     
     Returns:
         new bitmap file
@@ -8817,7 +8854,7 @@ Shifts the palette of a 4 or 8 bit bitmap
 ### [`palshift`](#palshift)
 
 ```py
-def palshift(bmp: array.array):
+def palshift(bmp: array.array, shift: int = 1):
 ```
 
 Returns a palette shifted bitmap

@@ -1112,6 +1112,22 @@ def itercolorcycle(bmp: array):
         yield bmp
 
 
+def colorcycle2dir(ExistingBMPfile: str,
+        NewDir: str, overwritedir: bool = False):
+    """Saves to a directory
+    palette shifted bitmaps
+    for a full color cycle
+    (4 and 8 bit BMP only)
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+    Returns:
+        Bitmap files in specified directory
+    """
+    _usefndirsv(ExistingBMPfile, NewDir, itercolorcycle, overwritedir)
+
+
 def colorhistogram(bmp: array) -> list:
     """Creates a color histogram
 
@@ -13034,7 +13050,7 @@ def _usefndirsv(
         mkdir(NewDir)
     except FileExistsError:
         if not overwritedir:
-            raise FileExistsError
+            raise FileExistsError(sysmsg['direxist'])
     for (i, bmp) in enumerate(func(obmp)):
         NewBMPfile = f'{cwd}/{NewDir}/{i}.bmp'
         saveBMP(NewBMPfile, bmp)

@@ -35,5 +35,6 @@ sysmsg={'notBMP':'Error: Not a BMP file!',
         'notrect':'Error: Region is not rectangular!',
         'filedirnotexist':'Error: File or directory does not exist!',
         'filedirexist':'Error: File or directory exist!',
+        'direxist':'Error: directory exist!',
         'filenotexist':'Error: Not a file or file does not exist!',
         'inttypereq':'Error: Parameter(s) must be int'}

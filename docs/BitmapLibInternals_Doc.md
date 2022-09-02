@@ -765,7 +765,7 @@ to a rectangular area and save
 ### [`_usebyreffnwithparnsv`](#_usebyreffnwithparnsv)
 
 ```py
-def _usebyreffnwithparnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable, funcparam):
+def _usebyreffnwithparnsv(ExistingBMPfile: str, NewBMPfile: str, func: Callable, funcparam: <built-in function any>):
 ```
 
 Apply a by-ref function with parameter and save
@@ -777,6 +777,7 @@ Apply a by-ref function with parameter and save
                          save changes in
         func           : user defined
                          function
+        funcparam      : function parameter
     
     Returns:
         new bitmap file
@@ -871,6 +872,27 @@ rectangular area and save
     
     Returns:
         new bitmap file
+
+
+### [`_usefndirsv`](#_usefndirsv)
+
+```py
+def _usefndirsv(ExistingBMPfile: str, NewDir: str, func: Callable, overwritedir: bool = False):
+```
+
+Apply a function with no parameters and save
+images to a directory
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        func           : user defined
+                         function
+    
+    Returns:
+        new bitmap files in a new directory
 
 
 ### [`_usefnsv`](#_usefnsv)
