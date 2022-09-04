@@ -502,10 +502,11 @@ def floatregpolygonvert(
     angle = radians(angle)
     anginc = 360 // sides
     maxang = 360
+    q = complex(cx, cy)
     for a in range(0, maxang, anginc):
         ang = angle + radians(a)
-        v.append([cx - r * sin(ang),
-                  cy - r * cos(ang)])
+        z = q - r * complex(sin(ang), cos(ang))
+        v.append([z.real, z.imag])
     return v
 
 
