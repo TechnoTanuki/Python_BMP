@@ -13,10 +13,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        erasealternatehorizontallines as f,
-        getfuncmetastr as meta,
-        saveBMP
+        eraseeverynthhoriline2file as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -27,14 +25,10 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
-        eraseeverynline, eraseNthline = 4, 3 # control line erase
-        #if i%int_eraseeverynline==int_eraseNthline: bmp[s2:s2+bufsize]=blank
-        bytepattern = 0 # byte pattern for line erase
-        f(bmp, eraseeverynline,
-          eraseNthline, bytepattern)
+        origfile = f'{rootdir}/assets/earth.bmp'
         file = f'Hello{f.__name__}.bmp' #file name
-        saveBMP(file, bmp)
+        n = 3 # control line erase
+        f(origfile, file, n) # do line erase
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
