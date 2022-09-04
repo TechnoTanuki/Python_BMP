@@ -1056,7 +1056,7 @@ def itercircleinvolute(
     t = 0
     b = complex(x, y)
     while t < lim:
-        z = complex(cos(t), sin(t))
+        z = rect(1, t)
         z *= a * z * t * 1j
         t += delta
         z += b
