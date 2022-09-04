@@ -13,10 +13,8 @@ Mirror the Bottom Left part of a BMP
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        mirrorbottomleft as f,
-        getfuncmetastr as meta,
-        saveBMP
+        mirrorbottomleft2file as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -27,10 +25,9 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/Tanuki.bmp')
-        f(bmp) # call mirrorbottomleft
+        origfile = f'{rootdir}/assets/Tanuki.bmp'
         file = f'Hello{f.__name__}.bmp' # file name
-        saveBMP(file, bmp) # save file
+        f(origfile, file) # call mirrorbottomleft
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
