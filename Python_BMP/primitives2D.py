@@ -1440,7 +1440,6 @@ def gearcurvevert(cx: int, cy: int,
     return list(itergearcurve(cx, cy,a, b, n))
 
 
-
 def itercornuspiral(cx: int, cy: int,
         r: int) -> list[int, int]:
     """Yields 2D points for a cornu spiral
@@ -1457,8 +1456,7 @@ def itercornuspiral(cx: int, cy: int,
     z = complex(cx, cy)
     for i in range(360):
         t = i * c
-        t *= t
-        z += k * complex(cos(t), sin(t))  # do integration
+        z += rect(k, t * t)  # do integration
         yield (int(z.real), int(z.imag))
 
 
