@@ -1054,10 +1054,10 @@ def itercircleinvolute(
     """
     t = 0
     while t < lim:
-        dx =  round(a * (cos(t) + t * sin(t)))
-        dy =  round(a * (sin(t) - t * cos(t)))
+        z = complex(cos(t), sin(t))
+        z *= a * z * t * 1j
         t += delta
-        yield (x + dx, y + dy)
+        yield (x + round(z.real), y + round(z.imag))
 
 
 def circleinvolutevert(

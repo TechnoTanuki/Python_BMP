@@ -40,7 +40,7 @@ def main():
         plotlines(bmp,f(x, y, # position the circle involute
                  3, # control size of step
                  d, lim), # angle step and limit
-                 color, 4) # connect the dots with lines
+                 color, 2) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
