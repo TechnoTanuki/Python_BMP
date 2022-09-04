@@ -1185,17 +1185,17 @@ def iterhypotrochoid(
         epicycloid
         [[x: int, y: int], ...]
     """
-    ab = a - b
+    p = a - b
     d = (a / b) + 1
     t = 0
+    q = complex(x, y)
     while t < lim:
         e = d * t
-        dx =  round(ab * cos(t) - \
-                     c * cos(e))
-        dy =  round(ab * sin(t) - \
-                     c * sin(e))
+        z = p * complex(cos(t), sin (t)) - \
+            c * complex(cos(e), sin(e)) + q
         t += delta
-        yield (x + dx, y + dy)
+        yield (round(z.real),
+               round(z.imag))
 
 
 def hypotrochoidvert(
