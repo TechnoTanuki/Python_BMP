@@ -1531,7 +1531,6 @@ def itereggcurve(cx: int, cy: int,
     k = a - b
     c = a >> 1
     if k > 0:
-        k2 = k * k
         _4b = 4 * b
         for x in range(a):
             y = int(((k - 2 * x + \
