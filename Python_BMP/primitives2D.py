@@ -926,8 +926,8 @@ def iterspirograph(
     q = complex(x, y)
     while a < lim:
         b = a * f
-        z = r * (d * complex(cos(a), sin(a)) + \
-                 e * complex(cos(b), sin(b))) + q
+        z = r * (rect(d, a) + \
+                 rect(e, b)) + q
         a += delta
         yield (round(z.real),
                round(z.imag))
