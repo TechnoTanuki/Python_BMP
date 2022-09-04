@@ -750,6 +750,11 @@ class Test2filefunc(unittest.TestCase):
                         p[0], self.cf["green"])
                 self.filecmp(*p)
 
+        def testmonofilter4bit2file(self):
+                p = self._filepaths('earth-4bitmono.bmp')
+                monochrome2file(f'{self.sourcedir}earth-4bit.bmp',
+                        p[0])
+                self.filecmp(*p)
 
         def testupgradeto24bitimage(self):
                 p = self._filepaths('earth-4bit-to-24bit.bmp')

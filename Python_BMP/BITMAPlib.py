@@ -13296,7 +13296,6 @@ def _use24btclrfn(ExistingBMPfile: str,
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-
     if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
@@ -13341,9 +13340,9 @@ def _usenoparclradjfn(
                         sysmsg['done']):
                 plotRGBxybitvec(bmp, v[0],
                                 func(v[1]))
-        saveBMP(NewBMPfile, bmp)
-        print(sysmsg['savenoparamfunc'] %
-             (func.__name__, ExistingBMPfile,
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savenoparamfunc'] %
+         (func.__name__, ExistingBMPfile,
                              NewBMPfile))
 
 

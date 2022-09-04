@@ -25,7 +25,7 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        origfile = f'{rootdir}/assets/tanuki.bmp'
+        origfile = f'{rootdir}/assets/test_images/earth-4bit.bmp'
         file = f'Hello{f.__name__}.bmp' # file name
         f(origfile, file) # convert to monochrome
         print('Saved to %s in %s\nAll done close %s to finish' % \
