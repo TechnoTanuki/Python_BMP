@@ -13,10 +13,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        pixelizenxn as f,
-        getfuncmetastr as meta,
-        saveBMP
+        pixelizenxntofile as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -26,10 +24,9 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
-        bmp = f(bmp, 4) # 4x4 pix unit to blend for blur effect
+        origfile = f'{rootdir}/assets/earth.bmp'
         file = f'Hello{f.__name__}.bmp' # file name
-        saveBMP(file, bmp) # save in-memory bitmap to file
+        f(origfile, file, 4) # 4x4 pix unit to blend for blur effect
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
