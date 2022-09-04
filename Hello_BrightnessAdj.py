@@ -14,10 +14,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        brightnesseadjto24bitimage as f,
-        getfuncmetastr as meta,
-        saveBMP
+        adjustbrightness2file as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -29,10 +27,9 @@ def main():
         print(f'{notice % (peradj)}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
-        f(bmp, peradj) # 2nd param brightness adj percent + or -
         file = f'Hello{f.__name__}.bmp' # file name <string>
-        saveBMP(file, bmp) #dump the bytearray to disk
+        f(f'{rootdir}/assets/test_images/earth.bmp',
+        file, peradj) # 2nd param brightness adj percent + or -
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
