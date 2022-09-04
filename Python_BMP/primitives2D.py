@@ -1414,12 +1414,14 @@ def itergearcurve(cx: int, cy: int,
     Yields:
         (x: int, y: int)
     """
-
+    q = complex(cx, cy)
     for i in range(360):
         t = radians(i)
-        r = a + b * tanh(b * sin(n * t))
-        yield (cx + int(r * cos(t)),
-               cy + int(r * sin(t)))
+        z = a + b * tanh(b * sin(n * t))
+        z *= complex(cos(t), sin(t))
+        z += q
+        yield (int(z.real),
+               int(z.imag))
 
 
 def gearcurvevert(cx: int, cy: int,
