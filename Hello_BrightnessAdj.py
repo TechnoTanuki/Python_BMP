@@ -29,7 +29,7 @@ def main():
         rootdir = path.dirname(__file__) # get path of this script
         file = f'Hello{f.__name__}.bmp' # file name <string>
         f(f'{rootdir}/assets/test_images/earth.bmp',
-        file, peradj) # 2nd param brightness adj percent + or -
+        file, peradj) # 3rd param brightness adj percent + or -
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
         ret = proc.call([imgedt, file])
