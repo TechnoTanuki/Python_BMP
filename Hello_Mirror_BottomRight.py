@@ -13,10 +13,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        mirrorbottomright as f,
-        getfuncmetastr as meta,
-        saveBMP
+        mirrorbottomright2file as f,
+        getfuncmetastr as meta
         )
 
 import subprocess as proc
@@ -27,10 +25,9 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
-        f(bmp) # call mirrorbottomright
+        origfile = f'{rootdir}/assets/Tanuki.bmp'
         file = f'Hello{f.__name__}.bmp' # file name
-        saveBMP(file, bmp) # save file
+        f(origfile, file) # call mirrorbottomright
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
         ret = proc.call([imgedt, file])
