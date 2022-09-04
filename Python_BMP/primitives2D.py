@@ -1453,14 +1453,12 @@ def itercornuspiral(cx: int, cy: int,
     """
     c = 0.01745329251994329576923690768489
     k = r * c
-    x = cx
-    y = cy
+    z = complex(cx, cy)
     for i in range(360):
         t = i * c
         t *= t
-        x += k * cos(t) # do integration
-        y += k * sin(t)
-        yield (int(x), int(y))
+        z += k * complex(cos(t), sin(t))  # do integration
+        yield (int(z.real), int(z.imag))
 
 
 def cornuspiralvert(cx: int, cy: int,
