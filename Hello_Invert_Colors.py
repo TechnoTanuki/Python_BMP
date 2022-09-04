@@ -12,10 +12,8 @@ notice = """
  -----------------------------------
 """
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        invertimagebits as f,
+        invertbits2file as f,
         getfuncmetastr as meta,
-        saveBMP
         )
 
 import subprocess as proc
@@ -26,10 +24,9 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
-        f(bmp) # call invertimagebits return byref
+        origfile = f'{rootdir}/assets/earth.bmp'
         file = f'Hello{f.__name__}.bmp' #file name
-        saveBMP(file, bmp) # save file
+        f(origfile, file) # call invertimagebits
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user something happened
         ret = proc.call([imgedt, file])
