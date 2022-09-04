@@ -1372,14 +1372,14 @@ def itersuperellipse(cx: int, cy: int,
     Yields:
         (x: int, y: int)
     """
-    _2m = 2 / m
-    _2n = 2 / n
+    p = 2 / m
+    q = 2 / n
     for i in range(360):
         t = radians(i)
         w = cos(t)
-        x = cx + int((abs(w) ** _2m) * a * sign(w))
+        x = cx + int((abs(w) ** p) * a * sign(w))
         w = sin(t)
-        y = cy + int((abs(w) ** _2n) * b * sign(w))
+        y = cy + int((abs(w) ** q) * b * sign(w))
         yield (x, y)
 
 
