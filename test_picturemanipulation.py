@@ -738,6 +738,13 @@ class Test2filefunc(unittest.TestCase):
                 self.filecmp(*p)
 
 
+        def testgammaadjust4bit2file(self):
+                p = self._filepaths('earth-4bitgammaadj.bmp')
+                gammaadj2file(f'{self.sourcedir}earth-4bit.bmp',
+                        p[0], .5)
+                self.filecmp(*p)
+
+
         def testupgradeto24bitimage(self):
                 p = self._filepaths('earth-4bit-to-24bit.bmp')
                 upgradeto24bitimage2file(
