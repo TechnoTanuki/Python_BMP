@@ -13,11 +13,9 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
         getX11RGBfactors as c,
-        colorfilterto24bitimage as f,
+        colorfilter2file as f,
         getfuncmetastr as meta,
-        saveBMP
         )
 
 import subprocess as proc
@@ -28,10 +26,9 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) #get path of running script
-        bmp = loadBMP(f'{rootdir}/assets/tanuki.bmp')
-        f(bmp, c()['greenyellow'])
+        origfile = f'{rootdir}/assets/tanuki.bmp'
         file = f'Hello{f.__name__}.bmp' #file name
-        saveBMP(file,bmp) # save file
+        f(origfile, file, c()['greenyellow'])
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
         ret = proc.call([imgedt, file])
