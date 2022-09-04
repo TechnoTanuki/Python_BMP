@@ -13268,10 +13268,10 @@ def _useclradjfn(ExistingBMPfile: str,
                 plotRGBxybitvec(
                     bmp, v[0],
                     func(v[1],funcparam))
-        saveBMP(NewBMPfile,bmp)
-        print(sysmsg['savesingleparamfunc'] %
-            (func.__name__, str(funcparam),
-            ExistingBMPfile, NewBMPfile))
+    saveBMP(NewBMPfile,bmp)
+    print(sysmsg['savesingleparamfunc'] %
+         (func.__name__, str(funcparam),
+          ExistingBMPfile, NewBMPfile))
 
 
 @checklink

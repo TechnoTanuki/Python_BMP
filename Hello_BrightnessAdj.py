@@ -28,7 +28,7 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         file = f'Hello{f.__name__}.bmp' # file name <string>
-        f(f'{rootdir}/assets/test_images/earth.bmp',
+        f(f'{rootdir}/assets/test_images/earth-4bit.bmp',
         file, peradj) # 3rd param brightness adj percent + or -
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
