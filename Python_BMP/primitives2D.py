@@ -922,14 +922,14 @@ def iterspirograph(
     e = l * k
     d = 1 - k
     f = d / k
+    q = complex(x, y)
     while a < lim:
         b = a * f
-        dx =  round(r * (d * cos(a) + \
-                         e * cos(b)))
-        dy =  round(r * (d * sin(a) + \
-                         e * sin(b)))
+        z = r * (d * complex(cos(a), sin(a)) + \
+                 e * complex(cos(b), sin(b))) + q
         a += delta
-        yield (x + dx, y + dy)
+        yield (round(z.real),
+               round(z.imag))
 
 
 def spirographvert(
