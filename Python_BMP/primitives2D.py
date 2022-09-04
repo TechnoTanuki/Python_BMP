@@ -1125,8 +1125,8 @@ def iterepicycloid(
     q = complex(x, y)
     while t < lim:
         d = c * t
-        z = p * complex(cos(t), sin(t)) - \
-            b * complex(cos(d), sin(d)) + q
+        z = rect(p, t) - \
+            rect(b, d) + q
         t += delta
         yield (round(z.real),
                round(z.imag))
