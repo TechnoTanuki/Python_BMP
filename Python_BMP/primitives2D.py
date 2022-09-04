@@ -1418,9 +1418,7 @@ def itergearcurve(cx: int, cy: int,
     q = complex(cx, cy)
     for i in range(360):
         t = radians(i)
-        z = a + b * tanh(b * sin(n * t))
-        z *= complex(cos(t), sin(t))
-        z += q
+        z = rect(a + b * tanh(b * sin(n * t)), t) + q
         yield (int(z.real),
                int(z.imag))
 
