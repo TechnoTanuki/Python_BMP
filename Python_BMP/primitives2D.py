@@ -1118,17 +1118,17 @@ def iterepicycloid(
         epicycloid
         [[x: int, y: int], ...]
     """
-    ab = a + b
+    p = a + b
     c = (a / b) + 1
     t = 0
+    q = complex(x, y)
     while t < lim:
         d = c * t
-        dx =  round(ab * cos(t) - \
-                     b * cos(d))
-        dy =  round(ab * sin(t) - \
-                     b * sin(d))
+        z = p * complex(cos(t), sin(t)) - \
+            b * complex(cos(d), sin(d)) + q
         t += delta
-        yield (x + dx, y + dy)
+        yield (round(z.real),
+               round(z.imag))
 
 
 def epicycloidvert(
