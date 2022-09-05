@@ -1190,9 +1190,8 @@ def iterhypotrochoid(
     t = 0
     q = complex(x, y)
     while t < lim:
-        e = d * t
         z = rect(p, t) - \
-            rect(c, e) + q
+            rect(c, d * t) + q
         t += delta
         yield (round(z.real),
                round(z.imag))
