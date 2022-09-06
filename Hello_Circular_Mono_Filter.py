@@ -13,11 +13,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        centercoord,
-        monocircle as f,
+        monochromecircregion2file as f,
         getfuncmetastr as meta,
-        saveBMP
         )
 
 import subprocess as proc
@@ -28,13 +25,11 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
-        (x, y) = centercoord(bmp) # How to get center of the bitmap
-        r = x - 20 # radius set to x - 20
-        f(bmp, x, y, r) # call monocircle to apply the filter
-        # Python_BMP.BITMAPlib.monocircle(bmp bytearray,x int,y int ,r int)
+        origfile =  f'{rootdir}/assets/earth.bmp'
         file = f'Hello{f.__name__}.bmp' #file name
-        saveBMP(file, bmp)
+        x, y = 87, 83 #  center of the bitmap
+        r = x - 20 # radius set to x - 20
+        f(origfile, file, x, y, r) # call monocircle to apply the filter
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
         ret = proc.call([imgedt, file])
