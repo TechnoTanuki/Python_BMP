@@ -13,11 +13,8 @@ notice = """
 """
 
 from Python_BMP.BITMAPlib import(
-        loadBMP,
-        centercoord,
-        colorfiltercircregion as f,
+        colorfiltercircregion2file as f,
         getfuncmetastr as meta,
-        saveBMP
         )
 
 import subprocess as proc
@@ -28,14 +25,12 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        bmp = loadBMP(f'{rootdir}/assets/earth.bmp')
-        (x, y) = centercoord(bmp) # How to get center of the bitmap
+        origfile =f'{rootdir}/assets/earth.bmp'
+        file = f'Hello{f.__name__}.bmp' #file name
+        x, y = 87, 83 # How to get center of the bitmap
         r = x - 20 # radius set to x - 20
         rf, gf, bf = 1, .7, .3 # RGB color factors (0 to 1) float
-        f(bmp, x, y, r, (rf, gf, bf)) # apply the color filter
-        # Python_BMP.BITMAPlib.colorfiltercircregion(bmp bytearray,x int ,y int ,r int,cf <tuple of RGB 0..1> )
-        file = f'Hello{f.__name__}.bmp' #file name
-        saveBMP(file, bmp) # save file
+        f(origfile, file, x, y, r, (rf, gf, bf)) # apply the color filter
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
         ret = proc.call([imgedt, file])
