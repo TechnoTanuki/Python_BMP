@@ -12490,7 +12490,6 @@ def fractaldreamattractor(
     return plotattractor(fractaldreamattractorlist(a, b, c, d, n), x, y, bits)
 
 
-
 def gumowskimiraattractor(
         x: int, y: int, bits: int,
         ox: float, oy: float,
