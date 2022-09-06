@@ -141,6 +141,7 @@ class Test2filefunc(unittest.TestCase):
         cfcyan = cf['cyan']
         cfyellow = cf['yellow']
 
+
         def _filepaths(self, filename: str) -> list[str, str]:
                 return (f'{self.outputdir}{filename}',
                         f'{self.sourcedir}{filename}')
@@ -568,6 +569,7 @@ class Test2filefunc(unittest.TestCase):
                         colorfiltercircregion2file,
                         500, 300, 300, self.cfyellow)
 
+
         def testcircle2file(self):
                 self.dotestcircregionwithparam(
                         'raccoon-thinredcircle.bmp',
@@ -579,6 +581,7 @@ class Test2filefunc(unittest.TestCase):
                         'raccoon-thresholdadjcircregion.bmp',
                         thresholdadjcircregion2file,
                         500, 400, 250, [32, 152])
+
 
         def testgammacorrectcircregion2file(self):
                 self.dotestcircregionwithparam(
@@ -593,11 +596,13 @@ class Test2filefunc(unittest.TestCase):
                         brightnessadjcircregion2file,
                         500, 300, 290, 80)
 
+
         def testmagnifyNtimescircregion2file(self):
                 self.dotestcircregionwithparam(
                         'raccoon-magnify2timescircregion.bmp',
                         magnifyNtimescircregion2file,
                         500, 300, 300, 2)
+
 
         def testcopycircregion2file(self):
                 self.dotestcircregionwithparam(
@@ -744,17 +749,20 @@ class Test2filefunc(unittest.TestCase):
                         p[0], .5)
                 self.filecmp(*p)
 
+
         def testcolorfilter4bit2file(self):
                 p = self._filepaths('earth-4bitcolorfilter.bmp')
                 colorfilter2file(f'{self.sourcedir}earth-4bit.bmp',
                         p[0], self.cf["green"])
                 self.filecmp(*p)
 
+
         def testmonofilter4bit2file(self):
                 p = self._filepaths('earth-4bitmono.bmp')
                 monochrome2file(f'{self.sourcedir}earth-4bit.bmp',
                         p[0])
                 self.filecmp(*p)
+
 
         def testupgradeto24bitimage(self):
                 p = self._filepaths('earth-4bit-to-24bit.bmp')
