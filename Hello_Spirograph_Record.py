@@ -37,7 +37,7 @@ def main():
         lim = pi * 20
         color = 11 # yellow
         for r in range(20, 360, 10):
-          plotlines(bmp, f(x, y, 
+          plotlines(bmp, f(x, y,
                     r=r,
                     l=.6,
                     k=.8,
