@@ -813,8 +813,8 @@ def listinrecbnd(
         False -> Not all (x, y)
                  is in bounds
     """
-    for v in xylist:
-        if isinrectbnd(v[0], v[1],
+    for (x, y) in xylist:
+        if isinrectbnd(x, y,
                        xmin, ymin,
                        xmax, ymax) == \
             False:
