@@ -15,7 +15,8 @@
 
 from math import(
     sqrt,
-    radians
+    radians,
+    dist
     )
 
 from numbers import Number
@@ -26,7 +27,6 @@ from .mathlib import(
     addvect,
     computerotvec,
     cylindrical2rectcoord3D,
-    distance,
     getnormvec,
     roundvect,
     spherical2rectcoord3D,
@@ -236,7 +236,7 @@ def icosahedvertandsurface(
                 0, 0, x, 5, 0)
     pts1 = floatregpolygonvert(
                 0, 0, x, 5, 36)
-    z = sqrt((distance(pts[0], pts[1]) ** 2 - x**2))
+    z = sqrt((dist(pts[0], pts[1]) ** 2 - x**2))
     z1 = 2 * x - z
     return [[[0, 0, -z]] + \
              adddimz(pts, 0) + \

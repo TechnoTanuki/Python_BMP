@@ -15,7 +15,7 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        distance,
+        dist,
         centercoord,
         plotRGBxybit as f,
         getmaxxy,
@@ -41,9 +41,9 @@ def main():
                 for x in range(mx):
                         pt = (x, y) # pacc x,y to tuple
                         f(bmp, x, y,
-                        (int(distance(ori, pt)) % 256, # red gradient
-                         int(distance(end, pt)) % 256, # green gradient
-                         int(distance(cen, pt)) % 256) # blue gradient
+                        (int(dist(ori, pt)) % 256, # red gradient
+                         int(dist(end, pt)) % 256, # green gradient
+                         int(dist(cen, pt)) % 256) # blue gradient
                          ) # make a rainbow
         file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp)
