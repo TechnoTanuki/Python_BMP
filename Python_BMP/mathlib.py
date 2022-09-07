@@ -1081,7 +1081,8 @@ def mirrorx(p: list[Number, Number], x: Number
     Returns:
         Two 2D points [x1, y], [x2, y]
     """
-    return [p[0] - x, p[1]], [p[0] + x, p[1]]
+    (a, y) = p
+    return [a - x, y], [a + x, y]
 
 
 def mirrory(p: list[Number, Number], y: Number
@@ -1096,7 +1097,8 @@ def mirrory(p: list[Number, Number], y: Number
     Returns:
         Two 2D points [x, y1], [x, y2]
     """
-    return [p[0], p[1] - y], [p[0], p[1] + y]
+    (x, b) = p
+    return [x, b - y], [x, b + y]
 
 
 def mirrorvec(vcen: list[Number],
