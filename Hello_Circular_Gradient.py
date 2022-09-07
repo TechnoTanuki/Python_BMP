@@ -15,7 +15,7 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        distance,
+        dist,
         gradcircle as f,
         getfuncmetastr as meta,
         saveBMP
@@ -32,7 +32,7 @@ def main():
         mx = my = 320 # bitmap size x
         bmp = newBMP(mx, my, 24) # RGB bitmap
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        r = int(distance((x, y), (0, 0)))  # max radius of gradient
+        r = int(dist((x, y), (0, 0)))  # max radius of gradient
         lumrange = (0, 255) # increase in color brightness farther from (x,y)
         rgbfactors = (.25, .75, .5) # rgb triplet as ufloat 0 to 1
         f(bmp, x, y, r, lumrange, rgbfactors) # compute gradient
