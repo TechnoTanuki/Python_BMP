@@ -1565,10 +1565,10 @@ Creates a sorted list in
         list
 
 
-### [`distance`](#distance)
+### [`dist`](#dist)
 
 ```py
-def distance(u: list[float], v: list[float]) -> float:
+def dist(u: list[float], v: list[float]) -> float:
 ```
 
 Compute the Distance or length of a vector v

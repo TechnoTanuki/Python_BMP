@@ -741,7 +741,7 @@ def distancetable(vertlist: list) -> list:
     dlist = []
     for v in vertlist:
         dlist.extend(
-            [vertlist.index(v), vertlist.index(u), distance(u, v)]
+            [vertlist.index(v), vertlist.index(u), dist(u, v)]
             for u in vertlist
             if u != v
         )
