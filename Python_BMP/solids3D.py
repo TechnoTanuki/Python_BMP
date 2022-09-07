@@ -15,8 +15,7 @@
 
 from math import(
     sqrt,
-    radians,
-    dist
+    radians
     )
 
 from numbers import Number
@@ -27,6 +26,7 @@ from .mathlib import(
     addvect,
     computerotvec,
     cylindrical2rectcoord3D,
+    distance as dist,
     getnormvec,
     roundvect,
     spherical2rectcoord3D,
