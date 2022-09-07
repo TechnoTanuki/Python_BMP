@@ -1,5 +1,5 @@
 notice = """
-     Multi Biomorph Fractal Demo
+Multi Biomorph Phase Variant Fractal
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
