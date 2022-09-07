@@ -5775,6 +5775,31 @@ Yields a Multi Biomorph fractal
         (x: int, y: int, c: int)
 
 
+### [`itermultibiomorphphasevariant`](#itermultibiomorphphasevariant)
+
+```py
+def itermultibiomorphphasevariant(x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], maxiter: int):
+```
+
+Yields a Multi Biomorph phase variant fractal
+
+    Args:
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Yields:
+        (x: int, y: int, c: int)
+
+
 ### [`itermultibiomorphvariant`](#itermultibiomorphvariant)
 
 ```py
@@ -8123,6 +8148,34 @@ def multibiomorph(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: compl
 ```
 
 Draw a Multi Biomorph fractal
+
+    Args:
+        bmp           : unsigned
+                        byte array
+                        with bmp format
+        x1, y1, x2, y2: rectangular area
+                        to draw in
+        c             : complex number
+        d             : power to raise z to
+        domain        : coordinates in real
+                        and imaginary plane
+        rgbfactors    : [r, g, b] values
+                        range from
+                        0.0 to 1.0
+        maxiter       : when to break
+                        color compute
+    
+    Returns:
+        byref modified unsigned byte array
+
+
+### [`multibiomorphphasevariant`](#multibiomorphphasevariant)
+
+```py
+def multibiomorphphasevariant(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c: complex, d: float, domain: list[float, float, float, float], RGBfactors: list[float, float, float], maxiter: int):
+```
+
+Draw a Multi Biomorph Phase Variant fractal
 
     Args:
         bmp           : unsigned
@@ -12544,6 +12597,37 @@ def savemultibiomorphfractal2file(file: str, x: int, y: int, c: complex, d: floa
 ```
 
 Saves a Multi Biomorph Fractal to a file
+
+    Args:
+        file    : full path to new file
+        x       : width of bitmap
+        y       : height of bitmap
+        c       : complex number
+        d       : power to raise z to
+        domain  : location in real and
+                  imaginary plane
+                  (minreal, maxreal,
+                   minimag, maximag)
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        maxiter : optional parameter
+                  to set maximum iteration
+    
+    Returns:
+        a bitmap file
+
+
+### [`savemultibiomorphphasevariantfractal2file`](#savemultibiomorphphasevariantfractal2file)
+
+```py
+def savemultibiomorphphasevariantfractal2file(file: str, x: int, y: int, c: complex, d: float, domain: list[float, float, float, float], rgbfactors: list[float, float, float], bitdepth: int = 8, maxiter: int = 255):
+```
+
+Saves a Multi Biomorph Phase Variant Fractal to a file
 
     Args:
         file    : full path to new file

@@ -24,6 +24,7 @@ notice = """
 """
 import unittest
 from os import path
+from math import pi
 from Python_BMP.BITMAPlib import(
         loadBMP,
         palshift2file,
@@ -48,6 +49,7 @@ from Python_BMP.BITMAPlib import(
         savexordivfractal2file as xordivfractal,
         savegumowskimiraattractor2file as gumowskimiraattractor,
         savemultibiomorphfractal2file as biomorph,
+        savemultibiomorphphasevariantfractal2file as biomorphphase,
         savemultisinbiomorphfractal2file as sinbiomorph,
         savemulticosbiomorphfractal2file as cosbiomorph,
         savemultitanbiomorphfractal2file as tanbiomorph,
@@ -308,6 +310,16 @@ class TestFractal2filefunc(unittest.TestCase):
         1 + 1j, # complex nunber
         5, # power of z
         [-2.5, 2.5, -2.5, 2.5], # location to plot
+        self.c['darkseagreen1']) # color
+        self.filecmp(*p)
+
+
+    def testbiomorphphase(self):
+        p = self._filepaths("biomorphphasevariant.bmp")
+        biomorphphase(p[0], 256, 256, # file and bitmap size
+        1 + 1j, # complex nunber
+        2, # power of z
+        [-pi, pi, -pi, pi], # location to plot
         self.c['darkseagreen1']) # color
         self.filecmp(*p)
 
