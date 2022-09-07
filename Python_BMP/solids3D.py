@@ -195,7 +195,7 @@ def decahedvertandsurface(
               z: float)
     """
     pts = regpolygonvert(0, 0, x, 5, 0)
-    z = sqrt((distance(pts[0], pts[1]) ** 2 - x**2))
+    z = sqrt((dist(pts[0], pts[1]) ** 2 - x**2))
 
     return [[[0, 0, -z]] + \
             adddimz(pts, 0) + \
