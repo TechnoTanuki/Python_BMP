@@ -36,8 +36,16 @@ from math import(
     cos,
     radians,
     pi,
-    dist)
-from os import TMP_MAX, environ, getcwd, mkdir
+    dist
+    )
+
+from os import (
+    TMP_MAX,
+    environ,
+    getcwd,
+    mkdir
+    )
+
 from os.path import pathsep
 from pathlib import Path
 from random import random
