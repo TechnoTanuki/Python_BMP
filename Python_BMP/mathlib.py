@@ -1063,8 +1063,10 @@ def rotvec2D(v: list[Number, Number],
     Returns:
         [float, float] rotation vector
     """
-    return [v[0] * rotvec[1] - v[1] * rotvec[0],
-            v[0] * rotvec[0] + v[1] * rotvec[1]]
+    (x, y) = v
+    (a, b) = rotvec
+    return [x * b - y * a,
+            x * a + y * b]
 
 
 def mirrorx(p: list[Number, Number], x: Number
