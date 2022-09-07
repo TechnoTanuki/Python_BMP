@@ -36,7 +36,8 @@ from cmath import (
     cosh,
     tanh,
     tau,
-    phase
+    phase,
+    rect
 )
 
 from .mathlib import (
@@ -500,7 +501,7 @@ def multibiomorphphasevariant(P: float, Q: float,
     """
     z = complex(P, Q)
     for i in range(maxiter):
-        z = z **(d + abs(phase(z))) + c
+        z = z ** (d + abs(phase(z))) + c
         if abs(z.real) > a and abs(z.imag) > a:
             return i
         if abs(z.real) > a or abs(z.imag) > a:
