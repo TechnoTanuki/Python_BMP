@@ -31,7 +31,12 @@
 
 from . import shims
 from array import array
-from math import(sin, cos, radians, pi)
+from math import(
+    sin,
+    cos,
+    radians,
+    pi,
+    dist)
 from os import TMP_MAX, environ, getcwd, mkdir
 from os.path import pathsep
 from pathlib import Path
@@ -60,7 +65,6 @@ from .mathlib import(
     computerotvec,
     cosaffin,
     delta,
-    distance,
     enumbits,
     getcomplexdomainbounds,
     getdomainbounds,
@@ -1178,7 +1182,7 @@ def makenewpalfromcolorhist(
         rgb = int2RGBlist(chist[i][1])
         addcl = True
         for palentry in newpal:
-            if distance(palentry, rgb) < \
+            if dist(palentry, rgb) < \
                 similaritythreshold:
                 addcl = False
         if addcl:
@@ -7205,7 +7209,7 @@ def iterimagedgevert(
                 '*' , sysmsg['done']):
         for u in itergetneighbors(
                     v0, mx, my, False):
-            if distance(
+            if dist(
                     getRGBxybitvec(bmp, u), v1) > \
                         similaritythreshold:
                 yield u
@@ -7237,7 +7241,7 @@ def iterimageregionvertbyRGB(
     for v in iterimageRGB(bmp,
                 sysmsg['edgedetect'],
                 '*', sysmsg['done']):
-        if distance(rgb, v[1]) < similaritythreshold:
+        if dist(rgb, v[1]) < similaritythreshold:
             yield v[0]
 
 
@@ -10541,7 +10545,7 @@ def plotflower(bmp: array,
     mcolor = maxcolors - 1
     lum1, dlum = range2baseanddelta(lumrange)
     for (x, y) in iterflower(cx, cy, r, petals, angrot):
-        c = colormix(setmax(abs(int(lum1 + dlum * (distance([x, y], [cx, cy]) / r))),255), RGBfactors)
+        c = colormix(setmax(abs(int(lum1 + dlum * (dist([x, y], [cx, cy]) / r))),255), RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = mcolor - c % maxcolors
         plotxybit(bmp, x, y, c)
