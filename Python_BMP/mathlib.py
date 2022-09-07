@@ -713,7 +713,7 @@ def vmag(v: list[float]) -> float:
     return sqrt(sum(i * i for i in v))
 
 
-def distance(u: list[float],
+def dist(u: list[float],
              v: list[float]) -> float:
     """Compute the Distance or length of a vector v
     of arbitrary dimension n in a n-dimensional

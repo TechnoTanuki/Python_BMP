@@ -24,7 +24,7 @@ from .bmppal import(
 
 from .mathlib import(
     addvect,
-    distance,
+    dist,
     intscalarmulvect,
     intsetminmaxvec,
     mean,
@@ -293,7 +293,7 @@ def matchRGBtopal(RGB: list,
     else:
         for p in pal:
             if p != [0,0,0] and RGB != [0,0,0]:
-                newd = distance(RGB, p)
+                newd = dist(RGB, p)
                 if newd < d:
                     c = i
                     d = newd

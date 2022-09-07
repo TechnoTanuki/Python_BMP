@@ -35,8 +35,7 @@ from math import(
     sin,
     cos,
     radians,
-    pi,
-    dist
+    pi
     )
 
 from os import (
@@ -73,6 +72,7 @@ from .mathlib import(
     computerotvec,
     cosaffin,
     delta,
+    dist,
     enumbits,
     getcomplexdomainbounds,
     getdomainbounds,
