@@ -11066,11 +11066,9 @@ def savemarekdragon2file(
         a bitmap file
     """
     savemultifractal2file(
-        file,
-        x, y,
+        file, x, y,
         marekdragon,
-        d,
-        domain,
+        d, domain,
         rgbfactors,
         bitdepth,
         maxiter)
@@ -11601,10 +11599,8 @@ def savemultiexpbiomorphfractal2file(
 
 @functimer
 def savemulti2ndtetrationbiomorphfractal2file(
-        file: str,
-        x: int, y: int,
-        c: complex,
-        d: float,
+        file: str, x: int, y: int,
+        c: complex, d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
         bitdepth: int = 4,
@@ -11641,10 +11637,8 @@ def savemulti2ndtetrationbiomorphfractal2file(
 
 @functimer
 def savemultizconjugatebiomorphfractal2file(
-        file: str,
-        x: int, y: int,
-        c: complex,
-        d: float,
+        file: str, x: int, y: int,
+        c: complex, d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
         bitdepth: int = 4,
@@ -11681,10 +11675,8 @@ def savemultizconjugatebiomorphfractal2file(
 
 @functimer
 def savemultitanbiomorphfractal2file(
-        file: str,
-        x: int, y: int,
-        c: complex,
-        d: float,
+        file: str, x: int, y: int,
+        c: complex, d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
         bitdepth: int = 4,
@@ -11721,10 +11713,8 @@ def savemultitanbiomorphfractal2file(
 
 @functimer
 def savemultitanhbiomorphfractal2file(
-        file: str,
-        x: int, y: int,
-        c: complex,
-        d: float,
+        file: str, x: int, y: int,
+        c: complex, d: float,
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
         bitdepth: int = 4,
@@ -11761,8 +11751,7 @@ def savemultitanhbiomorphfractal2file(
 
 @functimer
 def savenewtonsfractal2file(
-        file: str,
-        x: int, y: int,
+        file: str, x: int, y: int,
         d: list[Callable, Callable],
         domain: list[float, float, float, float],
         rgbfactors: list[float, float, float],
@@ -11801,9 +11790,7 @@ def savenewtonsfractal2file(
 
 @functimer
 def savehilbertcurve2file(
-        file: str,
-        x: int,
-        y: int,
+        file: str, x: int, y: int,
         order: int,
         bitdepth: int = 1,
         color: int = 1,
@@ -11848,9 +11835,7 @@ def savehilbertcurve2file(
 
 @functimer
 def savekochsnowflake2file(
-        file: str,
-        r: int,
-        order: int,
+        file: str, r: int, order: int,
         angle: float = 0,
         bitdepth: int = 1,
         color: int = 1,
@@ -12214,7 +12199,7 @@ def pixelizenxncircregion(bmp: array,
 
 @func24bitonly
 def resizeNtimessmaller(
-        bmp: array, n:int) -> array:
+        bmp: array, n: int) -> array:
     """Resize a whole image int n times smaller
 
     Args:
@@ -12438,8 +12423,7 @@ def plotattractor(
 def ikedaattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
-        k: float, p: float,
-        n: int):
+        k: float, p: float, n: int):
     """Draws an Ikeda Attractor
 
     Args:
@@ -12457,8 +12441,7 @@ def ikedaattractor(
 def nattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a N Attractor
 
     Args:
@@ -12476,8 +12459,7 @@ def nattractor(
 def peterdejongattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a Peter de Jong Attractor
 
     Args:
@@ -12495,8 +12477,7 @@ def peterdejongattractor(
 def hopalongattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float,
-        n: int):
+        c: float, n: int):
     """Draws a Hopalong Attractor
 
     Args:
@@ -12516,8 +12497,7 @@ def symmetriciconattractor(
         ox: float, oy: float,
         a: float, b : float, g: float,
         o: float, l: float,
-        d: int,
-        n: int):
+        d: int, n: int):
     """Draws a Symmetric Icon Attractor
 
     Args:
@@ -12537,8 +12517,7 @@ def symmetriciconattractor(
 def cliffordattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a Clifford Attractor
 
     Args:
@@ -12556,8 +12535,7 @@ def cliffordattractor(
 def fractaldreamattractor(
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a Fractal Dream Attractor
 
     Args:
@@ -12581,8 +12559,7 @@ def fractaldreamattractor(
 def gumowskimiraattractor(
         x: int, y: int, bits: int,
         ox: float, oy: float,
-        a: float, b: float,
-        n: int):
+        a: float, b: float, n: int):
     """Draws a Gumowski-Mira Attractor
 
     Args:
@@ -12609,8 +12586,7 @@ def saveikedaattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
-        k: float, p: float,
-        n: int):
+        k: float, p: float, n: int):
     """Draws an Ikeda Attractor to file
 
     Args:
@@ -12630,8 +12606,7 @@ def savegumowskimiraattractor2file(
         file: str,
         x: int, y: int, bits: int,
         ox: float, oy: float,
-        a: float, b: float,
-        n: int):
+        a: float, b: float, n: int):
     """Draws a Gumowski-Mira attractor to file
 
     Args:
@@ -12658,8 +12633,7 @@ def savenattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a N Attractor to file
 
     Args:
@@ -12679,8 +12653,7 @@ def savepeterdejongattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a Peter de Jong Attractor to file
 
     Args:
@@ -12700,8 +12673,7 @@ def savehopalongattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float,
-        n: int):
+        c: float, n: int):
     """Draws a Hopalong Attractor to file
 
     Args:
@@ -12723,8 +12695,7 @@ def savesymmetriciconattractor2file(
         ox: float, oy: float,
         a: float, b : float, g: float,
         o: float, l: float,
-        d: int,
-        n: int):
+        d: int, n: int):
     """Draws a Symmetric Icon Attractor to file
 
     Args:
@@ -12746,8 +12717,7 @@ def savecliffordattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a Clifford Attractor to file
 
     Args:
@@ -12767,8 +12737,7 @@ def savefractaldreamattractor2file(
         file: str,
         x: int, y: int, bits: int,
         a: float, b: float,
-        c: float, d: float,
-        n: int):
+        c: float, d: float, n: int):
     """Draws a Fractal Dream Attractor to file
 
     Args:
@@ -13514,7 +13483,7 @@ def imagecomp(
     s1 = getmaxxyandbits(bmp1)
     s2 = getmaxxyandbits(bmp2)
     if s1 != s2:
-        print(sysmsg['cantcomparefiles'] % (s1,s2))
+        print(sysmsg['cantcomparefiles'] % (s1, s2))
     else:
         bits = s1[1]
         nbmp=CopyBMPxydim2newBMP(bmp1, bits)
@@ -13715,6 +13684,7 @@ def mirrortopleft2file(
     """
     _usebyreffnsv(ExistingBMPfile,
         NewBMPfile, mirrortopleft)
+
 
 @functimer
 def mirrortopright2file(
@@ -14565,8 +14535,7 @@ def eraseeverynthhorilineinregion2file(
     _usebyreffnwithpar2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2,
-        eraseeverynthhorilineinregion,
-        n)
+        eraseeverynthhorilineinregion, n)
 
 
 @functimer
@@ -14798,8 +14767,7 @@ def invertbitsincircregion2file(
     """
     _usefn2circreg(
         ExistingBMPfile, NewBMPfile,
-        invertbitsincircregion,
-        x, y, r)
+        invertbitsincircregion, x, y, r)
 
 
 @functimer
@@ -15104,8 +15072,7 @@ def flipvertcircregion2file(
     """
     _usefn2circreg(
         ExistingBMPfile, NewBMPfile,
-        flipvertcircregion,
-        x, y, r)
+        flipvertcircregion, x, y, r)
 
 
 @functimer
