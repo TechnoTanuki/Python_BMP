@@ -12112,7 +12112,7 @@ def verticalbrightnessgradto24bitregion(
     offset = _24bmof(bmp, x1, y2)
     r = _xchrcnt(bmp)
     lum = lumrange[1]
-    dlum = (lumrange[0] - lumrange[1]) / (y2 - y1)
+    dlum = (lumrange[0] - lum) / (y2 - y1)
     for buf in itercopyrect(bmp, x1, y1, x2, y2):
         BMPbitBLTput(bmp, offset,
              applybrightnessadjtoBGRbuf(buf, lum))
