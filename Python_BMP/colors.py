@@ -1087,7 +1087,7 @@ def dichromaticpal(c1: int,
                    c2: int,
                    n: int) -> list[list[float]]:
     """ Returns a dichromatic pallette base on
-    two rgb color triplets expressed as fractions
+    two rgb color triplets packed as int
 
     Args:
         c1, c2 : color as int packed rgb triplets
