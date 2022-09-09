@@ -1097,14 +1097,14 @@ def dichromaticpal(c1: int,
         list of RGB triplets
         [[r: byte, g: byte, b: byte], ...]
     """
-    a = int2RGB(c1)
-    b = int2RGB(c2)
+    a0, a1, a2 = a = int2RGB(c1)
+    b0, b1, b2 = b = int2RGB(c2)
     v = [a]
     n -= 1
     for i in range(1, n):
         j = i / n
-        v += [(round(lerp(a[0], b[0], j)),
-               round(lerp(a[1], b[1], j)),
-               round(lerp(a[2], b[2], j)))]
+        v += [(round(lerp(a0, b0, j)),
+               round(lerp(a1, b1, j)),
+               round(lerp(a2, b2, j)))]
     v += [b]
     return v
