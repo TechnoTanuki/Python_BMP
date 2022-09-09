@@ -1547,6 +1547,24 @@ Gets the delta from a list of two numbers
         delta of numbers
 
 
+### [`dichromaticpal`](#dichromaticpal)
+
+```py
+def dichromaticpal(c1: int, c2: int, n: int) -> list[list[float]]:
+```
+
+Returns a dichromatic pallette base on
+two rgb color triplets expressed as fractions
+
+    Args:
+        c1, c2 : color as int packed rgb triplets
+        n      : palette size
+    
+    Returns:
+        list of RGB triplets
+        [[r: byte, g: byte, b: byte], ...]
+
+
 ### [`dict2descorderlist`](#dict2descorderlist)
 
 ```py

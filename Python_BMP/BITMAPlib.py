@@ -184,6 +184,7 @@ from .colors import(
     colorfilter,
     colorfiltertoBGRbuf,
     colormix,
+    dichromaticpal,
     gammaBGRbuf,
     gammacorrect,
     getdefaultbitpal,
