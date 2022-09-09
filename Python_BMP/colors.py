@@ -1099,12 +1099,13 @@ def dichromaticpal(c1: int,
     """
     a0, a1, a2 = a = int2RGB(c1)
     b0, b1, b2 = b = int2RGB(c2)
-    v = [a]
+    v = [[]] * n
+    v[0] = a
     n -= 1
+    v[n] = b
     for i in range(1, n):
         j = i / n
-        v += [(round(lerp(a0, b0, j)),
-               round(lerp(a1, b1, j)),
-               round(lerp(a2, b2, j)))]
-    v += [b]
+        v[i] = (round(lerp(a0, b0, j)),
+                round(lerp(a1, b1, j)),
+                round(lerp(a2, b2, j)))
     return v
