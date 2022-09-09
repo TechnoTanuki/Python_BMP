@@ -27,6 +27,7 @@ from .mathlib import(
     dist,
     intscalarmulvect,
     intsetminmaxvec,
+    lerp,
     mean,
     mulvect,
     ravel2D,
@@ -1081,3 +1082,29 @@ def RGB2HSL(r: int, g: int, b: int
     lum = round(lum * 100)
     return [hue, sat, lum]
 
+
+def dichromaticpal(c1: int,
+                   c2: int,
+                   n: int) -> list[list[float]]:
+    """ Returns a dichromatic pallette base on
+    two rgb color triplets expressed as fractions
+
+    Args:
+        c1, c2 : color as int packed rgb triplets
+        n      : palette size
+
+    Returns:
+        list of RGB triplets
+        [[r: byte, g: byte, b: byte], ...]
+    """
+    a = int2RGB(c1)
+    b = int2RGB(c2)
+    v = [a]
+    n -=1
+    for i in range(1, n):
+        j = i / n
+        v += [(round(lerp(a[0], b[0], j)),
+               round(lerp(a[1], b[1], j)),
+               round(lerp(a[2], b[2], j)))]
+    v += [b]
+    return v
