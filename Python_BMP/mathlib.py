@@ -1657,7 +1657,7 @@ def histogram2Dcomplex(
     return h
 
 
-def ravel2D(v:list [list[any]]) -> list[any]:
+def ravel2D(v: list [list[any]]) -> list[any]:
     """Flatten a nested list
 
     Args
@@ -1667,3 +1667,26 @@ def ravel2D(v:list [list[any]]) -> list[any]:
         [x: any:, x1: any, ...]
     """
     return [i for sv in v for i in sv]
+
+
+def lerp(a: float,
+         b: float,
+         f: float) -> float:
+    """
+    Calculates a number between two numbers at a specific increment.
+
+    Args
+        a, b: float values
+        f   : number between 0.0 and 1.0
+              the amount to interpolate between the two values
+              where 0.0 equal to the first point,
+              0.1 is very near the first point
+              0.9 is very near the second point
+              etc
+
+    Returns:
+        [x: any:, x1: any, ...]
+
+    """
+    return (1.0 - f) * a + f * b
+
