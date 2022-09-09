@@ -1675,9 +1675,9 @@ def lerp(a: float,
     """
     Calculates a number between two numbers at a specific increment.
 
-    Args
+    Args:
         a, b: float values
-        f   : number between 0.0 and 1.0
+        v   : a number between a and b
               the amount to interpolate between the two values
               where 0.0 equal to the first point,
               0.1 is very near the first point
@@ -1685,8 +1685,25 @@ def lerp(a: float,
               etc
 
     Returns:
-        [x: any:, x1: any, ...]
-
+        a float value between 0.0 and 1.0
     """
     return (1.0 - f) * a + f * b
 
+
+def invlerp(a: float,
+            b: float,
+            v: float) -> float:
+    """
+    Returns a number between 0 and 1
+    for a value (v) given that is
+    between values a and b
+
+
+    Args
+        a, b: float values
+        v   : number between a and b
+
+    Returns:
+        a float value between 0.0 and 1.0
+    """
+    return (v - a) / (b - a)
