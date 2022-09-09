@@ -3682,7 +3682,7 @@ def ellipse(bmp: array,
                         bmp[s: s + 3] = color
                 else:
                     s = c(bmp, px, py)
-                    bmp[s:s + 3] = color
+                    bmp[s: s + 3] = color
         elif bits == 8:
             for (px, py) in iterellipse(x, y, b, a):
                 if dobndcheck:
