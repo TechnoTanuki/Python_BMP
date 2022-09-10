@@ -1085,27 +1085,31 @@ def RGB2HSL(r: int, g: int, b: int
 
 def dichromaticpal(c1: int,
                    c2: int,
-                   n: int) -> list[list[float]]:
+                   n: int,
+                   mult: int = 1,
+                   shift: int = 0) -> list[list[float]]:
     """ Returns a dichromatic palette base on
     two rgb color triplets packed as int
 
     Args:
         c1, c2 : color as int packed rgb triplets
         n      : palette size
+        mult   : index multiplier
+        shift  : index shift value
 
     Returns:
         list of RGB triplets
         [[r: byte, g: byte, b: byte], ...]
     """
-    v = [[]] * n
-    n -= 1
-    r, g, b = v[0] = int2RGB(c1)
-    x, y, z = v[n] = int2RGB(c2)
-    for i in range(1, n):
+    r, g, b = int2RGB(c1)
+    x, y, z = int2RGB(c2)
+    v = [[r, g, b]] * n
+    for i in range(0, n):
         j = i / n
-        v[i] = (round(lerp(r, x, j)),
-                round(lerp(g, y, j)),
-                round(lerp(b, z, j)))
+        v[((n - i) * mult + shift) % n] = \
+          (round(lerp(r, x, j)),
+           round(lerp(g, y, j)),
+           round(lerp(b, z, j)))
     return v
 
 

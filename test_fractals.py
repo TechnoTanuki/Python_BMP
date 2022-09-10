@@ -28,6 +28,7 @@ from math import pi
 from Python_BMP.BITMAPlib import(
         loadBMP,
         palshift2file,
+        getX11colorname2RGBdict,
         saveastroidfractal2file as astroid,
         savebarnsleytreefractal2file as barnsleytree,
         savelemniscatefractal2file as lemniscate,
@@ -88,6 +89,7 @@ class TestFractal2filefunc(unittest.TestCase):
     sourcedir = rootdir + testimgdir
     outputdir = f'{rootdir}/test_output/'
     c = getX11RGBfactors()
+    cl = getX11colorname2RGBdict()
     domain = fractaldomainparamdict()['maxeqdim']
     imag = -0.70176 - 0.3842j
     fdict = funcparamdict()
@@ -112,6 +114,14 @@ class TestFractal2filefunc(unittest.TestCase):
         p = self._filepaths("mandelbrot.bmp")
         mandel(p[0], 256, 256,
         self.domain, self.c['deepskyblue'])
+        self.filecmp(*p)
+
+
+    def testsavemandelbrotdichromafractal2file(self):
+        p = self._filepaths("mandelbrotdichroma.bmp")
+        mandel(p[0], 256, 256,
+        self.domain, [self.cl['darkblue'],
+                      self.cl['yellowgreen']], 4)
         self.filecmp(*p)
 
 
