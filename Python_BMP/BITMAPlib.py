@@ -1357,11 +1357,30 @@ def setBMP2invshiftedmonochrome(bmp: array,
                     from 0.0 to 1.0
 
     Returns:
-        list of modified RGB values
+        list of modified BGRA values
         byref modified byte array
     """
     newpal = monoinverseshiftableBGRApal(
            _getclrbits(bmp), RGBfactors, mult, shift)
+    setbmppalwithBGRAlist(bmp, newpal)
+    return newpal
+
+
+def setBMP2dichromaticpal(bmp: array,
+        c1: int, c2: int,
+        ) -> list:
+    """Sets a bitmap to use a dichromatic palette
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+        c1, c2 : color as int packed rgb triplets
+
+    Returns:
+        list of modified BGRA values
+        byref modified byte array
+    """
+    newpal = RGB2BGRAlist(dichromaticpal(c1, c2, getmaxcolors(bmp)))
     setbmppalwithBGRAlist(bmp, newpal)
     return newpal
 

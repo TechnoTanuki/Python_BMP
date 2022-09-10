@@ -13476,6 +13476,24 @@ Saves a Xor Fractal to a file
         a bitmap file
 
 
+### [`setBMP2dichromaticpal`](#setBMP2dichromaticpal)
+
+```py
+def setBMP2dichromaticpal(bmp: array.array, c1: int, c2: int) -> list:
+```
+
+Sets a bitmap to use a dichromatic palette
+
+    Args:
+        bmp    : unsigned byte array
+                 with bmp format
+        c1, c2 : color as int packed rgb triplets
+    
+    Returns:
+        list of modified BGRA values
+        byref modified byte array
+
+
 ### [`setBMP2invshiftedmonochrome`](#setBMP2invshiftedmonochrome)
 
 ```py
@@ -13492,7 +13510,7 @@ Sets a bitmap to use a monochrome palette
                     from 0.0 to 1.0
     
     Returns:
-        list of modified RGB values
+        list of modified BGRA values
         byref modified byte array
 
 
