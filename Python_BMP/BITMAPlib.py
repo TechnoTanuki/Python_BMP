@@ -10656,8 +10656,11 @@ def savemultifractal2file(
         a bitmap file
     """
     bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24 and len(rgbfactors) == 3:
-        setBMP2invshiftedmonochrome(bmp, rgbfactors)
+    if bitdepth < 24:
+        if len(rgbfactors) == 3:
+            setBMP2invshiftedmonochrome(bmp, rgbfactors)
+        elif len(rgbfactors) == 2:
+            setBMP2dichromaticpal(bmp, rgbfactors[0], rgbfactors[1])
     f(bmp, 0, 0, x, y, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)

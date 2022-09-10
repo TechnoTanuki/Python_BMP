@@ -244,6 +244,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Multicircle](../assets/fractals/multicircle.bmp)](../Hello_Multicircle.py)
 
+[![Multicircledichroma](../assets/fractals/multicircledichroma.bmp)](../Hello_Multicircle_dichromatic.py)
+
 [![Multihyperbola](../assets/fractals/multihyperbola.bmp)](../Hello_Multihyperbola.py)
 
 [![Multisuperellipse](../assets/fractals/multisuperellipse.bmp)](../Hello_Multisuperellipse.py)

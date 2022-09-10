@@ -139,6 +139,13 @@ class TestFractal2filefunc(unittest.TestCase):
         self.filecmp(*p)
 
 
+    def testsavemulticircledichromnaticfractal2file(self):
+        p = self._filepaths("multicircledichroma.bmp")
+        multicircle(p[0], 256, 256,
+        2.5, [-12, 12, -12, 12], [self.cl['gold'], self.cl['darkblue']])
+        self.filecmp(*p)
+
+
     def testsavemultihyperbolafractal2file(self):
         p = self._filepaths("multihyperbola.bmp")
         multihyperbola(p[0], 256, 256, 2,
