@@ -228,7 +228,7 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Mandelbrot](../assets/fractals/mandelbrot.bmp)](../Hello_Mandelbrot_Set.py)
 
-[![Mandelbrotdichroma](../assets/fractalsmandelbrotdichroma.bmp)](../Hello_Mandelbrot_Set_dichromatic.py)
+[![Mandelbrotdichroma](../assets/fractals/mandelbrotdichroma.bmp)](../Hello_Mandelbrot_Set_dichromatic.py)
 
 [![Multibrot](../assets/fractals/multibrot.bmp)](../Hello_Multibrot_Set.py)
 
