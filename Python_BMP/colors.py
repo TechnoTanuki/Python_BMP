@@ -1107,3 +1107,19 @@ def dichromaticpal(c1: int,
                 round(lerp(g, y, j)),
                 round(lerp(b, z, j)))
     return v
+
+
+def RGB2BGRAlist(rgblist: list[list[int]]) -> list[list[int]]:
+    """ Returns a BGRA quad list with A set to zero
+    from a list of RGB triplets
+
+    Args:
+        rgblist : list of RGB triplets
+        [[r: byte, g: byte, b: byte], ...]
+
+    Returns:
+        list of BGRA quads
+        [[b: byte, g: byte, r: byte, a: byte = 0], ...]
+
+    """
+    return [[b, g, r, 0] for [r, g, b] in rgblist]

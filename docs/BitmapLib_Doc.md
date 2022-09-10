@@ -11833,6 +11833,24 @@ Resize a 24-bit buffer
         unsigned byte array
 
 
+### [`RGB2BGRAlist`](#RGB2BGRAlist)
+
+```py
+def RGB2BGRAlist(rgblist: list[list[int]]) -> list[list[int]]:
+```
+
+Returns a BGRA quad list with A set to zero
+from a list of RGB triplets
+
+    Args:
+        rgblist : list of RGB triplets
+        [[r: byte, g: byte, b: byte], ...]
+    
+    Returns:
+        list of BGRA quads
+        [[b: byte, g: byte, r: byte, a: byte = 0], ...]
+
+
 ### [`RGB2BGRarr`](#RGB2BGRarr)
 
 ```py

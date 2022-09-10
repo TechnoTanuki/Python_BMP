@@ -205,6 +205,7 @@ from .colors import(
     monoinverseshiftableBGRpal,
     monoinverseshiftableBGRApal,
     probplotRGBto1bit,
+    RGB2BGRAlist,
     RGB2BGRbuf,
     RGB2HSL,
     RGB2int,
