@@ -4906,6 +4906,25 @@ Inverts the bits in a
         unsigned byte array
 
 
+### [`invlerp`](#invlerp)
+
+```py
+def invlerp(a: float, b: float, v: float) -> float:
+```
+
+Returns a number between 0 and 1
+for a value (v) given that is
+between values a and b
+
+    
+    Args
+        a, b: float values
+        v   : number between a and b
+    
+    Returns:
+        a float value between 0.0 and 1.0
+
+
 ### [`isdefaultpal`](#isdefaultpal)
 
 ```py
@@ -6570,6 +6589,27 @@ Draw a Lemniscate fractal
     
     Returns:
         byref modified unsigned byte array
+
+
+### [`lerp`](#lerp)
+
+```py
+def lerp(a: float, b: float, f: float) -> float:
+```
+
+Calculates a number between two numbers at a specific increment.
+
+    Args:
+        a, b: float values
+        v   : a number between a and b
+              the amount to interpolate between the two values
+              where 0.0 equal to the first point,
+              0.1 is very near the first point
+              0.9 is very near the second point
+              etc
+    
+    Returns:
+        a float value between 0.0 and 1.0
 
 
 ### [`line`](#line)

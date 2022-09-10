@@ -81,6 +81,8 @@ from .mathlib import(
     initmatrix,
     intscalarmulvect,
     isinrange,
+    lerp,
+    invlerp,
     LSMslope,
     LSMYint,
     mirror,
