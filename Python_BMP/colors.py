@@ -1086,7 +1086,7 @@ def RGB2HSL(r: int, g: int, b: int
 def dichromaticpal(c1: int,
                    c2: int,
                    n: int) -> list[list[float]]:
-    """ Returns a dichromatic pallette base on
+    """ Returns a dichromatic palette base on
     two rgb color triplets packed as int
 
     Args:
