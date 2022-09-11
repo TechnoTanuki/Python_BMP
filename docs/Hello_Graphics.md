@@ -292,6 +292,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![TanBiomorph](../assets/fractals/tanbiomorph.bmp)](../Hello_MultiTanBiomorphfractal.py)
 
+[![TanBiomorphdrichroma](../assets/fractals/tanbiomorphdichroma.bmp)](../Hello_MultiTanBiomorphfractal_dichromatic.py)
+
 [![SinhBiomorph](../assets/fractals/sinhbiomorph.bmp)](../Hello_MultiSinhBiomorphfractal.py)
 
 [![CoshBiomorph](../assets/fractals/coshbiomorph.bmp)](../Hello_MultiCoshBiomorphfractal.py)

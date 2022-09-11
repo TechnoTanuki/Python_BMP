@@ -421,6 +421,15 @@ class TestFractal2filefunc(unittest.TestCase):
         self.filecmp(*p)
 
 
+    def testtanbiomorphdichroma(self):
+        p = self._filepaths("tanbiomorphdichroma.bmp")
+        tanbiomorph(p[0], 256, 256, # file and bitmap size
+        .8 + .9j, # complex number
+        3, # power of z
+        [-2.5, 2.5, -2.5, 2.5], # location to plot
+        [self.cl['darkblue'], self.cl['darkseagreen']]) # color
+        self.filecmp(*p)
+
     def testtanhbiomorph(self):
         p = self._filepaths("tanhbiomorph.bmp")
         tanhbiomorph(p[0], 256, 256, # file and bitmap size
