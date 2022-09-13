@@ -3798,6 +3798,25 @@ Filled Circle with Gradient
         byref modified unsigned byte array
 
 
+### [`graddichromiccircle`](#graddichromiccircle)
+
+```py
+def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int):
+```
+
+Filled Circle with dichromic Gradient
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        x, y, r   : center (x, y)
+                    and radius r
+        c1, c2    : int RGB packed color
+    
+    Returns:
+        byref modified unsigned byte array
+
+
 ### [`gradellipse`](#gradellipse)
 
 ```py
