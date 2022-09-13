@@ -2253,6 +2253,38 @@ Draws a Filled Circle
         byref modified unsigned byte array
 
 
+### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
+
+```py
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, colors: list[int, int], direction: int):
+```
+
+Draw a filled rectangle with a dichromatic linear gradient
+
+    Args:
+        bmp            : unsigned
+                         byte array
+                         with bmp format
+        x1, y1, x2, y2 : defines the
+                         rectangular
+                         region
+        lumrange       : [byte, byte]
+                         defines
+                         the range
+                         of the
+                         gradient
+        RGBfactors     : [r, g, b] items
+                         in list are
+                         unsigned floats
+                         from 0.0 to 1.0
+        direction      : 0 - vertical
+                         1 - horizontal
+    
+    Returns:
+        byref modified
+        unsigned byte array
+
+
 ### [`filledellipse`](#filledellipse)
 
 ```py

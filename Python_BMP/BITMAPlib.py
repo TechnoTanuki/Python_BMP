@@ -2186,6 +2186,66 @@ def filledgradrect(bmp: array,
             horiline(bmp, y, x1, x2, c)
 
 
+
+@func24bitonlyandentirerectinboundary
+def filleddichromaticgradrect(bmp: array,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        colors: list[int, int],
+        direction: int):
+    """Draw a filled rectangle with a dichromatic linear gradient
+
+    Args:
+        bmp            : unsigned
+                         byte array
+                         with bmp format
+        x1, y1, x2, y2 : defines the
+                         rectangular
+                         region
+        lumrange       : [byte, byte]
+                         defines
+                         the range
+                         of the
+                         gradient
+        RGBfactors     : [r, g, b] items
+                         in list are
+                         unsigned floats
+                         from 0.0 to 1.0
+        direction      : 0 - vertical
+                         1 - horizontal
+
+    Returns:
+        byref modified
+        unsigned byte array
+    """
+    x1, y1, x2, y2 = \
+        sortrecpoints(x1, y1, x2, y2)
+    dx = x2 - x1 + 1
+    dy = y2 - y1 + 1
+    r, g, b = int2RGB(colors[0])
+    u, v, w = int2RGB(colors[1])
+    if direction == 0:
+        xlim = x2 + 1
+        for x in range(x1, xlim):
+            f = setminmax(x / dx, 0.0, 1.0)
+            c = RGB2int(
+                    round(lerp(r, u, f)),
+                    round(lerp(g, v, f)),
+                    round(lerp(b, w, f))
+                       )
+            vertline(bmp, x, y1, y2, c)
+    else:
+        ylim = y2 + 1
+        for y in range(y1, ylim):
+            f = setminmax(y / dy, 0.0, 1.0)
+            c = RGB2int(
+                    round(lerp(r, u, f)),
+                    round(lerp(g, v, f)),
+                    round(lerp(b, w, f))
+                       )
+            horiline(bmp, y, x1, x2, c)
+
+
 @entirerectinboundary
 def itercopyrect(bmp: array,
         x1: int, y1: int,
