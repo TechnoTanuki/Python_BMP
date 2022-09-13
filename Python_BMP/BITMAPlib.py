@@ -3581,13 +3581,13 @@ def graddichromiccircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    r, g, b = int2RGB(c1)
+    a, b, c = int2RGB(c1)
     u, v, w = int2RGB(c2)
     for i in range(r - 1, 0, -1):
         f = i / r
-        thickcircle(bmp, x, y, i, 2, RGB2int(round(lerp(r, u, f)),
-                                             round(lerp(g, v, f)),
-                                             round(lerp(b, w, f))))
+        thickcircle(bmp, x, y, i, 2, RGB2int(round(lerp(a, u, f)),
+                                             round(lerp(b, v, f)),
+                                             round(lerp(c, w, f))))
 
 
 def orb(bmp: array,
