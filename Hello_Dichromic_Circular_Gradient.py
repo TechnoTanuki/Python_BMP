@@ -34,8 +34,7 @@ def main():
         bmp = newBMP(mx, my, 24) # RGB bitmap
         c = getX11colorname2RGBdict()
         (x, y) = centercoord(bmp) # How to get center of the bitmap
-        r = int(dist((x, y), (0, 0)))  # max radius of gradient
-        f(bmp, x, y, r, c['red'], c['green']) # compute gradient
+        f(bmp, x, y, x, c['white'], c['darkgreen']) # compute gradient
         file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
