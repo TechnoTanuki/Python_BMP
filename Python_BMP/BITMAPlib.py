@@ -4255,7 +4255,7 @@ def plotitalic8bitpatternupsidedownwithfn(
             ox = x
             mask = 128
             while mask > 0:
-                if (mask & bits)>0:
+                if (mask & bits) > 0:
                     if scale == 1 or inc <= 0:
                         plotxybit(bmp, x, y,
                             color)
