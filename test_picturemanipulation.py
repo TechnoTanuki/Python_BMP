@@ -136,6 +136,7 @@ class Test2filefunc(unittest.TestCase):
         cf = getRGBfactors()
         c = getcolorname2RGBdict()
         c1 = getX11colorname2RGBdict()
+        cwhite = c['white']
         cred = c['red']
         cyellow = c['yellow']
         cfcyan = cf['cyan']
@@ -644,6 +645,13 @@ class Test2filefunc(unittest.TestCase):
                         'raccoon-sphere.bmp',
                         sphere2file,
                         120, 170, 100, self.cfcyan)
+
+
+        def testdichromicsphere2file(self):
+                self.dotestcircregionwithparam(
+                        'raccoon-spheredichromic.bmp',
+                        sphere2file,
+                        120, 170, 100, [self.cyellow, self.cred])
 
 
         def testthickencirclearea2file(self):

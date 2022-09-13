@@ -12993,12 +12993,20 @@ def sphere(bmp: array,
         rgbfactors: (r,g,b) r, g and b
                     values range from
                     0.0 to 1.0
+                        or
+                    (int, int)
+                    packed RGB
 
     Returns:
         byref modified unsigned byte array
     """
-    gradcircle(bmp, x, y, r,
-        [255, 0], rgbfactors)
+    cp = len(rgbfactors)
+    if cp == 3:
+        gradcircle(bmp, x, y, r,
+            [255, 0], rgbfactors)
+    if cp == 2:
+        graddichromiccircle(bmp, x, y, r,
+        rgbfactors[0], rgbfactors[1])
 
 
 @intcircleparam
@@ -15090,6 +15098,10 @@ def sphere2file(ExistingBMPfile: str,
                          values
                          range from
                          0.0 to 1.0
+                             or
+                         (int, int)
+                         packed RGB
+
 
     Returns:
         new bitmap file

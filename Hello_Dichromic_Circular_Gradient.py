@@ -15,7 +15,6 @@ notice = """
 from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
-        dist,
         getX11colorname2RGBdict,
         graddichromiccircle as f,
         getfuncmetastr as meta,
