@@ -12180,6 +12180,9 @@ Saves an Astroid Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12210,6 +12213,9 @@ Saves a Barnsley Tree Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12306,6 +12312,9 @@ Saves a Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12361,6 +12370,9 @@ Saves a Fractal with two parameters to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12392,6 +12404,9 @@ Saves a Fractal with a parameter to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12512,6 +12527,9 @@ Saves a Julia Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12600,6 +12618,9 @@ Saves a Lemniscate Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12629,6 +12650,9 @@ Saves a Mandelbrot Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12659,6 +12683,9 @@ Saves a Marek Dragon Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12690,6 +12717,9 @@ Saves a Multi 2nd Tetration Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12721,6 +12751,9 @@ Saves a Multi Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12752,6 +12785,9 @@ Saves a Multi Biomorph Phase Variant Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12783,6 +12819,9 @@ Saves a Multi Biomorph Variant Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12813,6 +12852,9 @@ Saves a Multibrot Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12843,6 +12885,9 @@ Saves a Multicircle Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12873,6 +12918,9 @@ Saves a Multicorn Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12904,6 +12952,9 @@ Saves a Multi cos(z) Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12935,6 +12986,9 @@ Saves a Multi cosh(z) Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12966,6 +13020,9 @@ Saves a Multi exp(z) Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -12997,6 +13054,9 @@ Saves a Multi Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13027,6 +13087,9 @@ Saves a Multihyperbola Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13058,6 +13121,9 @@ Saves a Multi Julia Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13089,6 +13155,9 @@ Saves a Multi sin(z) Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13120,6 +13189,9 @@ Saves a Multi sinh(z) Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13150,6 +13222,9 @@ Saves a Multisuperellipse Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13181,6 +13256,9 @@ Saves a Multi tan(z) Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13212,6 +13290,9 @@ Saves a Multi tanh(z) Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13243,6 +13324,9 @@ Saves a Multi z conjugate Biomorph Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13292,6 +13376,9 @@ Saves a Newtons Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13323,6 +13410,9 @@ Saves a n gon Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -13480,6 +13570,9 @@ Saves a Tricorn Fractal to a file
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits

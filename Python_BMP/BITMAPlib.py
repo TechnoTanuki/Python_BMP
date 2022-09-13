@@ -10664,6 +10664,9 @@ def savefractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10675,9 +10678,10 @@ def savefractal2file(
     """
     bmp = newBMP(x, y, bitdepth)
     if bitdepth < 24:
-        if   len(rgbfactors) == 3:
+        cp = len(rgbfactors)
+        if cp == 3:
             setBMP2invshiftedmonochrome(bmp, rgbfactors)
-        elif len(rgbfactors) == 2:
+        elif cp == 2:
             setBMP2dichromaticpal(bmp, rgbfactors[0], rgbfactors[1])
     f(bmp, 0, 0, x, y,
     domain, rgbfactors, maxiter)
@@ -10708,6 +10712,9 @@ def savemultifractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10719,9 +10726,10 @@ def savemultifractal2file(
     """
     bmp = newBMP(x, y, bitdepth)
     if bitdepth < 24:
-        if len(rgbfactors) == 3:
+        cp = len(rgbfactors)
+        if cp == 3:
             setBMP2invshiftedmonochrome(bmp, rgbfactors)
-        elif len(rgbfactors) == 2:
+        elif cp == 2:
             setBMP2dichromaticpal(bmp, rgbfactors[0], rgbfactors[1])
     f(bmp, 0, 0, x, y, d,
     domain, rgbfactors, maxiter)
@@ -10749,6 +10757,9 @@ def savemandelbrotfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10788,6 +10799,9 @@ def savemultibrotfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10828,6 +10842,9 @@ def savemulticirclefractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10868,6 +10885,9 @@ def savemultihyperbolafractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10908,6 +10928,9 @@ def savemultisuperellipsefractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10948,6 +10971,9 @@ def saveastroidfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -10988,6 +11014,9 @@ def savelemniscatefractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11026,6 +11055,9 @@ def savetricornfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11065,6 +11097,9 @@ def savemulticornfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11105,6 +11140,9 @@ def savebarnsleytreefractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11145,6 +11183,9 @@ def savemarekdragon2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11187,6 +11228,9 @@ def savefractalwithparam2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11235,6 +11279,9 @@ def savefractalwith2param2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11281,6 +11328,9 @@ def savejuliafractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11321,6 +11371,9 @@ def savemultijuliafractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11361,6 +11414,9 @@ def savengonfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11401,6 +11457,9 @@ def savemultibiomorphvariantfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11441,6 +11500,9 @@ def savemultibiomorphphasevariantfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11481,6 +11543,9 @@ def savemultibiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11521,6 +11586,9 @@ def savemultisinbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11561,6 +11629,9 @@ def savemulticosbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11601,6 +11672,9 @@ def savemulticoshbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11641,6 +11715,9 @@ def savemultisinhbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11681,6 +11758,9 @@ def savemultiexpbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11719,6 +11799,9 @@ def savemulti2ndtetrationbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11757,6 +11840,9 @@ def savemultizconjugatebiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11795,6 +11881,9 @@ def savemultitanbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11833,6 +11922,9 @@ def savemultitanhbiomorphfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                        or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
@@ -11871,6 +11963,9 @@ def savenewtonsfractal2file(
         rgbfactors: [r, g, b] values
                     all range from
                     0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
         bitdepth: optional parameter
                   for bit depth
                   (1, 4, 8, 24) bits
