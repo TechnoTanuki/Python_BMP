@@ -430,6 +430,7 @@ class TestFractal2filefunc(unittest.TestCase):
         [self.cl['darkblue'], self.cl['darkseagreen']]) # color
         self.filecmp(*p)
 
+
     def testtanhbiomorph(self):
         p = self._filepaths("tanhbiomorph.bmp")
         tanhbiomorph(p[0], 256, 256, # file and bitmap size
