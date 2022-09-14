@@ -133,7 +133,7 @@ If there is demand for it I could in theory write a book based on this project l
 [![Sphere-dichroma](../assets/test_images/raccoon-spheredichromic.bmp)](../Hello_Dichromic_Circular_Gradient.py)
 
 
-[![Icoahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
+[![Icosahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
 
 * ![3D](../Hello_3D.py)
 * ![Surface Plot](../Hello_3D_surfaceplot.py)
