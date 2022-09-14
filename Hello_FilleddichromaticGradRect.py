@@ -28,13 +28,13 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my = 512 # bitmap size
+        mx = my = 256 # bitmap size
         bmp = newBMP(mx, my, 24) # 24 bit or (R,G,B) triplet of 8 bits each
         c = getcolorname2RGBdict() # get color info friendly names
         j = 10 # border in pixel
         #filledgradrect(bmp,x1,y1,x2,y2,lumrange,colorfactorlist,gradientdirection) 
         f(bmp, j, j, mx - j, my - j,
-         [c['brightblue'], c['brightred']], 0) # vertical gradient
+        c['brightblue'], c['brightred'], 0) # vertical gradient
         file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

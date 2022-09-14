@@ -2191,7 +2191,8 @@ def filledgradrect(bmp: array,
 def filleddichromaticgradrect(bmp: array,
         x1: int, y1: int,
         x2: int, y2: int,
-        colors: list[int, int],
+        c1: int,
+        c2: int,
         direction: int):
     """Draw a filled rectangle with a dichromatic linear gradient
 
@@ -2202,15 +2203,7 @@ def filleddichromaticgradrect(bmp: array,
         x1, y1, x2, y2 : defines the
                          rectangular
                          region
-        lumrange       : [byte, byte]
-                         defines
-                         the range
-                         of the
-                         gradient
-        RGBfactors     : [r, g, b] items
-                         in list are
-                         unsigned floats
-                         from 0.0 to 1.0
+        c1, c2         : int packed RGB
         direction      : 0 - vertical
                          1 - horizontal
 
@@ -2222,8 +2215,8 @@ def filleddichromaticgradrect(bmp: array,
         sortrecpoints(x1, y1, x2, y2)
     dx = x2 - x1 + 1
     dy = y2 - y1 + 1
-    r, g, b = int2RGB(colors[0])
-    u, v, w = int2RGB(colors[1])
+    r, g, b = int2RGB(c1)
+    u, v, w = int2RGB(c2)
     if direction == 0:
         xlim = x2 + 1
         for x in range(x1, xlim):
@@ -2244,6 +2237,35 @@ def filleddichromaticgradrect(bmp: array,
                     round(lerp(b, w, f))
                        )
             horiline(bmp, y, x1, x2, c)
+
+
+def fillbackgroundwithdichromaticgrad(bmp: array,
+        lumrange: list[int, int],
+        c1: int,
+        c2: int,
+        direction: int):
+    """Fills entire bitmap with a dichromatic linear gradient
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        lumrange  : [byte,byte] that
+                    define the range
+                    the of gradient
+        RGBfactors: [r,g,b] each item
+                    in list are unsigned
+                    floats from 0 to 1
+        direction : 0 - vertical
+                    1 - horizontal
+
+    Returns:
+        byref modified unsigned byte array
+    """
+    filleddichromaticgradrect(bmp, 0, 0,
+        getmaxx(bmp) - 1,
+        getmaxy(bmp) - 1,
+        c1, c2,
+        direction)
 
 
 @entirerectinboundary

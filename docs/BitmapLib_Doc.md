@@ -2168,6 +2168,30 @@ Draws an IFS fern fractal
         byref modified unsigned byte array
 
 
+### [`fillbackgroundwithdichromaticgrad`](#fillbackgroundwithdichromaticgrad)
+
+```py
+def fillbackgroundwithdichromaticgrad(bmp: array.array, lumrange: list[int, int], RGBfactors: list[float, float, float], direction: int):
+```
+
+Fills entire bitmap with a dichromatic linear gradient
+
+    Args:
+        bmp       : unsigned byte array
+                    with bmp format
+        lumrange  : [byte,byte] that
+                    define the range
+                    the of gradient
+        RGBfactors: [r,g,b] each item
+                    in list are unsigned
+                    floats from 0 to 1
+        direction : 0 - vertical
+                    1 - horizontal
+    
+    Returns:
+        byref modified unsigned byte array
+
+
 ### [`fillbackgroundwithgrad`](#fillbackgroundwithgrad)
 
 ```py
@@ -2256,7 +2280,7 @@ Draws a Filled Circle
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py
-def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, colors: list[int, int], direction: int):
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int):
 ```
 
 Draw a filled rectangle with a dichromatic linear gradient
@@ -2268,15 +2292,7 @@ Draw a filled rectangle with a dichromatic linear gradient
         x1, y1, x2, y2 : defines the
                          rectangular
                          region
-        lumrange       : [byte, byte]
-                         defines
-                         the range
-                         of the
-                         gradient
-        RGBfactors     : [r, g, b] items
-                         in list are
-                         unsigned floats
-                         from 0.0 to 1.0
+        c1, c2         : int packed RGB
         direction      : 0 - vertical
                          1 - horizontal
     
@@ -13981,6 +13997,10 @@ Renders a sphere
                          values
                          range from
                          0.0 to 1.0
+                             or
+                         (int, int)
+                         packed RGB
+    
     
     Returns:
         new bitmap file
@@ -14004,6 +14024,9 @@ Draws a Rendered Sphere
         rgbfactors: (r,g,b) r, g and b
                     values range from
                     0.0 to 1.0
+                        or
+                    (int, int)
+                    packed RGB
     
     Returns:
         byref modified unsigned byte array
