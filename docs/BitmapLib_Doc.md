@@ -8798,7 +8798,8 @@ Creates a new in-memory bitmap
 def newBMPwithPAL(x, y, bitdepth, rgbfactors):
 ```
 
-Create a in memory BMP with palette
+Create a new in memory BMP with palette
+based on rgbfactors and bitdepth
 
     Args:
         x       : width of bitmap
