@@ -2171,7 +2171,7 @@ Draws an IFS fern fractal
 ### [`fillbackgroundwithdichromaticgrad`](#fillbackgroundwithdichromaticgrad)
 
 ```py
-def fillbackgroundwithdichromaticgrad(bmp: array.array, lumrange: list[int, int], RGBfactors: list[float, float, float], direction: int):
+def fillbackgroundwithdichromaticgrad(bmp: array.array, lumrange: list[int, int], c1: int, c2: int, direction: int):
 ```
 
 Fills entire bitmap with a dichromatic linear gradient
@@ -8790,6 +8790,28 @@ Creates a new in-memory bitmap
     
     Returns:
         unsigned byte array with bitmap layout
+
+
+### [`newBMPwithPAL`](#newBMPwithPAL)
+
+```py
+def newBMPwithPAL(x, y, bitdepth, rgbfactors):
+```
+
+Create a in memory BMP with palette
+
+    Args:
+        x       : width of bitmap
+        y       : height of bitmap
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
 
 
 ### [`newtonsfractal`](#newtonsfractal)

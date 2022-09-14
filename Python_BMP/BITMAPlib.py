@@ -10689,6 +10689,32 @@ def plotflower(bmp: array,
         plotxybit(bmp, x, y, c)
 
 
+def newBMPwithPAL(x, y, bitdepth, rgbfactors):
+    """Create a in memory BMP with palette
+
+    Args:
+        x       : width of bitmap
+        y       : height of bitmap
+        bitdepth: optional parameter
+                  for bit depth
+                  (1, 4, 8, 24) bits
+        rgbfactors: [r, g, b] values
+                    all range from
+                    0.0 to 1.0
+                         or
+                    [int, int] values
+                    packed RGB
+    """
+    bmp = newBMP(x, y, bitdepth)
+    if bitdepth < 24:
+        cp = len(rgbfactors)
+        if cp == 3:
+            setBMP2invshiftedmonochrome(bmp, rgbfactors)
+        elif cp == 2:
+            setBMP2dichromaticpal(bmp, rgbfactors[0], rgbfactors[1])
+    return bmp
+
+
 def savefractal2file(
         file: str,
         x: int, y: int,
@@ -10723,13 +10749,7 @@ def savefractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        cp = len(rgbfactors)
-        if cp == 3:
-            setBMP2invshiftedmonochrome(bmp, rgbfactors)
-        elif cp == 2:
-            setBMP2dichromaticpal(bmp, rgbfactors[0], rgbfactors[1])
+    bmp = newBMPwithPAL(x, y, bitdepth, rgbfactors)
     f(bmp, 0, 0, x, y,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
@@ -10771,13 +10791,7 @@ def savemultifractal2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        cp = len(rgbfactors)
-        if cp == 3:
-            setBMP2invshiftedmonochrome(bmp, rgbfactors)
-        elif cp == 2:
-            setBMP2dichromaticpal(bmp, rgbfactors[0], rgbfactors[1])
+    bmp = newBMPwithPAL(x, y, bitdepth, rgbfactors)
     f(bmp, 0, 0, x, y, d,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
