@@ -451,6 +451,35 @@ def multijulia(P: float, Q: float,
     return maxiter
 
 
+def biomorphfunc(f: Callable,
+            z: complex,
+            d: float,
+            c: complex,
+            a: float,
+            maxiter: int):
+    """Biomorph Function
+
+    Args:
+        f : a function f(z, d, c)
+        z : complex number
+        d : float (exponent)
+        c : complex number
+        a : float (limit)
+        maxiter : when to break
+                  color compute
+
+    Returns:
+        int
+    """
+    for i in range(maxiter):
+        z = f(z, d, c)
+        if abs(z.real) > a and abs(z.imag) > a:
+            return i
+        if abs(z.real) > a or abs(z.imag) > a:
+            return maxiter
+    return maxiter
+
+
 def multibiomorph(P: float, Q: float,
         c: complex,
         d: float,
@@ -470,14 +499,10 @@ def multibiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                 z ** d + c,
+                 z := complex(P, Q),
+                 d, c, a,maxiter)
 
 
 def multibiomorphphasevariant(P: float, Q: float,
@@ -499,14 +524,10 @@ def multibiomorphphasevariant(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = z ** (d + abs(phase(z))) + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                 z ** (d + abs(phase(z))) + c,
+                 z := complex(P, Q),
+                 d, c, a, maxiter)
 
 
 def multisinbiomorph(P: float, Q: float,
@@ -528,14 +549,10 @@ def multisinbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = sin(z) + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                sin(z) + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multicosbiomorph(P: float, Q: float,
@@ -557,14 +574,10 @@ def multicosbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = cos(z) + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                cos(z) + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multisinhbiomorph(P: float, Q: float,
@@ -586,14 +599,10 @@ def multisinhbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = sinh(z) + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                sinh(z) + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multicoshbiomorph(P: float, Q: float,
@@ -615,14 +624,10 @@ def multicoshbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = cosh(z) + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                cosh(z) + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multitanbiomorph(P: float, Q: float,
@@ -644,14 +649,10 @@ def multitanbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = tan(z) + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                tan(z) + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multitanhbiomorph(P: float, Q: float,
@@ -673,14 +674,10 @@ def multitanhbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = tanh(z) + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                tanh(z) + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multiexpbiomorph(P: float, Q: float,
@@ -702,14 +699,10 @@ def multiexpbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = exp(z) + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                exp(z) + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multi2ndtetrationbiomorph(P: float, Q: float,
@@ -731,14 +724,10 @@ def multi2ndtetrationbiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = z**z + z**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                z ** z + z ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multizconjugatebiomorph(P: float, Q: float,
@@ -760,14 +749,10 @@ def multizconjugatebiomorph(P: float, Q: float,
     Returns:
         int
     """
-    z = complex(P, Q)
-    for i in range(maxiter):
-        z = z.conjugate()**d + c
-        if abs(z.real) > a and abs(z.imag) > a:
-            return i
-        if abs(z.real) > a or abs(z.imag) > a:
-            return maxiter
-    return maxiter
+    return biomorphfunc(f := lambda z, d, c:
+                z.conjugate() ** d + c,
+                z := complex(P, Q),
+                d, c, a, maxiter)
 
 
 def multibiomorphvariant(P: float, Q: float,
