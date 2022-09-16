@@ -11353,14 +11353,7 @@ def savefractalwith2param2file(
     Returns:
         a bitmap file
     """
-    bmp = newBMP(x, y, bitdepth)
-    if bitdepth < 24:
-        cp = len(rgbfactors)
-        if   cp == 3:
-            setBMP2invshiftedmonochrome(bmp, rgbfactors)
-        elif cp == 2:
-            setBMP2dichromaticpal(bmp, rgbfactors[0],
-                                       rgbfactors[1])
+    bmp = newBMPwithPAL(x, y, bitdepth, rgbfactors)
     retval = f(bmp, 0, 0, x, y, p1, p2,
     domain, rgbfactors, maxiter)
     saveBMP(file, bmp)
