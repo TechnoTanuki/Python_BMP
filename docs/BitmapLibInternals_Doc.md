@@ -743,7 +743,7 @@ Apply a by-ref function with no parameters and save
 def _usebyreffnwithpar2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam):
 ```
 
-Apply a 24-bit byref function
+Apply a byref function
 to a rectangular area and save
 
     Args:
