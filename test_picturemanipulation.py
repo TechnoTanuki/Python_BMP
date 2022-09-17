@@ -52,6 +52,7 @@ from Python_BMP.BITMAPlib import(
         eraseeverynthhorilineinregion2file,
         filledcircle2file,
         filledrect2file,
+        filledgradrect2file,
         fliphoricircregion2file,
         fliphorizontal2file,
         flipvertical2file,
@@ -197,6 +198,21 @@ class Test2filefunc(unittest.TestCase):
                 p = self._filepaths(filename)
                 func(self.ofile, p[0],
                         x1, y1, x2, y2, funcparam)
+                self.filecmp(*p)
+
+
+        def dotestrectregionwith3param(
+                self,
+                filename: str,
+                func: Callable,
+                x1: int, y1: int,
+                x2: int, y2: int,
+                funcparam1,
+                funcparam2,
+                funcparam3):
+                p = self._filepaths(filename)
+                func(self.ofile, p[0],
+                        x1, y1, x2, y2, funcparam1, funcparam2, funcparam3)
                 self.filecmp(*p)
 
 
@@ -485,6 +501,20 @@ class Test2filefunc(unittest.TestCase):
                         'raccoon-filledrectangle.bmp',
                         filledrect2file,
                         250, 60, 860, 666, self.cyellow)
+
+
+        def testfilledgradrect2file0(self):
+                self.dotestrectregionwith3param(
+                        'raccoon-filledgradrectangle0.bmp',
+                        filledgradrect2file,
+                        250, 60, 860, 666, [255, 0], self.cfyellow, 0)
+
+
+        def testfilledgradrect2file1(self):
+                self.dotestrectregionwith3param(
+                        'raccoon-filledgradrectangle1.bmp',
+                        filledgradrect2file,
+                        250, 60, 860, 666, [255, 0], self.cfyellow, 1)
 
 
         def testcolorfilterinregion2file(self):

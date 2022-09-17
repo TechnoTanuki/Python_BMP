@@ -918,9 +918,6 @@ def itermultifractal(
         func          : fractal function
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -977,9 +974,6 @@ def itermandelbrot(
                         to draw in
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1005,9 +999,6 @@ def iterjulia(
         domain        : coordinates in real
                         and imaginary plane
         c             : complex number
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1031,9 +1022,6 @@ def itertricorn(
                         to draw in
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1058,10 +1046,7 @@ def itermultibrot(
                         to draw in
         d             : power to raise z to
         mandelparam   : coordinates in real
-                        and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
+                       and imaginary plane
         maxiter       : when to break
                         color compute
 
@@ -1087,9 +1072,6 @@ def itermulticircle(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
 
     Yields:
@@ -1114,9 +1096,6 @@ def itermultihyperbola(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
 
     Yields:
@@ -1141,9 +1120,6 @@ def itermultisuperellipse(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
 
     Yields:
@@ -1168,9 +1144,6 @@ def iterastroid(
         r             : radius
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
 
     Yields:
@@ -1195,9 +1168,6 @@ def iterlemniscate(
         r             : radius
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
 
     Yields:
@@ -1222,9 +1192,6 @@ def itertetration(
         d             : threshold
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1250,9 +1217,6 @@ def iterxorfractal(
         d             : int modulo
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1278,9 +1242,6 @@ def iterxordivfractal(
         d             : int div
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1306,9 +1267,6 @@ def itersinjulia(
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1334,9 +1292,6 @@ def itercosjulia(
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1362,9 +1317,6 @@ def iterspiraljulia(
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1390,9 +1342,6 @@ def iterlamdbafractal(
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1420,9 +1369,6 @@ def itermultijulia(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1450,9 +1396,6 @@ def iterngonfractal(
         n             : floatexponent (sides)
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1480,9 +1423,6 @@ def itermultibiomorphvariant(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1510,9 +1450,6 @@ def itermultibiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1540,9 +1477,6 @@ def itermultibiomorphphasevariant(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1570,9 +1504,6 @@ def itermultisinbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1600,9 +1531,6 @@ def itermulticosbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1630,9 +1558,6 @@ def itermulticoshbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1660,9 +1585,6 @@ def itermultisinhbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1690,9 +1612,6 @@ def itermultitanbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1720,9 +1639,6 @@ def itermultitanhbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1750,9 +1666,6 @@ def itermultiexpbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1780,9 +1693,6 @@ def itermulti2ndtetrationbiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1810,9 +1720,6 @@ def itermultizconjugatebiomorph(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1838,9 +1745,6 @@ def itermulticorn(
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1866,9 +1770,6 @@ def iterbarnsleytree(
         d             : a complex number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 
@@ -1894,9 +1795,6 @@ def itermarekdragon(
         d             : irrational number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
 

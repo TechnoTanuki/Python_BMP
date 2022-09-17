@@ -121,7 +121,7 @@ made due to a header
     
     Returns:
         int value of offset to that data in byte array
-
+ + doc
 
 ### [`_8bmof`](#_8bmof)
 
@@ -737,13 +737,39 @@ Apply a by-ref function with no parameters and save
         new bitmap file
 
 
+### [`_usebyreffnwith3par2regnsv`](#_usebyreffnwith3par2regnsv)
+
+```py
+def _usebyreffnwith3par2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam1, funcparam2, funcparam3):
+```
+
+Apply a byref function with three parameters
+to a rectangular area and save
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : the rectangular
+                         area
+        func           : user defined
+                         function
+        funcparam1     : function
+        funcparam2       parameters
+        funcparam3
+    
+    Returns:
+        new bitmap file
+
+
 ### [`_usebyreffnwithpar2regnsv`](#_usebyreffnwithpar2regnsv)
 
 ```py
 def _usebyreffnwithpar2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam):
 ```
 
-Apply a byref function
+Apply a byref function with parameter
 to a rectangular area and save
 
     Args:

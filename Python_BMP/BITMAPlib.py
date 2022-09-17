@@ -13093,7 +13093,7 @@ def _usebyreffnwithpar2regnsv(
         x1: int, y1: int,
         x2: int, y2: int,
         func: Callable, funcparam):
-    """Apply a byref function
+    """Apply a byref function with parameter
     to a rectangular area and save
 
     Args:
@@ -13113,6 +13113,40 @@ def _usebyreffnwithpar2regnsv(
     """
     bmp = loadBMP(ExistingBMPfile)
     func(bmp, x1, y1, x2, y2, funcparam)
+    saveBMP(NewBMPfile, bmp)
+    print(sysmsg['savedareafunc'] %
+    (func.__name__, x1, y1, x2, y2,
+     ExistingBMPfile, NewBMPfile))
+
+
+@checklink
+def _usebyreffnwith3par2regnsv(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        func: Callable, funcparam1, funcparam2, funcparam3):
+    """Apply a byref function with three parameters
+    to a rectangular area and save
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : the rectangular
+                         area
+        func           : user defined
+                         function
+        funcparam1     : function
+        funcparam2       parameters
+        funcparam3
+
+    Returns:
+        new bitmap file
+    """
+    bmp = loadBMP(ExistingBMPfile)
+    func(bmp, x1, y1, x2, y2, funcparam1, funcparam2, funcparam3)
     saveBMP(NewBMPfile, bmp)
     print(sysmsg['savedareafunc'] %
     (func.__name__, x1, y1, x2, y2,
@@ -14847,6 +14881,41 @@ def filledrect2file(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2, filledrect,
         color)
+
+
+@functimer
+def filledgradrect2file(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        x1: int, y1: int,
+        x2: int, y2: int,
+        lumrange: list[int, int],
+        rgbfactors: list[float, float, float],
+        direction: int):
+    """Draws a Filled Gradient Rectangle to file
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular region
+        lumrange       : [byte, byte]
+                         luminosity range
+        rgbfactors     : [r, g, b] values
+                         range from
+                         0.0 to 1.0
+        direction      : 0 - vertical
+                         1 - horizontal
+
+    Returns:
+        new bitmap file
+    """
+    _usebyreffnwith3par2regnsv(
+        ExistingBMPfile, NewBMPfile,
+        x1, y1, x2, y2, filledgradrect,
+        lumrange, rgbfactors, direction)
 
 
 @functimer

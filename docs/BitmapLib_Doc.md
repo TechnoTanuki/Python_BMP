@@ -2320,6 +2320,33 @@ Filled Ellipse
         byref modified unsigned byte array
 
 
+### [`filledgradrect2file`](#filledgradrect2file)
+
+```py
+def filledgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int], rgbfactors: list[float, float, float], direction: int):
+```
+
+Draws a Filled Gradient Rectangle to file
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular region
+        lumrange       : [byte, byte]
+                         luminosity range
+        rgbfactors     : [r, g, b] values
+                         range from
+                         0.0 to 1.0
+        direction      : 0 - vertical
+                         1 - horizontal
+    
+    Returns:
+        new bitmap file
+
+
 ### [`filledgradrect`](#filledgradrect)
 
 ```py
@@ -5102,9 +5129,6 @@ Yields a Astroid fractal
         r             : radius
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
     
     Yields:
@@ -5125,9 +5149,6 @@ Yields a Barnsley Tree Fractal
         d             : a complex number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5348,9 +5369,6 @@ Yields a Cos(z) Julia Fractal
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5729,9 +5747,6 @@ Yields a Lambda Fractal
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5753,9 +5768,6 @@ Yields a Lemniscate fractal
         r             : radius
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
     
     Yields:
@@ -5821,9 +5833,6 @@ Yields a Marek Dragon Fractal
         d             : irrational number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5846,9 +5855,6 @@ Yields a 2nd Tetration Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5871,9 +5877,6 @@ Yields a Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5896,9 +5899,6 @@ Yields a Multi Biomorph phase variant fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5921,9 +5921,6 @@ Yields a Multi Biomorph Variant fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -5944,10 +5941,7 @@ Yields a Multibrot set
                         to draw in
         d             : power to raise z to
         mandelparam   : coordinates in real
-                        and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
+                       and imaginary plane
         maxiter       : when to break
                         color compute
     
@@ -5969,9 +5963,6 @@ Yields a Multicircle fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
     
     Yields:
@@ -5992,9 +5983,6 @@ Yields a Multicorn set
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6017,9 +6005,6 @@ Yields a Cos(z) Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6042,9 +6027,6 @@ Yields a Cosh(z) Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6067,9 +6049,6 @@ Yields a exp(z) Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6091,9 +6070,6 @@ Yields a Multihyperbola fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
     
     Yields:
@@ -6115,9 +6091,6 @@ Yields a Multijulia set
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6140,9 +6113,6 @@ Yields a Sin(z) Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6165,9 +6135,6 @@ Yields a Sinh(z) Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6189,9 +6156,6 @@ Yields a Multisuperellipse fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : color limit
     
     Yields:
@@ -6213,9 +6177,6 @@ Yields a Tan(z) Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6238,9 +6199,6 @@ Yields a Tanh(z) Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6263,9 +6221,6 @@ Yields a z conjugate Multi Biomorph fractal
         d             : power to raise z to
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6312,9 +6267,6 @@ Yields a n-gon fractal
         n             : floatexponent (sides)
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6347,9 +6299,6 @@ Yields a Sin(z) Julia Fractal
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6371,9 +6320,6 @@ Yields a Spiral Julia Fractal
         c             : Complex Number
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6456,9 +6402,6 @@ Yields a Tetration Fractal
         d             : threshold
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6479,9 +6422,6 @@ Yields a Tricorn set
                         to draw in
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6503,9 +6443,6 @@ Yields a Xor int div Fractal
         d             : int div
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     
@@ -6527,9 +6464,6 @@ Yields a Xor Fractal
         d             : int modulo
         domain        : coordinates in real
                         and imaginary plane
-        rgbfactors    : [r, g, b] values
-                        range from
-                        0.0 to 1.0
         maxiter       : when to break
                         color compute
     

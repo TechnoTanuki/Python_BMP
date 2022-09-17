@@ -95,7 +95,10 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Filled Rectangle](../assets/test_images/raccoon-filledrectangle.bmp)](../Hello_FilledRectangle.py)
 
-![Filled Gradient Rectangle](../Hello_FilledGradRect.py)
+[![Filled Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0.bmp)](../Hello_FilledhoriGradRect.py)
+
+[![Filled Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1.bmp)](../Hello_FilledvertGradRect.py)
+
 
 **Regular Polygons**
 ![Regular Polygon](../Hello_Regular_Polygon.py)
