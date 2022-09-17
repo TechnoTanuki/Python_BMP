@@ -2277,6 +2277,29 @@ Draws a Filled Circle
         byref modified unsigned byte array
 
 
+### [`filleddichromaticgradrect2file`](#filleddichromaticgradrect2file)
+
+```py
+def filleddichromaticgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int):
+```
+
+Draws a Filled Dichromatic Gradient Rectangle to file
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : defines the
+                         rectangular region
+        c1, c2         : int packed RGB
+        direction      : 0 - vertical
+                         1 - horizontal
+    
+    Returns:
+        new bitmap file
+
+
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py

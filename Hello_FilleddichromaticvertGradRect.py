@@ -1,5 +1,5 @@
 notice = """
-Dichromatic Gradient Rectangle Demo
+Dichromatic Vertical Gradient Rectangle
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -32,7 +32,6 @@ def main():
         bmp = newBMP(mx, my, 24) # 24 bit or (R,G,B) triplet of 8 bits each
         c = getcolorname2RGBdict() # get color info friendly names
         j = 10 # border in pixel
-        #filledgradrect(bmp,x1,y1,x2,y2,lumrange,colorfactorlist,gradientdirection) 
         f(bmp, j, j, mx - j, my - j,
         c['brightblue'], c['brightred'], 0) # vertical gradient
         file = f'Hello{f.__name__}.bmp' # file name

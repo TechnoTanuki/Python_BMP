@@ -121,7 +121,7 @@ made due to a header
     
     Returns:
         int value of offset to that data in byte array
- + doc
+
 
 ### [`_8bmof`](#_8bmof)
 

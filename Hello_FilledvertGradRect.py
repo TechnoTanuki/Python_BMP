@@ -32,9 +32,8 @@ def main():
         bmp = newBMP(mx, my, 24) # 24 bit or (R,G,B) triplet of 8 bits each
         cf = getRGBfactors() # get color info friendly names
         j = 10 # border in pixel
-        #filledgradrect(bmp,x1,y1,x2,y2,lumrange,colorfactorlist,gradientdirection) 
         f(bmp, j, j, mx - j, my - j,
-         [0, 255], cf['brightblue'], 1) # vertical gradient
+         [0, 255], cf['brightblue'], 0) # vertical gradient
         file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

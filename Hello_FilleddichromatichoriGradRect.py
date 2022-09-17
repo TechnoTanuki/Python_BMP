@@ -1,6 +1,6 @@
 notice = """
-Filled Horizontal Gradient Rectangle
------------------------------------
+Dichromatic Horizontal Gradient Rectangle
+ -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
 |-----------------------------------|
@@ -14,8 +14,8 @@ Filled Horizontal Gradient Rectangle
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        getRGBfactors,
-        filledgradrect as f,
+        getcolorname2RGBdict,
+        filleddichromaticgradrect as f,
         getfuncmetastr as meta,
         saveBMP
         )
@@ -28,12 +28,12 @@ def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
-        mx = my = 512 # bitmap size
+        mx = my = 256 # bitmap size
         bmp = newBMP(mx, my, 24) # 24 bit or (R,G,B) triplet of 8 bits each
-        cf = getRGBfactors() # get color info friendly names
+        c = getcolorname2RGBdict() # get color info friendly names
         j = 10 # border in pixel
         f(bmp, j, j, mx - j, my - j,
-         [0, 255], cf['brightblue'], 1) # horizontal gradient
+        c['brightblue'], c['brightred'], 1) # horizontal gradient
         file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
