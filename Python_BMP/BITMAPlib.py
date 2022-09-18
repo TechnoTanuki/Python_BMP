@@ -2221,22 +2221,22 @@ def filleddichromaticgradrect(bmp: array,
         xlim = x2 + 1
         for x in range(x1, xlim):
             f = setminmax(x / dx, 0.0, 1.0)
-            c = RGB2int(
+            vertline(bmp, x, y1, y2,
+             RGB2int(
                     round(lerp(r, u, f)),
                     round(lerp(g, v, f)),
                     round(lerp(b, w, f))
-                       )
-            vertline(bmp, x, y1, y2, c)
+                       ))
     else:
         ylim = y2 + 1
         for y in range(y1, ylim):
             f = setminmax(y / dy, 0.0, 1.0)
-            c = RGB2int(
+            horiline(bmp, y, x1, x2,
+             RGB2int(
                     round(lerp(r, u, f)),
                     round(lerp(g, v, f)),
                     round(lerp(b, w, f))
-                       )
-            horiline(bmp, y, x1, x2, c)
+                       ))
 
 
 def fillbackgroundwithdichromaticgrad(bmp: array,
