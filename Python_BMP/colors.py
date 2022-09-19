@@ -16,6 +16,7 @@
 
 from random import randint
 from array import array
+from typing import Callable
 from .conditionaltools import iif
 from .bmppal import(
     bmpstdpal,
@@ -1127,3 +1128,28 @@ def RGB2BGRAlist(rgblist: list[list[int]]) -> list[list[int]]:
 
     """
     return [[b, g, r, 0] for [r, g, b] in rgblist]
+
+
+def interpolateRGB(
+        f: Callable,
+        r1: int, r2: int,
+        g1: int, g2: int,
+        b1: int, b2: int,
+        v: float) -> list[int]:
+    """ Returns a packed int RGB value interpolated
+    with functon f and float value v
+
+    Args:
+        f     : interpolation function
+        r1, r2: min and max of red
+        g1, g2: min and max of green
+        b1, b2: min and max of blue
+        v     : value for interpolaton
+                between 0.0 and 1.0
+
+    Returns:
+        (R: int G: int, B: int)
+    """
+    return (round(f(r1, r2, v)),
+            round(f(g1, g2, v)),
+            round(f(b1, b2, v)))

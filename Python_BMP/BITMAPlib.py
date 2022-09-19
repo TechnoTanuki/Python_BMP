@@ -191,6 +191,7 @@ from .colors import(
     gammacorrect,
     getdefaultbitpal,
     getdefaultlumrange,
+    interpolateRGB,
     int2BGRarr,
     int2RGB,
     int2RGBarr,
@@ -2193,7 +2194,8 @@ def filleddichromaticgradrect(bmp: array,
         x2: int, y2: int,
         c1: int,
         c2: int,
-        direction: int):
+        direction: int, 
+        fn: Callable = lerp):
     """Draw a filled rectangle with a dichromatic linear gradient
 
     Args:
@@ -2215,28 +2217,22 @@ def filleddichromaticgradrect(bmp: array,
         sortrecpoints(x1, y1, x2, y2)
     dx = x2 - x1 + 1
     dy = y2 - y1 + 1
-    r, g, b = int2RGB(c1)
-    u, v, w = int2RGB(c2)
+    r1, g1, b1 = int2RGB(c1)
+    r2, g2, b2 = int2RGB(c2)
     if direction == 0:
         xlim = x2 + 1
         for x in range(x1, xlim):
-            f = setminmax(x / dx, 0.0, 1.0)
             vertline(bmp, x, y1, y2,
-             RGB2int(
-                    round(lerp(r, u, f)),
-                    round(lerp(g, v, f)),
-                    round(lerp(b, w, f))
-                       ))
+             RGB2int(*interpolateRGB(
+             fn, r1, r2, g1, g2, b1, b2,
+             setminmax(x / dx, 0.0, 1.0))))
     else:
         ylim = y2 + 1
         for y in range(y1, ylim):
-            f = setminmax(y / dy, 0.0, 1.0)
             horiline(bmp, y, x1, x2,
-             RGB2int(
-                    round(lerp(r, u, f)),
-                    round(lerp(g, v, f)),
-                    round(lerp(b, w, f))
-                       ))
+             RGB2int(*interpolateRGB(
+             fn, r1, r2, g1, g2, b1, b2,
+             setminmax(y / dy, 0.0, 1.0))))
 
 
 def fillbackgroundwithdichromaticgrad(bmp: array,
