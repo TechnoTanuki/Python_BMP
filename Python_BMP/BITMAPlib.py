@@ -3586,7 +3586,7 @@ def gradcircle(bmp: array,
 @func24bitonly
 def graddichromiccircle(bmp: array,
         x: int, y: int, r: int,
-        c1: int, c2: int):
+        c1: int, c2: int, fn: Callable = lerp):
     """Filled Circle with dichromic Gradient
 
     Args:
@@ -3599,13 +3599,12 @@ def graddichromiccircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    a, b, c = int2RGB(c1)
-    u, v, w = int2RGB(c2)
+    r1, g1, b1 = int2RGB(c1)
+    r2, g2, b2 = int2RGB(c2)
     for i in range(r - 1, 0, -1):
-        f = i / r
-        thickcircle(bmp, x, y, i, 2, RGB2int(round(lerp(a, u, f)),
-                                             round(lerp(b, v, f)),
-                                             round(lerp(c, w, f))))
+        thickcircle(bmp, x, y, i, 2,
+        RGB2int(*interpolateRGB(fn,
+        r1, r2, g1, g2, b1, b2, i / r)))
 
 
 def orb(bmp: array,
