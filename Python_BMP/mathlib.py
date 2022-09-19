@@ -1707,3 +1707,30 @@ def invlerp(a: float,
         a float value between 0.0 and 1.0
     """
     return (v - a) / (b - a)
+
+
+def smoothstep(a: float,
+               b: float,
+               v: float) -> float:
+    """
+    Sigmoid-like interpolation and clamping function
+
+    Returns a number between 0 and 1
+    for a value (v) given that is
+    between values a and b
+
+
+    Args
+        a, b: float values
+        v   : number between a and b
+
+    Returns:
+        a float value between 0.0 and 1.0
+    """
+    if v < a:
+        return 0
+    if v >= b:
+        return 1
+    v = (v - a) / (b - a)
+    return v * v * (3 - 2 * v)
+
