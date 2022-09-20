@@ -2322,7 +2322,7 @@ Draws a Filled Dichromatic Gradient Rectangle to file
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py
-def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000001D9D2D7AE60>):
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000001B7D760AE60>):
 ```
 
 Draw a filled rectangle with a dichromatic linear gradient
@@ -3886,7 +3886,7 @@ Filled Circle with Gradient
 ### [`graddichromiccircle`](#graddichromiccircle)
 
 ```py
-def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x000001D9D2D7AE60>):
+def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x000001B7D760AE60>):
 ```
 
 Filled Circle with dichromic Gradient
@@ -6684,8 +6684,7 @@ Calculates a number between two numbers at a specific increment.
 
     Args:
         a, b: float values
-        v   : a number between a and b
-              the amount to interpolate between the two values
+        f   : the amount to interpolate between the two values
               where 0.0 equal to the first point,
               0.1 is very near the first point
               0.9 is very near the second point
@@ -14014,6 +14013,27 @@ Sigmoid-like interpolation and clamping function
     Args
         a, b: float values
         v   : number between a and b
+    
+    Returns:
+        a float value between 0.0 and 1.0
+
+
+### [`smoothsteplerp`](#smoothsteplerp)
+
+```py
+def smoothsteplerp(a: float, b: float, f: float) -> float:
+```
+
+Calculates a number between two numbers at a specific increment.
+with sigmoid like smoothing
+
+    Args:
+        a, b: float values
+        f   : the amount to interpolate between the two values
+              where 0.0 equal to the first point,
+              0.1 is very near the first point
+              0.9 is very near the second point
+              etc
     
     Returns:
         a float value between 0.0 and 1.0
