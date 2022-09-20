@@ -1750,7 +1750,11 @@ def smoothstep(a: float,
     Returns:
         a float value between 0.0 and 1.0
     """
-    v = (clamp(v, a, b) - a) / (b - a)
+    d = b - a
+    if d != 0:
+        v = (clamp(v, a, b) - a) / d
+    else:
+        v = 1
     return v * v * (3 - 2 * v)
 
 
