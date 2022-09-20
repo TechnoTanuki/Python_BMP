@@ -17,6 +17,7 @@ and other maths
 """
 from cmath import exp
 from math import(
+    asin,
     acos,
     atan,
     cos,
@@ -1709,13 +1710,36 @@ def invlerp(a: float,
     return (v - a) / (b - a)
 
 
+def clamp(x: float,
+          a: float,
+          b: float) -> float:
+    """
+    Returns a number between a and b
+    for a value x given that is
+    between values a and b
+
+
+    Args
+        x, a, b,: float values
+
+
+    Returns:
+        a float value between a and b
+    """
+    if x < a:
+        x = a
+    if x > b:
+        x = b
+    return x
+
+
 def smoothstep(a: float,
                b: float,
                v: float) -> float:
     """
     Sigmoid-like interpolation and clamping function
 
-    Returns a number between 0 and 1
+    Returns a number between 0.0 and 1.0
     for a value (v) given that is
     between values a and b
 
@@ -1727,10 +1751,23 @@ def smoothstep(a: float,
     Returns:
         a float value between 0.0 and 1.0
     """
-    if v < a:
-        return 0
-    if v >= b:
-        return 1
-    v = (v - a) / (b - a)
+    v = (clamp(v, a, b) - a) / (b - a)
     return v * v * (3 - 2 * v)
+
+
+def invsmoothstep(x: float):
+    """Inverse Sigmoid-like interpolation
+
+    Returns a number between 0.0 and 1.0
+    for a value x given that is
+    between 0.0 and 1.0
+
+    Args
+        x: float value between 0.0 and 1.0
+
+    Returns:
+        a float value between 0.0 and 1.0
+    """
+    return 0.5 - sin(asin(1.0 - 2.0 * x) / 3.0)
+
 

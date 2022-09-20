@@ -822,6 +822,25 @@ Draws a circle
         byref modified unsigned byte array
 
 
+### [`clamp`](#clamp)
+
+```py
+def clamp(x: float, a: float, b: float) -> float:
+```
+
+Returns a number between a and b
+for a value x given that is
+between values a and b
+
+    
+    Args
+        x, a, b,: float values
+    
+    
+    Returns:
+        a float value between a and b
+
+
 ### [`cliffordattractor`](#cliffordattractor)
 
 ```py
@@ -2303,7 +2322,7 @@ Draws a Filled Dichromatic Gradient Rectangle to file
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py
-def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int):
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000001D9D2D7AE60>):
 ```
 
 Draw a filled rectangle with a dichromatic linear gradient
@@ -3867,7 +3886,7 @@ Filled Circle with Gradient
 ### [`graddichromiccircle`](#graddichromiccircle)
 
 ```py
-def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int):
+def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x000001D9D2D7AE60>):
 ```
 
 Filled Circle with dichromic Gradient
@@ -4833,6 +4852,27 @@ Decorator to test if the
         caller function
 
 
+### [`interpolateRGB`](#interpolateRGB)
+
+```py
+def interpolateRGB(f: Callable, r1: int, r2: int, g1: int, g2: int, b1: int, b2: int, v: float) -> list[int]:
+```
+
+Returns a packed int RGB value interpolated
+with functon f and float value v
+
+    Args:
+        f     : interpolation function
+        r1, r2: min and max of red
+        g1, g2: min and max of green
+        b1, b2: min and max of blue
+        v     : value for interpolaton
+                between 0.0 and 1.0
+    
+    Returns:
+        (R: int G: int, B: int)
+
+
 ### [`intlinevec`](#intlinevec)
 
 ```py
@@ -5037,6 +5077,25 @@ between values a and b
     Args
         a, b: float values
         v   : number between a and b
+    
+    Returns:
+        a float value between 0.0 and 1.0
+
+
+### [`invsmoothstep`](#invsmoothstep)
+
+```py
+def invsmoothstep(x: float):
+```
+
+Inverse Sigmoid-like interpolation
+
+    Returns a number between 0.0 and 1.0
+    for a value x given that is
+    between 0.0 and 1.0
+    
+    Args
+        x: float value between 0.0 and 1.0
     
     Returns:
         a float value between 0.0 and 1.0
@@ -13937,6 +13996,27 @@ Draw a Sin(z) Julia Set
     
     Returns:
         byref modified unsigned byte array
+
+
+### [`smoothstep`](#smoothstep)
+
+```py
+def smoothstep(a: float, b: float, v: float) -> float:
+```
+
+Sigmoid-like interpolation and clamping function
+
+    Returns a number between 0.0 and 1.0
+    for a value (v) given that is
+    between values a and b
+    
+    
+    Args
+        a, b: float values
+        v   : number between a and b
+    
+    Returns:
+        a float value between 0.0 and 1.0
 
 
 ### [`sortrecpoints`](#sortrecpoints)
