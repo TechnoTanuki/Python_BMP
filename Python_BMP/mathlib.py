@@ -1707,9 +1707,11 @@ def invlerp(a: float,
         a float value between 0.0 and 1.0
     """
     d = b - a
-    if d == 0:
-        d = 1
-    return (v - a) / d
+    if d != 0:
+        v = (v - a) / d
+    else:
+        v = 1
+    return v
 
 
 def clamp(x: float,
