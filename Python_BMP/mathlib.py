@@ -1736,7 +1736,7 @@ def smoothstep(a: float,
                b: float,
                v: float) -> float:
     """
-    Sigmoid-like interpolation and clamping function
+    Sigmoid-like interpolation
 
     Returns a number between 0.0 and 1.0
     for a value (v) given that is
@@ -1752,7 +1752,7 @@ def smoothstep(a: float,
     """
     d = b - a
     if d != 0:
-        v = (clamp(v, a, b) - a) / d
+        v = (v - a) / d
     else:
         v = 1
     return v * v * (3 - 2 * v)
