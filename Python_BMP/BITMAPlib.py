@@ -96,6 +96,7 @@ from .mathlib import(
     setmin,
     setminmax,
     smoothstep,
+    smoothsteplerp,
     invsmoothstep,
     subvect,
     swapxy,
