@@ -2322,7 +2322,7 @@ Draws a Filled Dichromatic Gradient Rectangle to file
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py
-def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000001B7D760AE60>):
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000002A62FB4AE60>):
 ```
 
 Draw a filled rectangle with a dichromatic linear gradient
@@ -3886,7 +3886,7 @@ Filled Circle with Gradient
 ### [`graddichromiccircle`](#graddichromiccircle)
 
 ```py
-def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x000001B7D760AE60>):
+def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x000002A62FB4AE60>):
 ```
 
 Filled Circle with dichromic Gradient
@@ -6691,7 +6691,7 @@ Calculates a number between two numbers at a specific increment.
               etc
     
     Returns:
-        a float value between 0.0 and 1.0
+        a float value between a and b
 
 
 ### [`line`](#line)

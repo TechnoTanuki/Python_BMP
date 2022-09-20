@@ -1685,7 +1685,7 @@ def lerp(a: float,
               etc
 
     Returns:
-        a float value between 0.0 and 1.0
+        a float value between a and b
     """
     return (1.0 - f) * a + f * b
 
@@ -1788,4 +1788,4 @@ def smoothsteplerp(a: float,
     Returns:
         a float value between 0.0 and 1.0
     """
-    return smoothstep(a, b, invlerp(a, b, f))
+    return smoothstep(a, b, lerp(a, b, f))
