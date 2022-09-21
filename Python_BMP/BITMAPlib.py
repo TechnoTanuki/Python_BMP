@@ -13119,13 +13119,13 @@ def _usebyreffnwithpar2regnsv(
 
 
 @checklink
-def _usebyreffnwith3par2regnsv(
+def _usebyreffnwithvarpar2regnsv(
         ExistingBMPfile: str,
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int,
-        func: Callable, funcparam1, funcparam2, funcparam3):
-    """Apply a byref function with three parameters
+        func: Callable, *param):
+    """Apply a byref function with parameters
     to a rectangular area and save
 
     Args:
@@ -13137,15 +13137,13 @@ def _usebyreffnwith3par2regnsv(
                          area
         func           : user defined
                          function
-        funcparam1     : function
-        funcparam2       parameters
-        funcparam3
+        *param  : function parameters
 
     Returns:
         new bitmap file
     """
     bmp = loadBMP(ExistingBMPfile)
-    func(bmp, x1, y1, x2, y2, funcparam1, funcparam2, funcparam3)
+    func(bmp, x1, y1, x2, y2, *param)
     saveBMP(NewBMPfile, bmp)
     print(sysmsg['savedareafunc'] %
     (func.__name__, x1, y1, x2, y2,
@@ -14911,7 +14909,7 @@ def filledgradrect2file(
     Returns:
         new bitmap file
     """
-    _usebyreffnwith3par2regnsv(
+    _usebyreffnwithvarpar2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2, filledgradrect,
         lumrange, rgbfactors, direction)
@@ -14924,7 +14922,8 @@ def filleddichromaticgradrect2file(
         x1: int, y1: int,
         x2: int, y2: int,
         c1: int, c2: int,
-        direction: int):
+        direction: int,
+        fn: Callable = lerp):
     """Draws a Filled Dichromatic Gradient Rectangle to file
 
     Args:
@@ -14941,10 +14940,10 @@ def filleddichromaticgradrect2file(
     Returns:
         new bitmap file
     """
-    _usebyreffnwith3par2regnsv(
+    _usebyreffnwithvarpar2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2, filleddichromaticgradrect,
-        c1, c2, direction)
+        c1, c2, direction, fn)
 
 
 @functimer

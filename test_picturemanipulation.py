@@ -114,6 +114,7 @@ from Python_BMP.BITMAPlib import(
         resizeNtimesbigger2file,
         resizeNtimessmaller2file,
         sphere2file,
+        smoothsteplerp,
         thickencirclearea2file,
         thresholdadjcircregion2file,
         thresholdadjust2file,
@@ -195,25 +196,10 @@ class Test2filefunc(unittest.TestCase):
                 func: Callable,
                 x1: int, y1: int,
                 x2: int, y2: int,
-                funcparam):
+                *funcparam):
                 p = self._filepaths(filename)
                 func(self.ofile, p[0],
-                        x1, y1, x2, y2, funcparam)
-                self.filecmp(*p)
-
-
-        def dotestrectregionwith3param(
-                self,
-                filename: str,
-                func: Callable,
-                x1: int, y1: int,
-                x2: int, y2: int,
-                funcparam1,
-                funcparam2,
-                funcparam3):
-                p = self._filepaths(filename)
-                func(self.ofile, p[0],
-                        x1, y1, x2, y2, funcparam1, funcparam2, funcparam3)
+                        x1, y1, x2, y2, *funcparam)
                 self.filecmp(*p)
 
 
@@ -505,31 +491,45 @@ class Test2filefunc(unittest.TestCase):
 
 
         def testfilledgradrect2file0(self):
-                self.dotestrectregionwith3param(
+                self.dotestrectregionwithparam(
                         'raccoon-filledgradrectangle0.bmp',
                         filledgradrect2file,
                         250, 60, 860, 666, [255, 0], self.cfyellow, 0)
 
 
         def testfilledgradrect2file1(self):
-                self.dotestrectregionwith3param(
+                self.dotestrectregionwithparam(
                         'raccoon-filledgradrectangle1.bmp',
                         filledgradrect2file,
                         250, 60, 860, 666, [255, 0], self.cfyellow, 1)
 
 
         def testfilleddichromaticgradrect2file0(self):
-                self.dotestrectregionwith3param(
+                self.dotestrectregionwithparam(
                         'raccoon-filleddichromaticgradrectangle0.bmp',
                         filleddichromaticgradrect2file,
                         250, 60, 860, 666, self.cred, self.cyellow, 0)
 
 
         def testfilleddichromaticgradrect2file1(self):
-                self.dotestrectregionwith3param(
+                self.dotestrectregionwithparam(
                         'raccoon-filleddichromaticgradrectangle1.bmp',
                         filleddichromaticgradrect2file,
                         250, 60, 860, 666, self.cred, self.cyellow, 1)
+
+
+        def testfilleddichromaticgradrect2file0(self):
+                self.dotestrectregionwithparam(
+                        'raccoon-filleddichromaticgradrectangle0smoothstep.bmp',
+                        filleddichromaticgradrect2file,
+                        250, 60, 860, 666, self.cred, self.cyellow, 0, smoothsteplerp)
+
+
+        def testfilleddichromaticgradrect2file1(self):
+                self.dotestrectregionwithparam(
+                        'raccoon-filleddichromaticgradrectangle1smoothstep.bmp',
+                        filleddichromaticgradrect2file,
+                        250, 60, 860, 666, self.cred, self.cyellow, 1, smoothsteplerp)
 
 
         def testcolorfilterinregion2file(self):

@@ -737,32 +737,6 @@ Apply a by-ref function with no parameters and save
         new bitmap file
 
 
-### [`_usebyreffnwith3par2regnsv`](#_usebyreffnwith3par2regnsv)
-
-```py
-def _usebyreffnwith3par2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable, funcparam1, funcparam2, funcparam3):
-```
-
-Apply a byref function with three parameters
-to a rectangular area and save
-
-    Args:
-        ExistingBMPfile: Whole path to
-                         existing file
-        NewBMPfile     : New file to
-                         save changes in
-        x1, y1, x2, y2 : the rectangular
-                         area
-        func           : user defined
-                         function
-        funcparam1     : function
-        funcparam2       parameters
-        funcparam3
-    
-    Returns:
-        new bitmap file
-
-
 ### [`_usebyreffnwithpar2regnsv`](#_usebyreffnwithpar2regnsv)
 
 ```py
@@ -804,6 +778,30 @@ Apply a by-ref function with parameter and save
         func           : user defined
                          function
         funcparam      : function parameter
+    
+    Returns:
+        new bitmap file
+
+
+### [`_usebyreffnwithvarpar2regnsv`](#_usebyreffnwithvarpar2regnsv)
+
+```py
+def _usebyreffnwithvarpar2regnsv(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, func: Callable, *param):
+```
+
+Apply a byref function with parameters
+to a rectangular area and save
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x1, y1, x2, y2 : the rectangular
+                         area
+        func           : user defined
+                         function
+        *param  : function parameters
     
     Returns:
         new bitmap file
