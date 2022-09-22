@@ -13091,39 +13091,6 @@ def _usebyreffnwithpar2regnsv(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int,
-        func: Callable, funcparam):
-    """Apply a byref function with parameter
-    to a rectangular area and save
-
-    Args:
-        ExistingBMPfile: Whole path to
-                         existing file
-        NewBMPfile     : New file to
-                         save changes in
-        x1, y1, x2, y2 : the rectangular
-                         area
-        func           : user defined
-                         function
-        funcparam      : function
-                         parameters
-
-    Returns:
-        new bitmap file
-    """
-    bmp = loadBMP(ExistingBMPfile)
-    func(bmp, x1, y1, x2, y2, funcparam)
-    saveBMP(NewBMPfile, bmp)
-    print(sysmsg['savedareafunc'] %
-    (func.__name__, x1, y1, x2, y2,
-     ExistingBMPfile, NewBMPfile))
-
-
-@checklink
-def _usebyreffnwithvarpar2regnsv(
-        ExistingBMPfile: str,
-        NewBMPfile: str,
-        x1: int, y1: int,
-        x2: int, y2: int,
         func: Callable, *param):
     """Apply a byref function with parameters
     to a rectangular area and save
@@ -14909,7 +14876,7 @@ def filledgradrect2file(
     Returns:
         new bitmap file
     """
-    _usebyreffnwithvarpar2regnsv(
+    _usebyreffnwithpar2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2, filledgradrect,
         lumrange, rgbfactors, direction)
@@ -14940,7 +14907,7 @@ def filleddichromaticgradrect2file(
     Returns:
         new bitmap file
     """
-    _usebyreffnwithvarpar2regnsv(
+    _usebyreffnwithpar2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2, filleddichromaticgradrect,
         c1, c2, direction, fn)

@@ -2299,7 +2299,7 @@ Draws a Filled Circle
 ### [`filleddichromaticgradrect2file`](#filleddichromaticgradrect2file)
 
 ```py
-def filleddichromaticgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x00000229B80CAE60>):
+def filleddichromaticgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000001C1A197AE60>):
 ```
 
 Draws a Filled Dichromatic Gradient Rectangle to file
@@ -2322,7 +2322,7 @@ Draws a Filled Dichromatic Gradient Rectangle to file
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py
-def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x00000229B80CAE60>):
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000001C1A197AE60>):
 ```
 
 Draw a filled rectangle with a dichromatic linear gradient
@@ -3886,7 +3886,7 @@ Filled Circle with Gradient
 ### [`graddichromiccircle`](#graddichromiccircle)
 
 ```py
-def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x00000229B80CAE60>):
+def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x000001C1A197AE60>):
 ```
 
 Filled Circle with dichromic Gradient
