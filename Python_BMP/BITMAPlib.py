@@ -13505,7 +13505,7 @@ def _use24btclrfnwithpar2circreg(
         NewBMPfile: str,
         func: Callable,
         x: int, y: int, r: int,
-        funcparam):
+        *funcparam):
     """Apply a user provided color adjustment function
     to a circular area (24-bit only)
 
@@ -13518,7 +13518,7 @@ def _use24btclrfnwithpar2circreg(
                          and radius r
         func           : user defined
                          function
-        funcparam      : parameters of
+        *funcparam      : parameters of
                          the function
 
     Returns:
@@ -13528,10 +13528,10 @@ def _use24btclrfnwithpar2circreg(
     if bmp[bmpcolorbits] != 24:
         print(sysmsg['not24bit'])
     else:
-        func(bmp, x, y, r, funcparam)
+        func(bmp, x, y, r, *funcparam)
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savecircfuncwithparam'] %
-            (func.__name__, x, y, r, funcparam,
+            (func.__name__, x, y, r, *funcparam,
             ExistingBMPfile, NewBMPfile))
 
 
