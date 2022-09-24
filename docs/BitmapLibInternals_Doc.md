@@ -573,7 +573,7 @@ to a circular area (24-bit only)
 ### [`_use24btclrfnwithpar2circreg`](#_use24btclrfnwithpar2circreg)
 
 ```py
-def _use24btclrfnwithpar2circreg(ExistingBMPfile: str, NewBMPfile: str, func: Callable, x: int, y: int, r: int, funcparam):
+def _use24btclrfnwithpar2circreg(ExistingBMPfile: str, NewBMPfile: str, func: Callable, x: int, y: int, r: int, *funcparam):
 ```
 
 Apply a user provided color adjustment function
@@ -588,7 +588,7 @@ to a circular area (24-bit only)
                          and radius r
         func           : user defined
                          function
-        funcparam      : parameters of
+        *funcparam      : parameters of
                          the function
     
     Returns:
