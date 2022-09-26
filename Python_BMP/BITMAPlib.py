@@ -3676,7 +3676,7 @@ def gradthickellipserot(bmp: array,
         x: int, y: int, b: int, a: int,
         degrot: float, penradius: int,
         lumrange: list[int, int],
-        RGBfactors: list[float, float, float]):
+        RGBfactors: list[float, float, float], fn = lerp):
     """Thick Ellipse with a Gradient fill
 
     Args:
@@ -3693,14 +3693,14 @@ def gradthickellipserot(bmp: array,
                     luminosity gradient
         rgbfactors: [r, g, b] range are
                     from 0.0 min to 1.0 max
+        fn        : optional gradient function
 
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    (l1, l2) = lumrange
     for i in range(penradius, 0, -1):
-        c = colormix(int(
-                lum1 + (lumrang * i / penradius)),
+        c = colormix(int(lerp(l1, l2, i / penradius)),
                 RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
@@ -3828,7 +3828,8 @@ def ellipse(bmp: array,
 def gradellipse(bmp: array,
         x: int, y: int, b: int, a: int,
         lumrange: list[int, int],
-        RGBfactors: list[float, float, float]):
+        RGBfactors: list[float, float, float],
+        fn :Callable = lerp):
     """Ellipical gradient
 
     Args:
@@ -3841,17 +3842,18 @@ def gradellipse(bmp: array,
                     luminosity gradient
         rgbfactors: [r, g, b] range
                     are from 0.0 to 1.0
+        fn        : optional gradent function
 
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    (l1, l2) = lumrange
     r = max(a, b)
     a -= r
     b -= r
     for i in range(r, 0, -1):
         c = colormix(
-                int(lum1 + (lumrang * i / r)),
+                int(fn(l1, l2, i / r)),
                 RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
@@ -6700,7 +6702,8 @@ def gradthickplotpoly(bmp: array,
         vertlist: list[list[Number, Number]],
         penradius: int,
         lumrange: list[int, int],
-        RGBfactors: list[float, float, float]):
+        RGBfactors: list[float, float, float],
+        fn: Callable = lerp):
     """Draws a polygon of a given gradient and thickness
 
     Args:
@@ -6714,14 +6717,15 @@ def gradthickplotpoly(bmp: array,
         RGBfactors: [r, g, b] value
                     range from
                     0.0 to 1.0
+        fn        : optional gradient function
 
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    (l1, l2) = lumrange
     for i in range(penradius, 0, -1):
         c = colormix(int(
-                lum1 + (lumrang * i / penradius)),
+                fn(l1, l2, i / penradius)),
                 RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
@@ -6734,8 +6738,9 @@ def gradplotlines(bmp: array,
         vertlist: list[list[Number, Number]] ,
         penradius: int,
         lumrange: list[int, int],
-        RGBfactors: list[float, float, float]):
-    """Draws connectes lines of a given gradient and thickness
+        RGBfactors: list[float, float, float],
+        fn : Callable = lerp):
+    """Draws connected lines of a given gradient and thickness
 
     Args:
         bmp       : unsigned byte array
@@ -6748,14 +6753,15 @@ def gradplotlines(bmp: array,
         RGBfactors: [r, g, b] value
                     range from
                     0.0 to 1.0
+        fn        : optional gradient function
 
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    (l1, l2) = lumrange
     for i in range(penradius, 0, -1):
         c = colormix(int(
-                lum1 + (lumrang * i / penradius)),
+                fn(l1, l2, i / penradius)),
                 RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
@@ -6964,7 +6970,8 @@ def gradvert(bmp: array,
         vertlist: list[list[int, int]],
         penradius: int,
         lumrange: list[int, int],
-        RGBfactors: list[float, float, float]):
+        RGBfactors: list[float, float, float],
+        fn: Callable = lerp):
     """List of 2d vertices as spheres of a given color
 
     Args:
@@ -6980,15 +6987,16 @@ def gradvert(bmp: array,
         RGBfactors: (r, g, b)
                     values range from
                     min 0.0 to 1.0 max
+        fn        : optional gradient function
 
     Returns:
         byref modified
         unsigned byte array
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    (l1, l2) = lumrange
     for i in range(penradius, 0, -1):
         c = colormix(
-            int(lum1 + (lumrang * i / penradius)),
+            fn(l1, l2, i / penradius),
                 RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
@@ -14510,7 +14518,7 @@ def adjustthresholdinregion2file(
         NewBMPfile: str,
         x1: int, y1: int,
         x2: int, y2: int,
-        lumrange:list):
+        lumrange: list):
     """Threshold adjust in a rectangular area in a 24-bit BMP
 
     Args:

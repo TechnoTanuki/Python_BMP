@@ -2299,7 +2299,7 @@ Draws a Filled Circle
 ### [`filleddichromaticgradrect2file`](#filleddichromaticgradrect2file)
 
 ```py
-def filleddichromaticgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x0000023EBFB9ADD0>):
+def filleddichromaticgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x0000019733E9AEF0>):
 ```
 
 Draws a Filled Dichromatic Gradient Rectangle to file
@@ -2322,7 +2322,7 @@ Draws a Filled Dichromatic Gradient Rectangle to file
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py
-def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x0000023EBFB9ADD0>):
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x0000019733E9AEF0>):
 ```
 
 Draw a filled rectangle with a dichromatic linear gradient
@@ -3864,7 +3864,7 @@ Gets color of pixel at (x, y)
 ### [`gradcircle`](#gradcircle)
 
 ```py
-def gradcircle(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+def gradcircle(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn=<function lerp at 0x0000019733E9AEF0>):
 ```
 
 Filled Circle with Gradient
@@ -3886,7 +3886,7 @@ Filled Circle with Gradient
 ### [`graddichromiccircle`](#graddichromiccircle)
 
 ```py
-def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x0000023EBFB9ADD0>):
+def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x0000019733E9AEF0>):
 ```
 
 Filled Circle with dichromic Gradient
@@ -3905,7 +3905,7 @@ Filled Circle with dichromic Gradient
 ### [`gradellipse`](#gradellipse)
 
 ```py
-def gradellipse(bmp: array.array, x: int, y: int, b: int, a: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+def gradellipse(bmp: array.array, x: int, y: int, b: int, a: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x0000019733E9AEF0>):
 ```
 
 Ellipical gradient
@@ -3920,6 +3920,7 @@ Ellipical gradient
                     luminosity gradient
         rgbfactors: [r, g, b] range
                     are from 0.0 to 1.0
+        fn        : optional gradent function
     
     Returns:
         byref modified unsigned byte array
@@ -3928,10 +3929,10 @@ Ellipical gradient
 ### [`gradplotlines`](#gradplotlines)
 
 ```py
-def gradplotlines(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+def gradplotlines(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x0000019733E9AEF0>):
 ```
 
-Draws connectes lines of a given gradient and thickness
+Draws connected lines of a given gradient and thickness
 
     Args:
         bmp       : unsigned byte array
@@ -3944,6 +3945,7 @@ Draws connectes lines of a given gradient and thickness
         RGBfactors: [r, g, b] value
                     range from
                     0.0 to 1.0
+        fn        : optional gradient function
     
     Returns:
         byref modified unsigned byte array
@@ -3977,7 +3979,7 @@ Thick Circle with a Gradient
 ### [`gradthickellipserot`](#gradthickellipserot)
 
 ```py
-def gradthickellipserot(bmp: array.array, x: int, y: int, b: int, a: int, degrot: float, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+def gradthickellipserot(bmp: array.array, x: int, y: int, b: int, a: int, degrot: float, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn=<function lerp at 0x0000019733E9AEF0>):
 ```
 
 Thick Ellipse with a Gradient fill
@@ -3996,6 +3998,7 @@ Thick Ellipse with a Gradient fill
                     luminosity gradient
         rgbfactors: [r, g, b] range are
                     from 0.0 min to 1.0 max
+        fn        : optional gradient function
     
     Returns:
         byref modified unsigned byte array
@@ -4004,7 +4007,7 @@ Thick Ellipse with a Gradient fill
 ### [`gradthickplotpoly`](#gradthickplotpoly)
 
 ```py
-def gradthickplotpoly(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+def gradthickplotpoly(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x0000019733E9AEF0>):
 ```
 
 Draws a polygon of a given gradient and thickness
@@ -4020,6 +4023,7 @@ Draws a polygon of a given gradient and thickness
         RGBfactors: [r, g, b] value
                     range from
                     0.0 to 1.0
+        fn        : optional gradient function
     
     Returns:
         byref modified unsigned byte array
@@ -4059,7 +4063,7 @@ Draw a Thick Rounded Line with a Gradient
 ### [`gradvert`](#gradvert)
 
 ```py
-def gradvert(bmp: array.array, vertlist: list[list[int, int]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float]):
+def gradvert(bmp: array.array, vertlist: list[list[int, int]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x0000019733E9AEF0>):
 ```
 
 List of 2d vertices as spheres of a given color
@@ -4077,6 +4081,7 @@ List of 2d vertices as spheres of a given color
         RGBfactors: (r, g, b)
                     values range from
                     min 0.0 to 1.0 max
+        fn        : optional gradient function
     
     Returns:
         byref modified
