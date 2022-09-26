@@ -3559,7 +3559,8 @@ def gradthickcircle(bmp: array,
 def gradcircle(bmp: array,
         x: int, y: int, r: int,
         lumrange: list[int, int],
-        RGBfactors: list[float, float, float]):
+        RGBfactors: list[float, float, float],
+        fn = lerp):
     """Filled Circle with Gradient
 
     Args:
@@ -3575,10 +3576,10 @@ def gradcircle(bmp: array,
     Returns:
         byref modified unsigned byte array
     """
-    lum1, lumrang = range2baseanddelta(lumrange)
+    (a, b) = lumrange
     for i in range(r - 1, 0, -1):
         c = colormix(
-                int(lum1 + (lumrang * i / r)),
+                int(fn(a, b, i / r)),
                 RGBfactors)
         if bmp[bmpcolorbits] != 24:
             c = matchRGBtopal(
