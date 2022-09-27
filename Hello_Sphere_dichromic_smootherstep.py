@@ -1,5 +1,5 @@
 notice = """
-     Hello Dichromic Sphere Demo
+Hello Dichromic Smootherstep Sphere
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
