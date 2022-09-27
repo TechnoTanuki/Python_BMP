@@ -95,6 +95,7 @@ from .mathlib import(
     setmax,
     setmin,
     setminmax,
+    scalarmulvect,
     smoothstep,
     smoothsteplerp,
     invsmoothstep,
@@ -2129,7 +2130,8 @@ def filledgradrect(bmp: array,
         x2: int, y2: int,
         lumrange: list[int, int],
         RGBfactors: list[float, float, float],
-        direction: int):
+        direction: int,
+        fn: Callable = lerp):
     """Draw a filled rectangle with a linear gradient
 
     Args:
@@ -2150,6 +2152,7 @@ def filledgradrect(bmp: array,
                          from 0.0 to 1.0
         direction      : 0 - vertical
                          1 - horizontal
+        fn             : optional gradient function
 
     Returns:
         byref modified
@@ -2159,17 +2162,14 @@ def filledgradrect(bmp: array,
         sortrecpoints(x1, y1, x2, y2)
     dx = x2 - x1 + 1
     dy = y2 - y1 + 1
-    (br, bg, bb), (lr, lg, lb) = \
-        RGBfactorstoBaseandRange(lumrange, RGBfactors)
+    (r1, g1, b1) = scalarmulvect(RGBfactors, lumrange[0])
+    (r2, g2, b2) = scalarmulvect(RGBfactors, lumrange[1])
     if direction == 0:
         xlim = x2 + 1
         for x in range(x1, xlim):
-            f = x / dx
-            c = RGB2int(
-                    round(setminmax(br + lr * f, 0, 255)),
-                    round(setminmax(bg + lg * f, 0, 255)),
-                    round(setminmax(bb + lb * f, 0, 255))
-                       )
+            c = RGB2int(*interpolateRGB(
+             fn, r1, r2, g1, g2, b1, b2,
+             setminmax(x / dx, 0.0, 1.0)))
             if bmp[bmpcolorbits] != 24:
                 c = matchRGBtopal(
                         int2RGBarr(c),
@@ -2178,12 +2178,9 @@ def filledgradrect(bmp: array,
     else:
         ylim = y2 + 1
         for y in range(y1, ylim):
-            f = y / dy
-            c = RGB2int(
-                    round(setminmax(br + lr * f, 0, 255)),
-                    round(setminmax(bg + lg * f, 0, 255)),
-                    round(setminmax(bb + lb * f, 0, 255))
-                       )
+            c = RGB2int(*interpolateRGB(
+             fn, r1, r2, g1, g2, b1, b2,
+             setminmax(y / dy, 0.0, 1.0)))
             if bmp[bmpcolorbits] != 24:
                 c = matchRGBtopal(
                         int2RGBarr(c),
@@ -2198,7 +2195,7 @@ def filleddichromaticgradrect(bmp: array,
         x2: int, y2: int,
         c1: int,
         c2: int,
-        direction: int, 
+        direction: int,
         fn: Callable = lerp):
     """Draw a filled rectangle with a dichromatic linear gradient
 
