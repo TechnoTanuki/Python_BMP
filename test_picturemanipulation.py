@@ -728,14 +728,14 @@ class Test2filefunc(unittest.TestCase):
                         120, 170, 100, [self.cyellow, self.cred])
 
 
-        def testsphere2file(self):
+        def testsmoothstepsphere2file(self):
                 self.dotestcircregionwith2param(
                         'raccoon-spheresmoothstep.bmp',
                         sphere2file,
                         120, 170, 100, self.cfcyan, smoothsteplerp)
 
 
-        def testdichromicsphere2file(self):
+        def testsmoothstepdichromicsphere2file(self):
                 self.dotestcircregionwith2param(
                         'raccoon-spheredichromicsmoothstep.bmp',
                         sphere2file,
