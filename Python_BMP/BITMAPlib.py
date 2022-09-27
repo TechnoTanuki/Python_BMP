@@ -14861,7 +14861,8 @@ def filledgradrect2file(
         x2: int, y2: int,
         lumrange: list[int, int],
         rgbfactors: list[float, float, float],
-        direction: int):
+        direction: int,
+        fn: Callable = lerp):
     """Draws a Filled Gradient Rectangle to file
 
     Args:
@@ -14878,6 +14879,7 @@ def filledgradrect2file(
                          0.0 to 1.0
         direction      : 0 - vertical
                          1 - horizontal
+        fn             : optional gradient function
 
     Returns:
         new bitmap file
@@ -14885,7 +14887,7 @@ def filledgradrect2file(
     _usebyreffnwithpar2regnsv(
         ExistingBMPfile, NewBMPfile,
         x1, y1, x2, y2, filledgradrect,
-        lumrange, rgbfactors, direction)
+        lumrange, rgbfactors, direction, fn)
 
 
 @functimer

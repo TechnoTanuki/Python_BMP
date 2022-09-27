@@ -497,11 +497,25 @@ class Test2filefunc(unittest.TestCase):
                         250, 60, 860, 666, [255, 0], self.cfyellow, 0)
 
 
+        def testfilledgradrect2file0smoothstep(self):
+                self.dotestrectregionwithparam(
+                        'raccoon-filledgradrectangle0smoothstep.bmp',
+                        filledgradrect2file,
+                        250, 60, 860, 666, [255, 0], self.cfyellow, 0, smoothsteplerp)
+
+
         def testfilledgradrect2file1(self):
                 self.dotestrectregionwithparam(
                         'raccoon-filledgradrectangle1.bmp',
                         filledgradrect2file,
                         250, 60, 860, 666, [255, 0], self.cfyellow, 1)
+
+
+        def testfilledgradrect2file1smoothstep(self):
+                self.dotestrectregionwithparam(
+                        'raccoon-filledgradrectangle1smoothstep.bmp',
+                        filledgradrect2file,
+                        250, 60, 860, 666, [255, 0], self.cfyellow, 1, smoothsteplerp)
 
 
         def testfilleddichromaticgradrect2file0(self):
@@ -516,6 +530,8 @@ class Test2filefunc(unittest.TestCase):
                         'raccoon-filleddichromaticgradrectangle1.bmp',
                         filleddichromaticgradrect2file,
                         250, 60, 860, 666, self.cred, self.cyellow, 1)
+
+
 
 
         def testfilleddichromaticgradrect2file0(self):
