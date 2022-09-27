@@ -570,6 +570,32 @@ to a circular area (24-bit only)
         new bitmap file
 
 
+### [`_use24btclrfnwithmultpar2circreg`](#_use24btclrfnwithmultpar2circreg)
+
+```py
+def _use24btclrfnwithmultpar2circreg(ExistingBMPfile: str, NewBMPfile: str, func: Callable, x: int, y: int, r: int, funcparam, *otherparam):
+```
+
+Apply a user provided color adjustment function
+to a circular area (24-bit only)
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x, y, r        : center (x,y)
+                         and radius r
+        func           : user defined
+                         function
+        funcparam      : parameters of
+                         the function
+        *otherparam
+    
+    Returns:
+        new bitmap file
+
+
 ### [`_use24btclrfnwithpar2circreg`](#_use24btclrfnwithpar2circreg)
 
 ```py
@@ -588,7 +614,7 @@ to a circular area (24-bit only)
                          and radius r
         func           : user defined
                          function
-        *funcparam      : parameters of
+        *funcparam     : parameters of
                          the function
     
     Returns:

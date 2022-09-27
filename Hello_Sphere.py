@@ -15,6 +15,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord,
         sphere as f,
+        smoothsteplerp,
         getX11RGBfactors as c,
         getfuncmetastr as meta,
         saveBMP

@@ -13015,7 +13015,8 @@ def savefractaldreamattractor2file(
 @intcircleparam
 def sphere(bmp: array,
         x: int, y: int, r: int,
-        rgbfactors: list[float, float, float]):
+        rgbfactors: list[float, float, float],
+        fn: Callable = lerp):
     """Draws a Rendered Sphere
 
     Args:
@@ -13031,6 +13032,7 @@ def sphere(bmp: array,
                         or
                     (int, int)
                     packed RGB
+        fn: optional gradient function
 
     Returns:
         byref modified unsigned byte array
@@ -13038,10 +13040,10 @@ def sphere(bmp: array,
     cp = len(rgbfactors)
     if cp == 3:
         gradcircle(bmp, x, y, r,
-            [255, 0], rgbfactors)
+            [255, 0], rgbfactors, fn)
     if cp == 2:
         graddichromiccircle(bmp, x, y, r,
-        rgbfactors[0], rgbfactors[1])
+        rgbfactors[0], rgbfactors[1], fn)
 
 
 @intcircleparam
@@ -13524,7 +13526,7 @@ def _use24btclrfnwithpar2circreg(
                          and radius r
         func           : user defined
                          function
-        *funcparam      : parameters of
+        *funcparam     : parameters of
                          the function
 
     Returns:
@@ -13538,6 +13540,43 @@ def _use24btclrfnwithpar2circreg(
         saveBMP(NewBMPfile, bmp)
         print(sysmsg['savecircfuncwithparam'] %
             (func.__name__, x, y, r, *funcparam,
+            ExistingBMPfile, NewBMPfile))
+
+
+def _use24btclrfnwithmultpar2circreg(
+        ExistingBMPfile: str,
+        NewBMPfile: str,
+        func: Callable,
+        x: int, y: int, r: int,
+        funcparam,
+        *otherparam):
+    """Apply a user provided color adjustment function
+    to a circular area (24-bit only)
+
+    Args:
+        ExistingBMPfile: Whole path to
+                         existing file
+        NewBMPfile     : New file to
+                         save changes in
+        x, y, r        : center (x,y)
+                         and radius r
+        func           : user defined
+                         function
+        funcparam      : parameters of
+                         the function
+        *otherparam
+
+    Returns:
+        new bitmap file
+    """
+    bmp = loadBMP(ExistingBMPfile)
+    if bmp[bmpcolorbits] != 24:
+        print(sysmsg['not24bit'])
+    else:
+        func(bmp, x, y, r, funcparam, *otherparam)
+        saveBMP(NewBMPfile, bmp)
+        print(sysmsg['savecircfuncwithparam'] %
+            (func.__name__, x, y, r, funcparam,
             ExistingBMPfile, NewBMPfile))
 
 
@@ -15186,7 +15225,8 @@ def gammacorrectcircregion2file(
 def sphere2file(ExistingBMPfile: str,
         NewBMPfile: str,
         x: int, y: int, r: int,
-        rgbfactors: list[float, float, float]):
+        rgbfactors: list[float, float, float],
+        fn: Callable = lerp):
     """Renders a sphere
 
     Args:
@@ -15203,14 +15243,15 @@ def sphere2file(ExistingBMPfile: str,
                              or
                          (int, int)
                          packed RGB
+        fn: optional gradient function
 
 
     Returns:
         new bitmap file
     """
-    _use24btclrfnwithpar2circreg(
+    _use24btclrfnwithmultpar2circreg(
         ExistingBMPfile, NewBMPfile,
-        sphere, x, y, r, rgbfactors)
+        sphere, x, y, r, rgbfactors, fn)
 
 
 @functimer

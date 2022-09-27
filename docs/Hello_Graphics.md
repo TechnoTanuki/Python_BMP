@@ -146,7 +146,11 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Sphere](../assets/test_images/raccoon-sphere.bmp)](../Hello_Sphere.py)
 
-[![Sphere-dichroma](../assets/test_images/raccoon-spheredichromic.bmp)](../Hello_Dichromic_Circular_Gradient.py)
+[![Sphere smoothstep](../assets/test_images/raccoon-spheresmoothstep.bmp)](../Hello_Spheresmoothstep.py)
+
+[![Sphere-dichroma](../assets/test_images/raccoon-spheredichromic.bmp)](../Hello_sphere_dichromic.py)
+
+[![Sphere-dichroma smoothstep](../assets/test_images/raccoon-spheredichromicsmoothstep.bmp)](../Hello_sphere_dichromic_smoothstep.py)
 
 
 [![Icosahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)

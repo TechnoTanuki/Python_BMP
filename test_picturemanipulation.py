@@ -225,6 +225,19 @@ class Test2filefunc(unittest.TestCase):
                 self.filecmp(*p)
 
 
+        def dotestcircregionwith2param(
+                self,
+                filename: str,
+                func: Callable,
+                x: int, y: int, r: int,
+                funcparam1, funcparam2):
+                p = self._filepaths(filename)
+                func(self.ofile, p[0],
+                     x, y, r, funcparam1, funcparam2)
+                self.filecmp(*p)
+
+
+
         def testmirrortop2file(self):
                 self.dotestfullimg(
                         'raccoon-mirrortop.bmp',
@@ -713,6 +726,21 @@ class Test2filefunc(unittest.TestCase):
                         'raccoon-spheredichromic.bmp',
                         sphere2file,
                         120, 170, 100, [self.cyellow, self.cred])
+
+
+        def testsphere2file(self):
+                self.dotestcircregionwith2param(
+                        'raccoon-spheresmoothstep.bmp',
+                        sphere2file,
+                        120, 170, 100, self.cfcyan, smoothsteplerp)
+
+
+        def testdichromicsphere2file(self):
+                self.dotestcircregionwith2param(
+                        'raccoon-spheredichromicsmoothstep.bmp',
+                        sphere2file,
+                        120, 170, 100, [self.cyellow, self.cred], smoothsteplerp)
+
 
 
         def testthickencirclearea2file(self):
