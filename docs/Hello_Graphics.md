@@ -103,9 +103,15 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Filled Smoothstep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smoothstep.bmp)](../Hello_FilledhoriGradRectsmoothstep.py)
 
+
+[![Filled Smoothsteper Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smootherstep.bmp)](../Hello_FilledhoriGradRectsmootherstep.py)
+
+
 [![Filled Vertical Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle0.bmp)](../Hello_FilleddichromaticvertGradRect.py)
 
 [![Filled Vertical Smoothstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smoothstep.bmp)](../Hello_FilleddichromaticvertGradRectsmoothstep.py)
+
+[![Filled Vertical Smootherstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smootherstep.bmp)](../Hello_FilleddichromaticvertGradRectsmootherstep.py)
 
 [![Filled Horizontal Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1.bmp)](../Hello_FilleddichromatichoriGradRect.py)
 
