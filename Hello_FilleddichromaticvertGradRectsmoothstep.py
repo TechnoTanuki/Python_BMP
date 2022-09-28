@@ -1,5 +1,5 @@
 notice = """
-Dichromatic Vertical Gradient Rectangle
+Dichromatic Smoothstep Vertical Gradient
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |

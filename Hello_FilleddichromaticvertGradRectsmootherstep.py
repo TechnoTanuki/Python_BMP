@@ -1,5 +1,5 @@
 notice = """
-Dichromatic Smoothstep Horizontal Gradient
+Dichromatic Smootherstep Vertical Gradient
  -----------------------------------
 | Copyright 2022 by Joel C. Alcarez |
 | [joelalcarez1975@gmail.com]       |
@@ -16,7 +16,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         getcolorname2RGBdict,
         filleddichromaticgradrect as f,
-        smoothsteplerp,
+        smoothersteplerp,
         getfuncmetastr as meta,
         saveBMP
         )
@@ -34,7 +34,7 @@ def main():
         c = getcolorname2RGBdict() # get color info friendly names
         j = 10 # border in pixel
         f(bmp, j, j, mx - j, my - j,
-        c['brightblue'], c['brightred'], 1, smoothsteplerp) # horizontal gradient
+        c['brightblue'], c['brightred'], 0, smoothersteplerp) # vertical gradient
         file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
