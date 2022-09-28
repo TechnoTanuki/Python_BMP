@@ -115,6 +115,7 @@ from Python_BMP.BITMAPlib import(
         resizeNtimessmaller2file,
         sphere2file,
         smoothsteplerp,
+        smoothersteplerp,
         thickencirclearea2file,
         thresholdadjcircregion2file,
         thresholdadjust2file,
@@ -735,11 +736,25 @@ class Test2filefunc(unittest.TestCase):
                         120, 170, 100, self.cfcyan, smoothsteplerp)
 
 
+        def testsmootherstepsphere2file(self):
+                self.dotestcircregionwith2param(
+                        'raccoon-spheresmootherstep.bmp',
+                        sphere2file,
+                        120, 170, 100, self.cfcyan, smoothersteplerp)
+
+
         def testsmoothstepdichromicsphere2file(self):
                 self.dotestcircregionwith2param(
                         'raccoon-spheredichromicsmoothstep.bmp',
                         sphere2file,
                         120, 170, 100, [self.cyellow, self.cred], smoothsteplerp)
+
+
+        def testsmootherstepdichromicsphere2file(self):
+                self.dotestcircregionwith2param(
+                        'raccoon-spheredichromicsmootherstep.bmp',
+                        sphere2file,
+                        120, 170, 100, [self.cyellow, self.cred], smoothersteplerp)
 
 
 
