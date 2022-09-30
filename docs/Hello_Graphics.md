@@ -111,18 +111,21 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Filled Smootheststep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smootheststep.bmp)](../Hello_FilledhoriGradRectsmootheststep.py)
 
-[![Filled Vertical Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle0.bmp)](../Hello_FilleddichromaticvertGradRect.py)
+[![Filled Vertical Dichromatic Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle0.bmp)](../Hello_FilleddichromaticvertGradRect.py)
 
-[![Filled Vertical Smoothstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smoothstep.bmp)](../Hello_FilleddichromaticvertGradRectsmoothstep.py)
+[![Filled Vertical Dichromatic Smoothstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smoothstep.bmp)](../Hello_FilleddichromaticvertGradRectsmoothstep.py)
 
-[![Filled Vertical Smootherstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smootherstep.bmp)](../Hello_FilleddichromaticvertGradRectsmootherstep.py)
+[![Filled Vertical Dichromatic Smootherstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smootherstep.bmp)](../Hello_FilleddichromaticvertGradRectsmootherstep.py)
 
-[![Filled Horizontal Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1.bmp)](../Hello_FilleddichromatichoriGradRect.py)
+[![Filled Vertical Dichromatic Smootheststep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smootheststep.bmp)](../Hello_FilleddichromaticvertGradRectsmootheststep.py)
 
-[![Filled Horizontal Smoothstep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smoothstep.bmp)](../Hello_FilleddichromatichoriGradRectsmoothstep.py)
+[![Filled Horizontal Dichromatic Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1.bmp)](../Hello_FilleddichromatichoriGradRect.py)
 
-[![Filled Horizontal Smootherstep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smootherstep.bmp)](../Hello_FilleddichromatichoriGradRectsmootherstep.py)
+[![Filled Horizontal Dichromatic Smoothstep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smoothstep.bmp)](../Hello_FilleddichromatichoriGradRectsmoothstep.py)
 
+[![Filled Horizontal Dichromatic Smootherstep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smootherstep.bmp)](../Hello_FilleddichromatichoriGradRectsmootherstep.py)
+
+[![Filled Horizontal Dichromatic Smootheststep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smootheststep.bmp)](../Hello_FilleddichromatichoriGradRectsmootheststep.py)
 
 **Regular Polygons**
 ![Regular Polygon](../Hello_Regular_Polygon.py)
