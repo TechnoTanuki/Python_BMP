@@ -157,13 +157,15 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Sphere smootherstep](../assets/test_images/raccoon-spheresmootherstep.bmp)](../Hello_Sphere_smootherstep.py)
 
+[![Sphere smootheststep](../assets/test_images/raccoon-spheresmootheststep.bmp)](../Hello_Sphere_smootheststep.py)
+
 [![Sphere-dichroma](../assets/test_images/raccoon-spheredichromic.bmp)](../Hello_Sphere_dichromic.py)
 
 [![Sphere-dichroma smoothstep](../assets/test_images/raccoon-spheredichromicsmoothstep.bmp)](../Hello_Sphere_dichromic_smoothstep.py)
 
 [![Sphere-dichroma smootherstep](../assets/test_images/raccoon-spheredichromicsmootherstep.bmp)](../Hello_Sphere_dichromic_smootherstep.py)
 
-
+[![Sphere-dichroma smootheststep](../assets/test_images/raccoon-spheredichromicsmootheststep.bmp)](../Hello_Sphere_dichromic_smootheststep.py)
 
 [![Icosahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
 
