@@ -101,11 +101,15 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Filled Smootherstep Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0smootherstep.bmp)](../Hello_FilledvertGradRectsmootherstep.py)
 
+[![Filled Smootheststep Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0smootheststep.bmp)](../Hello_FilledvertGradRectsmootheststep.py)
+
 [![Filled Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1.bmp)](../Hello_FilledhoriGradRect.py)
 
 [![Filled Smoothstep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smoothstep.bmp)](../Hello_FilledhoriGradRectsmoothstep.py)
 
 [![Filled Smootherstep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smootherstep.bmp)](../Hello_FilledhoriGradRectsmootherstep.py)
+
+[![Filled Smootheststep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smootheststep.bmp)](../Hello_FilledhoriGradRectsmoothetstep.py)
 
 [![Filled Vertical Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle0.bmp)](../Hello_FilleddichromaticvertGradRect.py)
 
