@@ -1764,8 +1764,8 @@ def smoothstep(a: float,
 
 
 def smootherstep(a: float,
-                b: float,
-                v: float) -> float:
+                 b: float,
+                 v: float) -> float:
     """
     Sigmoid-like interpolation
 
