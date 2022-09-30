@@ -1789,6 +1789,32 @@ def smootherstep(a: float,
     return v * v * v * (v * (v * 6 - 15) + 10)
 
 
+def smootheststep(a: float,
+                 b: float,
+                 v: float) -> float:
+    """
+    Sigmoid-like interpolation
+
+    Returns a number between 0.0 and 1.0
+    for a value (v) given that is
+    between values a and b
+
+
+    Args
+        a, b: float values
+        v   : number between a and b
+
+    Returns:
+        a float value between 0.0 and 1.0
+    """
+    d = b - a
+    if d != 0:
+        v = (v - a) / d
+    else:
+        v = 1
+    return v * v * v * v * (v * (v * (-20 * v + 70) - 84) + 35)
+
+
 def invsmoothstep(x: float):
     """Inverse Sigmoid-like interpolation
 
@@ -1845,3 +1871,24 @@ def smoothersteplerp(a: float,
         a float value between a and b
     """
     return lerp(a, b, smootherstep(a, b, lerp(a, b, f)))
+
+
+def smootheststeplerp(a: float,
+         b: float,
+         f: float) -> float:
+    """
+    Calculates a number between two numbers at a specific increment.
+    with sigmoid like smoothing
+
+    Args:
+        a, b: float values
+        f   : the amount to interpolate between the two values
+              where 0.0 equal to the first point,
+              0.1 is very near the first point
+              0.9 is very near the second point
+              etc
+
+    Returns:
+        a float value between a and b
+    """
+    return lerp(a, b, smootheststep(a, b, lerp(a, b, f)))
