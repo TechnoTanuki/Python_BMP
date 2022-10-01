@@ -17,7 +17,7 @@ from typing import Callable
 from inspect import getdoc, getmembers, isfunction, signature
 import Python_BMP.BITMAPlib as m
 import webbrowser as web
-
+from re import sub
 import subprocess as proc
 from os import path
 
@@ -47,7 +47,7 @@ def meta(f: Callable):
       f"### [`{f.__qualname__}`](#{f.__qualname__})",
       "",
       "```py",
-      f"def {f.__name__}{signature(f)}:",
+      f"def {f.__name__}{sub(r'<function ', '' ,sub(r' at 0x([0-9a-fA-F]+>)', '' , str(signature(f))))}:",
       "```",
       "",
       d1,

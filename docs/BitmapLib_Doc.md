@@ -2299,7 +2299,7 @@ Draws a Filled Circle
 ### [`filleddichromaticgradrect2file`](#filleddichromaticgradrect2file)
 
 ```py
-def filleddichromaticgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000002111B19AF80>):
+def filleddichromaticgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = lerp):
 ```
 
 Draws a Filled Dichromatic Gradient Rectangle to file
@@ -2322,7 +2322,7 @@ Draws a Filled Dichromatic Gradient Rectangle to file
 ### [`filleddichromaticgradrect`](#filleddichromaticgradrect)
 
 ```py
-def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = <function lerp at 0x000002111B19AF80>):
+def filleddichromaticgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, c1: int, c2: int, direction: int, fn: Callable = lerp):
 ```
 
 Draw a filled rectangle with a dichromatic linear gradient
@@ -2365,7 +2365,7 @@ Filled Ellipse
 ### [`filledgradrect2file`](#filledgradrect2file)
 
 ```py
-def filledgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int], rgbfactors: list[float, float, float], direction: int, fn: Callable = <function lerp at 0x000002111B19AF80>):
+def filledgradrect2file(ExistingBMPfile: str, NewBMPfile: str, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int], rgbfactors: list[float, float, float], direction: int, fn: Callable = lerp):
 ```
 
 Draws a Filled Gradient Rectangle to file
@@ -2393,7 +2393,7 @@ Draws a Filled Gradient Rectangle to file
 ### [`filledgradrect`](#filledgradrect)
 
 ```py
-def filledgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int], RGBfactors: list[float, float, float], direction: int, fn: Callable = <function lerp at 0x000002111B19AF80>):
+def filledgradrect(bmp: array.array, x1: int, y1: int, x2: int, y2: int, lumrange: list[int, int], RGBfactors: list[float, float, float], direction: int, fn: Callable = lerp):
 ```
 
 Draw a filled rectangle with a linear gradient
@@ -3866,7 +3866,7 @@ Gets color of pixel at (x, y)
 ### [`gradcircle`](#gradcircle)
 
 ```py
-def gradcircle(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn=<function lerp at 0x000002111B19AF80>):
+def gradcircle(bmp: array.array, x: int, y: int, r: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn=lerp):
 ```
 
 Filled Circle with Gradient
@@ -3888,7 +3888,7 @@ Filled Circle with Gradient
 ### [`graddichromiccircle`](#graddichromiccircle)
 
 ```py
-def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = <function lerp at 0x000002111B19AF80>):
+def graddichromiccircle(bmp: array.array, x: int, y: int, r: int, c1: int, c2: int, fn: Callable = lerp):
 ```
 
 Filled Circle with dichromic Gradient
@@ -3907,7 +3907,7 @@ Filled Circle with dichromic Gradient
 ### [`gradellipse`](#gradellipse)
 
 ```py
-def gradellipse(bmp: array.array, x: int, y: int, b: int, a: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x000002111B19AF80>):
+def gradellipse(bmp: array.array, x: int, y: int, b: int, a: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = lerp):
 ```
 
 Ellipical gradient
@@ -3931,7 +3931,7 @@ Ellipical gradient
 ### [`gradplotlines`](#gradplotlines)
 
 ```py
-def gradplotlines(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x000002111B19AF80>):
+def gradplotlines(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = lerp):
 ```
 
 Draws connected lines of a given gradient and thickness
@@ -3981,7 +3981,7 @@ Thick Circle with a Gradient
 ### [`gradthickellipserot`](#gradthickellipserot)
 
 ```py
-def gradthickellipserot(bmp: array.array, x: int, y: int, b: int, a: int, degrot: float, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn=<function lerp at 0x000002111B19AF80>):
+def gradthickellipserot(bmp: array.array, x: int, y: int, b: int, a: int, degrot: float, penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn=lerp):
 ```
 
 Thick Ellipse with a Gradient fill
@@ -4009,7 +4009,7 @@ Thick Ellipse with a Gradient fill
 ### [`gradthickplotpoly`](#gradthickplotpoly)
 
 ```py
-def gradthickplotpoly(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x000002111B19AF80>):
+def gradthickplotpoly(bmp: array.array, vertlist: list[list[numbers.Number, numbers.Number]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = lerp):
 ```
 
 Draws a polygon of a given gradient and thickness
@@ -4065,7 +4065,7 @@ Draw a Thick Rounded Line with a Gradient
 ### [`gradvert`](#gradvert)
 
 ```py
-def gradvert(bmp: array.array, vertlist: list[list[int, int]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = <function lerp at 0x000002111B19AF80>):
+def gradvert(bmp: array.array, vertlist: list[list[int, int]], penradius: int, lumrange: list[int, int], RGBfactors: list[float, float, float], fn: Callable = lerp):
 ```
 
 List of 2d vertices as spheres of a given color
@@ -14172,7 +14172,7 @@ Sorts the x and y values that sets a rectangular area
 ### [`sphere2file`](#sphere2file)
 
 ```py
-def sphere2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, rgbfactors: list[float, float, float], fn: Callable = <function lerp at 0x000002111B19AF80>):
+def sphere2file(ExistingBMPfile: str, NewBMPfile: str, x: int, y: int, r: int, rgbfactors: list[float, float, float], fn: Callable = lerp):
 ```
 
 Renders a sphere
@@ -14201,7 +14201,7 @@ Renders a sphere
 ### [`sphere`](#sphere)
 
 ```py
-def sphere(bmp: array.array, x: int, y: int, r: int, rgbfactors: list[float, float, float], fn: Callable = <function lerp at 0x000002111B19AF80>):
+def sphere(bmp: array.array, x: int, y: int, r: int, rgbfactors: list[float, float, float], fn: Callable = lerp):
 ```
 
 Draws a Rendered Sphere
