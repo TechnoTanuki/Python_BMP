@@ -24,6 +24,7 @@ from math import(
     cosh,
     degrees,
     pi,
+    tau,
     radians,
     sin,
     sinh,
@@ -36,7 +37,6 @@ from functools import reduce
 from typing import Callable
 from .conditionaltools import iif
 
-_2pi = 2 * pi
 
 def setmaxvec(
         vlist: list[Number],
@@ -1511,7 +1511,7 @@ def applyfft(fn : Callable, v: list[complex], tmp: list = []):
         applyfft(fn, ve, v)
         applyfft(fn, vo, v)
         for m in range(l):
-            w = fn(_2pi * m / n) * vo[m]
+            w = fn(tau * m / n) * vo[m]
             vm = ve[m]
             v[m] = vm + w
             v[m + l] = vm - w
