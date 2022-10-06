@@ -13,14 +13,15 @@ requires-python = ">=3.8"
 license = {file = "LICENSE"}
 readme = "README.md"
 
-
 [project.urls]
 homepage = "https://github.com/TechnoTanuki/Python_BMP"
 documentation = "https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md"
 repository = "https://github.com/TechnoTanuki/Python_BMP"
 "Bug Tracker" = "https://github.com/TechnoTanuki/Python_BMP/issues"
 
-
 [build-system]
 # Minimum requirements for the build system to execute.
 requires = ["setuptools", "wheel"]  # PEP 508 specifications.
+
+[tool.setuptools]
+package-dir = {"" = "Python_BMP"}
