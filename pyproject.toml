@@ -1,5 +1,5 @@
 [project]
-name = "pythonbmp_TECHNOTANUKI"
+name = "Python_BMP"
 description = "A pure Python 2D/3D graphics library that outputs to windows bitmap format"
 version = "0.9.1"
 authors = [
@@ -8,10 +8,6 @@ authors = [
 
 license = {file = "LICENSE"}
 readme = "README.md"
-python = "^3.8"
-homepage = "https://github.com/TechnoTanuki/Python_BMP"
-repository = "https://github.com/TechnoTanuki/Python_BMP"
-documentation = "https://github.com/TechnoTanuki/Python_BMP"
 
 [build-system]
 # Minimum requirements for the build system to execute.
