@@ -5,9 +5,15 @@ version = "0.9.1"
 authors = [
     { name = "Joel Alcarez", email = "joelalcarez1975@gmail.com" }
 ]
-
 license = {file = "LICENSE"}
 readme = "README.md"
+
+
+[project.urls]
+homepage = "https://github.com/TechnoTanuki/Python_BMP"
+documentation = "https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md"
+repository = "https://github.com/TechnoTanuki/Python_BMP"
+
 
 [build-system]
 # Minimum requirements for the build system to execute.
