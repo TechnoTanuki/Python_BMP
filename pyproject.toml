@@ -1,12 +1,12 @@
 [project]
-name = "python_bmp"
+name = "pythonbmp_TECHNOTANUKI"
 description = "A pure Python 2D/3D graphics library that outputs to windows bitmap format"
 version = "0.9.1"
 authors = [
     { name = "Joel Alcarez", email = "joelalcarez1975@gmail.com" }
 ]
 
-license = "MIT"
+license = {file = "LICENSE"}
 readme = "README.md"
 python = "^3.8"
 homepage = "https://github.com/TechnoTanuki/Python_BMP"
