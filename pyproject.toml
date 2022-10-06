@@ -5,6 +5,10 @@ version = "0.9.1"
 authors = [
     { name = "Joel Alcarez", email = "joelalcarez1975@gmail.com" }
 ]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
 license = {file = "LICENSE"}
 readme = "README.md"
 
