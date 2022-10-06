@@ -18,6 +18,7 @@ readme = "README.md"
 homepage = "https://github.com/TechnoTanuki/Python_BMP"
 documentation = "https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md"
 repository = "https://github.com/TechnoTanuki/Python_BMP"
+"Bug Tracker" = "https://github.com/TechnoTanuki/Python_BMP/issues"
 
 
 [build-system]
