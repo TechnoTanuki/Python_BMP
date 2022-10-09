@@ -1,2 +1,3 @@
+@echo small script to build distribution in <path/dist/>
 del test_output\*.bmp
-PY -m build
+py -m build
