@@ -1,1 +1,1 @@
-py -m pip install --editable /Python_BMP
+py -m pip install --editable /Python_BMP --user
