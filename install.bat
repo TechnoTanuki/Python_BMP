@@ -1,1 +1,1 @@
-py -m pip install --root . dist/Python_BMP-0.9.1.tar.gz
+py -m pip install  dist/Python_BMP-0.9.1.tar.gz
