@@ -131,3 +131,6 @@ dmypy.json
 test_output/
 Hello*.bmp
 
+Scripts
+pyvenv.cfg
+
