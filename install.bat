@@ -1,2 +1,2 @@
-py -m venv python_bmp
+py -m venv venv
 py -m pip install --editable /Python_BMP --user
