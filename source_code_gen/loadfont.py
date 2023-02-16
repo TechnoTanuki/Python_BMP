@@ -36,8 +36,10 @@ def getcharset(filename: str):
     a = ""
     with open(filename, 'rb') as f:
         f.seek(1626)
-        a = f.read(256)
+        a = f.read(2048)
     return a
+
+
 
 def  main():
     scriptdir = path.dirname(__file__)
@@ -47,7 +49,14 @@ def  main():
     print(a)
     print(plot8bitpatternastext(a,"*"," "))
     s = getcharset(filename)
-    print(s)
+    b = '[8,'
+    for i in range(2048):
+        b += str(s[i])
+        if i< 2047:
+            b += ','
+    b += "]"
+    print(b)
+
 
 
 if __name__ == "__main__":
