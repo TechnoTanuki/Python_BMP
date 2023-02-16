@@ -32,6 +32,13 @@ def getcharbmp(filename: str, ch: str):
         a = f.read(8)
     return a
 
+def getcharset(filename: str):
+    a = ""
+    with open(filename, 'rb') as f:
+        f.seek(1626)
+        a = f.read(256)
+    return a
+
 def  main():
     scriptdir = path.dirname(__file__)
     filename = scriptdir + "/Bm437_IBM_CGA.FON"
@@ -39,6 +46,8 @@ def  main():
     a = getcharbmp(filename, ch)
     print(a)
     print(plot8bitpatternastext(a,"*"," "))
+    s = getcharset(filename)
+    print(s)
 
 
 if __name__ == "__main__":
