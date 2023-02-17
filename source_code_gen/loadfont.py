@@ -49,12 +49,12 @@ def  main():
     print(a)
     print(plot8bitpatternastext(a,"*"," "))
     s = getcharset(filename)
-    b = '[8,'
+    b = '[8,\n'
     for i in range(2048):
-        b += str(s[i])
-        if i< 2047:
-            b += ','
-    b += "]"
+        b += "0x{:02x}".format(s[i])
+        b += ", " if i< 2047 else "] "
+        if (i + 1) % 8 == 0:
+            b += "#0x{:02x}\n".format(i // 8)
     print(b)
 
 

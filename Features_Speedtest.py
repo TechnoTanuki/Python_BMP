@@ -177,7 +177,7 @@ def main():
         hhmmsselaspedtime(starttime))
         starttime = _time_ns()
         fnt = font8x8
-        strtest = 'abcdefghijklmnopqrstuvwxyz\n0123456789\'":;.,?!~`@#$%^&()[]{}_*+-/=<>\nABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        strtest = '\x01abcdefghijklmnopqrstuvwxyz\n0123456789\'":;.,?!~`@#$%^&()[]{}_*+-/=<>\nABCDEFGHIJKLMNOPQRSTUVWXYZ'
         plotstring(bmp, 400, 10,
                 'My Python GL test',
                  4, 1, 0, c['lightgray'],
