@@ -52,6 +52,7 @@ from Python_BMP.BITMAPlib import(
         filledrect,
         font8x14,
         font8x8,
+        font8x8thin,
         getcolorname2RGBdict,
         getdefaultlumrange,
         getIFSparams,
@@ -184,10 +185,12 @@ def main():
                  fnt)
         plotstring(bmp, 400, 45,
                 'Copyright 2021 by Joel C. Alcarez (joelalcarez1975@gmail.com)',1,1,0,c['brightwhite'],fnt)
+        fnt = font8x8thin
         plotstring(bmp, 300, 64,
                 strtest, 1, 0, 0,
                 c['brightgreen'],
                 fnt)
+        fnt = font8x8
         plotstringupsidedown(bmp,
                 10, 737,
                 strtest, 1, 0, 0,

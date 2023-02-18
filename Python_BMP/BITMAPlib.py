@@ -259,7 +259,10 @@ from .dicttools import dict2descorderlist
 from .fileutils import checklink, checklinks
 
 from .fonts import(
-    font8x8, font8x14, getcharfont)
+    font8x8,
+    font8x8thin,
+    font8x14,
+    getcharfont)
 
 from .fractals import(
     cliffordattractorlist,
