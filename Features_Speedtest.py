@@ -53,6 +53,7 @@ from Python_BMP.BITMAPlib import(
         font8x14,
         font8x8,
         font8x8thin,
+        font8x14thin,
         getcolorname2RGBdict,
         getdefaultlumrange,
         getIFSparams,
@@ -201,7 +202,7 @@ def main():
                 strtest, 1, 0, 0,
                 c['brightgreen'],
                 fnt)
-        fnt = font8x14
+        fnt = font8x14thin
         plotstringvertical(bmp,
                 970, 30,
                 'Matrix text',

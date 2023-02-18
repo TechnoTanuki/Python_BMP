@@ -25,11 +25,11 @@ def plot8bitpatternastext(
         s += '\n'
     return s
 
-def getcharbmp(filename: str, ch: str):
+def getcharbmp(filename: str, ch: str, bytecnt: int = 8, dataptr: int = 1626):
     a = ""
     with open(filename, 'rb') as f:
-        f.seek(1626 + 8 * ord(ch))
-        a = f.read(8)
+        f.seek(dataptr + bytecnt * ord(ch))
+        a = f.read(bytecnt)
     return a
 
 def getcharset(filename: str, dataptr: int = 1626, databytes: int = 8):
@@ -41,17 +41,17 @@ def getcharset(filename: str, dataptr: int = 1626, databytes: int = 8):
     return a
 
 
-
 def  main():
     scriptdir = path.dirname(__file__)
-    filename = scriptdir + "/Bm437_IBM_CGAthin.FON" #"/Bm437_IBM_CGA.FON"
-    ch = ">"
-    a = getcharbmp(filename, ch)
+    filename = scriptdir + "/Bm437_CompaqThin_8x14.FON" #"/Bm437_IBM_CGA.FON"
+    ch = "A"
+    c = 14
+    dataptr = 1642
+    a = getcharbmp(filename, ch, c, dataptr)
     print(a)
     print(plot8bitpatternastext(a,"*"," "))
-    c = 8
     sz = 256 * c
-    s = getcharset(filename, 1626, c)
+    s = getcharset(filename, dataptr, c)
     b = '[{:01d},\n'.format(c)
     for i in range(sz):
         b += "0x{:02x}".format(s[i])
