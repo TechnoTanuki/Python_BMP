@@ -43,10 +43,10 @@ def getcharset(filename: str, dataptr: int = 1626, databytes: int = 8):
 
 def  main():
     scriptdir = path.dirname(__file__)
-    filename = scriptdir + "/Bm437_CompaqThin_8x14.FON" #"/Bm437_IBM_CGA.FON"
-    ch = "A"
-    c = 14
-    dataptr = 1642
+    filename = scriptdir + "/Bm437_ToshibaSat_8x8.FON" #"/Bm437_IBM_CGA.FON"
+    ch = "\x01"
+    c = 8
+    dataptr = 1626
     a = getcharbmp(filename, ch, c, dataptr)
     print(a)
     print(plot8bitpatternastext(a,"*"," "))
