@@ -263,6 +263,7 @@ from .fonts import(
     font8x8thin,
     font8x14,
     font8x14thin,
+    font8x8sanserif,
     getcharfont)
 
 from .fractals import(

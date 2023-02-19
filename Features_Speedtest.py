@@ -54,6 +54,7 @@ from Python_BMP.BITMAPlib import(
         font8x8,
         font8x8thin,
         font8x14thin,
+        font8x8sanserif,
         getcolorname2RGBdict,
         getdefaultlumrange,
         getIFSparams,
@@ -186,7 +187,7 @@ def main():
                  fnt)
         plotstring(bmp, 400, 45,
                 'Copyright 2021 by Joel C. Alcarez (joelalcarez1975@gmail.com)',1,1,0,c['brightwhite'],fnt)
-        fnt = font8x8thin
+        fnt = font8x8sanserif
         plotstring(bmp, 300, 64,
                 strtest, 1, 0, 0,
                 c['brightgreen'],
