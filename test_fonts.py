@@ -50,6 +50,17 @@ from Python_BMP.BITMAPlib import(
 
 rootdir = path.dirname(__file__)
 
+def teststrgen():
+    s = ""
+    for i in range(256):
+        if i != 9 and i != 13 and i != 10:
+            s += chr(i)
+        else:
+            s += " "
+        if (i + 1) % 16 == 0:
+            s += "\n"
+    return s
+
 
 class TestFontfilefunc(unittest.TestCase):
 
@@ -58,18 +69,6 @@ class TestFontfilefunc(unittest.TestCase):
     outputdir = f'{rootdir}/test_output/'
     c = getX11colorname2RGBdict()
     c1 = getcolorname2RGBdict()
-
-    def teststrgen():
-        s = ""
-        for i in range(256):
-            if i != 9 and i != 13 and i != 10:
-                s += chr(i)
-            else:
-                s += " "
-            if (i + 1) % 16 == 0:
-                s += "\n"
-        return s
-
     teststr = teststrgen()
     rainbow = (c1['brightred'],
                c1['brightorange'],
