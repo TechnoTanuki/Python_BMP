@@ -58,11 +58,19 @@ class TestFontfilefunc(unittest.TestCase):
     outputdir = f'{rootdir}/test_output/'
     c = getX11colorname2RGBdict()
     c1 = getcolorname2RGBdict()
-    teststr = """abcdefghijklmnopqrs
-tuvwxyz0123456789\'
-":;.,?!~`@#$%^&()[]
-{}_*+-/=<>ABCDEFGHI
-JKLMNOPQRSTUVWXYZ"""
+
+    def teststrgen():
+        s = ""
+        for i in range(256):
+            if i != 9 and i != 13 and i != 10:
+                s += chr(i)
+            else:
+                s += " "
+            if (i + 1) % 16 == 0:
+                s += "\n"
+        return s
+
+    teststr = teststrgen()
     rainbow = (c1['brightred'],
                c1['brightorange'],
                c1['brightyellow'],
