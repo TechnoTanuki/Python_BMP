@@ -76,6 +76,7 @@ from Python_BMP.BITMAPlib import(
         savehopalongattractor2file as hopalong,
         savefractaldreamattractor2file as fractaldream,
         savesymmetriciconattractor2file as symicon,
+        saveduffingattractor2file as duffing,
         palshift2file
         )
 
@@ -563,6 +564,17 @@ class TestFractal2filefunc(unittest.TestCase):
         0.01, 0.01, 1.0, -0.1, 0.167, 0.0, -2.08,# constants (float)
         7, # degree int
         75100 # number of iterations
+        )
+        self.filecmp(*p)
+
+
+    def testduffingattractor(self):
+        p = self._filepaths("duffingattractor.bmp")
+        duffing(p[0], # path to new file
+        256, 256, # size of file
+        24, # bit depth
+        0.25, 0.3, 1.0, 0.05, # constants (float)
+        20000 # number of iterations
         )
         self.filecmp(*p)
 

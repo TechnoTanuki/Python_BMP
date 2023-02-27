@@ -1676,6 +1676,46 @@ Draws a vector (line segment with arrow head)
         byref modified unsigned byte array
 
 
+### [`duffingattractor`](#duffingattractor)
+
+```py
+def duffingattractor(x: int, y: int, bits: int, a: float, b: float, w: float, dt: float, n: int):
+```
+
+Draws a Peter de Jong Attractor
+
+    Args:
+        x, y    : int dimensions of bmp
+        bits    : int bit depth
+        a, b, w : float coefficients
+        dt      : time interval
+        n: number of terms to compute
+    
+    Returns:
+        byref unsigned byte array
+
+
+### [`duffingattractorlist`](#duffingattractorlist)
+
+```py
+def duffingattractorlist(x: float = 0, y: float = 0, t: float = 0, dt: float = 0.01, a: float = 0.25, b: float = 0.3, w: float = 1.0, n: int = 25000) -> list[list[float, float]]:
+```
+
+Returns list of [x,y] coordinate pairs for a
+Duffing Attractor
+
+    Args:
+        x, y: float starting coordinates
+        t: float start time
+        dt: float time interval
+        a, b, w: float coefficients
+        n: number of terms to compute
+    
+    Returns:
+        list of x,y pairs for a Duffing Attractor
+        [x: float, y: float]
+
+
 ### [`eggcurvevert`](#eggcurvevert)
 
 ```py
@@ -12372,6 +12412,27 @@ Saves a Cos(z) Julia Set to a file
         a bitmap file
 
 
+### [`saveduffingattractor2file`](#saveduffingattractor2file)
+
+```py
+def saveduffingattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float, w: float, dt: float, n: int):
+```
+
+Draws a Duffing Attractor to file
+
+    Args:
+        file   : full path to new file
+        x, y   : int dimensions of bmp
+        bits   : int bit depth
+        a, b, c: float coefficients
+        dt     : time interval
+        n: number of terms to compute
+    
+    
+    Returns:
+        a bitmap file
+
+
 ### [`savefractal2file`](#savefractal2file)
 
 ```py
@@ -12506,6 +12567,7 @@ def savegumowskimiraattractor2file(file: str, x: int, y: int, bits: int, ox: flo
 Draws a Gumowski-Mira attractor to file
 
     Args:
+        file: full path to new file
         x, y: int dimensions of bmp
         bits: int bit depth
         ox, oy: starting coordinates
@@ -12578,6 +12640,7 @@ def saveikedaattractor2file(file: str, x: int, y: int, bits: int, a: float, b: f
 Draws an Ikeda Attractor to file
 
     Args:
+        file      : full path to new file
         x, y      : int dimensions of bmp
         bits      : int bit depth
         a, b, k, p: float coefficients
@@ -13426,6 +13489,7 @@ def savenattractor2file(file: str, x: int, y: int, bits: int, a: float, b: float
 Draws a N Attractor to file
 
     Args:
+        file      : full path to new file
         x, y      : int dimensions of bmp
         bits      : int bit depth
         a, b, c, d: float coefficients
@@ -13512,6 +13576,7 @@ def savepeterdejongattractor2file(file: str, x: int, y: int, bits: int, a: float
 Draws a Peter de Jong Attractor to file
 
     Args:
+        file      : full path to new file
         x, y      : int dimensions of bmp
         bits      : int bit depth
         a, b, c, d: float coefficients

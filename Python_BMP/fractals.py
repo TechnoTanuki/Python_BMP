@@ -2169,3 +2169,33 @@ def symmetriciconattractorlist(
              z.imag * p.imag)) * z + \
         (g * p).conjugate() - o * c * 1j
     return v
+
+
+def duffingattractorlist(
+    x: float = 0, y: float = 0, t: float = 0,
+    dt: float = 0.01,
+    a: float = 0.25 , b: float = 0.3, w: float = 1.0,
+    n: int = 25000) -> list[list[float, float]]:
+    """Returns list of [x,y] coordinate pairs for a
+    Duffing Attractor
+
+    Args:
+        x, y: float starting coordinates
+        t: float start time
+        dt: float time interval
+        a, b, w: float coefficients
+        n: number of terms to compute
+
+    Returns:
+        list of x,y pairs for a Duffing Attractor
+        [x: float, y: float]
+    """
+    v = [(0,0)] * n
+    for i in range(n):
+        dx = y * dt
+        dy = (x - x ** 3 - a  * y + b * cosine(w * t)) * dt
+        x += dx
+        y += dy
+        t += dt
+        v[i] = (x, y)
+    return v

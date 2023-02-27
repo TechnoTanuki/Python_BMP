@@ -318,6 +318,8 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![cliffordattractor](../assets/fractals/cliffordattractor.bmp)](../Hello_CliffordAttractor.py)
 
+[![duffingattractor](../assets/fractals/duffingattractor.bmp)](../Hello_DuffingAttractor.py)
+
 [![fractaldream](../assets/fractals/fractaldreamattractor.bmp)](../Hello_FractalDreamAttractor.py)
 
 [![Hopalongattractor](../assets/fractals/hopalongattractor.bmp)](../Hello_HopalongAttractor.py)
