@@ -12,8 +12,6 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 # References
 
-**![Readme](../README.md)**
-
 **Functional Progamming in Python:** https://machinelearningmastery.com/functional-programming-in-python/
 
 **Details on the windows bitmap format:** https://docs.microsoft.com/en-us/windows/win32/gdi/bitmap-storage
