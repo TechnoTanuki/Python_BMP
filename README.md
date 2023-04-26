@@ -33,6 +33,7 @@ See: https://k0nze.dev/posts/python-relative-imports-vscode/
 
 # Moar docs
 * ![Hello Graphics](/docs/Hello_Graphics.md)
+* ![Hello Fractals](/docs/Hello_Fractals.md)
 
 
 
