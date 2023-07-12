@@ -32,7 +32,7 @@ def main():
         mx, my = 90, 785 # bitmap size
         bmp = newBMP(mx,my,24) # RGB bitmap
         c = getcolorname2RGBdict()
-        f(bmp, 30, 20, # position the text
+        f(bmp, 10, 20, # position the text
           'Hello World!!', # random text
            7, # uint font size multiplier
            1, # uint space between pixels
