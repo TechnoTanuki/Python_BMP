@@ -17,7 +17,7 @@ from Python_BMP.BITMAPlib import(
         newBMP,
         centercoord as c,
         plotRGBxybit as p,
-        distance as d,
+        dist as d,
         getfuncmetastr as meta,
         saveBMP
         )
