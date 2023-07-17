@@ -14,9 +14,9 @@ notice = """
 
 from Python_BMP.BITMAPlib import(
         newBMP,
-        plotstringasdots as f,
+        plotitalicstringasdots as f,
         getcolorname2RGBdict,
-        font8x8thin,
+        font8x8sanserif,
         getfuncmetastr as meta,
         saveBMP
         )
@@ -35,16 +35,11 @@ def main():
         f(bmp, 20, 10, # position the text
           'TetraPlex', # random text
            7, # uint font size multiplier
-           1, # uint space between pixels
+           0, # uint space between pixels
            0, # uint default space between char
-           (c['brightred'],
-            c['brightorange'],
-            c['brightyellow'],
-            c['brightgreen'],
-            c['cyan'],
-            c['brightblue'],
-            c['brightmagenta']),
-           font8x8thin)
+           (c['yellow'],
+            c['brightyellow']),
+           font8x8sanserif)
         file = f'HelloWorldRainbow{f.__name__}.bmp' #file name
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \
