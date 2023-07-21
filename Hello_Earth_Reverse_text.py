@@ -12,7 +12,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP as l,
         getcolorname2RGBdict,
         plotreversestring as f,

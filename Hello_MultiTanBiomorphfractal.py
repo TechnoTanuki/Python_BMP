@@ -11,7 +11,7 @@ Multi tan(z) Biomorph  Fractal Demo
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         getX11RGBfactors,
         savemultitanbiomorphfractal2file as f,
         fractaldomainparamdict as d,

@@ -1,1 +1,1 @@
-py -m pip uninstall Python_BMP-0.9.1
+py -m pip uninstall pythonbmp-0.9.1

@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         plotitalicstringasdots2file as f,
         getcolorname2RGBdict,

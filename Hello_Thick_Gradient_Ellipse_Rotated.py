@@ -12,7 +12,7 @@ Hello Thick Rotated Gradient Ellipse
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         gradthickellipserot as f,
         centercoord,

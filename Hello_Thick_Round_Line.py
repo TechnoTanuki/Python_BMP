@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         thickroundline as f,
         addvect as addv,
@@ -40,7 +40,7 @@ def main():
                 f(bmp, p1, p2, r, c) # all unsigned
                 p1 = addv(p1, d) # do vector add
                 p2 = addv(p2, d) # to move line
-        #Python_BMP.BITMAPlib.thickroundline(bmp bytearray,p1 xy-tuple,p2 xy-tuple,penradius int,color int)
+        #pythonbmp.BITMAPlib.thickroundline(bmp bytearray,p1 xy-tuple,p2 xy-tuple,penradius int,color int)
         file = f'Hello{fname}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

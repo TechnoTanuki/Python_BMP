@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         drawvec as f,
         getfuncmetastr as meta,

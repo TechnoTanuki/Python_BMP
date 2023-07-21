@@ -25,7 +25,7 @@ notice = """
 import unittest
 from os import path
 from math import pi
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP,
         palshift2file,
         getX11colorname2RGBdict,

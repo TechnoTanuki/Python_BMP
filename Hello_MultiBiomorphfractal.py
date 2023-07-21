@@ -11,7 +11,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         getX11RGBfactors,
         savemultibiomorphfractal2file as f,
         fractaldomainparamdict as d,

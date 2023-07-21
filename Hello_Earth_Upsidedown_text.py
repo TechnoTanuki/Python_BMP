@@ -12,7 +12,7 @@ Hello Earth with upsidedown text Demo
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP as l,
         plotstring as f,
         plotstringupsidedown as p,

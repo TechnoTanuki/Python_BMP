@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 
-import Python_BMP.bmpturtle as bt
+import pythonbmp.bmpturtle as bt
 import subprocess as proc
 from os import path
 

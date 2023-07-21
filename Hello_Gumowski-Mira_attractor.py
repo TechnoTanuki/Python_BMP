@@ -11,7 +11,7 @@ Gumowski-Mira Attractor Fractal Demo
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
     savegumowskimiraattractor2file as f,
     getfuncmetastr as meta)
 

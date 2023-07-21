@@ -12,7 +12,7 @@ Hello World Dot Vertical Italic Font
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         plotitalicstringverticalasdots as f,
         getcolorname2RGBdict,

@@ -12,7 +12,7 @@ Hello Monochromatic Image Filter Demo
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         monochrome2file as f,
         getfuncmetastr as meta
         )

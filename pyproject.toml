@@ -1,5 +1,5 @@
 [project]
-name = "Python_BMP"
+name = "pythonbmp"
 description = "A pure Python 2D/3D graphics library that outputs to windows bitmap format"
 version = "0.9.1"
 authors = [
@@ -14,14 +14,14 @@ license = {file = "LICENSE"}
 readme = "README.md"
 
 [project.urls]
-homepage = "https://github.com/TechnoTanuki/Python_BMP"
-documentation = "https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md"
-repository = "https://github.com/TechnoTanuki/Python_BMP"
-"Bug Tracker" = "https://github.com/TechnoTanuki/Python_BMP/issues"
+homepage = "https://github.com/TechnoTanuki/pythonbmp"
+documentation = "https://github.com/TechnoTanuki/pythonbmp/blob/main/docs/Hello_Graphics.md"
+repository = "https://github.com/TechnoTanuki/pythonbmp"
+"Bug Tracker" = "https://github.com/TechnoTanuki/pythonbmp/issues"
 
 [build-system]
 # Minimum requirements for the build system to execute.
 requires = ["setuptools", "wheel"]  # PEP 508 specifications.
 
 [tool.setuptools]
-package-dir = {"" = "Python_BMP"}
+package-dir = {"" = "pythonbmp"}

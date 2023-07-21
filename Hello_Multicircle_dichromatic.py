@@ -11,7 +11,7 @@ Dichromatic Multicircle Fractal Demo
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         getX11colorname2RGBdict,
         savemulticirclefractal2file as f,
         fractaldomainparamdict,

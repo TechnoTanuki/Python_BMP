@@ -26,7 +26,7 @@ from array import array
 from typing import Callable
 import unittest
 from os import path
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP,
         plotstring2file,
         plotstringasdots2file,

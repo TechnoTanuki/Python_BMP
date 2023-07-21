@@ -12,7 +12,7 @@ Dichromatic Vertical Gradient Rectangle
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         getcolorname2RGBdict,
         filleddichromaticgradrect as f,

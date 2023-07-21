@@ -12,7 +12,7 @@ Hello World Dot Vertical Italic Rainbow
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         plotitalicstringverticalasdots as f,
         getcolorname2RGBdict,

@@ -11,7 +11,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         invertbits2file as f,
         getfuncmetastr as meta,
         )

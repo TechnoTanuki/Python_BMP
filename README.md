@@ -1,6 +1,6 @@
 [![AppID](/assets/Hello_GithubID.png)](/Hello_APP_Github_ID.py)
 
-# Python_BMP
+# pythonbmp
 A pure Python 2D/3D graphics library that outputs to windows bitmap format
 * Developed and tested using Python 3.8 / 3.10.4 / 3.11
 * No dependencies required

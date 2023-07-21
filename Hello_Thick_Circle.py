@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         centercoord,
         thickcircle as f,
@@ -36,7 +36,7 @@ def main():
         for c in range(1, 16):
                 f(bmp, x, y, r, penradius, c) # all unsigned
                 r -= dr
-        #Python_BMP.BITMAPlib.thickcircle(bmp bytyearray,x int,y int ,r int,penradius int,color int)
+        #pythonbmp.BITMAPlib.thickcircle(bmp bytyearray,x int,y int ,r int,penradius int,color int)
         file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) #dump the bytearray to disk
         print('Saved to %s in %s\nAll done close %s to finish' % \

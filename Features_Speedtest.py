@@ -32,7 +32,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         addvect,
         adjustcolordicttopal,
         beziercurve,

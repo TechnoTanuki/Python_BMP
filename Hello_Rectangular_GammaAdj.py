@@ -12,7 +12,7 @@ Gamma Adjust Rectangular Region Demo
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP,
         gammaadjto24bitregion as f,
         getfuncmetastr as meta,

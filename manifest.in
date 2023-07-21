@@ -1,6 +1,6 @@
 graft assets
 graft docs
-graft Python_BMP
+graft pythonbmp
 graft tests
 graft test_output
 prune source_code_gen

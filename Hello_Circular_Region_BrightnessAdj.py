@@ -12,7 +12,7 @@ Circular Region Brightness Adjustment
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP,
         centercoord,
         brightnessadjcircregion as f,
@@ -36,7 +36,7 @@ def main():
         br2 = 120 # brightness adj set to 120%
         f(bmp, x, y, r1, br1)
         f(bmp, x, y, r2, br2)
-        # Python_BMP.BITMAPlib.brightnessadjcircregion(bmp bytearray,x int,y int, r int ,br signed float)
+        # pythonbmp.BITMAPlib.brightnessadjcircregion(bmp bytearray,x int,y int, r int ,br signed float)
         file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp)
         print('Saved to %s in %s\nAll done close %s to finish' % \

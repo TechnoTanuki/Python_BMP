@@ -15,7 +15,7 @@ Output to %s
 
 from typing import Callable
 from inspect import getdoc, getmembers, isfunction, signature
-import Python_BMP.BITMAPlib as m
+import pythonbmp.BITMAPlib as m
 import webbrowser as web
 from re import sub
 import subprocess as proc

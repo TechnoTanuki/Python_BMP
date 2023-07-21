@@ -11,7 +11,7 @@ Hello Dichromic Smootheststep Sphere
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         centercoord,
         sphere as f,

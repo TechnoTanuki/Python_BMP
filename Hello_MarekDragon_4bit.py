@@ -11,7 +11,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         savemarekdragon2file as f,
         fractaldomainparamdict as d,
         getfuncmetastr as meta,

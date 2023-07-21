@@ -11,7 +11,7 @@ Thick Exponential Spiral Gradient Demo
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         centercoord,
         gradvert as g,

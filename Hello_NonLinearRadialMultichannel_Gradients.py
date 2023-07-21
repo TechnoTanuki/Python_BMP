@@ -13,7 +13,7 @@ Non Linear Radial Multichannel Gradient
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         centercoord as c,
         plotRGBxybit as p,

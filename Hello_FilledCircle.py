@@ -11,7 +11,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         centercoord,
         filledcircle as f,
@@ -38,7 +38,7 @@ def main():
                 for x in range(0, 4):
                         c += 1
                         f(bmp, d + x * d, d + y1, r, c) # draw filled circle
-        # Python_BMP.BITMAPlib.filledcircle(bmp bytearray,x int ,y int, r int, c int)
+        # pythonbmp.BITMAPlib.filledcircle(bmp bytearray,x int ,y int, r int, c int)
         file = f'Hello{f.__name__}.bmp' # some random file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

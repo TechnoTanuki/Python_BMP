@@ -21,14 +21,14 @@ Check samples with Hello_something.py for sample code on how to do stuff
 * https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
 * https://en.wikipedia.org/wiki/B-spline
 * https://en.wikipedia.org/wiki/B%C3%A9zier_curve
-* see: ![2D Graphics Primitives](../Python_BMP/primitives2D.py)
-* ![BitFonts ground up](../Python_BMP/fonts.py)
+* see: ![2D Graphics Primitives](../pythonbmp/primitives2D.py)
+* ![BitFonts ground up](../pythonbmp/fonts.py)
 
 **3D entities to onscreen 2D:** https://www.evl.uic.edu/luc/488/slides/class7.pdf
-* ![predefined 3D entities](../Python_BMP/solids3D.py)
+* ![predefined 3D entities](../pythonbmp/solids3D.py)
 
 **Math in Computer Graphics:** https://faculty.cc.gatech.edu/~turk/math_gr.html
-* ![mini math lib](../Python_BMP/mathlib.py)
+* ![mini math lib](../pythonbmp/mathlib.py)
 * fractals http://paulbourke.net/fractals/
 * 2D Strange attractors https://softologyblog.wordpress.com/2017/03/04/2d-strange-attractors/
 * parametric curves https://mathworld.wolfram.com/topics/Curves.html

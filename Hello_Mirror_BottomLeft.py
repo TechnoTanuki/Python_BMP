@@ -12,7 +12,7 @@ Mirror the Bottom Left part of a BMP
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         mirrorbottomleft2file as f,
         getfuncmetastr as meta
         )

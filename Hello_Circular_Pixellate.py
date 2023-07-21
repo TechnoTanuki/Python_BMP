@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         pixelizenxncircregion2file as f,
         getfuncmetastr as meta,
         )

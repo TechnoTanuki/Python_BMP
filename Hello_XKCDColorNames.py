@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
  see https://xkcd.com/color/rgb.txt
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         getXKCDcolorname2RGBdict,
         plotstring,

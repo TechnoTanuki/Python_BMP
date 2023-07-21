@@ -11,7 +11,7 @@ notice = """
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
     saveduffingattractor2file as f,
     getfuncmetastr as meta)
 import subprocess as proc

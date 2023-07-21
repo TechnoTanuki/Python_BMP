@@ -12,7 +12,7 @@ Horizontal Smootheststep Gradient Rectangle
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         getRGBfactors,
         filledgradrect as f,

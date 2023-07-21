@@ -12,7 +12,7 @@ Hello World Dot Upsidedown Font Demo
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         plotstringupsidedownasdots as f,
         getcolorname2RGBdict,

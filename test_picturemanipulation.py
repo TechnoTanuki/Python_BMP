@@ -35,7 +35,7 @@ notice = """
 from typing import Callable
 import unittest
 from os import path
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         adjustbrightness2file,
         adjustbrightnessinregion2file,
         adjustthresholdinregion2file,

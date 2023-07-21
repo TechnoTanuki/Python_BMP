@@ -12,13 +12,13 @@ notice = """
  -----------------------------------
 Output to %s
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         getfuncmetastr as meta,
         )
 
 import webbrowser as web
 from inspect import getmembers, isfunction
-import Python_BMP.BITMAPlib as m
+import pythonbmp.BITMAPlib as m
 
 import subprocess as proc
 from os import path

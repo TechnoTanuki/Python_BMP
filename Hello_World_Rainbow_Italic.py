@@ -12,7 +12,7 @@ Hello World Rainbow Italic Text Demo
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         plotitalicstring2file as f,
         getcolorname2RGBdict,
         font8x8,

@@ -11,7 +11,7 @@ Multi cos(z) Biomorph  Fractal Demo
 |   to a bitmap file.               |
  -----------------------------------
 """
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         getX11RGBfactors,
         savemulticosbiomorphfractal2file as f,
         fractaldomainparamdict as d,

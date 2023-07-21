@@ -12,7 +12,7 @@ Dichromatic Smoothstep Horizontal Gradient
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         getcolorname2RGBdict,
         filleddichromaticgradrect as f,

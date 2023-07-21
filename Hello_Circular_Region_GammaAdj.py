@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP,
         centercoord,
         gammacorrectcircregion as f,
@@ -33,7 +33,7 @@ def main():
         r = 60 # radius
         gc = .1 # gamma correction
         f(bmp, x, y, r, gc)
-        #Python_BMP.BITMAPlib.gammacorrectcircregion(bmp bytearray,x int,y int,r int,gc signed float)
+        #pythonbmp.BITMAPlib.gammacorrectcircregion(bmp bytearray,x int,y int,r int,gc signed float)
         file = f'Hello{f.__name__}.bmp' #file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \

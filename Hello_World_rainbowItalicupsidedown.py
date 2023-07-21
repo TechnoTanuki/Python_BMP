@@ -12,7 +12,7 @@ Hello Rainbow Upsidedown Italic Font
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         newBMP,
         plotupsidedownitalicstring as f,
         getcolorname2RGBdict,

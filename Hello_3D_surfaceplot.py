@@ -12,7 +12,7 @@ notice = """
  -----------------------------------
 """
 from math import sin, cos, pi
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         centercoord,
         getRGBfactors,
         newBMP,

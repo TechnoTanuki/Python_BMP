@@ -12,7 +12,7 @@ Rectangular Brightness Adjustment Demo
  -----------------------------------
 """
 
-from Python_BMP.BITMAPlib import(
+from pythonbmp.BITMAPlib import(
         loadBMP,
         brightnesseadjto24bitregion as f,
         getfuncmetastr as meta,
