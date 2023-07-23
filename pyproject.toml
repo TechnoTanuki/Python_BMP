@@ -1,7 +1,7 @@
 [project]
 name = "pythonbmp"
 description = "A pure Python 2D/3D graphics library that outputs to windows bitmap format"
-version = "1.0.2"
+version = "1.0.3"
 authors = [
     { name = "Joel Alcarez", email = "joelalcarez1975@gmail.com" }
 ]
@@ -24,4 +24,4 @@ repository = "https://github.com/TechnoTanuki/Python_BMP"
 requires = ["setuptools", "wheel"]  # PEP 508 specifications.
 
 [tool.setuptools]
-package-dir = {"" = "pythonbmp"}
+package-dir = {"pythonbmp" = "pythonbmp"}
