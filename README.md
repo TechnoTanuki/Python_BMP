@@ -38,7 +38,7 @@ See: https://k0nze.dev/posts/python-relative-imports-vscode/
 
 # Moar docs
 
-* ![Hello Graphics](https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md)\
+* ![Hello Graphics](https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Graphics.md)
 
 * ![Hello Text](https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_Text.md)
 
