@@ -1,6 +1,7 @@
 [![AppID](https://github.com/TechnoTanuki/Python_BMP/blob/main/assets/Hello_GithubID.png)](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_APP_Github_ID.py)
-
+___________
 # pythonbmp
+___________
 A pure Python 2D/3D graphics library that outputs to windows bitmap format
 * Developed and tested using Python 3.8 / 3.10.4 / 3.11
 * No dependencies required
