@@ -16,7 +16,7 @@ This will show minimum code to accomplish certain tasks
 
 * ![Hello_Darkness.py](https://github.com/TechnoTanuki/Python_BMP/blob/main/samples/Hello_Darkness.py) (my old friend) is a minimum template
 
-Run ![Features_Speedtest.py](https://github.com/TechnoTanuki/Python_BMP/blob/main/Features_Speedtest.py)
+Run ![Features_Speedtest.py](https://github.com/TechnoTanuki/Python_BMP/blob/main/samples/Features_Speedtest.py)
 
 * It should generate a bitmap and open MS Paint under windows to show output...
 * Close the MS Paint window to execute another script
