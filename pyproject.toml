@@ -1,7 +1,7 @@
 [project]
 name = "pythonbmp"
 description = "A pure Python 2D/3D graphics library that outputs to windows bitmap format"
-version = "1.0.3"
+version = "1.0.4"
 authors = [
     { name = "Joel Alcarez", email = "joelalcarez1975@gmail.com" }
 ]

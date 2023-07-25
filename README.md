@@ -14,7 +14,7 @@ Run Hello_somestring_here.py
 
 This will show minimum code to accomplish certain tasks
 
-* ![Hello_Darkness.py](https://github.com/TechnoTanuki/Python_BMP/blob/main/Hello_Darkness.py) (my old friend) is a minimum template
+* ![Hello_Darkness.py](https://github.com/TechnoTanuki/Python_BMP/blob/main/samples/Hello_Darkness.py) (my old friend) is a minimum template
 
 Run ![Features_Speedtest.py](https://github.com/TechnoTanuki/Python_BMP/blob/main/Features_Speedtest.py)
 
@@ -31,10 +31,6 @@ Run ![Features_Speedtest.py](https://github.com/TechnoTanuki/Python_BMP/blob/mai
 
 * Will generate images (one per function under test) then compare it with previously generated images generated with the function under test (this might take a while)
 
-# VS Code Users
-
-See: https://k0nze.dev/posts/python-relative-imports-vscode/
-* (Module Relative imports dont work in VS Code but code as-is runs fine in terminal or IDLE)
 
 # Moar docs
 

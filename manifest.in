@@ -1,6 +1,7 @@
 prune assets
 prune docs
 graft pythonbmp
+graft samples
 prune tests
 prune test_output
 prune source_code_gen
