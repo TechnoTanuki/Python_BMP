@@ -9,7 +9,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 [![Reverse text](../assets/fonts/8x8x1px0cs024bitplotreversedstring2filebc0c65535.bmp)](../Hello_Earth_Reverse_text.py)
 
-![Sideways text](../Hello_Earth_Sideways_text.py)
+![Sideways text](../assets/fonts/Hello_Earth_Sideways_text.py)
 
 [![Upsidedown text](../assets/fonts/8x8x1px0cs024bitplotupsidedownstring2filebc0c65535.bmp)](../Hello_Earth_Upsidedown_text.py)
 
