@@ -21,4 +21,4 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 [![Dot Font Vertical](../assets/fonts/8x14x4px1cs024bitplotverticalstringasdots2filebc0c16753920.bmp)](../Hello_World_Dots_vertical.py)
 
-![Dot Fot Sideways](../Hello_World_Dots_sideway.py)
+![Dot Fot Sideways](../assets/fonts/Hello_World_Dots_sideway.py)
