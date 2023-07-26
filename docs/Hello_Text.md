@@ -5,13 +5,13 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 **Text and Fonts (images are links to sample code)**
 
-[![Text Demo](../assets/fonts/8x14x3px1cs024bitplotstring2filebc0c13303664.bmp)](../Hello_Earth.py)
+[![Text Demo](../assets/fonts/8x14x3px1cs024bitplotstring2filebc0c13303664.bmp)](../samples/fonts/Hello_Earth.py)
 
-[![Reverse text](../assets/fonts/8x8x1px0cs024bitplotreversedstring2filebc0c65535.bmp)](../Hello_Earth_Reverse_text.py)
+[![Reverse text](../assets/fonts/8x8x1px0cs024bitplotreversedstring2filebc0c65535.bmp)](../samples/fonts/Hello_Earth_Reverse_text.py)
 
-![Sideways text](../assets/fonts/Hello_Earth_Sideways_text.py)
+![Sideways text](../samples/fonts/Hello_Earth_Sideways_text.py)
 
-[![Upsidedown text](../assets/fonts/8x8x1px0cs024bitplotupsidedownstring2filebc0c65535.bmp)](../Hello_Earth_Upsidedown_text.py)
+[![Upsidedown text](../assets/fonts/8x8x1px0cs024bitplotupsidedownstring2filebc0c65535.bmp)](../samples/fonts/Hello_Earth_Upsidedown_text.py)
 
 [![Vertical text](../assets/fonts/8x8x1px0cs024bitplotverticalstring2filebc0c16753920.bmp)](../samples/fonts/Hello_Earth_Vertical_text.py)
 
