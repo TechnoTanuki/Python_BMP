@@ -25,9 +25,10 @@ def main():
         print(f'{notice}\n{meta(f)}')
         rootdir = path.dirname(__file__) # get path of this script
         file = f'Hello{f.__name__}.bmp' # file name
-        chdir("assets")
-        f(f'{rootdir}/assets/fractals/cosbiomorph.bmp', "colorcycle", True)
-        chdir("..")
+        chdir(rootdir)
+        chdir("../assets/")
+        f('biomorph.bmp', "colorcycle", True)
+
 
 
 if __name__=="__main__":
