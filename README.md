@@ -1,4 +1,4 @@
-[![AppID](https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_GithubID.png)](https://github.com/TechnoTanuki/Python_BMP/blob/main/samples/Hello_APP_Github_ID.py)
+[![AppID](https://raw.github.com/TechnoTanuki/Python_BMP/blob/main/docs/Hello_GithubID.png)](https://github.com/TechnoTanuki/Python_BMP/blob/main/samples/Hello_APP_Github_ID.py)
 ___________
 # pythonbmp
 ___________
