@@ -1,6 +1,6 @@
-graft docs
+exclude docs
 graft pythonbmp
 graft samples
-graft tests
+exclude tests
 prune source_code_gen
 global-exclude *.py[cod]
