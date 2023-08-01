@@ -1,4 +1,4 @@
-[![AppID](../assets/Hello_GithubID.png)](../Hello_APP_Github_ID.py)
+[![AppID](Hello_GithubID.png)](../Hello_APP_Github_ID.py)
 
 # Hello Graphics
 Check samples with Hello_something.py for sample code on how to do stuff
