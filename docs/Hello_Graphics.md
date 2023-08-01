@@ -73,37 +73,37 @@ If there is demand for it I could in theory write a book based on this project l
 
 [![Filled Rectangle](../tests/assets/test_images/raccoon-filledrectangle.bmp)](../samples/primitives2d/Hello_FilledRectangle.py)
 
-[![Filled Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0.bmp)](../Hello_FilledvertGradRect.py)
+[![Filled Vertical Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle0.bmp)](../Hello_FilledvertGradRect.py)
 
-[![Filled Smoothstep Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0smoothstep.bmp)](../Hello_FilledvertGradRectsmoothstep.py)
+[![Filled Smoothstep Vertical Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle0smoothstep.bmp)](../Hello_FilledvertGradRectsmoothstep.py)
 
-[![Filled Smootherstep Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0smootherstep.bmp)](../Hello_FilledvertGradRectsmootherstep.py)
+[![Filled Smootherstep Vertical Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle0smootherstep.bmp)](../Hello_FilledvertGradRectsmootherstep.py)
 
-[![Filled Smootheststep Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0smootheststep.bmp)](../Hello_FilledvertGradRectsmootheststep.py)
+[![Filled Smootheststep Vertical Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle0smootheststep.bmp)](../Hello_FilledvertGradRectsmootheststep.py)
 
-[![Filled Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1.bmp)](../Hello_FilledhoriGradRect.py)
+[![Filled Horizontal Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle1.bmp)](../Hello_FilledhoriGradRect.py)
 
-[![Filled Smoothstep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smoothstep.bmp)](../Hello_FilledhoriGradRectsmoothstep.py)
+[![Filled Smoothstep Horizontal Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle1smoothstep.bmp)](../Hello_FilledhoriGradRectsmoothstep.py)
 
-[![Filled Smootherstep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smootherstep.bmp)](../Hello_FilledhoriGradRectsmootherstep.py)
+[![Filled Smootherstep Horizontal Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle1smootherstep.bmp)](../Hello_FilledhoriGradRectsmootherstep.py)
 
-[![Filled Smootheststep Horizontal Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle1smootheststep.bmp)](../Hello_FilledhoriGradRectsmootheststep.py)
+[![Filled Smootheststep Horizontal Gradient Rectangle](../tests/assets/test_images/raccoon-filledgradrectangle1smootheststep.bmp)](../Hello_FilledhoriGradRectsmootheststep.py)
 
-[![Filled Vertical Dichromatic Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle0.bmp)](../Hello_FilleddichromaticvertGradRect.py)
+[![Filled Vertical Dichromatic Gradient Rectangle](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle0.bmp)](../Hello_FilleddichromaticvertGradRect.py)
 
-[![Filled Vertical Dichromatic Smoothstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smoothstep.bmp)](../Hello_FilleddichromaticvertGradRectsmoothstep.py)
+[![Filled Vertical Dichromatic Smoothstep Gradient Rectangle ](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle0smoothstep.bmp)](../Hello_FilleddichromaticvertGradRectsmoothstep.py)
 
-[![Filled Vertical Dichromatic Smootherstep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smootherstep.bmp)](../Hello_FilleddichromaticvertGradRectsmootherstep.py)
+[![Filled Vertical Dichromatic Smootherstep Gradient Rectangle ](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle0smootherstep.bmp)](../Hello_FilleddichromaticvertGradRectsmootherstep.py)
 
-[![Filled Vertical Dichromatic Smootheststep Gradient Rectangle ](../assets/test_images/raccoon-filleddichromaticgradrectangle0smootheststep.bmp)](../Hello_FilleddichromaticvertGradRectsmootheststep.py)
+[![Filled Vertical Dichromatic Smootheststep Gradient Rectangle ](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle0smootheststep.bmp)](../Hello_FilleddichromaticvertGradRectsmootheststep.py)
 
-[![Filled Horizontal Dichromatic Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1.bmp)](../Hello_FilleddichromatichoriGradRect.py)
+[![Filled Horizontal Dichromatic Gradient Rectangle](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle1.bmp)](../Hello_FilleddichromatichoriGradRect.py)
 
-[![Filled Horizontal Dichromatic Smoothstep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smoothstep.bmp)](../Hello_FilleddichromatichoriGradRectsmoothstep.py)
+[![Filled Horizontal Dichromatic Smoothstep Gradient Rectangle](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle1smoothstep.bmp)](../Hello_FilleddichromatichoriGradRectsmoothstep.py)
 
-[![Filled Horizontal Dichromatic Smootherstep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smootherstep.bmp)](../Hello_FilleddichromatichoriGradRectsmootherstep.py)
+[![Filled Horizontal Dichromatic Smootherstep Gradient Rectangle](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle1smootherstep.bmp)](../Hello_FilleddichromatichoriGradRectsmootherstep.py)
 
-[![Filled Horizontal Dichromatic Smootheststep Gradient Rectangle](../assets/test_images/raccoon-filleddichromaticgradrectangle1smootheststep.bmp)](../Hello_FilleddichromatichoriGradRectsmootheststep.py)
+[![Filled Horizontal Dichromatic Smootheststep Gradient Rectangle](../tests/assets/test_images/raccoon-filleddichromaticgradrectangle1smootheststep.bmp)](../Hello_FilleddichromatichoriGradRectsmootheststep.py)
 
 **Regular Polygons**
 ![Regular Polygon](../Hello_Regular_Polygon.py)
@@ -112,9 +112,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Circle (images are links to sample code)**
 
-[![Circle](../assets/test_images/raccoon-thinredcircle.bmp)](../Hello_Circles.py)
+[![Circle](../tests/assets/test_images/raccoon-thinredcircle.bmp)](../Hello_Circles.py)
 
-[![Filled Circle](../assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
+[![Filled Circle](../tests/assets/test_images/raccoon-filledcircle.bmp)](../Hello_FilledCircle.py)
 
 ![Thick Circle](../Hello_Thick_Circle.py)
 
@@ -136,23 +136,23 @@ If there is demand for it I could in theory write a book based on this project l
 
 **3D and 3D shading effects (Images are links to sample code)**
 
-[![Sphere](../assets/test_images/raccoon-sphere.bmp)](../Hello_Sphere.py)
+[![Sphere](../tests/assets/test_images/raccoon-sphere.bmp)](../Hello_Sphere.py)
 
-[![Sphere smoothstep](../assets/test_images/raccoon-spheresmoothstep.bmp)](../Hello_Sphere_smoothstep.py)
+[![Sphere smoothstep](../tests/assets/test_images/raccoon-spheresmoothstep.bmp)](../Hello_Sphere_smoothstep.py)
 
-[![Sphere smootherstep](../assets/test_images/raccoon-spheresmootherstep.bmp)](../Hello_Sphere_smootherstep.py)
+[![Sphere smootherstep](../tests/assets/test_images/raccoon-spheresmootherstep.bmp)](../Hello_Sphere_smootherstep.py)
 
-[![Sphere smootheststep](../assets/test_images/raccoon-spheresmootheststep.bmp)](../Hello_Sphere_smootheststep.py)
+[![Sphere smootheststep](../tests/assets/test_images/raccoon-spheresmootheststep.bmp)](../Hello_Sphere_smootheststep.py)
 
-[![Sphere-dichroma](../assets/test_images/raccoon-spheredichromic.bmp)](../Hello_Sphere_dichromic.py)
+[![Sphere-dichroma](../tests/assets/test_images/raccoon-spheredichromic.bmp)](../Hello_Sphere_dichromic.py)
 
-[![Sphere-dichroma smoothstep](../assets/test_images/raccoon-spheredichromicsmoothstep.bmp)](../Hello_Sphere_dichromic_smoothstep.py)
+[![Sphere-dichroma smoothstep](../tests/assets/test_images/raccoon-spheredichromicsmoothstep.bmp)](../Hello_Sphere_dichromic_smoothstep.py)
 
-[![Sphere-dichroma smootherstep](../assets/test_images/raccoon-spheredichromicsmootherstep.bmp)](../Hello_Sphere_dichromic_smootherstep.py)
+[![Sphere-dichroma smootherstep](../tests/assets/test_images/raccoon-spheredichromicsmootherstep.bmp)](../Hello_Sphere_dichromic_smootherstep.py)
 
-[![Sphere-dichroma smootheststep](../assets/test_images/raccoon-spheredichromicsmootheststep.bmp)](../Hello_Sphere_dichromic_smootheststep.py)
+[![Sphere-dichroma smootheststep](../tests/assets/test_images/raccoon-spheredichromicsmootheststep.bmp)](../Hello_Sphere_dichromic_smootheststep.py)
 
-[![Icosahedron](../assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
+[![Icosahedron](../tests/assets/HelloIcosahedron.jpg)](../Hello_Icosahedron.py)
 
 * ![3D](../Hello_3D.py)
 * ![Surface Plot](../Hello_3D_surfaceplot.py)
