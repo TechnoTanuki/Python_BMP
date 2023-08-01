@@ -5,7 +5,7 @@ Check samples with Hello_something.py for sample code on how to do stuff
 
 **Text and Fonts (images are links to sample code)**
 
-[![Text Demo](../assets/fonts/8x14x3px1cs024bitplotstring2filebc0c13303664.bmp)](../samples/fonts/Hello_Earth.py)
+[![Text Demo](../tests/assets/fonts/8x14x3px1cs024bitplotstring2filebc0c13303664.bmp)](../samples/fonts/Hello_Earth.py)
 
 [![Reverse text](../assets/fonts/8x8x1px0cs024bitplotreversedstring2filebc0c65535.bmp)](../samples/fonts/Hello_Earth_Reverse_text.py)
 
