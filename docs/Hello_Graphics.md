@@ -69,9 +69,9 @@ If there is demand for it I could in theory write a book based on this project l
 
 **Rectangle (images are links to sample code)**
 
-[![Rectangle](../samples/assets/test_images/raccoon-rectangle.bmp)](../samples/primitives2d/Hello_Rectangle.py)
+[![Rectangle](../tests/assets/test_images/raccoon-rectangle.bmp)](../samples/primitives2d/Hello_Rectangle.py)
 
-[![Filled Rectangle](../samples/assets/test_images/raccoon-filledrectangle.bmp)](../samples/primitives2d/Hello_FilledRectangle.py)
+[![Filled Rectangle](../tests/assets/test_images/raccoon-filledrectangle.bmp)](../samples/primitives2d/Hello_FilledRectangle.py)
 
 [![Filled Vertical Gradient Rectangle](../assets/test_images/raccoon-filledgradrectangle0.bmp)](../Hello_FilledvertGradRect.py)
 
