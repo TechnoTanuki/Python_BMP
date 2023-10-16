@@ -10,6 +10,8 @@ A pure Python 2D/3D graphics library that outputs to windows bitmap format
 
 * ![API Reference](https://github.com/TechnoTanuki/Python_BMP/blob/main/docs/BitmapLib_Doc.md)
 
+* [PyPI](https://pypi.org/project/pythonbmp/)  
+
 # Instructions
 
 Run Hello_somestring_here.py
