@@ -39,7 +39,7 @@ def main():
             XYaxis(bmp,
              (80, 570), # uint x,y tuple origin point of the graph (bottom left)
               (40, 40), # uint x,y tuple x and y step for increment in screen coords
-             (570, 18), # uint x,y tuple end poimt of graph (top right)
+             (570, 18), # uint x,y tuple end point of graph (top right)
                 (0, 0), # int x,y tuple for starting values in graph coords
               (10, 10), # int x,y tuple for increment values in graph coords
                     14, # color of axis
