@@ -3,7 +3,7 @@ ___________
 # pythonbmp
 ___________
 A pure Python 2D/3D graphics library that outputs to windows bitmap format
-* Developed and tested using Python 3.8 / 3.10.4 / 3.11
+* Developed and tested using Python 3.8 / 3.10.4 / 3.11 / 3.12
 * No dependencies required
 
 * [YouTube Playlist](https://www.youtube.com/watch?v=uhcAK8y-DBY&list=PL1dB8v4qO2Qzpcsb4XS1fgp_KWrUjam7y)
