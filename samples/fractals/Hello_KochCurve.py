@@ -30,7 +30,7 @@ def main():
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 600 # bitmap size
-        bmp = newBMP(mx, my, 4)
+        bmp = newBMP(mx, my, 4) #4 BIT
         (x, y) = centercoord(bmp) # How to get center of the bitmap
         file = f'Hello{f.__name__}.bmp' # file name
         for c in range(1, 6):
