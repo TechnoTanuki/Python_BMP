@@ -22,6 +22,8 @@ This will show minimum code to accomplish certain tasks
 
 Run ![Features_Speedtest.py](https://github.com/TechnoTanuki/Python_BMP/blob/main/samples/Features_Speedtest.py)
 
+[speed test on YouTube](https://youtu.be/uhcAK8y-DBY?si=tqfWyJV7nhoJvl2K)
+
 * It should generate a bitmap and open MS Paint under windows to show output...
 * Close the MS Paint window to execute another script
 
