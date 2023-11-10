@@ -27,7 +27,7 @@ def main():
         rootdir = path.dirname(__file__) #get path of running script
         existingfile = f'{rootdir}/../assets/tanuki.bmp'
         file = f'Hello{f.__name__}.bmp' # new file
-        f(existingfile, file, n) # make earth smol by n times
+        f(existingfile, file, n) # make smol by n times
         print(f'All done close {imgedt} to finish')
         ret = proc.call([imgedt, file])
 

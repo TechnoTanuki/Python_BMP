@@ -37,7 +37,7 @@ def main():
         vertlist = s(x, y, step, growthfactor, turns) # compute points of control points
         isclosed = False # closed or open curve
         curveback = False # do extra compute to trace back to origin
-        pts = b(vertlist, isclosed, curveback) # compute points of bspline 
+        pts = b(vertlist, isclosed, curveback) # compute points of bspline
         penradius = 5 # radius of pen in pixel
         lumrange = (255, 0) # brightness decrease from center of pen to edge <ubytes>
         rgbfactors = (.9, .5, .9) # color as (r,g,b) values between 1 and 0 <ufloat>

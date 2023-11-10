@@ -31,7 +31,7 @@ def main():
         file = f'Hello{f.__name__}.bmp' # file name
         rf, gf, bf = 0, .5, 1 # floats for r,g,b 0 to 1
         minval, maxval = 0, 255 #=gradient range int 0 to 255
-        f(bmp, [minval, maxval], [rf, gf, bf], 0) #last param alters orientation 0 or 1 
+        f(bmp, [minval, maxval], [rf, gf, bf], 0) #last param alters orientation 0 or 1
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt))
