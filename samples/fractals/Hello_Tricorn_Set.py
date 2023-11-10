@@ -20,13 +20,12 @@ from pythonbmp.BITMAPlib import(
 
 import subprocess as proc
 from os import path
-import sys
 
 
 def main():
         print(f'{notice}\n{meta(f)}')
         imgedt = 'mspaint'  # replace with another editor if Unix
-        rootdir = path.dirname(path.abspath(sys.argv[0])) #get path of running script
+        rootdir = path.dirname(__file__) #get path of running script
         mx = my = 256 # square canvas
         cf = getX11RGBfactors() #color info
         p = par() # common parameters
