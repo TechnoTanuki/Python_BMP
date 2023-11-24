@@ -37,14 +37,13 @@ def main():
         file = f'Hello{f.__name__}{g.__name__}.bmp' # file name
         d = 1/120 # angle increment
         lim = pi * 10 + d # angle limit
-        color = 10
         g(bmp, f(x, y, # control spirograph location
                   200, # control spirograph size
-                  1, .3, # controls spirograph shape
+                  1.8, .3, # controls spirograph shape
                   d, lim), # angle step and limit
                   7, # pen radius
                   [255, 0], # luminosity range
-                  c()['teal']) # connect the dots with lines
+                  c()['gold']) # connect the dots with lines
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
                 (file, rootdir, imgedt)) # tell user we are done
