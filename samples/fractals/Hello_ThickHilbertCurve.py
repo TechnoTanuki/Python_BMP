@@ -29,7 +29,7 @@ def main():
         rootdir = path.dirname(__file__) #get path of running script
         mx = my = 512 # bitmap size
         file = f'Hello{f.__name__}.bmp' # file name
-        bmp = newBMP(600, 600, 24)
+        bmp = newBMP(600, 600, 4) #600 by 600 4 bits
         saveBMP(file, bmp)
         f(file, mx, my, 4, 4, 15, 2, 5, 1)
         print('Saved to %s in %s\nAll done close %s to finish' % \
