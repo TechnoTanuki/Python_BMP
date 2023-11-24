@@ -23,7 +23,6 @@ from os import path
 
 def main():
         print(f'{notice}\n{meta(f)}')
-        imgedt = 'mspaint'  # replace w
         imgedt = 'mspaint'  # replace with another editor if Unix
         rootdir = path.dirname(__file__) # get path of this script
         mx = my = 512 #bitmap size
