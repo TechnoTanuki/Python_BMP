@@ -34,6 +34,8 @@ def main():
         for y in range(0, my, 5):
                 l = y << 1
                 f(bmp, 0, l, mx, l, y) # line(bmp bytearray,x1 int,y1 int,x2 int, y2 int,color int) all unsigned
+                f(bmp, l, 0, y, l, mx + y)
+                f(bmp, 0, l, y, l, mx - y)
         file = f'Hello{f.__name__}.bmp' # file name
         saveBMP(file, bmp) # save file
         print('Saved to %s in %s\nAll done close %s to finish' % \
